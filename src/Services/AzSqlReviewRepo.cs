@@ -1,4 +1,4 @@
-﻿using src.Data;
+using src.Data;
 using src.Models;
 
 namespace src.Services
