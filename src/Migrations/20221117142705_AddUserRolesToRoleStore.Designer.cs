@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using src.Data;
 
@@ -11,9 +12,10 @@ using src.Data;
 namespace src.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    partial class AppIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221117142705_AddUserRolesToRoleStore")]
+    partial class AddUserRolesToRoleStore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,22 +53,22 @@ namespace src.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "46c7c7ee-b799-4c56-bed7-0bb8ca4f2ce1",
-                            ConcurrencyStamp = "c5b35244-1c61-440d-9527-7430c4b1e295",
+                            Id = "984fc7a9-4535-4cc8-a248-25ebb934426f",
+                            ConcurrencyStamp = "8d03f179-3a3e-44ce-9c42-853a49b97195",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "5fdc8e8c-c2a9-465b-b5c3-797980cd6b71",
-                            ConcurrencyStamp = "132f5ae0-bb17-4bcd-9908-b652cfd4369a",
+                            Id = "e7398d5a-b47c-43ef-a940-9f35b823eb28",
+                            ConcurrencyStamp = "554384c4-ea31-47a0-a729-ada833df95b5",
                             Name = "Lawyer",
                             NormalizedName = "LAWYER"
                         },
                         new
                         {
-                            Id = "f8ddea34-b126-4332-854b-00a8ebc1ff34",
-                            ConcurrencyStamp = "0525062a-24bc-4125-bdad-083a8e424452",
+                            Id = "d88e0d56-c744-4921-bd65-77c145de3d8b",
+                            ConcurrencyStamp = "7b7bce69-7080-4bfc-b3a9-7964f38853ad",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
