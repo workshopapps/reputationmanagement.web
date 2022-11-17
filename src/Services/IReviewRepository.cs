@@ -1,4 +1,4 @@
-﻿using src.Models;
+using src.Models;
 
 namespace src.Services
 {
@@ -9,6 +9,8 @@ namespace src.Services
         Review GetReviewById(Guid id);
 
         IEnumerable<Review> GetReviews(int pageNumber=0, int pageSize=0);
+
+        public bool AddReview(Review review);
 
         // Add more CRUD
     }
