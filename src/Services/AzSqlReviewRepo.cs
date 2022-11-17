@@ -1,4 +1,6 @@
-﻿using src.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using src.Data;
+using src.DTOS;
 using src.Models;
 
 namespace src.Services
@@ -25,6 +27,29 @@ namespace src.Services
             throw new NotImplementedException();
         }
 
+        public async Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview()
+        {
+            var resultModel = new List<GetSuccessfulReviews>();
 
+            var query = await _context.Reviews
+                .Where(x => x.Status == StatusType.Successful)
+                .Include(x => x.Users)
+                .Select(x => new GetSuccessfulReviews()
+                {
+                    ReviewId = x.ReviewId,
+                    Username = x.Users.UserName,
+                    UserId = x.UserId,
+                    Status = x.Status,
+                    TimeStamp = x.TimeStamp,
+                    Message = x.Message
+                }).ToListAsync();
+
+            if (query != null)
+            {
+                resultModel = query;
+            }
+
+            return resultModel;
+        }
     }
 }

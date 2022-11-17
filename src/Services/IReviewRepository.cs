@@ -1,4 +1,5 @@
-﻿using src.Models;
+﻿using src.DTOS;
+using src.Models;
 
 namespace src.Services
 {
@@ -8,8 +9,12 @@ namespace src.Services
 
         Review GetReviewById(Guid id);
 
-        IEnumerable<Review> GetReviews(int pageNumber=0, int pageSize=0);
+        IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0);
 
         // Add more CRUD
+
+        Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview();
+
+
     }
 }
