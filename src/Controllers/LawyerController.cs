@@ -10,7 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace src.Controllers
 {
     [ApiController]
-    [Route("api/lawyer")]
+    [Route("api/app/lawyer")]
     [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
     public class LawyerController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace src.Controllers
         }
 
         [SwaggerOperation(Summary = "Get a particular review for the lawyer")]
-        [HttpGet("/api/app/Lawyer/review/{reviewId}")]
+        [HttpGet("reviews/{reviewId}")]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
