@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace src.Models
+namespace src.Entities
 {
     public class Review
     {

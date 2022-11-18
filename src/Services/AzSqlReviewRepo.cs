@@ -1,5 +1,5 @@
 using src.Data;
-using src.Models;
+using src.Entities;
 
 namespace src.Services
 {

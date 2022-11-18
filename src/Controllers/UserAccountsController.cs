@@ -1,23 +1,27 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using src.Entities;
 using src.Models;
+using src.Models.Dtos;
+using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace src.Controllers
 {
-   
+        [SwaggerTag("For authorization for Customer")]
         [Route("api/auth")]
         [ApiController]
-        public class AccountsController : ControllerBase
+        public class UserAccountsController : ControllerBase
         {
             private readonly IMapper _mapper;
             private readonly UserManager<ApplicationUser> _userManager;
             private readonly IConfigurationSection _jwtSettings;
-            public AccountsController(IMapper mapper, UserManager<ApplicationUser> userManager, IConfiguration configuration)
+            public UserAccountsController(IMapper mapper, UserManager<ApplicationUser> userManager, IConfiguration configuration)
             {
                 _mapper = mapper;
                 _userManager = userManager;
@@ -25,7 +29,7 @@ namespace src.Controllers
             }
             
             [HttpPost("create_account")]
-            public async Task<ActionResult> Register([FromBody] UserRegistrationModel userModel)
+            public async Task<ActionResult> Register([FromBody] src.Models.Dtos.CustomerAccountForCreationDto userModel)
             {
                 var user = _mapper.Map<ApplicationUser>(userModel);
                 var result = await _userManager.CreateAsync(user, userModel.Password);
