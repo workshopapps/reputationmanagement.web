@@ -45,7 +45,7 @@ namespace src.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles="Lawyer", AuthenticationSchemes = "Bearer")]
         [Route("SuccessfulReview")]
         public async Task<ActionResult> SuccessReview()
         {
