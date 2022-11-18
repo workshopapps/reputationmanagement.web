@@ -10,12 +10,10 @@ namespace src.Services
     {
         public readonly ApplicationDbContext _context;
 
-
         public AzSqlReviewRepo(ApplicationDbContext context)
         {
             _context = context;
         }
-
 
         public IQueryable<Review> Reviews { get => _context.Reviews; }
 

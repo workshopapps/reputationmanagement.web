@@ -44,17 +44,7 @@ namespace src.Controllers
             return Ok(greetings);
         }
 
-        [HttpGet]
-        [Authorize(Roles="Lawyer", AuthenticationSchemes = "Bearer")]
-        [Route("SuccessfulReview")]
-        public async Task<ActionResult> SuccessReview()
-        {
-            var resultModel = new List<GetSuccessfulReviews>();
-
-            var query = await _reviewRepo.GetAllSuccessfulReview();
-
-            return Ok(query);
-        }
+       
 
         /// <summary>
         /// Returns the reviews posted by the currently signed in user
