@@ -15,7 +15,6 @@ namespace EarlyMan.PL.Profiles
                 .ForMember(dest => dest.UserId, o => o.MapFrom(guid => Guid.Empty));
             CreateMap<src.Models.Dtos.ReviewForCreationDto, src.Entities.Review>()
                 .ForMember(dest => dest.TimeStamp, o => o.MapFrom(time => DateTime.Now));
-
         }
     }
 }

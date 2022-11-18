@@ -3,9 +3,7 @@
 namespace src.Models
 {
     public class CustomerAccountForCreationDto
-    {
-       
-        
+    { 
         [Required]
         public string UserName { get; set; }
         
@@ -16,6 +14,5 @@ namespace src.Models
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
     }
 }
