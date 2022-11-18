@@ -5,9 +5,12 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using src;
 using src.Data;
+using src.Entities;
 using src.Models;
 using src.Services;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -37,8 +40,18 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// only return json.
+builder.Services.AddControllers(setupAction =>
+{
+    setupAction.ReturnHttpNotAcceptable = true;
+
+}).AddNewtonsoftJson(setupAction =>
+{
+    setupAction.SerializerSettings.ContractResolver =
+       new CamelCasePropertyNamesContractResolver();
+});
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -61,8 +74,12 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddTransient<IReviewRepository, AzSqlReviewRepo>();
 
+
+
+// Allower Swagger to deal with JWT Auth fluently
 builder.Services.AddSwaggerGen(c =>
 {
+    c.EnableAnnotations();
     var securityScheme = new OpenApiSecurityScheme
     {
         Name = "JWT Authentication",
