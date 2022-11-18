@@ -54,7 +54,7 @@ namespace src.Services
                     UserId = x.UserId,
                     Status = x.Status,
                     TimeStamp = x.TimeStamp,
-                    Message = x.Message
+                    Message = x.ReviewString,
                 }).ToListAsync();
 
             if (query != null)
