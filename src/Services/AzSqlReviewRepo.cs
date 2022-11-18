@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using src.Data;
 using src.DTOS;
 using src.Models;
+using src.Entities;
 
 namespace src.Services
 {
@@ -9,22 +10,34 @@ namespace src.Services
     {
         public readonly ApplicationDbContext _context;
 
+
         public AzSqlReviewRepo(ApplicationDbContext context)
         {
             _context = context;
         }
 
 
-        public IQueryable<Review> Reviews => throw new NotImplementedException();
+        public IQueryable<Review> Reviews { get => _context.Reviews; }
+
+        public bool AddReview(Review review)
+        {
+            _context.Reviews.Add(review);
+            _context.SaveChanges();
+            return true;
+        }
 
         public Review GetReviewById(Guid id)
         {
-            throw new NotImplementedException();
+            if(Reviews == null)
+                throw new NullReferenceException("The product repository is Empty");
+            return Reviews.Select(x => x.ReviewId == id).ToList();
         }
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
-            throw new NotImplementedException();
+            if (Reviews == null)
+                throw new NullReferenceException("The product repository is empty");
+            return Reviews.Select(x => x).ToList();
         }
 
         public async Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview()

@@ -1,8 +1,8 @@
-﻿
+
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace src.Models
+namespace src.Entities
 {
     public class Review
     {
@@ -17,11 +17,14 @@ namespace src.Models
         [Required]
         public DateTime TimeStamp { get; set; }
 
+        public DateTime TimeStamp { get; set; } 
+        [Required]
+        public string ReviewString { get; set; }
         [Required]
         public StatusType Status { get; set; }
 
         [Required]
-        public string Message { get; set; }
+        public string ReviewString { get; set; }
 
         public ApplicationUser Users { get; set; }
 
