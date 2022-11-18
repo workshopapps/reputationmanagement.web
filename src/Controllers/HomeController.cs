@@ -67,7 +67,7 @@ namespace src.Controllers
             return Ok();
         }
 
-        [HttpGet("/api/reviews/{reviewId}")]
+     /*   [HttpGet("/api/reviews/{reviewId}")]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes ="Bearer")]
         public IActionResult GetSingleReview(Guid reviewId)
         {
@@ -81,7 +81,7 @@ namespace src.Controllers
                 return NotFound();
 
             return Ok(singleReview);
-        }
+        }*/
 
 
     }

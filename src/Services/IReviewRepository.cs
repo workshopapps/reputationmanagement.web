@@ -1,4 +1,6 @@
 using src.Entities;
+using src.Models.Dtos;
+using src.Models;
 
 namespace src.Services
 {
@@ -6,7 +8,7 @@ namespace src.Services
     {
         public IQueryable<Review> Reviews { get; }
 
-        Review GetReviewById(Guid id);
+        Response<ReviewForDisplayDto> GetReviewById(Guid id);
 
         IEnumerable<Review> GetReviews(int pageNumber=0, int pageSize=0);
 

@@ -37,6 +37,18 @@ namespace src.Controllers
             return Ok(greetings);
         }
 
-
+        [SwaggerOperation(Summary = "Get a particular review for the lawyer")]
+        [HttpGet("/api/app/Lawyer/review/{reviewId}")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Review(Guid reviewId)
+        {
+            var reviews = _reviewRepo.GetReviewById(reviewId);
+            return Ok(reviews);
+        }
     }
 }
