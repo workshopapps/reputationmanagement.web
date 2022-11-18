@@ -36,7 +36,7 @@ namespace src.Controllers
         }
 
         [HttpGet("/api/reviews/{reviewId}")]
-        [Authorize(Roles = "Customer, Lawyer, Administrator", AuthenticationSchemes ="Bearer")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes ="Bearer")]
         public IActionResult GetSingleReview(Guid reviewId)
         {
             if(reviewId == Guid.Empty)
