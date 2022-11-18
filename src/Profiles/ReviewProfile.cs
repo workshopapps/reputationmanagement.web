@@ -6,9 +6,7 @@ namespace EarlyMan.PL.Profiles
     {
         public ReviewProfile()
         {
-            CreateMap<src.Entities.Review, src.Models.Dtos.ReviewForDisplayDto>();
-
-            
+            CreateMap<src.Entities.Review, src.Models.Dtos.ReviewForDisplayDto>();    
             CreateMap<src.Models.Dtos.ReviewForCreationDto, src.Entities.Review>()
                 .ForMember(dest => dest.ReviewId, o => o.MapFrom(guid => Guid.NewGuid()));
             CreateMap<src.Models.Dtos.ReviewForCreationDto, src.Entities.Review>()
