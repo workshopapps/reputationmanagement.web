@@ -25,7 +25,9 @@ namespace src.Services
 
         public Review GetReviewById(Guid id)
         {
-            throw new NotImplementedException();
+            if(Reviews == null)
+                throw new NullReferenceException("The product repository is Empty");
+            return Reviews.Select(x => x.ReviewId == id).ToList();
         }
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)

@@ -67,6 +67,22 @@ namespace src.Controllers
             return Ok();
         }
 
+        [HttpGet("/api/reviews/{reviewId}")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes ="Bearer")]
+        public IActionResult GetSingleReview(Guid reviewId)
+        {
+            if(reviewId == Guid.Empty)
+            {
+                return new ArgumentException("Review Id is Empty");
+            } 
+            Review singleReview = _reviewRepo.GetReviewById(reviewId);
+
+            if(singleReview == null)
+                return NotFound();
+
+            return Ok(singleReview);
+        }
+
 
     }
 }
