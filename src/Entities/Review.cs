@@ -16,15 +16,10 @@ namespace src.Entities
         public string Email { get; set; }
         [Required]
         public DateTime TimeStamp { get; set; }
-
-        public DateTime TimeStamp { get; set; } 
         [Required]
         public string ReviewString { get; set; }
         [Required]
         public StatusType Status { get; set; }
-
-        [Required]
-        public string ReviewString { get; set; }
 
         public ApplicationUser Users { get; set; }
 

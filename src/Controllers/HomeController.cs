@@ -14,15 +14,10 @@ namespace src.Controllers
 {
 
     [ApiController]
-    [Route("app")]
-    public class HomeController : ControllerBase
     [Authorize(Roles = "Customer", AuthenticationSchemes = "Bearer")]
     [Route("api")]
     public class HomeController:ControllerBase
     {
-        public readonly IReviewRepository _reviewRepo;
-        public HomeController(IReviewRepository reviewRepo,
-            UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         private readonly IReviewRepository _reviewRepo;
         private readonly IMapper _mapper;
 
