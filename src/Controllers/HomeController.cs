@@ -73,7 +73,7 @@ namespace src.Controllers
         {
             if(reviewId == Guid.Empty)
             {
-                return new ArgumentException("Review Id is Empty");
+                throw new ArgumentException("Review Id is Empty");
             } 
             Review singleReview = _reviewRepo.GetReviewById(reviewId);
 

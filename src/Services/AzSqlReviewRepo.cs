@@ -27,10 +27,10 @@ namespace src.Services
         {
             if(Reviews == null)
                 throw new NullReferenceException("The product repository is Empty");
-            return Reviews.Select(x => x.ReviewId == id).ToList();
+            return Reviews.FirstOrDefault(x => x.ReviewId == id);
         }
 
-        public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
+        public IEnumerable<Review> GetReviews()
         {
             if (Reviews == null)
                 throw new NullReferenceException("The product repository is empty");

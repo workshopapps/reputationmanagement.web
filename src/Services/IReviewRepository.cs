@@ -8,7 +8,7 @@ namespace src.Services
 
         Review GetReviewById(Guid id);
 
-        IEnumerable<Review> GetReviews(int pageNumber=0, int pageSize=0);
+        IEnumerable<Review> GetReviews();
 
         public bool AddReview(Review review);
 
