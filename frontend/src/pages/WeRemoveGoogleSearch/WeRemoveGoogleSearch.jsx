@@ -1,3 +1,4 @@
+import React from 'react'
 import { StyledButton, StyledTextButton } from '../../components/Styles/Body/Button.styled';
 import {
 	StyledH1,
