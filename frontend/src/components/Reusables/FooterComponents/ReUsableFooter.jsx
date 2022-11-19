@@ -3,7 +3,6 @@ import React from 'react';
 import FooterLinks from "./FooterLinks"
 import FooterSocials from "./FooterSocials"
 
-import FooterSocials from './FooterSocials';
 
 function Footer() {
 	return (
