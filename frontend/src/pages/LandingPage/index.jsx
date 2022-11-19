@@ -26,7 +26,7 @@ const LandingPage = () => {
 			<StyledLandingPage>
 				<HeroSection>
 					<HeroTextDiv>
-						<StyledH1Center className="fs-3">
+						<StyledH1Center>
 							We help you maintain your <span>brand’s</span> reputation
 						</StyledH1Center>
 						<p>
