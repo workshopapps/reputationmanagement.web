@@ -103,15 +103,15 @@ namespace src.Controllers
 
         [HttpGet("inconclusive")]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
-        public void GetAllInconclusiveReviews()
+        public IActionResult GetAllInconclusiveReviews()
         {
-            //IEnumerable<Review> inconclusiveIsNull = null;
-            //IEnumerable<Review> inconclusiveReviews = _reviewRepo.GetInconclusiveReviews();
-            //if (inconclusiveReviews == null || inconclusiveReviews.Count() < 1)
-            //{
-            //    return Ok(inconclusiveIsNull);
-            //}
-            //return Ok(inconclusiveReviews);
+            IEnumerable<Review> inconclusiveIsNull = null;
+            IEnumerable<Review> inconclusiveReviews = _reviewRepo.GetInconclusiveReviews();
+            if (inconclusiveReviews == null || inconclusiveReviews.Count() < 1)
+            {
+                return Ok(inconclusiveIsNull);
+            }
+            return Ok(inconclusiveReviews);
         }
 
     }
