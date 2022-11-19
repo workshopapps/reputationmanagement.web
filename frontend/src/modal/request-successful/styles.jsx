@@ -61,6 +61,9 @@ export const StyledSuccessfulRequest = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+    .none{
+        display: none;
+    }
     h2{
         font-family: Lato;
         font-size: 32px;

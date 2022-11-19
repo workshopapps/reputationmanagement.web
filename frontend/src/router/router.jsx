@@ -5,6 +5,11 @@ import GetAQuote from '../pages/GetAQuote';
 import AboutPage from '../pages/AboutUs/AboutPage';
 
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
+
+
+// import Home from '../pages/Home/Home';
+
+
 import Faqs from '../pages/FAQ/Faqs';
 
 import LandingPage from '../pages/LandingPage';
@@ -15,20 +20,27 @@ import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSe
 
 import Privacy from '../pages/Privacy Policy/Privacy';
 import Blog from '../pages/Blog/Blog';
+import GlassDoor from '../pages/GlassDoor/GlassDoor';
+
 import Signup from '../Sign/Signup';
 
 const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
+
 				<Route path="/" element={<LandingPage />} />
-				<Route path="/SignUp" element={<Signup />} />
+				<Route path='/SignUp' element={<Signup />} />
+
+				<Route path="landing-page" element={<LandingPage />} />
+
+				<Route path="about-us" element={<AboutPage />} />
+
+			
 				<Route
 					path="we-remove-google-search"
 					element={<WeRemoveGoogleSearch />}
 				/>
-				<Route path="about-us" element={<AboutPage />} />
-
 				<Route
 					path="we-remove-google-review"
 					element={<WeRemoveGoogleReview />}
@@ -45,6 +57,10 @@ const Router = () => {
 				<Route path="FAQ" element={<Faqs />} />
 
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+
+				<Route path="glassdoor" element={<GlassDoor />} />
+
+
 			</Routes>
 		</BrowserRouter>
 	);

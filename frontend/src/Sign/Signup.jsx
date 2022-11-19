@@ -1,6 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
-import Closed from '../Sign/Assets/eye-slash.png';
+import React, { useState } from "react";
+import Closed from'../Sign/Assets/eye-slash.png';
 
 function Signup() {
 	const InitialValues = {
