@@ -1,4 +1,5 @@
 using src.Entities;
+using src.Models.Dtos;
 
 namespace src.Services
 {
@@ -14,6 +15,16 @@ namespace src.Services
 
         public void DeleteReview(Guid id);
 
+        public void DeleteReviews(Guid userId);
+
+        public bool Save();
+
         // Add more CRUD
+
+        IEnumerable<Review> GetInconclusiveReviews();
+        
+        Review UpdateReviewLawyer(ReviewForUpdateDTO review);
+
+        Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview();
     }
 }
