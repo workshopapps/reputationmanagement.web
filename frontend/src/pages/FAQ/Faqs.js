@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import FAQ from './FAQ'
+import FaqItem from './FaqItem'
 import styled from 'styled-components'
-import Layout from '../../components/Layout'
+import PageLayout from '../../layout/PageLayout'
 
 function Faqs() {
 
@@ -81,7 +81,7 @@ function Faqs() {
     `
 
   return (
-    <Layout>
+    <PageLayout>
         <FaqMainWraper>
             <Header>
                 <h1>Frequently Asked Questions</h1>
@@ -93,12 +93,12 @@ function Faqs() {
             <FaqSection>
                 {faqs.map((faq, i) => (
                     <div>
-                        <FAQ faq ={faq} index ={i}/>
+                        <FaqItem faq ={faq} index ={i}/>
                     </div>
                 ))}
             </FaqSection>
         </FaqMainWraper>
-    </Layout>
+    </PageLayout>
   )
 }
 

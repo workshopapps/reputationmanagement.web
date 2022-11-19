@@ -86,4 +86,4 @@ function FAQ({faq, index}) {
   )
 }
 
-export default FAQ
+export default FaqItem

@@ -6,6 +6,7 @@ import Home from '../pages/Home/Home';
 import LandingPage from '../pages/LandingPage';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
+import Faqs from '../pages/FAQ/Faqs'
 
 const Router = () => {
 	return (
