@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import AboutPage from '../pages/AboutUs/AboutPage';
 
-import Carrerpg1 from '../pages/Carrer/Carrerpg1';
+// import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 
-import Home from '../pages/Home/Home';
+// import Home from '../pages/Home/Home';
 
-import Faqs from '../pages/FAQ/Faqs';
+// import Faqs from '../pages/FAQ/Faqs';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 
 import LandingPage from '../pages/LandingPage';
@@ -15,7 +15,7 @@ import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
 
-import Privacy from '../pages/Privacy Policy/Privacy';
+import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import Faqs from '../pages/FAQ/Faqs';
 
@@ -23,7 +23,7 @@ const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Home />} />
+				{/* <Route path="/" element={<Home />} /> */}
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="about-us" element={<AboutPage />} />
 
@@ -38,11 +38,11 @@ const Router = () => {
 					path="we-remove-google-review"
 					element={<WeRemoveGoogleReview />}
 				/>
-				<Route path='/request-successful' element={<RequestSuccessfulSm/>}/>
+				<Route path="/request-successful" element={<RequestSuccessfulSm />} />
 
 				<Route path="terms-of-use" element={<Termsofuse />} />
 
-				<Route path="privacy" element={<Privacy />} />
+				<Route path="privacy" element={<PrivacyPolicy />} />
 
 				<Route path="career" element={<Carrerpg1 />} />
 
