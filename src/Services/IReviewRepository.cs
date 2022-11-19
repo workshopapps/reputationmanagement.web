@@ -14,6 +14,10 @@ namespace src.Services
 
         public void DeleteReview(Guid id);
 
+        public void DeleteReviews(Guid userId);
+
+        public bool Save();
+
         // Add more CRUD
     }
 }
