@@ -4,7 +4,10 @@ export const StyledLandingPage = styled.div`
 	section {
 		padding: 80px 24px;
 	}
-
+	.stepText {
+		padding-top: 18px;
+		padding-bottom: 18px;
+	}
 	.cta {
 		background: url(.png), #eef1fc;
 	}
