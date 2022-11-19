@@ -7,10 +7,12 @@ import Retention from './components/Retention'
 import Privacy from './components/Privacy'
 import Contact from './components/Contact';
 import Change from './components/Change';
+import Buttom from './components/Buttom';
 
 
 
-function App() {
+
+function PrivacyPolicy() {
   return (
     <>
       <Header />
@@ -21,7 +23,9 @@ function App() {
       <Privacy />
       <Change />
       <Contact />
+      <Buttom />
     
+
         
     </>
   );
