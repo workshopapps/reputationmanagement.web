@@ -7,12 +7,15 @@ import {
 	StyledLabel,
 	StyledInput,
 	StyledText,
+	Icon,
 	ErrorText,
-	Popup, StyledPopup,
+	Popup,
+	StyledPopup,
 	StyledBtnContainer,
 } from './Container.styled';
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
+import { FaTimes } from 'react-icons/fa';
 import PageLayout from '../../layout/PageLayout';
 import rocket from '../../assets/images/noto_rocket.svg';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
@@ -26,22 +29,17 @@ const GetAQuote = () => {
 		reset,
 	} = useForm();
 	//   Setting State
-	const [formSubmitted, setFormSubmitted] = useState(false);
-	const [value, setValue] = useState(false);
-    const [name, setName] = useState('Dear')
+	const [name, setName] = useState('Dear');
 
 	const [open, setOpen] = useState(false);
 	const closeModal = () => setOpen(false);
 
 	const onFormSubmit = (data) => {
-		console.log(data)
-        setName(data.firstname)
-        setOpen(true)
-		setFormSubmitted(true);
+		console.log(data);
+		setName(data.firstname);
+		setOpen(true);
 		setTimeout(() => {
 			reset();
-			setFormSubmitted(false);
-			setValue(false);
 		}, 5000);
 	};
 
@@ -54,6 +52,7 @@ const GetAQuote = () => {
 						Fill up the form below and we will get back to you within 24 hours
 					</p>
 				</Banner>
+                {/* Form */}
 				<StyledForm noValidate onSubmit={handleSubmit(onFormSubmit)}>
 					<NameGroup>
 						<div>
@@ -123,7 +122,7 @@ const GetAQuote = () => {
 					</StyledTextGroup>
 
 					<StyledBtnContainer>
-						<StyledButton >Send Request</StyledButton>
+						<StyledButton>Send Request</StyledButton>
 					</StyledBtnContainer>
 				</StyledForm>
 
@@ -131,17 +130,20 @@ const GetAQuote = () => {
 				{open ? (
 					<Popup>
 						<StyledPopup>
-                            <h3>
-                                Request Sent  <img src={rocket} alt="" />
-                            </h3>
-                            <p>
-                                <span>Hello {name}, </span>We have recieved your request and we will get back to
-                                you shortly.
-                            </p>
-                            <StyledBtnContainer>
-                                <StyledButton onClick={closeModal}>Continue</StyledButton>
-                            </StyledBtnContainer>
-                        </StyledPopup>
+							<Icon onClick={closeModal}>
+								<FaTimes />
+							</Icon>
+							<h3>
+								Request Sent <img src={rocket} alt="" />
+							</h3>
+							<p>
+								<span>Hello {name}, </span>We have recieved your request and we
+								will get back to you shortly.
+							</p>
+							<StyledBtnContainer>
+								<StyledButton onClick={closeModal}>Continue</StyledButton>
+							</StyledBtnContainer>
+						</StyledPopup>
 					</Popup>
 				) : (
 					' '

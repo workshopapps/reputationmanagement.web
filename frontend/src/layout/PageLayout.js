@@ -1,6 +1,6 @@
 import Header from '../components/Layout/Header';
 import Footer from '../components/Reusables/FooterComponents/ReUsableFooter';
-import useAppContext from '../hooks/useAppContext';
+import useAppContext from '../hooks/useAppcontext';
 import RequestSuccessful from '../modal/request-successful/requestSuccessful';
 
 
