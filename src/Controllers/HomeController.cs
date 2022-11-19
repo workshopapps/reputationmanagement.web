@@ -7,6 +7,7 @@ using src.Models;
 using src.Models.Dtos;
 using src.Services;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Security.Claims;
 
 namespace src.Controllers
 {
@@ -68,21 +69,37 @@ namespace src.Controllers
         }
 
         [HttpGet("/api/reviews/{reviewId}")]
-        [Authorize(Roles = "Lawyer", AuthenticationSchemes ="Bearer")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
         public IActionResult GetSingleReview(Guid reviewId)
         {
-            if(reviewId == Guid.Empty)
+            if (reviewId == Guid.Empty)
             {
-                throw new ArgumentException("Review Id is Empty");
-            } 
+                return new ArgumentException("Review Id is Empty");
+            }
             Review singleReview = _reviewRepo.GetReviewById(reviewId);
 
-            if(singleReview == null)
+            if (singleReview == null)
                 return NotFound();
 
             return Ok(singleReview);
         }
 
+        /// <summary>
+        /// Deletes All Reviews Associated With this user
+        /// </summary>
+        /// <returns>Ok</returns>
+        [SwaggerOperation(Summary = "Deletes All Reviews Associated With this user")]
+        [HttpDelete("reviews/delete-all-reviews")]
+        public IActionResult DeleteReviews()
+        {
+            //todo
+            var userId = new Guid(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+            _reviewRepo.DeleteReviews(userId);
+            _reviewRepo.Save();
+
+            return Ok();
+        }
 
     }
 }
