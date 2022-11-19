@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
+import Carrerpg3 from '../pages/Carrer/Carrerpg3';
 import Home from '../pages/Home/Home';
 import LandingPage from '../pages/LandingPage';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
@@ -15,8 +16,9 @@ const Router = () => {
 					path="we-remove-google-search"
 					element={<WeRemoveGoogleSearch />}
 				/>
-				<Route path="carrer-pg-2" element={<Carrerpg2 />} />
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+				<Route path="carrer-pg-3" element={<Carrerpg3 />} />
+				<Route path="carrer-pg-2" element={<Carrerpg2 />} />
 			</Routes>
 		</BrowserRouter>
 	);
