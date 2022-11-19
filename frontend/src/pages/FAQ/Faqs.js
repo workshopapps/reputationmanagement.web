@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import FAQ from './FAQ'
 import styled from 'styled-components'
-import Layout from '../../components/Layout'
+import PageLayout from '../../layout/PageLayout'
 
 function Faqs() {
 
@@ -81,7 +81,7 @@ function Faqs() {
     `
 
   return (
-    <Layout>
+    <PageLayout>
         <FaqMainWraper>
             <Header>
                 <h1>Frequently Asked Questions</h1>
@@ -98,7 +98,7 @@ function Faqs() {
                 ))}
             </FaqSection>
         </FaqMainWraper>
-    </Layout>
+      </PageLayout>
   )
 }
 
