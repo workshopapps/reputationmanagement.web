@@ -24,8 +24,11 @@ const Router = () => {
 					element={<WeRemoveGoogleReview />}
 				/>
 
+				<Route path="FAQ" element={<Faqs />}/>
+
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
 				<Route path="blog" element={<Blog />} />
+
 			</Routes>
 		</BrowserRouter>
 	);
