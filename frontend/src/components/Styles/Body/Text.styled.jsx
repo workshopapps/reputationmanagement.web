@@ -24,6 +24,7 @@ color: ${(props) => (props.blue ? '#233BA9' : '#2B2C34')};
 
 export const StyledH2Center = Styled(StyledH2)`
     text-align: center;
+    margin-bottom: 40px;
 
 	@media screen and (max-width: 680px) {
         font-size: 24px;
