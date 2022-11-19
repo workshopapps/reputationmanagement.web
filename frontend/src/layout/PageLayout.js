@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from '../components/Layout/Header';
 import Footer from '../components/Reusables/FooterComponents/ReUsableFooter';
 import useAppContext from '../hooks/useAppContext';
