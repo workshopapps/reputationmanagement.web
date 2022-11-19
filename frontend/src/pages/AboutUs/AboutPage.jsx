@@ -3,17 +3,18 @@ import Hero from './sections/Hero';
 import Story from './sections/Story';
 import Fix from './sections/FixIt';
 import Help from './sections/Help';
-import PageLayout from '../../layout/PageLayout';
+import Footer from '../../components/Layout/Footer';
+import Header from '../../components/Layout/Header';
 
 function AboutPage() {
 	return (
 		<>
-			<PageLayout>
-				<Hero />
-				<Story />
-				<Fix />
-				<Help />
-			</PageLayout>
+			<Header />
+			<Hero />
+			<Story />
+			<Fix />
+			<Help />
+			<Footer />
 		</>
 	);
 }

@@ -1,18 +1,53 @@
 const FooterData = [
-    {
-        header: "Community", 
-        text1: "Explore",
-        text2: "Blogs",
-        text3: "Careers",
-        text4: "Terms and Conditions",
-    },
-    {
-        header: "Links", 
-        text1: "Support",
-        text2: "Privacy Policy",
-        text3: "Contact Us",
-        text4: "FAQ",
-    }, 
+    [
+
+        {
+            text: "Blogs",
+            url: "/blog"
+        },
+        {
+            text: "Careers",
+            url: "/career"
+        },
+        {
+            text: "Our team",
+            url: "/team"
+        },
+        {
+            text: "Terms and Conditions",
+            url: "/terms-of-use"
+        },
+    ]
+
+    ,
+    [
+        {
+            text: "Support",
+            url: "/support"
+        },
+        {
+            text: "Privacy Policy",
+            url: "/privacy"
+        },
+        {
+            text: "Contact Us",
+            url: "/contact-us"
+        },
+        {
+            text: "FAQ",
+            url: "/faq"
+        },
+    ]
 ]
+
+// text2: "Blogs",
+// text3: "Careers",
+// text4: "Terms and Conditions",
+
+// header: "Links",
+//     text1: "Support",
+//         text2: "Privacy Policy",
+//             text3: "Contact Us",
+//                 text4: "FAQ",
 
 export default FooterData;
