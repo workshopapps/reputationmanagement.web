@@ -18,7 +18,7 @@ export default function Fix() {
 			</StyledFixHeader>
 			<StyledFixBox>
 				<StyledFixCenter>
-					<StyledFixImg src="assets/img/Trust.jpg" alt="trust" />
+					<StyledFixImg src="assets/images/Trust.jpg" alt="trust" />
 					<StyledColorOrange>Trust</StyledColorOrange>
 					<StyledFixp>
 						<p>
@@ -28,7 +28,7 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 				<StyledFixCenter>
-					<StyledFixImg src="assets/img/Convenience.jpg" alt="convenience" />
+					<StyledFixImg src="assets/images/Convenience.jpg" alt="convenience" />
 					<StyledColorOrange>Convience</StyledColorOrange>
 					<StyledFixp>
 						<p>
@@ -40,7 +40,7 @@ export default function Fix() {
 				</StyledFixCenter>
 				<StyledFixCenter>
 					<StyledFixImg
-						src="assets/img/Professionalism.jpg"
+						src="assets/images/Professionalism.jpg"
 						alt="professionals"
 					/>
 					<StyledColorOrange> Professionalism</StyledColorOrange>

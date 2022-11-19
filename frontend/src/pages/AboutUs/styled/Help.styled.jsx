@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledBgImgDesktop = styled.div`
-	background-image: url('assets/img/Banner-Background-Desktop.png');
+	background-image: url('assets/images/Banner-Background-Desktop.png');
 	width: 100%;
 	height: 332px;
 	position: relative;

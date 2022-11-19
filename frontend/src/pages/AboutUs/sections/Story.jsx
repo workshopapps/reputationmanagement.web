@@ -21,7 +21,7 @@ export default function Story() {
 					</p>
 				</StyledStorytxt>
 				<StoryImg
-					src="assets/img/Our-Story.png"
+					src="assets/image/Our-Story.png"
 					alt="our story"
 					width="600px"
 				/>

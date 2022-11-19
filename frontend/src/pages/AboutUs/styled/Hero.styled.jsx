@@ -13,6 +13,13 @@ export const StyledHeroMsg = styled.div`
 	padding-right: 70px;
 	@media (max-width: 375px) {
 		padding: 0 20px;
+		display: none;
+	}
+`;
+export const MobImg = styled.img`
+	display: none;
+	@media (max-width: 375px) {
+		display: flex;
 	}
 `;
 //export const StyledHeroHead = styled.h1``
