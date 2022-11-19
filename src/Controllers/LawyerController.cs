@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using src.Entities;
+using src.Models.Dtos;
 using src.Services;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -35,6 +36,27 @@ namespace src.Controllers
         {
             string greetings = "Hello lawyer!";
             return Ok(greetings);
+        }
+
+        [SwaggerOperation(Summary = "Update a review by Lawyer")]
+        [HttpPatch]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        public ActionResult UpdateReview(ReviewForUpdateDTO review)
+        {
+           _reviewRepo.UpdateReviewLawyer(review);
+            return Ok("Review is successfully updated");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        [Route("SuccessfulReview")]
+        public async Task<ActionResult> SuccessReview()
+        {
+            var resultModel = new List<GetSuccessfulReviews>();
+
+            var query = await _reviewRepo.GetAllSuccessfulReview();
+
+            return Ok(query);
         }
 
 
