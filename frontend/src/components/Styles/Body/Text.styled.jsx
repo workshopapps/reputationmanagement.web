@@ -22,8 +22,9 @@ export const StyledH1Center = Styled(StyledH1)`
 export const StyledH2 = Styled.h2`
 font-size: 2.25rem;
 font-weight: 700;
+max-width: 850px;
 color: ${props => props.blue ? '#233BA9' : '#2B2C34'};
-
+margin: ${props => props.margin ? '20px auto' : '0 auto'};
 span{
     color: #FDB172;
 }
@@ -35,9 +36,10 @@ export const StyledH2Center = Styled(StyledH2)`
 
 
 export const StyledH3 = Styled.h3`
-font-size: 1.7rem;
+font-size: 1.23rem;
 font-weight: 700;
 color: #2B2C34;
+margin: 20px 0;
 
 `;
 
