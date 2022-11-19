@@ -1,12 +1,11 @@
 import React from 'react'
-import './terms.css'
 import styled from "styled-components";
-import Footer from '../components/Reusables/FooterComponents/ReUsableFooter'
-
+import Footer from '../../components/Reusables/FooterComponents/ReUsableFooter.jsx'
+import Header from '../../components/Layout/Header.jsx';
 
 const Headtext  = styled.h2`
   color: #01B0D8;
-
+font-size:1.8em;
 `
 
 const Termsofuse = () => {
@@ -14,8 +13,11 @@ const Termsofuse = () => {
 <Headtext>{text} </Headtext>
    )
   return (
-    <div>     
-    
+
+<>
+ <Header/>
+    <div className='w-4/5 m-auto'>     
+
     <div> 
      <Heading text='Effective March 2022' />
     <article>
@@ -247,8 +249,10 @@ CA 940631-800-348-5031
 
 </div>
 
-<Footer/>
     </div>
+    <Footer/>
+
+    </>
   )
 }
 
