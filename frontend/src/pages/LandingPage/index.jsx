@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import PageLayout from '../../layout/PageLayout';
 import {
 	HeroSection,
@@ -18,7 +19,6 @@ import HeroImageMobile from '../../assets/images/complaint-screen-mobile.png';
 import ArrowRightIcon from '../../assets/images/arrowRightIcon.png';
 import CreateAccountImage from '../../assets/images/screen-create-account.png';
 import RequestRemoval from '../../assets/images/screen-request-removal.png';
-import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
 	return (
@@ -35,10 +35,16 @@ const LandingPage = () => {
 							maintain your brand’s reputation.
 						</p>
 
-						<StyledButton className="flex items-center mx-auto">
-							<span>Get a quote</span>
-							<img src={ArrowRightIcon} className="px-3" alt="ArrowRightIcon" />
-						</StyledButton>
+						<Link to="get-quote">
+							<StyledButton className="flex items-center mx-auto">
+								<span>Get a quote</span>
+								<img
+									src={ArrowRightIcon}
+									className="px-3"
+									alt="ArrowRightIcon"
+								/>
+							</StyledButton>
+						</Link>
 					</HeroTextDiv>
 
 					<div className="HeroImage flex justify-center">
