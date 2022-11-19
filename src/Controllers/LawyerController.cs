@@ -47,6 +47,18 @@ namespace src.Controllers
             return Ok("Review is successfully updated");
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        [Route("SuccessfulReview")]
+        public async Task<ActionResult> SuccessReview()
+        {
+            var resultModel = new List<GetSuccessfulReviews>();
+
+            var query = await _reviewRepo.GetAllSuccessfulReview();
+
+            return Ok(query);
+        }
+
 
     }
 }
