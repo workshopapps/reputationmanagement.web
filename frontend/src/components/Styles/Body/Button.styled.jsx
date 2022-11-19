@@ -13,4 +13,14 @@ export const StyledButton = Styled.button`
     &:hover{
         background: ${props => props.outlined ? '#E5E5E5' : "#1F3491"};
     }
-`
+`;
+
+export const StyledTextButton = Styled.button`
+    color: #233BA9;
+    font-weight: 700;
+    font-size: 1.1rem;
+
+    &:hover{
+        color: #1F3491;
+    }
+`;
