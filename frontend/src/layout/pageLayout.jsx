@@ -1,13 +1,13 @@
-import Footer from "../components/footer"
-import Nav from "../components/nav"
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-const PageLayout = ({children}) => {
-    return(
-        <main>
-            <Nav/>
-            {children}
-            <Footer/>
-        </main>
-    )
-}
+const PageLayout = ({ children }) => {
+	return (
+		<main>
+			<Header />
+			{children}
+			<Footer />
+		</main>
+	);
+};
 export default PageLayout;
