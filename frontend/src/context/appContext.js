@@ -1,11 +1,12 @@
 import React, {createContext, useState } from "react";
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
 const AppProvider = ({children}) => {
-    const [ someState, setSomeState ] = useState(0)
+    const [ someState, setSomeState ] = useState(0);
+    const [ requestSuccessfulModalActive, setRequestSuccessfulModalActive ] = useState(true)
     return(
-        <AppContext.Provider value={{someState, setSomeState}}>
+        <AppContext.Provider value={{someState, setSomeState, requestSuccessfulModalActive, setRequestSuccessfulModalActive}}>
             {children}
         </AppContext.Provider>
     )
