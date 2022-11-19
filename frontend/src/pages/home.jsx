@@ -1,9 +1,9 @@
+import React from 'react'
 import PageLayout from "../layout/pageLayout";
 
-const Home = () => {
-    return(
-        <PageLayout>
-            <h1>Let's get this gold!!!!!</h1>
+function Home() { return(
+<PageLayout>
+<h1 className="text-red-400">Let's get thi,s gold!!!!!</h1>
         </PageLayout>
     )
 }

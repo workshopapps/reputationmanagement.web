@@ -1,4 +1,6 @@
-const Nav = () => {
+import React from 'react'
+
+function Nav() {
     return(
         <nav>
             <h4>This is the nav....write your code here!!!!</h4>
