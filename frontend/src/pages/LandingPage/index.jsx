@@ -36,7 +36,7 @@ const LandingPage = () => {
 							maintain your brand’s reputation.
 						</p>
 
-						<Link to="get-a-quote">
+						<Link to="get-quote">
 							<StyledButton className="flex items-center mx-auto">
 								<span>Get a quote</span>
 								<img
@@ -74,7 +74,7 @@ const LandingPage = () => {
 										request, we are here to maintain your brand’s reputation.
 									</p>
 
-									<Link to="/get-a-quote" className="block pt-3">
+									<Link to="/">
 										<span>Get a quote</span>
 										<img
 											src={ArrowRightIcon}
@@ -100,34 +100,7 @@ const LandingPage = () => {
 										and you want it removed.
 									</p>
 
-									<Link to="/get-a-quote" className="block pt-3">
-										<span>Get a quote</span>
-										<img
-											src={ArrowRightIcon}
-											className="px-3"
-											alt="ArrowRightIcon"
-										/>
-									</Link>
-								</div>
-							</div>
-						</div>
-
-						<div className="stepDiv md:flex mb-10">
-							<div className="stepImage flex-1">
-								<img src={MonitorProgressImage} alt="CreateAccount" />
-							</div>
-
-							<div className="stepText md:px-8 flex-1 flex items-center">
-								<div>
-									<span className="countBtn">03</span>
-									<h3 className="font-bold my-3">Monitor the progress</h3>
-									<p>
-										Our lawyers will take it up from there, we are here to help
-										maintaim your brand’s reputation. you will be notify when
-										the bad review is taken down form your dashboard.
-									</p>
-
-									<Link to="/get-a-quote" className="block pt-3">
+									<Link to="/">
 										<span>Get a quote</span>
 										<img
 											src={ArrowRightIcon}
