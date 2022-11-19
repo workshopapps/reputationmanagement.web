@@ -40,7 +40,6 @@ namespace src.Controllers
         [SwaggerOperation(Summary = "Get a particular review for the lawyer")]
         [HttpGet("reviews/{reviewId}")]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
