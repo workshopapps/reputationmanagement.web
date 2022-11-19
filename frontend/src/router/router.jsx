@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
