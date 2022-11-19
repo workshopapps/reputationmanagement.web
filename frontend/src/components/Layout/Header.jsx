@@ -10,7 +10,7 @@ const Header = () => {
 	const [toggle, setToggle] = useState(false);
 
 	return (
-		<header>
+		<header style={{width: '100%'}}>
 			<StyledContainer>
 				<StyledNav className="">
 					<img src={Logo} alt="FixIt" className="logo" />

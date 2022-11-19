@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import FAQ from './FAQ'
 import styled from 'styled-components'
+import PageLayout from '../../layout/PageLayout'
 
 function Faqs() {
 
@@ -80,22 +81,24 @@ function Faqs() {
     `
 
   return (
-    <FaqMainWraper>
-        <Header>
-            <h1>Frequently Asked Questions</h1>
-            <p>We know you might have questions, which is why we have put together a list of frequently
-                 asked questions to provide clarity and quick answers to your concerns.
-            </p>
-        </Header>
+    <PageLayout>
+        <FaqMainWraper>
+            <Header>
+                <h1>Frequently Asked Questions</h1>
+                <p>We know you might have questions, which is why we have put together a list of frequently
+                    asked questions to provide clarity and quick answers to your concerns.
+                </p>
+            </Header>
 
-        <FaqSection>
-            {faqs.map((faq, i) => (
-                <div>
-                    <FAQ faq ={faq} index ={i}/>
-                </div>
-            ))}
-        </FaqSection>
-    </FaqMainWraper>
+            <FaqSection>
+                {faqs.map((faq, i) => (
+                    <div>
+                        <FAQ faq ={faq} index ={i}/>
+                    </div>
+                ))}
+            </FaqSection>
+        </FaqMainWraper>
+      </PageLayout>
   )
 }
 

@@ -31,7 +31,7 @@ const WRGRHero = () => {
               </Link>
             </StyledButton>
             <StyledButton outlined>
-              <Link to="/#">
+              <Link to="/get-a-quote">
                 Get a quote
               </Link>
             </StyledButton>
