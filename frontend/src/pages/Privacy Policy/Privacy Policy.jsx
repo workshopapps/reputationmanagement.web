@@ -8,25 +8,27 @@ import Privacy from './components/Privacy'
 import Contact from './components/Contact';
 import Change from './components/Change';
 import Buttom from './components/Buttom';
+import PageLayout from '../../layout/PageLayout';
 
 
 
 
 function PrivacyPolicy() {
   return (
-    <>
-      <Header />
-      <Policy />
-      <Information />
-      <Process />
-      <Retention />
-      <Privacy />
-      <Change />
-      <Contact />
-      <Buttom />
-        
-    </>
-  );
+		<>
+			<PageLayout>
+				<Header />
+				<Policy />
+				<Information />
+				<Process />
+				<Retention />
+				<Privacy />
+				<Change />
+				<Contact />
+				<Buttom />
+			</PageLayout>
+		</>
+	);
 }
 
 export default App;
