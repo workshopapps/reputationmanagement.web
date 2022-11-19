@@ -1,3 +1,10 @@
+'import React from 'react';
+import twitter from '../../../assets/images/Twitter.png'
+import faceb from '../../../assets/images/Facebook.png'
+import insta from '../../../assets/images/Instagram.png'
+import fixlogo from '../../../assets/images/Fix-it-Recovered-removebg-preview 1.png'
+
+
 import twitter from '../../../assets/images/Twitter.png';
 import faceb from '../../../assets/images/Facebook.png';
 import insta from '../../../assets/images/Instagram.png';
