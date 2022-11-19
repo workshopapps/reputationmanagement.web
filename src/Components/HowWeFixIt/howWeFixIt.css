@@ -1,0 +1,103 @@
+#how_we_fix_it_section {
+  background: #eef1fc;
+  padding: 24px 20px;
+  padding-bottom: 32px;
+}
+#steps_with_button {
+  padding-top: 24px;
+  padding-left: 24px;
+  padding-bottom: 16px;
+  padding-right: 25px;
+
+}
+.card-hwfi {
+  padding: 32px;
+  gap: 8px;
+  border: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  position: relative;
+}
+.connector-web {
+  display: none;
+}
+.hwfi-card-text {
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.hwfi-card-title {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 8px;
+}
+.get-started {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+  background: #233ba9;
+  border-radius: 4px;
+}
+.hwfi-title {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #233ba9;
+  margin-bottom: 0;
+}
+.hwfi-subtitle {
+  font-family: Lato;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 33px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+@media only screen and (min-width: 992px) {
+  #how_we_fix_it_section {
+    padding: 29px 111px;
+    padding-top: 56px;
+  }
+  .get-started {
+    margin-top: 24px;
+  }
+  /* .card-hwfi {
+  } */
+  .connector-mobile {
+    display: none;
+  }
+  .connector-web {
+    display: inline-block;
+  }
+  .hwfi-title {
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+  .hwfi-subtitle {
+    font-family: Lato;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 54px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+}

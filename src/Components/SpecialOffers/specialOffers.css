@@ -1,0 +1,114 @@
+#special_offers_section {
+  padding: 32px 20px;
+}
+.card-title-special-offers {
+  margin-bottom: 8px;
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #392b21;
+}
+.card-special-offers {
+  border-radius: 12px;
+  position: relative;
+  border: 0rem;
+  margin-bottom: 48px;
+}
+.card-text-special-offers {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #6f7174;
+}
+.card-body-special-offers {
+  padding-left: 0;
+}
+.special-offers-learn-more {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #233ba9;
+}
+.special-offers-learn-more-arrow {
+  padding-left: 12px;
+}
+.specialoff-title {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #233ba9;
+}
+.specialoff-subtitle {
+  font-family: Lato;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 33px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+@media only screen and (min-width: 992px) {
+  #special_offers_section {
+    padding: 64px 133px;
+    padding-bottom: 88px;
+  }
+  .card-body-special-offers {
+    padding-left: 136px;
+    margin-bottom: 32px;
+  }
+  .card-body-special-offers-middle-card {
+    padding-right: 136px;
+    margin-bottom: 32px;
+  }
+  .card-special-offers {
+    margin-bottom: 152px;
+  }
+  .card-special-offers-last {
+    margin-bottom: 0;
+  }
+  .specialoff-title {
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+  .specialoff-subtitle {
+    font-family: Lato;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 54px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .special-offers-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  .special-offers-learn-more {
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: center;
+  }
+}
