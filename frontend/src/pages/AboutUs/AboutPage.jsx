@@ -3,17 +3,17 @@ import Hero from './sections/Hero';
 import Story from './sections/Story';
 import Fix from './sections/FixIt';
 import Help from './sections/Help';
-
-import GlobalStyles from './components/styled/Global';
+import PageLayout from '../../layout/PageLayout';
 
 function AboutPage() {
 	return (
 		<>
-			<GlobalStyles />
-			<Hero />
-			<Story />
-			<Fix />
-			<Help />
+			<PageLayout>
+				<Hero />
+				<Story />
+				<Fix />
+				<Help />
+			</PageLayout>
 		</>
 	);
 }
