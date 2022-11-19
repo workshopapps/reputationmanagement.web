@@ -1,11 +1,12 @@
 import React from 'react';
 import PageLayout from '../../layout/PageLayout';
+import Support from './../Support/Support';
 
 
 function Home() {
 	return (
 		<PageLayout>
-			<h1 className="py-6">Let's get thi,s gold!!!!!</h1>
+			<Support />
 		</PageLayout>
 	);
 }
