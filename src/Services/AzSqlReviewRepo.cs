@@ -1,5 +1,6 @@
 using src.Data;
 using src.Entities;
+using src.Models.Dtos;
 
 namespace src.Services
 {
@@ -69,6 +70,31 @@ namespace src.Services
             {
                 // dispose resources when needed
             }
+        }
+
+        public async Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview()
+        {
+            var resultModel = new List<GetSuccessfulReviews>();
+
+            var query = await _context.Reviews
+                .Where(x => x.Status == StatusType.Successful)
+                .Include(x => x.Users)
+                .Select(x => new GetSuccessfulReviews()
+                {
+                    ReviewId = x.ReviewId,
+                    Username = x.Users.UserName,
+                    UserId = x.UserId,
+                    Status = x.Status,
+                    TimeStamp = x.TimeStamp,
+                    Message = x.ReviewString,
+                }).ToListAsync();
+
+            if (query != null)
+            {
+                resultModel = query;
+            }
+
+            return resultModel;
         }
 
     }

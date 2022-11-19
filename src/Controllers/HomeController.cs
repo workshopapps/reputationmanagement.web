@@ -9,8 +9,7 @@ using src.Services;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace src.Controllers
-{
-    
+{ 
     [ApiController]
     [Authorize(Roles = "Customer", AuthenticationSchemes = "Bearer")]
     [Route("api")]

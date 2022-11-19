@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using src.Entities;
 using src.Services;
 using Swashbuckle.AspNetCore.Annotations;
+using src.Models.Dtos;
 
 namespace src.Controllers
 {
@@ -36,6 +37,19 @@ namespace src.Controllers
             string greetings = "Hello lawyer!";
             return Ok(greetings);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        [Route("SuccessfulReview")]
+        public async Task<ActionResult> SuccessReview()
+        {
+            var resultModel = new List<GetSuccessfulReviews>();
+
+            var query = await _reviewRepo.GetAllSuccessfulReview();
+
+            return Ok(query);
+        }
+
 
 
     }
