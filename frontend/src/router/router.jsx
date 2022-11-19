@@ -4,7 +4,9 @@ import AboutPage from '../pages/AboutUs/AboutPage';
 
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 
+
 // import Home from '../pages/Home/Home';
+
 
 import Faqs from '../pages/FAQ/Faqs';
 
@@ -27,12 +29,17 @@ const Router = () => {
 		<BrowserRouter>
 			<Routes>
 
+				<Route path="/" element={<LandingPage />} />
+				<Route path='/SignUp' element={<Signup />} />
+
+
 				{/* <Route path="/" element={<Home />} /> */}
 
 				<Route path="/" element={<Home />} />
 				<Route path='/SignUp' element={<Signup />} />
 
 				<Route path="landing-page" element={<LandingPage />} />
+
 				<Route path="about-us" element={<AboutPage />} />
 
 				<Route path="/" element={<LandingPage />} />
