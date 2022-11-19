@@ -15,9 +15,9 @@ namespace src.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-
+       
         public void AddReview(Review review)
-        {
+        {            
             if (review.UserId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(review));
@@ -28,7 +28,7 @@ namespace src.Services
                 throw new ArgumentNullException(nameof(review));
             }
             _context.Reviews.Add(review);
-
+          
         }
 
         public Review GetReviewById(Guid id)
@@ -44,28 +44,6 @@ namespace src.Services
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
             return _context.Reviews.Select(x => x).ToList();
-        }
-
-        public Review UpdateReviewLawyer(ReviewForUpdateDTO review)
-        {
-            if (review == null)
-            {
-                throw new NotImplementedException("No review is passed");
-            }
-            Review reviewToUpdate = _context.Reviews.FirstOrDefault(r => r.ReviewId == review.ReviewId);
-
-            if (reviewToUpdate == null)
-            {
-                throw new NullReferenceException("Data not found");
-            }
-
-            reviewToUpdate.ReviewString = review.ReviewString;
-            reviewToUpdate.Status = review.Status;
-
-            _context.SaveChanges();
-
-            return reviewToUpdate;
-
         }
 
         public void DeleteReview(Guid reviewId)
@@ -94,5 +72,25 @@ namespace src.Services
             }
         }
 
+        public Review UpdateReviewLawyer(ReviewForUpdateDTO review)
+        {
+            if (review == null)
+            {
+                throw new NotImplementedException("No review is passed");
+            }
+            Review reviewToUpdate = _context.Reviews.FirstOrDefault(r => r.ReviewId == review.ReviewId);
+
+            if (reviewToUpdate == null)
+            {
+                throw new NullReferenceException("Data not found");
+            }
+
+            reviewToUpdate.ReviewString = review.ReviewString;
+            reviewToUpdate.Status = review.Status;
+
+            _context.SaveChanges();
+
+            return reviewToUpdate;
+        }
     }
 }

@@ -13,8 +13,9 @@ namespace src.Services
 
         public void AddReview(Review review);
 
-        Review UpdateReviewLawyer(ReviewForUpdateDTO review);
+        public void DeleteReview(Guid id);
 
         // Add more CRUD
+        Review UpdateReviewLawyer(ReviewForUpdateDTO review);
     }
 }
