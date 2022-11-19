@@ -4,8 +4,6 @@ import AboutPage from '../pages/AboutUs/AboutPage';
 
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 
-// import Home from '../pages/Home/Home';
-
 import Faqs from '../pages/FAQ/Faqs';
 
 import LandingPage from '../pages/LandingPage';
