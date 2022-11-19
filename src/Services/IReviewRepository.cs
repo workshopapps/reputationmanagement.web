@@ -17,5 +17,6 @@ namespace src.Services
 
         // Add more CRUD
         Review UpdateReviewLawyer(ReviewForUpdateDTO review);
+        Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview();
     }
 }
