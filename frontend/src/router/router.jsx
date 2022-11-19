@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import Carrerpg1 from '../pages/Carrer/Carrerpg1';
+
 import LandingPage from '../pages/LandingPage';
+import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
-import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Privacy from '../pages/Privacy Policy/Privacy';
 import Blog from '../pages/Blog/Blog';
 import Faqs from '../pages/FAQ/Faqs';
@@ -24,6 +26,7 @@ const Router = () => {
 					path="we-remove-google-review"
 					element={<WeRemoveGoogleReview />}
 				/>
+				<Route path='/request-successful' element={<RequestSuccessfulSm/>}/>
 
 
 				<Route path="terms-of-use" element={<Termsofuse />} />
