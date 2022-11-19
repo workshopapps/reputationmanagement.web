@@ -14,7 +14,7 @@ export default function Fix() {
 	return (
 		<>
 			<StyledFixHeader>
-				Why Choose <StyledColorBlue>Fix</StyledColorBlue>
+				Why Choose <StyledColorBlue> Fix</StyledColorBlue>
 				<StyledColor>It</StyledColor>
 			</StyledFixHeader>
 			<StyledFixBox>
@@ -23,8 +23,8 @@ export default function Fix() {
 					<StyledColorOrange>Trust</StyledColorOrange>
 					<StyledFixp>
 						<Plato>
-							You get to have an idea of your fee before you commit: and yet,
-							you only make payment when the job is successfully completed.
+							You get to have an idea of your fee before you commit; and yet,
+							you only make payment when the job is successfully completed
 						</Plato>
 					</StyledFixp>
 				</StyledFixCenter>
@@ -48,8 +48,8 @@ export default function Fix() {
 					<StyledFixp>
 						<Plato>
 							With a team of very experienced professionals, we approach each
-							request on a case-by-case basis ensuring our client gets updated
-							every step of the way and is given only the best result.
+							request on a case-by-case basis, ensuring our client gets updated
+							every step of the way and is given only the best result
 						</Plato>
 					</StyledFixp>
 				</StyledFixCenter>

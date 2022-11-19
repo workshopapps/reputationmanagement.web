@@ -51,6 +51,7 @@ export const StyledColor = styled.span`
 `;
 export const StyledColorBlue = styled.span`
 	color: blue;
+	margin-left: 4px;
 `;
 export const StyledColorOrange = styled.h2`
 	@import url
@@ -65,8 +66,6 @@ export const StyledColorOrange = styled.h2`
 	font-family: 'lato', sans-serif;
 `;
 export const StyledFixp = styled.div`
-	width: 250px;
-	height: 100%;
 	padding-left: 10px;
 `;
 export const Plato = styled.p`
