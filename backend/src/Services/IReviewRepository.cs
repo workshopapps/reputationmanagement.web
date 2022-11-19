@@ -1,4 +1,6 @@
 using src.Entities;
+using src.Models;
+using src.DTOS;
 
 namespace src.Services
 {
@@ -13,5 +15,8 @@ namespace src.Services
         public bool AddReview(Review review);
 
         // Add more CRUD
+
+        Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview();
+
     }
 }
