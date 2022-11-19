@@ -13,5 +13,7 @@ namespace src.Services
         public bool AddReview(Review review);
 
         // Add more CRUD
+
+        IEnumerable<Review> GetPendingReviews();
     }
 }

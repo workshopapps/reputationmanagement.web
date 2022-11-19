@@ -23,6 +23,8 @@ namespace src.Services
             return true;
         }
 
+        
+
         public Review GetReviewById(Guid id)
         {
             if(Reviews == null)
@@ -37,6 +39,13 @@ namespace src.Services
             return Reviews.Select(x => x).ToList();
         }
 
+
+        public  IEnumerable<Review> GetPendingReviews()
+        {
+            if (Reviews == null)
+                throw new NullReferenceException("The product repository is empty");
+           return Reviews.Where(x => x.Status== StatusType.PendingReview).ToList();
+        }
 
     }
 }

@@ -84,5 +84,23 @@ namespace src.Controllers
         }
 
 
+        [HttpGet("/api/reviews/pending-reviews")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        public IActionResult GetPendingReviews()
+        {
+            try
+            {
+                var allPendingReviews = _reviewRepo.GetPendingReviews();
+                if(allPendingReviews != null)
+                    return Ok(allPendingReviews);
+                return NotFound();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+
     }
 }
