@@ -1,5 +1,6 @@
 using src.Data;
 using src.Entities;
+using src.Models.Dtos;
 
 namespace src.Services
 {
@@ -51,6 +52,15 @@ namespace src.Services
             _context.Reviews.Remove(review);
         }
 
+        /// <summary>
+        /// Deletes the reviews associated with a particular user
+        /// </summary>
+        /// <param name="userId">The particular users Id</param>
+        public void DeleteReviews(Guid userId)
+        {
+            var reviews = _context.Reviews.Where(x => x.UserId == userId).ToList();
+            _context.Reviews.RemoveRange(reviews);
+        }
 
         public bool Save()
         {
@@ -71,5 +81,25 @@ namespace src.Services
             }
         }
 
+        public Review UpdateReviewLawyer(ReviewForUpdateDTO review)
+        {
+            if (review == null)
+            {
+                throw new NotImplementedException("No review is passed");
+            }
+            Review reviewToUpdate = _context.Reviews.FirstOrDefault(r => r.ReviewId == review.ReviewId);
+
+            if (reviewToUpdate == null)
+            {
+                throw new NullReferenceException("Data not found");
+            }
+
+            reviewToUpdate.ReviewString = review.ReviewString;
+            reviewToUpdate.Status = review.Status;
+
+            _context.SaveChanges();
+
+            return reviewToUpdate;
+        }
     }
 }

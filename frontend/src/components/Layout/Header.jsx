@@ -2,28 +2,38 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
+import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
+import { StyledContainer } from '../Styles/Body/Container.styled';
 
 const Header = () => {
 	return (
-		<StyledNav className="">
-			<img src={Logo} alt="FixIt" className="logo" />
+		<header>
+			<StyledContainer>
+				<StyledNav className="">
+					<img src={Logo} alt="FixIt" className="logo" />
 
-			<img src={MenuIcon} alt="Menu-Icon" className="menuBtn" />
+					<img src={MenuIcon} alt="Menu-Icon" className="menuBtn hidden" />
 
-			<div className="navLinks">
-				<NavLink to="/" className="active">
-					Home
-				</NavLink>
-				<NavLink to="/about">About</NavLink>
-				<NavLink to="/blog">Blog</NavLink>
-				<NavLink to="/contact">Contact</NavLink>
-			</div>
+					<div className="navLinks">
+						<NavLink to="/" className="active">
+							Home
+						</NavLink>
+						<NavLink to="/about">About Us</NavLink>
+						<NavLink to="/blog">Blog</NavLink>
+						<NavLink to="/contact">Contact</NavLink>
+					</div>
 
-			<div className="navButtons">
-				<NavButton to="/">Login</NavButton>
-				<NavButton to="/">Register</NavButton>
-			</div>
-		</StyledNav>
+					<div className="navButtons">
+						<Link to="/login">
+							<StyledTextButton>Login</StyledTextButton>
+						</Link>
+						<Link to="/register">
+							<StyledButton>Register</StyledButton>
+						</Link>
+					</div>
+				</StyledNav>
+			</StyledContainer>
+		</header>
 	);
 };
 
@@ -31,15 +41,11 @@ const StyledNav = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 12px;
+	padding: 20px 24px;
 	position: relative;
 
 	a {
 		text-decoration: none;
-	}
-
-	.menuBtn {
-		display: none;
 	}
 
 	@media screen and (max-width: 768px) {
@@ -51,7 +57,8 @@ const StyledNav = styled.nav`
 		.menuBtn {
 			display: block;
 			position: absolute;
-			left: 0;
+			left: 18px;
+			cursor: pointer;
 		}
 		.navLinks,
 		.navButtons {
@@ -69,7 +76,11 @@ const NavLink = styled(Link)`
 
 	&.active {
 		color: #233ba9;
-		border-bottom: 2px solid #233ba9;
+		border-bottom: 3px solid #233ba9;
+	}
+
+	&:hover {
+		color: #233ba9;
 	}
 `;
 
