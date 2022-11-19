@@ -34,7 +34,7 @@ export const CardContainer = styled.div`
 
 export const InputContainer = styled.div`
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	gap: 16px;
 	padding: 12px;
 	border: 1px solid #e4e4e5;
