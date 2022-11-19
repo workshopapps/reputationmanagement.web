@@ -7,6 +7,7 @@ import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSe
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Privacy from '../pages/Privacy Policy/Privacy';
 import Blog from '../pages/Blog/Blog';
+import Faqs from '../pages/FAQ/Faqs';
 
 const Router = () => {
 	return (
