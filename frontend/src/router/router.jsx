@@ -12,18 +12,18 @@ const Router = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
-				<Route path="landing-page" element={<LandingPage />} />
-
-				<Route path="we-remove-google-search" element={<WeRemoveGoogleSearch />} />
-				<Route path="we-remove-google-review" element={<WeRemoveGoogleReview />} />
 
 				<Route
 					path="we-remove-google-search"
 					element={<WeRemoveGoogleSearch />}
 				/>
 
-				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+				<Route
+					path="we-remove-google-review"
+					element={<WeRemoveGoogleReview />}
+				/>
 
+				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
 			</Routes>
 		</BrowserRouter>
 	);
