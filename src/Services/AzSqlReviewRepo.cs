@@ -1,18 +1,31 @@
 using src.Data;
 using src.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace src.Services
 {
     public class AzSqlReviewRepo : IReviewRepository
     {
-        public readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
 
         public AzSqlReviewRepo(ApplicationDbContext context)
         {
             _context = context;
         }
+        public async Task<List<Review>> GetLawyerReviewsAsync()
+        {
+            var lawyerReviews = await _context.Reviews.Select(codedSamurai => new Review()
+            {
+                ReviewId = codedSamurai.ReviewId,
+                Status = codedSamurai.Status,
+                ReviewString = codedSamurai.ReviewString,
 
+            }).ToListAsync();
+            return lawyerReviews;
+        }
+        
 
         public IQueryable<Review> Reviews { get => _context.Reviews; }
 
@@ -30,10 +43,20 @@ namespace src.Services
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
-            if (Reviews == null)
-                throw new NullReferenceException("The product repository is empty");
-            return Reviews.Select(x => x).ToList();
+            throw new NotImplementedException();
         }
+
+        /*public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
+        {
+           var reviews = _context(codedSamurai => new Review() {
+
+            ReviewId = codedSamurai.Id,
+            ReviewString = codedSamurai.ReviewString,
+            Status = codedSamurai.Status,
+            }).ToListAsync();
+                return reviews;
+            }*/
+
 
 
     }

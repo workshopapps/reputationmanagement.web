@@ -25,9 +25,9 @@ namespace src.Models
 
     public enum StatusType
     {
-        PendingReview,
-        Successful,
-        Inconclusive, 
-        Failed
+        PendingReview = 0,
+        Successful = 1,
+        Inconclusive = 2,   
+        Failed = 3, 
     }
 }
