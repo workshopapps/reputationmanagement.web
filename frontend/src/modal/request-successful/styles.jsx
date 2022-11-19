@@ -58,6 +58,9 @@ export const StyledSuccessfulRequest = styled.div`
     padding: 60px 75.5px 69px 75.5px;
     background-color: #ffffff;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     h2{
         font-family: Lato;
         font-size: 32px;
