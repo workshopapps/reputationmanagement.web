@@ -52,7 +52,7 @@ namespace src.Controllers
         [Route("SuccessfulReview")]
         public async Task<ActionResult> SuccessReview()
         {
-            var resultModel = new List<GetSuccessfulReviews>();
+            var resultModel = new List<GetSuccessfulReviewsDto>();
 
             var query = await _reviewRepo.GetAllSuccessfulReview();
 
