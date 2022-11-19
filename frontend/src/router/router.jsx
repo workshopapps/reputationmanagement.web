@@ -24,6 +24,8 @@ const Router = () => {
 				/>
 
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+				<Route path="privacy-policy" element={<Carrerpg1 />} />
+				<Route path="terms" element={<Carrerpg1 />} />
 			</Routes>
 		</BrowserRouter>
 	);

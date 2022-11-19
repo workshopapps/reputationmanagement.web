@@ -35,7 +35,7 @@ const LandingPage = () => {
 							maintain your brand’s reputation.
 						</p>
 
-						<Link to="get-quote">
+						<Link to="get-a-quote">
 							<StyledButton className="flex items-center mx-auto">
 								<span>Get a quote</span>
 								<img
@@ -73,7 +73,7 @@ const LandingPage = () => {
 										request, we are here to maintain your brand’s reputation.
 									</p>
 
-									<Link to="/">
+									<Link to="//get-a-quote">
 										<span>Get a quote</span>
 										<img
 											src={ArrowRightIcon}
@@ -99,7 +99,7 @@ const LandingPage = () => {
 										and you want it removed.
 									</p>
 
-									<Link to="/">
+									<Link to="/get-a-quote">
 										<span>Get a quote</span>
 										<img
 											src={ArrowRightIcon}
