@@ -4,6 +4,7 @@ import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Home from '../pages/Home/Home';
 
 import LandingPage from '../pages/LandingPage';
+import Signup from '../pages/Modal/SignUp';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
 
@@ -23,6 +24,10 @@ const Router = () => {
 				/>
 
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+			
+				<Route path='' element={<Home />} />
+				<Route path='/Modal' element={<Signup />} />
+
 
 			</Routes>
 		</BrowserRouter>
