@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/logo.png';
@@ -6,13 +7,22 @@ import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
 
 const Header = () => {
+	const [toggle, setToggle] = useState(false);
+
 	return (
 		<header>
 			<StyledContainer>
 				<StyledNav className="">
 					<img src={Logo} alt="FixIt" className="logo" />
 
-					<img src={MenuIcon} alt="Menu-Icon" className="menuBtn hidden" />
+					<img
+						src={MenuIcon}
+						alt="Menu-Icon"
+						className="menuBtn hidden"
+						onClick={() => {
+							setToggle(!toggle);
+						}}
+					/>
 
 					<div className="navLinks">
 						<NavLink to="/" className="active">
@@ -22,6 +32,15 @@ const Header = () => {
 						<NavLink to="/blog">Blog</NavLink>
 						<NavLink to="/contact">Contact</NavLink>
 					</div>
+
+					<ul className={`${!toggle ? 'hidden' : 'block'} sidebar`}>
+						<NavLink to="/" className="active">
+							Home
+						</NavLink>
+						<NavLink to="/about">About Us</NavLink>
+						<NavLink to="/blog">Blog</NavLink>
+						<NavLink to="/contact">Contact</NavLink>
+					</ul>
 
 					<div className="navButtons">
 						<Link to="/login">
@@ -48,6 +67,22 @@ const StyledNav = styled.nav`
 		text-decoration: none;
 	}
 
+	.sidebar {
+		position: absolute;
+		top: 70px;
+		width: 200px;
+		background: #f5f5f5;
+		border-radius: 8px;
+		box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.18);
+
+		a {
+			display: block;
+			border: none;
+			width: 100%;
+			margin: 14px 0;
+			padding: 6px 18px;
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.logo {
 			display: block;
