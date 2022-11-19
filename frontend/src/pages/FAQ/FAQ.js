@@ -1,13 +1,11 @@
 import React from 'react'
 import arrowDown from './Assets/arrow-down.png'
 import styled from 'styled-components'
+import FaqFooter from './FaqFooter'
 
 
-const FaqWraper = styled.div.attrs(props => ({
-    className: props.className
-}))`
-    
-    
+
+const FaqWraper = styled.div`
 
     display: flex;
     flex-direction: column;
@@ -82,6 +80,8 @@ function FAQ({faq, index}) {
         <FaqAnswer>
             <p>{faq.answer}</p>
         </FaqAnswer>
+
+        <FaqFooter />
     </FaqWraper>
   )
 }
