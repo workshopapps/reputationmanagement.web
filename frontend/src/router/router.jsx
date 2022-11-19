@@ -6,6 +6,7 @@ import Home from '../pages/Home/Home';
 import LandingPage from '../pages/LandingPage';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
+import Blog from '../pages/Blog';
 
 const Router = () => {
 	return (
@@ -24,6 +25,7 @@ const Router = () => {
 				/>
 
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+				<Route path="blog" element={<Blog />} />
 			</Routes>
 		</BrowserRouter>
 	);
