@@ -1,9 +1,14 @@
 import Header from '../components/Layout/Header';
-import Footer from '../components/Layout/Footer';
+import Footer from '../components/Reusables/FooterComponents/ReUsableFooter';
+import useAppContext from '../hooks/useAppContext';
+import RequestSuccessful from '../modal/request-successful/requestSuccessful';
+
 
 const PageLayout = ({ children }) => {
+	const { requestSuccessfulModalActive } = useAppContext();
 	return (
 		<main>
+			{ requestSuccessfulModalActive &&  <RequestSuccessful/>}
 			<Header />
 			{children}
 			<Footer />
