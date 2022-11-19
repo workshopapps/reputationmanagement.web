@@ -24,7 +24,7 @@ namespace src.Controllers
 
         [HttpPost]
         [Route("/create_account")]
-        public async Task<IActionResult> Register([FromBody] AddAdminModel admin)
+        public async Task<IActionResult> Register([FromBody] AddAdminDto admin)
         {
             var user = _mapper.Map<ApplicationUser>(admin);
             var result = await _userManager.CreateAsync(user, admin.Password);
@@ -32,7 +32,7 @@ namespace src.Controllers
             {
                 return Ok(result.Errors);
             }
-            await _userManager.AddToRoleAsync(user, "Lawyer");
+            await _userManager.AddToRoleAsync(user, "Admin");
             return StatusCode(201);
         }
     }
