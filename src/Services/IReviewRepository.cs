@@ -20,6 +20,9 @@ namespace src.Services
         public bool Save();
 
         // Add more CRUD
+
+        IEnumerable<Review> GetInconclusiveReviews();
+        
         Review UpdateReviewLawyer(ReviewForUpdateDTO review);
         Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview();
     }

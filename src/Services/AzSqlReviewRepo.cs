@@ -46,6 +46,15 @@ namespace src.Services
             return _context.Reviews.Select(x => x).ToList();
         }
 
+        public IEnumerable<Review> GetInconclusiveReviews()
+        {
+            if (_context.Reviews == null)
+            {
+                return Enumerable.Empty<Review>();
+            }
+            return _context.Reviews.Where(review => review.Status == StatusType.Inconclusive);
+        }
+
         public void DeleteReview(Guid reviewId)
         {
             Review review = GetReviewById(reviewId);
