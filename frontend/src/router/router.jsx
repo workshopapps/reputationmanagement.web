@@ -7,18 +7,14 @@ const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-<<<<<<< HEAD
-				<Route path="/" element={<Home />} />
+				<Route path="/" element={<LandingPage />} />
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="we-remove-google-search" element={<WeRemoveGoogleSearch />} />
 				<Route path="we-remove-google-review" element={<WeRemoveGoogleReview />} />
-=======
-				<Route path="/" element={<LandingPage />} />
 				<Route
 					path="we-remove-google-search"
 					element={<WeRemoveGoogleSearch />}
 				/>
->>>>>>> 6c61ba928bf05e493959aafbe00c135e0bf17574
 			</Routes>
 		</BrowserRouter>
 	);
