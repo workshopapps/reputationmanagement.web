@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using src.Entities;
 using src.Models;
 using src.Models.Dtos;
@@ -10,38 +13,27 @@ namespace src.Controllers
     [Route("api/admin")]
     public class AdminController : Controller
     {
-        private readonly IAdminRepository adminRepository;
+        private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AdminController(IAdminRepository adminRepository)
+        public AdminController(IMapper mapper, UserManager<ApplicationUser> userManager)
         {
-            this.adminRepository = adminRepository;
+            _mapper = mapper;
+            _userManager = userManager;
         }
 
         [HttpPost]
         [Route("/create_account")]
-        public IActionResult Index(AddAdminModel admin)
+        public async Task<IActionResult> Register([FromBody] AddAdminModel admin)
         {
-            var newAdmin = new Admin()
+            var user = _mapper.Map<ApplicationUser>(admin);
+            var result = await _userManager.CreateAsync(user, admin.Password);
+            if (!result.Succeeded)
             {
-                FirstName = admin.FirstName,
-                LastName = admin.LastName,
-                Email = admin.Email,
-                Password = admin.Password,
-            };
-
-
-            newAdmin = adminRepository.AddAdmin(newAdmin);
-
-            var newAdminDto = new AddAdminDto
-            {
-                Id = newAdmin.Id,
-                FirstName = newAdmin.FirstName,
-                LastName = newAdmin.LastName,
-                Email = newAdmin.Email,
-                Password = newAdmin.Password
-            };
-
-            return Ok(newAdminDto);
+                return Ok(result.Errors);
+            }
+            await _userManager.AddToRoleAsync(user, "Lawyer");
+            return StatusCode(201);
         }
     }
 }
