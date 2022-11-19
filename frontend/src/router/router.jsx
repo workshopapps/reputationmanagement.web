@@ -10,6 +10,7 @@ const Router = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="we-remove-google-search" element={<WeRemoveGoogleSearch />} />
+				<Route path="blog" element={<Blog />} />
 			</Routes>
 		</BrowserRouter>
 	);
