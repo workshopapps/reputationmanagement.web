@@ -5,12 +5,16 @@ import AboutPage from '../pages/AboutUs/AboutPage';
 
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 
+import Carrerpg2 from '../pages/Carrer/Carrerpg2';
+import Home from '../pages/Home/Home';
+
 
 
 // import Home from '../pages/Home/Home';
 
 
 import Faqs from '../pages/FAQ/Faqs';
+
 
 
 import LandingPage from '../pages/LandingPage';
@@ -50,6 +54,8 @@ const Router = () => {
 					path="we-remove-google-search"
 					element={<WeRemoveGoogleSearch />}
 				/>
+				<Route path="carrer-pg-2" element={<Carrerpg2 />} />
+
 
 				<Route
 					path="we-remove-google-review"
