@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 
 export const StyledH1 = Styled.h1`
-font-size: 3.5rem;
+// font-size: 3.5rem;
 font-weight: 700;
 color: ${(props) => (props.blue ? '#233BA9' : '#2B2C34')};
 line-height: 78px;
