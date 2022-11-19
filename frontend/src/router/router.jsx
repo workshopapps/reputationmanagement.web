@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home/Home';
 import LandingPage from '../pages/LandingPage';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
 import Blog from '../pages/Blog/Blog'
@@ -11,7 +10,6 @@ const Router = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="we-remove-google-search" element={<WeRemoveGoogleSearch />} />
-				<Route path="blog" element={<Blog />} />
 			</Routes>
 		</BrowserRouter>
 	);
