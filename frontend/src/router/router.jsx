@@ -6,6 +6,7 @@ import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleRe
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Privacy from '../pages/Privacy Policy/Privacy';
+import Blog from '../pages/Blog/Blog';
 
 const Router = () => {
 	return (
@@ -23,11 +24,18 @@ const Router = () => {
 					element={<WeRemoveGoogleReview />}
 				/>
 
+
 				<Route path="terms-of-use" element={<Termsofuse />} />
 
 				<Route path="privacy" element={<Privacy />} />
 
 				<Route path="career" element={<Carrerpg1 />} />
+
+				<Route path="FAQ" element={<Faqs />}/>
+
+				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+				<Route path="blog" element={<Blog />} />
+
 			</Routes>
 		</BrowserRouter>
 	);
