@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from '../assets/images/logo.png';
-import MenuIcon from '../assets/images/menuIcon.png';
+import Logo from '../../assets/images/logo.png';
+import MenuIcon from '../../assets/images/menuIcon.png';
 
 const Header = () => {
 	return (
