@@ -24,6 +24,8 @@ const Router = () => {
 
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
 
+				<Route path="FAQ" element={<Faqs />}/>
+
 			</Routes>
 		</BrowserRouter>
 	);
