@@ -7,7 +7,7 @@ import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Home from '../pages/Home/Home';
 
 import Faqs from '../pages/FAQ/Faqs';
-import Carrerpg1 from '../pages/Carrer/Carrerpg1';
+
 
 import LandingPage from '../pages/LandingPage';
 import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
@@ -17,13 +17,15 @@ import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSe
 
 import Privacy from '../pages/Privacy Policy/Privacy';
 import Blog from '../pages/Blog/Blog';
-import Faqs from '../pages/FAQ/Faqs';
+import Signup from '../Sign/Signup';
+
 
 const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path='/SignUp' element={<Signup />} />
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="about-us" element={<AboutPage />} />
 
@@ -49,6 +51,7 @@ const Router = () => {
 				<Route path="FAQ" element={<Faqs />} />
 
 				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+
 			</Routes>
 		</BrowserRouter>
 	);
