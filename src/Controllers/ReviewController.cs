@@ -33,7 +33,7 @@ namespace src.Controllers
         // ToDo
         [SwaggerOperation(Summary = "Get all users reviews")]
         [Authorize(Roles = "Customer", AuthenticationSchemes = "Bearer")]
-        [HttpGet("api/reviews")]
+        [HttpGet("reviews")]
         public ActionResult<IEnumerable<Review>> PostedReviews(int? pageNumber, int? pageSize)
         {
             if (pageNumber == null && pageSize == null)
