@@ -7,36 +7,69 @@ namespace src.Services
     {
         public readonly ApplicationDbContext _context;
 
+        public IQueryable<Review> Reviews => throw new NotImplementedException();
 
         public AzSqlReviewRepo(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+       
+        public void AddReview(Review review)
+        {            
+            if (review.UserId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(review));
+            }
 
-        public IQueryable<Review> Reviews { get => _context.Reviews; }
-
-        public bool AddReview(Review review)
-        {
+            if (review == null)
+            {
+                throw new ArgumentNullException(nameof(review));
+            }
             _context.Reviews.Add(review);
-            _context.SaveChanges();
-            return true;
+          
         }
 
         public Review GetReviewById(Guid id)
         {
-            if(Reviews == null)
-                throw new NullReferenceException("The product repository is Empty");
-            return Reviews.Select(x => x.ReviewId == id).ToList();
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            return _context.Reviews
+              .Where(c => c.UserId == id).FirstOrDefault();
         }
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
-            if (Reviews == null)
-                throw new NullReferenceException("The product repository is empty");
-            return Reviews.Select(x => x).ToList();
+            return _context.Reviews.Select(x => x).ToList();
         }
 
+        public void DeleteReview(Guid reviewId)
+        {
+            Review review = GetReviewById(reviewId);
+            _context.Reviews.Remove(review);
+        }
+
+
+        public bool Save()
+        {
+            return (_context.SaveChanges() >= 0);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose resources when needed
+            }
+        }
 
     }
 }

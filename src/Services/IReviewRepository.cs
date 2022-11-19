@@ -10,7 +10,9 @@ namespace src.Services
 
         IEnumerable<Review> GetReviews(int pageNumber=0, int pageSize=0);
 
-        public bool AddReview(Review review);
+        public void AddReview(Review review);
+
+        public void DeleteReview(Guid id);
 
         // Add more CRUD
     }
