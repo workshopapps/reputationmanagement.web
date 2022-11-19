@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using src.Data;
 using src.Entities;
 using src.Models.Dtos;

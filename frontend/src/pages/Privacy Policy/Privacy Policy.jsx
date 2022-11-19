@@ -24,6 +24,8 @@ function PrivacyPolicy() {
       <Change />
       <Contact />
       <Buttom />
+    
+
         
     </>
   );
