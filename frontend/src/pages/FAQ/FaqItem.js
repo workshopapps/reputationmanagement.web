@@ -1,7 +1,6 @@
 import React from 'react'
 import arrowDown from './Assets/arrow-down.png'
 import styled from 'styled-components'
-import FaqFooter from './FaqFooter'
 
 
 
@@ -39,10 +38,6 @@ const FaqWraper = styled.div`
         color: #4B515D;
 
     }
-
-    & .faq{
-        height: 1000px;
-    }
 `
 
 
@@ -67,7 +62,7 @@ const FaqAnswer = styled.div`
 `
 
 
-function FAQ({faq, index}) {
+function FaqItem({faq, index}) {
   return (
     <FaqWraper key={faq.id} className='faq'>
         <FaqQuestion>
@@ -81,7 +76,6 @@ function FAQ({faq, index}) {
             <p>{faq.answer}</p>
         </FaqAnswer>
 
-        <FaqFooter />
     </FaqWraper>
   )
 }
