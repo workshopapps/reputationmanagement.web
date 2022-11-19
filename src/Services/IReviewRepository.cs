@@ -20,6 +20,7 @@ namespace src.Services
         public bool Save();
 
         // Add more CRUD
-        Review UpdateReviewLawyer(ReviewForUpdateDTO review);
+
+        IEnumerable<Review> GetInconclusiveReviews();
     }
 }
