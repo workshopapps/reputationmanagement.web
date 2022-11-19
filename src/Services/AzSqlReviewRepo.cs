@@ -46,6 +46,15 @@ namespace src.Services
             return _context.Reviews.Select(x => x).ToList();
         }
 
+        public IEnumerable<Review> GetInconclusiveReviews()
+        {
+            if (_context.Reviews == null)
+            {
+                return Enumerable.Empty<Review>();
+            }
+            return _context.Reviews.Where(review => review.Status == StatusType.Inconclusive);
+        }
+
         public void DeleteReview(Guid reviewId)
         {
             Review review = GetReviewById(reviewId);
@@ -100,6 +109,31 @@ namespace src.Services
             _context.SaveChanges();
 
             return reviewToUpdate;
+        }
+
+        public async Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview()
+        {
+            var resultModel = new List<GetSuccessfulReviews>();
+
+            var query = await _context.Reviews
+                .Where(x => x.Status == StatusType.Successful)
+                .Include(x => x.Users)
+                .Select(x => new GetSuccessfulReviews()
+                {
+                    ReviewId = x.ReviewId,
+                    Username = x.Users.UserName,
+                    UserId = x.UserId,
+                    Status = x.Status,
+                    TimeStamp = x.TimeStamp,
+                    Message = x.ReviewString,
+                }).ToListAsync();
+
+            if (query != null)
+            {
+                resultModel = query;
+            }
+
+            return resultModel;
         }
     }
 }
