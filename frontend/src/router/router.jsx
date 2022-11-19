@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Carrerpg1 from '../pages/Carrer/Carrerpg1';
-import Home from '../pages/Home/Home';
-
 import LandingPage from '../pages/LandingPage';
+import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
+import Carrerpg1 from '../pages/Carrer/Carrerpg1';
+import Privacy from '../pages/Privacy Policy/Privacy';
 
 const Router = () => {
 	return (
@@ -23,7 +23,11 @@ const Router = () => {
 					element={<WeRemoveGoogleReview />}
 				/>
 
-				<Route path="carrer-pg-1" element={<Carrerpg1 />} />
+				<Route path="terms-of-use" element={<Termsofuse />} />
+
+				<Route path="privacy" element={<Privacy />} />
+
+				<Route path="career" element={<Carrerpg1 />} />
 			</Routes>
 		</BrowserRouter>
 	);
