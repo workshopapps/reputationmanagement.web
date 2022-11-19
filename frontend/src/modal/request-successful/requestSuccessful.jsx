@@ -7,7 +7,7 @@ const RequestSuccessful = () => {
     return(
         <StyledOverlay>
             <StyledSuccessfulRequest>
-                <h2>Request Successful</h2>
+                <h2 className={requestState < 4 ? 'none' : ''}>Request Successful</h2>
                 <p>
                     Your request has been recieved and our agents 
                     are working on it already.
