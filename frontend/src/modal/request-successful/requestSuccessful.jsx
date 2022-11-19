@@ -1,13 +1,31 @@
 import { useState } from "react";
 import { StyledButtonWrapper, StyledOverlay, StyledProgressBar, StyledSuccessfulRequest } from "./styles"
 import {DONE_ICON} from '../../assets/image';
+import { useEffect } from "react";
+import useAppContext from '../../hooks/useAppContext';
 
 const RequestSuccessful = () => {
-    const [ requestState, setRequestState ] = useState(0)
+    const [ requestState, setRequestState ] = useState(0);
+    const { requestSuccessfulModalActive } = useAppContext();
+    useEffect(() => {
+        setRequestState(0)
+    },[])
+    useEffect(() => {
+        const requestTimeout = () => {
+            setTimeout(() => {
+                setRequestState(requestState + 1)
+            },1200)
+        } 
+        requestSuccessfulModalActive && requestState < 5 && requestTimeout();
+        return() => {
+            clearTimeout(requestTimeout)
+        }
+    },[requestSuccessfulModalActive, requestState])
+
     return(
         <StyledOverlay>
             <StyledSuccessfulRequest>
-                <h2 className={requestState < 4 ? 'none' : ''}>Request Successful</h2>
+                <h2 className={requestState < 5 ? 'none' : ''}>Request Successful</h2>
                 <p>
                     Your request has been recieved and our agents 
                     are working on it already.
