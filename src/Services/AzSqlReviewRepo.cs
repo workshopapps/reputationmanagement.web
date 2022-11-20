@@ -32,19 +32,33 @@ namespace src.Services
           
         }
 
-        public Review GetReviewById(Guid id)
-        {
-            if (id == Guid.Empty)
+       
+            public Review GetReviewById(Guid id)
             {
-                throw new ArgumentNullException(nameof(id));
+                if (id == Guid.Empty)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }
+                var review = _context.Reviews.Where(c => c.ReviewId == id).SingleOrDefault();
+                if (review == null)
+                {
+
+                    throw new NullReferenceException("Data not found");
+                }
+                return review;
             }
-            return _context.Reviews
-              .Where(c => c.UserId == id).FirstOrDefault();
-        }
+        
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
-            return _context.Reviews.Select(x => x).ToList();
+            var lawyerReviews = _context.Reviews.Select(codedSamurai => new Review()
+            {
+                ReviewId = codedSamurai.ReviewId,
+                Status = codedSamurai.Status,
+                ReviewString = codedSamurai.ReviewString,
+
+            }).ToListAsync();
+            return (IEnumerable<Review>)lawyerReviews;
         }
 
         public IEnumerable<Review> GetInconclusiveReviews()
@@ -111,18 +125,17 @@ namespace src.Services
 
             return reviewToUpdate;
         }
-
-        public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
+        
+        public async Task<List<SuccessfulReviewsDto>> GetAllSuccessfulReview()
         {
-            var resultModel = new List<GetSuccessfulReviewsDto>();
+            var resultModel = new List<SuccessfulReviewsDto>();
 
             var query = await _context.Reviews
                 .Where(x => x.Status == StatusType.Successful)
-                .Include(x => x.Users)
-                .Select(x => new GetSuccessfulReviews()
+                .Select(x => new SuccessfulReviewsDto()
                 {
                     ReviewId = x.ReviewId,
-                    Username = x.Users.UserName,
+                    Email = x.Email,
                     Status = x.Status,
                     TimeStamp = x.TimeStamp,
                     Message = x.ReviewString,

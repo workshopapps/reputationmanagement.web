@@ -25,6 +25,6 @@ namespace src.Services
         
         Review UpdateReviewLawyer(ReviewForUpdateDTO review);
 
-        Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview();
+        Task<List<SuccessfulReviewsDto>> GetAllSuccessfulReview();
     }
 }
