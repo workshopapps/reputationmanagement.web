@@ -58,11 +58,10 @@ export const StyledPrivacy = styled.div`
 		}
 	}
 
-	@media (max-width: 768px) {
-		div {
+	@media (max-width: 1020px) {
+		
 			over-flow: hidden;
-			width: 90px;
-		}
+			width: 300px;
 
 		h3 {
 			font-size: 18px;
@@ -80,6 +79,7 @@ export const StyledPrivacy = styled.div`
 		ul {
 			list-style: disc;
 			font-size: 12px;
+			display:flex
 			flex-wrap: wrap;
 			overflow-wrap: break;
 			line-height: 21px;
