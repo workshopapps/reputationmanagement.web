@@ -20,6 +20,7 @@ import completed from '../../assets/images/Dashboard/completed.svg';
 import searchBtn from '../../assets/images/Dashboard/search.svg';
 import TableData from './TableData';
 import { TableDatas } from './data/TableData';
+import { NavLink } from 'react-router-dom';
 
 const Dashboard = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -37,7 +38,7 @@ const Dashboard = () => {
 			<StyledContainer>
 				<Header>
 					<h1>Complaints Dashboard</h1>
-					<button>New Request</button>
+					<NavLink to="request-page">New Request</NavLink>
 				</Header>
 
 				<CardContainer>

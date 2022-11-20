@@ -48,10 +48,8 @@ export const NavItems = styled.div`
 	align-items: center;
 	gap: 39px;
 
-	button {
+	a {
 		display: flex;
-		border: none;
-		outline: 0;
 		align-items: center;
 		align-self: flex-end;
 
@@ -59,17 +57,15 @@ export const NavItems = styled.div`
 		border-radius: 8px;
 		padding: 10px 16px;
 		gap: 20px;
-
 		font-weight: 600;
 		font-size: 18px;
 		line-height: 27px;
 		color: #ffffff;
 		font-family: inherit;
-		cursor: pointer;
 	}
 
 	@media (max-width: 1140px) {
-		button {
+		a {
 			display: none;
 		}
 	}

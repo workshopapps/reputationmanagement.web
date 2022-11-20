@@ -39,8 +39,7 @@ export const Header = styled.div`
 		gap: 1rem;
 	}
 
-	button {
-		border: none;
+	a {
 		background-color: #2a47cb;
 		border-radius: 6px;
 		padding: 8px 24px;
@@ -54,7 +53,7 @@ export const Header = styled.div`
 	}
 
 	@media (max-width: 1140px) {
-		button {
+		a {
 			display: block;
 		}
 	}

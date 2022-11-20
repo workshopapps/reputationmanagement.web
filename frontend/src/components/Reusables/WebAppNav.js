@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import logo from '../../assets/images/Dashboard/logo.png';
 import menu from '../../assets/images/Dashboard/menu.jpg';
 import message from '../../assets/images/Dashboard/message.svg';
@@ -27,10 +28,10 @@ const WebAppNav = (props) => {
 			</LogoContainer>
 
 			<NavItems>
-				<button>
+				<NavLink to="/request-form">
 					<img src={message} alt="" />
 					New Request
-				</button>
+				</NavLink>
 				<ProfilePictureContainer>
 					<div>
 						<img src={search} alt="" />
