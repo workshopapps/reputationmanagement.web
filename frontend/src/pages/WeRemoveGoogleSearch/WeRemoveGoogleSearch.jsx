@@ -1,17 +1,6 @@
 import PageLayout from '../../layout/PageLayout';
 import { useState } from 'react';
 import Styled from 'styled-components';
-import {
-	StyledButton,
-	// StyledTextButton,
-} from '../../components/Styles/Body/Button.styled';
-import {
-	StyledH1,
-	StyledH2,
-	StyledH3,
-	StyledH2Center,
-} from '../../components/Styles/Body/Text.styled';
-import { StyledContainer } from '../../components/Styles/Body/Container.styled';
 import Image1 from '../../assets/images/WeRemoveGoogleSearch/Image1.jpg';
 import Image2 from '../../assets/images/WeRemoveGoogleSearch/Image2.jpg';
 import Vector1 from '../../assets/images/WeRemoveGoogleSearch/Vector1.svg';
@@ -25,8 +14,8 @@ import Avater0 from '../../assets/images/WeRemoveGoogleSearch/Avatar0.svg';
 import Avater1 from '../../assets/images/WeRemoveGoogleSearch/Avatar1.svg';
 import Avater2 from '../../assets/images/WeRemoveGoogleSearch/Avatar2.svg';
 import Avater3 from '../../assets/images/WeRemoveGoogleSearch/Avatar3.svg';
-import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
-import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
+// import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
+// import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
 
 const WeRemoveGoogleSearch = () => {
 	const [testimonialTemplate] = useState([
@@ -54,20 +43,19 @@ const WeRemoveGoogleSearch = () => {
 			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
 			id: 4,
 		},
-		{
-			image: Avater4,
-			name: 'Anthonia Francis',
-			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
-			id: 5,
-		},
-		{
-			image: Avater5,
-			name: 'Anthonia Francis',
-			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
-			id: 6,
-		},
+		// {
+		// 	image: Avater4,
+		// 	name: 'Anthonia Francis',
+		// 	text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
+		// 	id: 5,
+		// },
+		// {
+		// 	image: Avater5,
+		// 	name: 'Anthonia Francis',
+		// 	text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
+		// 	id: 6,
+		// },
 	]);
-	
 
 	return (
 		<PageLayout>
@@ -97,10 +85,9 @@ const WeRemoveGoogleSearch = () => {
 			</StyledContainer>
 
 			<ImageSection>
-				
 				<img src={Image1} alt="Image1" />
 			</ImageSection>
-			
+
 			<StyledContainer>
 				<StyledGrid text>
 					<div>
@@ -153,9 +140,11 @@ const WeRemoveGoogleSearch = () => {
 
 			<ColorBg>
 				<StyledH2Center>What our Users say about us</StyledH2Center>
-				<StyledSlider>
-					<TestimonialTemplate testimonialTemplate={testimonialTemplate} />
-				</StyledSlider>
+				<CenterObject>
+					<StyledSlider>
+						<TestimonialTemplate testimonialTemplate={testimonialTemplate} />
+					</StyledSlider>
+				</CenterObject>
 			</ColorBg>
 
 			<StyledContainer>
@@ -181,7 +170,9 @@ const WeRemoveGoogleSearch = () => {
 						<img src={Work2} alt="Work2" />
 						<div className="padding">
 							<h3>JOB COLLECTION</h3>
-							<h2>Sparklings foods <span>and store</span> </h2>
+							<h2>
+								Sparklings foods <span>and store</span>{' '}
+							</h2>
 							<p>
 								Bad google search results were fixed, and we continue to rely on
 								FIXIT for all reputation problems
@@ -267,7 +258,7 @@ export const StyledGrid = Styled.div`
 	.imgDisplay{
 		display: none;
 	}
-
+	
 	@media screen and (max-width: 1180px) {
 		column-gap: ${(props) => (props.text ? '50px' : '20px')};
 	}
@@ -278,7 +269,7 @@ export const StyledGrid = Styled.div`
 
 	@media screen and (max-width: 640px) {
 		grid-template-columns: 1fr;
-		row-gap: 40px;
+		row-gap: 20px;
 		.imgDisplay{
 			display: block;
 		}
@@ -322,7 +313,23 @@ export const ImageSection = Styled.div`
 `;
 
 export const StyledSlider = Styled.div`
+display: grid;
+grid-template-columns: ${(props) => (props.grid ? '1fr 1fr' : '1fr 1fr 1fr')};
+column-gap: ${(props) => (props.text ? '15%' : '20px')};
+align-items: center;
 
+@media screen and (max-width: 1180px) {
+	column-gap: ${(props) => (props.text ? '50px' : '20px')};
+}
+
+@media screen and (max-width: 742px) {
+	column-gap: ${(props) => (props.text ? '20px' : '20px')};
+}
+
+@media screen and (max-width: 640px) {
+	grid-template-columns: 1fr;
+	row-gap: 40px;
+}
 `;
 
 export const ButtonFlex = Styled.div`
@@ -332,4 +339,121 @@ export const ButtonFlex = Styled.div`
 		@media screen and (max-width: 460px) {
 			display: block;
 		}
+`;
+
+// Button styling
+
+export const StyledButton = Styled.button`
+    background: ${(props) => (props.outlined ? '#fff' : '#233BA9')};
+    padding: 10px 40px;
+    margin: ${(props) => (props.space ? '0 10px' : '0')};
+    border-radius: 6px;
+    color: ${(props) => (props.outlined ? '#233BA9' : '#fff')};
+    border: ${(props) =>
+			props.outlined ? '1px #233BA9 solid' : '1px #233BA9 solid'};
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    &:hover{
+        background: ${(props) => (props.outlined ? '#E5E5E5' : '#1F3491')};
+    }
+
+    @media screen and (max-width: 460px) {
+        margin-bottom: ${(props) => (props.bottom ? '20px' : 0)};
+        margin-top: ${(props) => (props.top ? '20px' : 0)};
+        width: ${(props) => (props.width ? '70%' : '')};
+        padding: 20px 40px;
+    }
+    
+    @media screen and (max-width: 320px) {
+        font-size: 0.82rem;
+    }
+   
+    
+    
+`;
+
+export const StyledTextButton = Styled.button`
+    color: #233BA9;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 30px;
+
+    &:hover{
+        color: #1F3491;
+    }
+`;
+
+// Text Styling
+
+export const StyledH1 = Styled.h1`
+font-size: 2.5rem;
+font-weight: 700;
+color: ${(props) => (props.blue ? '#233BA9' : '#2B2C34')};
+line-height: 100px;
+text-align: ${(props) => (props.center ? 'center' : 'start')};
+
+span{
+    color: #F16F04;
+}
+
+@media screen and (max-width: 809px) {
+    line-height: 50px;
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 320px) {
+    font-size: 1.8rem;
+    line-height: 35px;
+}
+
+`;
+
+export const StyledH1Center = Styled(StyledH1)`
+    text-align: center;
+    line-height: 50px
+`;
+
+export const StyledH2 = Styled.h2`
+font-size: 190%;
+font-weight: 700;
+max-width: 850px;
+color: ${(props) => (props.blue ? '#233BA9' : '#2B2C34')};
+margin: ${(props) => (props.margin ? '20px auto' : '0 auto')};
+span{
+    color: #FDB172;
+}
+
+@media screen and (max-width: 640px) {
+    max-width: 100%;
+}
+`;
+
+export const StyledH2Center = Styled(StyledH2)`
+    text-align: center;
+    margin-bottom: 40px;
+
+	@media screen and (max-width: 680px) {
+        font-size: 24px;
+    }
+`;
+
+export const StyledH3 = Styled.h3`
+font-size: 1.23rem;
+font-weight: 700;
+color: #2B2C34;
+margin: 20px 0;
+
+`;
+
+// Container styling
+
+export const StyledContainer = Styled.div`
+    max-width: 1240px;
+    margin: 0 auto;
+
+    @media screen and (max-width:1280px) {
+        padding: 0 20px;
+    }
+
 `;
