@@ -27,6 +27,29 @@ const RequestSuccessful = () => {
 	//         clearTimeout(requestTimeout)
 	//     }
 	// },[requestSuccessfulModalActive, requestState])
+import { useState } from "react";
+import { StyledButtonWrapper, StyledOverlay, StyledProgressBar, StyledSuccessfulRequest } from "./styles"
+import {DONE_ICON} from '../../assets/image';
+import { useEffect } from "react";
+import useAppContext from '../../hooks/useAppContext';
+
+const RequestSuccessful = () => {
+    const [ requestState, setRequestState ] = useState(0);
+    const { requestSuccessfulModalActive } = useAppContext();
+    useEffect(() => {
+        setRequestState(0)
+    },[])
+    useEffect(() => {
+        const requestTimeout = () => {
+            setTimeout(() => {
+                setRequestState(requestState + 1)
+            },1200)
+        } 
+        requestSuccessfulModalActive && requestState < 5 && requestTimeout();
+        return() => {
+            clearTimeout(requestTimeout)
+        }
+    },[requestSuccessfulModalActive, requestState])
 
 	return (
 		<StyledOverlay>

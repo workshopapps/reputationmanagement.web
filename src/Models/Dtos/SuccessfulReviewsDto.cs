@@ -6,9 +6,9 @@ using src.Entities;
 
 namespace src.Models.Dtos
 {
-    public class GetSuccessfulReviewsDto
+    public class SuccessfulReviewsDto
     {
-        public string Username { get; set; }
+        public string Email { get; set; }
 
         public Guid ReviewId { get; set; }
 

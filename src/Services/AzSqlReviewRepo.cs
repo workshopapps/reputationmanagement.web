@@ -126,17 +126,16 @@ namespace src.Services
             return reviewToUpdate;
         }
         
-        /*public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
+        public async Task<List<SuccessfulReviewsDto>> GetAllSuccessfulReview()
         {
-            var resultModel = new List<GetSuccessfulReviewsDto>();
+            var resultModel = new List<SuccessfulReviewsDto>();
 
             var query = await _context.Reviews
                 .Where(x => x.Status == StatusType.Successful)
-                .Include(x => x.Users)
-                .Select(x => new GetSuccessfulReviews()
+                .Select(x => new SuccessfulReviewsDto()
                 {
                     ReviewId = x.ReviewId,
-                    Username = x.Users.UserName,
+                    Email = x.Email,
                     Status = x.Status,
                     TimeStamp = x.TimeStamp,
                     Message = x.ReviewString,
@@ -148,6 +147,6 @@ namespace src.Services
             }
 
             return resultModel;
-        }*/
+        }
     }
 }
