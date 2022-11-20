@@ -4,14 +4,15 @@ import React from 'react';
 import pink from '../../assets/images/pinkCircle.png';
 import blue from '../../assets/images/blueCircle.png';
 import styled from 'styled-components';
-import orange from '../../assets/images/orangeCircle.png';
-import {
-	StyledH1,
-	StyledH3,
-	StyledText,
-	StyledH2Center,
-} from '../../components/Styles/Body/Text.styled';
+import Background2 from '../../assets/images/BG2.jpg';
+import Background1 from '../../assets/images/BG1.jpg';
+import Slider3 from '../../assets/images/ImageSlider3.jpg';
 
+import Slider2 from '../../assets/images/ImageSlider2.jpg';
+import Slider1 from '../../assets/images/ImageSlider1.jpg';
+import orange from '../../assets/images/orangeCircle.png';
+import { StyledText } from '../../components/Styles/Body/Text.styled';
+import { Link } from 'react-router-dom';
 import {
 	StyledButton,
 	StyledTextButton,
@@ -28,11 +29,19 @@ const StyledHeader = styled.h1`
 `;
 const StyledBackGround = styled.section`
 	background: linear-gradient(
-			0deg,
-			rgba(255, 246, 231, 0.91),
-			rgba(255, 246, 231, 0.91)
-		),
-		url(.jpg);
+		0deg,
+		rgba(255, 246, 231, 0.91),
+		rgba(255, 246, 231, 0.91)
+	);
+	background-image: url(${Background1});
+`;
+const StyledBackGround2 = styled.section`
+	background: linear-gradient(
+		0deg,
+		rgba(255, 246, 231, 0.91),
+		rgba(255, 246, 231, 0.91)
+	);
+	background-image: url(${Background2});
 `;
 const StyledSpanText = styled.span`
 	color: #fdb172;
@@ -40,6 +49,23 @@ const StyledSpanText = styled.span`
 const StyledSpanTextBlue = styled.span`
 	color: #233ba9;
 `;
+const StyledArrowImg = styled.img`
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+
+	top: 340%;
+`;
+const mystyle = {
+	width: '30%',
+	height: '40%',
+};
+const style = {
+	width: '40%',
+	height: '80%',
+};
+
 function Carrerpg1() {
 	return (
 		<div className="carrer-landing-pg py-12">
@@ -51,9 +77,19 @@ function Carrerpg1() {
 						looking to hitch your career to a company that’s going places, look
 						no further than FIXIT.
 					</StyledText>
-					<div className="btns flex mt-8">
-						<StyledButton>See all job openings</StyledButton>
-						<StyledButton outlined className="mx-3">
+					<div className="btns flex mt-8 flex-col md:flex-row">
+						<Link
+							className="my-5"
+							to="/carrer-pg-2"
+							onClick={() => {
+								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+							}}
+						>
+							<StyledButton className="w-full">
+								See all job openings
+							</StyledButton>
+						</Link>
+						<StyledButton outlined className="mx-0 h-12 md:mx-3 mt-2 lg:mt-5 ">
 							Speak with an expert
 						</StyledButton>
 					</div>
@@ -62,7 +98,7 @@ function Carrerpg1() {
 					<img src={CarrerLandImg} alt="" className="w-full h-2/5" />
 				</div>
 			</section>
-			<StyledBackGround className=" place-items-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+			<StyledBackGround2 className=" place-items-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
 				<DescriptionProps
 					src={pink}
 					title="You with us"
@@ -79,7 +115,7 @@ function Carrerpg1() {
 					description="Development is vital to our people’s success and ours. The skills, knowledge and capabilities of our people are central to our success. That’s why we’re fully committed to developing a continuous learning culture.
 "
 				/>
-			</StyledBackGround>
+			</StyledBackGround2>
 			<section className="mt-12">
 				<h1 className="text-center font-bold text-3xl p-4">
 					See our latest vacancies
@@ -94,9 +130,14 @@ function Carrerpg1() {
 					<JobProps title={'Senior UX Designer'} />
 				</div>
 				<div className="flex items-center justify-center">
-					<StyledButton className="mx-3  mt-6 ">
-						See all job openings
-					</StyledButton>
+					<Link
+						to="/carrer-pg-2"
+						onClick={() => {
+							window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+						}}
+					>
+						<StyledButton className="mt-12">See all job openings</StyledButton>
+					</Link>
 				</div>
 			</section>
 			<section className="img-carousel mt-11 py-5 flex flex-col justify-center items-center">
@@ -107,15 +148,32 @@ function Carrerpg1() {
 					follow us on instagram:{' '}
 					<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
 				</h6>
-				{/* image gallery carousel */}
+				<div className="image-carousel flex mt-12 items-center justify-center">
+					<img src={Slider3} alt="" style={mystyle} />
+					<img src={Slider2} alt="" style={style} className="active  -mt-5" />
+					<img src={Slider1} alt="" style={mystyle} />
+				</div>
+				{/* <StyledArrowImg src={Arrow} alt='' className='left absolute right-28' />
+        <StyledArrowImg
+          src={Arrow}
+          alt=''
+          className='right absolute -rotate-180 left-28'
+        /> */}
 			</section>
-			<StyledBackGround className="grow-together flex flex-col items-center justify-center py-10 mt-3">
-				<StyledHeader>Let's grow together</StyledHeader>
+			<StyledBackGround className="grow-together flex flex-col items-center justify-center py-12 ">
+				<StyledHeader className="text-center">Let's grow together</StyledHeader>
 				<h4 className="mt-3 text-center">
 					Browse our open positions, find a job you love, tell imposter <br />{' '}
 					syndrome to take the day off, and apply.
 				</h4>
-				<StyledButton className="mx-3 mt-5">See all job openings</StyledButton>
+				<Link
+					to="/carrer-pg-2"
+					onClick={() => {
+						window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+					}}
+				>
+					<StyledButton className="mt-4">See all job openings</StyledButton>
+				</Link>
 			</StyledBackGround>
 		</div>
 	);
