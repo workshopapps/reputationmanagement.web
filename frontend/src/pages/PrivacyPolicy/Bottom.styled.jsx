@@ -33,5 +33,5 @@ export const StyledBottom = styled.div`
 	@media (max-width: 1020px) {
 			display: none;
 	
-		{
+	}
 `;

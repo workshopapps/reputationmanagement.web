@@ -1,137 +1,135 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 //import ReactStars from 'react-stars'
 import { useState } from 'react';
 import Checkbox from "../../components/requestFormComponents/checkBox";
 import Rate from "../../components/requestFormComponents/rating";
-import useAppContext from '../../hooks/useAppcontext';
+import Sidebar from '../../components/Reusables/Sidebar';
+import WebAppNav from '../../components/Reusables/WebAppNav';
 
 
 
 
-function RequestForm() {
-
-    const [rating, setRating] = useState(0);///set initial state for rating
-
-    /////////////FORM DATA ENTRIES///////////////////////
-    //const [checked, setChecked] = useState(false);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    //const [date, setDate] = useState("");
-   // const [time, setTime] = useState("");
-    const [review, setReview] = useState("");
-    const [websitename, setWebsiteName] = useState("");
-    const [businesstype, setBusinessType] = useState("");
-    //const [name, setName] = useState("");
-
-  
-   const onSubmit = (e) => {
-    e.preventDefault();
-     setRequestSuccessfulModalActive(true)
-    
-  }
-   
-  
-
-  const {setRequestSuccessfulModalActive} = useAppContext();
-    
 
 
-    return (
-        <StyledContainer className="container" >
+const RequestForm = () => {
 
-            <h2 className='container-title'>Kindly Fill in your complain</h2>
-            {/********************START OF FORM*************************************************/}
-            <form className='form'>
 
-                <h4 className='form-heading'>Filling in the customer that drop the bad reviews data and the review dropped</h4>
+  const [rating, setRating] = useState(0);///set initial state for rating
 
-                {/********************START OF FORM SECTION A*************************************************/}
-                <div className='form-section-a'>
+  /////////////FORM DATA ENTRIES///////////////////////
+  //const [checked, setChecked] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  //const [date, setDate] = useState("");
+  // const [time, setTime] = useState("");
+  const [review, setReview] = useState("");
+  const [websitename, setWebsiteName] = useState("");
+  const [businesstype, setBusinessType] = useState("");
+  //const [name, setName] = useState("");
 
-                    <div className='text-input'>
-                        <label for="_name"> Name</label>
-                        <input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter Your Full Name" id="name" required />
-                    </div>
 
-                    <div className='text-input'>
-                        <label for="email">Email Address</label>
-                        <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="johndoe@gmail.com" id="email" required />
-                    </div>
+  return (
+    <>
+      <WebAppNav />
+      <Sidebar />
+      <StyledContainer className="container" >
 
-                    <div className='time-date-picker'>
-                        <div className='date-picker'>
-                            <label for="date"> Date of review</label>
-                            <input type="date" name="date" id="date" required />
-                        </div>
+        <h2 className='container-title'>Kindly Fill in your complain</h2>
+        {/********************START OF FORM*************************************************/}
+        <form className='form'>
 
-                        <div className='time-picker'>
-                            <label for="_name"> Time of review</label>
-                            <input type="time" name="time" id="time" required />
-                        </div>
-                    </div>
+          <h4 className='form-heading'>Filling in the customer that drop the bad reviews data and the review dropped</h4>
 
-                    <div className='bad-review'>
-                        <div className='bad-review-text'>
-                            <label>The bad review</label>
-                            <textarea value={review} onChange={(e) => setReview(e.target.value)} />
-                        </div>
+          {/********************START OF FORM SECTION A*************************************************/}
+          <div className='form-section-a'>
 
-                        <div className='review-range'>
-                            <Rate rating={rating} onRating={(rate) => setRating(rate)}  className="rate"/>
-                                {/**<p>Rating - {rating}</p> */}
-                            <label for="vol">Kindly selected the customer rating drop on your app/websites</label>
-                        </div>
-                    </div>
+            <div className='text-input'>
+              <label for="_name"> Name</label>
+              <input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter Your Full Name" id="name" required />
+            </div>
 
-                </div>
+            <div className='text-input'>
+              <label for="email">Email Address</label>
+              <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="johndoe@gmail.com" id="email" required />
+            </div>
 
-                {/*****************************START OF FORM  SECTION B******************************************/}
-                <div className='form-section-b'>
-                    <h2>Filling in your own details</h2>
+            <div className='time-date-picker'>
+              <div className='date-picker'>
+                <label for="date"> Date of review</label>
+                <input type="date" name="date" id="date" required />
+              </div>
 
-                    <div className='section-b-input'>
-                        <label for="name_of_website"> Name of your website or App</label>
-                        <input type="text" name="name_of_website" value={websitename} onChange={(e) => setWebsiteName(e.target.value)} placeholder="" required />
-                    </div>
+              <div className='time-picker'>
+                <label for="_name"> Time of review</label>
+                <input type="time" name="time" id="time" required />
+              </div>
+            </div>
 
-                    <div className='section-b-input'>
-                        <label for="business_type">What type of business do you run</label>
-                        <input type="text" name="business_type" value={businesstype} onChange={(e) => setBusinessType(e.target.value)} placeholder="" required />
-                    </div>
+            <div className='bad-review'>
+              <div className='bad-review-text'>
+                <label>The bad review</label>
+                <textarea value={review} onChange={(e) => setReview(e.target.value)} />
+              </div>
 
-                    <div className='priority-level'>
-                        <h3>Priority level</h3>
+              <div className='review-range'>
+                <Rate rating={rating} onRating={(rate) => setRating(rate)} className="rate" />
+                {/**<p>Rating - {rating}</p> */}
+                <label for="vol">Kindly selected the customer rating drop on your app/websites</label>
+              </div>
+            </div>
 
-                        <div>
-                            <Checkbox label="Today" checked={true} />
-                        </div>
+          </div>
 
-                        <div>
-                            <Checkbox label="This week" />
-                        </div>
+          {/*****************************START OF FORM  SECTION B******************************************/}
+          <div className='form-section-b'>
+            <h2>Filling in your own details</h2>
 
-                        <div>
-                            <Checkbox label="In the next 24hrs" />
-                        </div>
+            <div className='section-b-input'>
+              <label for="name_of_website"> Name of your website or App</label>
+              <input type="text" name="name_of_website" value={websitename} onChange={(e) => setWebsiteName(e.target.value)} placeholder="" required />
+            </div>
 
-                        <div>
-                            <Checkbox label="Not urgent" />
-                        </div>
+            <div className='section-b-input'>
+              <label for="business_type">What type of business do you run</label>
+              <input type="text" name="business_type" value={businesstype} onChange={(e) => setBusinessType(e.target.value)} placeholder="" required />
+            </div>
 
-                    </div>
+            <div className='priority-level'>
+              <h3>Priority level</h3>
 
-                </div>
+              <div>
+                <Checkbox label="Today" checked={true} />
+              </div>
 
-                <div className='btn-submit'>
-                    <button onClick={onSubmit}>
-                        Submit
-                    </button>
+              <div>
+                <Checkbox label="This week" />
+              </div>
 
-                </div>
-            </form>
-        </StyledContainer>
-    );
+              <div>
+                <Checkbox label="In the next 24hrs" />
+              </div>
+
+              <div>
+                <Checkbox label="Not urgent" />
+              </div>
+
+            </div>
+
+          </div>
+          {/***************************************FORM SUBMIT BUTTON**********************************************/}
+          <div className='btn-submit'>
+            <button >
+              Submit
+            </button>
+
+          </div>
+        </form>
+
+      </StyledContainer>
+
+    </>
+  );
 }
 
 export default RequestForm;
@@ -140,11 +138,13 @@ export default RequestForm;
 
 const StyledContainer = styled.div`
 
-      margin-top: 80px;
+      margin-top: 10px;
       padding-left: 30px;
       padding-right: 60px;
       padding-bottom: 64px;
       position: relative;
+      margin-left: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
         .container-title {
           font-size:24px;
@@ -290,7 +290,7 @@ const StyledContainer = styled.div`
               display: flex;
               justify-content: flex-end;
 
-                div{
+                button{
                   width: 220px;
                   height: 59px;
                   background: #233BA9;
@@ -318,10 +318,14 @@ const StyledContainer = styled.div`
 
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 1140px) {
+          margin-left: 0px;
 
+}
+
+        @media (max-width: 500px) {
+          margin-left: 0px;
 padding-left: 20px;
 padding-right: 20px;
-
 }
 `;

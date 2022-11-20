@@ -25,6 +25,13 @@ const Sidebar = (props) => {
 						Dashboard
 					</NavLink>
 				</li>
+
+				<li>
+					<NavLink to="/requestForm">
+						<DashboardIcon />
+						Request Form
+					</NavLink>
+				</li>
 			</ul>
 
 			<NavLink to="/">

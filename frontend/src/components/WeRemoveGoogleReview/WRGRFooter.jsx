@@ -22,7 +22,7 @@ export default WRGRFooter
 const StyledBottom = styled.div`
 	background-color: #eef1fc;
 	height: 400px;
-	margin-botoom: 20px;
+	margin-bottom: 20px;
 	text-align: center;
 
 	h2 {
@@ -52,5 +52,5 @@ const StyledBottom = styled.div`
 	@media (max-width: 1020px) {
 			display: none;
 	
-		{
+	}
 `

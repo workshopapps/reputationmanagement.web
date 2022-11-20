@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-
-export const StyledPrivacy = styled.div`
+export const StyledPolicy = styled.div`
 	padding-left: 25px;
 	color: #2b2c34;
 	padding-top: 20px;
 	width: 1000px;
 	margin: auto;
+	overflow: hidden;
 
 	h3 {
 		font-size: 32px;
@@ -22,7 +22,6 @@ export const StyledPrivacy = styled.div`
 	}
 
 	ul {
-		margin: auto;
 		font-size: 16px;
 		line-height: 25px;
 		font-style: medium;
@@ -31,9 +30,10 @@ export const StyledPrivacy = styled.div`
 	}
 
 	@media (max-width: 320px) {
-		div {
-			over-flow: hidden;
-		}
+
+		over-flow: hidden;
+		word-break: break-all
+		
 
 		h3 {
 			font-size: 18px;
@@ -79,7 +79,7 @@ export const StyledPrivacy = styled.div`
 		ul {
 			list-style: disc;
 			font-size: 12px;
-			display:flex;
+			display:flex
 			flex-wrap: wrap;
 			overflow-wrap: break;
 			line-height: 21px;

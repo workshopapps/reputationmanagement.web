@@ -20,6 +20,7 @@ import Signup from '../Sign/Signup';
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 import ErrorPage from '../pages/ErrorPage';
+import RequestForm from '../pages/RequestForm/requestForm';
 
 const Router = () => {
 	return (
@@ -29,7 +30,7 @@ const Router = () => {
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="about-us" element={<AboutPage />} />
 
-				<Route path="/" element={<LandingPage />} />
+				<Route path="/" element={<LandingPage />} /> 
 
 				<Route
 					path="we-remove-google-search"
@@ -55,6 +56,8 @@ const Router = () => {
 				<Route path="glassdoor" element={<GlassDoor />} />
 
 				<Route path="dashboard" element={<DashboardPage />} />
+				<Route path="/requestForm" element={<RequestForm />} />
+				
 
 				<Route path="blog" element={<Blog />} />
 				<Route path="*" element={<ErrorPage />} />

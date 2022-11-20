@@ -9,11 +9,6 @@ import {
 import { DONE_ICON } from '../../assets/image';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
-import { React, useState } from "react";
-import { StyledButtonWrapper, StyledOverlay, StyledProgressBar, StyledSuccessfulRequest } from "./styles"
-import {DONE_ICON} from '../../assets/image';
-import { useEffect } from "react";
-// import useAppContext from '../../hooks/useAppContext';
 
 const RequestSuccessful = () => {
     const [ requestState, setRequestState ] = useState(0);
