@@ -24,6 +24,7 @@ namespace src.Services
         IEnumerable<Review> GetInconclusiveReviews();
         
         Review UpdateReviewLawyer(ReviewForUpdateDTO review);
-        //Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview();
+
+        Task<List<SuccessfulReviewsDto>> GetAllSuccessfulReview();
     }
 }
