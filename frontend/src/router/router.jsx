@@ -10,6 +10,7 @@ import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
+import LawyerDashboard from '../pages/LawyerDashboard/LawyerDashboard';
 
 const Router = () => {
 	return (
@@ -18,6 +19,7 @@ const Router = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="we-remove-google-search" element={<WeRemoveGoogleSearch />} />
+				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 			</Routes>
 		</BrowserRouter>
 	);
