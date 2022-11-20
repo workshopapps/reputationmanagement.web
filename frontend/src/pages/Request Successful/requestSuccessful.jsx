@@ -1,3 +1,4 @@
+import React from "react";
 import { REQUEST_SUCCESSFUL } from "../../assets/image";
 import Header from "../../components/Layout/Header";
 import { StyledRequestSuccessfulSm } from "./styles";

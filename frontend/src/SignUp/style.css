@@ -1,0 +1,26 @@
+.SignUp{
+    place-content: start;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.left-s{
+    place-content: start;
+    text-align: left;
+    column-gap: 1.75rem;
+    z-index: 9;
+    /* background: white; */
+    width: 50%;
+    height: 650px;
+}
+.right-s{
+    position: absolute;
+}
+.right-s>img{
+    padding-left: 52vh;
+    width: 100%;
+    max-height: 98vh;
+}
+.right-s>img:nth-child(2){
+    z-index: 10;
+}

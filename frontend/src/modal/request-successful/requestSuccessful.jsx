@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { StyledButtonWrapper, StyledOverlay, StyledProgressBar, StyledSuccessfulRequest } from "./styles"
 import {DONE_ICON} from '../../assets/image';
 import { useEffect } from "react";

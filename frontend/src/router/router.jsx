@@ -14,7 +14,7 @@ import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 
-import Signup from '../Sign/Signup';
+import Signup from '../SignUp/SignUp';
 import ErrorPage from '../pages/ErrorPage';
 
 const Router = () => {
@@ -25,7 +25,7 @@ const Router = () => {
 
 
 				<Route path="/" element={<LandingPage />} />
-				<Route path="/signup" element={<Signup />} />
+				<Route path="/SignUp" element={<Signup />} />
 
 				<Route path="landing-page" element={<LandingPage />} />
 
