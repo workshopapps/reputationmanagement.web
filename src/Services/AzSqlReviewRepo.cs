@@ -51,7 +51,14 @@ namespace src.Services
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
-            return _context.Reviews.Select(x => x).ToList();
+            var lawyerReviews = _context.Reviews.Select(codedSamurai => new Review()
+            {
+                ReviewId = codedSamurai.ReviewId,
+                Status = codedSamurai.Status,
+                ReviewString = codedSamurai.ReviewString,
+
+            }).ToListAsync();
+            return (IEnumerable<Review>)lawyerReviews;
         }
 
         public IEnumerable<Review> GetInconclusiveReviews()
@@ -118,29 +125,29 @@ namespace src.Services
 
             return reviewToUpdate;
         }
+        
+        /*public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
+        {
+            var resultModel = new List<GetSuccessfulReviewsDto>();
 
-        //public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
-        //{
-        //    var resultModel = new List<GetSuccessfulReviewsDto>();
+            var query = await _context.Reviews
+                .Where(x => x.Status == StatusType.Successful)
+                .Include(x => x.Users)
+                .Select(x => new GetSuccessfulReviews()
+                {
+                    ReviewId = x.ReviewId,
+                    Username = x.Users.UserName,
+                    Status = x.Status,
+                    TimeStamp = x.TimeStamp,
+                    Message = x.ReviewString,
+                }).ToListAsync();
 
-        //    var query = await _context.Reviews
-        //        .Where(x => x.Status == StatusType.Successful)
-        //        .Include(x => x.Users)
-        //        .Select(x => new GetSuccessfulReviews()
-        //        {
-        //            ReviewId = x.ReviewId,
-        //            Username = x.Users.UserName,
-        //            Status = x.Status,
-        //            TimeStamp = x.TimeStamp,
-        //            Message = x.ReviewString,
-        //        }).ToListAsync();
+            if (query != null)
+            {
+                resultModel = query;
+            }
 
-        //    if (query != null)
-        //    {
-        //        resultModel = query;
-        //    }
-
-        //    return resultModel;
-        //}
+            return resultModel;
+        }*/
     }
 }
