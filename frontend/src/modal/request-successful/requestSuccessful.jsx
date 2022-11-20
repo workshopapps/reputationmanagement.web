@@ -1,7 +1,13 @@
-import { useState } from "react";
-import { StyledButtonWrapper, StyledOverlay, StyledProgressBar, StyledSuccessfulRequest } from "./styles"
-import {DONE_ICON} from '../../assets/image';
-import { useEffect } from "react";
+import React from 'react';
+import { useState } from 'react';
+import {
+	StyledButtonWrapper,
+	StyledOverlay,
+	StyledProgressBar,
+	StyledSuccessfulRequest,
+} from './styles';
+import { DONE_ICON } from '../../assets/image';
+import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import { useNavigate } from "react-router-dom";
 
@@ -37,6 +43,7 @@ const RequestSuccessful = () => {
             clearTimeout(requestTimeout)
         }
     },[requestSuccessfulModalActive, requestState])
+
 
     return(
         <StyledOverlay>
@@ -96,3 +103,4 @@ const RequestSuccessful = () => {
     )
 }
 export default RequestSuccessful;
+

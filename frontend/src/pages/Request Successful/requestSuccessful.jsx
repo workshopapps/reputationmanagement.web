@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+
+import React, { useEffect } from "react";
 import { REQUEST_SUCCESSFUL } from "../../assets/image";
 import Header from "../../components/Layout/Header";
 import { StyledRequestSuccessfulSm } from "./styles";
@@ -20,3 +21,4 @@ const RequestSuccessfulSm = () => {
     )
 }
 export default RequestSuccessfulSm;
+
