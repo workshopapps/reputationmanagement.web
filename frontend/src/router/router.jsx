@@ -21,6 +21,7 @@ import Signup from '../Sign/Signup';
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 import ErrorPage from '../pages/ErrorPage';
+import NewRequest from '../components/NewRequest/NewRequest';
 
 const Router = () => {
 	return (
@@ -63,6 +64,7 @@ const Router = () => {
 				<Route path="glassdoor" element={<GlassDoor />} />
 
 				<Route path="dashboard" element={<DashboardPage />} />
+				<Route path="request" element={<NewRequest/>} />
 
 				<Route path="blog" element={<Blog />} />
 				<Route path="*" element={<ErrorPage />} />

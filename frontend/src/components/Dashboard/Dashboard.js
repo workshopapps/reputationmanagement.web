@@ -73,6 +73,7 @@ const Dashboard = () => {
 					</tbody>
 				</TableContainer>
 			</StyledContainer>
+			
 		</StyledDashboard>
 	);
 };
