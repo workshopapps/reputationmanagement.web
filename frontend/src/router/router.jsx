@@ -14,7 +14,6 @@ import LawyerDashboard from '../pages/LawyerDashboard/LawyerDashboard';
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
-import GetAQuote from '../pages/GetAQuote/index';
 
 import Signup from '../Sign/Signup';
 
@@ -52,7 +51,6 @@ const Router = () => {
 				<Route path="terms-of-use" element={<Termsofuse />} />
 
 				<Route path="privacy" element={<PrivacyPolicy />} />
-				<Route path="get-a-quote" element={<GetAQuote />} />
 
 				<Route path="career" element={<Carrerpg1 />} />
 				<Route path="carrer-pg-3" element={<Carrerpg3 />} />
