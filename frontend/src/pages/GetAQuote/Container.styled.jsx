@@ -5,7 +5,6 @@ import img2 from '../../assets/images/Default.png';
 export const Container = styled.div`
 	@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300&display=swap');
 	* {
-		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
 		font-family: 'Lato', sans-serif;
@@ -28,7 +27,7 @@ export const StyledBtnContainer = styled.div`
 	margin: 0 auto;
 
 	@media (min-width: 200px) and (max-width: 699px) {
-		max-width: 50%;
+		max-width: 70%;
 	}
 `;
 
@@ -38,16 +37,21 @@ export const Popup = styled.div`
 	left: 0;
 	width: 100%;
 	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: rgba(0, 0, 0, 0.6);
 `;
 
 export const StyledPopup = styled.div`
 	width: 401px;
-	height: 219px;
+	height: 300px;
 	background: #ffffff;
 	position: fixed;
-	top: 30%;
-	left: 35%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	padding: 30px;
 	box-shadow: 2px 2px 8px rgba(120, 122, 125, 0.15);
 
@@ -80,17 +84,21 @@ export const StyledPopup = styled.div`
 			color: #233ba9;
 		}
 	}
+	@media (min-width: 501px) and (max-width: 900px) {
+		width: 400px;
+		height: 300px;
+	}
 
-	@media (min-width: 200px) and (max-width: 699px) {
-		top: 0;
-		left: 0;
-		width: 350px;
+	@media (min-width: 200px) and (max-width: 500px) {
+		width: 400%px;
 		height: 300px;
 	}
 `;
 export const Icon = styled.div`
 	display: flex;
+	width: 100%;
 	padding-bottom: 5px;
+	padding-right: 20px;
 	justify-content: flex-end;
 	align-items: center;
 `;
@@ -124,21 +132,20 @@ export const Banner = styled.div`
 	}
 
 	@media (min-width: 200px) and (max-width: 699px) {
-		height: 200px;
+		height: 150px;
 		width: 100%;
-		justify-content: flex-start;
-		margin-bottom: 0px;
-		padding-top: 20px;
+		justify-content: center;
+		margin-bottom: 20px;
 		background: url(${img2});
 		background-repeat: no-repeat;
-		background-size: contain;
+		background-size: 100% 100%;
 
 		h1 {
-			font-size: 15px;
+			font-size: 20px;
 			line-height: 30px;
 		}
 		p {
-			font-size: 8px;
+			font-size: 10px;
 			text-align: center;
 		}
 	}
@@ -213,8 +220,8 @@ export const StyledInput = styled.input`
 		opacity: 0.8;
 		font-weight: 400;
 	}
-	&:focus{
-		border: 0.596671px solid #FF725E;
+	&:focus {
+		border: 0.596671px solid #ff725e;
 		border-radius: 4.77337px;
 	}
 `;
@@ -238,8 +245,8 @@ export const StyledText = styled.textarea`
 		opacity: 0.8;
 		font-weight: 400;
 	}
-	&:focus{
-		border: 0.596671px solid #FF725E;
+	&:focus {
+		border: 0.596671px solid #ff725e;
 		border-radius: 4.77337px;
 	}
 `;
