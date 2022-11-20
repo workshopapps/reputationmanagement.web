@@ -32,19 +32,33 @@ namespace src.Services
           
         }
 
-        public Review GetReviewById(Guid id)
-        {
-            if (id == Guid.Empty)
+       
+            public Review GetReviewById(Guid id)
             {
-                throw new ArgumentNullException(nameof(id));
+                if (id == Guid.Empty)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }
+                var review = _context.Reviews.Where(c => c.ReviewId == id).SingleOrDefault();
+                if (review == null)
+                {
+
+                    throw new NullReferenceException("Data not found");
+                }
+                return review;
             }
-            return _context.Reviews
-              .Where(c => c.UserId == id).FirstOrDefault();
-        }
+        
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
-            return _context.Reviews.Select(x => x).ToList();
+            var lawyerReviews = _context.Reviews.Select(codedSamurai => new Review()
+            {
+                ReviewId = codedSamurai.ReviewId,
+                Status = codedSamurai.Status,
+                ReviewString = codedSamurai.ReviewString,
+
+            }).ToListAsync();
+            return (IEnumerable<Review>)lawyerReviews;
         }
 
         public IEnumerable<Review> GetInconclusiveReviews()
@@ -111,10 +125,10 @@ namespace src.Services
 
             return reviewToUpdate;
         }
-
-        public async Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview()
+        
+        /*public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
         {
-            var resultModel = new List<GetSuccessfulReviews>();
+            var resultModel = new List<GetSuccessfulReviewsDto>();
 
             var query = await _context.Reviews
                 .Where(x => x.Status == StatusType.Successful)
@@ -123,7 +137,6 @@ namespace src.Services
                 {
                     ReviewId = x.ReviewId,
                     Username = x.Users.UserName,
-                    UserId = x.UserId,
                     Status = x.Status,
                     TimeStamp = x.TimeStamp,
                     Message = x.ReviewString,
@@ -135,6 +148,6 @@ namespace src.Services
             }
 
             return resultModel;
-        }
+        }*/
     }
 }

@@ -1,8 +1,13 @@
-import FooterData from './FooterData';
+import FooterData from "./FooterData"
 import twitter from '../../../assets/images/Twitter.png';
 import faceb from '../../../assets/images/Facebook.png';
 import insta from '../../../assets/images/Instagram.png';
 import styled from 'styled-components';
+// import FooterData from './FooterData';
+// import twitter from '../../../assets/images/Twitter.png';
+// import faceb from '../../../assets/images/Facebook.png';
+// import insta from '../../../assets/images/Instagram.png';
+// import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Div = styled.div`
