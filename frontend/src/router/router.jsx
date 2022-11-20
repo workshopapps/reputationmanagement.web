@@ -7,7 +7,7 @@ import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
 import Carrerpg3 from '../pages/Carrer/Carrerpg3';
-import Home from '../pages/Home/Home';
+// import Home from '../pages/Home/Home';
 
 // import Home from '../pages/Home/Home';
 
@@ -32,14 +32,13 @@ const Router = () => {
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/SignUp" element={<Signup />} />
 
-				<Route path="/" element={<Home />} />
+				{/* <Route path="/" element={<Home />} /> */}
 				<Route path="/SignUp" element={<Signup />} />
 
 				<Route path="landing-page" element={<LandingPage />} />
 
 				<Route path="about-us" element={<AboutPage />} />
 
-				<Route path="/" element={<LandingPage />} />
 
 				<Route
 					path="we-remove-google-search"
