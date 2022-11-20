@@ -13,7 +13,7 @@ const Sidebar = (props) => {
 
 			<ul>
 				<li>
-					<NavLink to="/requestForm">
+					<NavLink to="/">
 						<HomeIcon />
 						Home
 					</NavLink>

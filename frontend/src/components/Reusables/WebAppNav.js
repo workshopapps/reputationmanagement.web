@@ -28,7 +28,7 @@ const WebAppNav = (props) => {
 			</LogoContainer>
 
 			<NavItems>
-				<NavLink to="/request-form">
+				<NavLink to="/requestForm">
 					<img src={message} alt="" />
 					New Request
 				</NavLink>
