@@ -54,7 +54,7 @@ const Router = () => {
 
 				<Route path="privacy" element={<Privacy />} />
 
-				<Route path="career" element={<Carrerpg1 />} />
+				<Route path="career-pg-1" element={<Carrerpg1 />} />
 				<Route path="carrer-pg-3" element={<Carrerpg3 />} />
 				<Route path="carrer-pg-2" element={<Carrerpg2 />} />
 
