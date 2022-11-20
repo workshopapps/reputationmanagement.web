@@ -24,6 +24,7 @@ import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 
 import Signup from '../Sign/Signup';
+import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 const Router = () => {
 	return (
@@ -38,7 +39,6 @@ const Router = () => {
 				<Route path="landing-page" element={<LandingPage />} />
 
 				<Route path="about-us" element={<AboutPage />} />
-
 
 				<Route
 					path="we-remove-google-search"
@@ -62,6 +62,7 @@ const Router = () => {
 				<Route path="FAQ" element={<Faqs />} />
 
 				<Route path="glassdoor" element={<GlassDoor />} />
+				<Route path="dashboard" element={<DashboardPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
