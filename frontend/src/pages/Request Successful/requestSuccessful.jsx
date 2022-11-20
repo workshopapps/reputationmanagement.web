@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import { REQUEST_SUCCESSFUL } from "../../assets/image";
 import Header from "../../components/Layout/Header";
 import { StyledRequestSuccessfulSm } from "./styles";
+import useAppContext from '../../hooks/useAppContext'
 
 const RequestSuccessfulSm = () => {
+    const { setRequestSuccessfulModalActive } = useAppContext();
+    useEffect(() => {
+        setRequestSuccessfulModalActive(false)
+    },[])
     return(
         <StyledRequestSuccessfulSm>
             <Header/>

@@ -12,8 +12,8 @@ const RequestSuccessful = () => {
     const router = useNavigate();
 
     useEffect(() => {
-        width < 768 && router('/request-successful')
-    },[width, router])
+        width < 768 && router('/request-successful') 
+    },[width, router ])
 
     useEffect(() => {
         setRequestState(0)
