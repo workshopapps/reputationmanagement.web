@@ -35,6 +35,8 @@ const RequestForm = () => {
       <Sidebar />
       <StyledContainer className="container" >
 
+        <span className='container-title1'>Request Removal Form</span>
+
         <h2 className='container-title'>Kindly Fill in your complain</h2>
         {/********************START OF FORM*************************************************/}
         <form className='form'>
@@ -138,7 +140,7 @@ export default RequestForm;
 
 const StyledContainer = styled.div`
 
-      margin-top: 10px;
+      margin-top: 0px;
       padding-left: 30px;
       padding-right: 60px;
       padding-bottom: 64px;
@@ -146,6 +148,11 @@ const StyledContainer = styled.div`
       margin-left: 320px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+      .container-title1 {
+        font-size:20px;
+        margin-bottom: 40px;
+
+      }
         .container-title {
           font-size:24px;
 

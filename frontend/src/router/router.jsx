@@ -30,7 +30,7 @@ const Router = () => {
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="about-us" element={<AboutPage />} />
 
-				<Route path="/" element={<LandingPage />} /> 
+				{/**<Route path="/" element={<LandingPage />} /> */}
 
 				<Route
 					path="we-remove-google-search"
@@ -56,7 +56,7 @@ const Router = () => {
 				<Route path="glassdoor" element={<GlassDoor />} />
 
 				<Route path="dashboard" element={<DashboardPage />} />
-				<Route path="/requestForm" element={<RequestForm />} />
+				<Route path="/" element={<RequestForm />} />
 				
 
 				<Route path="blog" element={<Blog />} />
