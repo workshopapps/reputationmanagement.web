@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledButton } from '../../../components/Styles/Body/Button.styled';
 import { howWeWorkDetails } from '../data';
 import { HowWeWorkCard, HowWeWorkCards, Wrapper } from './HowWeWork.style';
