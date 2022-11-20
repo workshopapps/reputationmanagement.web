@@ -15,7 +15,7 @@ import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 import GetAQuote from '../pages/GetAQuote/index';
-
+import RequestForm from '../pages/RequestForm/requestForm';
 import Signup from '../Sign/Signup';
 
 import DashboardPage from '../pages/Dashboard/DashboardPage';
@@ -58,6 +58,8 @@ const Router = () => {
 				<Route path="glassdoor" element={<GlassDoor />} />
 
 				<Route path="dashboard" element={<DashboardPage />} />
+
+				<Route path="/requestForm" element={<RequestForm />} />
 
 				<Route path="blog" element={<Blog />} />
 
