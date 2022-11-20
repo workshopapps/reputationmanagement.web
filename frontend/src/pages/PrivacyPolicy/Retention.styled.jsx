@@ -29,10 +29,10 @@ export const StyledRetention = styled.div`
 		margin-left: 25px;
 	}
 
-	@media (max-width: 320px) {
-		div {
+	@media (max-width: 1020px) {
+		
 			over-flow: hidden;
-		}
+			width: 300px;
 
 		h3 {
 			font-size: 18px;
@@ -50,35 +50,7 @@ export const StyledRetention = styled.div`
 		ul {
 			list-style: disc;
 			font-size: 12px;
-			flex-wrap: wrap;
-			overflow-wrap: break;
-			line-height: 21px;
-			font-style: regular;
-		}
-	}
-
-	@media (max-width: 768px) {
-		div {
-			over-flow: hidden;
-			width: 90px;
-		}
-
-		h3 {
-			font-size: 18px;
-			line-height: 27px;
-		}
-
-		p {
-			font-size: 12px;
-			flex-wrap: wrap;
-			overflow-wrap: break;
-			line-height: 21px;
-			font-style: regular;
-		}
-
-		ul {
-			list-style: disc;
-			font-size: 12px;
+			display:flex
 			flex-wrap: wrap;
 			overflow-wrap: break;
 			line-height: 21px;
