@@ -127,7 +127,7 @@ namespace src.Services
             return reviewToUpdate;
         }
         
-        /*public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
+        public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
         {
             var resultModel = new List<GetSuccessfulReviewsDto>();
 
@@ -148,6 +148,6 @@ namespace src.Services
             }
 
             return resultModel;
-        }*/
+        }
     }
 }

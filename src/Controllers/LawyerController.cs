@@ -46,7 +46,7 @@ namespace src.Controllers
            _reviewRepo.UpdateReviewLawyer(review);
             return Ok("Review is successfully updated");
         }
-        /*
+        
         [HttpGet]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
         [Route("SuccessfulReview")]
@@ -57,7 +57,7 @@ namespace src.Controllers
            return Ok(query);
 
         }
-        */
+        
 
         [HttpGet("/api/reviews/{reviewId}")]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
