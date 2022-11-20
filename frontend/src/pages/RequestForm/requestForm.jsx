@@ -1,9 +1,10 @@
-
+import React from 'react';
 import styled from "styled-components";
 //import ReactStars from 'react-stars'
 import { useState } from 'react';
 import Checkbox from "../../components/requestFormComponents/checkBox";
 import Rate from "../../components/requestFormComponents/rating";
+import useAppContext from '../../hooks/useAppcontext';
 
 
 
@@ -23,7 +24,16 @@ function RequestForm() {
     const [businesstype, setBusinessType] = useState("");
     //const [name, setName] = useState("");
 
+  
+   const onSubmit = (e) => {
+    e.preventDefault();
+     setRequestSuccessfulModalActive(true)
+    
+  }
+   
+  
 
+  const {setRequestSuccessfulModalActive} = useAppContext();
     
 
 
@@ -114,7 +124,7 @@ function RequestForm() {
                 </div>
 
                 <div className='btn-submit'>
-                    <button>
+                    <button onClick={onSubmit}>
                         Submit
                     </button>
 
@@ -280,7 +290,7 @@ const StyledContainer = styled.div`
               display: flex;
               justify-content: flex-end;
 
-                button{
+                div{
                   width: 220px;
                   height: 59px;
                   background: #233BA9;

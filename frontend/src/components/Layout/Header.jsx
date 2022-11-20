@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -28,7 +29,7 @@ const Header = () => {
 						<NavLink to="/" className="active">
 							Home
 						</NavLink>
-						<NavLink to="/about">About Us</NavLink>
+						<NavLink to="/about-us">About Us</NavLink>
 						<NavLink to="/blog">Blog</NavLink>
 						<NavLink to="/contact">Contact</NavLink>
 					</div>
@@ -46,7 +47,7 @@ const Header = () => {
 						<Link to="/login">
 							<StyledTextButton>Login</StyledTextButton>
 						</Link>
-						<Link to="/register">
+						<Link to="/signup">
 							<StyledButton>Register</StyledButton>
 						</Link>
 					</div>
