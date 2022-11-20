@@ -11,17 +11,15 @@ import {
 	DeskImg,
 	StyledBlue,
 } from '../styled/Hero.styled';
+import HeroDesktop from '../img/HeroD.png';
+import HeroM from '../img/HeroM.png';
 
 export default function Hero() {
 	return (
 		<>
 			<StyledHero>
-				<DeskImg src="assets/images/Hero-image-Desktop.png" alt="hero" />
-				<MobImg
-					src="assets/images/Hero-image-Mobile.png"
-					alt="hero"
-					width="375px"
-				/>
+				<DeskImg src={HeroDesktop} alt="hero" />
+				<MobImg src={HeroM} alt="hero" width="375px" />
 				<StyledHeroMsg>
 					<StyledBlue>
 						Who Are <StyledOrange>We</StyledOrange>?

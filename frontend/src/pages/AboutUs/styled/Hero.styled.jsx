@@ -9,6 +9,8 @@ export const StyledHero = styled.div`
 	justify-content: space-between;
 	@media (max-width: 375px) {
 		flex-direction: column-reverse;
+		justify-content: center;
+		align:items:center;
 	}
 `;
 export const DeskImg = styled.img`
@@ -31,10 +33,10 @@ export const StyledHeroMsg = styled.div`
 	padding-right: 70px;
 	width: 650px;
 	@media (max-width: 375px) {
-		padding: 0 20px;
+		padding: 0 15px;
 		align-items: center;
-		justify-content: center;
-		width: 370px;
+
+		width: 350px;
 	}
 `;
 export const StyledBtn = styled.button`
@@ -54,7 +56,9 @@ export const StyledHerotxt = styled.p`
   font-family: "lato", sans-serif;
   font weight: 700;
   @media (max-width: 375px){
-    width: 375px;
+    width: 345px;
+	
+	text-align: center;
   }
 `;
 export const StyledHerotxtSpan = styled.p`

@@ -12,7 +12,7 @@ export default function Help() {
 		<>
 			<StyledBgImgDesktop>
 				<StyledCenter>
-					<Blue>Lets help you remove that negative review</Blue>
+					<Blue>Let’s help you remove that negative review</Blue>
 					<Btn>Register</Btn>
 				</StyledCenter>
 			</StyledBgImgDesktop>

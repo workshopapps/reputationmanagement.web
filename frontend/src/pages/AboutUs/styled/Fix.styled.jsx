@@ -22,10 +22,13 @@ export const StyledFixCenter = styled.div`
 	gap: 16px;
 
 	width: 304px;
-	height: 447px;
+	height: 450px;
 
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
+	@media (max-width: 375px) {
+		margin-bottom: 64px;
+	}
 `;
 export const StyledFixImg = styled.img`
 	width: 304px;
@@ -60,13 +63,14 @@ export const StyledColorOrange = styled.h2`
 			type= 'text/css'
 	);
 	color: orange;
-	margin-left: 10px;
+	margin-left: 16px;
+	margin-top: 16px
 	font-size: 22px;
 	font-weight: semi-bold;
 	font-family: 'lato', sans-serif;
 `;
 export const StyledFixp = styled.div`
-	padding-left: 10px;
+	padding: 16px;
 `;
 export const Plato = styled.p`
 	@import url
