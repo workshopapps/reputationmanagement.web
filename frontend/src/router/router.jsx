@@ -22,6 +22,10 @@ const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path="landing-page" element={<LandingPage />} />
+				<Route path="about-us" element={<AboutPage />} />
+
+				<Route path="/" element={<LandingPage />} />
 			<Route path="/" element={<LandingPage />} />
 				<Route path="/signup" element={<Signup />} />
 
@@ -52,6 +56,8 @@ const Router = () => {
 
 				<Route path="glassdoor" element={<GlassDoor />} />
 
+				<Route path="blog" element={<Blog />} />
+				<Route path="*" element={<ErrorPage />} />
 
 				<Route path="blog" element ={<Blog />} />
 				<Route path="*" element ={<ErrorPage />} />
