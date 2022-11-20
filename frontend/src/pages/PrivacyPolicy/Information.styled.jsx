@@ -14,6 +14,7 @@ export const StyledInformation = styled.div`
 		font-style: bold;
 	}
 
+
 	p {
 		font-size: 16px;
 		line-height: 25px;
@@ -40,8 +41,9 @@ export const StyledInformation = styled.div`
 	}
 
 	@media (max-width: 1020px) {
-		over-flow: hidden;
-		width: 300px;
+		
+			over-flow: hidden;
+			width: 300px;
 
 		h3 {
 			font-size: 18px;
@@ -55,5 +57,6 @@ export const StyledInformation = styled.div`
 			line-height: 21px;
 			font-style: regular;
 		}
+
 	}
 `;
