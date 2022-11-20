@@ -8,8 +8,15 @@ import { useNavigate } from "react-router-dom";
 const RequestSuccessful = () => {
     const [ requestState, setRequestState ] = useState(0);
     const { requestSuccessfulModalActive } = useAppContext();
-    const width = window.innerWidth;
+
+    var width = window.innerWidth;
+
     const router = useNavigate();
+
+    useEffect(() => {
+        var width = window.innerWidth
+        console.log(width)
+    },[width])
 
     useEffect(() => {
         width < 768 && router('/request-successful') 
@@ -81,8 +88,8 @@ const RequestSuccessful = () => {
                     </div>
                 </StyledProgressBar>
                 <StyledButtonWrapper>
-                    <button id="request" onClick={() => setRequestState(requestState + 1)}>New Request</button>
-                    <button id="dashboard">Dashboard</button>
+                    <button id="request" onClick={() => router('/request')}>New Request</button>
+                    <button id="dashboard" onClick={() => router('/dashboard')}>Dashboard</button>
                 </StyledButtonWrapper>
             </StyledSuccessfulRequest>
         </StyledOverlay>
