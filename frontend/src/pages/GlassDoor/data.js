@@ -81,15 +81,15 @@ export const reviews = [
 	},
 	{
 		id: 2,
-		image: markImg,
+		image: cathyImg,
 		name: 'Catherine Ibe',
 		role: 'Customer support at Pocket LTD',
 		review:
 			'	Probably the best out there, i had a super friendly experience, they offer an exclusive consultation on business stragegy that is really helping the growth of my busines. I must say, you guys are te best, thank you.',
 	},
 	{
-		id: 1,
-		image: markImg,
+		id: 3,
+		image: cynthia,
 		name: 'Cynthia Paul',
 		role: 'Sales representative at Ibeto and sons',
 		review:

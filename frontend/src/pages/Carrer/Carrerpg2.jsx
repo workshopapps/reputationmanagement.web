@@ -27,7 +27,7 @@ const StyledSelect = styled.select`
 
 function Carrerpg2() {
 	return (
-		<div className="p-4 mx-3 ">
+		<div>
 			<StyledBackGround className="flex flex-col text-white items-center justify-center p-4">
 				<h1 className="text-3xl">All Open Positions</h1>
 				<h5 className="text-center w-3/5 mt-4 py-4">
@@ -36,8 +36,8 @@ function Carrerpg2() {
 					proud of.
 				</h5>
 			</StyledBackGround>
-			<section className="flex flex-row mt-8 justify-center items-center">
-				<StyledBox className="search-box flex justify-between p-3 w-full lg:w-3/5 ">
+			<section className="flex flex-row mt-8 justify-center items-center ">
+				<StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full lg:w-3/5 scale-75 md:scale-100">
 					<div className="flex justify-center items-center ">
 						<img src={SearchIcon} alt="" />
 						<input
@@ -68,11 +68,13 @@ function Carrerpg2() {
 								Marketing
 							</option>
 						</StyledSelect>
-						<StyledButton className="mx-4">Search</StyledButton>
+						<StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
+							Search
+						</StyledButton>
 					</div>
 				</StyledBox>
 			</section>
-			<section className="my-11">
+			<section className="my-11 px-12">
 				<div className="flex justify-between items-center">
 					<h2 className="font-bold text-xl">Browse Open Positions</h2>
 					<div className="hidden lg:block">

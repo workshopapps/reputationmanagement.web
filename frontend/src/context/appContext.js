@@ -4,7 +4,7 @@ export const AppContext = createContext();
 
 const AppProvider = ({children}) => {
     const [ someState, setSomeState ] = useState(0);
-    const [ requestSuccessfulModalActive, setRequestSuccessfulModalActive ] = useState(true)
+    const [ requestSuccessfulModalActive, setRequestSuccessfulModalActive ] = useState(false)
     return(
         <AppContext.Provider value={{someState, setSomeState, requestSuccessfulModalActive, setRequestSuccessfulModalActive}}>
             {children}

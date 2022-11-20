@@ -5,10 +5,7 @@ import Arrow from '../../assets/images/arrow-left.png';
 import Map from '../../assets/images/map.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import {
-	StyledButton,
-	StyledTextButton,
-} from '../../components/Styles/Body/Button.styled';
+import { StyledButton } from '../../components/Styles/Body/Button.styled';
 const StyledH2 = styled.h2`
 	font-size: 1.6rem;
 	color: #233ba9;
@@ -17,9 +14,13 @@ const StyledH2 = styled.h2`
 function Carrerpg3() {
 	return (
 		<section className="p-8">
-			<Link className="flex my-12 " to="/carrer-pg-2" onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-              }}>
+			<Link
+				className="flex my-12 "
+				to="/carrer-pg-2"
+				onClick={() => {
+					window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+				}}
+			>
 				<img src={Arrow} alt="" />
 				<h3 className="mx-3"> Back to all openeings</h3>
 			</Link>
@@ -48,7 +49,7 @@ function Carrerpg3() {
 						Here is what we look for when reviewing CVs & Portfolio's to
 						shortlist candidates for interviews:
 					</h4>
-					<ul className="py-6 list-disc">
+					<ul className="py-6 list-disc mx-12">
 						<li>A good looking Portfolio</li>
 						<li>Relevant experience in the role you are applying for</li>
 						<li>Volunteer experience</li>
@@ -60,7 +61,7 @@ function Carrerpg3() {
 					Cash compensation range:{' '}
 					<span className="font-bold">150000-200000 USD Annually</span>
 				</h3>
-				<StyledButton className='my-8'>Send us your CV/ Portfolio</StyledButton>
+				<StyledButton className="my-8">Send us your CV/ Portfolio</StyledButton>
 			</section>
 		</section>
 	);
