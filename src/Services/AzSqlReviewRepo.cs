@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using src.Data;
 using src.Entities;
 using src.Models.Dtos;
@@ -111,9 +112,9 @@ namespace src.Services
             return reviewToUpdate;
         }
 
-        public async Task<List<GetSuccessfulReviews>> GetAllSuccessfulReview()
+        public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
         {
-            var resultModel = new List<GetSuccessfulReviews>();
+            var resultModel = new List<GetSuccessfulReviewsDto>();
 
             var query = await _context.Reviews
                 .Where(x => x.Status == StatusType.Successful)
@@ -122,7 +123,6 @@ namespace src.Services
                 {
                     ReviewId = x.ReviewId,
                     Username = x.Users.UserName,
-                    UserId = x.UserId,
                     Status = x.Status,
                     TimeStamp = x.TimeStamp,
                     Message = x.ReviewString,

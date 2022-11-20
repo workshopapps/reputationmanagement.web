@@ -105,6 +105,7 @@ function Faqs() {
 
         </FaqMainWraper>
     </PageLayout>
+      </PageLayout>
   )
 }
 
