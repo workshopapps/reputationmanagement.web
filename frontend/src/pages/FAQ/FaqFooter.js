@@ -6,15 +6,27 @@ function FaqFooter() {
     const FaqFooterWraper = styled.div`
        text-align: center; 
        margin-top: 100px;
-    `
 
-    const FaqFooterHeading = styled.div`
+       `
+       
+       const FaqFooterHeading = styled.div`
         h3{
             font-size: 28px;
             font-weight: 700;
             line-height: 150%;
-        }
-    `
+            }
+            
+            @media screen and (max-width: 425px){
+
+                text-align: left;
+
+                
+                h3{
+                   text-aling: left;
+                   font-size: 18px;
+                }
+            }
+        `
 
 
     const FaqFooterLinks = styled.div`
@@ -23,6 +35,10 @@ function FaqFooter() {
         justify-content: center;
         gap: 24px;
         margin-top: 48px;
+
+        @media screen and (max-width: 425px){
+            gap: 8px;
+        }
 
     `
 
@@ -34,19 +50,15 @@ function FaqFooter() {
         text-decoration: none;
         font-size: 18px;
         font-weight: 600;
-        color: #FFFFFF;
-        background: #233BA9;
+        color: ${(props) => props.color};
+        background: ${(props) => props.background};
+
+        @media screen and (max-width: 425px){
+            padding: 8px 24px;
+            font-size: 14px;
+        }
     `
 
-    const CheckLink = styled.a`
-        display: inline-block;
-        padding: 16px 40px;
-        font-size: 18px;
-        font-weight: 600;
-        text-decoration: none;
-        border: 1px solid #4560D9;
-        color: #233BA9;
-    `
 
   return (
         
@@ -57,8 +69,8 @@ function FaqFooter() {
         </FaqFooterHeading>
 
         <FaqFooterLinks>
-            <SendMailLink href='#'>Send a Mail</SendMailLink>
-            <CheckLink href='#' className='check'>Check with Us</CheckLink>
+            <SendMailLink href='#' background='#233BA9' color='#FFFFFF'>Send a Mail</SendMailLink>
+            <SendMailLink href='#' background='transparent' color='#233BA9'>Check with Us</SendMailLink>
         </FaqFooterLinks>
 
     </FaqFooterWraper>
