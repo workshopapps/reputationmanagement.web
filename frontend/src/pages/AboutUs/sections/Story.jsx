@@ -1,6 +1,4 @@
 import React from 'react';
-import { StoryImg, StyledStory, StyledStorytxt } from '../styled/Story.styled';
-
 import {
 	StoryImg,
 	StyledStory,
