@@ -32,15 +32,22 @@ namespace src.Services
           
         }
 
-        public Review GetReviewById(Guid id)
-        {
-            if (id == Guid.Empty)
+       
+            public Review GetReviewById(Guid id)
             {
-                throw new ArgumentNullException(nameof(id));
+                if (id == Guid.Empty)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }
+                var review = _context.Reviews.Where(c => c.ReviewId == id).SingleOrDefault();
+                if (review == null)
+                {
+
+                    throw new NullReferenceException("Data not found");
+                }
+                return review;
             }
-            return _context.Reviews
-              .Where(c => c.UserId == id).FirstOrDefault();
-        }
+        
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
@@ -112,28 +119,28 @@ namespace src.Services
             return reviewToUpdate;
         }
 
-        public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
-        {
-            var resultModel = new List<GetSuccessfulReviewsDto>();
+        //public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
+        //{
+        //    var resultModel = new List<GetSuccessfulReviewsDto>();
 
-            var query = await _context.Reviews
-                .Where(x => x.Status == StatusType.Successful)
-                .Include(x => x.Users)
-                .Select(x => new GetSuccessfulReviews()
-                {
-                    ReviewId = x.ReviewId,
-                    Username = x.Users.UserName,
-                    Status = x.Status,
-                    TimeStamp = x.TimeStamp,
-                    Message = x.ReviewString,
-                }).ToListAsync();
+        //    var query = await _context.Reviews
+        //        .Where(x => x.Status == StatusType.Successful)
+        //        .Include(x => x.Users)
+        //        .Select(x => new GetSuccessfulReviews()
+        //        {
+        //            ReviewId = x.ReviewId,
+        //            Username = x.Users.UserName,
+        //            Status = x.Status,
+        //            TimeStamp = x.TimeStamp,
+        //            Message = x.ReviewString,
+        //        }).ToListAsync();
 
-            if (query != null)
-            {
-                resultModel = query;
-            }
+        //    if (query != null)
+        //    {
+        //        resultModel = query;
+        //    }
 
-            return resultModel;
-        }
+        //    return resultModel;
+        //}
     }
 }
