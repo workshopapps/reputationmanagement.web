@@ -1,3 +1,4 @@
+import React from 'react';
 import { StoryImg, StyledStory, StyledStorytxt } from '../styled/Story.styled';
 
 export default function Story() {
