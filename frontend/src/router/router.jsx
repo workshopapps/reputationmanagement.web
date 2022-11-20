@@ -16,12 +16,16 @@ import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 
 import Signup from '../Sign/Signup';
+
+import DashboardPage from '../pages/Dashboard/DashboardPage';
+
 import ErrorPage from '../pages/ErrorPage';
 
 const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
+
 				<Route path="landing-page" element={<LandingPage />} />
 				<Route path="about-us" element={<AboutPage />} />
 
@@ -56,6 +60,10 @@ const Router = () => {
 
 				<Route path="glassdoor" element={<GlassDoor />} />
 
+				<Route path="dashboard" element={<DashboardPage />} />
+
+				<Route path="blog" element={<Blog />} />
+				<Route path="*" element={<ErrorPage />} />
 				<Route path="blog" element={<Blog />} />
 				<Route path="*" element={<ErrorPage />} />
 

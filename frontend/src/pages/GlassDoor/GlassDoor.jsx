@@ -1,3 +1,4 @@
+import React from 'react';
 import PageLayout from '../../layout/PageLayout';
 import PageHero from './PageHero';
 import TopUsers from './TopUsers';

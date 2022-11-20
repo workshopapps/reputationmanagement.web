@@ -1,4 +1,6 @@
-import FooterData from "./FooterData"
+import React from 'react';
+
+import FooterData from './FooterData';
 import twitter from '../../../assets/images/Twitter.png';
 import faceb from '../../../assets/images/Facebook.png';
 import insta from '../../../assets/images/Instagram.png';
