@@ -15,6 +15,7 @@ import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 
 import Signup from '../Sign/Signup';
+import ErrorPage from '../pages/ErrorPage';
 
 const Router = () => {
 	return (
@@ -55,6 +56,7 @@ const Router = () => {
 
 
 				<Route path="blog" element ={<Blog />} />
+				<Route path="*" element ={<ErrorPage />} />
 
 			</Routes>
 		</BrowserRouter>
