@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AboutPage from '../pages/AboutUs/AboutPage';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
-import Faqs from '../pages/FAQ/Faqs';
+
 import Carrerpg3 from '../pages/Carrer/Carrerpg3';
 import Home from '../pages/Home/Home';
 
