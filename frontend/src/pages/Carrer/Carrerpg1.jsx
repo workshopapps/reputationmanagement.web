@@ -4,6 +4,10 @@ import React from 'react';
 import pink from '../../assets/images/pinkCircle.png';
 import blue from '../../assets/images/blueCircle.png';
 import styled from 'styled-components';
+import Slider3 from '../../assets/images/ImageSlider3.jpg';
+import Arrow from '../../assets/images/ArrowSliderRight.png';
+import Slider2 from '../../assets/images/ImageSlider2.jpg';
+import Slider1 from '../../assets/images/ImageSlider1.jpg';
 import orange from '../../assets/images/orangeCircle.png';
 import {
 	StyledH1,
@@ -39,6 +43,14 @@ const StyledSpanText = styled.span`
 `;
 const StyledSpanTextBlue = styled.span`
 	color: #233ba9;
+`;
+const StyledArrowImg = styled.img`
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+
+	top: 340%;
 `;
 function Carrerpg1() {
 	return (
@@ -107,7 +119,13 @@ function Carrerpg1() {
 					follow us on instagram:{' '}
 					<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
 				</h6>
-				{/* image gallery carousel */}
+				<div className="image-carousel">
+					<img src={Slider3} alt="" />
+					<img src={Slider2} alt="" className="active" />
+					<img src={Slider1} alt="" />
+				</div>
+				<StyledArrowImg src={Arrow} alt="" className="left " />
+				<StyledArrowImg src={Arrow} alt="" className="right -rotate-180" />
 			</section>
 			<StyledBackGround className="grow-together flex flex-col items-center justify-center py-10 mt-3">
 				<StyledHeader>Let's grow together</StyledHeader>
