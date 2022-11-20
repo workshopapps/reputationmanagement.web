@@ -44,7 +44,14 @@ namespace src.Services
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
-            return _context.Reviews.Select(x => x).ToList();
+            var lawyerReviews = _context.Reviews.Select(codedSamurai => new Review()
+            {
+                ReviewId = codedSamurai.ReviewId,
+                Status = codedSamurai.Status,
+                ReviewString = codedSamurai.ReviewString,
+
+            }).ToListAsync();
+            return (IEnumerable<Review>)lawyerReviews;
         }
 
         public IEnumerable<Review> GetInconclusiveReviews()
@@ -112,7 +119,7 @@ namespace src.Services
             return reviewToUpdate;
         }
 
-        public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
+        /*public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
         {
             var resultModel = new List<GetSuccessfulReviewsDto>();
 
@@ -134,6 +141,6 @@ namespace src.Services
             }
 
             return resultModel;
-        }
+        }*/
     }
 }

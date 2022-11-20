@@ -50,13 +50,21 @@ namespace src.Controllers
         [HttpGet]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
         [Route("SuccessfulReview")]
-        public async Task<ActionResult> SuccessReview()
+       /* public async Task<ActionResult> SuccessReview()
         {
             var resultModel = new List<GetSuccessfulReviewsDto>();
 
             var query = await _reviewRepo.GetAllSuccessfulReview();
 
             return Ok(query);
+        }*/
+
+        [Authorize(Roles = "LAWYER", AuthenticationSchemes = "Bearer")]
+        [HttpGet("app/lawyer/reviews")]
+        public IActionResult GetAllReviews()
+        {
+            var reviews = _reviewRepo.GetReviews();
+            return Ok(reviews);
         }
 
 
