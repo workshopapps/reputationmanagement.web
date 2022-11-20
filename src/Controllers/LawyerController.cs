@@ -54,11 +54,26 @@ namespace src.Controllers
         {
             var resultModel = new List<GetSuccessfulReviewsDto>();
 
-            var query = await _reviewRepo.GetAllSuccessfulReview();
+           // var query = await _reviewRepo.GetAllSuccessfulReview();
 
-            return Ok(query);
+           // return Ok(query);
         }
 
+        [HttpGet("/api/reviews/{reviewId}")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        public IActionResult GetSingleReview(Guid reviewId)
+        {
+            if (reviewId == Guid.Empty)
+            {
+                return NotFound(reviewId);
+            }
+            Review singleReview = _reviewRepo.GetReviewById(reviewId);
+
+            if (singleReview == null)
+                return NotFound();
+
+            return Ok(singleReview);
+        }
 
     }
 }
