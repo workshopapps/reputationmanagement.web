@@ -9,6 +9,9 @@ import {
 	StyledColorOrange,
 	StyledFixp,
 } from '../styled/Fix.styled';
+import TrustImg from '../img/Trust.png';
+import ProfessionalImg from '../img/Professionalism.png';
+import Convenience from '../img/Convenience.png';
 
 export default function Fix() {
 	return (
@@ -19,7 +22,7 @@ export default function Fix() {
 			</StyledFixHeader>
 			<StyledFixBox>
 				<StyledFixCenter>
-					<StyledFixImg src="assets/images/Trust.png" alt="trust" />
+					<StyledFixImg src={TrustImg} alt="trust" />
 					<StyledColorOrange>Trust</StyledColorOrange>
 					<StyledFixp>
 						<Plato>
@@ -29,7 +32,7 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 				<StyledFixCenter>
-					<StyledFixImg src="assets/images/Convenience.png" alt="convenience" />
+					<StyledFixImg src={Convenience} alt="convenience" />
 					<StyledColorOrange>Convience</StyledColorOrange>
 					<StyledFixp>
 						<Plato>
@@ -40,10 +43,7 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 				<StyledFixCenter>
-					<StyledFixImg
-						src="assets/images/Professionalism.png"
-						alt="professionals"
-					/>
+					<StyledFixImg src={ProfessionalImg} alt="professionals" />
 					<StyledColorOrange> Professionalism</StyledColorOrange>
 					<StyledFixp>
 						<Plato>
