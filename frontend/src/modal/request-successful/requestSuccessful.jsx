@@ -3,13 +3,22 @@ import { StyledButtonWrapper, StyledOverlay, StyledProgressBar, StyledSuccessful
 import {DONE_ICON} from '../../assets/image';
 import { useEffect } from "react";
 import useAppContext from '../../hooks/useAppContext';
+import { useNavigate } from "react-router-dom";
 
 const RequestSuccessful = () => {
     const [ requestState, setRequestState ] = useState(0);
     const { requestSuccessfulModalActive } = useAppContext();
+    const width = window.innerWidth;
+    const router = useNavigate();
+
+    useEffect(() => {
+        width < 768 && router('/request-successful')
+    },[width, router])
+
     useEffect(() => {
         setRequestState(0)
     },[])
+
     useEffect(() => {
         const requestTimeout = () => {
             setTimeout(() => {
