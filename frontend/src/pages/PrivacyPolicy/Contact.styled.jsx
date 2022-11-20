@@ -7,7 +7,7 @@ export const StyledContact = styled.div`
 	padding-top: 20px;
 	width: 1000px;
 	margin: auto;
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 
 	h3 {
 		font-size: 32px;
@@ -41,11 +41,10 @@ export const StyledContact = styled.div`
 		}
 	}
 
-	@media (max-width: 768px) {
-		div {
+@media (max-width: 	1020px) {
+		
 			over-flow: hidden;
-			width: 90px;
-		}
+			width: 300px;
 
 		h3 {
 			font-size: 18px;
@@ -59,6 +58,5 @@ export const StyledContact = styled.div`
 			line-height: 21px;
 			font-style: regular;
 		}
-
 	}
 `;
