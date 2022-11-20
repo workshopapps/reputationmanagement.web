@@ -9,12 +9,7 @@ import Arrow from '../../assets/images/ArrowSliderRight.png';
 import Slider2 from '../../assets/images/ImageSlider2.jpg';
 import Slider1 from '../../assets/images/ImageSlider1.jpg';
 import orange from '../../assets/images/orangeCircle.png';
-import {
-	StyledH1,
-	StyledH3,
-	StyledText,
-	StyledH2Center,
-} from '../../components/Styles/Body/Text.styled';
+import { StyledText } from '../../components/Styles/Body/Text.styled';
 
 import {
 	StyledButton,
@@ -119,7 +114,7 @@ function Carrerpg1() {
 					follow us on instagram:{' '}
 					<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
 				</h6>
-				<div className="image-carousel">
+				<div className="image-carousel flex">
 					<img src={Slider3} alt="" />
 					<img src={Slider2} alt="" className="active" />
 					<img src={Slider1} alt="" />
