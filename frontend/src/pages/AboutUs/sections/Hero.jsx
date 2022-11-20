@@ -7,6 +7,8 @@ import {
 	StyledHerotxtSpan,
 	StyledOrange,
 	MobImg,
+	StyledBtn,
+	DeskImg,
 	StyledBlue,
 } from '../styled/Hero.styled';
 
@@ -14,12 +16,12 @@ export default function Hero() {
 	return (
 		<>
 			<StyledHero>
-				<img
-					src="assets/images/Hero-image-Desktop.png"
+				<DeskImg src="assets/images/Hero-image-Desktop.png" alt="hero" />
+				<MobImg
+					src="assets/images/Hero-image-Mobile.png"
 					alt="hero"
-					width="540px"
+					width="375px"
 				/>
-				<MobImg src="assets/images/Hero-image-Desktop.png" alt="hero" />
 				<StyledHeroMsg>
 					<StyledBlue>
 						Who Are <StyledOrange>We</StyledOrange>?
@@ -37,6 +39,7 @@ export default function Hero() {
 						We cater to businesses and public figures that have a lot riding on
 						their reputation.
 					</StyledHerotxt>
+					<StyledBtn>Register</StyledBtn>
 				</StyledHeroMsg>
 			</StyledHero>
 		</>

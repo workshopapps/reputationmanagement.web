@@ -68,7 +68,7 @@ namespace src.Controllers
             return Ok();
         }
 
-        [HttpGet("/api/reviews/{reviewId}")]
+        [HttpGet("/reviews/{reviewId}")]
         [Authorize(Roles = "Customer", AuthenticationSchemes ="Bearer")]
         public IActionResult GetSingleReview(Guid reviewId)
         {
