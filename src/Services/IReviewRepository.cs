@@ -16,9 +16,15 @@ namespace src.Services
 
         public void DeleteReview(Guid id);
 
-        // Add more CRUD
-        Review UpdateReviewLawyer(ReviewForUpdateDTO review);
+        public void DeleteReviews(Guid userId);
 
-        Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview();
+        public bool Save();
+
+        // Add more CRUD
+
+        IEnumerable<Review> GetInconclusiveReviews();
+        
+        Review UpdateReviewLawyer(ReviewForUpdateDTO review);
+        //Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview();
     }
 }
