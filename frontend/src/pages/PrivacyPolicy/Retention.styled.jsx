@@ -48,7 +48,7 @@ export const StyledRetention = styled.div`
 		}
 
 		ul {
-			list-style: disc;
+			list-style: disc;	
 			font-size: 12px;
 			display:flex
 			flex-wrap: wrap;
