@@ -114,5 +114,21 @@ namespace src.Controllers
             return Ok(inconclusiveReviews);
         }
 
+        [SwaggerOperation(Summary = "Get all users reviews")]
+        [Authorize(Roles = "Customer", AuthenticationSchemes = "Bearer")]
+        [HttpGet("user/reviews")]
+        public ActionResult<IEnumerable<Review>> PostedUserReviews(int? pageNumber, int? pageSize)
+        {
+            if (pageNumber == null && pageSize == null)
+            {
+                return Ok(_reviewRepo.GetUserReviews());
+            }
+            var result = _reviewRepo.GetUserReviews()
+                .Skip((int)((pageNumber - 1) * pageSize))
+                .Take((int)pageSize);
+
+            return Ok(result);
+        }
+
     }
 }

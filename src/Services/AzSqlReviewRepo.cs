@@ -148,5 +148,10 @@ namespace src.Services
 
             return resultModel;
         }
+
+        public IEnumerable<Review> GetUserReviews()
+        {
+            return _context.Reviews.Select(x => x).ToList();
+        }
     }
 }
