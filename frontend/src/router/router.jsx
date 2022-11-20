@@ -21,6 +21,7 @@ import Signup from '../Sign/Signup';
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 import ErrorPage from '../pages/ErrorPage';
+import Page1 from '../pages/contactUs/page1';
 
 const Router = () => {
 	return (
@@ -64,6 +65,8 @@ const Router = () => {
 				<Route path="blog" element={<Blog />} />
 
 				<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
+
+				<Route path="/" element={<Page1 />} />
 
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>

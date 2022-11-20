@@ -1,0 +1,39 @@
+.headerDiv{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.spanhead{
+font-weight: 700;
+font-size: 3.6rem;
+color: #233BA9;
+}
+
+.headerSpan{
+    color: #F16F04;
+}
+
+
+@media only screen and (max-width: 900px) {
+
+.spanhead{
+font-size: 1.5rem !important;
+}
+}
+
+
+@media only screen and (max-width: 420px) {
+
+.spanhead{
+font-size: 1rem !important;
+}
+
+.headerDiv{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+}

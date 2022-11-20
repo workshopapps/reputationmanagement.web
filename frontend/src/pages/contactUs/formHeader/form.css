@@ -1,0 +1,88 @@
+
+.formtopic{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #2B2C34;
+    font-style: normal;
+font-weight: 700;
+font-size: 1rem;
+padding-top: 1rem;
+
+}
+
+.topicContainer{
+    background: #EEF1FC;
+    width: 100%;
+    height: auto;
+    padding-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.personalInfo{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  
+}
+
+ .avatar1 img{
+width:10%;
+margin-left:-2%;
+} 
+
+.avatar2 img{
+width:10%;
+margin-left:-2%;
+margin-bottom: -5%;
+} 
+
+.formComponent{
+    margin-top: -20px;
+    margin-bottom: 60px;
+}
+    textarea#areat{
+        width: 70%;
+        height: 150px;
+        border-radius: 8px;
+    }
+
+@media only screen and (min-width: 300px) {
+.personalInfo{
+    width: 65%;
+    margin-top: 3rem
+}
+}
+
+
+@media only screen and (min-width: 600px) {
+
+.formtopic{
+    font-style: normal;
+font-weight: 700;
+font-size: 2.2rem;
+padding-top: 3.75rem;
+}
+
+
+.personalInfo{
+    width: 46%;
+
+}
+}
+
+@media only screen and (min-width: 900px) {
+
+.formtopic{
+    font-style: normal;
+font-weight: 700;
+font-size: 2.2rem;
+padding-top: 4.75rem;
+}
+.personalInfo{
+    width: 40%;
+
+}
+}
+

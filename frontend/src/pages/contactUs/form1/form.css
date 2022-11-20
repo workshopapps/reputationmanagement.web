@@ -1,0 +1,102 @@
+.formContactDiv{
+    width: 100%;
+    background: #fff;
+    height: 328px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 30px;
+
+}
+
+.para{
+        padding-left: 10%;
+padding-right: 10%;
+font-size: 0.7rem;
+margin-top: 8px;
+}
+
+.formContactDiv h2{
+    font-style: normal;
+font-weight: 700;
+font-size: 12px;
+color: #2B2C34;
+}
+
+.formDetails{
+    margin-top: 20px;
+}
+
+.formDetails input{
+height: 28px;
+margin-bottom: 12px;
+width: 70%;
+border-radius: 10px;
+border: 1px solid grey;
+padding-left: 5px;
+}
+
+.formDetails input:active{
+    border: 1px solid blue;
+}
+
+.formDetails ::placeholder{
+    padding-left: 10px;
+    color: #BABABA;
+}
+
+button.formBtn{
+    text-align: center;
+    width: 75px;
+height: 26px;
+color: white;
+background: #233BA9;
+border-radius: 4px;
+}
+
+.formBtn{
+    margin-left: 0px;
+}
+
+@media only screen and (min-width: 600px) {
+.formContactDiv{
+
+    background: #fff;
+    height: 500px;
+    padding-left: 45px;
+}
+
+.formContactDiv h2{
+    font-size: 1.38rem;
+    padding-left: 0;
+
+}
+.para{
+    font-size: 1rem;
+    margin-top: 15px;
+    padding-left: 0;
+}
+
+.formDetails input{
+height: 50px;
+}
+
+.formContactDiv{
+    text-align: left;
+}
+
+button.formBtn{
+width: 120px;
+height: 40px;
+border-radius: 8px;
+}
+
+.formBtn{
+    margin-top: 10px;
+}
+}
+
+@media only screen and (min-width: 1020px) {
+.formDetails input{
+padding-left: 15px;
+}
+}
