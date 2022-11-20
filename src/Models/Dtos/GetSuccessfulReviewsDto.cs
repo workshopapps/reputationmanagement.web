@@ -8,7 +8,7 @@ namespace src.Models.Dtos
 {
     public class GetSuccessfulReviewsDto
     {
-        public string Username { get; set; }
+        public string Email { get; set; }
 
         public Guid ReviewId { get; set; }
 

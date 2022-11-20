@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using src.Data;
 using src.Entities;
 using src.Models.Dtos;
@@ -16,9 +17,9 @@ namespace src.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-       
+
         public void AddReview(Review review)
-        {            
+        {
             if (review.UserId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(review));
@@ -29,7 +30,7 @@ namespace src.Services
                 throw new ArgumentNullException(nameof(review));
             }
             _context.Reviews.Add(review);
-          
+
         }
 
         public Review GetReviewById(Guid id)
@@ -100,11 +101,10 @@ namespace src.Services
 
             var query = await _context.Reviews
                 .Where(x => x.Status == StatusType.Successful)
-                .Include(x => x.Users)
                 .Select(x => new GetSuccessfulReviewsDto()
                 {
                     ReviewId = x.ReviewId,
-                    Username = x.Users.UserName,
+                    Email = x.Email,
                     Status = x.Status,
                     TimeStamp = x.TimeStamp,
                     Message = x.ReviewString,

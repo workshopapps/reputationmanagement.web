@@ -20,7 +20,7 @@ namespace src.Entities
         public string ReviewString { get; set; }
         [Required]
         public StatusType Status { get; set; }
-        
+
     }
 
     public enum StatusType

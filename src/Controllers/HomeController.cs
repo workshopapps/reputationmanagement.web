@@ -10,16 +10,16 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace src.Controllers
 {
-    
+
     [ApiController]
     [Authorize(Roles = "Customer", AuthenticationSchemes = "Bearer")]
     [Route("api")]
-    public class HomeController:ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly IReviewRepository _reviewRepo;
         private readonly IMapper _mapper;
 
-        public HomeController(IReviewRepository reviewRepo, 
+        public HomeController(IReviewRepository reviewRepo,
             UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IMapper mapper)
         {
             _reviewRepo = reviewRepo;
@@ -35,7 +35,7 @@ namespace src.Controllers
         [AllowAnonymous]
         public IActionResult greet()
         {
-           
+
             string greetings = "Hello customer!";
             return Ok(greetings);
         }
@@ -68,16 +68,16 @@ namespace src.Controllers
         }
 
         [HttpGet("/api/reviews/{reviewId}")]
-        [Authorize(Roles = "Lawyer", AuthenticationSchemes ="Bearer")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
         public IActionResult GetSingleReview(Guid reviewId)
         {
-            if(reviewId == Guid.Empty)
+            if (reviewId == Guid.Empty)
             {
                 return new ArgumentException("Review Id is Empty");
-            } 
+            }
             Review singleReview = _reviewRepo.GetReviewById(reviewId);
 
-            if(singleReview == null)
+            if (singleReview == null)
                 return NotFound();
 
             return Ok(singleReview);
