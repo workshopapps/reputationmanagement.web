@@ -62,6 +62,10 @@ const Router = () => {
 				<Route path="FAQ" element={<Faqs />} />
 
 				<Route path="glassdoor" element={<GlassDoor />} />
+
+
+				<Route path="blog" element ={<Blog />} />
+
 			</Routes>
 		</BrowserRouter>
 	);
