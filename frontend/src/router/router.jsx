@@ -26,15 +26,9 @@ const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-
-				<Route path="landing-page" element={<LandingPage />} />
-				<Route path="about-us" element={<AboutPage />} />
-
 				<Route path="/" element={<LandingPage />} />
-			<Route path="/" element={<LandingPage />} />
-				<Route path="/signup" element={<Signup />} />
 
-				<Route path="landing-page" element={<LandingPage />} />
+				<Route path="/signup" element={<Signup />} />
 
 				<Route path="about-us" element={<AboutPage />} />
 
@@ -52,6 +46,7 @@ const Router = () => {
 				<Route path="terms-of-use" element={<Termsofuse />} />
 
 				<Route path="privacy" element={<PrivacyPolicy />} />
+
 				<Route path="get-a-quote" element={<GetAQuote />} />
 
 				<Route path="career" element={<Carrerpg1 />} />
@@ -65,14 +60,10 @@ const Router = () => {
 				<Route path="dashboard" element={<DashboardPage />} />
 
 				<Route path="blog" element={<Blog />} />
-				<Route path="*" element={<ErrorPage />} />
-				<Route path="blog" element={<Blog />} />
-				<Route path="*" element={<ErrorPage />} />
 
-				<Route path="blog" element ={<Blog />} />
-				<Route path="*" element ={<ErrorPage />} />
+				<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 
-				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
