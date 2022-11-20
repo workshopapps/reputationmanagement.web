@@ -31,22 +31,5 @@ ul {
     margin-left: 25px;
 }
 
-@media screen only screen and (max-width: 680px) {
-		h3 {
-			font-size: 18px;
-			line-height: 27px;
-			font-style: semibold;
-		}
 
-		p {
-			font-size: 14px;
-			line-height: 21px;
-			font-style: regular;
-		}
-
-		ul {
-			font-size: 14px;
-			line-height: 21px;
-			font-style: regular;
-		}
-`;
+`

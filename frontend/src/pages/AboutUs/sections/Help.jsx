@@ -1,4 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+
+>>>>>>> de69646faf863949b26a7033689d165fd6ecc433
 import {
 	Blue,
 	Btn,

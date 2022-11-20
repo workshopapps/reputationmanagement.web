@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import React from 'react';
 
+=======
+import twitter from '../../../assets/images/Twitter.png';
+import faceb from '../../../assets/images/Facebook.png';
+import insta from '../../../assets/images/Instagram.png';
+>>>>>>> de69646faf863949b26a7033689d165fd6ecc433
 import fixlogo from '../../../assets/images/Fix-it-Recovered-removebg-preview 1.png';
 
 function FooterSocials() {

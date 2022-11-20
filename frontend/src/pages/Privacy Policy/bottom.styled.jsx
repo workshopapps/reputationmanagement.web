@@ -26,12 +26,4 @@ export const StyledButtom = styled.div`
 		font-style: normal;
 		font-weight: 400;
 	}
-
-    @media screen only screen and (max-width: 320px) {
-		h2 {
-			font-size: 18px;
-			line-height: 27px;
-			font-style: semibold;
-		}
-
-	`	
+`;

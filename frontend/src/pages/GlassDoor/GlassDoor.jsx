@@ -1,29 +1,34 @@
 import React from 'react';
 import PageLayout from '../../layout/PageLayout';
+import { StyledButton } from '../../components/Styles/Body/Button.styled';
+import workColleague from '../../assets/images/glassdoor/work-colleague.png';
 import {
-	HowWeWork,
-	HowWeWorkCard,
-	HowWeWorkCards,
+	GettingStarted,
 	PageHero,
 	PageHeroDetails,
 	PageHeroImage,
 	TopUsers,
 	TopUsersContainer,
 	Wrapper,
+	HowWeWorkCard,
+	HowWeWorkCards,
+	HowWeWork,
+	OurReviews,
+	OurReviewsCard,
+	OurReviewsCardBody,
+	OurReviewsCardHeader,
+	OurReviewsContainer,
+	RemoveReview,
+	ReviewDetails,
+	ReviewNumbers,
+	ReviewNumbersCard,
+	ReviewStats,
 } from './GlassDoor.style';
-import { StyledButton } from '../../components/Styles/Body/Button.styled';
-import workColleague from '../../assets/images/glassdoor/work-colleague.png';
-import airbnb from '../../assets/images/glassdoor/airbnb.png';
-import diamond from '../../assets/images/glassdoor/diamond.png';
-import spotify from '../../assets/images/glassdoor/spotify.png';
-import canon from '../../assets/images/glassdoor/canon.png';
-import bigD from '../../assets/images/glassdoor/bigD.png';
-import ups from '../../assets/images/glassdoor/ups.png';
-import bigM from '../../assets/images/glassdoor/bigM.png';
-import profile from '../../assets/images/glassdoor/profile-add.png';
-import document from '../../assets/images/glassdoor/document-text.png';
-import progress from '../../assets/images/glassdoor/Progress.png';
-import status from '../../assets/images/glassdoor/status.png';
+
+import { AiFillStar } from 'react-icons/ai';
+import { FaStarHalf } from 'react-icons/fa';
+import { howWeWorkDetails, topUsers, reviews } from './data';
+
 const GlassDoor = () => {
 	return (
 		<PageLayout>
@@ -38,7 +43,9 @@ const GlassDoor = () => {
 							Remove bad reviews from your glassdoor platform and stand out
 							against false and misleading reviews online.
 						</p>
-						<StyledButton>Get Started</StyledButton>
+						<div className="btn">
+							<StyledButton>Get Started</StyledButton>
+						</div>
 					</PageHeroDetails>
 					<PageHeroImage>
 						<img src={workColleague} alt="work-colleague" />
@@ -47,81 +54,131 @@ const GlassDoor = () => {
 				<TopUsers>
 					<h1>Used and loved by 1M users across 199 countries</h1>
 					<TopUsersContainer>
-						<div className="img__container">
-							<img src={airbnb} alt="airbnb" />
-						</div>
-						<div className="img__container">
-							<img src={diamond} alt="diamond" />
-						</div>
-						<div className="img__container">
-							<img src={spotify} alt="sportify" />
-						</div>
-						<div className="img__container">
-							<img src={canon} alt="canon" />
-						</div>
-						<div className="img__container">
-							<img src={bigD} alt="D logo" />
-						</div>
-						<div className="img__container">
-							<img src={ups} alt="ups logo" />
-						</div>
-						<div className="img__container">
-							<img src={bigM} alt="M logo" />
-						</div>
+						{topUsers.map((topUser) => {
+							return (
+								<div className="img__container" key={topUser.id}>
+									<img src={topUser.image} alt="company logo" />
+								</div>
+							);
+						})}
 					</TopUsersContainer>
 				</TopUsers>
 				<HowWeWork>
 					<h1>How We Remove Bad Reviews</h1>
 					<p>Clear off bad reviews in a few steps.</p>
 					<HowWeWorkCards>
-						<HowWeWorkCard>
-							<div className="steps">1</div>
-							<div className="img__container">
-								<img src={profile} alt="profile-icon" />
-							</div>
-							<h2>Create an account with us</h2>
-							<p>
-								Create an account with us today inorder to lodge your request,
-								we are here to maintain your brand’s reputation.
-							</p>
-						</HowWeWorkCard>
-						<HowWeWorkCard>
-							<div className="steps">2</div>
-							<div className="img__container">
-								<img src={document} alt="document-icon" />
-							</div>
-							<h2>Submit complaint details</h2>
-							<p>
-								When you login to your dashboard, you submit the details of your
-								complaint which will then be picked and processed.
-							</p>
-						</HowWeWorkCard>
-						<HowWeWorkCard>
-							<div className="steps">3</div>
-							<div className="img__container">
-								<img src={progress} alt="progress-icon" />
-							</div>
-							<h2>Case gets assigned and progress monitored</h2>
-							<p>
-								Our lawyers pick up your complaint and takes the next step
-								towards helping you maintain your brand’s reputation.
-							</p>
-						</HowWeWorkCard>
-						<HowWeWorkCard>
-							<div className="steps">4</div>
-							<div className="img__container">
-								<img src={status} alt="status-icon" />
-							</div>
-							<h2>Confirm Status</h2>
-							<p>
-								Login to your profile and monitor the progress of your
-								complaint. You will be notified when the bad review is taken
-								down form your dashboard.
-							</p>
-						</HowWeWorkCard>
+						{howWeWorkDetails.map((details) => {
+							return (
+								<HowWeWorkCard key={details.id}>
+									<div className="steps">{details.id}</div>
+									<div className="img__container">
+										<img src={details.icon} alt="profile-icon" />
+									</div>
+									<h2>{details.title}</h2>
+									<p>{details.text}</p>
+								</HowWeWorkCard>
+							);
+						})}
 					</HowWeWorkCards>
 					<StyledButton>Get Started</StyledButton>
 				</HowWeWork>
+				<OurReviews>
+					<h1>What our users have to say</h1>
+					<OurReviewsContainer>
+						{reviews.map((review) => {
+							return (
+								<OurReviewsCard key={review.id}>
+									<OurReviewsCardHeader>
+										<div className="img__container">
+											<img src={review.image} alt="profileImg" />
+										</div>
+										<div className="review__user">
+											<div className="user">
+												<h3>{review.name}</h3>
+												<span>
+													<AiFillStar />
+													<AiFillStar />
+													<AiFillStar />
+													<AiFillStar />
+													<FaStarHalf />
+												</span>
+											</div>
+											<p>{review.role}</p>
+										</div>
+									</OurReviewsCardHeader>
+									<OurReviewsCardBody>{review.review}</OurReviewsCardBody>
+								</OurReviewsCard>
+							);
+						})}
+					</OurReviewsContainer>
+					<div className="btn">
+						<StyledButton>See more</StyledButton>
+					</div>
+					<ReviewNumbers>
+						<ReviewNumbersCard>
+							<ReviewDetails>
+								<h2>
+									Over <span>30,000+</span> reviews and still counting.
+								</h2>
+								<p>
+									Our users are really satisfied with our quality of service and
+									therefore have left really good reviews about our products
+								</p>
+							</ReviewDetails>
+							<ReviewStats>
+								<p className="overall__stats">
+									<span>4.7</span> out of 5
+								</p>
+								<p>
+									<span>8.5</span> Ease of use
+								</p>
+								<p>
+									<span>8.5</span> Quality of service
+								</p>
+								<p>
+									<span>8.5</span> Reliability
+								</p>
+							</ReviewStats>
+							<div className="remove__review">
+								<h2>
+									Remove your negative <span> Glassdoor reviews</span>
+								</h2>
+								<p>Glassdoor</p>
+								<div className="rating">
+									<AiFillStar />
+									<AiFillStar />
+									<AiFillStar />
+									<AiFillStar />
+									<AiFillStar />
+									<span>5.0</span>
+								</div>
+								<p className="dateofreview">42 reviews as of 18/10/2022</p>
+							</div>
+						</ReviewNumbersCard>
+						<RemoveReview>
+							<h2>
+								Remove your negative <span> Glassdoor reviews</span>
+							</h2>
+							<p>Glassdoor</p>
+							<div className="rating">
+								<AiFillStar />
+								<AiFillStar />
+								<AiFillStar />
+								<AiFillStar />
+								<AiFillStar />
+								<span>5.0</span>
+							</div>
+							<p className="dateofreview">42 reviews as of 18/10/2022</p>
+						</RemoveReview>
+					</ReviewNumbers>
+				</OurReviews>
+				<GettingStarted>
+					<h1>
+						We can help you make your brand stand out by taking down bad reviews
+						from your page.
+					</h1>
+					<StyledButton>Get Started</StyledButton>
+				</GettingStarted>
 			</Wrapper>
 		</PageLayout>
 	);
