@@ -75,6 +75,8 @@ const Router = () => {
 
 				<Route path="glassdoor" element={<GlassDoor />} />
 
+				<Route path="blog" element ={<Blog />} />
+
 
 			</Routes>
 		</BrowserRouter>
