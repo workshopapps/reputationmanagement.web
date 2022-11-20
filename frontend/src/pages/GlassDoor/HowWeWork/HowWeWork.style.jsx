@@ -25,7 +25,8 @@ export const Wrapper = styled.div`
 `;
 export const HowWeWorkCards = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+	gap: 20px;
 	flex-wrap: wrap;
 	width: 90%;
 	margin: 0 auto;
@@ -83,5 +84,8 @@ export const HowWeWorkCard = styled.div`
 		font-size: 0.9rem;
 		text-align: justify;
 		color: #2b2c34;
+	}
+	@media (max-width: 400px) {
+		margin-bottom: 70px;
 	}
 `;

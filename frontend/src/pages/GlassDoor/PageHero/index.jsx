@@ -14,7 +14,9 @@ const PageHero = () => {
 					Remove bad reviews from your glassdoor platform and stand out against
 					false and misleading reviews online.
 				</p>
-				<StyledButton>Get Started</StyledButton>
+				<div className="btn">
+					<StyledButton>Get Started</StyledButton>
+				</div>
 			</PageHeroDetails>
 			<PageHeroImage>
 				<img src={workColleague} alt="work-colleague" />

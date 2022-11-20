@@ -10,6 +10,7 @@ import {
 	ReviewNumbersCard,
 	ReviewStats,
 } from './Reviews.style';
+import { StyledButton } from '../../../components/Styles/Body/Button.styled';
 
 import { AiFillStar } from 'react-icons/ai';
 import { FaStarHalf } from 'react-icons/fa';
@@ -46,6 +47,9 @@ const Reviews = () => {
 					);
 				})}
 			</OurReviewsContainer>
+			<div className="btn">
+				<StyledButton>See more</StyledButton>
+			</div>
 			<ReviewNumbers>
 				<ReviewNumbersCard>
 					<ReviewDetails>
@@ -71,6 +75,21 @@ const Reviews = () => {
 							<span>8.5</span> Reliability
 						</p>
 					</ReviewStats>
+					<div className="remove__review">
+						<h2>
+							Remove your negative <span> Glassdoor reviews</span>
+						</h2>
+						<p>Glassdoor</p>
+						<div className="rating">
+							<AiFillStar />
+							<AiFillStar />
+							<AiFillStar />
+							<AiFillStar />
+							<AiFillStar />
+							<span>5.0</span>
+						</div>
+						<p className="dateofreview">42 reviews as of 18/10/2022</p>
+					</div>
 				</ReviewNumbersCard>
 				<RemoveReview>
 					<h2>

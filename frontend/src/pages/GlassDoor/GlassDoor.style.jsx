@@ -20,4 +20,10 @@ export const GettingStarted = styled.div`
 		color: #2b2c34;
 		margin-bottom: 40px;
 	}
+	@media (max-width: 700px) {
+		h1 {
+			font-size: 1.5rem;
+			width: 90%;
+		}
+	}
 `;

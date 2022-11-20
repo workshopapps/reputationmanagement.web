@@ -9,10 +9,22 @@ export const OurReviews = styled.div`
 		text-align: center;
 		color: #2b2c34;
 	}
+	.btn {
+		display: none;
+	}
+
+	@media (max-width: 700px) {
+		.btn {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 40px;
+		}
+	}
 `;
 export const OurReviewsContainer = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+	gap: 20px;
 	flex-wrap: wrap;
 	width: 90%;
 	margin: 0 auto;
@@ -72,6 +84,10 @@ export const ReviewNumbers = styled.div`
 	width: 90%;
 	margin: 0 auto;
 	margin-bottom: 50px;
+
+	@media (max-width: 750px) {
+		flex-direction: column;
+	}
 `;
 export const ReviewNumbersCard = styled.div`
 	display: flex;
@@ -80,6 +96,65 @@ export const ReviewNumbersCard = styled.div`
 	background: #233ba9;
 	border-radius: 8px;
 	width: 60%;
+	.remove__review {
+		padding-top: 20px;
+		background: #233ba9;
+		border-radius: 8px;
+		width: 60%;
+		margin: 0 auto;
+		display: none;
+
+		h2 {
+			font-style: normal;
+			font-weight: 600;
+			font-size: 1.5rem;
+			color: #ffffff;
+			> span {
+				color: #fc9a4a;
+			}
+			margin-bottom: 20px;
+		}
+		p {
+			font-style: normal;
+			font-weight: 600;
+			font-size: 0.8rem;
+			color: #ffffff;
+			margin-bottom: 10px;
+		}
+		.rating {
+			display: flex;
+			align-items: center;
+			> svg {
+				margin-right: 4px;
+				font-size: 1.2rem;
+				color: #fc9a4a;
+			}
+			> span {
+				font-style: normal;
+				font-weight: 400;
+				font-size: 0.9rem;
+				color: #ffffff;
+			}
+		}
+		.dateofreview {
+			font-style: normal;
+			font-weight: 400;
+			font-size: 0.65rem;
+			color: #f9f8fd;
+		}
+	}
+	@media (max-width: 750px) {
+		width: 100%;
+		flex-direction: column;
+		.remove__review {
+			display: block;
+		}
+	}
+	@media (max-width: 500px) {
+		.remove__review {
+			width: 80%;
+		}
+	}
 `;
 
 export const ReviewDetails = styled.div`
@@ -102,6 +177,15 @@ export const ReviewDetails = styled.div`
 		font-size: 0.75rem;
 		color: #ffffff;
 		width: 80%;
+	}
+	@media (max-width: 750px) {
+		margin: 0 auto;
+		border-right: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		padding-bottom: 30px;
+	}
+	@media (max-width: 500px) {
+		width: 90%;
 	}
 `;
 
@@ -126,6 +210,17 @@ export const ReviewStats = styled.div`
 			font-weight: 700;
 		}
 	}
+	@media (max-width: 750px) {
+		width: 60%;
+		margin: 0 auto;
+		padding-right: 0 !important;
+		border-right: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		padding-bottom: 30px;
+	}
+	@media (max-width: 500px) {
+		width: 90%;
+	}
 `;
 
 export const RemoveReview = styled.div`
@@ -133,6 +228,7 @@ export const RemoveReview = styled.div`
 	background: #233ba9;
 	border-radius: 8px;
 	width: 35%;
+
 	h2 {
 		font-style: normal;
 		font-weight: 600;
@@ -170,5 +266,8 @@ export const RemoveReview = styled.div`
 		font-weight: 400;
 		font-size: 0.65rem;
 		color: #f9f8fd;
+	}
+	@media (max-width: 750px) {
+		display: none;
 	}
 `;

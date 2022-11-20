@@ -17,11 +17,13 @@ export const TopUsersContainer = styled.div`
 	width: 90%;
 	margin: 30px auto;
 	.img__container {
-		width: 100px;
-		height: 100px;
+		margin-right: 1rem;
 		img {
 			width: 100%;
 			height: 100%;
 		}
+	}
+	@media (max-width: 860px) {
+		width: 96%;
 	}
 `;
