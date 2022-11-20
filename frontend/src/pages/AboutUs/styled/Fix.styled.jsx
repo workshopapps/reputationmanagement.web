@@ -60,13 +60,15 @@ export const StyledColorOrange = styled.h2`
 			type= 'text/css'
 	);
 	color: orange;
-	margin-left: 10px;
+	margin-left: 16px;
+	margin-top: 16px
 	font-size: 22px;
 	font-weight: semi-bold;
 	font-family: 'lato', sans-serif;
 `;
 export const StyledFixp = styled.div`
-	padding-left: 10px;
+	padding-left: 16px;
+	padding-top: 16px;
 `;
 export const Plato = styled.p`
 	@import url

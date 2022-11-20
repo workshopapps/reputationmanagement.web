@@ -15,7 +15,7 @@ export default function Fix() {
 		<>
 			<StyledFixHeader>
 				Why Choose <StyledColorBlue> Fix</StyledColorBlue>
-				<StyledColor>It</StyledColor>
+				<StyledColor>It</StyledColor>?
 			</StyledFixHeader>
 			<StyledFixBox>
 				<StyledFixCenter>
