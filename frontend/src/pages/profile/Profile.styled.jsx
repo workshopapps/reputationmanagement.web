@@ -1,12 +1,20 @@
 import styled from "styled-components";
 
+const BodyWrapper = styled.section`
+    display: flex;
+    justify-content: space-between;
+`
 const PageBody = styled.div`
     @media (max-width: 480px) {
+        width: 100vw;
         h1{
             font-size: 18px;
         }
     }
-
+    @media (min-width: 481px) {
+        width: 80vw;
+    }
+    width: 80vw;
     box-sizing: border-box;
    *{
         padding: 0;
@@ -37,7 +45,7 @@ const Header = styled.div`
     @media (max-width: 480px) {
         padding: 1em .5em ;
     }
-    padding: 2em 2em 2em 4em;
+    padding: 1em 2em 2em 4em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -211,5 +219,5 @@ const BusinessInfo = styled.div`
    }
 `
 
-export { PageBody, Header, HeaderLHS, HeaderRHS, ContentContainer, DescriptionContainer, DescriptionHeaderCon, DescriptionHeaderText, AboutBizHeader, EditBtn, BusinessInfoContainer, BusinessInfo }
+export { BodyWrapper, PageBody, Header, HeaderLHS, HeaderRHS, ContentContainer, DescriptionContainer, DescriptionHeaderCon, DescriptionHeaderText, AboutBizHeader, EditBtn, BusinessInfoContainer, BusinessInfo }
 
