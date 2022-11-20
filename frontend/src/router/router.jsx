@@ -14,6 +14,7 @@ import LawyerDashboard from '../pages/LawyerDashboard/LawyerDashboard';
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
+import GetAQuote from '../pages/GetAQuote/index';
 
 import Signup from '../Sign/Signup';
 
@@ -25,15 +26,9 @@ const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-
-				<Route path="landing-page" element={<LandingPage />} />
-				<Route path="about-us" element={<AboutPage />} />
-
 				<Route path="/" element={<LandingPage />} />
-			<Route path="/" element={<LandingPage />} />
-				<Route path="/signup" element={<Signup />} />
 
-				<Route path="landing-page" element={<LandingPage />} />
+				<Route path="/signup" element={<Signup />} />
 
 				<Route path="about-us" element={<AboutPage />} />
 
@@ -52,6 +47,8 @@ const Router = () => {
 
 				<Route path="privacy" element={<PrivacyPolicy />} />
 
+				<Route path="get-a-quote" element={<GetAQuote />} />
+
 				<Route path="career" element={<Carrerpg1 />} />
 				<Route path="carrer-pg-3" element={<Carrerpg3 />} />
 				<Route path="carrer-pg-2" element={<Carrerpg2 />} />
@@ -63,14 +60,10 @@ const Router = () => {
 				<Route path="dashboard" element={<DashboardPage />} />
 
 				<Route path="blog" element={<Blog />} />
-				<Route path="*" element={<ErrorPage />} />
-				<Route path="blog" element={<Blog />} />
-				<Route path="*" element={<ErrorPage />} />
 
-				<Route path="blog" element ={<Blog />} />
-				<Route path="*" element ={<ErrorPage />} />
+				<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 
-				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

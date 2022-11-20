@@ -1,15 +1,8 @@
-import React from 'react';
-
 import FooterData from './FooterData';
 import twitter from '../../../assets/images/Twitter.png';
 import faceb from '../../../assets/images/Facebook.png';
 import insta from '../../../assets/images/Instagram.png';
 import styled from 'styled-components';
-// import FooterData from './FooterData';
-// import twitter from '../../../assets/images/Twitter.png';
-// import faceb from '../../../assets/images/Facebook.png';
-// import insta from '../../../assets/images/Instagram.png';
-// import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Div = styled.div`
@@ -30,7 +23,7 @@ function FooterLinks() {
 	return (
 		<Div className="flex flex-col justify-between gap-y-8 w-4/5 md:w-full">
 			<div className="flex flex-col gap-2">
-				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] mb-3">
+				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] my-3">
 					Explore
 				</p>
 				<div>
@@ -45,7 +38,7 @@ function FooterLinks() {
 			</div>
 
 			<div className="flex flex-col gap-2">
-				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] mb-3">
+				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] my-3">
 					Community
 				</p>
 				<div>
@@ -60,7 +53,9 @@ function FooterLinks() {
 			</div>
 
 			<div className="flex flex-col justify-between gap-5 items-center md:items-start w-full ">
-				<span className="text-white">Follow us</span>
+				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] my-3">
+					Follow us
+				</p>
 				<div className="flex justify-around gap-5 ">
 					<img src={faceb} alt="icon" className="" />
 					<img src={twitter} alt="icon" className="" />
