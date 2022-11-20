@@ -30,9 +30,10 @@ export const StyledPolicy = styled.div`
 	}
 
 	@media (max-width: 320px) {
-		div {
-			over-flow: hidden;
-		}
+
+		over-flow: hidden;
+		word-break: break-all
+		
 
 		h3 {
 			font-size: 18px;
@@ -57,11 +58,10 @@ export const StyledPolicy = styled.div`
 		}
 	}
 
-	@media (max-width: 768px) {
-		div {
+	@media (max-width: 1020px) {
+		
 			over-flow: hidden;
-			width: 90px;
-		}
+			width: 300px;
 
 		h3 {
 			font-size: 18px;

@@ -13,10 +13,10 @@ h1 {
     font-style: bold;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1020px) {
 	h1 {
      color: white;
-     padding-top: 10px;
+     padding-top: 6px;
     font-size: 24px;
     font-style: bold;
     }

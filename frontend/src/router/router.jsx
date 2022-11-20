@@ -10,6 +10,7 @@ import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
+import LawyerDashboard from '../pages/LawyerDashboard/LawyerDashboard';
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
@@ -25,6 +26,7 @@ const Router = () => {
 				<Route path="about-us" element={<AboutPage />} />
 
 				<Route path="/" element={<LandingPage />} />
+			<Route path="/" element={<LandingPage />} />
 				<Route path="/signup" element={<Signup />} />
 
 				<Route path="landing-page" element={<LandingPage />} />
@@ -56,6 +58,11 @@ const Router = () => {
 
 				<Route path="blog" element={<Blog />} />
 				<Route path="*" element={<ErrorPage />} />
+
+				<Route path="blog" element ={<Blog />} />
+				<Route path="*" element ={<ErrorPage />} />
+
+				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 			</Routes>
 		</BrowserRouter>
 	);
