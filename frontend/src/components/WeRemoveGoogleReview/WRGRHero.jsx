@@ -66,6 +66,7 @@ export default WRGRHero
 
 const Wrapper = Styled.div`
 padding: 2rem; 
+
  
 h1{
   line-height: 1.2;

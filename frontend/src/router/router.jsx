@@ -10,11 +10,15 @@ import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
+import LawyerDashboard from '../pages/LawyerDashboard/LawyerDashboard';
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 
 import Signup from '../Sign/Signup';
+
+import DashboardPage from '../pages/Dashboard/DashboardPage';
+
 import ErrorPage from '../pages/ErrorPage';
 
 const Router = () => {
@@ -22,9 +26,11 @@ const Router = () => {
 		<BrowserRouter>
 			<Routes>
 
-
+				<Route path="landing-page" element={<LandingPage />} />
+				<Route path="about-us" element={<AboutPage />} />
 
 				<Route path="/" element={<LandingPage />} />
+			<Route path="/" element={<LandingPage />} />
 				<Route path="/signup" element={<Signup />} />
 
 				<Route path="landing-page" element={<LandingPage />} />
@@ -54,10 +60,17 @@ const Router = () => {
 
 				<Route path="glassdoor" element={<GlassDoor />} />
 
+				<Route path="dashboard" element={<DashboardPage />} />
+
+				<Route path="blog" element={<Blog />} />
+				<Route path="*" element={<ErrorPage />} />
+				<Route path="blog" element={<Blog />} />
+				<Route path="*" element={<ErrorPage />} />
 
 				<Route path="blog" element ={<Blog />} />
 				<Route path="*" element ={<ErrorPage />} />
 
+				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 			</Routes>
 		</BrowserRouter>
 	);

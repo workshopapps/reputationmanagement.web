@@ -14,13 +14,6 @@ export const StyledInformation = styled.div`
 		font-style: bold;
 	}
 
-	ul {
-		font-size: 16px;
-		line-height: 25px;
-		font-style: medium;
-		list-style-type: disc;
-		margin-left: 25px;
-	}
 
 	p {
 		font-size: 16px;
@@ -45,22 +38,12 @@ export const StyledInformation = styled.div`
 			line-height: 21px;
 			font-style: regular;
 		}
-
-		ul {
-			list-style: disc;
-			font-size: 12px;
-			flex-wrap: wrap;
-			overflow-wrap: break;
-			line-height: 21px;
-			font-style: regular;
-		}
 	}
 
-	@media (max-width: 768px) {
-		div {
+	@media (max-width: 1020px) {
+		
 			over-flow: hidden;
-			width: 90px;
-		}
+			width: 300px;
 
 		h3 {
 			font-size: 18px;
@@ -75,13 +58,5 @@ export const StyledInformation = styled.div`
 			font-style: regular;
 		}
 
-		ul {
-			list-style: disc;
-			font-size: 12px;
-			flex-wrap: wrap;
-			overflow-wrap: break;
-			line-height: 21px;
-			font-style: regular;
-		}
 	}
 `;

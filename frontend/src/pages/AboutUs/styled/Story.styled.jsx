@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledStory = styled.div`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
-	);
+	@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
 	display: flex;
 	justify-content: space-between;
 	padding: 56px 64px;
