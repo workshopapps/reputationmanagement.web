@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyledButton } from '../../../components/Styles/Body/Button.styled';
 import { PageHeroDetails, PageHeroImage, Wrapper } from './PageHero.style';
 import workColleague from '../../../assets/images/glassdoor/work-colleague.png';
