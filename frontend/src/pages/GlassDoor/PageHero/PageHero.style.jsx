@@ -40,6 +40,7 @@ export const PageHeroDetails = styled.div`
 		width: 100%;
 		h1 {
 			text-align: center;
+			font-size: 2.8rem;
 		}
 		p {
 			text-align: center;
