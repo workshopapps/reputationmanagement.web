@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import FAQ from './FAQ'
+import FaqItem from './FaqItem'
 import styled from 'styled-components'
 import PageLayout from '../../layout/PageLayout'
+import FaqFooter from './FaqFooter'
 
 function Faqs() {
 
@@ -48,6 +49,7 @@ function Faqs() {
     const FaqMainWraper = styled.div`
         padding: 48px 134px;
         font-family: 'Lato', sans-serif;
+        margin-top: 48px;
     `
 
     const Header = styled.header`
@@ -69,6 +71,7 @@ function Faqs() {
             line-height: 150%;
             letter-spacing: 0.01em;
             color: #2B2C34;
+            margin: 20px 0 58px 0;
         }
     `
 
@@ -93,11 +96,15 @@ function Faqs() {
             <FaqSection>
                 {faqs.map((faq, i) => (
                     <div>
-                        <FAQ faq ={faq} index ={i}/>
+                        <FaqItem faq ={faq} index ={i}/>
                     </div>
                 ))}
             </FaqSection>
+
+            <FaqFooter />
+
         </FaqMainWraper>
+    </PageLayout>
       </PageLayout>
   )
 }
