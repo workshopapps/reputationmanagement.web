@@ -1,15 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-
-
-export const StyledButtom = styled.div`
+export const StyledBottom = styled.div`
 	background-color: #eef1fc;
-	height: 500px;
+	height: 400px;
+	margin-botoom: 20px;
+	text-align: center;
 
 	h2 {
 		padding-top: 30px;
-		color: white;
-		text-align: center;
+		color: #2b2c34;
 		font-size: 45px;
 		font-style: bold;
 		line-height: 66px;
@@ -25,13 +24,14 @@ export const StyledButtom = styled.div`
 		font-size: 1rem;
 		font-style: normal;
 		font-weight: 400;
+		text-align: center;
+		margin-top: 50px;
 	}
 
-    @media screen only screen and (max-width: 320px) {
-		h2 {
-			font-size: 18px;
-			line-height: 27px;
-			font-style: semibold;
-		}
 
-	`	
+
+	@media (max-width: 768px) {
+			display: none;
+	
+		{
+`;

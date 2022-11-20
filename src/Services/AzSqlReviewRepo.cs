@@ -32,15 +32,22 @@ namespace src.Services
           
         }
 
-        public Review GetReviewById(Guid id)
-        {
-            if (id == Guid.Empty)
+       
+            public Review GetReviewById(Guid id)
             {
-                throw new ArgumentNullException(nameof(id));
+                if (id == Guid.Empty)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }
+                var review = _context.Reviews.Where(c => c.ReviewId == id).SingleOrDefault();
+                if (review == null)
+                {
+
+                    throw new NullReferenceException("Data not found");
+                }
+                return review;
             }
-            return _context.Reviews
-              .Where(c => c.UserId == id).FirstOrDefault();
-        }
+        
 
         public IEnumerable<Review> GetReviews(int pageNumber = 0, int pageSize = 0)
         {
@@ -118,7 +125,7 @@ namespace src.Services
 
             return reviewToUpdate;
         }
-
+        
         /*public async Task<List<GetSuccessfulReviewsDto>> GetAllSuccessfulReview()
         {
             var resultModel = new List<GetSuccessfulReviewsDto>();

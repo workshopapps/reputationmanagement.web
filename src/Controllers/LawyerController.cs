@@ -46,27 +46,34 @@ namespace src.Controllers
            _reviewRepo.UpdateReviewLawyer(review);
             return Ok("Review is successfully updated");
         }
-
+        /*
         [HttpGet]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
         [Route("SuccessfulReview")]
-       /* public async Task<ActionResult> SuccessReview()
+        public async Task<ActionResult> SuccessReview()
         {
-            var resultModel = new List<GetSuccessfulReviewsDto>();
+           var resultModel = new List<GetSuccessfulReviewsDto>();
+           var query = await _reviewRepo.GetAllSuccessfulReview();
+           return Ok(query);
 
-            var query = await _reviewRepo.GetAllSuccessfulReview();
-
-            return Ok(query);
-        }*/
-
-        [Authorize(Roles = "LAWYER", AuthenticationSchemes = "Bearer")]
-        [HttpGet("app/lawyer/reviews")]
-        public IActionResult GetAllReviews()
-        {
-            var reviews = _reviewRepo.GetReviews();
-            return Ok(reviews);
         }
+        */
 
+        [HttpGet("/api/reviews/{reviewId}")]
+        [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
+        public IActionResult GetSingleReview(Guid reviewId)
+        {
+            if (reviewId == Guid.Empty)
+            {
+                return NotFound(reviewId);
+            }
+            Review singleReview = _reviewRepo.GetReviewById(reviewId);
+
+            if (singleReview == null)
+                return NotFound();
+
+            return Ok(singleReview);
+        }
 
     }
 }
