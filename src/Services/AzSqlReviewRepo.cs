@@ -2,6 +2,7 @@ using src.Data;
 using src.Entities;
 using src.Models.Dtos;
 
+
 namespace src.Services
 {
     public class AzSqlReviewRepo : IReviewRepository
@@ -100,7 +101,7 @@ namespace src.Services
             var query = await _context.Reviews
                 .Where(x => x.Status == StatusType.Successful)
                 .Include(x => x.Users)
-                .Select(x => new GetSuccessfulReviews()
+                .Select(x => new GetSuccessfulReviewsDto()
                 {
                     ReviewId = x.ReviewId,
                     Username = x.Users.UserName,
