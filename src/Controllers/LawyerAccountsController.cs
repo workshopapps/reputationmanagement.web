@@ -6,57 +6,54 @@ using src.Entities;
 using src.Models;
 using src.Models.Dtos;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 
 namespace src.Controllers
 {
-
-    [Route("api/lawyer/auth")]
-    [ApiController]
-    public class LawyerAccountsController : ControllerBase
-    {
-        private readonly IMapper _mapper;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IConfigurationSection _jwtSettings;
-        public LawyerAccountsController(IMapper mapper, UserManager<ApplicationUser> userManager, IConfiguration configuration)
+   
+        [Route("api/lawyer/auth")]
+        [ApiController]
+        public class LawyerAccountsController : ControllerBase
         {
-            _mapper = mapper;
-            _userManager = userManager;
-            _jwtSettings = configuration.GetSection("JwtSettings");
-        }
-
-        [HttpPost("create_account")]
-        public async Task<ActionResult> Register([FromBody] LawyerAccountForCreationDto lawyerAccountCreationModel)
-        {
-            var user = _mapper.Map<ApplicationUser>(lawyerAccountCreationModel);
-            var result = await _userManager.CreateAsync(user, lawyerAccountCreationModel.Password);
-            if (!result.Succeeded)
+            private readonly IMapper _mapper;
+            private readonly UserManager<ApplicationUser> _userManager;
+            private readonly IConfigurationSection _jwtSettings;
+            public LawyerAccountsController(IMapper mapper, UserManager<ApplicationUser> userManager, IConfiguration configuration)
             {
-                return Ok(result.Errors);
+                _mapper = mapper;
+                _userManager = userManager;
+                _jwtSettings = configuration.GetSection("JwtSettings");
             }
-            await _userManager.AddToRoleAsync(user, "Lawyer");
-            return StatusCode(201);
-        }
-
-
-        [HttpPost("sign_in")]
-        public async Task<IActionResult> Login([FromBody] UserLoginModel userModel)
-        {
-            var user = await _userManager.FindByEmailAsync(userModel.Email);
-            if (user != null && await _userManager.CheckPasswordAsync(user, userModel.Password))
+            
+            [HttpPost("create_account")]
+            public async Task<ActionResult> Register([FromBody] LawyerAccountForCreationDto lawyerAccountCreationModel)
             {
-                var signingCredentials = GetSigningCredentials();
-                var claims = GetClaims(user);
-                var tokenOptions = GenerateTokenOptions(signingCredentials, await claims);
-                var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-                var success = Response<string>.Success("Login successful", token, (int)HttpStatusCode.OK);
-                return StatusCode(success.StatusCode, success);
+                var user = _mapper.Map<ApplicationUser>(lawyerAccountCreationModel);
+                var result = await _userManager.CreateAsync(user, lawyerAccountCreationModel.Password);
+                if (!result.Succeeded)
+                {
+                    return Ok(result.Errors);
+                }
+                await _userManager.AddToRoleAsync(user, "Lawyer");
+                return StatusCode(201);
             }
-            var fail = Response<string>.Fail("unauthorized user", (int)HttpStatusCode.OK);
-            return StatusCode(fail.StatusCode, fail);
-        }
+            
+
+            [HttpPost("sign_in")]
+            public async Task<IActionResult> Login([FromBody] UserLoginModel userModel)
+            {
+                var user = await _userManager.FindByEmailAsync(userModel.Email);
+                if (user != null && await _userManager.CheckPasswordAsync(user, userModel.Password))
+                {
+                    var signingCredentials = GetSigningCredentials();
+                    var claims = GetClaims(user);
+                    var tokenOptions = GenerateTokenOptions(signingCredentials, await claims);
+                    var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                    return Ok(token);
+                }
+                return Unauthorized("Invalid Authentication");
+            }
 
 
         private SigningCredentials GetSigningCredentials()
@@ -90,5 +87,5 @@ namespace src.Controllers
         }
 
     }
-
+    
 }
