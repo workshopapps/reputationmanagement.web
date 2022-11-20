@@ -22,6 +22,8 @@ import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 import ErrorPage from '../pages/ErrorPage';
 
+import Profile from '../pages/profile/Profile'
+
 const Router = () => {
 	return (
 		<BrowserRouter>
@@ -59,12 +61,12 @@ const Router = () => {
 
 				<Route path="dashboard" element={<DashboardPage />} />
 
+				<Route path='profile' element={<Profile />}/>
 				<Route path="/request-form" element={<RequestForm />} />
 
 				<Route path="blog" element={<Blog />} />
 
-				<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
-
+				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>
