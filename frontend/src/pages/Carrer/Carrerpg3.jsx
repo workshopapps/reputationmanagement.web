@@ -48,7 +48,7 @@ function Carrerpg3() {
 						Here is what we look for when reviewing CVs & Portfolio's to
 						shortlist candidates for interviews:
 					</h4>
-					<ul className="py-6 list-disc">
+					<ul className="py-6 list-disc ml-3">
 						<li>A good looking Portfolio</li>
 						<li>Relevant experience in the role you are applying for</li>
 						<li>Volunteer experience</li>
