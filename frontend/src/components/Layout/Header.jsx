@@ -11,7 +11,7 @@ const Header = () => {
 	const [toggle, setToggle] = useState(false);
 
 	return (
-		<header style={{width: '100%'}}>
+		<header style={{ width: '100%' }}>
 			<StyledContainer>
 				<StyledNav className="">
 					<img src={Logo} alt="FixIt" className="logo" />
@@ -32,6 +32,7 @@ const Header = () => {
 						<NavLink to="/about-us">About Us</NavLink>
 						<NavLink to="/blog">Blog</NavLink>
 						<NavLink to="/contact">Contact</NavLink>
+						<NavLink to="/dashboard">Dashboard</NavLink>
 					</div>
 
 					<ul className={`${!toggle ? 'hidden' : 'block'} sidebar`}>
