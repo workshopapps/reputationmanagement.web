@@ -1,3 +1,4 @@
+import React from 'react';
 import { topUsers } from '../data';
 import { TopUsersContainer, Wrapper } from './TopUsers.style';
 
