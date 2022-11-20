@@ -59,7 +59,7 @@ const Router = () => {
 
 				<Route path="dashboard" element={<DashboardPage />} />
 
-				<Route path="/requestForm" element={<RequestForm />} />
+				<Route path="/request-form" element={<RequestForm />} />
 
 				<Route path="blog" element={<Blog />} />
 

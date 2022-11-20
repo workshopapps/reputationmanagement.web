@@ -16,7 +16,7 @@ const Checkbox = ({ label, checked, ...props }) => {
                     className={isChecked ? "checked" : ""}
                 />
                 <span>{label}</span>
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
             </StyledLabel>
         </div>
     );

@@ -9,10 +9,13 @@ import {
 import { DONE_ICON } from '../../assets/image';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
+import { useNavigate } from 'react-router-dom';
 
 const RequestSuccessful = () => {
     const [ requestState, setRequestState ] = useState(0);
-    const { requestSuccessfulModalActive } = useAppContext();
+    const { requestSuccessfulModalActive, setRequestSuccessfulModalActive } = useAppContext();
+	const router = useNavigate();
+
     useEffect(() => {
         setRequestState(0)
     },[])
@@ -56,11 +59,11 @@ const RequestSuccessful = () => {
 				<StyledButtonWrapper>
 					<button
 						id="request"
-						onClick={() => setRequestState(requestState + 1)}
+						onClick={() => { router('/request-form'); setRequestSuccessfulModalActive(false)}}
 					>
 						New Request
 					</button>
-					<button id="dashboard">Dashboard</button>
+					<button id="dashboard" onClick={() => { router('/dashboard'); setRequestSuccessfulModalActive(false)}}>Dashboard</button>
 				</StyledButtonWrapper>
 			</StyledSuccessfulRequest>
 		</StyledOverlay>

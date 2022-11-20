@@ -38,7 +38,7 @@ const Dashboard = () => {
 			<StyledContainer>
 				<Header>
 					<h1>Complaints Dashboard</h1>
-					<NavLink to="request-page">New Request</NavLink>
+					<NavLink to="/request-form">New Request</NavLink>
 				</Header>
 
 				<CardContainer>

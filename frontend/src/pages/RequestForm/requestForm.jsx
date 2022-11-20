@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import styled from "styled-components";
 //import ReactStars from 'react-stars'
 import { useState } from 'react';
@@ -7,6 +6,8 @@ import Rate from "../../components/requestFormComponents/rating";
 import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {StyledDashboard, StyledContainer} from '../../components/Dashboard/Styles/Dashboard.styled';
+import useAppContext from '../../hooks/useAppContext';
+import RequestSuccessful from '../../modal/request-successful/requestSuccessful';
 
 
 
@@ -27,10 +28,11 @@ const RequestForm = () => {
   const [websitename, setWebsiteName] = useState("");
   const [businesstype, setBusinessType] = useState("");
   //const [name, setName] = useState("");
-
+  const { setRequestSuccessfulModalActive, requestSuccessfulModalActive } = useAppContext();
 
   return (
     <>
+    { requestSuccessfulModalActive &&  <RequestSuccessful/>}
     <StyledDashboard>
     <Sidebar
 				className={`${openMenu ? 'open' : ''}`}
@@ -52,23 +54,23 @@ const RequestForm = () => {
           <div className='form-section-a'>
 
             <div className='text-input'>
-              <label for="_name"> Name</label>
+              <label htmlFor="_name"> Name</label>
               <input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter Your Full Name" id="name" required />
             </div>
 
             <div className='text-input'>
-              <label for="email">Email Address</label>
+              <label htmlFor="email">Email Address</label>
               <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="johndoe@gmail.com" id="email" required />
             </div>
 
             <div className='time-date-picker'>
               <div className='date-picker'>
-                <label for="date"> Date of review</label>
+                <label htmlFor="date"> Date of review</label>
                 <input type="date" name="date" id="date" required />
               </div>
 
               <div className='time-picker'>
-                <label for="_name"> Time of review</label>
+                <label htmlFor="_name"> Time of review</label>
                 <input type="time" name="time" id="time" required />
               </div>
             </div>
@@ -83,7 +85,7 @@ const RequestForm = () => {
                
                 <Rate rating={rating} onRating={(rate) => setRating(rate)} className="rate" />
                
-                <label for="vol">Kindly selected the customer rating drop on your app/websites</label>
+                <label htmlFor="vol">Kindly selected the customer rating drop on your app/websites</label>
               </div>
             </div>
 
@@ -94,12 +96,12 @@ const RequestForm = () => {
             <h2>Filling in your own details</h2>
 
             <div className='section-b-input'>
-              <label for="name_of_website"> Name of your website or App</label>
+              <label htmlFor="name_of_website"> Name of your website or App</label>
               <input type="text" name="name_of_website" value={websitename} onChange={(e) => setWebsiteName(e.target.value)} placeholder="" required />
             </div>
 
             <div className='section-b-input'>
-              <label for="business_type">What type of business do you run</label>
+              <label htmlFor="business_type">What type of business do you run</label>
               <input type="text" name="business_type" value={businesstype} onChange={(e) => setBusinessType(e.target.value)} placeholder="" required />
             </div>
 
@@ -127,7 +129,7 @@ const RequestForm = () => {
           </div>
           {/***************************************FORM SUBMIT BUTTON**********************************************/}
           <div className='btn-submit'>
-            <button >
+            <button onClick={(e) => { setRequestSuccessfulModalActive(true); e.preventDefault() }}>
               Submit
             </button>
 
