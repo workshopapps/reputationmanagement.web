@@ -4,6 +4,7 @@ import {
 	StyledButtonWrapper,
 	StyledOverlay,
 	StyledProgressBar,
+	StyledProgressBarCaption,
 	StyledSuccessfulRequest,
 } from './styles';
 import { DONE_ICON } from '../../assets/image';
@@ -56,6 +57,12 @@ const RequestSuccessful = () => {
 						{requestState > 4 ? <img src={DONE_ICON} alt="" /> : <p>4</p>}
 					</div>
 				</StyledProgressBar>
+				<StyledProgressBarCaption>
+					<p className={requestState > 0 ? 'finished' : 0}>New Request</p>
+					<p className={requestState > 1 ? 'finished' : 0}>Pending</p>
+					<p className={requestState > 2 ? 'finished' : 0}>Under review</p>
+					<p className={requestState > 3 ? 'finished' : 0}>Resolved</p>
+				</StyledProgressBarCaption>
 				<StyledButtonWrapper>
 					<button
 						id="request"

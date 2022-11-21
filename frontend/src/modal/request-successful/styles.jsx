@@ -10,6 +10,21 @@ export const StyledOverlay = styled.div`
     align-items: center;
     z-index: 9;
 `;
+export const StyledProgressBarCaption = styled.div`
+    width: 603px;
+    display:flex;
+    justify-content: space-between;
+    margin-top: 21px;
+    p{
+        font-family: Lato !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        line-height: 16px !important;
+    }
+    .finished{
+        font-weight: 800 !important;
+    }
+`;
 export const StyledButtonWrapper = styled.div`
     display: flex;
     margin-top: 50px;
