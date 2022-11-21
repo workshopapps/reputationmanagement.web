@@ -1,15 +1,81 @@
+version: 2.1
+
 jobs:
-  say-hello:
-    
+  build-frontend:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:18.12.1
     steps:
       - checkout
+      - restore_cache:
+          keys: [frontend-build]
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Build front-end
+          command: |
+            cd frontend
+            npm install
+            npm run build
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-build
+    
+  build-and-test-backend:
+    docker:
+      - image: microsoft/dotnet:latest
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [backend-build-test]
+      - run:
+          name: Build and run Backend test
+          command: |
+            cd src
+            dotnet restore
+            dotnet build
+            dotnet test
+      - save_cache:
+          paths: [src/src.dll]
+          key: backend-build-test
+          
+  test-frontend:
+    docker:
+      - image: cimg/node:18.12.1
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-test]
+      - run:
+          name: Front-end test
+          command: |
+              cd frontend
+              npm install
+              npm run test
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-test
+          
+  scan-frontend:
+    docker:
+      - image: cimg/node:18.12.1
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-scan]
+      - run:
+          name: Front-end scan
+          command: |
+              cd frontend
+              npm install
+              npm audit fix --audit-level=critical
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-scan
 
 workflows:
-  say-hello-workflow:
+  default:
     jobs:
-      - say-hello
+      - build-frontend
+      - build-and-test-backend
+      - test-frontend:
+          requires: [build-frontend]
+      - scan-frontend:
+          requires: [build-frontend]
