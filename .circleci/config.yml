@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-frontend:
     docker:
-      - image: cimg/node:19.0.1
+      - image: circleci/node:18
     steps:
       - checkout
       - restore_cache:
@@ -17,10 +17,28 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
+    
+  build-and-test-backend:
+    docker:
+      - image: microsoft/dotnet:latest
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [backend-build-test]
+      - run:
+          name: Build and run Backend test
+          command: |
+            cd src
+            dotnet restore
+            dotnet build
+            dotnet test
+      - save_cache:
+          paths: [src/src.dll]
+          key: backend-build-test
           
   test-frontend:
     docker:
-      - image: cimg/node:19.0.1
+      - image: circleci/node:18
     steps:
       - checkout
       - restore_cache:
@@ -37,7 +55,7 @@ jobs:
           
   scan-frontend:
     docker:
-      - image: cimg/node:19.0.1
+      - image: circleci/node:16-alpine
     steps:
       - checkout
       - restore_cache:
@@ -56,6 +74,7 @@ workflows:
   default:
     jobs:
       - build-frontend
+      - build-and-test-backend
       - test-frontend:
           requires: [build-frontend]
       - scan-frontend:
