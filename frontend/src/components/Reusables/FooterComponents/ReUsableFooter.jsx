@@ -4,7 +4,7 @@ import FooterSocials from './FooterSocials';
 function Footer() {
 	return (
 		<footer className="bg-[#233BA9] w-full">
-			<div className="flex flex-col text-center md:text-left gap-5 md:gap-[10%] md:flex-row items-center  py-14 md:px-10 h-full  justify-between">
+			<div className="flex flex-col text-center md:text-left gap-8 md:gap-[10%] md:flex-row items-center  py-14 md:px-10 h-full  justify-between">
 				<FooterSocials />
 				<FooterLinks />
 			</div>
