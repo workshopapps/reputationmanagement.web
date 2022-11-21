@@ -1,15 +1,62 @@
+version: 2.1
+
 jobs:
-  say-hello:
-    
+  build-frontend:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/node:18
     steps:
       - checkout
+      - restore_cache:
+          keys: [frontend-build]
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Build front-end
+          command: |
+            cd frontend
+            npm install
+            npm run build
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-build
+          
+  test-frontend:
+    docker:
+      - image: circleci/node:18
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-test]
+      - run:
+          name: Front-end test
+          command: |
+              cd frontend
+              npm install
+              npm run test
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-test
+          
+   scan-frontend:
+    docker:
+      - image: circleci/node:16-alpine
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-scan]
+      - run:
+          name: Front-end scan
+          command: |
+              cd frontend
+              npm install
+              npm audit fix --audit-level=critical
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-scan
 
 workflows:
-  say-hello-workflow:
+  default:
     jobs:
-      - say-hello
+      - build-frontend
+      - test-frontend:
+          requires: [build-frontend]
+      - scan-frontend:
+          requires: [build-frontend]
