@@ -3,6 +3,7 @@ import {
 	StyledFixHeader,
 	StyledFixImg,
 	StyledFixCenter,
+	ImgsContainer,
 	StyledFixBox,
 	StyledColor,
 	Plato,
@@ -23,7 +24,10 @@ export default function Fix() {
 			</StyledFixHeader>
 			<StyledFixBox>
 				<StyledFixCenter>
-					<StyledFixImg src={TrustImg} alt="trust" />
+					<ImgsContainer>
+						<StyledFixImg src={TrustImg} alt="trust" />
+					</ImgsContainer>
+
 					<StyledColorOrange>Trust</StyledColorOrange>
 					<StyledFixp>
 						<Plato>
@@ -33,7 +37,10 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 				<StyledFixCenter>
-					<StyledFixImg src={Convenience} alt="convenience" />
+					<ImgsContainer>
+						<StyledFixImg src={Convenience} alt="convenience" />
+					</ImgsContainer>
+
 					<StyledColorOrange>Convience</StyledColorOrange>
 					<StyledFixp>
 						<Plato>
@@ -44,7 +51,10 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 				<StyledFixCenter>
-					<StyledFixImg src={ProfessionalImg} alt="professionals" />
+					<ImgsContainer>
+						<StyledFixImg src={ProfessionalImg} alt="professionals" />
+					</ImgsContainer>
+
 					<StyledColorOrange> Professionalism</StyledColorOrange>
 					<StyledFixp>
 						<Plato>

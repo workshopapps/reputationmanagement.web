@@ -21,9 +21,11 @@ export const StoryHead = styled.h1`
 	font-family: 'lato', sans-serif;
 `;
 export const StoryP = styled.p`
-	margin-top: 40px;
+	margin-top: 20px;
+	margin-right: 20px;
 	font-size: 16px;
 	font-weight: bold;
+	width: 625px;
 	font-family: 'lato', sans-serif;
 	@media (max-width: 375px) {
 		width: 340px;
@@ -31,15 +33,17 @@ export const StoryP = styled.p`
 `;
 export const StyledStorytxt = styled.div`
 	margin-right: 20px;
-	width: 556px;
 	@media (max-width: 375px) {
 		width: 350px;
 		text-align: center;
 		margin-right: 0;
 	}
 `;
+export const ImgCon = styled.div`
+	max-width: 604px;
+`;
 export const StoryImg = styled.img`
-	width: 600px;
+	width: 100%;
 	@media (max-width: 375px) {
 		display: none;
 		visibility: none;
