@@ -21,6 +21,7 @@ import Signup from '../Sign/Signup';
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 import ErrorPage from '../pages/ErrorPage';
+import Ourteam from '../pages/Carrer/Ourteam';
 
 import Profile from '../pages/profile/Profile'
 
@@ -68,6 +69,7 @@ const Router = () => {
 
 				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 				<Route path="*" element={<ErrorPage />} />
+				<Route path="our-team" element={<Ourteam />} />
 			</Routes>
 		</BrowserRouter>
 	);
