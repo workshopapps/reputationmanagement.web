@@ -48,7 +48,7 @@ const Header = () => {
 						<Link to="/login">
 							<StyledTextButton>Login</StyledTextButton>
 						</Link>
-						<Link to="/signup">
+						<Link to="/Signup">
 							<StyledButton>Register</StyledButton>
 						</Link>
 					</div>

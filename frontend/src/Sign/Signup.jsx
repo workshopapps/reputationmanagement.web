@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Closed from '../Sign/Assets/eye-slash.png';
+import image from '../Sign/Assets/background1.png'
 function Signup() {
 	const InitialValues = {
 		first_name: '',
@@ -35,7 +36,7 @@ function Signup() {
 	};
 
 	return (
-		<div className="SignUp place-content-center ">
+		<div className="SignUp place-content-center flex flex-row">
 			<div className="left-s place-content-start text-left gap-x-7">
 				<h2 className="font-bold text-6xl place-content-start w-3/4 ml-5 mt-6 ">
 					Welcome to Fixit
@@ -79,7 +80,9 @@ function Signup() {
 					</div>
 				</div>
 			</div>
-			<div className="right-s"></div>
+			<div className="right-s w-56">
+				<img src={image} alt="" />
+			</div>
 		</div>
 	);
 }

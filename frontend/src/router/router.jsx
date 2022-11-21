@@ -17,12 +17,13 @@ import GlassDoor from '../pages/GlassDoor/GlassDoor';
 import GetAQuote from '../pages/GetAQuote/index';
 import RequestForm from '../pages/RequestForm/requestForm';
 import Signup from '../Sign/Signup';
-
+import Login from '../Log-in/Login';
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 import ErrorPage from '../pages/ErrorPage';
 
-import Profile from '../pages/profile/Profile'
+import Profile from '../pages/profile/Profile';
+
 
 const Router = () => {
 	return (
@@ -30,7 +31,9 @@ const Router = () => {
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 
+			
 				<Route path="/signup" element={<Signup />} />
+				<Route path='/login' element={<Login />} />
 
 				<Route path="/about-us" element={<AboutPage />} />
 

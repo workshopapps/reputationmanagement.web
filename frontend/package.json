@@ -11,6 +11,8 @@
     "bootstrap": "^5.2.2",
     "jquery": "^3.6.0",
     "react": "^18.1.0",
+    "react-bootstrap": "^2.6.0",
+    "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.39.4",
     "react-icons": "^4.6.0",
