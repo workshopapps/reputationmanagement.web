@@ -7,6 +7,7 @@ import {
 	StyledHerotxtSpan,
 	StyledOrange,
 	MobImg,
+	ImgContainer,
 	StyledBtn,
 	DeskImg,
 	StyledBlue,
@@ -18,8 +19,11 @@ export default function Hero() {
 	return (
 		<>
 			<StyledHero>
-				<DeskImg src={HeroDesktop} alt="hero" />
-				<MobImg src={HeroM} alt="hero" width="375px" />
+				<ImgContainer>
+					<DeskImg src={HeroDesktop} alt="hero" />
+					<MobImg src={HeroM} alt="hero" width="375px" />
+				</ImgContainer>
+
 				<StyledHeroMsg>
 					<StyledBlue>
 						Who Are <StyledOrange>We</StyledOrange>?

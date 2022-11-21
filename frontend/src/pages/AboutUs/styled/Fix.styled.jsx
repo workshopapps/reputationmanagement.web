@@ -30,8 +30,11 @@ export const StyledFixCenter = styled.div`
 		margin-bottom: 64px;
 	}
 `;
+export const ImgsContainer = styled.div`
+	max-width: 304px;
+`;
 export const StyledFixImg = styled.img`
-	width: 304px;
+	width: 100%;
 	height: 253px;
 	border-radius: 8px;
 `;
