@@ -7,26 +7,24 @@ import { Link } from 'react-router-dom';
 
 const Div = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 1fr 2.5fr;
+	grid-template-columns: 1fr  1fr;
 	justify-content: space-between;
 	gap: 5em;
-	@media (max-width: 700px) {
+	@media (max-width: 768px) {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
 		gap: 1em;
-		justify-content: center;
 	}
-`;
+`
 
 function FooterLinks() {
 	return (
 		<Div className="flex flex-col justify-between gap-y-8 w-4/5 md:w-full">
-			<div className="flex flex-col gap-2">
-				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] my-3">
+		<div className= ' flex gap-5 justify-between md:gap-14 '>
+		<div className="flex flex-col gap-2 w-1/2">
+				<p className=" text-2xl font-[700] text-[#F7F7F7] ] text-left ">
 					Explore
 				</p>
-				<div>
+				<div className= '  space-y-2 text-left'>
 					{FooterData[0].map((link, index) => {
 						return (
 							<Link to={link.url} key={index} className={aStyle}>
@@ -37,11 +35,11 @@ function FooterLinks() {
 				</div>
 			</div>
 
-			<div className="flex flex-col gap-2">
-				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] my-3">
-					Community
+			<div className="flex flex-col gap-2 w-1/2 ">
+				<p className=" text-2xl text-left font-[700] text-[#F7F7F7] ] ">
+					Links
 				</p>
-				<div>
+				<div className= ' space-y-2 text-left'>
 					{FooterData[1].map((link, index) => {
 						return (
 							<Link to={link.url} key={index} className={aStyle}>
@@ -51,9 +49,10 @@ function FooterLinks() {
 					})}
 				</div>
 			</div>
+			</div>
 
-			<div className="flex flex-col justify-between gap-5 items-center md:items-start w-full ">
-				<p className=" text-2xl font-[700] text-[#F7F7F7] leading-[22px] my-3">
+			<div className="flex flex-col justify-between gap-5 items-start  ">
+				<p className=" text-2xl font-[700] text-[#F7F7F7]  ">
 					Follow us
 				</p>
 				<div className="flex justify-around gap-5 ">
@@ -64,13 +63,13 @@ function FooterLinks() {
 
 				<div className="w-full ">
 					<label></label>
-					<div className=" flex flex-col md:flex-row gap-4 md:gap-0">
+					<div className=" flex">
 						<input
 							type="email"
 							placeholder="type in your email"
-							className="w-full p-3"
+							className="w-full  py-2 px-5"
 						/>
-						<button className="bg-[#F16F04] py-2 px-5 rounded text-white ">
+						<button className="bg-[#F16F04] w-2/5 py-2 px-5 rounded text-white ">
 							Subscribe
 						</button>
 					</div>
@@ -80,6 +79,6 @@ function FooterLinks() {
 	);
 }
 
-const aStyle = `block pb-1 text-lg font-[400] text-[#F1F3F9] leading-[35px]`;
+const aStyle = `block pb-1 hover:text-[#F16F04] font-[400] text-[#F1F3F9] text-md`;
 
 export default FooterLinks;
