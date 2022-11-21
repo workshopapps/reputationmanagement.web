@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import Sidenav from '../../components/LawyerDashboard/Sidenav';
 import searchIcon from '../../assets/images/searchIcon.png';
 import notificationsIcon from '../../assets/images/notificationsIcon.svg';
@@ -27,11 +28,11 @@ function LawyerDashboard() {
     const [tickets, setTickets] = useState([
         {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
         {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-        {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-        {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-        {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-        {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-        {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
+        {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+        {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+        {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+        {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+        {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
     ]);
 
     const [menuActive, setMenuActive] = useState(false);
@@ -46,7 +47,7 @@ function LawyerDashboard() {
             
 
             <div className='flex flex-col w-full md:w-[80vw] relative md:absolute right-0'>
-                <div className='sticky top-0 flex justify-between items-center w-full px-5 h-[12vh] bg-white'>
+                <div className='flex justify-between fixed md:static items-center w-full px-5 h-[12vh] bg-white z-10 border-b md:border-none'>
                     <form action="" className='hidden md:flex items-center border rounded-md overflow-hidden h-[40px] w-2/5'> 
                         <img src={searchIcon} alt="" className='px-2 h-[24px]' />
                         <input type="text" placeholder='Search for anything...' className='outline-none px-2' />
@@ -54,7 +55,9 @@ function LawyerDashboard() {
 
                     <button className='flex md:hidden' onClick={toggleMenu}><img src={menuActive ? x : hamburger} alt="" className='w-[25px]' /></button>
 
-                    <img src={logo} className='w-[30%] flex md:hidden' alt="" />
+                    <Link to='/' className='w-[30%] sm:w-[20%] h-auto flex md:hidden'>
+                        <img src={logo} className='' alt="" />    
+                    </Link>
 
                     <div className='flex items-center'>
                         <img src={searchIcon} alt="" className='flex md:hidden mr-2 w-[20px]' />
@@ -65,15 +68,15 @@ function LawyerDashboard() {
 
                 {menuActive && <Menu />}
 
-                <div className='p-5'>
+                <div className='p-5 absolute md:static top-[15vh] left-0 w-full'>
                     <div className='flex justify-center flex-wrap'>
-                        <div className='w-full mx-2 md:h-[210px] md:w-[320px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md'>
+                        <div className='w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md'>
                             <img src={requestsIcon} alt="" />
                             <h3 className='mt-2 mb-3 text-[22px] font-[600px]'>Total requests</h3>
                             <span className='text-[45px] font-semibold'>50</span>
                         </div>
 
-                        <div className='w-[47%] overflow-hidden mx-1 md:h-[210px] md:w-[320px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md'>
+                        <div className='w-[47%] overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md'>
                             <h3 className='mt-8 mb-3 text-[22px] font-[600px]'>Successful removals</h3>
                             <div className='flex justify-between w-full'>
                                 <div>
@@ -86,7 +89,7 @@ function LawyerDashboard() {
                             </div>
                         </div>
 
-                        <div className='w-[47%] overflow-hidden mx-1 md:h-[210px] md:w-[320px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md'>
+                        <div className='w-[47%] overflow-hidden sm:w-[250px] mx-1 md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md'>
                             <h3 className='mt-8 mb-3 text-[22px] font-[600px]'>Failed removals</h3>
                             <div className='flex justify-between w-full'>
                                 <div>

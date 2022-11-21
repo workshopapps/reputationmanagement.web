@@ -11,7 +11,9 @@ function Sidenav() {
     return (  
         <div className='w-[20vw] h-screen hidden md:flex flex-col
         border-r drop-shadow-lg fixed top-0 left-0'>
-            <img src={logo} alt="" className='w-[88px] ml-[20%] my-[20px]' />
+            <Link to='/'>
+                <img src={logo} alt="" className='w-[88px] ml-[20%] my-[20px]' />
+            </Link>
     
             <div className='flex flex-col flex-grow'>
                 <div className='flex items-center px-1 my-3'>

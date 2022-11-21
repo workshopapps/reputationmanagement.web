@@ -7,7 +7,7 @@ import rectangle from '../../assets/images/rectangle.png';
 
 function Menu() {
 	return (
-		<div className="h-[90vh] w-full fixed top-[10vh] left-0 z-10 bg-white">
+		<div className="h-[90vh] w-full fixed top-[12vh] left-0 z-10 bg-white py-5">
 			<div className="flex flex-col flex-grow">
 				<div className="flex items-center px-1 mb-2">
 					<img src={rectangle} alt="" />
