@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Closed from '../Sign/Assets/eye-slash.png';
+import Logo from '../Sign/Assets/Logo(1).png';
 function Signup() {
 	const InitialValues = {
 		first_name: '',
@@ -77,9 +78,16 @@ function Signup() {
 							<img src={Closed} alt="" />{' '}
 						</button>
 					</div>
+					<div className="confirm-password">
+						<label htmlFor="Password">Re-enter password</label>
+						<input type={passwordShown ? 'text' : 'password'} />
+					</div>
+					
 				</div>
 			</div>
-			<div className="right-s"></div>
+			<div className="right-s">
+				<img src={Logo} alt="" />
+			</div>
 		</div>
 	);
 }
