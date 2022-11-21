@@ -35,7 +35,7 @@ jobs:
           paths: [frontend/node_modules]
           key: frontend-test
           
-   scan-frontend:
+  scan-frontend:
     docker:
       - image: circleci/node:16-alpine
     steps:
