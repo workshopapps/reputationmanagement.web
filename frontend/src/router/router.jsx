@@ -32,36 +32,36 @@ const Router = () => {
 
 				<Route path="/signup" element={<Signup />} />
 
-				<Route path="about-us" element={<AboutPage />} />
+				<Route path="/about-us" element={<AboutPage />} />
 
 				<Route
-					path="we-remove-google-search"
+					path="/we-remove-google-search"
 					element={<WeRemoveGoogleSearch />}
 				/>
 
 				<Route
-					path="we-remove-google-review"
+					path="/we-remove-google-review"
 					element={<WeRemoveGoogleReview />}
 				/>
 				<Route path="/request-successful" element={<RequestSuccessfulSm />} />
 
-				<Route path="terms-of-use" element={<Termsofuse />} />
+				<Route path="/terms-of-use" element={<Termsofuse />} />
 
-				<Route path="privacy" element={<PrivacyPolicy />} />
+				<Route path="/privacy" element={<PrivacyPolicy />} />
 
-				<Route path="get-a-quote" element={<GetAQuote />} />
+				<Route path="/get-a-quote" element={<GetAQuote />} />
 
-				<Route path="career" element={<Carrerpg1 />} />
-				<Route path="carrer-pg-3" element={<Carrerpg3 />} />
-				<Route path="carrer-pg-2" element={<Carrerpg2 />} />
+				<Route path="/career" element={<Carrerpg1 />} />
+				<Route path="/carrer-pg-3" element={<Carrerpg3 />} />
+				<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
 
-				<Route path="FAQ" element={<Faqs />} />
+				<Route path="/FAQ" element={<Faqs />} />
 
-				<Route path="glassdoor" element={<GlassDoor />} />
+				<Route path="/glassdoor" element={<GlassDoor />} />
 
-				<Route path="dashboard" element={<DashboardPage />} />
+				<Route path="/dashboard" element={<DashboardPage />} />
 
-				<Route path='profile' element={<Profile />}/>
+				<Route path='/profile' element={<Profile />}/>
 				<Route path="/request-form" element={<RequestForm />} />
 
 				<Route path="blog" element={<Blog />} />
