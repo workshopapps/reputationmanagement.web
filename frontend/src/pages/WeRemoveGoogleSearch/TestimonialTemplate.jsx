@@ -20,6 +20,8 @@ const TestimonialTemplate = ({ testimonialTemplate }) => {
 
 export default TestimonialTemplate;
 
+
+
 export const TestimonialCard = Styled.div`
 display: flex;
 flex-direction: column;
@@ -29,9 +31,10 @@ background: #fff;
 border: 1px solid #CCD4DE;
 box-shadow: 4px 4px 16px rgba(120, 122, 125, 0.15);
 border-radius: 8px;
-width: 256px;
+min-width: 256px;
 height: 254px;
 padding: 20px;
+margin: 0 20px;
 
 // img{
     

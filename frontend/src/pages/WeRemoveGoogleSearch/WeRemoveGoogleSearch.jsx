@@ -14,8 +14,10 @@ import Avater0 from '../../assets/images/WeRemoveGoogleSearch/Avatar0.svg';
 import Avater1 from '../../assets/images/WeRemoveGoogleSearch/Avatar1.svg';
 import Avater2 from '../../assets/images/WeRemoveGoogleSearch/Avatar2.svg';
 import Avater3 from '../../assets/images/WeRemoveGoogleSearch/Avatar3.svg';
-// import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
-// import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
+import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
+import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
+import Left from '../../assets/images/WeRemoveGoogleSearch/left.svg';
+import Right from '../../assets/images/WeRemoveGoogleSearch/right.svg';
 
 const WeRemoveGoogleSearch = () => {
 	const [testimonialTemplate] = useState([
@@ -43,20 +45,37 @@ const WeRemoveGoogleSearch = () => {
 			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
 			id: 4,
 		},
-		// {
-		// 	image: Avater4,
-		// 	name: 'Anthonia Francis',
-		// 	text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
-		// 	id: 5,
-		// },
-		// {
-		// 	image: Avater5,
-		// 	name: 'Anthonia Francis',
-		// 	text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
-		// 	id: 6,
-		// },
+		{
+			image: Avater4,
+			name: 'Anthonia Francis',
+			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
+			id: 5,
+		},
+		{
+			image: Avater5,
+			name: 'Anthonia Francis',
+			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
+			id: 6,
+		},
 	]);
 
+	const slideLeft = () => {
+		var slider = document.getElementById('slide-item')
+		slider.scrollLeft = - 1000
+
+		console.log(slider);
+	}
+
+	const slideRight = () => {
+		var i = 1000;
+		var slider = document.getElementById('slide-item')
+		slider.scrollLeft = ++ i
+
+		console.log(slider);
+	}
+	
+
+	
 	return (
 		<PageLayout>
 			<StyledContainer>
@@ -140,11 +159,26 @@ const WeRemoveGoogleSearch = () => {
 
 			<ColorBg>
 				<StyledH2Center>What our Users say about us</StyledH2Center>
-				<CenterObject>
-					<StyledSlider>
-						<TestimonialTemplate testimonialTemplate={testimonialTemplate} />
-					</StyledSlider>
-				</CenterObject>
+				<div className="absolute">
+						<img
+							src={Left}
+							alt="left-arrow"
+							id="left"
+							className="scroll-arrow"
+							onClick={slideLeft}
+						/>
+						<img
+							src={Right}
+							alt="right-arrow"
+							id="right"
+							className="scroll-arrow scroll-right"
+							onClick={slideRight}
+						/>
+					</div>
+				<StyledSlider id='slide-item'>
+					
+					<TestimonialTemplate testimonialTemplate={testimonialTemplate}/>
+				</StyledSlider>
 			</ColorBg>
 
 			<StyledContainer>
@@ -286,6 +320,42 @@ padding: 48px 0;
 text-align: center;
 margin-bottom: ${(props) => (props.noBottom ? '0' : '100px')};
 margin-top: 100px;
+
+.absolute{
+	position: absolute;
+	width: 100%;
+	margin-top: 7%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 5;
+}
+.scroll-arrow{
+	cursor: pointer;
+	margin: 0 10px;
+	box-shadow: 0 0 10px #4646472D;
+	border-radius: 50%;
+	opacity: 0.5;
+}
+.scroll-arrow:hover{
+	opacity: 1;
+}
+
+@media screen and (max-width: 884px) {
+	.absolute{
+		margin-top: 10%;
+	}
+}
+@media screen and (max-width: 428px) {
+	.absolute{
+		margin-top: 20%;
+	}
+}
+@media screen and (max-width: 320px) {
+	.absolute{
+		margin-top: 25%;
+	}
+}
 `;
 
 export const Spacer = Styled.div`
@@ -313,22 +383,13 @@ export const ImageSection = Styled.div`
 `;
 
 export const StyledSlider = Styled.div`
-display: grid;
-grid-template-columns: ${(props) => (props.grid ? '1fr 1fr' : '1fr 1fr 1fr')};
-column-gap: ${(props) => (props.text ? '15%' : '20px')};
-align-items: center;
+display: flex;
+overflow-x: scroll;
+width: 100%;
+position: relative;
 
-@media screen and (max-width: 1180px) {
-	column-gap: ${(props) => (props.text ? '50px' : '20px')};
-}
-
-@media screen and (max-width: 742px) {
-	column-gap: ${(props) => (props.text ? '20px' : '20px')};
-}
-
-@media screen and (max-width: 640px) {
-	grid-template-columns: 1fr;
-	row-gap: 40px;
+&::-webkit-scrollbar{
+	width: 0;
 }
 `;
 
