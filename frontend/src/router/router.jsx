@@ -24,14 +24,16 @@ import ErrorPage from '../pages/ErrorPage';
 import Ourteam from '../pages/Carrer/Ourteam';
 
 import Profile from '../pages/profile/Profile'
+import Login from '../Login/Login';
 
 const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
-
+				<Route path='Login' element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				
 
 				<Route path="/about-us" element={<AboutPage />} />
 
