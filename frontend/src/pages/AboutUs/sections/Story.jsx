@@ -6,6 +6,7 @@ import {
 	StoryHead,
 	StyledStorytxt,
 } from '../styled/Story.styled';
+import SImg from '../img/Our-Story.png';
 
 export default function Story() {
 	return (
@@ -27,7 +28,7 @@ export default function Story() {
 						experience processes
 					</StoryP>
 				</StyledStorytxt>
-				<StoryImg src="assets/images/Our-Story.png" />
+				<StoryImg src={SImg} />
 			</StyledStory>
 		</>
 	);

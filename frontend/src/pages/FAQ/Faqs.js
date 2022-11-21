@@ -44,12 +44,34 @@ function Faqs() {
     ])
 
 
+    const toggleFaq = (index) => {
+        setFaqs(faqs.map((faq, i) => {
+            if(i === index){
+                faq.open = !faq.open
+            }else {
+                faq.open = false;
+            }
+            
+            return faq;
+        }))
+
+    }
+
+
     // STYLING WITH STYLED COMPONENTS
 
     const FaqMainWraper = styled.div`
         padding: 48px 134px;
         font-family: 'Lato', sans-serif;
-        margin-top: 48px;
+
+        @media screen and (max-width: 768px){
+            padding: 32px 48px;
+        }
+
+
+        @media screen and (max-width: 425px){
+            padding: 32px 18px;
+        }
     `
 
     const Header = styled.header`
@@ -65,14 +87,37 @@ function Faqs() {
             box-sizing: border-box;
         }
 
+        h2{
+            display: none;
+        }
+
         p{
             font-size: 32px;
             font-weight: 500;
             line-height: 150%;
             letter-spacing: 0.01em;
             color: #2B2C34;
-            margin: 20px 0 58px 0;
+            margin: 48px 0;
         }
+
+
+        @media screen and (max-width: 425px){
+            h1{
+                display: none;
+            }
+
+            h2{
+                display: block;
+                font-size: 28px;
+                font-weight: 700;
+            }
+
+            p{
+                font-weight: 500;
+                font-size: 20px;
+            }
+        }
+
     `
 
     const FaqSection = styled.section`
@@ -81,6 +126,12 @@ function Faqs() {
         gap: 40px;
         width: 80%;
         margin: 0 auto;
+
+
+
+        @media screen and (max-width: 425px){
+            width: 100%;
+        }
     `
 
   return (
@@ -88,21 +139,21 @@ function Faqs() {
         <FaqMainWraper>
             <Header>
                 <h1>Frequently Asked Questions</h1>
+                <h2>FAQ</h2>
                 <p>We know you might have questions, which is why we have put together a list of frequently
                     asked questions to provide clarity and quick answers to your concerns.
                 </p>
             </Header>
 
-            <FaqSection>
+            <FaqSection className='faqs'>
                 {faqs.map((faq, i) => (
                     <div>
-                        <FaqItem faq ={faq} index ={i}/>
+                        <FaqItem faq ={faq} index ={i} toggleFaq = {toggleFaq}/>
                     </div>
                 ))}
             </FaqSection>
 
             <FaqFooter />
-
         </FaqMainWraper>
     </PageLayout>
   )

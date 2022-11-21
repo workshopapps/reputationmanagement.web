@@ -15,12 +15,14 @@ import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 import GetAQuote from '../pages/GetAQuote/index';
-
+import RequestForm from '../pages/RequestForm/requestForm';
 import Signup from '../Sign/Signup';
 
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
 import ErrorPage from '../pages/ErrorPage';
+
+import Profile from '../pages/profile/Profile'
 
 const Router = () => {
 	return (
@@ -59,10 +61,12 @@ const Router = () => {
 
 				<Route path="dashboard" element={<DashboardPage />} />
 
+				<Route path='profile' element={<Profile />}/>
+				<Route path="/request-form" element={<RequestForm />} />
+
 				<Route path="blog" element={<Blog />} />
 
-				<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
-
+				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>

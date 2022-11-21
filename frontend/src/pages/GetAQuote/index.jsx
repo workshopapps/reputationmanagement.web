@@ -19,7 +19,7 @@ import { FaTimes } from 'react-icons/fa';
 import PageLayout from '../../layout/PageLayout';
 import rocket from '../../assets/images/noto_rocket.svg';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
-import { Obj } from 'prelude-ls';
+// import { Obj } from 'prelude-ls';
 
 const GetAQuote = () => {
 	// Setting React Hook form
@@ -126,6 +126,7 @@ const GetAQuote = () => {
 					<StyledBtnContainer>
 						<StyledButton>Send Request</StyledButton>
 					</StyledBtnContainer>
+
 				</StyledForm>
 
 				{/* POPUP */}
@@ -143,10 +144,8 @@ const GetAQuote = () => {
 								<span>Hello {name}, </span>We have recieved your request and we
 								will get back to you shortly.
 							</p>
-							<StyledBtnContainer>
-								<StyledButton onClick={closeModal}>Continue</StyledButton>
-							</StyledBtnContainer>
-							
+							<StyledButton onClick={closeModal}>Continue</StyledButton>
+
 						</StyledPopup>
 					</Popup>
 				) : (
