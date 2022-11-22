@@ -66,10 +66,10 @@ function FooterLinks() {
 					<div className=" flex">
 						<input
 							type="email"
-							placeholder="type in your email"
-							className="w-full  py-2 px-5"
+							placeholder="Type in your email...."
+							className="w-full  py-2 px-5 rounded-l"
 						/>
-						<button className="bg-[#F16F04] w-2/5 py-2 px-5 rounded text-white ">
+						<button className="bg-[#F16F04] w-2/5 py-2 px-5 rounded-r text-white ">
 							Subscribe
 						</button>
 					</div>
