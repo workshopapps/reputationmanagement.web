@@ -43,6 +43,7 @@ const GetAQuote = () => {
 			reset();
 		}, 5000);
 	};
+	const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 
 	const {firstname: firstNameError, email:emailError, request:requestError} =  errors
 	return (
@@ -91,8 +92,7 @@ const GetAQuote = () => {
 										message: 'Please enter your email address',
 									},
 									pattern: {
-										value:
-											/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+										value: EMAIL_REGEX,
 										message: 'Invalid email address',
 									},
 								})}
