@@ -40,16 +40,20 @@ export const StyledFixImg = styled.img`
 `;
 export const StyledFixBox = styled.div`
 	display: flex;
-	justify-content: space-between;
-	width: 1020px;
+	max-width: 1020px;
+	width: 100%;
 	margin: 0 auto;
 	margin-top: 32px;
-	@media (max-width: 375px) {
-		display: flex;
-		flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	@media(max-width: 1070px){
+		padding: 0 20px;
 		justify-content: center;
-		align-items: center;
-		width: 375px;
+		gap: 40px;
+	}
+	@media (max-width: 375px) {
+		padding: 0;
 	}
 `;
 export const StyledColor = styled.span`

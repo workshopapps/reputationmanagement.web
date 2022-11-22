@@ -10,7 +10,6 @@ export const StyledBgImgDesktop = styled.div`
 	background-size: cover;
 	background-repeat: no-repeat;
 	@media (max-width: 375px) {
-		width: 375px;
 		height: 332px;
 	}
 `;
@@ -53,10 +52,6 @@ export const Blue = styled.p`
 	font-size: 28px;
 	font-weight: bold;
 	font-family: 'lato', sans-serif;
-	width: 580px;
-
-	@media (max-width: 375px) {
-		width: 287px;
-		height: 84px;
-	}
+	max-width: 580px;
+	text-align: center;
 `;

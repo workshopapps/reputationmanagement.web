@@ -1,4 +1,5 @@
 import React from 'react';
+import { HERO_IMAGE_DESKTOP, HERO_IMAGE_MOBILE } from '../../../assets/image';
 
 import {
 	StyledHero,
@@ -12,16 +13,14 @@ import {
 	DeskImg,
 	StyledBlue,
 } from '../styled/Hero.styled';
-import HeroDesktop from '../img/HeroD.png';
-import HeroM from '../img/HeroM.png';
 
 export default function Hero() {
 	return (
 		<>
 			<StyledHero>
 				<ImgContainer>
-					<DeskImg src={HeroDesktop} alt="hero" />
-					<MobImg src={HeroM} alt="hero" width="375px" />
+					<DeskImg src={HERO_IMAGE_DESKTOP} alt="hero" />
+					<MobImg src={HERO_IMAGE_MOBILE} alt="hero" width="375px" />
 				</ImgContainer>
 
 				<StyledHeroMsg>

@@ -7,16 +7,25 @@ export const StyledHero = styled.div`
 	);
 	display: flex;
 	justify-content: space-between;
-	@media (max-width: 375px) {
+	@media (max-width: 1200px) {
 		flex-direction: column-reverse;
 		justify-content: center;
-		align:items:center;
+		align-items: center;
+	}
+	@media(max-width: 677px){
+		padding-left: 20px;
 	}
 `;
 export const ImgContainer = styled.div`
 	max-width: 539.68px;
-	@media (max-width: 375px) {
-		max-width: 375px;
+	height: max-content;
+	align-self: flex-end;
+	@media (max-width: 1200px) {
+		align-self: flex-start;
+		max-width: 60%;
+	}
+	@media (max-width: 500px) {
+		max-width: 80%;
 	}
 `;
 export const DeskImg = styled.img`
@@ -40,13 +49,12 @@ export const StyledHeroMsg = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	padding-right: 70px;
-	width: 603px;
+	max-width: 603px;
 	margin: 90px 0;
-	@media (max-width: 375px) {
-		padding: 0 15px;
+	@media (max-width: 500px) {
+		padding: 0 ;
 		align-items: center;
 		margin-top: 55px;
-		width: 350px;
 	}
 `;
 export const StyledBtn = styled.button`
@@ -60,26 +68,20 @@ export const StyledBtn = styled.button`
 	border-radius: 4px;
 `;
 export const StyledHerotxt = styled.p`
-  width: 550px;
+  max-width: 550px;
   font-size: 16px;
   margin-top: 24px;
   font-family: "lato", sans-serif;
   font weight: 700;
   @media (max-width: 375px){
-    width: 345px;
-	
 	text-align: center;
   }
 `;
 export const StyledHerotxtSpan = styled.p`
-  width: 500px;
   margin: 10px 0;
   font-size: 16px;
   font weight: 700;
   font-family: "lato", sans-serif;
-  @media (max-width: 375px){
-    width: 375px;
-  }
 `;
 export const StyledOrange = styled.span`
 	color: #f16f04;
