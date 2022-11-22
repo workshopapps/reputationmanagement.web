@@ -18,24 +18,6 @@ jobs:
           paths: [frontend/node_modules]
           key: frontend-build
           
-  build-and-test-backend:
-    docker:
-      - image: microsoft/dotnet:latest
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [backend-build-test]
-      - run:
-          name: Build and run Backend test
-          command: |
-            cd src
-            dotnet restore
-            dotnet build
-            dotnet test
-      - save_cache:
-          paths: [src/src.dll]
-          key: backend-build-test
-          
   test-frontend:
     docker:
       - image: cimg/node:18.12.1
@@ -74,7 +56,6 @@ workflows:
   default:
     jobs:
       - build-frontend
-      - build-and-test-backend
       - test-frontend:
           requires: [build-frontend]
       - scan-frontend:
