@@ -4,7 +4,7 @@ import React from 'react';
 import JobProps from './JobProps';
 import {
 	StyledButton,
-	StyledTextButton,
+	// StyledTextButton,
 } from '../../components/Styles/Body/Button.styled';
 import SearchIcon from '../../assets/images/Search.png';
 import MenuIcon from '../../assets/images/menu.png';

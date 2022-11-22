@@ -124,8 +124,4 @@ const NavLink = styled(Link)`
 	}
 `;
 
-const NavButton = styled(Link)`
-	padding: 6px;
-`;
-
 export default Header;

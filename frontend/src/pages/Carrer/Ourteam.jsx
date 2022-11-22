@@ -11,7 +11,7 @@ import Background1 from '../../assets/images/BG1.jpg';
 import { Link } from 'react-router-dom';
 import {
 	StyledButton,
-	StyledTextButt
+	// StyledTextButt
 } from '../../components/Styles/Body/Button.styled';
 
 // import Images
@@ -162,7 +162,7 @@ function Ourteam() {
 						window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 					}}
 				>
-					<StyledButton className="mt-4">Join our team --></StyledButton>
+					<StyledButton className="mt-4">Join our team</StyledButton>
 				</Link>
 			</StyledBackGround>
             </StyledMainDiv>

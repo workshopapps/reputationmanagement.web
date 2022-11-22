@@ -117,7 +117,7 @@ function FaqItem({faq, index, toggleFaq}) {
         <FaqQuestion className="faq-question">
             <h2>{faq.question}</h2>
             <FaqArrowDown className="arrow-down">
-                <img src={arrowDown}/>
+                <img src={arrowDown} alt=""/>
             </FaqArrowDown>
         </FaqQuestion>
 

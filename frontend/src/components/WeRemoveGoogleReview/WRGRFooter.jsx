@@ -1,5 +1,5 @@
 import React from 'react'
-import footer from '../../assets/images/wrgr/footer.png'
+// import footer from '../../assets/images/wrgr/footer.png'
 import styled from 'styled-components'
 
 

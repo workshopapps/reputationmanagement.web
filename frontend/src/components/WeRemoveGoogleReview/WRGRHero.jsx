@@ -1,12 +1,10 @@
 import React from 'react'
 import Styled from 'styled-components';
-import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
+import { StyledButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
 import {
   StyledH1,
-  StyledH3,
   StyledText,
-  StyledH2Center,
 } from '../Styles/Body/Text.styled';
 import { Link } from "react-router-dom"
 import loveclip from '../../assets/images/wrgr/loveclip.png'

@@ -15,7 +15,6 @@ import { StyledText } from '../../components/Styles/Body/Text.styled';
 import { Link } from 'react-router-dom';
 import {
 	StyledButton,
-	StyledTextButton,
 } from '../../components/Styles/Body/Button.styled';
 import DescriptionProps from './DescriptionProps';
 import CarrerLandImg from '../../assets/images/CarrerLand.png';
@@ -49,14 +48,14 @@ const StyledSpanText = styled.span`
 const StyledSpanTextBlue = styled.span`
 	color: #233ba9;
 `;
-const StyledArrowImg = styled.img`
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	cursor: pointer;
+// const StyledArrowImg = styled.img`
+// 	position: absolute;
+// 	width: 40px;
+// 	height: 40px;
+// 	cursor: pointer;
 
-	top: 340%;
-`;
+// 	top: 340%;
+// `;
 const mystyle = {
 	width: '30%',
 	height: '40%',
