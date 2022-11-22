@@ -1,10 +1,11 @@
 import React from 'react'
-import image from '../../src/Sign/Assets/background.png';
+import background from '../../src/Sign/Assets/background.png';
 import Closed from '../Sign/Assets/eye-slash.png'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import img1 from '../Sign/Assets/Frame 12.png';
 import img2 from '../Sign/Assets/Frame 10.png';
+import logo from '../Sign/Assets/Logo(1).png';
 
 
 const Login = () => {
@@ -16,8 +17,31 @@ const Login = () => {
 		// inverse the boolean state of passwordShown
 		setPasswordShown(!passwordShown);
 	};
+
+  const [width, setWidth] = useState("big");
+
+	useEffect(() => {
+		const hideMenu = () => {
+			if (window.innerWidth < 960) {
+				setWidth('small');
+			} else {
+				setWidth('big');
+			}
+		};
+
+		window.addEventListener("resize", hideMenu)
+
+		return () => {
+			window.removeEventListener("resize", hideMenu)
+		}
+	});
   return (
-    <div className="login h-screen place-content-start box-border min-h-32 flex flex-row " style={{ backgroundImage:`url(${image})` , backgroundRepeat:"no-repeat", backgroundSize:"cover"}}>
+    <div className="login h-screen place-content-start box-border min-h-32 flex flex-row " 
+    style={{
+				backgroundImage: width === "big" ? `url(${background})` : "",
+				backgroundRepeat: 'no-repeat',
+				backgroundSize: 'cover',
+			}}>
           <div className="login-l h-screen place-content-start box-border min-h-32 w-2/4 flex flex-row">
           <form  class="container place-content-start text-left gap-x-7 bg-white w-full">
             <div className='place-content-start text-left gap-x-7 bg-white w-3/4'>
@@ -57,6 +81,9 @@ const Login = () => {
             
           </form>
        
+          </div>
+          <div className="login-r">
+            <img src={logo} alt="" className='logo ml-96'/>
           </div>
          
     </div>
