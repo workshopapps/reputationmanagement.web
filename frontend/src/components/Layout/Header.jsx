@@ -38,12 +38,12 @@ const Header = () => {
 					</div>
 
 					<ul className={`${!toggle ? 'hidden' : 'block'} sidebar`}>
-						<NavLink to="/" className="active">
+						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink to="/about">About Us</NavLink>
-						<NavLink to="/blog">Blog</NavLink>
-						<NavLink to="/contact">Contact</NavLink>
+						<NavLink to="/about" className={currentRoute === '/about' ? 'active' : ''}>About Us</NavLink>
+						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
+						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
 					</ul>
 
 					<div className="navButtons">
@@ -66,7 +66,7 @@ const StyledNav = styled.nav`
 	justify-content: space-between;
 	padding: 20px 24px;
 	position: relative;
-
+	z-index: 10;
 	a {
 		text-decoration: none;
 	}
@@ -87,7 +87,7 @@ const StyledNav = styled.nav`
 			padding: 6px 18px;
 		}
 	}
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 875px) {
 		.logo {
 			display: block;
 			margin: auto;
