@@ -56,7 +56,20 @@ namespace src.Controllers
            var query = await _reviewRepo.GetAllSuccessfulReview();
            return Ok(query);
         }
-        
+
+        [SwaggerOperation(Summary = "Get all reviews by Lawyer")]
+        [Authorize(Roles = "lawyer", AuthenticationSchemes = "Bearer")]
+        [HttpGet("Allreviews")]
+        public IActionResult GetAllReviews(int? pageNumber, int? pageSize)
+        {
+            if(pageNumber == null && pageSize == null)
+            {
+                return Ok(_reviewRepo.GetReviews());
+            }
+            var reviews = _reviewRepo.GetReviews().Skip((int)((pageNumber - 1) * pageSize)).Take((int)pageSize);
+            return Ok(reviews);
+        }
+
 
         [HttpGet("reviews/{reviewId}")]
         [Authorize(Roles = "Lawyer", AuthenticationSchemes = "Bearer")]
