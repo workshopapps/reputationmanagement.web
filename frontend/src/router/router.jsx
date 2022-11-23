@@ -25,10 +25,12 @@ import Ourteam from '../pages/Carrer/Ourteam';
 import Profile from '../pages/profile/Profile'
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
+import ScrollToTop from '../components/ScrollToTop';
 
 const Router = () => {
 	return (
 		<BrowserRouter>
+		<ScrollToTop/>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path='Login' element={<Login />} />
