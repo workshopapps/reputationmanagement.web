@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
-import { DashboardIcon, SettingsIcon, HomeIcon } from '../Dashboard/Icons';
+import { DashboardIcon, SettingsIcon, HomeIcon, ProfileIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 
 const Sidebar = (props) => {
@@ -23,6 +23,13 @@ const Sidebar = (props) => {
 					<NavLink to="/dashboard">
 						<DashboardIcon />
 						Dashboard
+					</NavLink>
+				</li>
+
+				<li>
+					<NavLink to="/profile">
+						<ProfileIcon />
+						profile
 					</NavLink>
 				</li>
 			</ul>

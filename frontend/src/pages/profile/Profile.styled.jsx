@@ -1,8 +1,39 @@
 import styled from "styled-components";
 
 const BodyWrapper = styled.section`
-    display: flex;
-    justify-content: space-between;
+    position: relative;
+    font-family: 'Lato', sans-serif;
+    
+    display: grid !important;
+    /* gap: 15rem; */
+    grid-template-columns: 280px auto !important;
+    position: relative;
+
+    grid-template-areas:
+		'sidebar nav'
+		'sidebar main';
+
+        @media (max-width: 1140px) {
+		grid-template-areas:
+			'nav nav'
+			'main main';
+	}
+`
+const WrapNav = styled.div`
+    grid-area: nav;
+    @media (min-width: 1440px) {
+        & > *{
+            display: none;
+            width: 100%;
+        }
+        display: none;
+        width: 100vw;
+
+      
+
+    }
+
+
 `
 const PageBody = styled.div`
     @media (max-width: 480px) {
@@ -12,9 +43,9 @@ const PageBody = styled.div`
         }
     }
     @media (min-width: 481px) {
-        width: 80vw;
+        /* width: 80vw; */
     }
-    width: 80vw;
+    /* width: 80vw; */
     box-sizing: border-box;
    *{
         padding: 0;
@@ -41,11 +72,17 @@ const PageBody = styled.div`
     line-height: 24.64px;
    }
 `
+const WrapRHS = styled.div`
+    grid-area: main;
+    @media (min-width: 1020px) {
+        padding-right: 4rem;
+    }
+`
 const Header = styled.div`
     @media (max-width: 480px) {
         padding: 1em .5em ;
     }
-    padding: 1em 2em 2em 4em;
+    padding: 2em 2em 2em 4em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,8 +110,9 @@ const HeaderRHS = styled.div`
         display   : none;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1440px) {
         gap: 1rem;
+        display: none;
 
         div{
             img{
@@ -219,5 +257,5 @@ const BusinessInfo = styled.div`
    }
 `
 
-export { BodyWrapper, PageBody, Header, HeaderLHS, HeaderRHS, ContentContainer, DescriptionContainer, DescriptionHeaderCon, DescriptionHeaderText, AboutBizHeader, EditBtn, BusinessInfoContainer, BusinessInfo }
+export { BodyWrapper, WrapNav, WrapRHS, PageBody, Header, HeaderLHS, HeaderRHS, ContentContainer, DescriptionContainer, DescriptionHeaderCon, DescriptionHeaderText, AboutBizHeader, EditBtn, BusinessInfoContainer, BusinessInfo }
 
