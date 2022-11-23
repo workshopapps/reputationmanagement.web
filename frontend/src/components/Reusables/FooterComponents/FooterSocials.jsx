@@ -6,7 +6,7 @@ function FooterSocials() {
 			{/* Social Media icons start */}
 			<div className="flex flex-col md:self-start w-full md:pt-2 gap-5">
 				<img src={fixlogo} alt="icon" className='w-1/2' />
-				<p className="text-white"> Your brand’s image is our concern.</p>
+				<p className="text-white text-left"> Your brand’s image is our concern.</p>
 			</div>
 			{/* Social Media icons ends */}
 		</div>
