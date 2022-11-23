@@ -16,7 +16,6 @@ import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 import GetAQuote from '../pages/GetAQuote/index';
 import RequestForm from '../pages/RequestForm/requestForm';
-import Signup from '../Sign/Signup';
 
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
@@ -24,7 +23,8 @@ import ErrorPage from '../pages/ErrorPage';
 import Ourteam from '../pages/Carrer/Ourteam';
 
 import Profile from '../pages/profile/Profile'
-import Login from '../Login/Login';
+import Login from '../pages/Login/Login';
+import Signup from '../pages/Sign-up/Signup';
 
 const Router = () => {
 	return (
