@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
@@ -12,6 +12,7 @@ const Header = () => {
 	const location = useLocation();
 	const currentRoute = location.pathname
 	console.log(currentRoute)
+	const router = useNavigate();
 	return (
 		<header style={{ width: '100%' }}>
 			<StyledContainer>
@@ -44,6 +45,8 @@ const Header = () => {
 						<NavLink to="/about" className={currentRoute === '/about' ? 'active' : ''}>About Us</NavLink>
 						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
 						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
+						<StyledNavButton onClick={() => router('/login')}>Login</StyledNavButton>
+						<StyledNavButton onClick={() => router('/signup')}>Register</StyledNavButton>
 					</ul>
 
 					<div className="navButtons">
@@ -59,7 +62,18 @@ const Header = () => {
 		</header>
 	);
 };
-
+const StyledNavButton = styled.button`
+	background: #233BA9;
+    padding: 10px 40px;
+    border-radius: 6px;
+    color: #fff;
+    border: 1px #233BA9 solid;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+	margin: 14px 0;
+	margin-left: 18px;
+`;
 const StyledNav = styled.nav`
 	display: flex;
 	align-items: center;

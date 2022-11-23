@@ -132,8 +132,10 @@ const StyledSignupWrapper = styled.div`
 		display: flex;
 		justify-content-center;
 		.logo{
-			height: 43px;
-			width: 100.8707046508789px;
+			img{
+				height: 78px !important;
+				width: 170.8707046508789px !important;
+			}
 		}
 	}
 	.logo{
@@ -190,7 +192,7 @@ const StyledFormWrapper = styled.div`
 	@media(max-width: 910px){
 		width: 100%;
 	}
-	@media(max-width: 563px){
+	@media(max-width: 530px){
 		padding-left: 30px;
 		padding-right: 30px;
 	}
