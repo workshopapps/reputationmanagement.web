@@ -1,25 +1,44 @@
 import React from 'react'
 //import image from '../../src/Sign-up/Assets/background.png';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import apple from '../Sign-up/Assets/apple-icon.svg';
 import facebook from '../Sign-up/Assets/facebook-icon.svg';
 import google from '../Sign-up/Assets/google-icon.svg';
 import img1 from '../Sign-up/Assets/loginBG.svg';
 import styled from "styled-components";
 import { FaRegEyeSlash } from 'react-icons/fa';
+import Api from '../../api/axios.';
 
 
 const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
+  const router = useNavigate();
 
   // Password toggle handler
-  const togglePassword = (e) => {
-    e.preventDefault()
-    // When the handler is invoked
-    // inverse the boolean state of passwordShown
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ requestPending, setRequestPending ] = useState(false)
+  const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
+  const handleSubmit = async() => {
+    setRequestPending(true)
+    try{
+      const response = await Api.post('/auth/signin',
+        {
+          email: email,
+          password: password,
+        }
+      )
+      console.log(response)
+      response && setRequestPending(false) && router('/dashboard')
+    }
+    catch(err) {
+      console.log(err)
+      setRequestPending(false)
+    }
+  }
   return (
     <ParentContainer>
 
@@ -35,16 +54,24 @@ const Login = () => {
 
           <Input1 className='text-input'>
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" value=""  placeholder="johndoe@gmail.com" id="email" required />
+              <input type="email" name="email" value={email} 
+                onChange={(e) => setEmail(e.target.value)}
+              placeholder="johndoe@gmail.com" id="email" required />
             </Input1>
 
           <Input2 className='text-input'>
               <label htmlFor="email">Password</label>
               <div className='input2-div'>
-              <input type="password" name="password" value="" placeholder="6+ character long" id="email" required />
+              <input 
+                type={ passwordShown ? "text" : "password" }
+                name="password" 
+                value={password} 
+                placeholder="6+ character long" id="email" required 
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-              <button>
-              <FaRegEyeSlash/>
+              <button onClick={() => togglePassword()} type="button">
+                <FaRegEyeSlash/>
               </button>
               </div>
             </Input2>
@@ -62,7 +89,15 @@ const Login = () => {
                 </ForgotPass>
               </Remember>
 
-              <SubmitBtn>Log In</SubmitBtn>
+              <SubmitBtn onClick={() => handleSubmit()}>
+              {
+                !requestPending
+                    ?
+                    "Log In"
+                :
+                <div className="loading"></div>
+              }
+              </SubmitBtn>
           
         </StyledForm>
 
@@ -79,7 +114,7 @@ const Login = () => {
             <div><img src={facebook} alt="facebook"/></div>
           </div>
 
-          <div className='footer-text'>Don't have an account? <span>Sign up</span></div>
+          <div className='footer-text'>Don't have an account? <span onClick={() => router('/signup')}>Sign up</span></div>
         </FormFooter>
 
       </FormSection>
@@ -125,7 +160,7 @@ const ImgSection = styled.div`
      height: 1000px;
    }
 
-   @media (max-width:520px) {
+   @media (max-width:900px) {
       display: none;
    }
 
@@ -144,18 +179,17 @@ const FormSection = styled.section`
      border-bottom: 1px solid gray;
      border-left: 1px solid gray;
    }
-
-   @media (max-width:520px) {
-    width: 100%;
+   @media (max-width:900px) {
+    width: 95%;
     padding-top: 40px;
-   padding-left: 20px;
-   padding-right: 20px;
-   }
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+   @media (max-width:900px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-   @media  (min-width: 768px) and (max-width:1000px) {
-     width: 70%;
-    
-   }
 `;
 
 const StyledForm = styled.form`
@@ -241,13 +275,16 @@ const Input2 = styled.div`
 `;
 
 const Remember = styled.div`
-margin-top: 10px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
 
     .slide-radio-main {
       display: flex;
       align-items: center;
+    }
+    @media(max-width: 400px){
+      flex-direction: column;
     }
 
 `;
@@ -289,6 +326,24 @@ margin-top: 20px;
   height: 59px;
   background-color: #233BA9;
   color: white;
+  .loading{
+    width: 20px;
+    height: 20px;
+    border: 2px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+  }
 `;
 
 const Loginwith = styled.div`

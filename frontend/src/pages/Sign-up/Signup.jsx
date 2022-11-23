@@ -7,29 +7,35 @@ import styled from 'styled-components';
 import google_icon from './Assets/google-icon.svg';
 import facebook_icon from './Assets/facebook-icon.svg';
 import apple_icon from './Assets/apple-icon.svg';
+import Api from '../../api/axios.';
+import { useNavigate } from 'react-router-dom';
+
 function Signup() {
-	const InitialValues = {
-		first_name: '',
-		last_name: '',
-		email: '',
-		message: '',
-		check: false,
-	};
 
-	const handleChange = (e) => {
-		const { name, value, type, checked } = e.target;
-		setFormData((prevFormData) => {
-			return {
-				...prevFormData,
-				[name]: type === 'checkbox' ? checked : value,
-			};
-		});
-	};
-	const [formData, setFormData] = useState(InitialValues);
+	const [ businessName, setBusinessName ] = useState('')
+	const [ email, setEmail ] = useState('')
+	const [ password, setPassword ] = useState('')
+	const [ requestPending, setRequestPending ] = useState(false)
+	const router = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault();
-		setFormData(InitialValues);
+		setRequestPending(true)
+		try{
+			const response = await Api.post('/auth/create-account',
+				{
+					businessEntityName: businessName,
+					email: email,
+					password: password,
+				}
+			)
+			console.log(response?.data)
+			response && setRequestPending(false) && router('/dashboard')
+		}
+		catch(err){
+			setRequestPending(false)
+			console.log(err)
+		}
 	};
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [passwordShown1, setPasswordShown1] = useState(false);
@@ -67,9 +73,9 @@ function Signup() {
 							type="text"
 							className=""
 							id="business-name"
-							value={formData.first_name}
+							value={businessName}
 							name="first_name"
-							onChange={handleChange}
+							onChange={(e) => setBusinessName(e.target.value)}
 							placeholder="e.g Mark and sons"
 							required
 						/>
@@ -80,8 +86,8 @@ function Signup() {
 							type="email"
 							name="email"
 							id="email"
-							value={formData.email}
-							onChange={handleChange}
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 							placeholder="e.g Marksons@gmail.com"
 							required
 						/>
@@ -89,7 +95,10 @@ function Signup() {
 					<div className="password">
 						<label htmlFor="Password">Password</label>
 						<div className="password-input">
-							<input  type={passwordShown ? 'text' : 'password'} className='' placeholder='6+ character long' />
+							<input  
+								onChange={(e) => setPassword(e.target.value)}
+								value={password}
+								type={passwordShown ? 'text' : 'password'} className='' placeholder='6+ character long' />
 						<button onClick={togglePassword}>
 							<img src={Closed} alt="" />{' '}
 						</button>
@@ -105,7 +114,15 @@ function Signup() {
 						</button>
 						</div>
 					</div>
-					<button type="submit" onClick={handleSubmit} className='create'>Create Account</button>
+					<button type="submit" onClick={handleSubmit} className='create'>
+						{
+							!requestPending
+								?
+								"Create Account"
+							:
+							<div className="loading"></div>
+						}
+					</button>
 				</div>
 				<StyledSignupOptions>
 					<div className="or">
@@ -132,6 +149,7 @@ const StyledSignupWrapper = styled.div`
 		display: flex;
 		justify-content-center;
 		.logo{
+			width: auto;
 			img{
 				height: 78px !important;
 				width: 170.8707046508789px !important;
@@ -140,13 +158,12 @@ const StyledSignupWrapper = styled.div`
 	}
 	.logo{
 		position: fixed;
-		width: 100%;
-		height: 100%;
 		max-width: 1440px;
 		display: flex;
 		align-items: flex-start;
-		justify-content: flex-end;
 		padding-right: 10px;
+		width: 100%;
+		justify-content: flex-end;
 	}
 `;
 const StyledSignupOptions = styled.div`
@@ -205,6 +222,24 @@ const StyledFormWrapper = styled.div`
 		text-align: left;
 		color: #2B2C34;		
 	}
+	.loading{
+        width: 20px;
+        height: 20px;
+        border: 2px solid #FFF;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    }
 	p{
 		font-family: Lato;
 		font-size: 24px;

@@ -10,8 +10,7 @@ import { StyledContainer } from '../Styles/Body/Container.styled';
 const Header = () => {
 	const [toggle, setToggle] = useState(false);
 	const location = useLocation();
-	const currentRoute = location.pathname
-	console.log(currentRoute)
+	const currentRoute = location.pathname;
 	const router = useNavigate();
 	return (
 		<header style={{ width: '100%' }}>
