@@ -10,7 +10,7 @@ function Footer() {
 				<FooterLinks />
 			</StyledFooterWrapper>
 			<hr className='border-3 border-[#A5A6A8] w-[90%] m-auto' />
-			<div className="p-5 text-">
+			<div className="p-5 text-center">
 				<p className="text-[16px] font-[100] text-[#A5A6A8] leading-[16px]">
 					© 2022 Fixit. All rights reserved
 				</p>
