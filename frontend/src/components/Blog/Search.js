@@ -1,48 +1,55 @@
-import React from 'react'
-import styled from 'styled-components'
-import search from '../../assets/images/blog_images/icons/search.png'
-// import Blog_see_all from '../pages/Blog--see-all'
+import React from 'react';
+import styled from 'styled-components';
+import { CiSearch } from 'react-icons/ci';
+import { useState } from 'react';
 
 const StyledForm = styled.form`
-    border: 1px solid #E4E4E5;
-    border-radius: 8px;
-    width: 40%;
-    margin: 30px auto;
-    padding: 10px auto;
-    display: flex;
+	border: 1px solid #e4e4e5;
+	border-radius: 8px;
+	width: 40%;
+	height: 48px;
+	margin: 30px auto;
+	padding: 10px auto;
+	display: flex;
+	align-items: center;
+	> svg {
+		font-size: 1.3rem;
+		color: #8e9093;
+		margin: 0 10px;
+	}
 
-    @media screen and (max-width: 768px) {
-        width: 60%;
-        font-size: 18px;
-    }
-`
+	@media (max-width: 1200px) {
+		width: 70%;
+	}
+	@media (max-width: 400px) {
+		width: 90%;
+	}
+`;
 
 const StyledInput = styled.input`
-    padding: 10px;
-    border: 0;
-    margin: auto 10px;
-    &:placeholder {
-        padding: 10px;
-        border: 0;
-        margin: auto 10px;
-    }
-`
+	border: none;
+	outline: none;
+	width: 92%;
+	height: 100%;
+`;
 
-const StyledImg = styled.img`
-    margin-left: 10px;
-    margin: auto 0 auto 10px;
-`
-
-function Search({ display }) {
-    console.log(display);
-  return (
-    <>
-        <StyledForm>
-            <StyledImg src={search} alt="" />   
-            <StyledInput type="text" placeholder="Search for anything..."/>
-        </StyledForm>
-    </>
-  )
-}
+const Search = () => {
+	const [userInput, setUserInput] = useState('');
+	return (
+		<>
+			<StyledForm>
+				<CiSearch />
+				<StyledInput
+					type="text"
+					placeholder="Search for anything..."
+					onChange={(e) => {
+						setUserInput(e.target.value);
+					}}
+					value={userInput}
+				/>
+			</StyledForm>
+		</>
+	);
+};
 
 export default Search;
