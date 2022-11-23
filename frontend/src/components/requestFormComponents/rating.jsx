@@ -2,11 +2,12 @@ import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { FaStar } from 'react-icons/fa';
 import styled from "styled-components";
+import { useCallback } from "react";
 
 const Rate = ({ count, rating, color, onRating }) => {
     const [hoverRating, setHoverRating] = useState(0);
 
-    const getColor = (index) => {
+    const getColor = useCallback((index) => {
         if (hoverRating >= index) {
             return color.filled;
         } else if (!hoverRating && rating >= index) {
@@ -14,7 +15,17 @@ const Rate = ({ count, rating, color, onRating }) => {
         }
 
         return color.unfilled;
-    };
+    },[color.filled, color.unfilled, hoverRating, rating])
+    
+    // const getColor = (index) => {
+    //     if (hoverRating >= index) {
+    //         return color.filled;
+    //     } else if (!hoverRating && rating >= index) {
+    //         return color.filled;
+    //     }
+
+    //     return color.unfilled;
+    // };
 
     const starRating = useMemo(() => {
         return Array(count)
@@ -30,7 +41,7 @@ const Rate = ({ count, rating, color, onRating }) => {
                     onMouseLeave={() => setHoverRating(0)}
                 />
             ));
-    }, [count, rating, hoverRating]);
+    }, [count, getColor, onRating]);
 
     return <StyledRating>{starRating}</StyledRating>;
 };

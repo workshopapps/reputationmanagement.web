@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-	StyledH1,
-	StyledH3,
-	StyledText,
-	StyledH2Center,
-} from '../../components/Styles/Body/Text.styled';
+// import {
+// 	StyledH1,
+// 	StyledH3,
+// 	StyledText,
+// 	StyledH2Center,
+// } from '../../components/Styles/Body/Text.styled';
 
 const StyledHeader = styled.h1`
 	color: #233ba9;

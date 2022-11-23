@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
@@ -9,7 +9,9 @@ import { StyledContainer } from '../Styles/Body/Container.styled';
 
 const Header = () => {
 	const [toggle, setToggle] = useState(false);
-
+	const location = useLocation();
+	const currentRoute = location.pathname
+	console.log(currentRoute)
 	return (
 		<header style={{ width: '100%' }}>
 			<StyledContainer>
@@ -26,22 +28,22 @@ const Header = () => {
 					/>
 
 					<div className="navLinks">
-						<NavLink to="/" className="active">
+						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink to="/about-us">About Us</NavLink>
-						<NavLink to="/blog">Blog</NavLink>
-						<NavLink to="/contact">Contact</NavLink>
-						<NavLink to="/dashboard">Dashboard</NavLink>
+						<NavLink to="/about-us" className={currentRoute === '/about-us' ? 'active' : ''}>About Us</NavLink>
+						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
+						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
+						{/* <NavLink to="/dashboard" className={currentRoute === '/dashboard' ? 'active' : ''}>Dashboard</NavLink> */}
 					</div>
 
 					<ul className={`${!toggle ? 'hidden' : 'block'} sidebar`}>
-						<NavLink to="/" className="active">
+						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink to="/about">About Us</NavLink>
-						<NavLink to="/blog">Blog</NavLink>
-						<NavLink to="/contact">Contact</NavLink>
+						<NavLink to="/about" className={currentRoute === '/about' ? 'active' : ''}>About Us</NavLink>
+						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
+						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
 					</ul>
 
 					<div className="navButtons">
@@ -64,7 +66,7 @@ const StyledNav = styled.nav`
 	justify-content: space-between;
 	padding: 20px 24px;
 	position: relative;
-
+	z-index: 10;
 	a {
 		text-decoration: none;
 	}
@@ -85,7 +87,7 @@ const StyledNav = styled.nav`
 			padding: 6px 18px;
 		}
 	}
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 875px) {
 		.logo {
 			display: block;
 			margin: auto;
@@ -114,15 +116,12 @@ const NavLink = styled(Link)`
 	&.active {
 		color: #233ba9;
 		border-bottom: 3px solid #233ba9;
+		transition: all ease-in-out 0.5s;
 	}
 
 	&:hover {
 		color: #233ba9;
 	}
-`;
-
-const NavButton = styled(Link)`
-	padding: 6px;
 `;
 
 export default Header;

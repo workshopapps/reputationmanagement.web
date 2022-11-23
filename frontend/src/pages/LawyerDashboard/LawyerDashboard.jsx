@@ -25,7 +25,17 @@ import Menu from './MobileMenu';
 
 
 function LawyerDashboard() {
-    const [tickets, setTickets] = useState([
+    // const [tickets, setTickets] = useState([
+    //     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
+    //     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
+    //     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+    //     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+    //     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+    //     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+    //     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+    // ]);
+
+    const tickets = [
         {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
         {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
         {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
@@ -33,7 +43,7 @@ function LawyerDashboard() {
         {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
         {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
         {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
-    ]);
+    ]
 
     const [menuActive, setMenuActive] = useState(false);
 

@@ -6,8 +6,10 @@ import PropTypes from 'prop-types'
 const StyledPost = styled.section`
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    flex: 1 1 30%;
+    flex: 1 1 20%;
+    justify-content: center;
 `
+
 
 const StyledImg = styled.img`
     width: 100%;
@@ -31,7 +33,7 @@ const StyledParagraph = styled.p`
     margin-bottom: 15px;
 `
 
-function PostSnippet({ img, title, subtitle, display}) {
+function PostSnippettt({ img, title, subtitle, display}) {
   return (
     <StyledPost>
       <StyledImg src={img} alt="blogpost image" />
@@ -41,11 +43,11 @@ function PostSnippet({ img, title, subtitle, display}) {
   )
 }
 
-PostSnippet.propTypes = {
+PostSnippettt.propTypes = {
     img : PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
     display: PropTypes.bool
 }
 
-export default PostSnippet;
+export default PostSnippettt;

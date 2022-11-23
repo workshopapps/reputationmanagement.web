@@ -17,6 +17,11 @@ const RequestSuccessful = () => {
     const { requestSuccessfulModalActive, setRequestSuccessfulModalActive } = useAppContext();
 	const router = useNavigate();
 
+	const width = window.innerWidth;
+
+	useEffect(() => {
+		width < 767 && requestSuccessfulModalActive && router('/request-successful')
+	},[width, requestSuccessfulModalActive, router, setRequestSuccessfulModalActive ])
     useEffect(() => {
         setRequestState(0)
     },[])

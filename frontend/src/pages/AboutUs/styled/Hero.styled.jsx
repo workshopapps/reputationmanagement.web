@@ -13,13 +13,22 @@ export const StyledHero = styled.div`
 		align:items:center;
 	}
 `;
+export const ImgContainer = styled.div`
+	max-width: 539.68px;
+	@media (max-width: 375px) {
+		max-width: 375px;
+	}
+`;
 export const DeskImg = styled.img`
-	width: 539.68px;
-	height: 597.83px;
+	width: 100%;
 	@media (max-width: 375px) {
 		display: none;
 	}
 `;
+/*
+width: 539.68px;
+	height: 597.83px
+*/
 export const MobImg = styled.img`
 	display: none;
 	@media (max-width: 375px) {
@@ -31,11 +40,12 @@ export const StyledHeroMsg = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	padding-right: 70px;
-	width: 650px;
+	width: 603px;
+	margin: 90px 0;
 	@media (max-width: 375px) {
 		padding: 0 15px;
 		align-items: center;
-
+		margin-top: 55px;
 		width: 350px;
 	}
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import Arrow from '../../assets/images/arrow-right.png';
 import {
 	StyledButton,
-	StyledTextButton,
+	// StyledTextButton,
 } from '../../components/Styles/Body/Button.styled';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';

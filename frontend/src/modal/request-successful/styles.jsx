@@ -6,6 +6,7 @@ export const StyledOverlay = styled.div`
     height: 100%;
     background-color: #1111114D;
     display: flex;
+    left: 0;
     justify-content: center;
     align-items: center;
     z-index: 9;
