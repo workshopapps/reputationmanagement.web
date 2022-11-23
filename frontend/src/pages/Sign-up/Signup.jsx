@@ -52,6 +52,8 @@ function Signup() {
 			backgroundImage:`url(${background})`, 
 			backgroundRepeat:"no-repeat", 
 			backgroundSize:"cover",
+			display: 'flex',
+			width: '100%',
 			}}>
 			<StyledFormWrapper>
 				<h2>
@@ -135,9 +137,14 @@ const StyledSignupWrapper = styled.div`
 		}
 	}
 	.logo{
-		position: absolute;
-		top: 10px;
-		right: 10px;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		max-width: 1440px;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-end;
+		padding-right: 10px;
 	}
 `;
 const StyledSignupOptions = styled.div`
@@ -183,7 +190,7 @@ const StyledFormWrapper = styled.div`
 	@media(max-width: 910px){
 		width: 100%;
 	}
-	@media(max-width: 530px){
+	@media(max-width: 563px){
 		padding-left: 30px;
 		padding-right: 30px;
 	}
