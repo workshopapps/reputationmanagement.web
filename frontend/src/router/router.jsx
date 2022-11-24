@@ -35,9 +35,10 @@ const Router = () => {
 			<Routes>
 				{/* PROTECTED ROUTES */}
 				<Route element={<RequireAuth />}>
+					<Route path="/dashboard" element={<DashboardPage />} />
 					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 				</Route>
-				<Route path="/dashboard" element={<DashboardPage />} />
+
 				<Route path="/" element={<LandingPage />} />
 				<Route path="Login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
