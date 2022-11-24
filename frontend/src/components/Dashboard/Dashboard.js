@@ -20,11 +20,12 @@ import completed from '../../assets/images/Dashboard/completed.svg';
 import searchBtn from '../../assets/images/Dashboard/search.svg';
 import TableData from './TableData';
 import { NavLink } from 'react-router-dom';
-import useAppContext from '../../hooks/useAppContext'
+import useAppContext from '../../hooks/useAppContext';
 
 const Dashboard = () => {
 	const [openMenu, setOpenMenu] = useState(false);
-	const { allRequests } = useAppContext()
+	const [searchTicket, setSearchTicket] = useState('');
+	const { allRequests } = useAppContext();
 	return (
 		<StyledDashboard>
 			<GlobalStyles />
@@ -50,8 +51,14 @@ const Dashboard = () => {
 				</CardContainer>
 
 				<InputContainer>
-					<img src={searchBtn} alt="" />
-					<input type="search" placeholder="Search for anything..." />
+					<img src={searchBtn} alt="search" />
+					<input
+						type="search"
+						placeholder="Search for anything..."
+						onChange={(event) => {
+							setSearchTicket(event.target.value);
+						}}
+					/>
 				</InputContainer>
 
 				<TableContainer>
@@ -67,9 +74,21 @@ const Dashboard = () => {
 					</thead>
 
 					<tbody>
-						{allRequests.map((data) => {
-							return <TableData data={data} key={data.id} />;
-						})}
+						{allRequests
+							.filter((data) => {
+								if (searchTicket === '') {
+									return data;
+								} else if (
+									data.ticketName
+										.toLowerCase()
+										.includes(searchTicket.toLowerCase())
+								) {
+									return data;
+								}
+							})
+							.map((data) => {
+								return <TableData data={data} key={data.id} />;
+							})}
 					</tbody>
 				</TableContainer>
 			</StyledContainer>
