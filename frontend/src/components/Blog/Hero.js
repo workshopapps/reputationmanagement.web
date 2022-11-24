@@ -13,7 +13,7 @@ const StyledSection = styled.section`
 		padding: 25px;
 		/* padding-top: 60px; */
 		background-repeat: round;
-		height: 450px;
+		height: 40vh;
 	}
 `;
 
