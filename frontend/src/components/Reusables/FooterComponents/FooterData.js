@@ -11,7 +11,7 @@ const FooterData = [
         },
         {
             text: "Our team",
-            url: "/team"
+            url: "/our-team"
         },
         {
             text: "Terms and Conditions",

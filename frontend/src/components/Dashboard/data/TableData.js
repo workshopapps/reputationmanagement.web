@@ -1,6 +1,6 @@
-import React from 'react';
 import greenLogo from '../../../assets/images/Dashboard/green.jpg';
 import google from '../../../assets/images/Dashboard/google.jpg';
+
 
 export const TableDatas = [
 	{
