@@ -19,12 +19,12 @@ import progress from '../../assets/images/Dashboard/progress.svg';
 import completed from '../../assets/images/Dashboard/completed.svg';
 import searchBtn from '../../assets/images/Dashboard/search.svg';
 import TableData from './TableData';
-import { TableDatas } from './data/TableData';
 import { NavLink } from 'react-router-dom';
+import useAppContext from '../../hooks/useAppContext'
 
 const Dashboard = () => {
 	const [openMenu, setOpenMenu] = useState(false);
-
+	const { allRequests } = useAppContext()
 	return (
 		<StyledDashboard>
 			<GlobalStyles />
@@ -67,7 +67,7 @@ const Dashboard = () => {
 					</thead>
 
 					<tbody>
-						{TableDatas.map((data) => {
+						{allRequests.map((data) => {
 							return <TableData data={data} key={data.id} />;
 						})}
 					</tbody>
