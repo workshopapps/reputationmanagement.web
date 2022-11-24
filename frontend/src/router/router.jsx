@@ -22,7 +22,7 @@ import DashboardPage from '../pages/Dashboard/DashboardPage';
 import ErrorPage from '../pages/ErrorPage';
 import Ourteam from '../pages/Carrer/Ourteam';
 
-import Profile from '../pages/profile/Profile'
+import Profile from '../pages/profile/Profile';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
 import ScrollToTop from '../components/ScrollToTop';
@@ -34,14 +34,15 @@ const Router = () => {
 		<ScrollToTop/>
 			<Routes>
 				{/* PROTECTED ROUTES */}
-				<Route element={<RequireAuth/>}>
+				<Route element={<RequireAuth />}>
 					<Route path="/dashboard" element={<DashboardPage />} />
-					<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 				</Route>
+
 				<Route path="/" element={<LandingPage />} />
-				<Route path='Login' element={<Login />} />
+				<Route path="Login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
-			
+
 				<Route path="/about-us" element={<AboutPage />} />
 
 				<Route
@@ -68,7 +69,7 @@ const Router = () => {
 				<Route path="/FAQ" element={<Faqs />} />
 
 				<Route path="/glassdoor" element={<GlassDoor />} />
-				<Route path='/profile' element={<Profile />}/>
+				<Route path="/profile" element={<Profile />} />
 				<Route path="/request-form" element={<RequestForm />} />
 
 				<Route path="blog" element={<Blog />} />
