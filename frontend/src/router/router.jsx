@@ -25,11 +25,13 @@ import Ourteam from '../pages/Carrer/Ourteam';
 import Profile from '../pages/profile/Profile'
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
+import ScrollToTop from '../components/ScrollToTop';
 import RequireAuth from './requireAuth';
 
 const Router = () => {
 	return (
 		<BrowserRouter>
+		<ScrollToTop/>
 			<Routes>
 				{/* PROTECTED ROUTES */}
 				<Route element={<RequireAuth/>}>
