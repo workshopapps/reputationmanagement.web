@@ -28,8 +28,13 @@ import {
 import { AiFillStar } from 'react-icons/ai';
 import { FaStarHalf } from 'react-icons/fa';
 import { howWeWorkDetails, topUsers, reviews } from './data';
+import { useNavigate } from 'react-router-dom';
 
 const GlassDoor = () => {
+	const navigate = useNavigate();
+	const handleClick = () => {
+		navigate('/signup');
+	};
 	return (
 		<PageLayout>
 			<Wrapper>
@@ -44,7 +49,7 @@ const GlassDoor = () => {
 							against false and misleading reviews online.
 						</p>
 						<div className="btn">
-							<StyledButton>Get Started</StyledButton>
+							<StyledButton onClick={handleClick}>Get Started</StyledButton>
 						</div>
 					</PageHeroDetails>
 					<PageHeroImage>
@@ -80,7 +85,7 @@ const GlassDoor = () => {
 							);
 						})}
 					</HowWeWorkCards>
-					<StyledButton>Get Started</StyledButton>
+					<StyledButton onClick={handleClick}>Get Started</StyledButton>
 				</HowWeWork>
 				<OurReviews>
 					<h1>What our users have to say</h1>
@@ -177,7 +182,7 @@ const GlassDoor = () => {
 						We can help you make your brand stand out by taking down bad reviews
 						from your page.
 					</h1>
-					<StyledButton>Get Started</StyledButton>
+					<StyledButton onClick={handleClick}>Get Started</StyledButton>
 				</GettingStarted>
 			</Wrapper>
 		</PageLayout>
