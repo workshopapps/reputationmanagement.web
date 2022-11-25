@@ -22,7 +22,7 @@ import DashboardPage from '../pages/Dashboard/DashboardPage';
 import ErrorPage from '../pages/ErrorPage';
 import Ourteam from '../pages/Carrer/Ourteam';
 
-import Profile from '../pages/profile/Profile'
+import Profile from '../pages/profile/Profile';
 import Settings from '../pages/Settings/Settings';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
@@ -32,21 +32,48 @@ import Layout from '../layout/layout';
 import SupportPage from '../pages/Support';
 import Contact from '../pages/ContactUs/Contact';
 
-
 const Router = () => {
 	return (
 		<BrowserRouter>
-		<ScrollToTop/>
+			<ScrollToTop />
 			<Routes>
 				{/* PROTECTED ROUTES */}
-				<Route element={<RequireAuth/>}>
-					<Route path="/dashboard" element={<Layout><DashboardPage /></Layout>} />
-					<Route path='/lawyer-dashboard' element={<Layout><LawyerDashboard /></Layout>} />
+				<Route element={<RequireAuth />}>
+					<Route
+						path="/dashboard"
+						element={
+							<Layout>
+								<DashboardPage />
+							</Layout>
+						}
+					/>
+					<Route
+						path="/lawyer-dashboard"
+						element={
+							<Layout>
+								<LawyerDashboard />
+							</Layout>
+						}
+					/>
 				</Route>
-				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+				<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 				<Route path="/" element={<LandingPage />} />
-				<Route path='/login' element={<Layout><Login/></Layout>} />
-				<Route path="/signup" element={<Layout><Signup /></Layout>} />
+				<Route
+					path="/login"
+					element={
+						<Layout>
+							<Login />
+						</Layout>
+					}
+				/>
+				<Route
+					path="/signup"
+					element={
+						<Layout>
+							<Signup />
+						</Layout>
+					}
+				/>
 				<Route path="/about-us" element={<AboutPage />} />
 				<Route
 					path="/we-remove-google-search"
@@ -65,14 +92,14 @@ const Router = () => {
 				<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
 				<Route path="/FAQ" element={<Faqs />} />
 				<Route path="/glassdoor" element={<GlassDoor />} />
-				<Route path='/profile' element={<Profile />}/>
+				<Route path="/profile" element={<Profile />} />
 				<Route path="/request-form" element={<RequestForm />} />
 				<Route path="/blog" element={<Blog />} />
 				<Route path="/our-team" element={<Ourteam />} />
 				<Route path="/support" element={<SupportPage />} />
 				<Route path="/our-team" element={<Ourteam />} />
 				<Route path="/settings" element={<Settings />} />
-				<Route path='/contact' element={<Contact />}/>
+				<Route path="/contact" element={<Contact />} />
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>

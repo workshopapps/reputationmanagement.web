@@ -20,11 +20,12 @@ import completed from '../../assets/images/Dashboard/completed.svg';
 import searchBtn from '../../assets/images/Dashboard/search.svg';
 import TableData from './TableData';
 import { NavLink } from 'react-router-dom';
-import useAppContext from '../../hooks/useAppContext'
+import useAppContext from '../../hooks/useAppContext';
 
 const Dashboard = () => {
 	const [openMenu, setOpenMenu] = useState(false);
-	const { allRequests } = useAppContext()
+	const [searchTicket, setSearchTicket] = useState('');
+	const { allRequests } = useAppContext();
 	return (
 		<StyledDashboard>
 			<GlobalStyles />
@@ -42,16 +43,22 @@ const Dashboard = () => {
 				</Header>
 
 				<CardContainer>
-					<Card img={messaging} title="All Complaints" digit="50" />
+					<Card img={messaging} title="All Complaints" digit="0" />
 					<CardSemiWrapper>
-						<Card img={progress} title="In Progress" digit="50" />
-						<Card img={completed} title="Completed" digit="50" />
+						<Card img={progress} title="In Progress" digit="0" />
+						<Card img={completed} title="Completed" digit="0" />
 					</CardSemiWrapper>
 				</CardContainer>
 
 				<InputContainer>
-					<img src={searchBtn} alt="" />
-					<input type="search" placeholder="Search for anything..." />
+					<img src={searchBtn} alt="search" />
+					<input
+						type="search"
+						placeholder="Search for anything..."
+						onChange={(event) => {
+							setSearchTicket(event.target.value);
+						}}
+					/>
 				</InputContainer>
 
 				<TableContainer>
@@ -67,9 +74,21 @@ const Dashboard = () => {
 					</thead>
 
 					<tbody>
-						{allRequests.map((data) => {
-							return <TableData data={data} key={data.id} />;
-						})}
+						{allRequests
+							.filter((data) => {
+								if (searchTicket === '') {
+									return data;
+								} else if (
+									data.ticketName
+										.toLowerCase()
+										.includes(searchTicket.toLowerCase())
+								) {
+									return data;
+								}
+							})
+							.map((data) => {
+								return <TableData data={data} key={data.id} />;
+							})}
 					</tbody>
 				</TableContainer>
 			</StyledContainer>
