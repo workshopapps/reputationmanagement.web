@@ -46,13 +46,12 @@ export const MobImg = styled.img`
 `;
 export const ImgContainerMain = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	@media (max-width: 1200px) {
 		width: 100%;
 		//background-color: red;
 		display: flex;
 		justify-content: center;
-		align-items: center;
 	}
 `;
 export const StyledHeroMsg = styled.div`
