@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Styled from 'styled-components'
+import styled from 'styled-components'
 import google from '../../assets/images/wrgr/google.png'
 import line from '../../assets/images/wrgr/reviewLine.svg'
 import backdrop_1 from '../../assets/images/wrgr/backdrop1.svg'
@@ -9,7 +9,7 @@ import backdrop_3 from '../../assets/images/wrgr/backdrop3.svg'
 
 const WRGRReview = () => {
   return (
-    <Wrapper>
+    <Wrapper  data-testid="W-review">
       <div className="">
         <HeadingMain className="">
           <HeadingBg>
@@ -21,6 +21,8 @@ const WRGRReview = () => {
           These companies trust us
         </h1>
         </HeadingMain>
+
+        {/*******************************START OF CARD SECTION*************************************************************8*/}
 
         <ResponsiveCard >
           <Box>
@@ -74,7 +76,7 @@ const WRGRReview = () => {
 
 export default WRGRReview
 
-const Wrapper = Styled.section`
+const Wrapper = styled.section`
 padding:2rem;
 //text-align:center;
 font-weight: 500;
@@ -88,7 +90,7 @@ h1{
 
 `;
 
-const Box = Styled.div`
+const Box = styled.div`
 position:relative;
 background-image:  url(${backdrop_1});
 background-repeat:no-repeat;
@@ -106,15 +108,22 @@ background-color:red;
 width:100%;
   z-index:3;
   background-color: #050505a0;
+  border-radius: 8px;
  // left:0;
 }
 
 &:nth-child(2) {
-  background:  url(${backdrop_2}) no-repeat;
+  background-image:  url(${backdrop_2});
+  background-repeat:no-repeat;
+border-radius: 8px;
+background-size: cover;
 }
 
 &:nth-child(3) {
-  background:  url(${backdrop_3}) no-repeat;
+  background-image:  url(${backdrop_3});
+  background-repeat:no-repeat;
+border-radius: 8px;
+background-size: cover;
 }
 
 h3{
@@ -132,14 +141,14 @@ p{
 .backdrop-icon {
   z-index:4;
   position:absolute;
-  //left:10px;
-  //top:10px;
+  left:10px;
+  top:10px;
 
 }
 
 `;
 
-const HeadingBg = Styled.div `
+const HeadingBg = styled.div `
       height:73px;
         width:280px;
         background-size:contain;
@@ -160,7 +169,7 @@ const HeadingBg = Styled.div `
             }
 `;
 
-const HeadingMain = Styled.div `
+const HeadingMain = styled.div `
      display:flex;
      justify-content:center;
      align-items:center;
@@ -171,7 +180,7 @@ const HeadingMain = Styled.div `
         font-weight:700;
         color:#0E1844;
 
-        @media (max-width:1000px) and (min-width:521px;) {
+        @media (max-width:1000px) and (min-width:521px) {
               font-size:35px;
             }
 
@@ -181,7 +190,7 @@ const HeadingMain = Styled.div `
       }
 `;
 
-const ResponsiveCard = Styled.div`
+const ResponsiveCard = styled.div`
         width: 100%;
         //display:flex;
         display: grid;
@@ -198,7 +207,7 @@ const ResponsiveCard = Styled.div`
             }
 `;
 
-const TextPosition = Styled.div`
+const TextPosition = styled.div`
 padding:10px;
        position:absolute;
       bottom:0;

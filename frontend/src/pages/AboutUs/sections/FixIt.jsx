@@ -18,7 +18,7 @@ import Convenience from '../img/Convenience.png';
 
 export default function Fix() {
 	return (
-		<>
+		<div data-testid="fixit-element">
 			<StyledFixHeader>
 				Why Choose <StyledColorBlue> Fix</StyledColorBlue>
 				<StyledColor>It</StyledColor>?
@@ -67,6 +67,6 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 			</StyledFixBox>
-		</>
+		</div>
 	);
 }

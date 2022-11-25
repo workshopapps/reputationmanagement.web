@@ -6,10 +6,8 @@ import foot_img from "../../assets/images/wrgr/Banner-Background-Desktop.png"
 
 const WRGRFooter = () => {
   return (
-    // <Wrapper>
-    //   <img src={footer} alt="img" />
-    // </Wrapper>
-    <StyledFooter>
+    
+    <StyledFooter data-testid="W-footer">
 
       <h2>We are here to help maintain your brand's <br /> reputation.If we dont suceed you don pay</h2>
 	  <Link to="we-remove-google-search">

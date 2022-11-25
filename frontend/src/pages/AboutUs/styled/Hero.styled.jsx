@@ -77,7 +77,7 @@ export const StyledBtn = styled.button`
 	background: #233ba9;
 	border-radius: 4px;
 `;
-export const StyledHerotxt = styled.p`
+export const StyledHerotxt = styled.div`
   max-width: 550px;
   font-size: 16px;
   margin-top: 24px;

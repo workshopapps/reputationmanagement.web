@@ -1,11 +1,12 @@
 import Styled from 'styled-components'
 import { FaStar } from 'react-icons/fa';
+import React from 'react';
 
 const Rating = () => {
     return (
         <>
 
-            <RatingMain>
+            <RatingMain  data-testid="W-rating">
                 <RatingContainer1>
 
                     <div className='container1a'>

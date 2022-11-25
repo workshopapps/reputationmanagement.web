@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 const WRGRAbout = () => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="W-about">
       <div>
         <div className="container-inner">
           <div className="container-1">
@@ -79,7 +79,7 @@ const WRGRAbout = () => {
 
 export default WRGRAbout
 
-const Wrapper = Styled.div`
+const Wrapper = styled.div`
 padding: 8rem 5rem; 
 font-weight: 600; 
 background:  #EEF1FC ;
@@ -153,7 +153,7 @@ div {
 
 `;
 
-const HeadinBg = Styled.div `
+const HeadinBg = styled.div `
       height:73px;
         width:200px;
         background-size:contain;
@@ -172,7 +172,7 @@ const HeadinBg = Styled.div `
             }
 `;
 
-const HeadinMain = Styled.div `
+const HeadinMain = styled.div `
       display: flex;
       justify-content: space-between;
       margin-bottom: 15px;
@@ -183,7 +183,7 @@ const HeadinMain = Styled.div `
       }
 `;
 
-const BoxMain = Styled.div `
+const BoxMain = styled.div `
       display: flex;
       justify-content: space-between;
 
@@ -193,7 +193,7 @@ const BoxMain = Styled.div `
 
 `;
 
-const BoxChild = Styled.div `
+const BoxChild = styled.div `
      width: 45%;
      border: 1px solid #D2D3D4;
      padding: 0px 24px 40px 24px;

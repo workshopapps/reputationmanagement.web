@@ -9,7 +9,7 @@ function AboutPage() {
 	return (
 		<>
 			<PageLayout>
-				<Hero />
+				<Hero  />
 				<Story />
 				<Fix />
 				<Help />
