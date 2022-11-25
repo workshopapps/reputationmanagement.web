@@ -127,7 +127,7 @@ const TeamFooter = styled.div`
 	text-align: center;
 
 	.footImg {
-		height: 50vh;
+		height: 55vh;
 		min-width: 100%;
 	}
 
@@ -138,24 +138,15 @@ const TeamFooter = styled.div`
 		margin-bottom: 30px;
 	}
 
-    @media screen and (min-width:768px) {
-        .footImg {
-            height: 35vh;
-            min-width: 100%;
-        }
-    }
-    @media screen and (max-width:428px) {
-        .footImg {
-            height: 40vh;
-            min-width: 100%;
-        }
+    @media screen and (min-width:428px) {
+        
     }
 
 	@media screen and (min-width:1024px) {
-        .footImg {
-            height: 300px;
-            min-width: 100%;
-        }
+        // .footImg {
+        //     height: 300px;
+        //     min-width: 100%;
+        // }
     }
 `;
 
