@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PageLayout from '../../layout/PageLayout';
-import PostSnippettt from '../../components/Blog/PostSnippet'
 import styled from 'styled-components';
 import Background1 from '../../assets/images/BG1.jpg';
 
@@ -51,6 +50,10 @@ const StyledBanner = styled.div`
     flex-direction: column;
     padding: 0px 35px 10px 35px;
     color: #fff;
+
+    @media screen and (max-width: 568px) {
+      height: 300px;
+    }
 `
 const StyledHeader1 = styled.h1`
    font-size: 30px;
@@ -67,16 +70,58 @@ const StyledMainDiv = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
-   justify-content: center:
+   justify-content: center;
+   background: #f9f8fd;
+`
+const FeatureText = styled.div`
+
 `
 
-const StyledPostSnippet = styled.div`
-    display: flex; 
-    width: 90%;
-    gap: 10px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    line-height: 50px;
+const FeatureImageWrapper = styled.div`
+// display: grid;
+// grid-template-columns: repeat(4, 1fr);
+// margin-top: 1rem;
+// grid-gap: 1rem;
+display: flex;
+flex-wrap: wrap;
+width: 90%;
+
+`
+
+const FeatureColumn = styled.div`
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+width: 90%;
+background: #fff;
+border-radius: 8px;
+
+@media screen and (max-width: 568px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+`
+const FeatureWrapper = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 8px;
+color: #a4a5a7;
+`
+const FeatureName = styled.div`
+  color: #000;
+  font-weight: bold;
+`
+
+const Img = styled.div`
+  width: 200px;
+  margin: 30px 10px 30px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `
 
 function Ourteam() {
@@ -87,7 +132,7 @@ function Ourteam() {
       display = true
     }
 	return (
-		<div className="carrer-landing-pg py-12">
+		// <div className="carrer-landing-pg py-12">
             <PageLayout>
                 <StyledMainDiv>
              <StyledBanner>
@@ -96,60 +141,62 @@ function Ourteam() {
                sales and recruitment efforts. Here at Fixit, we provide quick and reliable actions to erase negative reviews. Here are the key 
                members that make up the team.
              </StyledBanner>
+            <FeatureWrapper>
+                <FeatureColumn>
+                  <FeatureImageWrapper>
+                  <Img>
+				           	<img src={mark} alt="" />
+                     <FeatureName>Mark Essien</FeatureName>
+                     <FeatureText>Founder</FeatureText>
+                  
+                  </Img>
+				          
+                  <Img>
+				           	<img src={david} alt="" />
+                     <FeatureName>David Abraham</FeatureName>
+                     <FeatureText>Director</FeatureText>
+                  </Img>
 
-            <StyledPostSnippet>
-                <PostSnippettt 
-                    img={mark}
-                    title="Mark Essien"
-                    subtitle="Founder jhgioyo"
-                    display = {display}
-                />
-                <PostSnippettt
-                    img={david}
-                    title="David Abraham"
-                    subtitle="Director"
-                    display = {display}
-                />
-                {window.innerWidth > 768 && <PostSnippettt 
-                    img={etim}
-                    title="Idaresit Etim"
-                    subtitle="Managerr"
-                    display = {display}
-                />}
+                  <Img>
+				           	<img src={etim} alt="" />
+                     <FeatureName>Idaresit Etim</FeatureName>
+                     <FeatureText>Manager</FeatureText>
+				          </Img>
 
-                 <PostSnippettt 
-                    img={anidi}
-                    title="Anidi Izuchukwu"
-                    subtitle="Design Lead"
-                    display = {display}
-                />
-                <PostSnippettt 
-                    img={okeke}
-                    title="David Okeke"
-                    subtitle="Backend Lead,"
-                    display = {display}
-                />
-                {window.innerWidth > 768 && <PostSnippettt 
-                    img={hammed}
-                    title="Hammed Akinyemi"
-                    subtitle="Frontend Lead"
-                    display = {display}
-                />}
+                  <Img>
+				           	<img src={anidi} alt="" />
+                     <FeatureName>Anidi Izuchukwu</FeatureName>
+                     <FeatureText>Design Lead</FeatureText>
+				          </Img>
 
-               <PostSnippettt 
-                    img={vivian}
-                    title="Vivianne Thomas"
-                    subtitle="Sales & Marketing Lead"
-                    display = {display}
-                />
-                <PostSnippettt 
-                    img={adaeze}
-                    title="Adaeze Ifeanyi"
-                    subtitle="product Manager"
-                    display = {display}
-                />
-            
-            </StyledPostSnippet>
+                  <Img>
+				           	<img src={okeke} alt="" />
+                     <FeatureName>David Okeke</FeatureName>
+                     <FeatureText>Backend Lead</FeatureText>
+				          </Img>
+
+                  <Img>
+				           	<img src={hammed} alt=""s />
+                     <FeatureName>Hammed Akinyemi</FeatureName>
+                     <FeatureText>Frontend Lead</FeatureText>
+				          </Img>
+
+                  <Img>
+				           	<img src={vivian} alt="" />
+                     <FeatureName>Vivianne Thomas</FeatureName>
+                     <FeatureText>Sales & Marketing Lead</FeatureText>
+				          </Img>
+
+                  <Img>
+				           	<img src={adaeze} alt="" />
+                     <FeatureName>Adaeze Ifeanyi</FeatureName>
+                     <FeatureText>Product Manager</FeatureText>
+				          </Img>
+
+                  </FeatureImageWrapper>
+                </FeatureColumn>
+            </FeatureWrapper>
+           
 			<StyledBackGround className="grow-together flex flex-col items-center justify-center py-12 w-full mt-20">
 				<StyledHeader className="text-center">Want to be a part of something special?</StyledHeader>
 				<h4 className="mt-3 text-center">
@@ -167,7 +214,7 @@ function Ourteam() {
 			</StyledBackGround>
             </StyledMainDiv>
             </PageLayout>
-		</div>
+		// </div>
 	);
 }
 
