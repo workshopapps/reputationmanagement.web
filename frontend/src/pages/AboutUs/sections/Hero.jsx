@@ -1,6 +1,6 @@
 import React from 'react';
 import { HERO_IMAGE_DESKTOP, HERO_IMAGE_MOBILE } from '../../../assets/image';
-
+import { Link } from 'react-router-dom';
 import {
 	StyledHero,
 	StyledHeroMsg,
@@ -12,16 +12,22 @@ import {
 	StyledBtn,
 	DeskImg,
 	StyledBlue,
+	ImgContainerMain,
 } from '../styled/Hero.styled';
 
 export default function Hero() {
 	return (
 		<>
 			<StyledHero>
+				<ImgContainerMain>
 				<ImgContainer>
+				<picture>
+					<source media="(max-width: 640px)" srcset={HERO_IMAGE_MOBILE} />
 					<DeskImg src={HERO_IMAGE_DESKTOP} alt="hero" />
-					<MobImg src={HERO_IMAGE_MOBILE} alt="hero" width="375px" />
+					</picture>
 				</ImgContainer>
+				</ImgContainerMain>
+
 
 				<StyledHeroMsg>
 					<StyledBlue>
@@ -40,7 +46,9 @@ export default function Hero() {
 						We cater to businesses and public figures that have a lot riding on
 						their reputation.
 					</StyledHerotxt>
+					<Link to="/signup">
 					<StyledBtn>Register</StyledBtn>
+					</Link>
 				</StyledHeroMsg>
 			</StyledHero>
 		</>

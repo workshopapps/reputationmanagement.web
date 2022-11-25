@@ -1,4 +1,4 @@
-import React from 'react'
+//import React from 'react'
 //import image from '../../src/Sign-up/Assets/background.png';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,7 +8,11 @@ import google from '../Sign-up/Assets/google-icon.svg';
 import img1 from '../Sign-up/Assets/loginBG.svg';
 import styled from "styled-components";
 import { FaRegEyeSlash } from 'react-icons/fa';
-import Api from '../../api/axios';
+import Api from '../../api/axios.';
+import ErrorMessage from '../../components/error message/errorMessage';
+import { useEffect } from 'react';
+import useAppContext from '../../hooks/useAppContext'
+import useAuthContext from '../../hooks/useAuthContext'
 
 
 const Login = () => {
@@ -19,32 +23,50 @@ const Login = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ requestPending, setRequestPending ] = useState(false)
+
+  const [ triedToSubmit, setTriedToSubmit ] = useState(false)
+  const [ pageValid, setPageValid ] = useState(false)
+
+  useEffect(() => {
+    email !== '' && password.length >= 8 ? setPageValid(true) : setPageValid(false)
+  },[ email, password ])
+  const { setAuth } = useAuthContext();
+  const { setRequestFailed, setRequestSuccess, setErrMessage, setSuccessMessage} = useAppContext();
+
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
-  const handleSubmit = async() => {
-    setRequestPending(true)
-    try{
-      const response = await Api.post('/auth/signin',
-        {
-          email: email,
-          password: password,
-        }
-      )
-      console.log(response)
-      response && setRequestPending(false) && router('/dashboard')
-    }
-    catch(err) {
-      console.log(err)
-      setRequestPending(false)
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    setTriedToSubmit(true)
+    if(pageValid){
+      setRequestPending(true)
+      try{
+        const response = await Api.post('/auth/sign_in',
+          {
+            email: email,
+            password: password,
+          }
+        )
+        setAuth({'email':email, 'accessToken': response.data})
+        setRequestPending(false)
+        router('/dashboard')
+        setSuccessMessage('Login successful')
+        setRequestSuccess(true)
+      }
+      catch(err) {
+        setErrMessage('Login failed');
+        setRequestFailed(true)
+        console.log(err)
+        setRequestPending(false)
+      }
     }
   }
   return (
     <ParentContainer>
-
       <FormSection>
         <StyledForm>
-          <StyledHead1>
+          <StyledHead1 onClick={() => setRequestFailed(true)}>
               Welcome Back
           </StyledHead1>
 
@@ -56,12 +78,15 @@ const Login = () => {
               <label htmlFor="email">Email</label>
               <input type="email" name="email" value={email} 
                 onChange={(e) => setEmail(e.target.value)}
-              placeholder="johndoe@gmail.com" id="email" required />
+                placeholder="johndoe@gmail.com" id="email" required 
+                className={email === '' && triedToSubmit ? 'invalid' : ''}
+              />
+              {email === '' && triedToSubmit && <ErrorMessage error='Enter Your Email'/>}
             </Input1>
 
           <Input2 className='text-input'>
               <label htmlFor="email">Password</label>
-              <div className='input2-div'>
+              <div className={ password < 8 && triedToSubmit ? 'invalid input2-div' : 'input2-div'}>
               <input 
                 type={ passwordShown ? "text" : "password" }
                 name="password" 
@@ -74,6 +99,7 @@ const Login = () => {
                 <FaRegEyeSlash/>
               </button>
               </div>
+              { password.length < 8 && triedToSubmit && <ErrorMessage error={ password ==='' ? 'Enter your password' : 'Password Must Be A Minimum Of 8 Characters'}/>}
             </Input2>
 
             <Remember>
@@ -89,7 +115,7 @@ const Login = () => {
                 </ForgotPass>
               </Remember>
 
-              <SubmitBtn onClick={() => handleSubmit()}>
+              <SubmitBtn onClick={(e) => handleSubmit(e)}>
               {
                 !requestPending
                     ?
@@ -145,7 +171,23 @@ const ParentContainer = styled.div`
      align-items: center;
    }
   
-
+.footer-text{
+    font-family: Lato;
+    font-size: 24px !important;
+    font-weight: 400 !important;
+    line-height: 29px;
+    -webkit-letter-spacing: 0.01em;
+    -moz-letter-spacing: 0.01em;
+    -ms-letter-spacing: 0.01em;
+    letter-spacing: 0.01em;
+    text-align: left;
+    color: #6F7174;
+    margin-top: 4px;
+    span{
+      color: blue;
+      text-decoration: underline;
+    }
+}
 `;
 const ImgSection = styled.div`
  width: 50%;
@@ -324,6 +366,7 @@ const SubmitBtn = styled.button`
 margin-top: 20px;
   width: 100%;
   height: 59px;
+  border-radius: 7px;
   background-color: #233BA9;
   color: white;
   .loading{
@@ -351,7 +394,8 @@ margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  gap: 18.75px;
+  white-space: nowrap;
    span {
     height: 2px;
     width: 100px;

@@ -28,7 +28,9 @@ import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
 import ScrollToTop from '../components/ScrollToTop';
 import RequireAuth from './requireAuth';
+import Layout from '../layout/layout';
 import SupportPage from '../pages/Support';
+import Contact from '../pages/ContactUs/Contact';
 
 
 const Router = () => {
@@ -38,49 +40,40 @@ const Router = () => {
 			<Routes>
 				{/* PROTECTED ROUTES */}
 				<Route element={<RequireAuth/>}>
-					<Route path="/dashboard" element={<DashboardPage />} />
-					<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+					<Route path="/dashboard" element={<Layout><DashboardPage /></Layout>} />
+					<Route path='/lawyer-dashboard' element={<Layout><LawyerDashboard /></Layout>} />
 				</Route>
+				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 				<Route path="/" element={<LandingPage />} />
-				<Route path='Login' element={<Login />} />
-				<Route path="/signup" element={<Signup />} />
-			
+				<Route path='/login' element={<Layout><Login/></Layout>} />
+				<Route path="/signup" element={<Layout><Signup /></Layout>} />
 				<Route path="/about-us" element={<AboutPage />} />
-
 				<Route
 					path="/we-remove-google-search"
 					element={<WeRemoveGoogleSearch />}
 				/>
-
 				<Route
 					path="/we-remove-google-review"
 					element={<WeRemoveGoogleReview />}
 				/>
 				<Route path="/request-successful" element={<RequestSuccessfulSm />} />
-
 				<Route path="/terms-of-use" element={<Termsofuse />} />
-
 				<Route path="/privacy" element={<PrivacyPolicy />} />
-
 				<Route path="/get-a-quote" element={<GetAQuote />} />
-
 				<Route path="/career" element={<Carrerpg1 />} />
 				<Route path="/carrer-pg-3" element={<Carrerpg3 />} />
 				<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
-
 				<Route path="/FAQ" element={<Faqs />} />
-
 				<Route path="/glassdoor" element={<GlassDoor />} />
 				<Route path='/profile' element={<Profile />}/>
 				<Route path="/request-form" element={<RequestForm />} />
-
 				<Route path="/blog" element={<Blog />} />
 				<Route path="/our-team" element={<Ourteam />} />
 				<Route path="/support" element={<SupportPage />} />
-
-				<Route path="*" element={<ErrorPage />} />
-				<Route path="our-team" element={<Ourteam />} />
+				<Route path="/our-team" element={<Ourteam />} />
 				<Route path="/settings" element={<Settings />} />
+				<Route path='/contact' element={<Contact />}/>
+				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

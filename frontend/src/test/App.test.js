@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import App from '../App';
+import App from '../app/app'
 
-test('renders learn react link', () => {
+test('App renders successfully without crashing', () => {
   render(<App />);
 });
