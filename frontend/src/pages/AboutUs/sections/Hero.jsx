@@ -21,7 +21,7 @@ export default function Hero() {
 				<ImgContainerMain>
 				<ImgContainer>
 				<picture>
-					<source media="(max-width: 640px)" srcset={HERO_IMAGE_MOBILE} />
+					<source media="(max-width: 640px)" srcSet={HERO_IMAGE_MOBILE} />
 					<DeskImg src={HERO_IMAGE_DESKTOP} alt="hero" />
 					</picture>
 				</ImgContainer>
