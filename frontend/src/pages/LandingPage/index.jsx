@@ -63,7 +63,7 @@ const LandingPage = () => {
 
 					<div className="HeroImage flex justify-center">
 						<picture>
-							<source media="(max-width: 640px)" srcset={HeroImageMobile} />
+							<source media="(max-width: 640px)" srcSet={HeroImageMobile} />
 							<img src={HeroImage} alt="complaint screen" />
 						</picture>
 					</div>
