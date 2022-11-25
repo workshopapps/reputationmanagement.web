@@ -88,7 +88,7 @@ const RequestForm = () => {
 
         <span className='container-title1'>Request Removal Form</span>
 
-        <h2 className='container-title'>Kindly Fill in your complain</h2>
+        <h2 className='container-title'>Kindly Fill in your complaint</h2>
         {/********************START OF FORM*************************************************/}
         <form className='form'>
 
@@ -192,13 +192,17 @@ export default RequestForm;
 
 
 const StyledContainers = styled.div`
+
   
     padding-bottom: 50px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+      @media (max-width: 500px){
+                  width: 80vw !important;
+              }
       .container-title1 {
         font-size:20px;
-        
+      
 
       }
         .container-title {
@@ -224,6 +228,10 @@ const StyledContainers = styled.div`
                 margin-bottom: 10px;
               }
 
+              @media (max-width: 500px){
+                  width: 80vw !important;
+              }
+
               input {
                 height: 56px;
                 padding: 0px 10px 0px 10px;
@@ -238,6 +246,12 @@ const StyledContainers = styled.div`
               margin-top: 16px;
               width: 100%;
               display: flex;
+
+              @media (max-width: 500px){
+                  flex-direction: column;
+                  width: 80vw !important;
+                  gap: 10px;
+              }
 
               .date-picker, .time-picker {
                 width: 160px;
