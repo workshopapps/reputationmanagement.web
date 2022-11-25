@@ -6,32 +6,23 @@ import {
 	HeroSection,
 	HeroTextDiv,
 	StyledLandingPage,
+	HowDoesItWork,
 } from './LandingPage.styled';
-import {
-	StyledH1Center,
-	StyledH2Center,
-} from '../../components/Styles/Body/Text.styled';
+import { StyledH2Center } from '../../components/Styles/Body/Text.styled';
 import { StyledContainer } from '../../components/Styles/Body/Container.styled';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
 
-import HeroImage from '../../assets/images/complaint-screen.png';
-import HeroImageMobile from '../../assets/images/complaint-screen-mobile.png';
-import ArrowRightIcon from '../../assets/images/arrowRightIcon.png';
+//import ArrowRightIcon from '../../assets/images/arrowRightIcon.png';
 import arrowRightIconBlue from '../../assets/images/arrowRightIconBlue.png';
-import CreateAccountImage from '../../assets/images/screen-create-account.png';
-import RequestRemoval from '../../assets/images/screen-request-removal.png';
-import MonitorProgressImage from '../../assets/images/screen-monitor-progress.png';
 
 import {
-	arla,
-	buybetter,
-	jumia,
-	teeka4,
-	konga,
-	review_vivian,
-	review_sherifah,
-	review_darey,
-	review_stars,
+	google_review,
+	google_search,
+	glassdoor,
+	steps,
+	steps_mobile,
+	landing,
+	star_icon,
 } from './assets';
 
 const LandingPage = () => {
@@ -40,55 +31,77 @@ const LandingPage = () => {
 			<StyledLandingPage>
 				<HeroSection>
 					<HeroTextDiv>
-						<StyledH1Center>
-							We help you maintain your <span>brand’s</span> reputation
-						</StyledH1Center>
-						<p>
-							Get your business to the next level, by removing every bad review
-							that is getting in the way, our lawyers are here to help you
-							maintain your brand’s reputation.
-						</p>
+						<div className="hero-text">
+							<h1>
+								Get rid of negative comments <span>today</span>
+							</h1>
 
-						<Link to="get-a-quote">
-							<StyledButton className="flex items-center mx-auto">
-								<span>Get a quote</span>
-								<img
-									src={ArrowRightIcon}
-									className="px-3"
-									alt="ArrowRightIcon"
-								/>
-							</StyledButton>
-						</Link>
+							<h5>
+								We offer services that improve your brand’s image; they include
+								reviewing and sorting negative comments about your business.
+							</h5>
+
+							<div className="hero-text-btn-sec">
+								<StyledButton className="hero-button">
+									<span>Learn More</span>
+								</StyledButton>
+
+								<div className="hero-text-star">
+									<img src={star_icon} alt="star-icon" />
+								</div>
+							</div>
+						</div>
+
+						<div className="hero-text-img">
+							<img src={landing} alt="Landing-lady" />
+						</div>
 					</HeroTextDiv>
 
+					{/*****************************************************HERO IMAGE SECTION*********************************************************/}
 					<div className="HeroImage flex justify-center">
+						<div className="hero-img-text">
+							<h5>GETTING STARTED</h5>
+
+							<StyledH2Center>How We Fixit</StyledH2Center>
+						</div>
 						<picture>
 							<source media="(max-width: 640px)" srcSet={HeroImageMobile} />
 							<img src={HeroImage} alt="complaint screen" />
 						</picture>
+
+						<Link to="/signup">
+							<StyledButton className="flex items-center mx-auto">
+								<span>Get Started</span>
+							</StyledButton>
+						</Link>
 					</div>
 				</HeroSection>
 
-				<section className="HowDoesItWork">
-					<StyledH2Center>How does it work?</StyledH2Center>
+				{/************************************HOW DOES IT WORK SECTION****************************************/}
+
+				<HowDoesItWork className="HowDoesItWork">
+					<h5>SERVICES</h5>
+					<StyledH2Center>Special Offers</StyledH2Center>
 
 					<StyledContainer>
-						<div className="stepDiv md:flex mb-10">
+						<div className="stepDiv ">
 							<div className="stepImage flex-1">
-								<img src={CreateAccountImage} alt="CreateAccount" />
+								<img src={google_review} alt="CreateAccount" />
 							</div>
 
-							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center">
+							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center justify-end">
 								<div>
-									<span className="countBtn">01</span>
-									<h3 className="font-bold my-3">Create an account with us</h3>
+									<h3 className="font-bold my-3">
+										Remove Negative Google Reviews
+									</h3>
 									<p>
-										Creat an account with us today inorder to lodge your
-										request, we are here to maintain your brand’s reputation.
+										You can remove troll comments that defame your brand and
+										business either on the play store or any other google review
+										enabled platforms
 									</p>
 
-									<Link to="/get-a-quote" className="getQuoteBtn">
-										<span>Get a quote</span>
+									<Link to="/we-remove-google-review" className="getQuoteBtn">
+										<span>Learn More</span>
 										<img
 											src={arrowRightIconBlue}
 											className="px-3"
@@ -99,22 +112,23 @@ const LandingPage = () => {
 							</div>
 						</div>
 
-						<div className="stepDiv md:flex mb-10 flex-row-reverse">
+						<div className="stepDiv ">
 							<div className="stepImage flex-1">
-								<img src={RequestRemoval} alt="CreateAccount" />
+								<img src={google_search} alt="CreateAccount" />
 							</div>
 
 							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center">
 								<div>
-									<span className="countBtn">02</span>
-									<h3 className="font-bold my-3">Request removal form</h3>
+									<h3 className="font-bold my-3">
+										Reliable Google Search Removal
+									</h3>
 									<p>
-										You have a reviewer who left a bad review on your platform
-										and you want it removed.
+										Remove bad google search results about your business from
+										the internet, our expert service got you covered.
 									</p>
 
-									<Link to="/get-a-quote" className="getQuoteBtn">
-										<span>Get a quote</span>
+									<Link to="/we-remove-google-search" className="getQuoteBtn">
+										<span>Learn More</span>
 										<img
 											src={arrowRightIconBlue}
 											className="px-3"
@@ -125,23 +139,23 @@ const LandingPage = () => {
 							</div>
 						</div>
 
-						<div className="stepDiv md:flex">
+						<div className="stepDiv ">
 							<div className="stepImage flex-1">
-								<img src={MonitorProgressImage} alt="CreateAccount" />
+								<img src={glassdoor} alt="CreateAccount" />
 							</div>
 
-							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center">
+							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center justify-end">
 								<div>
-									<span className="countBtn">03</span>
-									<h3 className="font-bold my-3">Monitor the progress</h3>
+									<h3 className="font-bold my-3">
+										Remove Bad Glassdoor Reviews
+									</h3>
 									<p>
-										Our lawyers will take it up from there, we are here to help
-										maintaim your brand’s reputation. you will be notify when
-										the bad review is taken down form your dashboard.
+										We can also help to remove bad reviews on the Glassdoor
+										platform about your business.
 									</p>
 
-									<Link to="/get-a-quote" className="getQuoteBtn">
-										<span>Get a quote</span>
+									<Link to="/glassdoor" className="getQuoteBtn">
+										<span>Learn More</span>
 										<img
 											src={arrowRightIconBlue}
 											className="px-3"
@@ -152,181 +166,22 @@ const LandingPage = () => {
 							</div>
 						</div>
 					</StyledContainer>
-				</section>
+				</HowDoesItWork>
 
-				<section className="testimonials">
-					<div className="section_heading">
-						<StyledH2Center>
-							Trusted by so many forward-thinking companies
-						</StyledH2Center>
-						<p>See testimonies from some of our clients</p>
-					</div>
-
-					<div className="content flex justify-between">
-						<div className="testimonial md:px-3 w-full md:w-1/2 lg:w-1/3 ">
-							<div className="card">
-								<div className="testimonial_header flex items-center">
-									<img src={review_sherifah} alt="review_vivian" />
-
-									<div className="rhText px-3">
-										<div className="flex items-center">
-											<h6 className="font-bold mr-2">Sherifah Mohammed</h6>
-											<img src={review_stars} alt="review_stars" />
-										</div>
-										<p>Sales representative at gimoh LTD</p>
-									</div>
-								</div>
-								<p className="reviewText">
-									“The company's legal representative, Emeka Ikenta, patiently
-									listened to me and then completely understood why I was
-									thinking about asking for help. Thank you! He gave me some
-									good, encouraging suggestions.”
-								</p>
-							</div>
-						</div>
-
-						<div className="testimonial md:px-3 w-full md:w-1/2 lg:w-1/3 ">
-							<div className="card">
-								<div className="testimonial_header flex items-center">
-									<img src={review_vivian} alt="review_vivian" />
-
-									<div className="rhText px-3">
-										<div className="flex items-center">
-											<h6 className="font-bold mr-2">Vivian Mofe</h6>
-											<img src={review_stars} alt="review_stars" />
-										</div>
-										<p>Sales representative at gimoh LTD</p>
-									</div>
-								</div>
-								<p className="reviewText">
-									“Probably the best reputation agency out there. I had a super
-									friendly experience, and on top of fixing our brand image at
-									Gilmoh, they offered an exclusive consultation on business
-									strategy that is really helping our business. I must say, the
-									FixIt team is the best, thank you.”
-								</p>
-							</div>
-						</div>
-
-						<div className="testimonial md:px-3 w-full md:w-1/2 lg:w-1/3 ">
-							<div className="card">
-								<div className="testimonial_header flex items-center">
-									<img src={review_darey} alt="review_vivian" />
-
-									<div className="rhText px-3">
-										<div className="flex items-center">
-											<h6 className="font-bold mr-2">Darey Opabisi</h6>
-											<img src={review_stars} alt="review_stars" />
-										</div>
-										<p>Sales representative at gimoh LTD</p>
-									</div>
-								</div>
-								<p className="reviewText">
-									“My lawyer, Micheal, was very helpful. He is knowledgeable,
-									amiable, and helpful, and he consistently follows up. Having a
-									personal attorney assigned to you is a pleasure and in
-									addition, all of our bad reviews have been removed from the
-									internet.”
-								</p>
-							</div>
-						</div>
-
-						<div className="testimonial md:px-3 w-full md:w-1/2 lg:w-1/3 ">
-							<div className="card">
-								<div className="testimonial_header flex items-center">
-									<img src={review_vivian} alt="review_vivian" />
-
-									<div className="rhText px-3">
-										<div className="flex items-center">
-											<h6 className="font-bold mr-2">Bukola Chukwudi</h6>
-											<img src={review_stars} alt="review_stars" />
-										</div>
-										<p>Sales representative at gimoh LTD</p>
-									</div>
-								</div>
-								<p className="reviewText">
-									“My lawyer, Micheal, was very helpful. He is knowledgeable,
-									amiable, and helpful, and he consistently follows up. Having a
-									personal attorney assigned to you is a pleasure and in
-									addition, all of our bad reviews have been removed from the
-									internet.”
-								</p>
-							</div>
-						</div>
-
-						<div className="testimonial md:px-3 w-full md:w-1/2 lg:w-1/3 ">
-							<div className="card">
-								<div className="testimonial_header flex items-center">
-									<img src={review_darey} alt="review_vivian" />
-
-									<div className="rhText px-3">
-										<div className="flex items-center">
-											<h6 className="font-bold mr-2">Bukola Chukwudi</h6>
-											<img src={review_stars} alt="review_stars" />
-										</div>
-										<p>CEO Orekelewa Atelier</p>
-									</div>
-								</div>
-								<p className="reviewText">
-									“My lawyer, Micheal, was very helpful. He is knowledgeable,
-									amiable, and helpful, and he consistently follows up. Having a
-									personal attorney assigned to you is a pleasure and in
-									addition, all of our bad reviews have been removed from the
-									internet.”
-								</p>
-							</div>
-						</div>
-
-						<div className="testimonial md:px-3 w-full md:w-1/2 lg:w-1/3 ">
-							<div className="card">
-								<div className="testimonial_header flex items-center">
-									<img src={review_darey} alt="review_vivian" />
-
-									<div className="rhText px-3">
-										<div className="flex items-center">
-											<h6 className="font-bold mr-2">Hannah Jones</h6>
-											<img src={review_stars} alt="review_stars" />
-										</div>
-										<p>Sales representative at gimoh LTD</p>
-									</div>
-								</div>
-								<p className="reviewText">
-									“My lawyer, Micheal, was very helpful. He is knowledgeable,
-									amiable, and helpful, and he consistently follows up. Having a
-									personal attorney assigned to you is a pleasure and in
-									addition, all of our bad reviews have been removed from the
-									internet.”
-								</p>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<div className="brands">
-					<div className="content md:flex">
-						<img src={jumia} alt="" />
-						<img src={buybetter} alt="" />
-						<img src={teeka4} alt="" />
-						<img src={arla} alt="" />
-						<img src={konga} alt="" />
-					</div>
-				</div>
-
+				{/****************************************************LANDING FOOTER************************************/}
 				<section className="cta">
-					<div className="max-w-4xl mx-auto">
-						<StyledH2Center>
-							We are here to help maintain your brand’s reputation. If we don’t
-							succeed, you don’t pay.
-						</StyledH2Center>
+					<div className="max-w-4xl mx-auto cta-inner">
+						<h2>Do you need a consultation?</h2>
+
+						<h4>
+							Book one-on-one consultation sessions with our experts to learn
+							more about <br />
+							your business rights.
+						</h4>
 
 						<Link to="get-a-quote">
 							<StyledButton className="flex items-center mx-auto">
-								<span>Get a quote</span>
-								<img
-									src={ArrowRightIcon}
-									className="px-3"
-									alt="ArrowRightIcon"
-								/>
+								<span>Contact Us</span>
 							</StyledButton>
 						</Link>
 					</div>

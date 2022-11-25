@@ -61,18 +61,14 @@ const WeRemoveGoogleSearch = () => {
 	]);
 
 	const slideLeft = () => {
-		var slider = document.getElementById('slide-item');
+		let slider = document.getElementById('slide-item');
 		slider.scrollLeft = -1000;
-
-		console.log(slider);
 	};
 
 	const slideRight = () => {
-		var i = 1000;
-		var slider = document.getElementById('slide-item');
+		let i = 1000;
+		let slider = document.getElementById('slide-item');
 		slider.scrollLeft = ++i;
-
-		console.log(slider);
 	};
 
 	return (

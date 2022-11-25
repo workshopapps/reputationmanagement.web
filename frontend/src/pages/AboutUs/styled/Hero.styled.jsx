@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 export const StyledHero = styled.div`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
-	);
+	@import url('https://fonts.googleapis.com/css?family=Lato:400,700' );
 	display: flex;
 	justify-content: space-between;
+	
 	@media (max-width: 1200px) {
 		flex-direction: column-reverse;
 		justify-content: center;
@@ -17,9 +14,14 @@ export const StyledHero = styled.div`
 	}
 `;
 export const ImgContainer = styled.div`
-	max-width: 539.68px;
+	display: flex;
+	align-items: flexend;
+	//background-color: black;
+	//align-self: flex-end;
+		max-width: 539.68px;
 	height: max-content;
-	align-self: flex-end;
+
+
 	@media (max-width: 1200px) {
 		align-self: flex-start;
 		max-width: 60%;
@@ -30,9 +32,7 @@ export const ImgContainer = styled.div`
 `;
 export const DeskImg = styled.img`
 	width: 100%;
-	@media (max-width: 375px) {
-		display: none;
-	}
+	
 `;
 /*
 width: 539.68px;
@@ -42,6 +42,17 @@ export const MobImg = styled.img`
 	display: none;
 	@media (max-width: 375px) {
 		display: Block;
+	}
+`;
+export const ImgContainerMain = styled.div`
+	display: flex;
+	align-items: center;
+	@media (max-width: 1200px) {
+		width: 100%;
+		//background-color: red;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 `;
 export const StyledHeroMsg = styled.div`
@@ -72,7 +83,7 @@ export const StyledHerotxt = styled.p`
   font-size: 16px;
   margin-top: 24px;
   font-family: "lato", sans-serif;
-  font weight: 700;
+  font-weight: 700;
   @media (max-width: 375px){
 	text-align: center;
   }
@@ -80,7 +91,7 @@ export const StyledHerotxt = styled.p`
 export const StyledHerotxtSpan = styled.p`
   margin: 10px 0;
   font-size: 16px;
-  font weight: 700;
+  font-weight: 700;
   font-family: "lato", sans-serif;
 `;
 export const StyledOrange = styled.span`

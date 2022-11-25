@@ -1,5 +1,5 @@
-import greenLogo from '../../../assets/images/Dashboard/green.jpg';
-import google from '../../../assets/images/Dashboard/google.jpg';
+import { GOOGLE, GREEN_LOGO } from "../../../assets/image";
+
 
 
 export const TableDatas = [
@@ -8,7 +8,7 @@ export const TableDatas = [
 		no: 354,
 		priority: 'High',
 		ticketName: 'TS-Chioma Ajunwa',
-		source: greenLogo,
+		source: GREEN_LOGO,
 		lastUpdated: '4 days ago',
 		status: 'Done',
 	},
@@ -18,7 +18,7 @@ export const TableDatas = [
 		no: 364,
 		priority: 'High',
 		ticketName: 'TS-Arinze Segun',
-		source: google,
+		source: GOOGLE,
 		lastUpdated: '4 days ago',
 		status: 'In progress',
 	},
@@ -28,7 +28,7 @@ export const TableDatas = [
 		no: 356,
 		priority: 'Low',
 		ticketName: 'TS-Isreal Ojo',
-		source: google,
+		source: GOOGLE,
 		lastUpdated: '4 days ago',
 		status: 'Pending',
 	},
@@ -38,7 +38,7 @@ export const TableDatas = [
 		no: 356,
 		priority: 'Medium',
 		ticketName: 'TS-Isreal Ojo',
-		source: greenLogo,
+		source: GREEN_LOGO,
 		lastUpdated: '4 days ago',
 		status: 'Done',
 	},

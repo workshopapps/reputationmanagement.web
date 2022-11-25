@@ -9,34 +9,115 @@ import facebook_icon from './Assets/facebook-icon.svg';
 import apple_icon from './Assets/apple-icon.svg';
 import Api from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
+import ErrorMessage from '../../components/error message/errorMessage';
+import { useEffect } from 'react';
+import useAuthContext from '../../hooks/useAuthContext';
+import useAppContext from '../../hooks/useAppContext';
 
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 function Signup() {
-
 	const [ businessName, setBusinessName ] = useState('')
 	const [ email, setEmail ] = useState('')
 	const [ password, setPassword ] = useState('')
+	const [ confirmPassword, setConfirmPassword ] = useState('')
 	const [ requestPending, setRequestPending ] = useState(false)
 	const router = useNavigate();
 
+	const [ pageValid, setPageValid ] = useState(false);
+
+	const [ businessNameValid, setBusinessNameValid ] = useState(false);
+	const [ emailValid, setEmailValid ] = useState(false)
+	const [ passwordValid, setPasswordValid] = useState(false)
+	const [ confirmPasswordValid, setConfirmPasswordValid] = useState(false)
+
+	const [ lawyerName, setLawyerName ] = useState('')
+	const [ lawyerNameFocus, setLawyerNameFocus ] = useState('')
+	const [ lawyerNameValid, setLawyerNameValid ] = useState('')
+
+	const [ lawyerSurname, setLawyerSurname ] = useState('')
+	const [ lawyerSurnameFocus, setLawyerSurnameFocus ] = useState('')
+	const [ lawyerSurnameValid, setLawyerSurnameValid ] = useState('')
+
+	const [ businessNameFocus, setBusinessNameFocus ] = useState(false);
+	const [ emailFocus, setEmailFocus ] = useState(false)
+	const [ passwordFocus, setPasswordFocus] = useState(false)
+	const [ confirmPasswordFocus, setConfirmPasswordFocus] = useState(false)
+	const [ triedToSubmit, setTriedToSubmit ] = useState(false)
+
+	const { setRequestSuccess, setErrMessage, setRequestFailed, setSuccessMessage } = useAppContext();
+
+	const { setAuth } = useAuthContext();
+	
+	const [ userType, setUserType ] = useState('business')
+	const [ nameValid, setNameValid ] = useState(false)
+
+	const path = userType === 'business' ? '/auth/create_account' : '/lawyer/auth/create_account' 
+	useEffect(() => {
+		userType === 'business'
+			?
+			businessNameValid
+				?
+				setNameValid(true)
+				:
+				setNameValid(false)
+			:
+			lawyerName !== '' && lawyerSurname !== '' ? setNameValid(true) : setNameValid(false)
+			console.log(nameValid)
+	},[ lawyerName, lawyerSurname, businessNameValid, userType, nameValid ])
+
+	useEffect(()=> {
+		businessName !== '' ? setBusinessNameValid(true) : setBusinessNameValid(false)
+		lawyerName !== '' ? setLawyerNameValid(true) : setLawyerNameValid(false)
+		lawyerSurname !== '' ? setLawyerSurnameValid(true) : setLawyerSurnameValid(false)
+		EMAIL_REGEX.test(email) ? setEmailValid(true) : setEmailValid(false)
+		PASSWORD_REGEX.test(password) ? setPasswordValid(true) : setPasswordValid(false);
+		confirmPassword === password && PASSWORD_REGEX.test(confirmPassword) ? setConfirmPasswordValid(true) : setConfirmPasswordValid(false)
+	},[ email, businessName, password, confirmPassword, lawyerName, lawyerSurname ])
+
+	useEffect(() => {
+		nameValid && emailValid && passwordValid && confirmPasswordValid ? setPageValid(true) : setPageValid(false)
+	},[ passwordValid, confirmPasswordValid, businessNameValid, emailValid, nameValid ])
 	const handleSubmit = async(e) => {
 		e.preventDefault();
-		setRequestPending(true)
-		try{
-			const response = await Api.post('/auth/create-account',
-				{
-					businessEntityName: businessName,
-					email: email,
-					password: password,
+		setTriedToSubmit(true)
+		if(pageValid){
+			setRequestPending(true)
+			try{
+				const response = await Api.post(path,
+					{
+						email: email,
+						password: password,
+						businessEntityName: businessName,
+						firstName: lawyerName,
+						lastName: lawyerSurname,
+					}
+				)
+				console.log(response)
+				setAuth({ 'email': email, 'accessToken': response.data})
+				setRequestPending(false) 
+				setSuccessMessage('Account Created')
+				setRequestSuccess(true)
+				clearForm()
+				userType === 'business' ?  router('/dashboard') : router('/lawyer-dashboard')
+			}
+			catch(err){
+				if(err.response.status === 400){
+					setErrMessage('This email is already in use')
 				}
-			)
-			console.log(response?.data)
-			response && setRequestPending(false) && router('/dashboard')
-		}
-		catch(err){
-			setRequestPending(false)
-			console.log(err)
+				setErrMessage('Sign up Failed')
+				setRequestFailed(true)
+				setRequestPending(false)
+				console.log(err)
+			}
 		}
 	};
+	const clearForm = () => {
+		setBusinessName('')
+		setEmail('')
+		setPassword('')
+		setConfirmPassword('')
+	}
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [passwordShown1, setPasswordShown1] = useState(false);
 
@@ -67,19 +148,6 @@ function Signup() {
 				</h2>
 				<p>Sign up to begin with us</p>
 				<div className='form'>
-					<div className='business-name'>
-						<label htmlFor='business-name'>Business Name</label>
-						<input
-							type="text"
-							className=""
-							id="business-name"
-							value={businessName}
-							name="first_name"
-							onChange={(e) => setBusinessName(e.target.value)}
-							placeholder="e.g Mark and sons"
-							required
-						/>
-					</div>
 					<div className="email">
 						<label htmlFor="email">Email</label>
 						<input
@@ -88,32 +156,133 @@ function Signup() {
 							id="email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
+							onFocus={() => setEmailFocus(true)}
+							onBlur={() => setEmailFocus(false)}
 							placeholder="e.g Marksons@gmail.com"
+							className={!emailValid && triedToSubmit ? 'invalid' : ''}
 							required
 						/>
+						{ !emailValid && !emailFocus && triedToSubmit && <ErrorMessage error={ email === '' ? "Enter Your Email" : "Enter A Valid Email"}/>}
 					</div>
 					<div className="password">
 						<label htmlFor="Password">Password</label>
-						<div className="password-input">
+						{
+							<p style={{fontSize: '14px', lineHeight: '20px', marginBottom: '10px'}}>
+								Minimum eight characters, 
+								at least one uppercase letter,
+								one lowercase letter, 
+								one number and one special character:
+							</p>
+						}
+						<div className={ triedToSubmit && !passwordValid ? "invalid password-input" : "password-input"}>
 							<input  
 								onChange={(e) => setPassword(e.target.value)}
 								value={password}
-								type={passwordShown ? 'text' : 'password'} className='' placeholder='6+ character long' />
-						<button onClick={togglePassword}>
-							<img src={Closed} alt="" />{' '}
-						</button>
+								type={passwordShown ? 'text' : 'password'} className='' placeholder='6+ character long' 
+								onFocus={() => setPasswordFocus(true)}
+								onBlur={() => setPasswordFocus(false)}
+							/>
+							<button onClick={togglePassword}>
+								<img src={Closed} alt="" />{' '}
+							</button>
 						</div>
-						
+						{ !passwordValid && !passwordFocus && triedToSubmit && <ErrorMessage error={ password === '' ? 'Enter Your Password': "Enter A Valid Password"}/>}
 					</div>
 					<div className="password">
 						<label htmlFor="Password">Re-enter password</label>
-						<div className="password-input">
-							<input  type={passwordShown ? 'text' : 'password'} className='' placeholder='6+ character long' />
-						<button onClick={togglePassword1}>
-							<img src={Closed} alt="" />{' '}
-						</button>
+						<div className={ !confirmPasswordValid && triedToSubmit ? 'invalid password-input' : 'password-input' }>
+							<input  
+								type={passwordShown1 ? 'text' : 'password'} 
+								placeholder='6+ character long' 
+								value={confirmPassword}
+								onChange={(e) => setConfirmPassword(e.target.value)}
+								onFocus={() => setConfirmPasswordFocus(true)}
+								onBlur={() => setConfirmPasswordFocus(false)}
+							/>
+							<button onClick={togglePassword1}>
+								<img src={Closed} alt="" />{' '}
+							</button>
+						</div>
+						{ !confirmPasswordValid && !confirmPasswordFocus && triedToSubmit && 
+							<ErrorMessage 
+								error={
+									confirmPassword === '' 
+										? 
+										'Confirm Your Password'
+										:
+										confirmPassword === password 
+											?
+											"Password Is Invalid"
+											:
+											"Passwords Don't Match"
+								}
+							/>
+						}
+					</div>
+					<div className='account-type'>
+						<div className='business'>
+							<input type="radio" checked={ userType === 'business'}  value="business" onClick={() => setUserType('business')}  name="user_type" />
+							<label htmlFor="html">Business</label>
+						</div>
+						<div className='lawyers'>
+							<input type="radio" checked={ userType === 'lawyer'}  value="lawyer" name="user_type" onClick={() => setUserType('lawyer')}/>
+							<label htmlFor="css">I am a lawyer</label>
 						</div>
 					</div>
+					{ userType === 'business' &&
+					<div className='business-name'>
+						<label htmlFor='business-name'>Business Name</label>
+						<input
+							type="text"
+							className={ triedToSubmit && !businessNameValid ? "invalid" : ''}
+							id="business-name"
+							value={businessName}
+							name="first_name"
+							onChange={(e) => setBusinessName(e.target.value)}
+							onFocus={() => setBusinessNameFocus(true)}
+							onBlur={() => setBusinessNameFocus(false)}
+							placeholder="e.g Mark and sons"
+							required
+						/>
+						{ !businessNameFocus && !businessNameValid && triedToSubmit && <ErrorMessage error="Enter Your Business Name"/>}
+					</div>
+					}
+					{	userType === 'lawyer' &&
+					<>
+						<div className='business-name'>
+							<label htmlFor='business-name'>First Name</label>
+							<input
+								type="text"
+								className={ triedToSubmit && !lawyerNameValid ? "invalid" : ''}
+								id="business-name"
+								value={lawyerName}
+								name="first_name"
+								onChange={(e) => setLawyerName(e.target.value)}
+								onFocus={() => setLawyerNameFocus(true)}
+								onBlur={() => setLawyerNameFocus(false)}
+								placeholder="Enter your first name"
+								required
+							/>
+							{ !lawyerNameFocus && !lawyerNameValid && triedToSubmit && <ErrorMessage error="Enter Your First Name"/>}
+						</div>
+						<div className='business-name'>
+							<label htmlFor='business-name'>Last Name</label>
+							<input
+								type="text"
+								className={ triedToSubmit && !lawyerSurnameValid ? "invalid" : ''}
+								id="business-name"
+								value={lawyerSurname}
+								name="first_name"
+								onChange={(e) => setLawyerSurname(e.target.value)}
+								onFocus={() => setLawyerSurnameFocus(true)}
+								onBlur={() => setLawyerSurnameFocus(false)}
+								placeholder="Enter your last name"
+								required
+							/>
+							{ !lawyerSurnameFocus && !lawyerSurnameValid && triedToSubmit && <ErrorMessage error="Enter Your Last Name"/>}
+						</div>
+					</>
+					}
 					<button type="submit" onClick={handleSubmit} className='create'>
 						{
 							!requestPending
@@ -135,6 +304,7 @@ function Signup() {
 						<img src={facebook_icon} alt=""/>
 						<img src={apple_icon} alt=""/>
 					</div>
+					<p>Already have an account ? <span onClick={() => router('/login')}>Sign In</span></p>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
 			<div className="logo" > 
@@ -156,6 +326,25 @@ const StyledSignupWrapper = styled.div`
 			}
 		}
 	}
+	.account-type{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+		margin-top: 20px;
+		div{
+			display: flex;
+			align-items: center;
+			input{
+				width: 20px;
+				height: 20px;
+				margin-right: 10px;
+			}
+			label{
+				font-size: 18px;
+				margin-bottom: 0 !important;
+			}
+		}
+	}
 	.logo{
 		position: fixed;
 		max-width: 1440px;
@@ -164,6 +353,9 @@ const StyledSignupWrapper = styled.div`
 		padding-right: 10px;
 		width: 100%;
 		justify-content: flex-end;
+	}
+	.invalid{
+		border-color: #D8340F !important;
 	}
 `;
 const StyledSignupOptions = styled.div`
@@ -189,6 +381,7 @@ const StyledSignupOptions = styled.div`
 			text-align: left;
 			color: #6F7174;
 			white-space: nowrap;
+			margin-top: 0 !important;
 		}
 	}
 	.social-icons{
@@ -197,6 +390,21 @@ const StyledSignupOptions = styled.div`
 		width: 318px;
 		margin-top: 32px;
 		max-width: 95%;
+	}
+	p{
+		font-family: Lato;
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 18px;
+		letter-spacing: 0.01em;
+		text-align: left;
+		color: #6F7174;
+		white-space: nowrap;
+		margin-top: 32px !important;
+		span{
+			color: blue;
+			text-decoration: underline;
+		}
 	}
 `;
 const StyledFormWrapper = styled.div`
@@ -295,12 +503,12 @@ const StyledFormWrapper = styled.div`
 		.business-name{
 			display: flex;
 			flex-direction: column;
-			margin-top: 40px;
-			margin-bottom: 24px;
+			margin-top: 24px;
 		}
 		.email{
 			display: flex;
 			flex-direction: column;
+			margin-top: 40px;
 		}
 		.password{
 			margin-top: 24px;
