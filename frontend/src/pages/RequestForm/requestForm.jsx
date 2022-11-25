@@ -88,7 +88,7 @@ const RequestForm = () => {
 
         <span className='container-title1'>Request Removal Form</span>
 
-        <h2 className='container-title'>Kindly Fill in your complain</h2>
+        <h2 className='container-title'>Kindly Fill in your complaint</h2>
         {/********************START OF FORM*************************************************/}
         <form className='form'>
 
@@ -196,6 +196,10 @@ const StyledContainers = styled.div`
     padding-bottom: 50px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+      @media (max-width: 500px){
+                  width: 80vw !important;
+              }
+
       .container-title1 {
         font-size:20px;
         
@@ -205,6 +209,10 @@ const StyledContainers = styled.div`
           font-size:24px;
           margin-top: 40px;
         }
+
+        @media (max-width: 500px){
+                  width: 80vw !important;
+              }
 
         .form {
        
@@ -231,6 +239,10 @@ const StyledContainers = styled.div`
                 border-radius: 8px;
                 font-size: 16px;
                 outline: none;
+
+                @media (max-width: 500px){
+                  width: 80vw !important;
+              }
               }
             }
 
@@ -238,6 +250,12 @@ const StyledContainers = styled.div`
               margin-top: 16px;
               width: 100%;
               display: flex;
+
+              @media (max-width: 500px){
+                  flex-direction: column;
+                  width: 80vw !important;
+                  gap: 10px;
+              }
 
               .date-picker, .time-picker {
                 width: 160px;
@@ -256,6 +274,8 @@ const StyledContainers = styled.div`
                   border: 1px solid #D2D3D4;
                 border-radius: 8px;
                 outline: none;
+
+                
                 }
               }
             }
