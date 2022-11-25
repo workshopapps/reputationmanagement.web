@@ -19,6 +19,7 @@ import {
 import DescriptionProps from './DescriptionProps';
 import CarrerLandImg from '../../assets/images/CarrerLand.png';
 import JobProps from './JobProps';
+import PageLayout from '../../layout/PageLayout';
 
 const StyledHeader = styled.h1`
 	color: #fdb172;
@@ -67,6 +68,7 @@ const style = {
 
 function Carrerpg1() {
 	return (
+		<PageLayout>
 		<div className="carrer-landing-pg py-12">
 			<section className="flex justify-between items-center py-4 px-10 flex-col-reverse lg:flex-row">
 				<div>
@@ -175,6 +177,7 @@ function Carrerpg1() {
 				</Link>
 			</StyledBackGround>
 		</div>
+		</PageLayout>
 	);
 }
 
