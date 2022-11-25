@@ -1,3 +1,4 @@
+import React from 'react'
 import fixlogo from '../../../assets/images/Fix-it-Recovered-removebg-preview 1.png';
 
 function FooterSocials() {
