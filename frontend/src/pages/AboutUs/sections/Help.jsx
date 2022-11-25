@@ -10,7 +10,7 @@ import {
 export default function Help() {
 	return (
 		<>
-			<StyledBgImgDesktop>
+			<StyledBgImgDesktop data-testid="help-element">
 				<StyledCenter>
 					<Blue>Let’s help you remove that negative review</Blue>
 					<Link to="/signup">

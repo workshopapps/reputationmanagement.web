@@ -12,7 +12,7 @@ import SImg from '../img/Our-Story.png';
 export default function Story() {
 	return (
 		<>
-			<StyledStory>
+			<StyledStory data-testid="story-element">
 				<StyledStorytxt>
 					<StoryHead>Our Story</StoryHead>
 					<StoryP>
