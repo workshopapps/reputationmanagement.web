@@ -12,7 +12,11 @@ export const StyledRequestSuccessfulSm = styled.div`
         letter-spacing: -0.015em;
         color: #2B2C34;
         margin-bottom: 34px;
-        margin-top: 63px;
+        margin-top: 45px;
+
+        @media (max-idth: 500px){
+            margin-top: 0;
+        }
     }
     p{
         font-family: Lato;
@@ -38,5 +42,6 @@ export const StyledRequestSuccessfulSm = styled.div`
         text-align: center;
         color: #ffffff;
         margin-top: 100px;
+        margin-bottom: 45px;
     }
 `;
