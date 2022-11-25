@@ -1,24 +1,24 @@
-import { useEffect } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import Api from "./axios";
 
-const updateAccessToken = () => {
+const useRefreshToken = () => {
     const { setAuth } = useAuthContext();
 
-    useEffect(() => {
-        const requestNewToken = async() => {
-            try{
-                const response = await Api.get('/auth/access_token',{
-                    withCredentials: true,
-                })
+    const refresh = async () => {
+        const response = await Api.get('/refresh', {
+            withCredentials: true
+        });
+        setAuth(prev => {
+            console.log(JSON.stringify(prev));
+            console.log(response.data.accessToken);
+            return {
+                ...prev,
+                roles: response.data.roles,
+                accessToken: response.data.accessToken
             }
-            catch(err){
-                console.error(err)
-            }
-        }
-    })
-    return(
-        <h1>Hello</h1>
-    )
+        });
+        return response.data.accessToken;
+    }
+    return refresh;
 }
-export default updateAccessToken;
+export default useRefreshToken;
