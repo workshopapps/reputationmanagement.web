@@ -28,6 +28,7 @@ import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
 import ScrollToTop from '../components/ScrollToTop';
 import RequireAuth from './requireAuth';
+import SupportPage from '../pages/Support';
 
 
 const Router = () => {
@@ -73,7 +74,10 @@ const Router = () => {
 				<Route path='/profile' element={<Profile />}/>
 				<Route path="/request-form" element={<RequestForm />} />
 
-				<Route path="blog" element={<Blog />} />
+				<Route path="/blog" element={<Blog />} />
+				<Route path="/our-team" element={<Ourteam />} />
+				<Route path="/support" element={<SupportPage />} />
+
 				<Route path="*" element={<ErrorPage />} />
 				<Route path="our-team" element={<Ourteam />} />
 				<Route path="/settings" element={<Settings />} />
