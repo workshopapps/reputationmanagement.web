@@ -31,7 +31,7 @@ const FooterData = [
         },
         {
             text: "Contact Us",
-            url: "/contact-us"
+            url: "/contact"
         },
         {
             text: "FAQ",
