@@ -38,5 +38,6 @@ export const StyledRequestSuccessfulSm = styled.div`
         text-align: center;
         color: #ffffff;
         margin-top: 100px;
+        margin-bottom: 45px;
     }
 `;
