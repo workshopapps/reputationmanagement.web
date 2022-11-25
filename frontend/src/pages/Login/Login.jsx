@@ -8,7 +8,7 @@ import google from '../Sign-up/Assets/google-icon.svg';
 import img1 from '../Sign-up/Assets/loginBG.svg';
 import styled from "styled-components";
 import { FaRegEyeSlash } from 'react-icons/fa';
-import Api from '../../api/axios.';
+import Api from '../../api/axios';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext'

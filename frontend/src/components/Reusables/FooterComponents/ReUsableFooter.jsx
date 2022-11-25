@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import FooterLinks from './FooterLinks';
 import FooterSocials from './FooterSocials';
 
-function Footer() {
+const Footer = () => {
 	return (
 		<footer className="bg-[#233BA9] w-full">
 			<StyledFooterWrapper >
@@ -18,6 +18,7 @@ function Footer() {
 		</footer>
 	);
 }
+export default Footer;
 const StyledFooterWrapper = styled.div`
 	display: flex;
 	height: 100%;
@@ -33,4 +34,3 @@ const StyledFooterWrapper = styled.div`
 		text-align: left;
 	}
 `;
-export default Footer;
