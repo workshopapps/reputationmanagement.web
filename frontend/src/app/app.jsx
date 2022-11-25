@@ -5,7 +5,7 @@ import Router from '../router/router';
 
 function App() {
 	return (
-		<div className="app" style={{ maxWidth: '1440px', margin: '0 auto' }}>
+		<div className="app" style={{ maxWidth: '1540px', margin: '0 auto' }}>
 			<AppProvider>
 				<AuthProvider>
 					<Router />

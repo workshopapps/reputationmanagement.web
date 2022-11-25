@@ -7,7 +7,6 @@ import {
 	StyledHerotxt,
 	StyledHerotxtSpan,
 	StyledOrange,
-	MobImg,
 	ImgContainer,
 	StyledBtn,
 	DeskImg,
