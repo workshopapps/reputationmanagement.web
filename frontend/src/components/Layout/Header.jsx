@@ -13,7 +13,7 @@ const Header = () => {
 	const currentRoute = location.pathname;
 	const router = useNavigate();
 	return (
-		<header style={{ width: '100%' }}>
+		<header style={{ width: '100%', position: 'fixed', maxWidth: '1540px', top: '0', backgroundColor: '#ffffff', zIndex: '5' }}>
 			<StyledContainer>
 				<StyledNav className="">
 					<img src={Logo} alt="FixIt" className="logo" />

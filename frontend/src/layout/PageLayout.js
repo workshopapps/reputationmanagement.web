@@ -5,7 +5,7 @@ import Footer from '../components/Reusables/FooterComponents/ReUsableFooter';
 const PageLayout = ({ children }) => {
 	
 	return (
-		<main>
+		<main style={{ paddingTop: '90px'}}>
 			<Header />
 			{children}
 			<Footer />

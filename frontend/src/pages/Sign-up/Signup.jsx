@@ -139,8 +139,10 @@ function Signup() {
 			backgroundImage:`url(${background})`, 
 			backgroundRepeat:"no-repeat", 
 			backgroundSize:"cover",
+			backgroundPosition: 'fixed',
 			display: 'flex',
 			width: '100%',
+			backgroundAttachment: 'fixed',
 			}}>
 			<StyledFormWrapper>
 				<h2>
