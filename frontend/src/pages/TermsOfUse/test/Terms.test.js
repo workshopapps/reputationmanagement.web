@@ -7,13 +7,13 @@ test('should render Terms of Use Page', () => {
  render( <Router>
  <Termsofuse/>
  </Router>)
-  const terms =screen.getByTestId('terms')
+  const terms = screen.getByTestId('terms')
 expect(terms).toBeInTheDocument();
  })
  test('Heading text should be present', () => {
    render( <Router>
    <Termsofuse/>  
    </Router>)
-    const headtext =screen.getByTestId('headingtext')
-  expect(headtext).toBeInTheDocument();
+    const HeadText =screen.getByTestId('headingtext')
+  expect(HeadText).toBeInTheDocument();
    })
