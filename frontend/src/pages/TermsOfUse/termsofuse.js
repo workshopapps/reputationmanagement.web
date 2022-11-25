@@ -16,14 +16,14 @@ text-align:justify;
 
 const Termsofuse = () => {
    const Heading =({text})=>(
-<Headtext >{text} </Headtext>
+<Headtext>{text} </Headtext>
    )
   return (
 
-<div data-testid='terms'>
+<>
 <PageLayout>
-<div  className='flex  md:py-10 justify-center md:justify-start pl-[10%] mt-2 mb-8 bg-[#E4E4E5] h-[10vh] items-center md:mt-5'  >
-<h1 data-testid='headingtext' className='text-xl md:text-4xl text-[#557091] flex align-center' > Terms & Conditions </h1>
+<div className='flex  md:py-10 justify-center md:justify-start pl-[10%] mt-2 mb-8 bg-[#E4E4E5] h-[10vh] items-center md:mt-5'  >
+<h1 className='text-xl md:text-4xl text-[#557091] flex align-center' > Terms & Conditions </h1>
 </div>
     <div className='w-4/5 m-auto pb-5'>     
 
@@ -249,7 +249,7 @@ CA 940631-800-348-5031
 
     </div>
 </PageLayout>
-    </div>
+    </>
   )
 }
 
