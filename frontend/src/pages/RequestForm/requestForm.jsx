@@ -84,7 +84,7 @@ const RequestForm = () => {
 			/>
 			<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
       <StyledContainer >
-      <StyledContainers className="container" >
+      <StyledContainers className="container" data-testid='request-form' >
 
         <span className='container-title1'>Request Removal Form</span>
 
