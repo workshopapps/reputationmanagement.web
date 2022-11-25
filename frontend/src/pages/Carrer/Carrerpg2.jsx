@@ -9,6 +9,8 @@ import {
 import SearchIcon from '../../assets/images/Search.png';
 import MenuIcon from '../../assets/images/menu.png';
 import styled from 'styled-components';
+import PageLayout from '../../layout/PageLayout';
+
 const StyledBackGround = styled.section`
 	background: #233ba9;
 	border-radius: 8px;
@@ -27,6 +29,7 @@ const StyledSelect = styled.select`
 
 function Carrerpg2() {
 	return (
+		<PageLayout>
 		<div>
 			<StyledBackGround className="flex flex-col text-white items-center justify-center p-4">
 				<h1 className="text-3xl">All Open Positions</h1>
@@ -113,6 +116,7 @@ function Carrerpg2() {
 				</div>
 			</section>
 		</div>
+		</PageLayout>
 	);
 }
 

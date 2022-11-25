@@ -29,7 +29,10 @@ export const StoryP = styled.p`
 	font-size: 16px;
 	font-weight: bold;
 	max-width: 625px;
+	color: #4D5154;
+	line-height: 150%;
 	font-family: 'lato', sans-serif;
+	margin-bottom: 10px;
 	@media (max-width: 375px) {
 		font-size: 14px;
 		padding: 0 10px;
