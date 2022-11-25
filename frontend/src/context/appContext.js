@@ -7,6 +7,10 @@ const AppProvider = ({children}) => {
     const [ someState, setSomeState ] = useState(0);
     const [ requestSuccessfulModalActive, setRequestSuccessfulModalActive ] = useState(false)
     const [ allRequests, setAllRequests ] = useState(TableDatas);
+    const [ errMessage, setErrMessage ] = useState('Sign up Failed');
+    const [ successMessage, setSuccessMessage ] = useState('Sign up Failed');
+    const [ requestSuccess, setRequestSuccess ] = useState(false);
+	const [ requestFailed, setRequestFailed ] = useState(false);
     return(
         <AppContext.Provider 
             value={{
@@ -16,6 +20,14 @@ const AppProvider = ({children}) => {
                 setRequestSuccessfulModalActive,
                 allRequests,
                 setAllRequests,
+                requestSuccess,
+                setRequestSuccess,
+                errMessage,
+                setErrMessage,
+                requestFailed,
+                setRequestFailed,
+                successMessage,
+                setSuccessMessage
             }}
         >
             {children}

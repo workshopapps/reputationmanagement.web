@@ -15,6 +15,7 @@ import TrustImg from '../img/Trust.png';
 import ProfessionalImg from '../img/Professionalism.png';
 import Convenience from '../img/Convenience.png';
 
+
 export default function Fix() {
 	return (
 		<>
@@ -25,6 +26,7 @@ export default function Fix() {
 			<StyledFixBox>
 				<StyledFixCenter>
 					<ImgsContainer>
+				
 						<StyledFixImg src={TrustImg} alt="trust" />
 					</ImgsContainer>
 

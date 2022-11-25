@@ -1,6 +1,7 @@
 import styled from "styled-components";
 //import ReactStars from 'react-stars'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Checkbox from "../../components/requestFormComponents/checkBox";
 import Rate from "../../components/requestFormComponents/rating";
 import Sidebar from '../../components/Reusables/Sidebar';
@@ -9,13 +10,14 @@ import {StyledDashboard, StyledContainer} from '../../components/Dashboard/Style
 import useAppContext from '../../hooks/useAppContext';
 import RequestSuccessful from '../../modal/request-successful/requestSuccessful';
 import google from '../../assets/images/Dashboard/google.jpg';
+import Api from '../../api/axios'
 
 
 
 
 
 const RequestForm = () => {
-
+  const router = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [rating, setRating] = useState(0);///set initial state for rating
 
@@ -31,19 +33,47 @@ const RequestForm = () => {
   //const [name, setName] = useState("");
   const { setRequestSuccessfulModalActive, requestSuccessfulModalActive, setAllRequests, allRequests } = useAppContext();
 
-  const handleSubmit = () => {
-    setAllRequests((prev) => {
-      return [...prev,{
-        id: Math.floor(Math.random() * 6),
-        no: allRequests.length + 1,
-        priority: priority,
-        ticketName: websitename,
-        source: google,
-        lastUpdated: 'Now',
-        status: 'Pending',
-      }]
-    })
-  }
+  const handleSubmit = async(e) => {
+      e.preventDefault();
+      setRequestSuccessfulModalActive(false)
+      try{
+        const response = await Api.post('', () => {
+          setAllRequests((prev) => {
+            return [...prev,
+              {
+              id: Math.floor(Math.random() * 6),
+              no: allRequests.length + 1,
+              priority: priority,
+              ticketName: websitename,
+              source: google,
+              lastUpdated: 'Now',
+              status: 'Pending',
+            }
+          ]
+          });
+          return {
+              id: Math.floor(Math.random() * 6),
+              no: allRequests.length + 1,
+              rating: rating,
+              priority: priority,
+              ticketName: websitename,
+              source: google,
+              date: date,
+              review: review,
+              // lastUpdated: 'Now',
+              status: 'Pending',
+          }
+        }
+            
+        )
+        console.log(response?.data)
+        response && setRequestSuccessfulModalActive(true) && router('/request-successful')
+      }
+      catch(err){
+        setRequestSuccessfulModalActive(false)
+        console.log(err)
+      }
+  };
   return (
     <>
     { requestSuccessfulModalActive &&  <RequestSuccessful/>}
