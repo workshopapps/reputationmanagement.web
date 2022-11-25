@@ -29,6 +29,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import RequireAuth from './requireAuth';
 import Layout from '../layout/layout';
 import SupportPage from '../pages/Support';
+import Contact from '../pages/ContactUs/Contact';
 
 const Router = () => {
 	return (
@@ -79,6 +80,7 @@ const Router = () => {
 				<Route path="/support" element={<SupportPage />} />
 
 				<Route path="*" element={<ErrorPage />} />
+				<Route path='/contact' element={<Contact />}/>
 			</Routes>
 		</BrowserRouter>
 	);
