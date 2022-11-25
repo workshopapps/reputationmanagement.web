@@ -25,18 +25,22 @@ import Ourteam from '../pages/Carrer/Ourteam';
 import Profile from '../pages/profile/Profile'
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
+import ScrollToTop from '../components/ScrollToTop';
 import RequireAuth from './requireAuth';
 import Layout from '../layout/layout';
+import SupportPage from '../pages/Support';
 
 const Router = () => {
 	return (
 		<BrowserRouter>
+		<ScrollToTop/>
 			<Routes>
 				{/* PROTECTED ROUTES */}
 				<Route element={<RequireAuth/>}>
 					<Route path="/dashboard" element={<Layout><DashboardPage /></Layout>} />
 					<Route path='/lawyer-dashboard' element={<Layout><LawyerDashboard /></Layout>} />
 				</Route>
+				<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 				<Route path="/" element={<LandingPage />} />
 				<Route path='/login' element={<Layout><Login/></Layout>} />
 				<Route path="/signup" element={<Layout><Signup /></Layout>} />
@@ -70,9 +74,11 @@ const Router = () => {
 				<Route path='/profile' element={<Profile />}/>
 				<Route path="/request-form" element={<RequestForm />} />
 
-				<Route path="blog" element={<Blog />} />
+				<Route path="/blog" element={<Blog />} />
+				<Route path="/our-team" element={<Ourteam />} />
+				<Route path="/support" element={<SupportPage />} />
+
 				<Route path="*" element={<ErrorPage />} />
-				<Route path="our-team" element={<Ourteam />} />
 			</Routes>
 		</BrowserRouter>
 	);

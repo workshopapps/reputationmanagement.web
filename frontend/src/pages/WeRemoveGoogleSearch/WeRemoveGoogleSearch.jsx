@@ -377,7 +377,9 @@ export const CenterObject = Styled.section`
   	justify-content: center;
   	align-items: center;
 
-	
+	a{
+		min-width: 100%;
+	}
 `;
 
 export const StyledText2 = Styled(StyledText)`
@@ -428,7 +430,7 @@ export const StyledButton = Styled.button`
     @media screen and (max-width: 460px) {
         margin-bottom: ${(props) => (props.bottom ? '20px' : 0)};
         margin-top: ${(props) => (props.top ? '20px' : 0)};
-        width: ${(props) => (props.width ? '70%' : '')};
+        min-width: ${(props) => (props.width ? '94%' : '')};
         padding: 20px 40px;
     }
     

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import google_icon from './Assets/google-icon.svg';
 import facebook_icon from './Assets/facebook-icon.svg';
 import apple_icon from './Assets/apple-icon.svg';
-import Api from '../../api/axios.';
+import Api from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
