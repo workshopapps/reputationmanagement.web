@@ -26,6 +26,7 @@ import Profile from '../pages/profile/Profile'
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
 import RequireAuth from './requireAuth';
+import Layout from '../layout/layout';
 
 const Router = () => {
 	return (
@@ -33,12 +34,12 @@ const Router = () => {
 			<Routes>
 				{/* PROTECTED ROUTES */}
 				<Route element={<RequireAuth/>}>
-					<Route path="/dashboard" element={<DashboardPage />} />
-					<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+					<Route path="/dashboard" element={<Layout><DashboardPage /></Layout>} />
+					<Route path='/lawyer-dashboard' element={<Layout><LawyerDashboard /></Layout>} />
 				</Route>
 				<Route path="/" element={<LandingPage />} />
-				<Route path='Login' element={<Login />} />
-				<Route path="/signup" element={<Signup />} />
+				<Route path='/login' element={<Layout><Login/></Layout>} />
+				<Route path="/signup" element={<Layout><Signup /></Layout>} />
 			
 				<Route path="/about-us" element={<AboutPage />} />
 
