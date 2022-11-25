@@ -23,15 +23,25 @@ export default Footer;
 const StyledFooterWrapper = styled.div`
 	display: flex;
 	height: 100%;
-	flex-direction: row;
-	text-align: center;
+	flex-direction: column;
+	text-align: left;
 	gap: 32px;
+	padding-top: 40px;
+	padding-bottom:20px;
 	align-items: center;
-	padding: 3.5rem 2.5rem !important;
 	justify-content: space-between;
-	@media (max-width: 1200px){
-		flex-direction: column;
+	@media (min-width: 600px){
+		padding: 40px 30px;
 		gap: 50px;
 		text-align: left;
 	}
+	@media (min-width: 768px){
+		padding: 40px 50px;
+
+	}
+	@media (min-width: 990px){
+flex-direction:row;
+	}
+
+
 `;
