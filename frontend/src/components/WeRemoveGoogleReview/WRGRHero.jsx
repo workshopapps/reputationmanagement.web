@@ -13,6 +13,7 @@ import circular from '../../assets/images/wrgr/circular.png'
 import ob from '../../assets/images/wrgr/ob.png'
 import tyme from '../../assets/images/wrgr/tyme.png'
 import sushi from '../../assets/images/wrgr/sushi.png'
+import g_oogle from '../../assets/images/wrgr/review-G.svg'
 
 
 const WRGRHero = () => {
@@ -20,15 +21,15 @@ const WRGRHero = () => {
     <>
       <Wrapper className='col-md-10 ml-auto mr-auto text-center mt-5'>
         <StyledContainer>
-          <StyledH1 black className='h1'>
-            Remove negative google reviews.
+          <TextH1 black className='h1'>
+            Remove negative google reviews.<br />
             Improve your company’s conversion rate.
-          </StyledH1>
-          <StyledText className="my-4 h5 text-center">
+          </TextH1>
+          <TextH2 className="">
             Remove your negative google reviews, save your brand’s reputation and increase customer retention rate.
-          </StyledText>
+          </TextH2>
 
-          <div className="mt-5">
+          <Buttons className="mt-5">
             <StyledButton>
               <Link to="/#">
                 Sign up
@@ -39,7 +40,8 @@ const WRGRHero = () => {
                 Get a quote
               </Link>
             </StyledButton>
-          </div>
+          </Buttons>
+
           <div className="user ">
             <h5>
               Used and loved by 1M users across 199 countries
@@ -63,6 +65,9 @@ const WRGRHero = () => {
 export default WRGRHero
 
 const Wrapper = Styled.div`
+background-image:url(${g_oogle});
+background-repeat:no-repeat;
+background-position: left top;
 padding: 2rem; 
 
  
@@ -73,7 +78,12 @@ h1{
 
 button {
   margin:0 0.7rem ;
-  width: 25% ;
+  width: 200px ;
+
+  @media (max-width:520px) {
+    margin-top:10px;
+       }
+  
 }
 
 a:hover {
@@ -87,8 +97,52 @@ h5{
 }
 
 .user{
-  margin-top: 3rem;
+  margin-top: 90px;
+  margin-bottom: 60px;
   padding: 1rem;
 box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
 }
-`
+`;
+
+const TextH2 = Styled.h2`
+font-weight: 600;
+font-size: 24px;
+line-height: 150%;
+margin-top:60px;
+padding-left:30px;
+  text-align:center;
+
+  @media (max-width:800px) {
+    font-size: 20px;
+            }
+
+            @media (max-width:520px) {
+    font-size: 15px;
+            }
+`;
+
+const TextH1 = Styled.h2`
+font-weight: 700;
+font-size: 57px;
+line-height: 150%;
+margin-top:20px;
+  text-align:center;
+  padding-left:30px;
+
+  @media (max-width:1000px) {
+    font-size: 37px;
+            }
+
+  @media (max-width:800px) {
+    font-size: 27px;
+            }
+
+  @media (max-width:520px) {
+    font-size: 20px;
+            }
+`;
+
+const Buttons = Styled.div`
+margin-top:100px;
+`;
+

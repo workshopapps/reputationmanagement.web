@@ -15,19 +15,16 @@ export const StyledBgImgDesktop = styled.div`
 `;
 
 export const StyledCenter = styled.div`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
-	);
+	//@import url('https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type= 'text/css');
+width: 100%;
 	display: flex;
 	justify-content: center;
-	postition: absolute;
+	position: absolute;
 	flex-direction: column;
 	align-items: center;
 	@media (min-width: 375px) {
-		padding-left: 3rem;
-		padding-top: 1rem;
+		//padding-left: 3rem;
+		//padding-top: 1rem;
 	}
 `;
 export const Btn = styled.button`
