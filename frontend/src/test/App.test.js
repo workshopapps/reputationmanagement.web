@@ -1,7 +1,7 @@
-import { render } from '@testing-library/react';
-import App from '../app/app'
 import React from 'react'
+import { render } from '@testing-library/react';
+import App from '../app/app.jsx';
 
-test('App renders successfully without crashing', () => {
-  render(<App />);
+test('should rener app successfully', () => {
+	render(<App />);
 });

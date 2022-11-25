@@ -69,7 +69,7 @@ const LandingPage = () => {
 							<StyledH2Center>How We Fixit</StyledH2Center>
 						</div>
 						<picture>
-							<source media="(max-width: 640px)" srcset={steps_mobile} />
+							<source media="(max-width: 640px)" srcSet={steps_mobile} />
 							<img src={steps} alt="complaint screen" />
 						</picture>
 
