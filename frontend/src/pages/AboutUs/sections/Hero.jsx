@@ -17,7 +17,7 @@ import {
 export default function Hero() {
 	return (
 		<>
-			<StyledHero>
+			<StyledHero data-testid="hero-element">
 				<ImgContainerMain>
 				<ImgContainer>
 				<picture>
