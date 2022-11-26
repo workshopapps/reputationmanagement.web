@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const StyledRequestSuccessfulSm = styled.div`
+    padding-top: 90px;
+`;
+export const StyledRequestSuccessfulSmBody = styled.div`\
     display: flex;
     flex-direction: column;
     align-items: center;

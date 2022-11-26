@@ -13,6 +13,7 @@ import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAuthContext from '../../hooks/useAuthContext';
 import useAppContext from '../../hooks/useAppContext';
+import CryptoJS from 'crypto-js';
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
@@ -50,7 +51,7 @@ function Signup() {
 	const { setAuth } = useAuthContext();
 	
 	const [ userType, setUserType ] = useState('business')
-	const [ nameValid, setNameValid ] = useState(false)
+	const [ nameValid, setNameValid ] = useState(false);
 
 	const path = userType === 'business' ? '/auth/create_account' : '/lawyer/auth/create_account' 
 	useEffect(() => {
@@ -95,6 +96,9 @@ function Signup() {
 				)
 				console.log(response)
 				setAuth({ 'email': email, 'accessToken': response.data})
+				localStorage.setItem('user_email', email)
+				const encryptedToken = (CryptoJS.AES.encrypt(JSON.stringify(response?.data?.accessToken), 'AccessToken'));
+				localStorage.setItem('accessToken', encryptedToken)
 				setRequestPending(false) 
 				setSuccessMessage('Account Created')
 				setRequestSuccess(true)
