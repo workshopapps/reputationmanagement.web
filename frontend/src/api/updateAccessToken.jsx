@@ -1,24 +1,15 @@
-import useAuthContext from "../hooks/useAuthContext";
 import Api from "./axios";
+import CryptoJS from "crypto-js";
 
-const useRefreshToken = () => {
-    const { setAuth } = useAuthContext();
-
+const useAccessToken = () => {
     const refresh = async () => {
         const response = await Api.get('/refresh', {
             withCredentials: true
-        });
-        setAuth(prev => {
-            console.log(JSON.stringify(prev));
-            console.log(response.data.accessToken);
-            return {
-                ...prev,
-                roles: response.data.roles,
-                accessToken: response.data.accessToken
-            }
-        });
-        return response.data.accessToken;
+        })
+       const encryptedToken = (CryptoJS.AES.encrypt(JSON.stringify(response?.data?.accessToken), 'AccessToken'));
+       localStorage.setItem('accessToken' ,encryptedToken)
+       return 'accessToken reset!!'
     }
     return refresh;
 }
-export default useRefreshToken;
+export default useAccessToken;

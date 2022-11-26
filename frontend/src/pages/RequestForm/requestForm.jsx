@@ -8,8 +8,6 @@ import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {StyledDashboard, StyledContainer} from '../../components/Dashboard/Styles/Dashboard.styled';
 import useAppContext from '../../hooks/useAppContext';
-import RequestSuccessful from '../../modal/request-successful/requestSuccessful';
-import google from '../../assets/images/Dashboard/google.jpg';
 import Api from '../../api/axios'
 
 
@@ -31,41 +29,37 @@ const RequestForm = () => {
   const [websitename, setWebsiteName] = useState("");
   const [businesstype, setBusinessType] = useState("");
   //const [name, setName] = useState("");
-  const { setRequestSuccessfulModalActive, requestSuccessfulModalActive, setAllRequests, allRequests } = useAppContext();
+  const { setRequestSuccessfulModalActive, allRequests } = useAppContext();
+
+
+        // setAllRequests((prev) => {
+      //   return [...prev,
+      //     {
+      //     id: Math.floor(Math.random() * 6),
+      //     no: allRequests.length + 1,
+      //     priority: priority,
+      //     ticketName: websitename,
+      //     source: google,
+      //     lastUpdated: 'Now',
+      //     status: 'Pending',
+      //   }
+      // ]
+      // }
 
   const handleSubmit = async(e) => {
       e.preventDefault();
-      setRequestSuccessfulModalActive(false)
+      setRequestSuccessfulModalActive(true);
       try{
-        const response = await Api.post('', () => {
-          setAllRequests((prev) => {
-            return [...prev,
-              {
-              id: Math.floor(Math.random() * 6),
-              no: allRequests.length + 1,
-              priority: priority,
-              ticketName: websitename,
-              source: google,
-              lastUpdated: 'Now',
-              status: 'Pending',
-            }
-          ]
-          });
-          return {
-              id: Math.floor(Math.random() * 6),
-              no: allRequests.length + 1,
-              rating: rating,
-              priority: priority,
-              ticketName: websitename,
-              source: google,
-              date: date,
-              review: review,
-              // lastUpdated: 'Now',
-              status: 'Pending',
-          }
+        const response = await Api.post('/api/create', {
+          id: Math.floor(Math.random() * 6),
+          no: allRequests.length + 1,
+          priority: priority,
+          ticketName: websitename,
+          source: 'google',
+          lastUpdated: 'Now',
+          status: 'Pending',
         }
-            
-        )
+      );
         console.log(response?.data)
         response && setRequestSuccessfulModalActive(true) && router('/request-successful')
       }
@@ -76,7 +70,6 @@ const RequestForm = () => {
   };
   return (
     <>
-    { requestSuccessfulModalActive &&  <RequestSuccessful/>}
     <StyledDashboard>
     <Sidebar
 				className={`${openMenu ? 'open' : ''}`}
@@ -173,7 +166,7 @@ const RequestForm = () => {
           </div>
           {/***************************************FORM SUBMIT BUTTON**********************************************/}
           <div className='btn-submit'>
-            <button onClick={(e) => { setRequestSuccessfulModalActive(true); e.preventDefault(); handleSubmit() }}>
+            <button onClick={(e) => { e.preventDefault(); handleSubmit() }}>
               Submit
             </button>
 

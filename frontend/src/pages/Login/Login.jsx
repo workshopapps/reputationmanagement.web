@@ -49,6 +49,7 @@ const Login = () => {
           }
         )
         setAuth({'email':email, 'accessToken': response.data})
+        console.log(response?.data)
         setRequestPending(false)
         router('/dashboard')
         setSuccessMessage('Login successful')

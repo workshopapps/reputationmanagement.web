@@ -95,8 +95,8 @@ function Signup() {
 					}
 				)
 				console.log(response)
-				setAuth({ 'email': email, 'accessToken': response.data})
 				localStorage.setItem('user_email', email)
+				setAuth({ 'email': localStorage.getItem('user_email')})
 				const encryptedToken = (CryptoJS.AES.encrypt(JSON.stringify(response?.data?.accessToken), 'AccessToken'));
 				localStorage.setItem('accessToken', encryptedToken)
 				setRequestPending(false) 

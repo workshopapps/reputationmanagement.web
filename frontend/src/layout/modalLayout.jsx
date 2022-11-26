@@ -1,23 +1,26 @@
 import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import RequestFailed from "../components/request status/requestFailed";
 import RequestSuccess from "../components/request status/RequestSuccess";
 import useAppContext from '../hooks/useAppContext'
+import RequestSuccessful from "../modal/request-successful/requestSuccessful";
 
-const Layout = ({children}) => {
-    const { setRequestSuccess, requestSuccess, setRequestFailed, requestFailed, errMessage, successMessage } = useAppContext();
+const ModalLayout = ({children}) => {
+    const { setRequestSuccess, requestSuccess, setRequestFailed, requestFailed, errMessage, successMessage, requestSuccessfulModalActive } = useAppContext();
     useEffect(() => {
         console.log(requestSuccess)
     },[requestSuccess])
     return(
         <StyledLayout>
+            { requestSuccessfulModalActive &&  <RequestSuccessful/>}
             <RequestSuccess setRequestSuccess={setRequestSuccess} message={successMessage} requestSuccess={requestSuccess}/>
 			<RequestFailed message={errMessage} setRequestFailed={setRequestFailed} requestFailed={requestFailed}/>
-            {children}
+            <Outlet/>
         </StyledLayout>
     )
 }
-export default Layout;
+export default ModalLayout;
 
 const StyledLayout = styled.div`
 .off-screen{
