@@ -2,7 +2,7 @@ import Styled from 'styled-components';
 
 const TeamTemplate = ({ teamTemplate }) => {
 	return (
-		<StyledContainer>
+		<StyledContainer  style={{ maxWidth: '1540px', margin: '0 auto'}}>
 			<Team>
 				{teamTemplate.map((teamMembers) => (
 					<div className="border">

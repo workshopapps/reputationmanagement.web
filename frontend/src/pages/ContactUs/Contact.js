@@ -48,7 +48,6 @@ const ContactFormSection = styled.div.attrs(props => ({
     display: flex;
     flex-direction: column;
     gap: 60px;
-    background: #EEF1FC;
     margin-top: 70px;
     padding: 70px 126px;
 
@@ -286,96 +285,98 @@ function Contact() {
             <ContactPageHeading className='contact-heading'>
                 <h1>Talk With Our Digital <span>Strategists</span></h1>
             </ContactPageHeading>
+            <div className='bg-[#EEF1FC]'>
 
-            <ContactFormSection className='contact-form-section'>
-            
-                <h3>Get Started in 3 Easy Steps</h3>
+                <ContactFormSection className='contact-form-section' style={{ maxWidth: '1540px', margin: '0 auto'}}>
+                
+                    <h3>Get Started in 3 Easy Steps</h3>
 
-                <ContactForm className='form-1'>
-                    <PersonalInfoForm className='contact-form'>
-                        <div>
-                            <img src={personIcon}/>
-                        </div>
-
-                        <h4 className='form-title'>#1 Personal Information</h4>
-
-                        <p>Fill a request form with details of your personal information</p>
-
-                        <form>
+                    <ContactForm className='form-1'>
+                        <PersonalInfoForm className='contact-form'>
                             <div>
-                                <input placeholder='' />
-                            </div>
-                            <div>
-                                <input placeholder='Company/Organization' />
-                            </div>
-                            <div>
-                                <input placeholder='Email Address' />
-                            </div>
-                            <div>
-                                <input placeholder='Phone Number' />
-                            </div>
-                            <div>
-                                <button>Next</button>
+                                <img src={personIcon}/>
                             </div>
 
-                        </form>
-                    </PersonalInfoForm>
+                            <h4 className='form-title'>#1 Personal Information</h4>
 
-                </ContactForm>
+                            <p>Fill a request form with details of your personal information</p>
 
-                <ContactForm className='form-2'>
-                    <ContactInfoForm className='contact-form contact-info-form'>
-                        <div>
-                            <img src={contactMailicon}/>
-                        </div>
+                            <form>
+                                <div>
+                                    <input placeholder='' />
+                                </div>
+                                <div>
+                                    <input placeholder='Company/Organization' />
+                                </div>
+                                <div>
+                                    <input placeholder='Email Address' />
+                                </div>
+                                <div>
+                                    <input placeholder='Phone Number' />
+                                </div>
+                                <div>
+                                    <button>Next</button>
+                                </div>
 
-                        <h4 className='form-title'>#2 Contact Information</h4>
+                            </form>
+                        </PersonalInfoForm>
 
-                        <p>Fill a request form with details of your contact information</p>
+                    </ContactForm>
 
-                        <form>
+                    <ContactForm className='form-2'>
+                        <ContactInfoForm className='contact-form contact-info-form'>
                             <div>
-                                <input placeholder='Mailing Address'/>
+                                <img src={contactMailicon}/>
                             </div>
-                            <div>
-                                <input placeholder='Country'/>
-                            </div>
-                            <div>
-                                <input placeholder='City'/>
-                            </div>
-                            <div>
-                                <input placeholder='ZIP Code'/>
-                            </div>
-                            <div>
-                                <button>Next</button>
-                            </div>
-                        </form>
-                    </ContactInfoForm>
 
-                </ContactForm>
+                            <h4 className='form-title'>#2 Contact Information</h4>
 
-                <ContactForm className='form-3'>
-                    <MessageForm className='contact-form message-form'>
-                        <div>
-                            <img src={messageIcon}/>
-                        </div>
+                            <p>Fill a request form with details of your contact information</p>
 
-                        <h4 className='form-title'>#3 Message</h4>
+                            <form>
+                                <div>
+                                    <input placeholder='Mailing Address'/>
+                                </div>
+                                <div>
+                                    <input placeholder='Country'/>
+                                </div>
+                                <div>
+                                    <input placeholder='City'/>
+                                </div>
+                                <div>
+                                    <input placeholder='ZIP Code'/>
+                                </div>
+                                <div>
+                                    <button>Next</button>
+                                </div>
+                            </form>
+                        </ContactInfoForm>
 
-                        <p>Kindly explain in detail the problem that you are currently experiencing</p>
+                    </ContactForm>
 
-                        <form>
+                    <ContactForm className='form-3'>
+                        <MessageForm className='contact-form message-form'>
                             <div>
-                                <textarea></textarea>
+                                <img src={messageIcon}/>
                             </div>
-                            <div>
-                                <button>Finish</button>
-                            </div>
-                        </form>
-                    </MessageForm>
 
-                </ContactForm>
-            </ContactFormSection>
+                            <h4 className='form-title'>#3 Message</h4>
+
+                            <p>Kindly explain in detail the problem that you are currently experiencing</p>
+
+                            <form>
+                                <div>
+                                    <textarea></textarea>
+                                </div>
+                                <div>
+                                    <button>Finish</button>
+                                </div>
+                            </form>
+                        </MessageForm>
+
+                    </ContactForm>
+                </ContactFormSection>
+            </div>
 
         </ContactPageWraper>
     </PageLayout>

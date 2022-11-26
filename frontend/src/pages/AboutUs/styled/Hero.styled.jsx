@@ -3,6 +3,8 @@ export const StyledHero = styled.div`
 	@import url('https://fonts.googleapis.com/css?family=Lato:400,700' );
 	display: flex;
 	justify-content: space-between;
+	max-width: 1540px;
+	margin: 0 auto;
 	
 	@media (max-width: 1200px) {
 		flex-direction: column-reverse;

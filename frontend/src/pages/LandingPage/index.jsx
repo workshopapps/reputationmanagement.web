@@ -24,6 +24,7 @@ import {
 	landing,
 	star_icon,
 } from './assets';
+import styled from 'styled-components';
 
 const LandingPage = () => {
 	return (
@@ -59,23 +60,25 @@ const LandingPage = () => {
 					</HeroTextDiv>
 
 					{/*****************************************************HERO IMAGE SECTION*********************************************************/}
-					<div className="HeroImage flex justify-center">
-						<div className="hero-img-text">
-							<h5>GETTING STARTED</h5>
+					<StyledHeroSectionWrapper>
+						<div className="HeroImage flex justify-center">
+							<div className="hero-img-text">
+								<h5>GETTING STARTED</h5>
 
-							<StyledH2Center>How We Fixit</StyledH2Center>
+								<StyledH2Center>How We Fixit</StyledH2Center>
+							</div>
+							<picture>
+								<source media="(max-width: 640px)" srcSet={steps_mobile} />
+								<img src={steps} alt="complaint screen" />
+							</picture>
+
+							<Link to="/signup">
+								<StyledButton className="flex items-center mx-auto">
+									<span>Get Started</span>
+								</StyledButton>
+							</Link>
 						</div>
-						<picture>
-							<source media="(max-width: 640px)" srcSet={steps_mobile} />
-							<img src={steps} alt="complaint screen" />
-						</picture>
-
-						<Link to="/signup">
-							<StyledButton className="flex items-center mx-auto">
-								<span>Get Started</span>
-							</StyledButton>
-						</Link>
-					</div>
+					</StyledHeroSectionWrapper>
 				</HeroSection>
 
 				{/************************************HOW DOES IT WORK SECTION****************************************/}
@@ -191,5 +194,10 @@ const LandingPage = () => {
 		</PageLayout>
 	);
 };
+
+const StyledHeroSectionWrapper = styled.div`
+	width:100vw;
+	background-color: #EEF1FC;;
+`;
 
 export default LandingPage;

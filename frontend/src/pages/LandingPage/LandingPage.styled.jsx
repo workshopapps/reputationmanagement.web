@@ -121,6 +121,8 @@ export const StyledLandingPage = styled.div`
 export const HeroTextDiv = styled.div`
 	display: flex;
 	justify-content: space-around;
+	margin: 0 auto;
+	max-width: 1540px;
 	margin-bottom: 70px;
 
 	@media (max-width:640px) {
@@ -225,7 +227,7 @@ export const HeroTextDiv = styled.div`
 `;
 
 export const HeroSection = styled.div`
-	padding: 24px;
+	padding: 24px 0;
 	text-align: center;
 	
 
@@ -236,8 +238,9 @@ export const HeroSection = styled.div`
 	}
 	.HeroImage {
 		flex-direction: column;
-		background-color: #EEF1FC;
 		padding: 30px 100px;
+		max-width: 1540px;
+		margin: 0 auto;
 
 		@media (max-width:640px) {
 			padding: 30px 10px;

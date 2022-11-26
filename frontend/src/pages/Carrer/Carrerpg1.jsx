@@ -70,7 +70,7 @@ function Carrerpg1() {
 	return (
 		<PageLayout>
 		<div className="carrer-landing-pg py-12">
-			<section className="flex justify-between items-center py-4 px-10 flex-col-reverse lg:flex-row">
+			<section className="flex justify-between items-center py-4 px-10 flex-col-reverse lg:flex-row" style={{ maxWidth: '1540px', margin: '0 auto'}}>
 				<div>
 					<StyledHeader>Let's grow together</StyledHeader>
 					<StyledText className="max-w-md mt-3">
@@ -99,25 +99,27 @@ function Carrerpg1() {
 					<img src={CarrerLandImg} alt="" className="w-full h-2/5" />
 				</div>
 			</section>
-			<StyledBackGround2 className=" place-items-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-				<DescriptionProps
-					src={pink}
-					title="You with us"
-					description="FIXIT employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
-				/>
-				<DescriptionProps
-					src={blue}
-					title="We are particular about growth"
-					description="FIXIT is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than FIXIT. We aspire to do bigger and better things – and take our growth and performance to new heights."
-				/>
-				<DescriptionProps
-					src={orange}
-					title="Learning and Development"
-					description="Development is vital to our people’s success and ours. The skills, knowledge and capabilities of our people are central to our success. That’s why we’re fully committed to developing a continuous learning culture.
-"
-				/>
+			<StyledBackGround2 >
+				<div className=" place-items-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4" style={{ maxWidth: '1540px', margin: '0 auto'}}>
+					<DescriptionProps
+						src={pink}
+						title="You with us"
+						description="FIXIT employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
+					/>
+					<DescriptionProps
+						src={blue}
+						title="We are particular about growth"
+						description="FIXIT is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than FIXIT. We aspire to do bigger and better things – and take our growth and performance to new heights."
+					/>
+					<DescriptionProps
+						src={orange}
+						title="Learning and Development"
+						description="Development is vital to our people’s success and ours. The skills, knowledge and capabilities of our people are central to our success. That’s why we’re fully committed to developing a continuous learning culture.
+	"
+					/>
+				</div>
 			</StyledBackGround2>
-			<section className="mt-12">
+			<section className="mt-12" style={{ maxWidth: '1540px', margin: '0 auto'}}>
 				<h1 className="text-center font-bold text-3xl p-4">
 					See our latest vacancies
 				</h1>
@@ -149,7 +151,7 @@ function Carrerpg1() {
 					follow us on instagram:{' '}
 					<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
 				</h6>
-				<div className="image-carousel flex mt-12 items-center justify-center">
+				<div className="image-carousel flex mt-12 items-center justify-center" style={{ maxWidth: '1540px'}}>
 					<img src={Slider3} alt="" style={mystyle} />
 					<img src={Slider2} alt="" style={style} className="active  -mt-5" />
 					<img src={Slider1} alt="" style={mystyle} />

@@ -31,72 +31,74 @@ const StyledPostSnippet = styled.div`
 
 function Blog() {
 	return (
-		<section>
+		<section >
 			<PageLayout>
-				<Hero />
-				<Search />
-				<StyledArticles>
-					<Headlines title="Recent Articles" />
-					<StyledPostSnippet>
-						<PostSnippet
-							img={headlines_img1}
-							title="How to Do Defamation Removal Online"
-							subtitle="Defamation removal can be challenging. With our step-by-step guide, learn how to protect ..."
-						/>
-						<PostSnippet
-							img={post_img2}
-							title="Why You Need An Online Reputation"
-							subtitle="If you’re well known in your region, the United States, or the world, you’ve likely put a lot of time and resources,,,"
-						/>
+				<div style={{ maxWidth: '1540px', margin: '0 auto'}}>
+					<Hero/>
+					<Search />
+					<StyledArticles>
+						<Headlines title="Recent Articles" />
+						<StyledPostSnippet>
+							<PostSnippet
+								img={headlines_img1}
+								title="How to Do Defamation Removal Online"
+								subtitle="Defamation removal can be challenging. With our step-by-step guide, learn how to protect ..."
+							/>
+							<PostSnippet
+								img={post_img2}
+								title="Why You Need An Online Reputation"
+								subtitle="If you’re well known in your region, the United States, or the world, you’ve likely put a lot of time and resources,,,"
+							/>
 
-						<PostSnippet
-							img={headlines_img2}
-							title="Removing Info from FastPeopleSearch"
-							subtitle="Fast People Search removal can help protect your privacy online. Learn how to complete the process..."
-						/>
-					</StyledPostSnippet>
-				</StyledArticles>
-				<StyledArticles>
-					<Headlines title="Trending Topics" />
-					<StyledPostSnippet>
-						<PostSnippet
-							img={headlines_img3}
-							title="5 Strategies for Customer Review Management in 2022"
-							subtitle="Since most customers will interact with as business for the first time on the internet, having an effective customer ...."
-						/>
-						<PostSnippet
-							img={headlines_img4}
-							title="How to Remove Personal Information from Google"
-							subtitle="Having a great Google review management strategy is very important. They act as an icebreaker to...."
-						/>
-						<PostSnippet
-							img={headlines_img5}
-							title="Reputation Management for Politicians: What to Know"
-							subtitle="Fast People Search removal can help protect your privacy online. Learn how to complete the FastPeopleSearch..."
-						/>
-					</StyledPostSnippet>
-				</StyledArticles>
-				<StyledArticles>
-					<Headlines title="Popular" />
-					<StyledPostSnippet>
-						<PostSnippet
-							img={post_img7}
-							title="How to Remove My Information from Been Verified"
-							subtitle="Your public perception is known as your online reputation, telling others who you are, what …"
-						/>
-						<PostSnippet
-							img={headlines_img6}
-							title="7 Software Development Models to Organize Your Team"
-							subtitle="If you’re well known in your region, the United States, or the world, you’ve likely put a lot of time and..."
-						/>
+							<PostSnippet
+								img={headlines_img2}
+								title="Removing Info from FastPeopleSearch"
+								subtitle="Fast People Search removal can help protect your privacy online. Learn how to complete the process..."
+							/>
+						</StyledPostSnippet>
+					</StyledArticles>
+					<StyledArticles>
+						<Headlines title="Trending Topics" />
+						<StyledPostSnippet>
+							<PostSnippet
+								img={headlines_img3}
+								title="5 Strategies for Customer Review Management in 2022"
+								subtitle="Since most customers will interact with as business for the first time on the internet, having an effective customer ...."
+							/>
+							<PostSnippet
+								img={headlines_img4}
+								title="How to Remove Personal Information from Google"
+								subtitle="Having a great Google review management strategy is very important. They act as an icebreaker to...."
+							/>
+							<PostSnippet
+								img={headlines_img5}
+								title="Reputation Management for Politicians: What to Know"
+								subtitle="Fast People Search removal can help protect your privacy online. Learn how to complete the FastPeopleSearch..."
+							/>
+						</StyledPostSnippet>
+					</StyledArticles>
+					<StyledArticles>
+						<Headlines title="Popular" />
+						<StyledPostSnippet>
+							<PostSnippet
+								img={post_img7}
+								title="How to Remove My Information from Been Verified"
+								subtitle="Your public perception is known as your online reputation, telling others who you are, what …"
+							/>
+							<PostSnippet
+								img={headlines_img6}
+								title="7 Software Development Models to Organize Your Team"
+								subtitle="If you’re well known in your region, the United States, or the world, you’ve likely put a lot of time and..."
+							/>
 
-						<PostSnippet
-							img={headlines_img7}
-							title="How to Remove My Information from Instagram"
-							subtitle="Your public perception is known as your online reputation, telling others who you are, what values..."
-						/>
-					</StyledPostSnippet>
-				</StyledArticles>
+							<PostSnippet
+								img={headlines_img7}
+								title="How to Remove My Information from Instagram"
+								subtitle="Your public perception is known as your online reputation, telling others who you are, what values..."
+							/>
+						</StyledPostSnippet>
+					</StyledArticles>
+				</div>
 			</PageLayout>
 		</section>
 	);

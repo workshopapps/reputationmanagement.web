@@ -5,21 +5,26 @@ import FooterSocials from './FooterSocials';
 
 const Footer = () => {
 	return (
-		<footer className="bg-[#233BA9] w-full">
-			<StyledFooterWrapper >
-				<FooterSocials />
-				<FooterLinks />
-			</StyledFooterWrapper>
-			<hr className='border-3 border-[#A5A6A8] w-[90%] m-auto' />
-			<div className="p-5 text-center">
-				<p className="text-[16px] font-[100] text-[#A5A6A8] leading-[16px]">
-					© 2022 Fixit. All rights reserved
-				</p>
-			</div>
-		</footer>
+		<StyledFooterParent className="bg-[#233BA9] w-full">
+			<footer style={{ maxWidth: '1540px', margin: '0 auto'}}>
+				<StyledFooterWrapper >
+					<FooterSocials />
+					<FooterLinks />
+				</StyledFooterWrapper>
+				<hr className='border-3 border-[#A5A6A8] w-[90%] m-auto' />
+				<div className="p-5 text-center">
+					<p className="text-[16px] font-[100] text-[#A5A6A8] leading-[16px]">
+						© 2022 Fixit. All rights reserved
+					</p>
+				</div>
+			</footer>
+		</StyledFooterParent>
 	);
 }
 export default Footer;
+const StyledFooterParent = styled.div`
+
+`;
 const StyledFooterWrapper = styled.div`
 	display: flex;
 	height: 100%;
