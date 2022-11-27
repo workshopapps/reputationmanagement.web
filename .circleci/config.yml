@@ -52,7 +52,7 @@ jobs:
           paths: [frontend/node_modules]
           key: frontend-scan
           
-  build-frontend-client-docker-image:
+  build-frontend-docker-image:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
