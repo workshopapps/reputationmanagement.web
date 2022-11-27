@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
 import { DashboardIcon, SettingsIcon, ProfileIcon } from '../Dashboard/Icons';
@@ -18,7 +18,7 @@ const Sidebar = (props) => {
 			<ul>
 				<li>
 					<NavLink to="/dashboard">
-						<DashboardIcon />
+						<DashboardIcon  />
 						Dashboard
 					</NavLink>
 				</li>
@@ -30,16 +30,19 @@ const Sidebar = (props) => {
 					</NavLink>
 				</li>
 				<li>
+					<NavLink to="/settings">
+						<SettingsIcon />
+						Settings
+					</NavLink>
+				</li>
+			</ul>
+			<ul style={{ maxHeight: '50px'}}>
+				<li>
 					<StyledLogoutButton onClick={() => handleLogout()}>
 						Logout
 					</StyledLogoutButton>
 				</li>
 			</ul>
-
-			<NavLink to="/">
-				<SettingsIcon />
-				Settings
-			</NavLink>
 		</StyledSidebar>
 	);
 };
@@ -47,7 +50,8 @@ const Sidebar = (props) => {
 const StyledLogoutButton = styled.div`
 	background-color: #233BA9;
 	color: #ffffff;
-	padding: 7px 15px;
+	padding: 10px 55px;
+	max-width: 100%;
 	margin-left: 2rem;
 	border-radius: 3px;
 	border: none;

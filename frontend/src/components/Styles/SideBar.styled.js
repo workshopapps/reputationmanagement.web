@@ -23,25 +23,9 @@ export const StyledSidebar = styled.aside`
 		flex-direction: column;
 		gap: 37px;
 	}
-
-	a {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-		font-weight: 600;
-		color: #a5a6ab;
-		line-height: 24px;
-		font-size: 16px;
-		margin-left: 2rem;
-		position: relative;
-
-		svg {
-			fill: #a5a6a8;
-			stroke: #a5a6a8;
-		}
-
-		&:active,
-		&:hover {
+	li{
+		.active,
+		a:hover{
 			color: #f16f04;
 
 			svg {
@@ -58,6 +42,23 @@ export const StyledSidebar = styled.aside`
 				background: #f16f04;
 				border-radius: 4px;
 			}
+		}
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		font-weight: 600;
+		color: #a5a6ab;
+		line-height: 24px;
+		font-size: 16px;
+		margin-left: 2rem;
+		position: relative;
+
+		svg {
+			fill: #a5a6a8;
+			stroke: #a5a6a8;
 		}
 	}
 
