@@ -32,6 +32,7 @@ const Login = () => {
   },[ email, password ])
   const { setAuth } = useAuthContext();
   const { setRequestFailed, setRequestSuccess, setErrMessage, setSuccessMessage} = useAppContext();
+  const [ retainAuth, setRetainAuth ] = useState(false)
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
@@ -105,7 +106,7 @@ const Login = () => {
 
             <Remember>
                 <div className='slide-radio-main'>
-                <SlideRadio>
+                <SlideRadio className={ retainAuth ? 'retain' : ''} onClick={() => setRetainAuth(!retainAuth)}>
                   <div></div>
                 </SlideRadio>
                   Keep me Signed in
@@ -136,12 +137,12 @@ const Login = () => {
 
         <FormFooter>
           <div className='form-footer-icon'>
-            <div><img src={google} alt="google"/></div>
-            <div><img src={apple} alt="apple"/></div>
-            <div><img src={facebook} alt="facebook"/></div>
+            <img src={google} alt="google"/>
+            <img src={apple} alt="apple"/>
+            <img src={facebook} alt="facebook"/>
           </div>
 
-          <div className='footer-text'>Don't have an account? <span onClick={() => router('/signup')}>Sign up</span></div>
+          <div className='footer-text'>Don't have an account? <span onClick={() => router('/signup')} style={{ cursor: 'pointer'}} >Sign up</span></div>
         </FormFooter>
 
       </FormSection>
@@ -329,7 +330,15 @@ const Remember = styled.div`
     @media(max-width: 400px){
       flex-direction: column;
     }
-
+    .retain{
+      border: 1px solid #000000 !important;
+      transition: all ease-in-out 0.5s;
+      div{
+        background-color: #000000 !important;
+        right: 0 !important;
+        transition: all ease-in-out 0.5s;
+      }
+    }
 `;
 
 const SlideRadio = styled.div`
@@ -341,17 +350,18 @@ border-radius: 11px;
 border: 1px solid #E8E8E8;
 display: flex;
 align-items: center;
+transition: all ease-in-out 0.5s;
 
    &:hover {
     cursor: pointer;
    }
    div {
     position: absolute;
-    right: 0;
     height: 11px;
     width: 11px;
-    background-color: black;
+    background-color: #E8E8E8;
     border-radius: 50%;
+    transition: all ease-in-out 0.5s;
    }
 
 `;

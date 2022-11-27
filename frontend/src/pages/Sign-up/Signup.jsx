@@ -148,7 +148,7 @@ function Signup() {
 			width: '100%',
 			backgroundAttachment: 'fixed',
 			}}>
-			<StyledFormWrapper>
+			<StyledFormWrapper style={{ maxWidth: '770px' }}>
 				<h2>
 					Welcome to Fixit
 				</h2>
@@ -306,11 +306,11 @@ function Signup() {
 						<span></span>
 					</div>
 					<div className="social-icons">
-						<img src={google_icon} alt=""/>
-						<img src={facebook_icon} alt=""/>
-						<img src={apple_icon} alt=""/>
+						<img src={google_icon} alt="" style={{ cursor: 'pointer'}}/>
+						<img src={facebook_icon} alt="" style={{ cursor: 'pointer'}}/>
+						<img src={apple_icon} alt="" style={{ cursor: 'pointer'}}/>
 					</div>
-					<p>Already have an account ? <span onClick={() => router('/login')}>Sign In</span></p>
+					<p>Already have an account ? <span onClick={() => router('/login')} style={{ cursor: 'pointer'}}>Sign In</span></p>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
 			<div className="logo" > 
@@ -354,7 +354,6 @@ const StyledSignupWrapper = styled.div`
 	}
 	.logo{
 		position: fixed;
-		max-width: 1440px;
 		display: flex;
 		align-items: flex-start;
 		padding-right: 10px;
