@@ -320,6 +320,7 @@ function Signup() {
 	);
 }
 const StyledSignupWrapper = styled.div`
+	max-height: 100vh;
 	@media(max-width: 910px){
 		background-image: none !important;
 		display: flex;
@@ -414,9 +415,10 @@ const StyledSignupOptions = styled.div`
 	}
 `;
 const StyledFormWrapper = styled.div`
-	padding: 120px 55px 0 63px;
+	padding: 120px 55px 35px 63px;
 	background-color: #ffffff;
 	width: 50%;
+	overflow-x: scroll;
 	@media(min-width: 9100px){
 		min-width: 566px;
 	}
