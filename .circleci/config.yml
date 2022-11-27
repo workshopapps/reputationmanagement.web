@@ -52,40 +52,40 @@ jobs:
           paths: [frontend/node_modules]
           key: frontend-scan
           
-   build-frontend-client-docker-image:
+  build-frontend-client-docker-image:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
 
-      - restore_cache:
-          keys:
-            - v1-{{ .Branch }}
-      - run:
-          name: Load Docker image layer cache
-          command: |
-            set +o pipefail
-            docker load -i /caches/frontend.tar | true
+      #- restore_cache:
+       #   keys:
+        #    - v1-{{ .Branch }}
+     # - run:
+      #    name: Load Docker image layer cache
+       #   command: |
+        #    set +o pipefail
+         #   docker load -i /caches/frontend.tar | true
       - run:
           name: Build application Docker image
           command: |
             cd frontend/
-            docker build --cache-from=frontend -t frontend .
-      - run:
-          name: Save Docker image layer cache
-          command: |
-            mkdir -p /caches
-            docker save -o /caches/frontend.tar frontend
-      - save_cache:
-          key: v1-{{ .Branch }}-{{ epoch }}
-          paths:
-            - /caches/frontend.tar
+            docker build -t frontend .
+      #- run:
+       #   name: Save Docker image layer cache
+        #  command: |
+         #   mkdir -p /caches
+          #  docker save -o /caches/frontend.tar frontend
+      #- save_cache:
+       #   key: v1-{{ .Branch }}-{{ epoch }}
+        #  paths:
+         #   - /caches/frontend.tar
       - run:
           name: Push Image to docker hub
           command: |
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-            docker tag app ehmeeudosen/fixit-fe:v1
+            docker tag frontend ehmeeudosen/fixit-fe:v1
             docker push ehmeeudosen/fixit-fe:v1
 
 workflows:
@@ -96,3 +96,8 @@ workflows:
           requires: [build-frontend]
       - scan-frontend:
           requires: [build-frontend]
+      - build-frontend-docker-image:
+          requires: [test-frontend, scan-frontend] #remember to channge to test
+          filters:
+            branches:
+              only: [dev]
