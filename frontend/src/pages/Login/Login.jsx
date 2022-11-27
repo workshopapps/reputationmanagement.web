@@ -13,12 +13,12 @@ import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext'
 import useAuthContext from '../../hooks/useAuthContext'
+import fixit_logo from '../Sign-up/Assets/Logo(1).png'
 
 
 const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const router = useNavigate();
-
   // Password toggle handler
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
@@ -65,8 +65,11 @@ const Login = () => {
     }
   }
   return (
-    <ParentContainer>
+    <ParentContainer style={{ maxWidth: '1540px', margin: '0 auto', display: 'flex'}}>
       <FormSection>
+        <ImgSectionSm>
+          <img src={fixit_logo} alt=""/>
+        </ImgSectionSm>
         <StyledForm>
           <StyledHead1 onClick={() => setRequestFailed(true)}>
               Welcome Back
@@ -148,7 +151,7 @@ const Login = () => {
       </FormSection>
 
       <ImgSection>
-
+          <img src={fixit_logo} alt=""/>
       </ImgSection>
 
     </ParentContainer>
@@ -159,14 +162,27 @@ export default Login
 
 
 
-
+const ImgSectionSm = styled.div`
+  @media(min-width: 901px){
+    display: none;
+  }
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  max-width: 60%;
+  img{
+    width: 100%;
+  }
+`;
 const ParentContainer = styled.div`
-   width: 95%;
    height: 100vh;
-   position: absolute;
    display: flex;
-   
-
+   background-size:cover;
+   background-position: left top;
+   background-repeat: no-repeat;
+   background-position-x: left;
+   background-image: url(${img1});
    @media (min-width:2000px) {
     width: 100%;
      justify-content: center;
@@ -193,49 +209,31 @@ const ParentContainer = styled.div`
 `;
 const ImgSection = styled.div`
  width: 50%;
-    background-size:cover;
-    background-position: left top;
-   background-repeat: no-repeat;
-   background-position-x: left;
-   background-image: url(${img1});
-
-   @media (min-width:2000px) {
-     width: 720px;
-     height: 1000px;
-   }
-
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-end;
    @media (max-width:900px) {
       display: none;
    }
 
 `;
 const FormSection = styled.section`
-   width: 50%;
+  width: 50%;
   height: 100%;
   padding-top: 104px;
+  padding-bottom: 40px;
+  overflow-x: scroll;
+  background-color: #ffffff;
    padding-left: 62px;
    padding-right: 79px;
-
-   @media (min-width:2000px) {
-     width: 720px;
-     height: 1000px;
-     border-top: 1px solid gray;
-     border-bottom: 1px solid gray;
-     border-left: 1px solid gray;
-   }
    @media (max-width:900px) {
-    width: 95%;
-    padding-top: 40px;
+    width: 100%;
     padding-left: 50px;
     padding-right: 50px;
   }
-   @media (max-width:900px) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 
 `;
-
 const StyledForm = styled.form`
   
 
@@ -431,7 +429,8 @@ align-items: center;
 
     .form-footer-icon {
       display: flex;
-      width: 60%;
+      width: 100%;
+      max-width: 350px;
       justify-content:space-between ;
 
       div {
@@ -440,9 +439,10 @@ align-items: center;
         border: 1px solid #787A7D;
         border-radius: 8px;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         //margin-left: 80px;
+        gap: 30px;
 
         img {
           height: 23px;
