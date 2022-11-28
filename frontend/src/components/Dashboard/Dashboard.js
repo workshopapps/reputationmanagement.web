@@ -13,6 +13,7 @@ import {
 	Header,
 	CardSemiWrapper,
 } from './Styles/Dashboard.styled';
+
 import Card from './Card';
 import messaging from '../../assets/images/Dashboard/messaging.svg';
 import progress from '../../assets/images/Dashboard/progress.svg';

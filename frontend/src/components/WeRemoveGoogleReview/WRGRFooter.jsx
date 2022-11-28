@@ -9,7 +9,7 @@ const WRGRFooter = () => {
     
     <StyledFooter data-testid="W-footer">
 
-      <h2>We are here to help maintain your brand's <br /> reputation.If we dont suceed you don pay</h2>
+      <h2>We are here to help maintain your brand's <br /> reputation. If we don't succeed you don't pay</h2>
 	  <Link to="we-remove-google-search">
       <button>Get Started</button>
 	  </Link>

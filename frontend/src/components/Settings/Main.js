@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import human from '../../assets/images/Settings/human.png';
-import notifications from '../../assets/images/Settings/notifications.png';
+
 // import Accounts from './Account'
 // import Notifications from './Notifications'
 // import Preferences from './Preferences'
@@ -13,23 +12,6 @@ export default function Main() {
 
 		@media (min-width: 800px) {
 		}
-	`;
-	const StyledImages = styled.div`
-		display: flex;
-		justify-content: flex-end;
-		margin-right: 2rem;
-		align-items: center;
-		gap: 10px;
-		margin-top: 56px;
-	`;
-
-	const StyledNotifications = styled.img`
-		width: 32px;
-		height: 32px;
-	`;
-	const StyledHuman = styled.img`
-		width: 52px;
-		height: 52px;
 	`;
 
 	const StyledText = styled.div`
@@ -77,10 +59,6 @@ export default function Main() {
 	return (
 		<StyledParent>
 			<div>
-				<StyledImages>
-					<StyledNotifications src={notifications} alt="" />
-					<StyledHuman src={human} alt="" />
-				</StyledImages>
 				<StyledText>
 					<StyledHeader>Settings</StyledHeader>
 					<StyledOptions>

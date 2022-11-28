@@ -5,8 +5,8 @@ import menu from '../../assets/images/Dashboard/menu.jpg';
 import message from '../../assets/images/Dashboard/message.svg';
 
 import notificaton from '../../assets/images/Dashboard/notification.svg';
-import profilePhoto from '../../assets/images/Dashboard/profile photo.jpg';
 import search from '../../assets/images/Dashboard/search.svg';
+import human from '../../assets/images/Settings/human.svg';
 
 import {
 	StyledWebAppNav,
@@ -40,7 +40,7 @@ const WebAppNav = (props) => {
 						</div>
 					</div>
 
-					<img src={profilePhoto} alt="" />
+					<img src={human} alt="" />
 				</ProfilePictureContainer>
 			</NavItems>
 		</StyledWebAppNav>

@@ -1,20 +1,12 @@
 import React from 'react'
-import Sidebar from '../../components/Settings/Sidebar'
 import Main from '../../components/Settings/Main'
-import styled from 'styled-components'
+import BusinessDashboardLayout from '../../layout/businessDashboardLayout';
 
-export default function Settings() {
-    const StyledBody = styled.div`
-        display: flex;
-
-        /* @media (min-width: 800px){
-
-        } */
-    `
+const Settings = () => {
   return (
-    <StyledBody>
-      <Sidebar />
-      <Main />
-    </StyledBody>
+    <BusinessDashboardLayout>
+      <Main/>
+    </BusinessDashboardLayout>
   )
 }
+export default Settings;
