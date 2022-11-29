@@ -12,8 +12,8 @@ import Api from '../../api/axios';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext'
-import useAuthContext from '../../hooks/useAuthContext'
 import fixit_logo from '../Sign-up/Assets/Logo(1).png'
+import Cookies from 'js-cookie';
 
 
 const Login = () => {
@@ -30,7 +30,6 @@ const Login = () => {
   useEffect(() => {
     email !== '' && password.length >= 8 ? setPageValid(true) : setPageValid(false)
   },[ email, password ])
-  const { setAuth } = useAuthContext();
   const { setRequestFailed, setRequestSuccess, setErrMessage, setSuccessMessage} = useAppContext();
   const [ retainAuth, setRetainAuth ] = useState(false)
 
@@ -49,7 +48,8 @@ const Login = () => {
             password: password,
           }
         )
-        setAuth({'email':email, 'accessToken': response.data})
+        localStorage.setItem('auth',email)
+        Cookies.set('repboostAccessToken', response?.data?.accessToken)
         console.log(response?.data)
         setRequestPending(false)
         router('/dashboard')

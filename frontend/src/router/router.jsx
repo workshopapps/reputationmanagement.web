@@ -27,7 +27,7 @@ import Settings from '../pages/Settings/Settings';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
 import ScrollToTop from '../components/ScrollToTop';
-import RequireAuth from './requireAuth';
+import RequireAuth from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
 import Contact from '../pages/ContactUs/Contact';
 import ModalLayout from '../layout/modalLayout';
@@ -39,11 +39,14 @@ const Router = () => {
 			<Routes>
 				<Route element={<ModalLayout/>}>
 					{/* PROTECTED ROUTES */}
-					<Route path="/dashboard" element={<DashboardPage />} />
-					<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
-					{/* <Route element={<RequireAuth/>}>
-					</Route> */}
-					<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+					<Route element={<RequireAuth/>}>
+						<Route path="/dashboard" element={<DashboardPage />} />
+						<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+						<Route path="/settings" element={<Settings />} />
+						<Route path='/profile' element={<Profile />}/>
+						<Route path="/request-form" element={<RequestForm />} />
+						<Route path="/request-successful" element={<RequestSuccessfulSm />} />
+					</Route>
 					<Route path="/" element={<LandingPage />} />
 					<Route path='/login' element={<Login/>} />
 					<Route path="/signup" element={<Signup />} />
@@ -56,7 +59,6 @@ const Router = () => {
 						path="/we-remove-google-review"
 						element={<WeRemoveGoogleReview />}
 					/>
-					<Route path="/request-successful" element={<RequestSuccessfulSm />} />
 					<Route path="/terms-of-use" element={<Termsofuse />} />
 					<Route path="/privacy" element={<PrivacyPolicy />} />
 					<Route path="/get-a-quote" element={<GetAQuote />} />
@@ -65,13 +67,10 @@ const Router = () => {
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
-					<Route path='/profile' element={<Profile />}/>
-					<Route path="/request-form" element={<RequestForm />} />
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/support" element={<SupportPage />} />
 					<Route path="/our-team" element={<Ourteam />} />
-					<Route path="/settings" element={<Settings />} />
 					<Route path='/contact' element={<Contact />}/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>

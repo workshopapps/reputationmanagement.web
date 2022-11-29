@@ -1,14 +1,18 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
 import { DashboardIcon, SettingsIcon, ProfileIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 import styled from 'styled-components';
+import Cookies from 'js-cookie';
 
 const Sidebar = (props) => {
+	const router = useNavigate();
 	const handleLogout = () => {
-		localStorage.clear()
+		Cookies.remove('repboostAccessToken')
+		localStorage.removeItem('auth')
+		router('/login')
 	}
 	return (
 		<StyledSidebar className={props.className}>

@@ -11,9 +11,8 @@ import Api from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
-import useAuthContext from '../../hooks/useAuthContext';
 import useAppContext from '../../hooks/useAppContext';
-import CryptoJS from 'crypto-js';
+import Cookies from "js-cookie";
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
@@ -48,7 +47,6 @@ function Signup() {
 
 	const { setRequestSuccess, setErrMessage, setRequestFailed, setSuccessMessage } = useAppContext();
 
-	const { setAuth } = useAuthContext();
 	
 	const [ userType, setUserType ] = useState('business')
 	const [ nameValid, setNameValid ] = useState(false);
@@ -95,10 +93,8 @@ function Signup() {
 					}
 				)
 				console.log(response)
-				localStorage.setItem('user_email', email)
-				setAuth({ 'email': localStorage.getItem('user_email')})
-				const encryptedToken = (CryptoJS.AES.encrypt(JSON.stringify(response?.data?.accessToken), 'AccessToken'));
-				localStorage.setItem('accessToken', encryptedToken)
+				localStorage.setItem('auth', email)
+				Cookies.set('repboostAccessToken', response?.data?.accessToken)
 				setRequestPending(false) 
 				setSuccessMessage('Account Created')
 				setRequestSuccess(true)

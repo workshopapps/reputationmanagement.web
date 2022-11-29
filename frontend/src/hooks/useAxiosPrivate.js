@@ -1,19 +1,17 @@
 import { useEffect } from "react"
-import CryptoJS from "crypto-js";
 import { ApiPrivate } from "../api/axios";
+import Cookies from "js-cookie";
 // import useAccessToken from "../api/updateAccessToken";
 
 
 const useAxiosPrivate = () => {
-    const accessToken = localStorage.getItem('accessToken')
-    const decryptedToken = (CryptoJS.AES.decrypt(JSON.stringify(accessToken), 'AccessToken'));
-    // const resetAccessToken = useAccessToken();
+    const accessToken = Cookies.get('repboostAccessToken')
 
     useEffect(() => {
         const requestInterceptor = ApiPrivate.interceptors.request.use(
             config => {
                 if (!config.headers['Authorization']){
-                    config.headers['Authorization'] = `Bearer ${decryptedToken}`
+                    config.headers['Authorization'] = `Bearer ${accessToken}`
                 }
                 return config
             },(error) => Promise.reject(error)
@@ -36,7 +34,7 @@ const useAxiosPrivate = () => {
             ApiPrivate.interceptors.request.eject(requestInterceptor)
             // ApiPrivate.interceptors.response.eject(responseInterceptor)
         }
-    },[ decryptedToken, ])
+    },[ accessToken ])
     return ApiPrivate
 }
 export default useAxiosPrivate;

@@ -1,13 +1,12 @@
 import Api from "./axios";
-import CryptoJS from "crypto-js";
+import Cookies from "js-cookie";
 
 const useAccessToken = () => {
     const refresh = async () => {
         const response = await Api.get('/refresh', {
             withCredentials: true
         })
-       const encryptedToken = (CryptoJS.AES.encrypt(JSON.stringify(response?.data?.accessToken), 'AccessToken'));
-       localStorage.setItem('accessToken' ,encryptedToken)
+       Cookies.set('repboostAccessToken', response?.data?.accessToken)
        return 'accessToken reset!!'
     }
     return refresh;
