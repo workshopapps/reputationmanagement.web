@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import PageLayout from '../../layout/PageLayout';
 // import PostSnippettt from '../../components/Blog/PostSnippet';
 import styled from 'styled-components';
-import Background1 from '../../assets/images/BG1.jpg';
 
 import { Link } from 'react-router-dom';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
