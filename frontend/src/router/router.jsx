@@ -39,10 +39,10 @@ const Router = () => {
 			<Routes>
 				<Route element={<ModalLayout/>}>
 					{/* PROTECTED ROUTES */}
-					<Route element={<RequireAuth/>}>
-						<Route path="/dashboard" element={<DashboardPage />} />
-						<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
-					</Route>
+					<Route path="/dashboard" element={<DashboardPage />} />
+					<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+					{/* <Route element={<RequireAuth/>}>
+					</Route> */}
 					<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 					<Route path="/" element={<LandingPage />} />
 					<Route path='/login' element={<Login/>} />
