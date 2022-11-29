@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import PageLayout from '../../layout/PageLayout';
 // import PostSnippettt from '../../components/Blog/PostSnippet';
 import styled from 'styled-components';
-import Background1 from '../../assets/images/BG1.jpg';
 
 import { Link } from 'react-router-dom';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
@@ -98,7 +97,6 @@ const TeamFooter = styled.div`
 		margin-bottom: 30px;
 	}
 
-<<<<<<< HEAD
     @media screen and (min-width:589px) {
         .footImg {
             height: 300px;
@@ -128,10 +126,6 @@ const TeamFooter = styled.div`
             height: 450px;
             min-width: 100%;
         }
-=======
-    @media screen and (min-width:428px) {
-        
->>>>>>> d5a03be43f81c9003b43b8be0a1429890d0135e8
     }
 
 	@media screen and (min-width:1024px) {
