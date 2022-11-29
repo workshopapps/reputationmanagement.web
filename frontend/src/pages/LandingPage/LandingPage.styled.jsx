@@ -105,10 +105,10 @@ export const StyledLandingPage = styled.div`
 		}
 	}
 	button {
-		font-size: 18px;
+		// font-size: 18px;
 		margin-top: 30px;
-		font-weight: 900;
-		padding: 12px 50px;
+		// font-weight: 900;
+		// padding: 12px 50px;
 	}
 
 	@media screen and (max-width: 680px) {
