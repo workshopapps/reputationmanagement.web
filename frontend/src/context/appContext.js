@@ -11,6 +11,7 @@ const AppProvider = ({children}) => {
     const [ successMessage, setSuccessMessage ] = useState('Sign up Failed');
     const [ requestSuccess, setRequestSuccess ] = useState(false);
 	const [ requestFailed, setRequestFailed ] = useState(false);
+
     return(
         <AppContext.Provider 
             value={{

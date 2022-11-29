@@ -44,10 +44,34 @@ const Dashboard = () => {
 				</Header>
 
 				<CardContainer>
-					<Card img={messaging} title="All Complaints" digit="0" />
+					<Card
+						img={messaging}
+						title="All Complaints"
+						digit={allRequests ? allRequests.length : '0'}
+					/>
 					<CardSemiWrapper>
-						<Card img={progress} title="In Progress" digit="0" />
-						<Card img={completed} title="Completed" digit="0" />
+						<Card
+							img={progress}
+							title="In Progress"
+							digit={
+								allRequests
+									? allRequests.filter((data) => {
+											return data.status == 'In Progress';
+									  }).length
+									: '0'
+							}
+						/>
+						<Card
+							img={completed}
+							title="Completed"
+							digit={
+								allRequests
+									? allRequests.filter((data) => {
+											return data.status == 'Done';
+									  }).length
+									: '0'
+							}
+						/>
 					</CardSemiWrapper>
 				</CardContainer>
 
@@ -62,36 +86,40 @@ const Dashboard = () => {
 					/>
 				</InputContainer>
 
-				<TableContainer>
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>Priority</th>
-							<th>Ticket Name</th>
-							<th>Source</th>
-							<th>Last Updated</th>
-							<th>Status</th>
-						</tr>
-					</thead>
+				{allRequests ? (
+					<TableContainer>
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>Priority</th>
+								<th>Ticket Name</th>
+								<th>Due Date</th>
+								<th>Last Updated</th>
+								<th>Status</th>
+							</tr>
+						</thead>
 
-					<tbody>
-						{allRequests
-							.filter((data) => {
-								if (searchTicket === '') {
-									return data;
-								} else if (
-									data.ticketName
-										.toLowerCase()
-										.includes(searchTicket.toLowerCase())
-								) {
-									return data;
-								}
-							})
-							.map((data) => {
-								return <TableData data={data} key={data.id} />;
-							})}
-					</tbody>
-				</TableContainer>
+						<tbody>
+							{allRequests
+								.filter((data) => {
+									if (searchTicket === '') {
+										return data;
+									} else if (
+										data.ticketName
+											.toLowerCase()
+											.includes(searchTicket.toLowerCase())
+									) {
+										return data;
+									}
+								})
+								.map((data) => {
+									return <TableData data={data} key={data.id} />;
+								})}
+						</tbody>
+					</TableContainer>
+				) : (
+					<p className="noRequest"> No Request Yet! </p>
+				)}
 			</StyledContainer>
 		</StyledDashboard>
 	);
