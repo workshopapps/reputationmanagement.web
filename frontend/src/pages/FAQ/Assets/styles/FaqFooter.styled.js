@@ -44,6 +44,7 @@ export const FaqFooterLinks = styled.div`
 `;
 
 export const SendMailLink = styled.a`
+	border-radius: 8px;
 	display: inline-block;
 	border: 1px solid;
 	padding: 16px 40px;
@@ -52,6 +53,7 @@ export const SendMailLink = styled.a`
 	font-weight: 600;
 	color: ${(props) => props.color};
 	background: ${(props) => props.background};
+	
 
 	@media screen and (max-width: 425px) {
 		padding: 8px 24px;

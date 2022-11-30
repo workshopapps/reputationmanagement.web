@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 
 export const StyledPolicy = styled.div`
-	padding-left: 25px;
+	
 	color: #2b2c34;
-	padding-top: 20px;
-	width: 1000px;
-	margin: auto;
-	overflow: hidden;
+	max-width: 75%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 10px;
+	margin: 0px auto;
+	/* outline: 1px solid red; */
 
 	h3 {
 		font-size: 32px;
-		line-height: 48px;
+		line-height: 150%;
 		font-weight: 700;
 		font-style: bold;
 	}
@@ -31,8 +34,8 @@ export const StyledPolicy = styled.div`
 
 	@media (max-width: 320px) {
 
-		over-flow: hidden;
-		word-break: break-all
+		/* over-flow: hidden;
+		word-break: break-all */
 		
 
 		h3 {
@@ -60,8 +63,8 @@ export const StyledPolicy = styled.div`
 
 	@media (max-width: 1020px) {
 		
-			over-flow: hidden;
-			width: 300px;
+			/* over-flow: hidden;
+			width: 300px; */
 
 		h3 {
 			font-size: 18px;
@@ -79,11 +82,12 @@ export const StyledPolicy = styled.div`
 		ul {
 			list-style: disc;
 			font-size: 12px;
-			display:flex
+			display:flex;
 			flex-wrap: wrap;
 			overflow-wrap: break;
 			line-height: 21px;
 			font-style: regular;
 		}
 	}
+
 `;

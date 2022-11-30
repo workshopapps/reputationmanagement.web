@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 
 export const StyledContact = styled.div`
-	padding-left: 25px;
 	color: #2b2c34;
-	padding-top: 20px;
-	width: 1000px;
-	margin: auto;
-	margin-bottom: 50px;
+	max-width: 75%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 10px;
+	margin: 0px auto;
+	/* outline: 1px solid red; */
 
 	h3 {
 		font-size: 32px;
@@ -23,9 +25,9 @@ export const StyledContact = styled.div`
 	}
 
 	@media (max-width: 320px) {
-		div {
+		/* div {
 			over-flow: hidden;
-		}
+		} */
 
 		h3 {
 			font-size: 18px;
@@ -43,8 +45,8 @@ export const StyledContact = styled.div`
 
 @media (max-width: 	1020px) {
 		
-			over-flow: hidden;
-			width: 300px;
+			/* over-flow: hidden;
+			width: 300px; */
 
 		h3 {
 			font-size: 18px;

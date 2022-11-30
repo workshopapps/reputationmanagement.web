@@ -44,9 +44,11 @@ const LandingPage = () => {
 							</h5>
 
 							<div className="hero-text-btn-sec">
-								<StyledButton className="hero-button">
-									<span>Learn More</span>
-								</StyledButton>
+								<a href="#learn-more">
+									<StyledButton className="hero-button">
+										Learn More
+									</StyledButton>
+								</a>
 
 								<div className="hero-text-star">
 									<img src={star_icon} alt="star-icon" />
@@ -60,8 +62,8 @@ const LandingPage = () => {
 					</HeroTextDiv>
 
 					{/*****************************************************HERO IMAGE SECTION*********************************************************/}
-					<StyledHeroSectionWrapper>
-						<div className="HeroImage flex justify-center">
+					<StyledHeroSectionWrapper className='pt-5' id="learn-more">
+						<div className="HeroImage flex justify-center" >
 							<div className="hero-img-text">
 								<h5>GETTING STARTED</h5>
 
@@ -185,7 +187,7 @@ const LandingPage = () => {
 
 						<Link to="get-a-quote">
 							<StyledButton className="flex items-center mx-auto">
-								<span>Contact Us</span>
+								<span>Get a Quote</span>
 							</StyledButton>
 						</Link>
 					</div>
@@ -196,7 +198,7 @@ const LandingPage = () => {
 };
 
 const StyledHeroSectionWrapper = styled.div`
-	width:100vw;
+	// width:100vw;
 	background-color: #EEF1FC;;
 `;
 
