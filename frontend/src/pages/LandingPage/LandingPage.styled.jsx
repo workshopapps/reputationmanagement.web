@@ -105,10 +105,10 @@ export const StyledLandingPage = styled.div`
 		}
 	}
 	button {
-		// font-size: 18px;
+		font-size: 18px;
 		margin-top: 30px;
-		// font-weight: 900;
-		// padding: 12px 50px;
+		font-weight: 900;
+		padding: 12px 50px;
 	}
 
 	@media screen and (max-width: 680px) {
@@ -177,15 +177,15 @@ export const HeroTextDiv = styled.div`
             		}
 				}
 
-				// .hero-button {
+				.hero-button {
 
-				// 	@media (max-width:520px) {
-				// 		width: 120px;
-				// 		font-size: 14px;
-				// 		font-weight: 400;
-				// 		padding: 5px 10px;
-            	// 	}
-				// }
+					@media (max-width:520px) {
+						width: 120px;
+						font-size: 14px;
+						font-weight: 400;
+						padding: 5px 10px;
+            		}
+				}
 
 				.hero-text-star {
 				position:absolute;
