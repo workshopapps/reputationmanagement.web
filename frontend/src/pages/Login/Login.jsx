@@ -67,9 +67,7 @@ const Login = () => {
   return (
     <ParentContainer style={{ maxWidth: '1540px', margin: '0 auto', display: 'flex'}}>
       <FormSection>
-        <ImgSectionSm>
-          <img src={fixit_logo} alt=""/>
-        </ImgSectionSm>
+          <ImgSectionSm src={fixit_logo} alt=""/>
         <StyledForm>
           <StyledHead1 onClick={() => setRequestFailed(true)}>
               Welcome Back
@@ -116,7 +114,7 @@ const Login = () => {
                 </div>
 
               <ForgotPass>
-                <Link className=''>forgot password</Link>
+                <Link className=''>Forgot password</Link>
                 </ForgotPass>
               </Remember>
 
@@ -162,18 +160,16 @@ export default Login
 
 
 
-const ImgSectionSm = styled.div`
+const ImgSectionSm = styled.img`
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  margin-left: auto;
+  
   @media(min-width: 901px){
     display: none;
   }
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 250px;
-  max-width: 60%;
-  img{
-    width: 100%;
-  }
+
 `;
 const ParentContainer = styled.div`
    height: 100vh;
@@ -188,6 +184,11 @@ const ParentContainer = styled.div`
      justify-content: center;
      align-items: center;
    }
+
+   @media (max-width: 500px) {
+    margin-bottom: 30px;
+   }
+  
   
 .footer-text{
     font-family: Lato;
@@ -207,6 +208,7 @@ const ParentContainer = styled.div`
     }
 }
 `;
+
 const ImgSection = styled.div`
  width: 50%;
   display: flex;
@@ -221,8 +223,8 @@ const ImgSection = styled.div`
 const FormSection = styled.section`
   width: 50%;
   height: 100%;
-  padding-top: 104px;
-  padding-bottom: 40px;
+  padding-top: 30px;
+  /* padding-bottom: 40px; */
   overflow-x: scroll;
   background-color: #ffffff;
    padding-left: 62px;
@@ -233,10 +235,14 @@ const FormSection = styled.section`
     padding-right: 50px;
   }
 
+  @media (max-width: 500px) {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
 `;
 const StyledForm = styled.form`
-  
-
+  margin: 0;
 `;
 
 const StyledHead1 = styled.h1`
@@ -249,7 +255,7 @@ const StyledHead1 = styled.h1`
    }
 
     @media (max-width:520px) {
-      font-size: 37px;
+      font-size: 32px;
    }
 
 `;
@@ -259,10 +265,13 @@ const SubHead = styled.h5`
     font-weight: 400;
    color:#6F7174;
 
+   @media (max-width: 500px) {
+    font-size: 24px;
+   }
 `;
 
 const Input1 = styled.div`
-   margin-top: 40px;
+   margin-top: 10px;
    display: flex;
    flex-direction: column;
 
@@ -368,6 +377,9 @@ const ForgotPass = styled.div`
   color: #F16F04;
   font-size: 14px;
   font-weight: 700;
+  @media (max-width: 500px) {
+        margin-top: 10px;
+    }
 
 `;
 
