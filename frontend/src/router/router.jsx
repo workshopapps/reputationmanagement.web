@@ -16,6 +16,7 @@ import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 import GetAQuote from '../pages/GetAQuote/index';
 import RequestForm from '../pages/RequestForm/requestForm';
+import ResetPassword from '../pages/ResetPassword/resetPassword';
 
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
@@ -72,6 +73,7 @@ const Router = () => {
 					<Route path="/support" element={<SupportPage />} />
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path='/contact' element={<Contact />}/>
+					<Route path='/reset-password' element={<ResetPassword />}/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
 			</Routes>
