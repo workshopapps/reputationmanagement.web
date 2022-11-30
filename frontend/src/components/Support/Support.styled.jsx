@@ -90,8 +90,6 @@ export const StyledSupportForm = styled.form`
 	}
 `;
 
-
-
 export const StyledArticle = styled.section`
 	padding: 80px 24px;
 	max-width: 1240px;
@@ -115,8 +113,11 @@ export const StyledArticle = styled.section`
 			height: 100%;
 			// box-shadow: 4px 4px 10px rgba(120, 122, 125, 0.1);
 		}
-		h3 {
+		a {
 			margin-top: 7px;
+			font-size: 1.7rem;
+			font-weight: 700;
+			color: #2b2c34;
 		}
 
 		p {
