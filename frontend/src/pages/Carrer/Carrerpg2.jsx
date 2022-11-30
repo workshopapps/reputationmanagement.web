@@ -40,7 +40,7 @@ function Carrerpg2() {
 				</h5>
 			</StyledBackGround>
 			<section className="flex flex-row mt-8 justify-center items-center ">
-				<StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full lg:w-3/5 scale-75 md:scale-100">
+				<StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full md:w-3/5 lg:w-3/5 scale-75 md:scale-100">
 					<div className="flex justify-center items-center ">
 						<img src={SearchIcon} alt="" />
 						<input
@@ -90,7 +90,28 @@ function Carrerpg2() {
 					</div>
 
 					<div className="block lg:hidden">
-						<img src={MenuIcon} alt="" />
+						<StyledSelect
+							name="filter-jobs"
+							id="select"
+							className="cursor-pointer px-1 py-3 lg:hidden"
+						>
+							<option value="" selected className="cursor-pointer">
+								Filter
+							</option>
+							<option value="Design" className="cursor-pointer">
+								Design
+							</option>
+							<option value="Engineer" className="cursor-pointer">
+								Engineer
+							</option>
+							<option value="Development" className="cursor-pointer">
+								Development
+							</option>
+							<option value="Marketing" className="cursor-pointer">
+								Marketing
+							</option>
+						</StyledSelect>
+						{/* <img src={MenuIcon} alt="" /> */}
 					</div>
 				</div>
 			</section>
