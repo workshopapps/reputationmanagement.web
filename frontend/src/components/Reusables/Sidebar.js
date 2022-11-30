@@ -2,7 +2,12 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
-import { DashboardIcon, SettingsIcon, ProfileIcon, HomeIcon } from '../Dashboard/Icons';
+import {
+	DashboardIcon,
+	SettingsIcon,
+	ProfileIcon,
+	HomeIcon,
+} from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 import styled from 'styled-components';
 import Cookies from 'js-cookie';
@@ -10,10 +15,10 @@ import Cookies from 'js-cookie';
 const Sidebar = (props) => {
 	const router = useNavigate();
 	const handleLogout = () => {
-		Cookies.remove('repboostAccessToken')
-		localStorage.removeItem('auth')
-		router('/login')
-	}
+		Cookies.remove('repboostAccessToken');
+		localStorage.removeItem('auth');
+		router('/login');
+	};
 	return (
 		<StyledSidebar className={props.className}>
 			<div>
@@ -25,19 +30,16 @@ const Sidebar = (props) => {
 				<ul>
 					<li>
 						<NavLink to="/">
-							<HomeIcon/>
+							<HomeIcon />
 							Home
 						</NavLink>
 					</li>
 					<li>
 						<NavLink to="/dashboard">
-							<DashboardIcon  />
+							<DashboardIcon />
 							Dashboard
 						</NavLink>
 					</li>
-
-					
-					
 				</ul>
 				<ul>
 					<li>
@@ -46,7 +48,7 @@ const Sidebar = (props) => {
 							Settings
 						</NavLink>
 					</li>
-			</ul>
+				</ul>
 			</section>
 			{/* <ul style={{ maxHeight: '50px'}}>
 				<li>
@@ -60,7 +62,7 @@ const Sidebar = (props) => {
 };
 
 const StyledLogoutButton = styled.div`
-	background-color: #233BA9;
+	background-color: #233ba9;
 	color: #ffffff;
 	padding: 10px 55px;
 	max-width: 100%;
