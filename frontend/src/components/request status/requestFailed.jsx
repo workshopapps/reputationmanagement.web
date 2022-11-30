@@ -5,7 +5,6 @@ import useAppContext from '../../hooks/useAppContext'
 
 const RequestFailed = (props) => {
     const { requestFailed, setRequestFailed, errMessage } = useAppContext();
-    console.log(requestFailed)
     useEffect(()=> {
         const dissapear = setTimeout(() => {
             setRequestFailed(false)
