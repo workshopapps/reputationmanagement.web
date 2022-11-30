@@ -1,28 +1,32 @@
 import React from 'react';
-
+import { HERO_IMAGE_DESKTOP, HERO_IMAGE_MOBILE } from '../../../assets/image';
+import { Link } from 'react-router-dom';
 import {
 	StyledHero,
 	StyledHeroMsg,
 	StyledHerotxt,
 	StyledHerotxtSpan,
 	StyledOrange,
-	MobImg,
 	ImgContainer,
 	StyledBtn,
 	DeskImg,
 	StyledBlue,
+	ImgContainerMain,
 } from '../styled/Hero.styled';
-import HeroDesktop from '../img/HeroD.png';
-import HeroM from '../img/HeroM.png';
 
 export default function Hero() {
 	return (
 		<>
-			<StyledHero>
+			<StyledHero data-testid="hero-element">
+				<ImgContainerMain>
 				<ImgContainer>
-					<DeskImg src={HeroDesktop} alt="hero" />
-					<MobImg src={HeroM} alt="hero" width="375px" />
+				<picture>
+					<source media="(max-width: 640px)" srcSet={HERO_IMAGE_MOBILE} />
+					<DeskImg src={HERO_IMAGE_DESKTOP} alt="hero" />
+					</picture>
 				</ImgContainer>
+				</ImgContainerMain>
+
 
 				<StyledHeroMsg>
 					<StyledBlue>
@@ -41,7 +45,9 @@ export default function Hero() {
 						We cater to businesses and public figures that have a lot riding on
 						their reputation.
 					</StyledHerotxt>
+					<Link to="/signup">
 					<StyledBtn>Register</StyledBtn>
+					</Link>
 				</StyledHeroMsg>
 			</StyledHero>
 		</>

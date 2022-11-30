@@ -10,25 +10,21 @@ export const StyledBgImgDesktop = styled.div`
 	background-size: cover;
 	background-repeat: no-repeat;
 	@media (max-width: 375px) {
-		width: 375px;
 		height: 332px;
 	}
 `;
 
 export const StyledCenter = styled.div`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
-	);
+	//@import url('https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type= 'text/css');
+width: 100%;
 	display: flex;
 	justify-content: center;
-	postition: absolute;
+	position: absolute;
 	flex-direction: column;
 	align-items: center;
 	@media (min-width: 375px) {
-		padding-left: 3rem;
-		padding-top: 1rem;
+		//padding-left: 3rem;
+		//padding-top: 1rem;
 	}
 `;
 export const Btn = styled.button`
@@ -53,10 +49,6 @@ export const Blue = styled.p`
 	font-size: 28px;
 	font-weight: bold;
 	font-family: 'lato', sans-serif;
-	width: 580px;
-
-	@media (max-width: 375px) {
-		width: 287px;
-		height: 84px;
-	}
+	max-width: 580px;
+	text-align: center;
 `;

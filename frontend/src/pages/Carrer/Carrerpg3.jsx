@@ -6,6 +6,8 @@ import Map from '../../assets/images/map.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
+import PageLayout from '../../layout/PageLayout';
+
 const StyledH2 = styled.h2`
 	font-size: 1.6rem;
 	color: #233ba9;
@@ -13,6 +15,7 @@ const StyledH2 = styled.h2`
 `;
 function Carrerpg3() {
 	return (
+		<PageLayout>
 		<section className="p-8">
 			<Link
 				className="flex my-12 "
@@ -64,6 +67,7 @@ function Carrerpg3() {
 				<StyledButton className="my-8">Send us your CV/ Portfolio</StyledButton>
 			</section>
 		</section>
+		</PageLayout>
 	);
 }
 

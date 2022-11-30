@@ -2,26 +2,54 @@ import styled from 'styled-components';
 
 export const StyledSidebar = styled.aside`
 	grid-area: sidebar;
-	padding: 3rem 7rem 8rem 1rem;
+	padding: 32px 135px 32px 64px;
 	background-color: white;
 	max-width: 280px;
+	height: 100vh;
 	position: fixed;
 	left: 0;
 	top: 0;
-	bottom: 0;
+	/* bottom: 0; */
 	box-shadow: 2px 2px 8px rgba(120, 122, 125, 0.15);
 
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	display: grid;
+	grid-template-rows: 5% 95%;
 	gap: 64px;
 
+	section{
+		height: 80%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	
+	}
+
 	ul {
-		flex: 1;
 		display: flex;
 		flex-direction: column;
 		gap: 37px;
+	}
+	li{
+		margin-left: -2rem;
+		.active,
+		a:hover{
+			color: #f16f04;
+
+			svg {
+				fill: #f16f04;
+				stroke: #f16f04;
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				left: -3rem;
+				width: 4px;
+				height: 24px;
+				background: #f16f04;
+				border-radius: 4px;
+			}
+		}
 	}
 
 	a {
@@ -39,40 +67,21 @@ export const StyledSidebar = styled.aside`
 			fill: #a5a6a8;
 			stroke: #a5a6a8;
 		}
-
-		&:active,
-		&:hover {
-			color: #f16f04;
-
-			svg {
-				fill: #f16f04;
-				stroke: #f16f04;
-			}
-
-			&::before {
-				content: '';
-				position: absolute;
-				left: -2rem;
-				width: 4px;
-				height: 24px;
-				background: #f16f04;
-				border-radius: 4px;
-			}
-		}
 	}
 
-	& > img:first-child {
+	& > div > img:first-child {
 		display: none;
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
 	}
+	
 
 	@media (max-width: 1140px) {
 		transform: translateX(-100%);
 		transition: transform 1s ease;
 
-		& > img:first-child {
+		& > div > img:first-child {
 			display: block;
 		}
 	}

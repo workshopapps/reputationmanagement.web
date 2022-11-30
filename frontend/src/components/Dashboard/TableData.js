@@ -1,15 +1,17 @@
 const TableData = ({ data }) => {
 	return (
 		<tr>
-			<td>0{data.no}</td>
+			<td>0{data.id}</td>
 
-			<td>{data.priority}</td>
+			<td >
+				<p className={data.priority}>{data.priority}</p>
+			</td>
 
 			<td>
 				<p>{data.ticketName}</p>
 			</td>
 			<td>
-				<img src={data.source} alt="" />
+				<p>{data.dueDate}</p>
 			</td>
 			<td>
 				<p>{data.lastUpdated}</p>

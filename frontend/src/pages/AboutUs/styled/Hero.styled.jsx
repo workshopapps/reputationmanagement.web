@@ -1,29 +1,40 @@
 import styled from 'styled-components';
 export const StyledHero = styled.div`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
-	);
+	@import url('https://fonts.googleapis.com/css?family=Lato:400,700' );
 	display: flex;
 	justify-content: space-between;
-	@media (max-width: 375px) {
+	max-width: 1540px;
+	margin: 0 auto;
+	
+	@media (max-width: 1200px) {
 		flex-direction: column-reverse;
 		justify-content: center;
-		align:items:center;
+		align-items: center;
+	}
+	@media(max-width: 677px){
+		padding-left: 20px;
 	}
 `;
 export const ImgContainer = styled.div`
-	max-width: 539.68px;
-	@media (max-width: 375px) {
-		max-width: 375px;
+	display: flex;
+	align-items: flexend;
+	//background-color: black;
+	//align-self: flex-end;
+		max-width: 539.68px;
+	height: max-content;
+
+
+	@media (max-width: 1200px) {
+		align-self: flex-start;
+		max-width: 60%;
+	}
+	@media (max-width: 500px) {
+		max-width: 80%;
 	}
 `;
 export const DeskImg = styled.img`
 	width: 100%;
-	@media (max-width: 375px) {
-		display: none;
-	}
+	
 `;
 /*
 width: 539.68px;
@@ -35,18 +46,27 @@ export const MobImg = styled.img`
 		display: Block;
 	}
 `;
+export const ImgContainerMain = styled.div`
+	display: flex;
+	align-items: flex-end;
+	@media (max-width: 1200px) {
+		width: 100%;
+		//background-color: red;
+		display: flex;
+		justify-content: center;
+	}
+`;
 export const StyledHeroMsg = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	padding-right: 70px;
-	width: 603px;
+	max-width: 603px;
 	margin: 90px 0;
-	@media (max-width: 375px) {
-		padding: 0 15px;
+	@media (max-width: 500px) {
+		padding: 0 ;
 		align-items: center;
 		margin-top: 55px;
-		width: 350px;
 	}
 `;
 export const StyledBtn = styled.button`
@@ -59,27 +79,21 @@ export const StyledBtn = styled.button`
 	background: #233ba9;
 	border-radius: 4px;
 `;
-export const StyledHerotxt = styled.p`
-  width: 550px;
+export const StyledHerotxt = styled.div`
+  max-width: 550px;
   font-size: 16px;
   margin-top: 24px;
   font-family: "lato", sans-serif;
-  font weight: 700;
+  font-weight: 700;
   @media (max-width: 375px){
-    width: 345px;
-	
 	text-align: center;
   }
 `;
 export const StyledHerotxtSpan = styled.p`
-  width: 500px;
   margin: 10px 0;
   font-size: 16px;
-  font weight: 700;
+  font-weight: 700;
   font-family: "lato", sans-serif;
-  @media (max-width: 375px){
-    width: 375px;
-  }
 `;
 export const StyledOrange = styled.span`
 	color: #f16f04;

@@ -15,9 +15,10 @@ import TrustImg from '../img/Trust.png';
 import ProfessionalImg from '../img/Professionalism.png';
 import Convenience from '../img/Convenience.png';
 
+
 export default function Fix() {
 	return (
-		<>
+		<div data-testid="fixit-element">
 			<StyledFixHeader>
 				Why Choose <StyledColorBlue> Fix</StyledColorBlue>
 				<StyledColor>It</StyledColor>?
@@ -25,6 +26,7 @@ export default function Fix() {
 			<StyledFixBox>
 				<StyledFixCenter>
 					<ImgsContainer>
+				
 						<StyledFixImg src={TrustImg} alt="trust" />
 					</ImgsContainer>
 
@@ -65,6 +67,6 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 			</StyledFixBox>
-		</>
+		</div>
 	);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
@@ -10,10 +10,10 @@ import { StyledContainer } from '../Styles/Body/Container.styled';
 const Header = () => {
 	const [toggle, setToggle] = useState(false);
 	const location = useLocation();
-	const currentRoute = location.pathname
-	console.log(currentRoute)
+	const currentRoute = location.pathname;
+	const router = useNavigate();
 	return (
-		<header style={{ width: '100%' }}>
+		<header style={{ width: '100vw', position: 'fixed', top: '0', backgroundColor: '#ffffff', zIndex: '5' }}>
 			<StyledContainer>
 				<StyledNav className="">
 					<img src={Logo} alt="FixIt" className="logo" />
@@ -38,12 +38,14 @@ const Header = () => {
 					</div>
 
 					<ul className={`${!toggle ? 'hidden' : 'block'} sidebar`}>
-						<NavLink to="/" className="active">
+						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink to="/about">About Us</NavLink>
-						<NavLink to="/blog">Blog</NavLink>
-						<NavLink to="/contact">Contact</NavLink>
+						<NavLink to="/about" className={currentRoute === '/about' ? 'active' : ''}>About Us</NavLink>
+						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
+						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
+						<StyledNavButton onClick={() => router('/login')}>Login</StyledNavButton>
+						<StyledNavButton onClick={() => router('/signup')}>Register</StyledNavButton>
 					</ul>
 
 					<div className="navButtons">
@@ -59,14 +61,25 @@ const Header = () => {
 		</header>
 	);
 };
-
+const StyledNavButton = styled.button`
+	background: #233BA9;
+    padding: 10px 40px;
+    border-radius: 6px;
+    color: #fff;
+    border: 1px #233BA9 solid;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+	margin: 14px 0;
+	margin-left: 18px;
+`;
 const StyledNav = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 20px 24px;
 	position: relative;
-
+	z-index: 10;
 	a {
 		text-decoration: none;
 	}
@@ -87,7 +100,7 @@ const StyledNav = styled.nav`
 			padding: 6px 18px;
 		}
 	}
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 875px) {
 		.logo {
 			display: block;
 			margin: auto;

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 export const StyledFixHeader = styled.h1`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
+	@import url(
+		'https://fonts.googleapis.com/css?family=Lato:400,700'
 	);
 	display: flex;
 	justify-content: center;
@@ -31,6 +29,7 @@ export const StyledFixCenter = styled.div`
 	}
 `;
 export const ImgsContainer = styled.div`
+
 	max-width: 304px;
 `;
 export const StyledFixImg = styled.img`
@@ -40,16 +39,20 @@ export const StyledFixImg = styled.img`
 `;
 export const StyledFixBox = styled.div`
 	display: flex;
-	justify-content: space-between;
-	width: 1020px;
+	max-width: 1020px;
+	width: 100%;
 	margin: 0 auto;
 	margin-top: 32px;
-	@media (max-width: 375px) {
-		display: flex;
-		flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	@media(max-width: 1070px){
+		padding: 0 20px;
 		justify-content: center;
-		align-items: center;
-		width: 375px;
+		gap: 40px;
+	}
+	@media (max-width: 375px) {
+		padding: 0;
 	}
 `;
 export const StyledColor = styled.span`
@@ -60,14 +63,10 @@ export const StyledColorBlue = styled.span`
 	margin-left: 4px;
 `;
 export const StyledColorOrange = styled.h2`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
-	);
+	//@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 	color: orange;
 	margin-left: 16px;
-	margin-top: 16px
+	margin-top: 16px;
 	font-size: 22px;
 	font-weight: semi-bold;
 	font-family: 'lato', sans-serif;
@@ -76,11 +75,7 @@ export const StyledFixp = styled.div`
 	padding: 16px;
 `;
 export const Plato = styled.p`
-	@import url
-	(
-		'https://fonts.googleapis.com/css?family=Lato:400,700' rel= 'stylesheet'
-			type= 'text/css'
-	);
+	@import url('https://fonts.googleapis.com/css?family=Lato:400,700  rel= stylesheet type= text/css');
 	font-weight: semi-bold;
 	font-size: 14px;
 	font-family: 'lato', sans-serif;

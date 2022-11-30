@@ -13,28 +13,10 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm run build
+            CI=false npm run build
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
-          
-  build-and-test-backend:
-    docker:
-      - image: microsoft/dotnet:latest
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [backend-build-test]
-      - run:
-          name: Build and run Backend test
-          command: |
-            cd src
-            dotnet restore
-            dotnet build
-            dotnet test
-      - save_cache:
-          paths: [src/src.dll]
-          key: backend-build-test
           
   test-frontend:
     docker:
@@ -69,13 +51,53 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-scan
+          
+  build-frontend-docker-image:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      #- restore_cache:
+       #   keys:
+        #    - v1-{{ .Branch }}
+     # - run:
+      #    name: Load Docker image layer cache
+       #   command: |
+        #    set +o pipefail
+         #   docker load -i /caches/frontend.tar | true
+      - run:
+          name: Build application Docker image
+          command: |
+            cd frontend/
+            docker build -t frontend .
+      #- run:
+       #   name: Save Docker image layer cache
+        #  command: |
+         #   mkdir -p /caches
+          #  docker save -o /caches/frontend.tar frontend
+      #- save_cache:
+       #   key: v1-{{ .Branch }}-{{ epoch }}
+        #  paths:
+         #   - /caches/frontend.tar
+      - run:
+          name: Push Image to docker hub
+          command: |
+            docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+            docker tag frontend ehmeeudosen/fixit-fe:v1
+            docker push ehmeeudosen/fixit-fe:v1
 
 workflows:
   default:
     jobs:
       - build-frontend
-      - build-and-test-backend
       - test-frontend:
           requires: [build-frontend]
       - scan-frontend:
           requires: [build-frontend]
+      - build-frontend-docker-image:
+          requires: [test-frontend, scan-frontend] #remember to channge to test
+          filters:
+            branches:
+              only: [dev]

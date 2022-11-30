@@ -1,4 +1,5 @@
 import React from 'react'
+import Rating from '../../components/WeRemoveGoogleReview/WRDRRating';
 
 import WRGRAbout from '../../components/WeRemoveGoogleReview/WRGRAbout';
 import WRGRFooter from '../../components/WeRemoveGoogleReview/WRGRFooter';
@@ -14,6 +15,7 @@ const WeRemoveGoogleReview = () => {
 					<WRGRHero />
 					<WRGRAbout />
 					<WRGRReview />
+					<Rating />
 					<WRGRFooter />
 				</main>
 			</PageLayout>

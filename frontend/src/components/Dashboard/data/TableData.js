@@ -1,6 +1,6 @@
-import React from 'react';
-import greenLogo from '../../../assets/images/Dashboard/green.jpg';
-import google from '../../../assets/images/Dashboard/google.jpg';
+// import { GOOGLE, GREEN_LOGO } from "../../../assets/image";
+
+
 
 export const TableDatas = [
 	{
@@ -8,38 +8,79 @@ export const TableDatas = [
 		no: 354,
 		priority: 'High',
 		ticketName: 'TS-Chioma Ajunwa',
-		source: greenLogo,
+		dueDate: 'Today',
 		lastUpdated: '4 days ago',
 		status: 'Done',
 	},
 
 	{
 		id: 2,
-		no: 364,
-		priority: 'High',
-		ticketName: 'TS-Arinze Segun',
-		source: google,
+		no: 356,
+		priority: 'Low',
+		ticketName: 'TS-Isreal Ojo',
+		dueDate: 'Today',
 		lastUpdated: '4 days ago',
-		status: 'In progress',
+		status: 'Done',
 	},
 
 	{
 		id: 3,
-		no: 356,
-		priority: 'Low',
+		no: 357,
+		priority: 'Medium',
 		ticketName: 'TS-Isreal Ojo',
-		source: google,
+		dueDate: 'Today',
 		lastUpdated: '4 days ago',
 		status: 'Pending',
 	},
-
+	
 	{
 		id: 4,
-		no: 356,
-		priority: 'Medium',
+		no: 357,
+		priority: 'High',
 		ticketName: 'TS-Isreal Ojo',
-		source: greenLogo,
+		dueDate: 'Today',
 		lastUpdated: '4 days ago',
 		status: 'Done',
 	},
+
+	{
+		id: 5,
+		no: 364,
+		priority: 'High',
+		ticketName: 'TS-Arinze Segun',
+		dueDate: 'Today',
+		lastUpdated: '4 days ago',
+		status: 'In Progress',
+	},
+
+	{
+		id: 6,
+		no: 358,
+		priority: 'Medium',
+		ticketName: 'TS-Idaresit',
+		dueDate: 'Today',
+		lastUpdated: '4 days ago',
+		status: 'Pending',
+	},
+	
+	{
+		id: 7,
+		no: 359,
+		priority: 'High',
+		ticketName: 'TS-Prisca Tonia',
+		dueDate: 'Today',
+		lastUpdated: '4 days ago',
+		status: 'Done',
+	},
+
+	{
+		id: 8,
+		no: 377,
+		priority: 'High',
+		ticketName: 'TS-Ben John',
+		dueDate: 'Today',
+		lastUpdated: '4 days ago',
+		status: 'In Progress',
+	},
+
 ];

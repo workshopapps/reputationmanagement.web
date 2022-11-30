@@ -11,8 +11,8 @@ import SImg from '../img/Our-Story.png';
 
 export default function Story() {
 	return (
-		<>
-			<StyledStory>
+		<div className='bg-[#eef1fc]'>
+			<StyledStory data-testid="story-element">
 				<StyledStorytxt>
 					<StoryHead>Our Story</StoryHead>
 					<StoryP>
@@ -33,6 +33,6 @@ export default function Story() {
 					<StoryImg src={SImg} />
 				</ImgCon>
 			</StyledStory>
-		</>
+		</div>
 	);
 }

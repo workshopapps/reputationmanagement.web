@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const StyledCard = styled.div`
 	background-color: #fff;
-	padding: 24px 33px 11px 33px;
-	/* width: 33%; */
-	border: 1px solid #d2d3d4;
-	border-radius: 10px;
+	padding: 24px 33px 24px 33px;
+	border: 1px solid #e4e4e5;
+	border-radius: 8px;
 
 	p,
 	img {

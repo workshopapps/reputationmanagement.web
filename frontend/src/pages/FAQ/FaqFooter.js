@@ -1,80 +1,42 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import {
+	FaqFooterWraper,
+	FaqFooterHeading,
+	FaqFooterLinks,
+	SendMailLink,
+} from './Assets/styles/FaqFooter.styled';
 
 function FaqFooter() {
+	return (
+		<FaqFooterWraper>
+			<div>
+				<FaqFooterHeading>
+					Question not answered yet? Shoot us a mail or chat with a member of
+					our team
+				</FaqFooterHeading>
 
-    const FaqFooterWraper = styled.div`
-       text-align: center; 
-       margin-top: 100px;
-
-       `
-       
-       const FaqFooterHeading = styled.div`
-        h3{
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 150%;
-            }
-            
-            @media screen and (max-width: 425px){
-
-                text-align: left;
-
-                
-                h3{
-                   text-aling: left;
-                   font-size: 18px;
-                }
-            }
-        `
-
-
-    const FaqFooterLinks = styled.div`
-        
-        display: flex;
-        justify-content: center;
-        gap: 24px;
-        margin-top: 48px;
-
-        @media screen and (max-width: 425px){
-            gap: 8px;
-        }
-
-    `
-
-    
-    const SendMailLink = styled.a`
-        display: inline-block;
-        border: 1px solid;
-        padding: 16px 40px;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 600;
-        color: ${(props) => props.color};
-        background: ${(props) => props.background};
-
-        @media screen and (max-width: 425px){
-            padding: 8px 24px;
-            font-size: 14px;
-        }
-    `
-
-
-  return (
-        
-    <FaqFooterWraper>
-
-        <FaqFooterHeading>
-            <h3>Question not answered yet? Shoot us a <br/>mail or chat with a member of our team</h3>
-        </FaqFooterHeading>
-
-        <FaqFooterLinks>
-            <SendMailLink href='#' background='#233BA9' color='#FFFFFF'>Send a Mail</SendMailLink>
-            <SendMailLink href='#' background='transparent' color='#233BA9'>Check with Us</SendMailLink>
-        </FaqFooterLinks>
-
-    </FaqFooterWraper>
-  )
+				<FaqFooterLinks>
+					<SendMailLink
+						href="mailto:sinachpat@gmail.com"
+						background="#233BA9"
+						color="#FFFFFF"
+					>
+						Send a Mail
+					</SendMailLink>
+					<SendMailLink
+						background="transparent"
+						color="#233BA9"
+						href="https://twitter.com/messages/compose?recipient_id=981997459604934664&text=Hello%20Fixit"
+						className="twitter-dm-button"
+						data-screen-name="@sinachpatrick"
+						target="blank"
+					>
+						Chat with Us
+					</SendMailLink>
+				</FaqFooterLinks>
+			</div>
+		</FaqFooterWraper>
+	);
 }
 
-export default FaqFooter
+export default FaqFooter;

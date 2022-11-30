@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 
 export const StyledPrivacy = styled.div`
-	padding-left: 25px;
 	color: #2b2c34;
-	padding-top: 20px;
-	width: 1000px;
-	margin: auto;
+	max-width: 75%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 10px;
+	margin: 0px auto;
+	/* outline: 1px solid red; */
 
 	h3 {
 		font-size: 32px;
@@ -31,9 +34,9 @@ export const StyledPrivacy = styled.div`
 	}
 
 	@media (max-width: 320px) {
-		div {
+		/* div {
 			over-flow: hidden;
-		}
+		} */
 
 		h3 {
 			font-size: 18px;
@@ -60,8 +63,8 @@ export const StyledPrivacy = styled.div`
 
 	@media (max-width: 1020px) {
 		
-			over-flow: hidden;
-			width: 300px;
+			/* over-flow: hidden;
+			width: 300px; */
 
 		h3 {
 			font-size: 18px;
@@ -79,7 +82,7 @@ export const StyledPrivacy = styled.div`
 		ul {
 			list-style: disc;
 			font-size: 12px;
-			display:flex
+			display:flex;
 			flex-wrap: wrap;
 			overflow-wrap: break;
 			line-height: 21px;

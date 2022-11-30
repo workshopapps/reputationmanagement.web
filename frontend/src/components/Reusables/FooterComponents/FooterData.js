@@ -11,7 +11,7 @@ const FooterData = [
         },
         {
             text: "Our team",
-            url: "/team"
+            url: "/our-team"
         },
         {
             text: "Terms and Conditions",
@@ -31,7 +31,7 @@ const FooterData = [
         },
         {
             text: "Contact Us",
-            url: "/contact-us"
+            url: "/contact"
         },
         {
             text: "FAQ",

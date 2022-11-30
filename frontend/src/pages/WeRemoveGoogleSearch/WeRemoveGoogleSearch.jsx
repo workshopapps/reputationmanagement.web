@@ -1,4 +1,5 @@
 import PageLayout from '../../layout/PageLayout';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Styled from 'styled-components';
 import Image1 from '../../assets/images/WeRemoveGoogleSearch/Image1.jpg';
@@ -60,22 +61,16 @@ const WeRemoveGoogleSearch = () => {
 	]);
 
 	const slideLeft = () => {
-		var slider = document.getElementById('slide-item')
-		slider.scrollLeft = - 1000
-
-		console.log(slider);
-	}
+		let slider = document.getElementById('slide-item');
+		slider.scrollLeft = -1000;
+	};
 
 	const slideRight = () => {
-		var i = 1000;
-		var slider = document.getElementById('slide-item')
-		slider.scrollLeft = ++ i
+		let i = 1000;
+		let slider = document.getElementById('slide-item');
+		slider.scrollLeft = ++i;
+	};
 
-		console.log(slider);
-	}
-	
-
-	
 	return (
 		<PageLayout>
 			<StyledContainer>
@@ -91,14 +86,18 @@ const WeRemoveGoogleSearch = () => {
 				<SpacerSmall />
 				<ButtonFlex>
 					<CenterObject>
-						<StyledButton space bottom width>
-							Get started
-						</StyledButton>
+						<Link to="/signup">
+							<StyledButton space bottom width>
+								Get started
+							</StyledButton>
+						</Link>
 					</CenterObject>
 					<CenterObject>
-						<StyledButton outlined space width>
-							Contact our experts
-						</StyledButton>
+						<Link to="/contact">
+							<StyledButton outlined space width>
+								Contact our experts
+							</StyledButton>
+						</Link>
 					</CenterObject>
 				</ButtonFlex>
 			</StyledContainer>
@@ -148,7 +147,9 @@ const WeRemoveGoogleSearch = () => {
 							accessible via Google search results; if we fail to do so, you
 							incur no cost. That's how simple it is!
 						</StyledText2>
-						<StyledButton top>Contact our experts</StyledButton>
+						<Link to="/contact">
+							<StyledButton top>Contact our experts</StyledButton>
+						</Link>
 					</div>
 
 					<div className="imgDisplay2">
@@ -160,24 +161,23 @@ const WeRemoveGoogleSearch = () => {
 			<ColorBg>
 				<StyledH2Center>What our Users say about us</StyledH2Center>
 				<div className="absolute">
-						<img
-							src={Left}
-							alt="left-arrow"
-							id="left"
-							className="scroll-arrow"
-							onClick={slideLeft}
-						/>
-						<img
-							src={Right}
-							alt="right-arrow"
-							id="right"
-							className="scroll-arrow scroll-right"
-							onClick={slideRight}
-						/>
-					</div>
-				<StyledSlider id='slide-item'>
-					
-					<TestimonialTemplate testimonialTemplate={testimonialTemplate}/>
+					<img
+						src={Left}
+						alt="left-arrow"
+						id="left"
+						className="scroll-arrow"
+						onClick={slideLeft}
+					/>
+					<img
+						src={Right}
+						alt="right-arrow"
+						id="right"
+						className="scroll-arrow scroll-right"
+						onClick={slideRight}
+					/>
+				</div>
+				<StyledSlider id="slide-item">
+					<TestimonialTemplate testimonialTemplate={testimonialTemplate} />
 				</StyledSlider>
 			</ColorBg>
 
@@ -234,7 +234,9 @@ const WeRemoveGoogleSearch = () => {
 						searches from the internet.
 					</StyledH2Center>
 					<SpacerSmall />
-					<StyledButton>Get Started</StyledButton>
+					<Link to="/signup">
+						<StyledButton>Get Started</StyledButton>
+					</Link>
 				</StyledContainer>
 			</ColorBg>
 		</PageLayout>
@@ -371,7 +373,9 @@ export const CenterObject = Styled.section`
   	justify-content: center;
   	align-items: center;
 
-	
+	a{
+		min-width: 100%;
+	}
 `;
 
 export const StyledText2 = Styled(StyledText)`
@@ -422,7 +426,7 @@ export const StyledButton = Styled.button`
     @media screen and (max-width: 460px) {
         margin-bottom: ${(props) => (props.bottom ? '20px' : 0)};
         margin-top: ${(props) => (props.top ? '20px' : 0)};
-        width: ${(props) => (props.width ? '70%' : '')};
+        min-width: ${(props) => (props.width ? '94%' : '')};
         padding: 20px 40px;
     }
     

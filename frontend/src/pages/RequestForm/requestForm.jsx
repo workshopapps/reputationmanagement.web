@@ -1,38 +1,76 @@
 import styled from "styled-components";
 //import ReactStars from 'react-stars'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Checkbox from "../../components/requestFormComponents/checkBox";
 import Rate from "../../components/requestFormComponents/rating";
 import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {StyledDashboard, StyledContainer} from '../../components/Dashboard/Styles/Dashboard.styled';
 import useAppContext from '../../hooks/useAppContext';
-import RequestSuccessful from '../../modal/request-successful/requestSuccessful';
+import Api from '../../api/axios'
 
 
 
 
 
 const RequestForm = () => {
-
+  const router = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [rating, setRating] = useState(0);///set initial state for rating
 
-  /////////////FORM DATA ENTRIES///////////////////////
   //const [checked, setChecked] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  //const [date, setDate] = useState("");
+  const [date, setDate] = useState("");
   // const [time, setTime] = useState("");
+  const [ priority, setPriority ] = useState('')
   const [review, setReview] = useState("");
   const [websitename, setWebsiteName] = useState("");
   const [businesstype, setBusinessType] = useState("");
   //const [name, setName] = useState("");
-  const { setRequestSuccessfulModalActive, requestSuccessfulModalActive } = useAppContext();
+  const { setRequestSuccessfulModalActive, allRequests } = useAppContext();
 
+
+        // setAllRequests((prev) => {
+      //   return [...prev,
+      //     {
+      //     id: Math.floor(Math.random() * 6),
+      //     no: allRequests.length + 1,
+      //     priority: priority,
+      //     ticketName: websitename,
+      //     source: google,
+      //     lastUpdated: 'Now',
+      //     status: 'Pending',
+      //   }
+      // ]
+      // }
+
+  const handleSubmit = async(e) => {
+      e.preventDefault();
+      setRequestSuccessfulModalActive(true);
+      try{
+        const response = await Api.post('/api/create', {
+          id: Math.floor(Math.random() * 6),
+          no: allRequests.length + 1,
+          priority: priority,
+          ticketName: websitename,
+          source: 'google',
+          lastUpdated: 'Now',
+          status: 'Pending',
+        }
+      );
+        console.log( response ? response.data: '')
+        response && setRequestSuccessfulModalActive(true) && router('/request-successful')
+      }
+      catch(err){
+        setRequestSuccessfulModalActive(false)
+        console.log(err)
+      }
+  };
+  
   return (
     <>
-    { requestSuccessfulModalActive &&  <RequestSuccessful/>}
     <StyledDashboard>
     <Sidebar
 				className={`${openMenu ? 'open' : ''}`}
@@ -66,7 +104,7 @@ const RequestForm = () => {
             <div className='time-date-picker'>
               <div className='date-picker'>
                 <label htmlFor="date"> Date of review</label>
-                <input type="date" name="date" id="date" required />
+                <input type="date" name="date" id="date" onChange={(e) => setDate(e.target.value)} required />
               </div>
 
               <div className='time-picker'>
@@ -109,19 +147,19 @@ const RequestForm = () => {
               <h3>Priority level</h3>
 
               <div>
-                <Checkbox label="Today" checked={true} />
+                <Checkbox label="High" checked={true} onClick={() => setPriority('High')} />
               </div>
 
               <div>
-                <Checkbox label="This week" />
+                <Checkbox label="Medium" onClick={() => setPriority('Medium')} />
               </div>
 
               <div>
-                <Checkbox label="In the next 24hrs" />
+                <Checkbox label="Low" onClick={() => setPriority('Low')} />
               </div>
 
               <div>
-                <Checkbox label="Not urgent" />
+                <Checkbox label="Not urgent"  onClick={() => setPriority('Not urgent')}/>
               </div>
 
             </div>
@@ -129,7 +167,7 @@ const RequestForm = () => {
           </div>
           {/***************************************FORM SUBMIT BUTTON**********************************************/}
           <div className='btn-submit'>
-            <button onClick={(e) => { setRequestSuccessfulModalActive(true); e.preventDefault() }}>
+            <button onClick={(e) => { e.preventDefault(); handleSubmit(e) }}>
               Submit
             </button>
 
@@ -217,7 +255,7 @@ const StyledContainers = styled.div`
             }
 
             .bad-review {
-              margin-top: 64px;
+              margin-top: 16px;
 
               .bad-review-text {
                   display: flex;
@@ -261,7 +299,7 @@ const StyledContainers = styled.div`
 
 
           .form-section-b {
-            margin-top: 64px;
+            margin-top: 16px;
             h2 {
               font-size: 24px;
             }
@@ -288,7 +326,7 @@ const StyledContainers = styled.div`
             }
 
             .priority-level {
-              margin-top: 64px;
+              margin-top: 20px;
                     h3 {
                       font-size: 16px;
                     }
