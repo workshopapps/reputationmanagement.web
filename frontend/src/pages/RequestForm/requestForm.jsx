@@ -60,7 +60,7 @@ const RequestForm = () => {
           status: 'Pending',
         }
       );
-        console.log(response?.data)
+        console.log( response ? response.data: '')
         response && setRequestSuccessfulModalActive(true) && router('/request-successful')
       }
       catch(err){
@@ -68,6 +68,7 @@ const RequestForm = () => {
         console.log(err)
       }
   };
+  
   return (
     <>
     <StyledDashboard>
@@ -166,7 +167,7 @@ const RequestForm = () => {
           </div>
           {/***************************************FORM SUBMIT BUTTON**********************************************/}
           <div className='btn-submit'>
-            <button onClick={(e) => { e.preventDefault(); handleSubmit() }}>
+            <button onClick={(e) => { e.preventDefault(); handleSubmit(e) }}>
               Submit
             </button>
 

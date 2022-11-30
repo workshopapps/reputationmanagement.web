@@ -60,10 +60,16 @@ export const FaqQuestion = styled.div.attrs((props) => ({
 }))`
 	display: flex;
 	justify-content: space-between;
+	position: relative;
+
 	align-items: center;
 	transition: all 0.4s ease;
-
-	@media screen and (max-width: 425px) {
+	//height:40px;
+	@media screen and (max-width: 520px) {
+		h2 {
+			font-size: 16px;
+			width: 200px;
+		}
 	}
 `;
 
@@ -71,10 +77,23 @@ export const FaqArrowDown = styled.div.attrs((props) => ({
 	className: props.className,
 }))`
 	transition: all 0.2s ease;
-	width: 32px;
-	height: 32px;
-
+	position: relative;
+	font-size: 22px;
+	width: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	transform: translateY(-50%);
+
+	.fa-down {
+		position: absolute;
+		color:#98A2B3;
+		font-weight:200;
+	}
+
+	@media screen and (max-width: 520px) {
+		font-size: 18px;
+	}
 `;
 
 export const FaqAnswer = styled.div.attrs((props) => ({

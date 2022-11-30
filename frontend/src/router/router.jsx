@@ -27,7 +27,6 @@ import Profile from '../pages/profile/Profile';
 import Settings from '../pages/Settings/Settings';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
-import ScrollToTop from '../components/ScrollToTop';
 import RequireAuth from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
 import Contact from '../pages/ContactUs/Contact';
@@ -36,20 +35,30 @@ import ModalLayout from '../layout/modalLayout';
 const Router = () => {
 	return (
 		<BrowserRouter>
-			<ScrollToTop />
 			<Routes>
-				<Route element={<ModalLayout/>}>
+				<Route element={<ModalLayout />}>
 					{/* PROTECTED ROUTES */}
-					<Route element={<RequireAuth/>}>
-						<Route path="/dashboard" element={<DashboardPage />} />
+					<Route element={<RequireAuth />}>
+						{/* <Route path="/dashboard" element={<DashboardPage />} />
 						<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path='/profile' element={<Profile />}/>
 						<Route path="/request-form" element={<RequestForm />} />
-						<Route path="/request-successful" element={<RequestSuccessfulSm />} />
+						<Route path="/request-successful" element={<RequestSuccessfulSm />} /> */}
 					</Route>
+
+					{/* Unprotect This start  */}
+					<Route path="/dashboard" element={<DashboardPage />} />
+					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
+					<Route path="/settings" element={<Settings />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/request-form" element={<RequestForm />} />
+					<Route path="/request-successful" element={<RequestSuccessfulSm />} />
+
+					{/* Unprotect This End  */}
+
 					<Route path="/" element={<LandingPage />} />
-					<Route path='/login' element={<Login/>} />
+					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/about-us" element={<AboutPage />} />
 					<Route
@@ -68,11 +77,14 @@ const Router = () => {
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/request-form" element={<RequestForm />} />
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/support" element={<SupportPage />} />
 					<Route path="/our-team" element={<Ourteam />} />
-					<Route path='/contact' element={<Contact />}/>
+					<Route path="/settings" element={<Settings />} />
+					<Route path="/contact" element={<Contact />} />
 					<Route path='/reset-password' element={<ResetPassword />}/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>

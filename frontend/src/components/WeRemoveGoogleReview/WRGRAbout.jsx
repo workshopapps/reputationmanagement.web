@@ -3,6 +3,7 @@ import Styled from 'styled-components'
 import { StyledContainer } from '../Styles/Body/Container.styled'
 import line from '../../assets/images/wrgr/reviewLine.svg'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
 
 const WRGRAbout = () => {
   return (
@@ -11,9 +12,9 @@ const WRGRAbout = () => {
         <div className="container-inner">
           <div className="container-1">
             <HeadinBg className='heading-bg'>
-            <h6 className=''>
-              Intoducing Fixit
-            </h6>
+              <h6 className=''>
+                Intoducing Fixit
+              </h6>
             </HeadinBg>
             <h4>
               Remove your negative google reviews and improve your company’s reputation
@@ -45,13 +46,17 @@ const WRGRAbout = () => {
 
         <div className="my-4">
           <HeadinMain>
-          <HeadinBg>
-          <h5 className='my-4'>
-            Our Features
-          </h5>
-          </HeadinBg>
+            <HeadinBg>
+              <h5 className='my-4'>
+                Our Features
+              </h5>
+            </HeadinBg>
 
-          <button>Read more</button>
+            <button>
+              <Link to="/about-us">
+                Read more
+              </Link>
+            </button>
           </HeadinMain>
 
           <BoxMain>
@@ -153,7 +158,7 @@ div {
 
 `;
 
-const HeadinBg = styled.div `
+const HeadinBg = styled.div`
       height:73px;
         width:200px;
         background-size:contain;
@@ -172,7 +177,7 @@ const HeadinBg = styled.div `
             }
 `;
 
-const HeadinMain = styled.div `
+const HeadinMain = styled.div`
       display: flex;
       justify-content: space-between;
       margin-bottom: 15px;
@@ -183,7 +188,7 @@ const HeadinMain = styled.div `
       }
 `;
 
-const BoxMain = styled.div `
+const BoxMain = styled.div`
       display: flex;
       justify-content: space-between;
 
@@ -193,7 +198,7 @@ const BoxMain = styled.div `
 
 `;
 
-const BoxChild = styled.div `
+const BoxChild = styled.div`
      width: 45%;
      border: 1px solid #D2D3D4;
      padding: 0px 24px 40px 24px;
