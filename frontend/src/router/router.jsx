@@ -37,9 +37,9 @@ const Router = () => {
 		<BrowserRouter>
 			<ScrollToTop />
 			<Routes>
-				<Route element={<ModalLayout/>}>
+				<Route element={<ModalLayout />}>
 					{/* PROTECTED ROUTES */}
-					<Route element={<RequireAuth/>}>
+					<Route element={<RequireAuth />}>
 						<Route path="/dashboard" element={<DashboardPage />} />
 						<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
@@ -48,7 +48,7 @@ const Router = () => {
 						<Route path="/request-successful" element={<RequestSuccessfulSm />} />
 					</Route>
 					<Route path="/" element={<LandingPage />} />
-					<Route path='/login' element={<Login/>} />
+					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/about-us" element={<AboutPage />} />
 					<Route
@@ -67,10 +67,13 @@ const Router = () => {
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
+					<Route path='/profile' element={<Profile />}/>
+					<Route path="/request-form" element={<RequestForm />} />
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/support" element={<SupportPage />} />
 					<Route path="/our-team" element={<Ourteam />} />
+					<Route path="/settings" element={<Settings />} />
 					<Route path='/contact' element={<Contact />}/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
