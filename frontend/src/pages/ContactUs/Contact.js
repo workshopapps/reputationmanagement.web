@@ -1,386 +1,534 @@
-import React from 'react'
-import styled from 'styled-components'
-import personIcon from './Assets/person_icon.svg'
-import contactMailicon from './Assets/contact_mail.svg'
-import messageIcon from './Assets/message_icon.svg'
-import PageLayout from '../../layout/PageLayout'
-
-
-
+import styled from 'styled-components';
+import PageLayout from '../../layout/PageLayout';
+import { BsPersonFill } from 'react-icons/bs';
+import { MdContactMail } from 'react-icons/md';
+import { TbMessage } from 'react-icons/tb';
+import { useState, useRef, useEffect } from 'react';
 
 const ContactPageWraper = styled.div`
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-`
-
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+`;
 
 const ContactPageHeading = styled.div`
-    text-align: center;
-    margin-top: 72px;
+	text-align: center;
+	margin-top: 72px;
 
-    h1{
-        font-size: 57px;
-        font-weight: 700;
-        color: #233BA9;
+	h1 {
+		font-size: 53px;
+		font-weight: 700;
+		color: #233ba9;
+		margin-bottom: 30px;
 
-        span{
-            color: #F16F04;
-        }
-    }
+		span {
+			color: #f16f04;
+		}
+	}
 
-    @media screen and (max-width: 425px){
-        margin-top: 18px;
+	@media screen and (max-width: 425px) {
+		margin-top: 18px;
 
-        h1{
-            font-size: 18px;
-        }
-    }
-`
+		h1 {
+			font-size: 18px;
+		}
+	}
+`;
 
-const ContactFormSection = styled.div.attrs(props => ({
-    className: props.className
+const ContactFormSection = styled.div.attrs((props) => ({
+	className: props.className,
 }))`
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	margin-top: 70px;
+	padding: 70px 126px;
 
+	h3 {
+		text-align: center;
+		font-weight: 700;
+		font-size: 36px;
+	}
 
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    margin-top: 70px;
-    padding: 70px 126px;
+	@media screen and (max-width: 425px) {
+		padding: 15px 50px;
+		justify-content: center;
+		margin-top: 18px;
 
-    h3{
-        text-align: center;
-        font-weight: 700;
-        font-size: 36px;
-    }
+		h3 {
+			font-size: 16px;
+			font-weight: 600;
+		}
+	}
+`;
 
-
-    @media screen and (max-width: 425px){
-        padding: 15px 50px;
-        justify-content: center;
-        margin-top: 18px;
-
-        h3{
-            font-size: 16px;
-            font-weight: 600;
-        }
-    }
-`
-
-const ContactForm = styled.div.attrs(props => ({
-    className: props.className
+const ContactForm = styled.div.attrs((props) => ({
+	className: props.className,
 }))`
-    
+	&.form-1 {
+		display: flex;
 
-    &.form-2{
-        display: flex;
-        justify-content: flex-end;
+		/* 
+		@media screen and (max-width: 425px) {
+			justify-content: unset;
+		} */
+	}
+	.right__line {
+		width: 42%;
+		height: 329px;
+		border-top: 3px dashed #233ba9;
+		border-right: 3px dashed #233ba9;
+		margin-top: 234px;
+		border-top-right-radius: 30px;
+	}
+	&.form-2 {
+		display: flex;
+		justify-content: flex-end;
+		margin-top: -60px;
+		@media screen and (max-width: 425px) {
+			justify-content: unset;
+		}
+	}
+	.left__line {
+		border-top: 3px dashed #233ba9;
+		border-left: 3px dashed #233ba9;
+		width: 42%;
+		height: 329px;
+		margin-top: 234px;
+		border-top-left-radius: 30px;
+	}
+	&.form-3 {
+		margin-top: -60px;
+	}
+	@media (max-width: 1300px) {
+		.right__line {
+			width: 30%;
+		}
+		.left__line {
+			width: 30%;
+		}
+	}
+	@media (max-width: 1100px) {
+		&.form-1 {
+			justify-content: center;
+			margin: 40px 0;
+		}
+		.right__line {
+			display: none;
+		}
+		&.form-2 {
+			margin-top: 0px;
+			justify-content: center;
+			margin-bottom: 40px;
+		}
+		.left__line {
+			display: none;
+		}
+		&.form-3 {
+			margin-top: 0px;
+			margin-bottom: 40px;
+			display: flex;
+			justify-content: center;
+		}
+	}
+`;
 
-
-        @media screen and (max-width: 425px){
-            justify-content: unset;
-        }
-    }
-    
-    
-`
-
-const PersonalInfoForm = styled.div.attrs(props => ({
-    className: props.className
+const PersonalInfoForm = styled.div.attrs((props) => ({
+	className: props.className,
 }))`
+	&.contact-form {
+		width: 500px;
+		height: 510px;
+		background: #ffffff;
+		border-radius: 12px;
+		padding: 32px 32px 72px 32px;
+		position: relative;
 
-    &.contact-form{
-        width: 500px;
-        background: #FFFFFF;
-        border-radius: 12px;
-        padding: 32px 32px 72px 32px;
-        position: relative;
+		> div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 88px;
+			height: 88px;
+			border-radius: 50%;
+			margin-top: -60px;
+			margin-left: -20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 100%;
+			border: 1px solid #e8e8e8;
+			background: #ffffff;
+			> svg {
+				font-size: 3.2rem;
+				color: #d2d3d4;
+			}
+		}
 
+		h4 {
+			font-weight: 600;
+			font-size: 22px;
+			color: #2b2c34;
+			margin-top: 14px;
+		}
 
-        > div{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            margin-top: -60px;
-            margin-left: -20px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 100%;
-            border: 1px solid #E8E8E8;
-            background: #FFFFFF;
-        }
+		p {
+			font-weight: 400;
+			font-size: 16px;
+			color: #2b2c34;
+			margin-top: 24px;
+		}
 
+		form {
+			margin-top: 24px;
+		}
 
-        h4{
-            font-weight: 600;
-            font-size: 22px;
-            color: #2B2C34;
-            margin-top: 14px;
-        }
+		form div {
+			margin-top: 20px;
+		}
 
-        p{
-            font-weight: 400;
-            font-size: 16px;
-            color: #2B2C34;
-            margin-top: 24px;
-        }
+		form div input {
+			width: 70%;
+			height: 50px;
+			border: 1px solid #e8e8e8;
+			border-radius: 15px;
+			text-indent: 20px;
 
-        form{
-            margin-top: 24px;
-        }
+			&:focus {
+				border: 1px solid #788be3;
+				outline: none;
+			}
 
-        form div{
-            margin-top: 12px;
-        }
+			&::placeholder {
+				font-weight: 400;
+				font-size: 14px;
+				color: #bababa;
+			}
+		}
 
-        form div input{
-            width: 70%;
-            height: 50px;
-            border: 1px solid #E8E8E8;
-            border-radius: 15px;
-            text-indent: 20px;
-            &:focus{
-                border: 1px solid #788BE3;
-                outline: none;
-            }
-            
-            &::placeholder{
-                font-weight: 400;
-                font-size: 14px;
-                color: #BABABA;
-            }
-        }
+		form div button {
+			width: 120px;
+			height: 40px;
+			background: #e0e0e0;
+			border: none;
+			color: #ffffff;
+			font-size: 16px;
+			font-weight: 600;
+			border-radius: 8px;
+			cursor: pointer;
+		}
+		&.active {
+			> div {
+				> svg {
+					color: #233ba9;
+				}
+			}
+			form div button {
+				background: #233ba9;
+			}
+		}
+	}
 
-        form div button{
-            width: 120px;
-            height: 40px;
-            background: #233BA9;
-            border: none;
-            color: #FFFFFF;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-    }
+	/* @media screen and (max-width: 765px) {
+		&.contact-form {
+			width: 600px !important;
+		}
+	} */
+	@media screen and (max-width: 425px) {
+		&.contact-form {
+			width: 100%;
+			padding: 32px 16px;
 
-    @media screen and (max-width: 425px){
-        &.contact-form{
-            width: 100%;
-            padding: 32px 16px;
+			> div {
+				width: 50px;
+				height: 50px;
+				left: 50%;
+				margin-top: -20px;
 
+				> img {
+					width: 70%;
+				}
+			}
 
-            > div{
-                width: 50px;
-                height: 50px;
-                left: 50%;
-                margin-top: -20px;
-    
-                >img{
-                    width: 70%;
-                }
-            }
+			h4 {
+				font-size: 18px;
+				font-weight: 700;
+			}
 
-            h4{
-                font-size: 18px;
-                font-weight: 700;
-            }
-            
-            p{
-                font-size: 16px;
-            }
+			p {
+				font-size: 16px;
+			}
 
-            form div input{
-                width: 100%;
-                height: 39px;
-                border-radius: 8px;
+			form div input {
+				width: 100%;
+				height: 39px;
+				border-radius: 8px;
 
-                &::placeholder{
-                    font-size: 12px;
-                }
-            }
+				&::placeholder {
+					font-size: 12px;
+				}
+			}
 
-            form div button{
-                width: 80px;
-                height: 30px;
-                font-size: 12px;
-            }
-        }
+			form div button {
+				width: 80px;
+				height: 30px;
+				font-size: 12px;
+			}
+		}
+	}
+	@media (max-width: 760px) {
+		&.contact-form {
+			width: 800px !important;
+		}
+	}
+`;
 
-
-    }
-
-`
-
-const ContactInfoForm = styled(PersonalInfoForm).attrs(props => ({
-    className: props.className
+const ContactInfoForm = styled(PersonalInfoForm).attrs((props) => ({
+	className: props.className,
 }))`
+	&.contact-info-form {
+		form div button {
+			background: #e0e0e0;
+		}
 
-    &.contact-info-form{
+		> div {
+			left: 93%;
+			> svg {
+				color: #e0e0e0;
+			}
 
-        form div button{
-            background:  #E0E0E0;
-        }
+			@media screen and (max-width: 425px) {
+				left: 50%;
+			}
+		}
+	}
+	&.active {
+		form div button {
+			background: #233ba9;
+		}
+		> div {
+			> svg {
+				color: #233ba9;
+			}
+		}
+	}
 
-        > div{
-            left: 93%;
+	form div button {
+		background: #e0e0e0;
+		color: #ffffff;
+	}
+`;
 
-            @media screen and (max-width: 425px){
-                left: 50%;
-                
-            }
-            
-        }
-    }
-
-
-    form div button{
-        background: #E0E0E0;
-        color: #FFFFFF;
-    }
-   
-`
-
-const MessageForm = styled(PersonalInfoForm).attrs(props => ({
-    className: props.className
+const MessageForm = styled(PersonalInfoForm).attrs((props) => ({
+	className: props.className,
 }))`
+	&.message-form {
+		form div button {
+			background: #e0e0e0;
+		}
+	}
+	form div textarea {
+		width: 80%;
+		height: 174px;
+		resize: none;
+		border: 1px solid #e8e8e8;
+		border-radius: 8px;
+		padding: 12px;
 
-    &.message-form{
-        form div button{
-            background: #E0E0E0;
-        }
-    }
-    form div textarea{
-        width: 80%;
-        height: 174px;
-        resize: none;
-        border: 1px solid #E8E8E8;
-        border-radius: 8px;
-        padding: 12px;
+		&:focus {
+			outline: none;
+			border: 1px solid #788be3;
+		}
 
-        &:focus{
-            outline: none;
-            border: 1px solid #788BE3;
-        }
-
-        @media screen and (max-width: 425px){
-            width: 90%;
-        }
-    }
-
-`
+		@media screen and (max-width: 425px) {
+			width: 90%;
+		}
+	}
+	&.active {
+		> div {
+			> svg {
+				color: #233ba9;
+			}
+		}
+	}
+`;
 
 function Contact() {
-  return (
-    <PageLayout>
-        <ContactPageWraper className='contact-page'>
+	const [contactDetailsFrom, setContactDetailsForm] = useState({
+		name: '',
+		company: '',
+		email: '',
+		phoneNumber: '',
+		mailingAddress: '',
+		country: '',
+		city: '',
+		zipCode: '',
+		message: '',
+	});
+	const contactRef = useRef(null);
+	const messageRef = useRef(null);
+	const [personlForm, setPersonalForm] = useState(true);
+	const [contactForm, setContactForm] = useState(false);
+	const [messageForm, setMessageForm] = useState(false);
 
-            <ContactPageHeading className='contact-heading'>
-                <h1>Talk With Our Digital <span>Strategists</span></h1>
-            </ContactPageHeading>
-            <div className='bg-[#EEF1FC]'>
+	const handleScroll = (ref) => {
+		window.scrollTo({
+			top: ref.offsetTop,
+			left: 0,
+			behavior: 'smooth',
+		});
+	};
 
-                <ContactFormSection className='contact-form-section' style={{ maxWidth: '1540px', margin: '0 auto'}}>
-                
-                    <h3>Get Started in 3 Easy Steps</h3>
+	return (
+		<PageLayout>
+			<ContactPageWraper className="contact-page">
+				<ContactPageHeading className="contact-heading">
+					<h1>
+						Talk With Our Digital <span>Strategists</span>
+					</h1>
+				</ContactPageHeading>
+				<div className="bg-[#EEF1FC]">
+					<ContactFormSection
+						className="contact-form-section"
+						style={{ maxWidth: '1540px', margin: '0 auto' }}
+					>
+						<h3>Get Started in 3 Easy Steps</h3>
 
-                    <ContactForm className='form-1'>
-                        <PersonalInfoForm className='contact-form'>
-                            <div>
-                                <img src={personIcon}/>
-                            </div>
+						<ContactForm className="form-1">
+							<PersonalInfoForm
+								onClick={() => {
+									setPersonalForm(true);
+									setContactForm(false);
+									setMessageForm(false);
+								}}
+								className={`${personlForm && `active`} contact-form`}
+							>
+								<div>
+									<BsPersonFill />
+								</div>
 
-                            <h4 className='form-title'>#1 Personal Information</h4>
+								<h4 className="form-title">#1 Personal Information</h4>
 
-                            <p>Fill a request form with details of your personal information</p>
+								<p>
+									Fill a request form with details of your personal information
+								</p>
 
-                            <form>
-                                <div>
-                                    <input placeholder='' />
-                                </div>
-                                <div>
-                                    <input placeholder='Company/Organization' />
-                                </div>
-                                <div>
-                                    <input placeholder='Email Address' />
-                                </div>
-                                <div>
-                                    <input placeholder='Phone Number' />
-                                </div>
-                                <div>
-                                    <button>Next</button>
-                                </div>
+								<form
+									onSubmit={(e) => {
+										e.preventDefault();
+										setPersonalForm(false);
+										setContactForm(true);
+										handleScroll(contactRef.current);
+									}}
+								>
+									<div>
+										<input placeholder="Name" />
+									</div>
+									<div>
+										<input placeholder="Company/Organization" />
+									</div>
+									<div>
+										<input placeholder="Email Address" />
+									</div>
+									<div>
+										<input placeholder="Phone Number" />
+									</div>
+									<div>
+										<button>Next</button>
+									</div>
+								</form>
+							</PersonalInfoForm>
+							<div className="right__line"></div>
+						</ContactForm>
 
-                            </form>
-                        </PersonalInfoForm>
+						<ContactForm className="form-2" ref={contactRef}>
+							<div className="left__line"></div>
+							<ContactInfoForm
+								onClick={() => {
+									setPersonalForm(false);
+									setContactForm(true);
+									setMessageForm(false);
+								}}
+								className={`${
+									contactForm && `active`
+								} contact-form contact-info-form`}
+							>
+								<div>
+									<MdContactMail />
+								</div>
 
-                    </ContactForm>
+								<h4 className="form-title">#2 Contact Information</h4>
 
-                    <ContactForm className='form-2'>
-                        <ContactInfoForm className='contact-form contact-info-form'>
-                            <div>
-                                <img src={contactMailicon}/>
-                            </div>
+								<p>
+									Fill a request form with details of your contact information
+								</p>
 
-                            <h4 className='form-title'>#2 Contact Information</h4>
+								<form
+									onSubmit={(e) => {
+										e.preventDefault();
+										setContactForm(false);
+										setMessageForm(true);
+										handleScroll(messageRef.current);
+									}}
+								>
+									<div>
+										<input placeholder="Mailing Address" />
+									</div>
+									<div>
+										<input placeholder="Country" />
+									</div>
+									<div>
+										<input placeholder="City" />
+									</div>
+									<div>
+										<input placeholder="ZIP Code" />
+									</div>
+									<div>
+										<button>Next</button>
+									</div>
+								</form>
+							</ContactInfoForm>
+						</ContactForm>
 
-                            <p>Fill a request form with details of your contact information</p>
+						<ContactForm className="form-3" ref={messageRef}>
+							<MessageForm
+								onClick={() => {
+									setPersonalForm(false);
+									setContactForm(false);
+									setMessageForm(true);
+								}}
+								className={`${
+									messageForm && `active`
+								} contact-form message-form`}
+							>
+								<div>
+									<TbMessage />
+								</div>
 
-                            <form>
-                                <div>
-                                    <input placeholder='Mailing Address'/>
-                                </div>
-                                <div>
-                                    <input placeholder='Country'/>
-                                </div>
-                                <div>
-                                    <input placeholder='City'/>
-                                </div>
-                                <div>
-                                    <input placeholder='ZIP Code'/>
-                                </div>
-                                <div>
-                                    <button>Next</button>
-                                </div>
-                            </form>
-                        </ContactInfoForm>
+								<h4 className="form-title">#3 Message</h4>
 
-                    </ContactForm>
+								<p>
+									Kindly explain in detail the problem that you are currently
+									experiencing
+								</p>
 
-                    <ContactForm className='form-3'>
-                        <MessageForm className='contact-form message-form'>
-                            <div>
-                                <img src={messageIcon}/>
-                            </div>
-
-                            <h4 className='form-title'>#3 Message</h4>
-
-                            <p>Kindly explain in detail the problem that you are currently experiencing</p>
-
-                            <form>
-                                <div>
-                                    <textarea></textarea>
-                                </div>
-                                <div>
-                                    <button>Finish</button>
-                                </div>
-                            </form>
-                        </MessageForm>
-
-                    </ContactForm>
-                </ContactFormSection>
-            </div>
-
-        </ContactPageWraper>
-    </PageLayout>
-  )
+								<form>
+									<div>
+										<textarea></textarea>
+									</div>
+									<div>
+										<button>Finish</button>
+									</div>
+								</form>
+							</MessageForm>
+						</ContactForm>
+					</ContactFormSection>
+				</div>
+			</ContactPageWraper>
+		</PageLayout>
+	);
 }
 
-export default Contact
+export default Contact;
