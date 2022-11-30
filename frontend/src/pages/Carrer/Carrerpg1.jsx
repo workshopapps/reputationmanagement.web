@@ -13,17 +13,19 @@ import Slider1 from '../../assets/images/ImageSlider1.jpg';
 import orange from '../../assets/images/orangeCircle.png';
 import { StyledText } from '../../components/Styles/Body/Text.styled';
 import { Link } from 'react-router-dom';
-import {
-	StyledButton,
-} from '../../components/Styles/Body/Button.styled';
+import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import DescriptionProps from './DescriptionProps';
 import CarrerLandImg from '../../assets/images/CarrerLand.png';
 import JobProps from './JobProps';
+import Star from '../../assets/images/Vectorstar.png';
+import Star2 from '../../assets/images/Vectorstar2.png';
+
+
 
 const StyledHeader = styled.h1`
 	color: #fdb172;
 
-	font-size: 2.8rem;
+	font-size: 3.5rem;
 	padding: 4px 0;
 `;
 const StyledBackGround = styled.section`
@@ -92,6 +94,10 @@ function Carrerpg1() {
 							Speak with an expert
 						</StyledButton>
 					</div>
+					<div className="flex justify-evenly">
+						<img src={Star} alt="" className="w-5 h-5 mt-5" />
+						<img src={Star2} alt="" className="w-5 h-5 mt-20" />
+					</div>
 				</div>
 				<div>
 					<img src={CarrerLandImg} alt="" className="w-full h-2/5" />
@@ -116,7 +122,7 @@ function Carrerpg1() {
 				/>
 			</StyledBackGround2>
 			<section className="mt-12">
-				<h1 className="text-center font-bold text-3xl p-4">
+				<h1 className="text-center font-bold text-3xl p-4 pt-16">
 					See our latest vacancies
 				</h1>
 				<h4 className="text-center my-4">
@@ -140,14 +146,14 @@ function Carrerpg1() {
 				</div>
 			</section>
 			<section className="img-carousel mt-11 py-5 flex flex-col justify-center items-center">
-				<h1 className="text-3xl font-semibold">
+				<h1 className="text-3xl font-semibold mt-10">
 					Picture yourself as <StyledSpanText>FIXIT</StyledSpanText>
 				</h1>
 				<h6>
 					follow us on instagram:{' '}
 					<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
 				</h6>
-				<div className="image-carousel flex mt-12 items-center justify-center">
+				<div className="image-carousel flex mt-20 items-center justify-center">
 					<img src={Slider3} alt="" style={mystyle} />
 					<img src={Slider2} alt="" style={style} className="active  -mt-5" />
 					<img src={Slider1} alt="" style={mystyle} />
