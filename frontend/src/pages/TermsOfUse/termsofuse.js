@@ -1,34 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
 import PageLayout from '../../layout/PageLayout';
+
 const Headtext = styled.h2`
+	font-style: normal;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 24px;
 	color: #01b0d8;
-	font-size: 1.8em;
+    padding-bottom: ${(props)=>{return ( props.className || '4px')}};
+
 	@media (max-width: 768px) {
 		font-size: 1.3em;
 	}
+
 `;
 const P = styled.p`
-	margin: 0.8em 0;
-	text-align: justify;
-`;
+		margin: 0 0.8em 0;
+		text-align:  justify;
+`;;
 
 const Termsofuse = () => {
-	const Heading = ({ text }) => <Headtext>{text} </Headtext>;
+	const Heading = ({ text, className }) => <Headtext className={className}>{text} </Headtext>;
 	return (
 		<div data-testid="terms">
 			<PageLayout>
-				<div className="flex  md:py-10 justify-center md:justify-start pl-[10%] mt-2 mb-8 bg-[#E4E4E5] h-[10vh] items-center md:mt-5">
+				<div className="flex  md:py-10 justify-center md:justify-start pl-[10%] mb-12 bg-[#E4E4E5] h-[10vh] items-center ">
 					<h1
 						data-testid="headingtext"
-						className="text-xl md:text-4xl text-[#557091] flex align-center"
+						className="text-xl font-semibold md:text-4xl text-[#557091] flex align-center"
 					>
 						{' '}
 						Terms & Conditions{' '}
 					</h1>
 				</div>
 				<div className="w-4/5 m-auto pb-5">
-					<div>
+					<div className='pb-5'>
 						<Heading text="Effective March 2022" />
 						<article>
 							<P>
@@ -54,13 +61,13 @@ const Termsofuse = () => {
 						</article>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Eligibility" />
 						<P> We invite users and visitors to FixIt.com.</P>
 					</div>
 
-					<div>
-						<Heading text="Services" />
+					<div className='pb-5'>
+						<Heading text="Services" className='pb-10' />
 						<P>
 							{' '}
 							The company provides services such as content removals, content
@@ -76,8 +83,8 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
-						<Heading text="License and Ownership" />
+					<div className='pb-5'>
+						<Heading text="License and Ownership" className='pb-6' />
 						<P>
 							{' '}
 							The company may ask to provide information that is considered
@@ -94,7 +101,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Account Creation" />
 						<P>
 							{' '}
@@ -106,7 +113,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Users" />
 						<P>
 							Visitors may, subject to these Terms of Use, access and browse
@@ -125,7 +132,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Privacy" />
 						<P>
 							Our privacy policy describes how we collect, use and disclose
@@ -137,7 +144,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Your Obligations" />
 						<P>
 							{' '}
@@ -169,7 +176,7 @@ const Termsofuse = () => {
 						</ul>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Client Acknowledgement" />
 						<P>
 							{' '}
@@ -194,7 +201,7 @@ const Termsofuse = () => {
 						</ul>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Fees and Payments" />
 						<P>
 							{' '}
@@ -217,24 +224,26 @@ const Termsofuse = () => {
 						</ul>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Termination" />
 						<P>
 							{' '}
 							Termination of an agreement can be done by either party on terms
 							specified in the proposal.
-							<br/>
+							<P>
 								- The company is allowed to terminate this agreement immediately
 								if the client refuses to pay the fees by the due date.
-							<br/>
+							</P>
+							<P>
 								{' '}
 								- If termination occurs, the client must pay the company all
 								outstanding fees within seven (7) days. And any invoice provided
 								for work completed before termination.{' '}
+							</P>
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Warranties" />
 						<P>
 							{' '}
@@ -256,7 +265,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Refund Policy" />
 						<P>
 							{' '}
@@ -283,7 +292,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Content" />
 						<P>
 							FixIt.com contains both WhoKnows content and user content. The
@@ -293,7 +302,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Software" />
 						<P>
 							{' '}
@@ -315,7 +324,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="User Content" />
 						<P>
 							User content includes text, graphics, and other material and
@@ -381,7 +390,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="General" />
 						<P>
 							Our failure to enforce any right will not constitute a waiver of
@@ -400,7 +409,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div>
+					<div className='pb-5'>
 						<Heading text="Company Information" />
 						<P>
 							FixIt, Inc. is a corporation organized under the laws of the State
