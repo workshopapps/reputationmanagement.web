@@ -33,7 +33,7 @@ const WRGRReview = () => {
               How FixIt has helped us grow our business
             </h3>
               <p>
-              <Link to="we-remove-google-search">
+              <Link to="/we-remove-google-search">
                 Learn More
               </Link>
             </p>
@@ -48,7 +48,7 @@ const WRGRReview = () => {
               How FixIt has helped us grow our business
             </h3>
               <p>
-              <Link to="we-remove-google-search">
+              <Link to="/we-remove-google-search">
                 Learn More
               </Link>
             </p>
@@ -62,7 +62,7 @@ const WRGRReview = () => {
               How FixIt has helped us grow our business
             </h3>
             <p>
-              <Link to="we-remove-google-search">
+              <Link to="/we-remove-google-search">
                 Learn More
               </Link>
             </p>
