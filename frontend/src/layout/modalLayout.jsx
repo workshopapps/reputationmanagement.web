@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import RequestFailed from "../components/request status/requestFailed";
@@ -8,9 +8,6 @@ import RequestSuccessful from "../modal/request-successful/requestSuccessful";
 
 const ModalLayout = ({children}) => {
     const { setRequestSuccess, requestSuccess, setRequestFailed, requestFailed, errMessage, successMessage, requestSuccessfulModalActive } = useAppContext();
-    useEffect(() => {
-        console.log(requestSuccess)
-    },[requestSuccess])
     return(
         <StyledLayout>
             { requestSuccessfulModalActive &&  <RequestSuccessful/>}

@@ -26,7 +26,6 @@ import Profile from '../pages/profile/Profile';
 import Settings from '../pages/Settings/Settings';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
-import ScrollToTop from '../components/ScrollToTop';
 import RequireAuth from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
 import Contact from '../pages/ContactUs/Contact';
@@ -35,7 +34,6 @@ import ModalLayout from '../layout/modalLayout';
 const Router = () => {
 	return (
 		<BrowserRouter>
-			<ScrollToTop />
 			<Routes>
 				<Route element={<ModalLayout />}>
 					{/* PROTECTED ROUTES */}
