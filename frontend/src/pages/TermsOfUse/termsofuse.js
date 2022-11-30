@@ -8,7 +8,7 @@ const Headtext = styled.h2`
 	font-size: 30px;
 	line-height: 24px;
 	color: #01b0d8;
-    padding-bottom: ${(props)=>{return ( props.className || '4px')}};
+    padding-bottom: ${(props)=>{return ( props.className || '15px')}};
 
 	@media (max-width: 768px) {
 		font-size: 1.3em;
@@ -16,7 +16,7 @@ const Headtext = styled.h2`
 
 `;
 const P = styled.p`
-		margin: 0 0.8em 0;
+		/* margin: 0 0.8em 0; */
 		text-align:  justify;
 `;;
 
