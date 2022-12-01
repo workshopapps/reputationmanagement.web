@@ -7,9 +7,7 @@ export const StyledRetention = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 10px;
 	margin: 0px auto;
-	/* outline: 1px solid red; */
 
 	h3 {
 		font-size: 32px;
@@ -34,8 +32,8 @@ export const StyledRetention = styled.div`
 
 	@media (max-width: 1020px) {
 		
-			over-flow: hidden;
-			width: 300px;
+		max-width: 85%;
+		text-align: justify;
 
 		h3 {
 			font-size: 18px;
@@ -53,7 +51,7 @@ export const StyledRetention = styled.div`
 		ul {
 			list-style: disc;	
 			font-size: 12px;
-			display:flex
+			display:flex;
 			flex-wrap: wrap;
 			overflow-wrap: break;
 			line-height: 21px;

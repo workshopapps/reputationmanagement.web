@@ -8,7 +8,7 @@ export default function Bottom() {
 	return (
 		<StyledBottom>
 			
-			<h2>We are here to help maintain your brand's <br /> reputation. If we don't succeed you don't pay</h2>
+			<h2> We are here to help maintain your brand's reputation. If we don't succeed you don't pay</h2>
             <StyledButton> <Link to='/get-a-quote'> Get a free quote <span><FaArrowRight/></span> </Link> </StyledButton>
 		</StyledBottom>
 	);
