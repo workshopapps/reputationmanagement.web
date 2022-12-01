@@ -7,7 +7,7 @@ import {
 	// StyledTextButton,
 } from '../../components/Styles/Body/Button.styled';
 import SearchIcon from '../../assets/images/Search.png';
-import MenuIcon from '../../assets/images/menu.png';
+// import MenuIcon from '../../assets/images/menu.png';
 import styled from 'styled-components';
 import PageLayout from '../../layout/PageLayout';
 

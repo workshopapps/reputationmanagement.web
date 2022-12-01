@@ -1,6 +1,4 @@
 import React from 'react'
-import Styled from 'styled-components'
-import { StyledContainer } from '../Styles/Body/Container.styled'
 import line from '../../assets/images/wrgr/reviewLine.svg'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"

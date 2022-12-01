@@ -2,10 +2,6 @@ import React from 'react'
 import Styled from 'styled-components';
 import { StyledButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
-import {
-  StyledH1,
-  StyledText,
-} from '../Styles/Body/Text.styled';
 import { Link } from "react-router-dom"
 import loveclip from '../../assets/images/wrgr/loveclip.png'
 import m from '../../assets/images/wrgr/m.png'
