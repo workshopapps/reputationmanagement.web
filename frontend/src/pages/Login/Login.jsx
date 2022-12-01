@@ -116,7 +116,7 @@ const Login = () => {
                 </div>
 
               <ForgotPass>
-                <Link className='' to="/reset-password">forgot password</Link>
+                <Link className='' to="/password-recovery">forgot password</Link>
                 </ForgotPass>
               </Remember>
 

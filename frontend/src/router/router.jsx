@@ -16,7 +16,8 @@ import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 import GetAQuote from '../pages/GetAQuote/index';
 import RequestForm from '../pages/RequestForm/requestForm';
-import ResetPassword from '../pages/ResetPassword/resetPassword';
+import PasswordRecovery from '../pages/PasswordRecovery/passwordRecovery';
+import ChangePassword from '../pages/PasswordRecovery/changePassword';
 
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
@@ -85,7 +86,8 @@ const Router = () => {
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/settings" element={<Settings />} />
 					<Route path="/contact" element={<Contact />} />
-					<Route path='/reset-password' element={<ResetPassword />}/>
+					<Route path='/password-recovery' element={<PasswordRecovery />}/>
+					<Route path='/password-recovery/change' element={<ChangePassword />}/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
 			</Routes>
