@@ -75,7 +75,8 @@ const PageBody = styled.div`
 const WrapRHS = styled.div`
     grid-area: main;
     @media (min-width: 1020px) {
-        padding-right: 4rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 `
 const Header = styled.div`
