@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 
 const useAxiosPrivate = () => {
-    const accessToken = Cookies.get('repboostAccessToken')
+    const accessToken = Cookies.get('reputeAccessToken')
 
     useEffect(() => {
         const requestInterceptor = ApiPrivate.interceptors.request.use(
