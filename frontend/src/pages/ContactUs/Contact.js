@@ -3,7 +3,7 @@ import PageLayout from '../../layout/PageLayout';
 import { BsPersonFill } from 'react-icons/bs';
 import { MdContactMail } from 'react-icons/md';
 import { TbMessage } from 'react-icons/tb';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 const ContactPageWraper = styled.div`
 	* {
@@ -28,6 +28,13 @@ const ContactPageHeading = styled.div`
 		}
 	}
 
+	@media screen and (max-width: 700px) {
+		margin-top: 40px;
+
+		h1 {
+			font-size: 38px;
+		}
+	}
 	@media screen and (max-width: 425px) {
 		margin-top: 18px;
 
@@ -51,9 +58,12 @@ const ContactFormSection = styled.div.attrs((props) => ({
 		font-weight: 700;
 		font-size: 36px;
 	}
+	@media (max-width: 760px) {
+		padding: 35px 70px;
+	}
 
-	@media screen and (max-width: 425px) {
-		padding: 15px 50px;
+	@media screen and (max-width: 525px) {
+		padding: 15px 30px;
 		justify-content: center;
 		margin-top: 18px;
 
@@ -69,11 +79,6 @@ const ContactForm = styled.div.attrs((props) => ({
 }))`
 	&.form-1 {
 		display: flex;
-
-		/* 
-		@media screen and (max-width: 425px) {
-			justify-content: unset;
-		} */
 	}
 	.right__line {
 		width: 42%;
@@ -82,6 +87,9 @@ const ContactForm = styled.div.attrs((props) => ({
 		border-right: 3px dashed #233ba9;
 		margin-top: 234px;
 		border-top-right-radius: 30px;
+	}
+	hr {
+		display: none;
 	}
 	&.form-2 {
 		display: flex;
@@ -99,6 +107,9 @@ const ContactForm = styled.div.attrs((props) => ({
 		margin-top: 234px;
 		border-top-left-radius: 30px;
 	}
+	.left__line2 {
+		display: none;
+	}
 	&.form-3 {
 		margin-top: -60px;
 	}
@@ -112,25 +123,60 @@ const ContactForm = styled.div.attrs((props) => ({
 	}
 	@media (max-width: 1100px) {
 		&.form-1 {
-			justify-content: center;
+			flex-direction: column;
+			align-items: center;
 			margin: 40px 0;
 		}
 		.right__line {
-			display: none;
-		}
-		&.form-2 {
+			width: 4%;
+			height: 150px;
+			border-top: none;
+			border-left: 3px dashed #233ba9;
+			border-right: none;
 			margin-top: 0px;
+			border-top-right-radius: none;
+		}
+
+		&.form-2 {
+			/* margin-top: 0px; */
+			flex-direction: column;
+			align-items: center;
 			justify-content: center;
 			margin-bottom: 40px;
+		}
+		.left__line2 {
+			display: block;
+			width: 7%;
+			height: 150px;
+			border-top: none;
+			border-left: 3px dashed #233ba9;
+			border-right: none;
+			margin-top: 0px;
+			border-top-right-radius: none;
 		}
 		.left__line {
 			display: none;
 		}
 		&.form-3 {
-			margin-top: 0px;
 			margin-bottom: 40px;
 			display: flex;
 			justify-content: center;
+		}
+	}
+	@media (max-width: 700px) {
+		.right__line {
+			width: 5%;
+		}
+		.left__line2 {
+			width: 5%;
+		}
+	}
+	@media (max-width: 425px) {
+		.right__line2 {
+			width: 7%;
+		}
+		.left__line2 {
+			width: 7%;
 		}
 	}
 `;
@@ -153,7 +199,7 @@ const PersonalInfoForm = styled.div.attrs((props) => ({
 			width: 88px;
 			height: 88px;
 			border-radius: 50%;
-			margin-top: -60px;
+			margin-top: -63px;
 			margin-left: -20px;
 			position: absolute;
 			left: 0;
@@ -231,26 +277,28 @@ const PersonalInfoForm = styled.div.attrs((props) => ({
 		}
 	}
 
-	/* @media screen and (max-width: 765px) {
+	@media screen and (max-width: 1100px) {
 		&.contact-form {
-			width: 600px !important;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			height: fit-content;
+			width: 100%;
+
+			> div {
+				align-self: center;
+				width: 88px;
+				height: 88px;
+				padding: 20px;
+				margin-top: -80px;
+				position: static;
+			}
 		}
-	} */
+	}
 	@media screen and (max-width: 425px) {
 		&.contact-form {
 			width: 100%;
 			padding: 32px 16px;
-
-			> div {
-				width: 50px;
-				height: 50px;
-				left: 50%;
-				margin-top: -20px;
-
-				> img {
-					width: 70%;
-				}
-			}
 
 			h4 {
 				font-size: 18px;
@@ -276,11 +324,6 @@ const PersonalInfoForm = styled.div.attrs((props) => ({
 				height: 30px;
 				font-size: 12px;
 			}
-		}
-	}
-	@media (max-width: 760px) {
-		&.contact-form {
-			width: 800px !important;
 		}
 	}
 `;
@@ -490,6 +533,7 @@ function Contact() {
 									</div>
 								</form>
 							</ContactInfoForm>
+							<div className="left__line2"></div>
 						</ContactForm>
 
 						<ContactForm className="form-3" ref={messageRef}>
