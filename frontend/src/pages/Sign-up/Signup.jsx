@@ -94,7 +94,7 @@ function Signup() {
 				)
 				console.log(response)
 				localStorage.setItem('auth', email)
-				Cookies.set('repboostAccessToken', response?.data?.accessToken)
+				Cookies.set('reputeAccessToken', response?.data?.accessToken)
 				setRequestPending(false) 
 				setSuccessMessage('Account Created')
 				setRequestSuccess(true)

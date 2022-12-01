@@ -44,6 +44,9 @@ export default function Main() {
 			border-bottom: 2px solid rgb(35, 59, 169);
 			color: rgb(35, 59, 169);
 		}
+		&:hover{
+			cursor: pointer;
+		}
 	`;
 
 	const [tab, setTab] = useState(1);

@@ -49,7 +49,7 @@ const Login = () => {
           }
         )
         localStorage.setItem('auth',email)
-        Cookies.set('repboostAccessToken', response?.data?.accessToken)
+        Cookies.set('reputeAccessToken', response?.data?.accessToken)
         console.log(response?.data)
         setRequestPending(false)
         router('/dashboard')

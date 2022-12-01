@@ -7,7 +7,6 @@ export const StyledChange = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 10px;
 	margin: 0px auto;
 	/* outline: 1px solid red; */
 
@@ -25,9 +24,12 @@ export const StyledChange = styled.div`
 	}
 
 	@media (max-width: 320px) {
-		div {
+		/* div {
 			over-flow: hidden;
-		}
+		} */
+
+		max-width: 95%;
+		text-align: justify;
 
 		h3 {
 			font-size: 18px;
@@ -45,8 +47,10 @@ export const StyledChange = styled.div`
 
 	@media (max-width: 1020px) {
 		
-			over-flow: hidden;
-			width: 300px;
+			/* over-flow: hidden;
+			width: 300px; */
+		max-width: 85%;
+		text-align: justify;
 
 		h3 {
 			font-size: 18px;
