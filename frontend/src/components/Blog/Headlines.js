@@ -3,11 +3,19 @@ import React from 'react';
 import arrow_right from '../../assets/images/blog_images/icons/gold-arrow-right.png';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyleSection = styled.div`
 	display: flex;
 	justify-content: space-between;
 	margin: 40px 0;
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		cursor: pointer;
+	}
 `;
 const StyleHeader = styled.h1`
 	font-weight: 700;
@@ -19,12 +27,12 @@ const StyleHeader = styled.h1`
 	} */
 `;
 
-const StyleChildSection = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 5px;
-	cursor: pointer;
-`;
+// const StyleChildSection = styled.div`
+// 	display: flex;
+// 	align-items: center;
+// 	gap: 5px;
+// 	cursor: pointer;
+// `;
 
 const StyleParagraph = styled.p`
 	font-style: normal;
@@ -41,10 +49,10 @@ function Headlines({ title }) {
 	return (
 		<StyleSection>
 			<StyleHeader>{title}</StyleHeader>
-			<StyleChildSection className="details">
+			<Link to="/blog-see-all" className="details">
 				<StyleParagraph>See All</StyleParagraph>
 				<img src={arrow_right} alt="" />
-			</StyleChildSection>
+			</Link>
 		</StyleSection>
 	);
 }

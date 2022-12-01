@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import hero_bg from '../../assets/images/blog_images/images/hero_bg.png';
 import mobile_hero from '../../assets/images/blog_images/images/mobile_hero.png';
 
@@ -19,6 +20,25 @@ const StyledSection = styled.section`
 
 const StyledBody = styled.div`
 	width: 50%;
+
+	a {
+		background: #f16f04;
+		border-radius: 4px;
+		width: 150px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #ffffff;
+		margin-top: 35px;
+		border: 3px solid #f16f04;
+		text-decoration: none;
+
+		@media (max-width: 800px) {
+			margin-top: 8px;
+		}
+	}
+
 	@media (max-width: 1300px) {
 		width: 80%;
 		height: 100%;
@@ -56,22 +76,23 @@ const StyledParagraph = styled.p`
 	}
 `;
 
-const StyledButton = styled.button`
-	background: #f16f04;
-	border-radius: 4px;
-	width: 150px;
-	height: 40px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #ffffff;
-	margin-top: 35px;
-	border: 3px solid #f16f04;
-	cursor: pointer;
-	@media (max-width: 800px) {
-		margin-top: 8px;
-	}
-`;
+// const StyledButton = styled.a`
+// 	background: #f16f04;
+// 	border-radius: 4px;
+// 	width: 150px;
+// 	height: 40px;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	color: #ffffff;
+// 	margin-top: 35px;
+// 	border: 3px solid #f16f04;
+// 	text-decoration: none;
+
+// 	@media (max-width: 800px) {
+// 		margin-top: 8px;
+// 	}
+// `;
 
 export default function Hero() {
 	return (
@@ -84,7 +105,7 @@ export default function Hero() {
 					Protect your brand reputation with the easy-to-implement techniques in
 					our guide
 				</StyledParagraph>
-				<StyledButton>Read Article</StyledButton>
+				<Link to="/blog-post">Read Article</Link>
 			</StyledBody>
 		</StyledSection>
 	);

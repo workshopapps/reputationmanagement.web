@@ -7,6 +7,7 @@ const StyledPost = styled.section`
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	width: 445px;
+
 	@media (max-width: 1080px) {
 		&:last-child {
 			display: none;
@@ -24,6 +25,9 @@ const StyledHeader = styled.h2`
 	color: #233ba9;
 	padding: 10px;
 	padding-left: 15px;
+
+	cursor: pointer;
+
 	@media (max-width: 650px) {
 		font-size: 0.6rem;
 		font-weight: 400;
@@ -36,6 +40,8 @@ const StyledParagraph = styled.p`
 	line-height: 150%;
 	color: #787a7d;
 	padding: 0 10px 20px 10px;
+	cursor: default;
+
 	@media (max-width: 650px) {
 		display: none;
 	}
