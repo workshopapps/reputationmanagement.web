@@ -143,7 +143,7 @@ const Login = () => {
             <img src={facebook} alt="facebook"/>
           </div>
 
-          <div className='footer-text'>Don't have an account? <br /> <span onClick={() => router('/signup')} style={{ cursor: 'pointer'}}>Sign up</span></div>
+          <div className='footer-text'>Don't have an account? <span onClick={() => router('/signup')} style={{ cursor: 'pointer'}}>Sign up</span></div>
         </FormFooter>
 
       </FormSection>
@@ -205,6 +205,10 @@ const ParentContainer = styled.div`
     span{
       color: blue;
       text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      margin-bottom: 30px;
     }
 }
 `;
