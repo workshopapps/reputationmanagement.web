@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Accounts from './Accounts';
+import Notifications from './Notifications';
+import Preferences from './Preferences';
+import Privacy from './Privacy';
 
-// import Accounts from './Account'
-// import Notifications from './Notifications'
-// import Preferences from './Preferences'
-// import Privacy from './Privacy'
 
 export default function Main() {
 	const StyledParent = styled.div`
 		width: 80%;
+		margin: 0 30px;
 
 		@media (min-width: 800px) {
 		}
@@ -18,8 +19,8 @@ export default function Main() {
 		display: flex;
 		flex-direction: column;
 		gap: 2.185rem;
-		margin: 0 30px;
-		border-bottom: 0.5px solid #6f7174;
+		margin-bottom: 20px;
+		border-bottom: 0.5px solid #6f7174a2;
 	`;
 	const StyledHeader = styled.h2`
 		font-weight: 700;
@@ -39,22 +40,20 @@ export default function Main() {
 		padding-bottom: 10px;
 		list-style: none;
 
-		& {
-			border-bottom: 3px solid rgb(35, 59, 169);
-			color: blue;
+		&.active-tab {
+			border-bottom: 2px solid rgb(35, 59, 169);
+			color: rgb(35, 59, 169);
 		}
-
-		&:hover {
+		&:hover{
 			cursor: pointer;
 		}
 	`;
 
-	const [tab, setTab] = React.useState('accounts');
+	const [tab, setTab] = useState(1);
 
-	// let styles = {
-	//   borderBottom: "3px solid rgb(35, 59, 169)",
-	//   color: "blue"
-	//   };
+	const toggleTab = (index) => {
+		setTab(index);
+	};
 
 	return (
 		<StyledParent>
@@ -62,27 +61,41 @@ export default function Main() {
 				<StyledText>
 					<StyledHeader>Settings</StyledHeader>
 					<StyledOptions>
-						<StyledOption onClick={() => setTab('accounts')}>
-							{' '}
+						<StyledOption
+							className={tab === 1 ? 'active-tab' : ''}
+							onClick={() => toggleTab(1)}
+						>
 							Accounts
 						</StyledOption>
-						<StyledOption onClick={() => setTab('preferences')}>
+
+						<StyledOption
+							className={tab === 2 ? 'active-tab' : ''}
+							onClick={() => toggleTab(2)}
+						>
 							Preferences
 						</StyledOption>
-						<StyledOption onClick={() => setTab('notifications')}>
+
+						<StyledOption
+							className={tab === 3 ? 'active-tab' : ''}
+							onClick={() => toggleTab(3)}
+						>
 							Notifications
 						</StyledOption>
-						<StyledOption onClick={() => setTab('privacy')}>
+
+						<StyledOption
+							className={tab === 4 ? 'active-tab' : ''}
+							onClick={() => toggleTab(4)}
+						>
 							Privacy & Security
 						</StyledOption>
 					</StyledOptions>
 				</StyledText>
 			</div>
 
-			{/* {tab === "accounts" && <Accounts />}
-      {tab === "preferences" && <Preferences />}
-      {tab === "notifications" && <Notifications />}
-      {tab === "privacy" && <Privacy />} */}
+			{tab === 1 && <Accounts />}
+			{tab === 2 && <Preferences />}
+			{tab === 3 && <Notifications />}
+			{tab === 4 && <Privacy />}
 		</StyledParent>
 	);
 }
