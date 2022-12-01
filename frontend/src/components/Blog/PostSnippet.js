@@ -7,6 +7,11 @@ const StyledPost = styled.section`
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	width: 445px;
+	transform: scale 0.4s;
+
+	&:hover {
+		scale: 1.02;
+	}
 
 	@media (max-width: 1080px) {
 		&:last-child {
@@ -25,8 +30,7 @@ const StyledHeader = styled.h2`
 	color: #233ba9;
 	padding: 10px;
 	padding-left: 15px;
-
-	cursor: pointer;
+	cursor: default;
 
 	@media (max-width: 650px) {
 		font-size: 0.6rem;

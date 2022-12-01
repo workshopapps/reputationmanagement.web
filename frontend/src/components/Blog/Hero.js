@@ -12,7 +12,6 @@ const StyledSection = styled.section`
 	padding: 80px;
 	@media (max-width: 800px) {
 		padding: 25px;
-		/* padding-top: 60px; */
 		background-repeat: round;
 		height: 40vh;
 	}
@@ -75,24 +74,6 @@ const StyledParagraph = styled.p`
 		font-size: 0.9rem;
 	}
 `;
-
-// const StyledButton = styled.a`
-// 	background: #f16f04;
-// 	border-radius: 4px;
-// 	width: 150px;
-// 	height: 40px;
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	color: #ffffff;
-// 	margin-top: 35px;
-// 	border: 3px solid #f16f04;
-// 	text-decoration: none;
-
-// 	@media (max-width: 800px) {
-// 		margin-top: 8px;
-// 	}
-// `;
 
 export default function Hero() {
 	return (
