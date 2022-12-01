@@ -308,7 +308,7 @@ function Signup() {
 						<img src={facebook_icon} alt="" style={{ cursor: 'pointer'}}/>
 						<img src={apple_icon} alt="" style={{ cursor: 'pointer'}}/>
 					</div>
-					<p>Already have an account ? <span onClick={() => router('/login')} style={{ cursor: 'pointer'}}>Sign In</span></p>
+					<p>Already have an account ? <br /> <span onClick={() => router('/login')} style={{ cursor: 'pointer'}}>Sign In</span></p>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
 

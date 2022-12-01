@@ -143,7 +143,7 @@ const Login = () => {
             <img src={facebook} alt="facebook"/>
           </div>
 
-          <div className='footer-text'>Don't have an account? <span onClick={() => router('/signup')} style={{ cursor: 'pointer'}} >Sign up</span></div>
+          <div className='footer-text'>Don't have an account? <br /> <span onClick={() => router('/signup')} style={{ cursor: 'pointer'}}>Sign up</span></div>
         </FormFooter>
 
       </FormSection>
@@ -224,15 +224,14 @@ const FormSection = styled.section`
   width: 50%;
   height: 100%;
   padding-top: 30px;
-  /* padding-bottom: 40px; */
   overflow-x: scroll;
   background-color: #ffffff;
    padding-left: 62px;
    padding-right: 79px;
    @media (max-width:900px) {
     width: 100%;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   @media (max-width: 500px) {
