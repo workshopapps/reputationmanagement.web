@@ -22,8 +22,12 @@ import hamburger from '../../assets/images/hamburger.svg';
 import x from '../../assets/images/x.svg';
 import logo from '../../assets/images/logo.png';
 import Menu from './MobileMenu';
+import { useEffect } from 'react';
+import Api, { ApiPrivate } from '../../api/axios';
+import { get } from 'internal-slot';
 
 function LawyerDashboard() {
+	const [requests, setRequests ] = useState([]);
 	// const [tickets, setTickets] = useState([
 	//     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
 	//     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
@@ -33,6 +37,24 @@ function LawyerDashboard() {
 	//     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
 	//     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
 	// ]);
+	
+
+	// useEffect(() => {
+		
+	// 	getRequests();
+
+	// 	return () => {
+	// 		setRequests([])
+	// 	}
+	// },[]);
+
+	// const getRequests = async () =>{
+
+	// 	const res = await ApiPrivate.get('/users');
+	// 	const data = res.data
+
+	// 	setRequests(data)
+	// }
 
 	const tickets = [
 		{
@@ -190,6 +212,7 @@ function LawyerDashboard() {
 											<th className="p-4 text-left">Due Date</th>
 											<th className="p-4 text-left">Last Updated</th>
 										</tr>
+									
 										{tickets.map((t, idx) => {
 											return (
 												<tr key={idx} className="border-b">
