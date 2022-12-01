@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import hero_bg from '../../assets/images/blog_images/images/hero_bg.png';
-import mobile_hero from '../../assets/images/blog_images/images/mobile_hero.png';
 
 const StyledSection = styled.section`
 	width: 100%;

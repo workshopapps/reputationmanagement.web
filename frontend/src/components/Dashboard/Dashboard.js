@@ -70,7 +70,7 @@ const Dashboard = () => {
 							digit={
 								allRequests
 									? allRequests.filter((data) => {
-											return data.status == 'In Progress';
+											return data.status === 'In Progress';
 									  }).length
 									: '0'
 							}
@@ -81,7 +81,7 @@ const Dashboard = () => {
 							digit={
 								allRequests
 									? allRequests.filter((data) => {
-											return data.status == 'Done';
+											return data.status === 'Done';
 									  }).length
 									: '0'
 							}
@@ -125,6 +125,7 @@ const Dashboard = () => {
 									) {
 										return data;
 									}
+									return data;
 								})
 								.map((data) => {
 									return <TableData data={data} key={data.id} />;

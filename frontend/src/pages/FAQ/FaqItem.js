@@ -1,5 +1,4 @@
 import React from 'react';
-import arrowDown from './Assets/arrow-down.png';
 import { FaChevronDown } from "react-icons/fa";
 import {
 	FaqWraper,
