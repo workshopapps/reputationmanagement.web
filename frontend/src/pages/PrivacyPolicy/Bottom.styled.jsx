@@ -1,7 +1,11 @@
 import styled from 'styled-components';
+import backgroundImg from '../../assets/images/wrgr/Banner-Background-Desktop.png'
+
 
 export const StyledBottom = styled.div`
-	background-color: #eef1fc;
+	background-image: url(${backgroundImg});
+	background-repeat: no-repeat;
+	background-size: cover;
 	height: 468px;
 	margin-top: 91px;
 	display: flex ;
