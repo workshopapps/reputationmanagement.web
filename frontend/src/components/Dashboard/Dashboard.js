@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Sidebar from '../Reusables/Sidebar';
 import WebAppNav from '../Reusables/WebAppNav';
 import { useState } from 'react';
@@ -22,11 +22,25 @@ import searchBtn from '../../assets/images/Dashboard/search.svg';
 import TableData from './TableData';
 import { NavLink } from 'react-router-dom';
 import useAppContext from '../../hooks/useAppContext';
+import Api from '../../api/axios';
 
 const Dashboard = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [searchTicket, setSearchTicket] = useState('');
-	const { allRequests } = useAppContext();
+	const { allRequests, setAllRequests } = useAppContext();
+
+	const fetchRequests = async() => {
+		try{
+			const response = await Api.get('/request')
+			setAllRequests(response?.data)
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+	useEffect(() => {
+		fetchRequests();
+	})
 	return (
 		<StyledDashboard>
 			<GlobalStyles />
