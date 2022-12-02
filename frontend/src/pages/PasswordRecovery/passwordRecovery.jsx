@@ -13,7 +13,7 @@ export default function PasswordRecovery() {
     function handleSubmit(event){
         event.preventDefault();
         navigate('/password-recovery/change')
-        setEmail("")
+        // setEmail("")
     }
   return (
     <PageLayout>
