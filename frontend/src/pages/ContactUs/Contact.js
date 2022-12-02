@@ -294,7 +294,7 @@ function Contact() {
                     <ContactForm className='form-1'>
                         <PersonalInfoForm className='contact-form'>
                             <div>
-                                <img src={personIcon}/>
+                                <img src={personIcon} alt=""/>
                             </div>
 
                             <h4 className='form-title'>#1 Personal Information</h4>
@@ -326,7 +326,7 @@ function Contact() {
                     <ContactForm className='form-2'>
                         <ContactInfoForm className='contact-form contact-info-form'>
                             <div>
-                                <img src={contactMailicon}/>
+                                <img src={contactMailicon} alt=""/>
                             </div>
 
                             <h4 className='form-title'>#2 Contact Information</h4>
@@ -357,7 +357,7 @@ function Contact() {
                     <ContactForm className='form-3'>
                         <MessageForm className='contact-form message-form'>
                             <div>
-                                <img src={messageIcon}/>
+                                <img src={messageIcon} alt=""/>
                             </div>
 
                             <h4 className='form-title'>#3 Message</h4>
