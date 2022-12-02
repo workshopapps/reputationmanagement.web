@@ -32,6 +32,8 @@ import RequireAuth from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
 import Contact from '../pages/ContactUs/Contact';
 import ModalLayout from '../layout/modalLayout';
+import BlogPost from '../pages/Blog/Blog-Post/BlogPost';
+import BlogSeeAll from '../pages/Blog/Blog-See All/BlogSeeAll';
 
 const Router = () => {
 	return (
@@ -81,6 +83,9 @@ const Router = () => {
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/request-form" element={<RequestForm />} />
 					<Route path="/blog" element={<Blog />} />
+					<Route path="/blog-post" element={<BlogPost />} />
+					<Route path="/blog-see-all" element={<BlogSeeAll />} />
+
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/support" element={<SupportPage />} />
 					<Route path="/our-team" element={<Ourteam />} />
