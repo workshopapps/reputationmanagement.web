@@ -1,12 +1,10 @@
 import React from 'react'
 import PageLayout from '../../layout/PageLayout'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { FaRegEyeSlash } from 'react-icons/fa';
 import ResetSuccess from '../../modal/resetpassword-success/resetpasswordsuccessful'
 
 export default function ChangePassword() {
-    const navigate = useNavigate();
     const [password, setPassword] = React.useState("")
     const [confirmPassword, setConfirmPassword] = React.useState("")
     const [passwordShown, setPasswordShown] = React.useState(false)
