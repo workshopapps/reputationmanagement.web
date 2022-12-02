@@ -69,16 +69,10 @@ const Modal = ({ open, onClose }) => {
   if (!open) return null;
     return (
 			<>
-				{/* <div className="flex flex-col justify-center items-center fixed bg-[#7c7979] bg-opacity-60 inset-0 w-full h-screen">
-      <div className="absolute top-[28%] left-[14%] lg:top-[28%] lg:left-[31%] xl:top-[28%] xl:left-[31%] 2xl:top-[28%] 2xl:left-[31%] w-full">
-        <div
-          class="modal"
-          className="lg:w-[45%] xl:w-[40%] w-[75%] fixed md:w-[60%] h-60 rounded-xl p-4 pt-3 bg-white"
-        ></div> */}
 				<div className="relative lg:overflow-hidden">
-					<div className="bg-[#7c7979] z-10 fixed bg-opacity-60 inset-0 flex flex-col w-full h-full mx-auto ">
-						<div className="bg-white lg:max-w-[720px] w-full rounded-sm p-5 lg:fixed lg:top-[10%] lg:left-[20%] xl:left-[20%] lg:-mt-[70px]  overflow-scroll lg:overflow-hidden">
-							<div className="font-semibold lg:text-2xl text-base leading-9 text-[#2B2C34] flex justify-between -mt-2 mb-2">
+					<div className="bg-[#7c7979] z-10 fixed bg-opacity-60 inset-0 flex flex-col justify-center items-center w-full h-full mx-auto ">
+						<div className="bg-white rounded-lg lg:max-w-[720px] w-full  p-5 lg:fixed lg:top-[10%] lg:left-[22.5%] xl:left-[22.5%] lg:-mt-[70px]  overflow-scroll lg:overflow-hidden">
+							<div className="font-semibold lg:text-2xl text-base leading-9 text-[#2B2C34] flex justify-between -mt-1 mb-2">
 								<h2>APPLY FOR THIS JOB</h2>
 								<button onClick={onClose}>X</button>
 							</div>
