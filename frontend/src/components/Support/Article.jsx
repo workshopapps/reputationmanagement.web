@@ -8,9 +8,9 @@ const Article = () => {
 		<StyledArticle data-testid="article-element">
 			<div className="article">
 				<div className="content flex justify-between">
-					{article.map(({ icon, title, text, link }, i) => {
+					{article.map(({ icon, title, text, link }, index) => {
 						return (
-							<>
+							<div key={index}>
 								<div className="testimonial md:px-3 w-full md:w-1/2 lg:w-1/3 ">
 									<div className="card">
 										<div className="">
@@ -22,7 +22,7 @@ const Article = () => {
 										<p className="">{text}</p>
 									</div>
 								</div>
-							</>
+							</div>
 						);
 					})}
 				</div>
