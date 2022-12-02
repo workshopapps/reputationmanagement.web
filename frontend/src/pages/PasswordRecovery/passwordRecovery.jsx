@@ -12,7 +12,6 @@ export default function PasswordRecovery() {
    }
     function handleSubmit(event){
         event.preventDefault();
-        // alert(`The password for ${email} has been reset`)
         navigate('/password-recovery/change')
         setEmail("")
     }
