@@ -125,7 +125,6 @@ const Dashboard = () => {
 									) {
 										return data;
 									}
-									return data;
 								})
 								.map((data) => {
 									return <TableData data={data} key={data.id} />;
