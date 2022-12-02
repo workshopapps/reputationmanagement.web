@@ -230,16 +230,16 @@ const Termsofuse = () => {
 							{' '}
 							Termination of an agreement can be done by either party on terms
 							specified in the proposal.
-							<P>
+							<span>
 								- The company is allowed to terminate this agreement immediately
 								if the client refuses to pay the fees by the due date.
-							</P>
-							<P>
+							</span>
+							<span>
 								{' '}
 								- If termination occurs, the client must pay the company all
 								outstanding fees within seven (7) days. And any invoice provided
 								for work completed before termination.{' '}
-							</P>
+							</span>
 						</P>
 					</div>
 
