@@ -74,8 +74,8 @@ const Router = () => {
 					<Route path="/privacy" element={<PrivacyPolicy />} />
 					<Route path="/get-a-quote" element={<GetAQuote />} />
 					<Route path="/career" element={<Carrerpg1 />} />
-					<Route path="/carrer-pg-3" element={<Carrerpg3 />} />
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
+					<Route path="/carrer-pg-2/:id" element={<Carrerpg3 />} />
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
 					<Route path="/profile" element={<Profile />} />
