@@ -14,7 +14,6 @@ import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from "js-cookie";
 
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 function Signup() {
 	const [ businessName, setBusinessName ] = useState('')
@@ -31,14 +30,6 @@ function Signup() {
 	const [ passwordValid, setPasswordValid] = useState(false)
 	const [ confirmPasswordValid, setConfirmPasswordValid] = useState(false)
 
-	const [ lawyerName, setLawyerName ] = useState('')
-	const [ lawyerNameFocus, setLawyerNameFocus ] = useState('')
-	const [ lawyerNameValid, setLawyerNameValid ] = useState('')
-
-	const [ lawyerSurname, setLawyerSurname ] = useState('')
-	const [ lawyerSurnameFocus, setLawyerSurnameFocus ] = useState('')
-	const [ lawyerSurnameValid, setLawyerSurnameValid ] = useState('')
-
 	const [ businessNameFocus, setBusinessNameFocus ] = useState(false);
 	const [ emailFocus, setEmailFocus ] = useState(false)
 	const [ passwordFocus, setPasswordFocus] = useState(false)
@@ -47,65 +38,45 @@ function Signup() {
 
 	const { setRequestSuccess, setErrMessage, setRequestFailed, setSuccessMessage } = useAppContext();
 
-	
-	const [ userType, setUserType ] = useState('business')
-	const [ nameValid, setNameValid ] = useState(false);
-
-	const path = userType === 'business' ? '/auth/create_account' : '/lawyer/auth/create_account' 
-	useEffect(() => {
-		userType === 'business'
-			?
-			businessNameValid
-				?
-				setNameValid(true)
-				:
-				setNameValid(false)
-			:
-			lawyerName !== '' && lawyerSurname !== '' ? setNameValid(true) : setNameValid(false)
-			console.log(nameValid)
-	},[ lawyerName, lawyerSurname, businessNameValid, userType, nameValid ])
-
 	useEffect(()=> {
 		businessName !== '' ? setBusinessNameValid(true) : setBusinessNameValid(false)
-		lawyerName !== '' ? setLawyerNameValid(true) : setLawyerNameValid(false)
-		lawyerSurname !== '' ? setLawyerSurnameValid(true) : setLawyerSurnameValid(false)
 		EMAIL_REGEX.test(email) ? setEmailValid(true) : setEmailValid(false)
-		PASSWORD_REGEX.test(password) ? setPasswordValid(true) : setPasswordValid(false);
-		confirmPassword === password && PASSWORD_REGEX.test(confirmPassword) ? setConfirmPasswordValid(true) : setConfirmPasswordValid(false)
-	},[ email, businessName, password, confirmPassword, lawyerName, lawyerSurname ])
+		password.length >= 6 ? setPasswordValid(true) : setPasswordValid(false);
+		confirmPassword === password && confirmPassword.length >= 6 ? setConfirmPasswordValid(true) : setConfirmPasswordValid(false)
+	},[ email, businessName, password, confirmPassword ])
 
 	useEffect(() => {
-		nameValid && emailValid && passwordValid && confirmPasswordValid ? setPageValid(true) : setPageValid(false)
-	},[ passwordValid, confirmPasswordValid, businessNameValid, emailValid, nameValid ])
+		businessNameValid && emailValid && passwordValid && confirmPasswordValid ? setPageValid(true) : setPageValid(false)
+	},[ passwordValid, confirmPasswordValid, businessNameValid, emailValid ])
+
 	const handleSubmit = async(e) => {
 		e.preventDefault();
 		setTriedToSubmit(true)
 		if(pageValid){
 			setRequestPending(true)
 			try{
-				const response = await Api.post(path,
+				const response = await Api.post('/auth/create_account',
 					{
 						email: email,
 						password: password,
 						businessEntityName: businessName,
-						firstName: lawyerName,
-						lastName: lawyerSurname,
 					}
 				)
 				console.log(response)
 				localStorage.setItem('auth', email)
-				Cookies.set('reputeAccessToken', response?.data?.accessToken)
+				Cookies.set('reputeAccessToken', response?.data)
 				setRequestPending(false) 
 				setSuccessMessage('Account Created')
 				setRequestSuccess(true)
-				clearForm()
-				userType === 'business' ?  router('/dashboard') : router('/lawyer-dashboard')
+				clearForm();
 			}
 			catch(err){
 				if(err.response.status === 400){
-					setErrMessage('This email is already in use')
+					setErrMessage(err?.response?.data);
 				}
-				setErrMessage('Sign up Failed')
+				else {
+					setErrMessage('Sign up Failed')
+				}
 				setRequestFailed(true)
 				setRequestPending(false)
 				console.log(err)
@@ -150,6 +121,22 @@ function Signup() {
 				</h2>
 				<p>Sign up to begin with us</p>
 				<div className='form'>
+					<div className='business-name'>
+						<label htmlFor='business-name'>Business Name</label>
+						<input
+							type="text"
+							className={ triedToSubmit && !businessNameValid ? "invalid" : ''}
+							id="business-name"
+							value={businessName}
+							name="first_name"
+							onChange={(e) => setBusinessName(e.target.value)}
+							onFocus={() => setBusinessNameFocus(true)}
+							onBlur={() => setBusinessNameFocus(false)}
+							placeholder="e.g Mark and sons"
+							required
+						/>
+						{ !businessNameFocus && !businessNameValid && triedToSubmit && <ErrorMessage error="Enter Your Business Name"/>}
+					</div>
 					<div className="email">
 						<label htmlFor="email">Email</label>
 						<input
@@ -170,10 +157,7 @@ function Signup() {
 						<label htmlFor="Password">Password</label>
 						{
 							<p style={{fontSize: '14px', lineHeight: '20px', marginBottom: '10px'}}>
-								Minimum eight characters, 
-								at least one uppercase letter,
-								one lowercase letter, 
-								one number and one special character (@$!%*?&) :
+								Password should be a minimum of 6 characters
 							</p>
 						}
 						<div className={ triedToSubmit && !passwordValid ? "invalid password-input" : "password-input"}>
@@ -221,70 +205,6 @@ function Signup() {
 							/>
 						}
 					</div>
-					<div className='account-type'>
-						<div className='business'>
-							<input type="radio" checked={ userType === 'business'}  value="business" onClick={() => setUserType('business')}  name="user_type" />
-							<label htmlFor="html">Business</label>
-						</div>
-						<div className='lawyers'>
-							<input type="radio" checked={ userType === 'lawyer'}  value="lawyer" name="user_type" onClick={() => setUserType('lawyer')}/>
-							<label htmlFor="css">I am a lawyer</label>
-						</div>
-					</div>
-					{ userType === 'business' &&
-					<div className='business-name'>
-						<label htmlFor='business-name'>Business Name</label>
-						<input
-							type="text"
-							className={ triedToSubmit && !businessNameValid ? "invalid" : ''}
-							id="business-name"
-							value={businessName}
-							name="first_name"
-							onChange={(e) => setBusinessName(e.target.value)}
-							onFocus={() => setBusinessNameFocus(true)}
-							onBlur={() => setBusinessNameFocus(false)}
-							placeholder="e.g Mark and sons"
-							required
-						/>
-						{ !businessNameFocus && !businessNameValid && triedToSubmit && <ErrorMessage error="Enter Your Business Name"/>}
-					</div>
-					}
-					{	userType === 'lawyer' &&
-					<>
-						<div className='business-name'>
-							<label htmlFor='business-name'>First Name</label>
-							<input
-								type="text"
-								className={ triedToSubmit && !lawyerNameValid ? "invalid" : ''}
-								id="business-name"
-								value={lawyerName}
-								name="first_name"
-								onChange={(e) => setLawyerName(e.target.value)}
-								onFocus={() => setLawyerNameFocus(true)}
-								onBlur={() => setLawyerNameFocus(false)}
-								placeholder="Enter your first name"
-								required
-							/>
-							{ !lawyerNameFocus && !lawyerNameValid && triedToSubmit && <ErrorMessage error="Enter Your First Name"/>}
-						</div>
-						<div className='business-name'>
-							<label htmlFor='business-name'>Last Name</label>
-							<input
-								type="text"
-								className={ triedToSubmit && !lawyerSurnameValid ? "invalid" : ''}
-								id="business-name"
-								value={lawyerSurname}
-								name="first_name"
-								onChange={(e) => setLawyerSurname(e.target.value)}
-								onFocus={() => setLawyerSurnameFocus(true)}
-								onBlur={() => setLawyerSurnameFocus(false)}
-								placeholder="Enter your last name"
-								required
-							/>
-							{ !lawyerSurnameFocus && !lawyerSurnameValid && triedToSubmit && <ErrorMessage error="Enter Your Last Name"/>}
-						</div>
-					</>
-					}
 					<button type="submit" onClick={handleSubmit} className='create'>
 						{
 							!requestPending
@@ -506,12 +426,12 @@ const StyledFormWrapper = styled.div`
 		.business-name{
 			display: flex;
 			flex-direction: column;
-			margin-top: 24px;
+			margin-top: 40px;
 		}
 		.email{
 			display: flex;
 			flex-direction: column;
-			margin-top: 40px;
+			margin-top: 24px;
 		}
 		.password{
 			margin-top: 24px;
