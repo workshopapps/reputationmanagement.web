@@ -1,5 +1,6 @@
 import React from 'react';
 import PageLayout from '../../../layout/PageLayout';
+
 import {
 	PostContainer,
 	PostHeader,
