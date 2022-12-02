@@ -115,7 +115,9 @@ function Signup() {
 			width: '100%',
 			backgroundAttachment: 'fixed',
 			}}>
-			<StyledFormWrapper style={{ maxWidth: '770px' }}>
+				
+			<StyledFormWrapper style={{ maxWidth: '770px' }}> 
+				<img src={Logo} alt="background" className='logo_img'/>
 				<h2>
 					Welcome to Fixit
 				</h2>
@@ -226,29 +228,24 @@ function Signup() {
 						<img src={facebook_icon} alt="" style={{ cursor: 'pointer'}}/>
 						<img src={apple_icon} alt="" style={{ cursor: 'pointer'}}/>
 					</div>
-					<p>Already have an account ? <span onClick={() => router('/login')} style={{ cursor: 'pointer'}}>Sign In</span></p>
+					<p>Already have an account ? <br /> <span onClick={() => router('/login')} style={{ cursor: 'pointer'}}>Sign In</span></p>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
+
 			<div className="logo" > 
-				<img src={Logo} alt=""/>
+				<img src={Logo} alt="background" />
 			</div>
+			
 		</StyledSignupWrapper>
 	);
 }
 const StyledSignupWrapper = styled.div`
 	max-height: 100vh;
+	position: relative;
 	@media(max-width: 910px){
 		background-image: none !important;
-		display: flex;
-		justify-content-center;
-		.logo{
-			width: auto;
-			img{
-				height: 78px !important;
-				width: 170.8707046508789px !important;
-			}
-		}
 	}
+
 	.account-type{
 		display: flex;
 		flex-wrap: wrap;
@@ -275,6 +272,10 @@ const StyledSignupWrapper = styled.div`
 		padding-right: 10px;
 		width: 100%;
 		justify-content: flex-end;
+
+		@media (max-width: 500px) {
+			display: none;
+		}
 	}
 	.invalid{
 		border-color: #D8340F !important;
@@ -330,7 +331,7 @@ const StyledSignupOptions = styled.div`
 	}
 `;
 const StyledFormWrapper = styled.div`
-	padding: 120px 55px 35px 63px;
+	padding: 30px 55px 35px 63px;
 	background-color: #ffffff;
 	width: 50%;
 	overflow-x: scroll;
@@ -343,7 +344,22 @@ const StyledFormWrapper = styled.div`
 	@media(max-width: 530px){
 		padding-left: 30px;
 		padding-right: 30px;
+		padding-top: 0;
 	}
+
+	.logo_img{
+		display: none;
+
+		@media (max-width: 500px){
+			display: block;
+			height: 78px;
+			width: 100px;
+			object-fit: contain;
+			margin-left: auto !important;
+			padding: 0;
+		}	
+	}
+	
 	h2{
 		font-family: Lato;
 		font-size: 57px;
