@@ -71,7 +71,7 @@ const Modal = ({ open, onClose }) => {
 			<>
 				<div className="relative lg:overflow-hidden">
 					<div className="bg-[#7c7979] z-10 fixed bg-opacity-60 inset-0 flex flex-col justify-center items-center w-full h-full mx-auto ">
-						<div className="bg-white rounded-lg lg:max-w-[720px] w-full  p-5 lg:fixed lg:top-[10%] lg:left-[22.5%] xl:left-[22.5%] lg:-mt-[70px]  overflow-scroll lg:overflow-hidden">
+						<div className="bg-white rounded-lg lg:max-w-[720px] w-full  p-5 lg:fixed  overflow-scroll lg:overflow-hidden">
 							<div className="font-semibold lg:text-2xl text-base leading-9 text-[#2B2C34] flex justify-between -mt-1 mb-2">
 								<h2>APPLY FOR THIS JOB</h2>
 								<button onClick={onClose}>X</button>
