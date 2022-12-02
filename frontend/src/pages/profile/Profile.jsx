@@ -9,7 +9,7 @@ import avatar from './assets/avatar.png'
 
 // components
 // import Sidenav from '../../components/LawyerDashboard/Sidenav'
-import Sidebar from '../../components/Reusables/Sidebar.js' 
+import Sidebar from '../../components/Reusables/Sidebar.jsx' 
 import WebAppNav from '../../components/Reusables/WebAppNav'
 // import Web from '../../components/Reusables/Sidebar.js' 
 
