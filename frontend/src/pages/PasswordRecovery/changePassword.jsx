@@ -2,7 +2,7 @@ import React from 'react'
 import PageLayout from '../../layout/PageLayout'
 import styled from 'styled-components'
 import { FaRegEyeSlash } from 'react-icons/fa';
-import ResetSuccess from '../../modal/resetpassword-success/resetpasswordsuccessful'
+import ResetSuccess from '../../modal/resetpasswordsuccess/resetpasswordsuccessful'
 
 export default function ChangePassword() {
     const [password, setPassword] = React.useState("")
