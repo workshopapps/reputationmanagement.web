@@ -1,5 +1,4 @@
 import React from 'react';
-// import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../layout/PageLayout';
 import {
@@ -62,8 +61,8 @@ const LandingPage = () => {
 					</HeroTextDiv>
 
 					{/*****************************************************HERO IMAGE SECTION*********************************************************/}
-					<StyledHeroSectionWrapper className='pt-5' id="learn-more">
-						<div className="HeroImage flex justify-center" >
+					<StyledHeroSectionWrapper className="pt-5" id="learn-more">
+						<div className="HeroImage flex justify-center">
 							<div className="hero-img-text">
 								<h5>GETTING STARTED</h5>
 
@@ -85,7 +84,10 @@ const LandingPage = () => {
 
 				{/************************************HOW DOES IT WORK SECTION****************************************/}
 
-				<HowDoesItWork className="HowDoesItWork" data-testid="Landing-howitworks">
+				<HowDoesItWork
+					className="HowDoesItWork"
+					data-testid="Landing-howitworks"
+				>
 					<h5>SERVICES</h5>
 					<StyledH2Center>Special Offers</StyledH2Center>
 
@@ -199,7 +201,7 @@ const LandingPage = () => {
 
 const StyledHeroSectionWrapper = styled.div`
 	// width:100vw;
-	background-color: #EEF1FC;;
+	background-color: #eef1fc; ;
 `;
 
 export default LandingPage;
