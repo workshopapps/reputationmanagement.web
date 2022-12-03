@@ -16,7 +16,7 @@ const RequestForm = () => {
   const [rating, setRating] = useState(0);///set initial state for rating
 
   //const [checked, setChecked] = useState(false);
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -29,7 +29,7 @@ const RequestForm = () => {
   const ApiPrivate = useAxiosPrivate();
 
   const clearForm = () => {
-    setName()
+    // setName()
     setEmail()
     setPriority()
     setReview()
