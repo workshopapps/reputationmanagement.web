@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import PageLayout from '../../../layout/PageLayout';
-import ErrorPage from '../../ErrorPage';
-
-const BlogSeeAll = () => {
-	return <ErrorPage />;
-=======
 import React, { useState } from 'react';
 import PageLayout from '../../../layout/PageLayout';
 import PostSnippet from '../../../components/Blog/PostSnippet';
@@ -41,7 +33,6 @@ const BlogSeeAll = () => {
 			</section>
 		</PageLayout>
 	);
->>>>>>> 133da5892cc9ef2c91c0aa425ecb2c8c2ba948a1
 };
 
 export default BlogSeeAll;
