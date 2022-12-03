@@ -259,7 +259,7 @@ function Ourteam() {
 								is made possible by a great team. There really is no company
 								like Fixit, and you can join us.
 							</StyledText>
-							<Link to="/signup">
+							<Link to="/career">
 								<StyledButton>Get Started</StyledButton>
 							</Link>
 						</StyledContainer>

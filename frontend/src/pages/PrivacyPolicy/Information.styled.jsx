@@ -6,9 +6,7 @@ export const StyledInformation = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 10px;
 	margin: 0px auto;
-	/* outline: 1px solid red; */
 
 	h3 {
 		font-size: 32px;
@@ -25,9 +23,9 @@ export const StyledInformation = styled.div`
 	}
 
 	@media (max-width: 320px) {
-		/* div {
-			over-flow: hidden;
-		} */
+		
+		max-width: 95%;
+		text-align: justify;
 
 		h3 {
 			font-size: 18px;
@@ -45,8 +43,9 @@ export const StyledInformation = styled.div`
 
 	@media (max-width: 1020px) {
 		
-			/* over-flow: hidden;
-			width: 300px; */
+		
+		max-width: 85%;
+		text-align: justify;
 
 		h3 {
 			font-size: 18px;

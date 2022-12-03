@@ -1,5 +1,4 @@
 import styled from "styled-components";
-//import ReactStars from 'react-stars'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Checkbox from "../../components/requestFormComponents/checkBox";
@@ -8,7 +7,7 @@ import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {StyledDashboard, StyledContainer} from '../../components/Dashboard/Styles/Dashboard.styled';
 import useAppContext from '../../hooks/useAppContext';
-import Api from '../../api/axios'
+import { ApiPrivate } from '../../api/axios'
 
 
 
@@ -23,45 +22,55 @@ const RequestForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
-  // const [time, setTime] = useState("");
+  const [time, setTime] = useState("");
   const [ priority, setPriority ] = useState('')
   const [review, setReview] = useState("");
   const [websitename, setWebsiteName] = useState("");
   const [businesstype, setBusinessType] = useState("");
   //const [name, setName] = useState("");
-  const { setRequestSuccessfulModalActive, allRequests } = useAppContext();
+  const { setRequestSuccessfulModalActive, allRequests, setAllRequests } = useAppContext();
 
 
-        // setAllRequests((prev) => {
-      //   return [...prev,
-      //     {
-      //     id: Math.floor(Math.random() * 6),
-      //     no: allRequests.length + 1,
-      //     priority: priority,
-      //     ticketName: websitename,
-      //     source: google,
-      //     lastUpdated: 'Now',
-      //     status: 'Pending',
-      //   }
-      // ]
-      // }
-
+  const clearForm = () => {
+    setName()
+    setEmail()
+    setPriority()
+    setReview()
+    setWebsiteName()
+    setBusinessType()
+  }
   const handleSubmit = async(e) => {
       e.preventDefault();
       setRequestSuccessfulModalActive(true);
       try{
-        const response = await Api.post('/api/create', {
-          id: Math.floor(Math.random() * 6),
-          no: allRequests.length + 1,
+        const response = await ApiPrivate.post('/api/create', {
+          fullName: name,
+          email: email,
+          timeOfReview: time + date,
+          review: review,
+          rating: rating,
+          websitename: websitename,
+          businesstype: businesstype,
           priority: priority,
-          ticketName: websitename,
-          source: 'google',
           lastUpdated: 'Now',
           status: 'Pending',
         }
       );
-        console.log( response ? response.data: '')
-        response && setRequestSuccessfulModalActive(true) && router('/request-successful')
+        setAllRequests(
+          (prev) => {
+          return [...prev,
+            {
+            id: Math.floor(Math.random() * 6),
+            no: allRequests.length + 1,
+            priority: priority,
+            ticketName: websitename,
+            source: websitename,
+            lastUpdated: 'Now',
+            status: 'Pending',
+          }
+        ]})
+        response && setRequestSuccessfulModalActive(true) && router('/request-successful') && clearForm()
+
       }
       catch(err){
         setRequestSuccessfulModalActive(false)
@@ -109,7 +118,7 @@ const RequestForm = () => {
 
               <div className='time-picker'>
                 <label htmlFor="_name"> Time of review</label>
-                <input type="time" name="time" id="time" required />
+                <input type="time" name="time" id="time" required onChange={(e) => setTime(e.target.value)}/>
               </div>
             </div>
 

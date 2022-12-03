@@ -6,7 +6,7 @@ const useAccessToken = () => {
         const response = await Api.get('/refresh', {
             withCredentials: true
         })
-       Cookies.set('repboostAccessToken', response?.data?.accessToken)
+       Cookies.set('reputeAccessToken', response?.data)
        return 'accessToken reset!!'
     }
     return refresh;
