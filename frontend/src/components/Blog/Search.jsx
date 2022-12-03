@@ -22,7 +22,7 @@ const StyledForm = styled.form`
 		width: 70%;
 	}
 	@media (max-width: 400px) {
-		width: 90%;
+		/* width: 90%; */
 	}
 `;
 
@@ -33,19 +33,21 @@ const StyledInput = styled.input`
 	height: 100%;
 `;
 
-const Search = () => {
+const Search = (props) => {
 	const [userInput, setUserInput] = useState('');
 	return (
 		<>
-			<StyledForm>
+			<StyledForm onSubmit={(e) => e.preventDefault()}>
 				<CiSearch />
 				<StyledInput
 					type="text"
 					placeholder="Search for anything..."
-					onChange={(e) => {
-						setUserInput(e.target.value);
-					}}
-					value={userInput}
+					onChange={props.onchange}
+					value={props.value}
+					// onChange={(e) => {
+					// 	setUserInput(e.target.value);
+					// }}
+					// value={userInput}
 				/>
 			</StyledForm>
 		</>
