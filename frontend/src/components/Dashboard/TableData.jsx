@@ -3,8 +3,9 @@ const TableData = ({ data }) => {
 		<tr>
 			<td>0{data.id}</td>
 
-			<td >
-				<p className={data.priority}>{data.priority}</p>
+			<td>
+				<p className={`${data.priority} desktop`}>{data.priority}</p>
+				<span className={`${data.priority} mobile`}></span>
 			</td>
 
 			<td>
