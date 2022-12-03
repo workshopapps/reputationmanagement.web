@@ -20,7 +20,6 @@ import JobProps from './JobProps';
 import Star from '../../assets/images/Vectorstar.png';
 import Star2 from '../../assets/images/Vectorstar2.png';
 
-
 import PageLayout from '../../layout/PageLayout';
 
 const StyledHeader = styled.h1`

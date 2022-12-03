@@ -6,7 +6,8 @@ import {
 } from '../../components/Styles/Body/Button.styled';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Map from '../../assets/images/map.png';
+
+import { GrLocation } from 'react-icons/gr';
 const StyledDivContainer = styled.div`
 	width: 350px;
 	padding: 25px 20px;
@@ -18,19 +19,22 @@ const StyledDivContainer = styled.div`
 	justify-content: center;
 	border: 1px solid #e4e4e5;
 `;
-function JobProps({ title }) {
+function JobProps({ title, id }) {
 	return (
 		<StyledDivContainer>
 			<h2 className="text-2xl font-bold my-4">{title}</h2>
 			<h4>We are currently looking for a {title} with vast experience</h4>
-			<div className="flex justify-between my-4">
-				<img src={Map} alt="" className="w-full" />
-				<h5 className="mx-2 font-bold">Remote</h5>
+			<div className="flex justify-between items-center my-4">
+				<GrLocation className="mr-2 text-lg" />
+				<h3 className="text-lg">Remote</h3>
 			</div>
 
-			<Link to="/carrer-pg-3" onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-              }}>
+			<Link
+				to={`/carrer-pg-2/${id}`}
+				onClick={() => {
+					window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+				}}
+			>
 				<StyledButton
 					outlined
 					className=" flex items-center my-5 justify-center"
