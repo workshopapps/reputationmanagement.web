@@ -7,7 +7,7 @@ import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {StyledDashboard, StyledContainer} from '../../components/Dashboard/Styles/Dashboard.styled';
 import useAppContext from '../../hooks/useAppContext';
-import { ApiPrivate } from '../../api/axios'
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 
 
@@ -30,6 +30,8 @@ const RequestForm = () => {
   //const [name, setName] = useState("");
   const { setRequestSuccessfulModalActive, allRequests, setAllRequests } = useAppContext();
 
+  const ApiPrivate = useAxiosPrivate();
+
 
   const clearForm = () => {
     setName()
@@ -43,7 +45,7 @@ const RequestForm = () => {
       e.preventDefault();
       setRequestSuccessfulModalActive(true);
       try{
-        const response = await ApiPrivate.post('/api/create', {
+        const response = await ApiPrivate.post('/create', {
           fullName: name,
           email: email,
           timeOfReview: time + date,
