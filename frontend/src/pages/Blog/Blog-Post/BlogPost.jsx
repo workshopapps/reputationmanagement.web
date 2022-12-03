@@ -15,11 +15,29 @@ import facebook from '../Blog-Post/Assets/facebook.jpg';
 import twitch from '../Blog-Post/Assets/twitch.jpg';
 import mobileLike from '../Blog-Post/Assets/heart.svg';
 import mobileShare from '../Blog-Post/Assets/share.svg';
+import emailjs from 'emailjs-com';
 
 import { Posts } from './Assets/data';
 import Post from './Post';
 
 const BlogPost = () => {
+	const sendMailHandler = (e) => {
+		e.preventDefault();
+		emailjs
+			.sendForm(
+				'service_diggy8i',
+				'template_3ttmqkn',
+				e.target,
+				'anOmuqvmkJ_xfUC2O'
+			)
+			.then((res) => {
+				// console.log(res);
+			})
+			.catch((err) => {
+				// console.log(err);
+			});
+	};
+
 	return (
 		<PageLayout>
 			<PostContainer>
@@ -87,12 +105,12 @@ const BlogPost = () => {
 					</div>
 				</ProfileCard>
 
-				<FormContainer>
+				<FormContainer onSubmit={sendMailHandler}>
 					<p>Leave a comment</p>
-					<textarea name="" id="" cols="30" rows="7"></textarea>
+					<textarea name="comment" id="" cols="30" rows="7"></textarea>
 
-					<input type="text" placeholder="Username" />
-					<input type="email" placeholder="Email Address" />
+					<input type="text" name="username" placeholder="Username" />
+					<input type="email" name="email" placeholder="Email Address" />
 
 					<button>Comment</button>
 				</FormContainer>

@@ -21,18 +21,7 @@ const StyleHeader = styled.h1`
 	font-weight: 700;
 	font-size: 1.8rem;
 	color: #233ba9;
-
-	/* @media screen and (max-width: 768px) {
-		font-size: 20px;
-	} */
 `;
-
-// const StyleChildSection = styled.div`
-// 	display: flex;
-// 	align-items: center;
-// 	gap: 5px;
-// 	cursor: pointer;
-// `;
 
 const StyleParagraph = styled.p`
 	font-style: normal;
@@ -40,7 +29,7 @@ const StyleParagraph = styled.p`
 	font-size: 1.4rem;
 	color: #233ba9;
 	@media (max-width: 650px) {
-		font-size: 0.6rem;
+		font-size: 1rem;
 		font-weight: 400;
 	}
 `;

@@ -1,5 +1,4 @@
 import React from 'react';
-// import Blog_see_all from '../pages/Blog--see-all'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -8,10 +7,6 @@ const StyledPost = styled.section`
 	border-radius: 8px;
 	width: 445px;
 	transform: scale 0.4s;
-
-	&:hover {
-		scale: 1.02;
-	}
 
 	@media (max-width: 1080px) {
 		&:last-child {
@@ -33,8 +28,9 @@ const StyledHeader = styled.h2`
 	cursor: default;
 
 	@media (max-width: 650px) {
-		font-size: 0.6rem;
+		font-size: 1rem;
 		font-weight: 400;
+		padding: 8px 4px 12px;
 	}
 `;
 
@@ -51,7 +47,7 @@ const StyledParagraph = styled.p`
 	}
 `;
 
-function PostSnippettt({ img, title, subtitle }) {
+function PostSnippet({ img, title, subtitle }) {
 	return (
 		<StyledPost>
 			<StyledImg src={img} alt="blogpost image" />
@@ -61,11 +57,11 @@ function PostSnippettt({ img, title, subtitle }) {
 	);
 }
 
-PostSnippettt.propTypes = {
+PostSnippet.propTypes = {
 	img: PropTypes.string,
 	title: PropTypes.string,
 	subtitle: PropTypes.string,
 	display: PropTypes.bool,
 };
 
-export default PostSnippettt;
+export default PostSnippet;
