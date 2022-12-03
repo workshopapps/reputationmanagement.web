@@ -1,4 +1,6 @@
 import React from 'react';
+import useAppContext from '../../hooks/useAppContext';
+import { CustomApiPrivate } from './Main';
 import {
 	styleClass,
 	StyledButton,
@@ -6,22 +8,48 @@ import {
 	StyledTab,
 } from './Settings.styled';
 
-function Preferences() {
+function Preferences({ userLanguage, setUserLanguage }) {
+	const languages = ['english', 'german', 'russian', 'chinese'];
+	const {
+		setRequestFailed,
+		setRequestSuccess,
+		setErrMessage,
+		setSuccessMessage,
+	} = useAppContext();
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		CustomApiPrivate.post('/customer/language?language=' + userLanguage)
+			.then((res) => {
+				setUserLanguage(res.data);
+				setSuccessMessage('Update successful');
+				setRequestSuccess(true);
+			})
+			.catch(function (error) {
+				setErrMessage('Update failed');
+				setRequestFailed(true);
+			});
+	};
+
 	return (
 		<StyledTab>
-			<form className="py-2">
+			<form onSubmit={onSubmit} className={styleClass.form}>
 				<div className={styleClass.inputGroup}>
 					<label htmlFor="first" className="md:w-1/3 font-semibold">
 						Preferred Language
 					</label>
 
-					<select className={styleClass.selectClass}>
-						<option value="English" selected>
-							English
-						</option>
-						<option value="FR">French</option>
-						<option value="ES">Spanish</option>
-						<option value="JP">Japanese</option>
+					<select
+						className={styleClass.selectClass}
+						value={userLanguage}
+						onChange={(e) => setUserLanguage(e.target.value)}
+						required
+					>
+						{languages.map((item) => (
+							<option key={item} value={item}>
+								{item}
+							</option>
+						))}
 					</select>
 				</div>
 
@@ -41,8 +69,8 @@ function Preferences() {
 				</div>
 
 				<div className="my-14 flex justify-end">
-					<StyledButtonText>Discard</StyledButtonText>
-					<StyledButton>Save Changes</StyledButton>
+					<StyledButtonText type="reset">Discard</StyledButtonText>
+					<StyledButton type="submit">Save Changes</StyledButton>
 				</div>
 			</form>
 		</StyledTab>
