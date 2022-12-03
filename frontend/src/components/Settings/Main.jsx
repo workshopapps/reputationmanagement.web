@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import Accounts from './Accounts';
 import Notifications from './Notifications';
 import Preferences from './Preferences';
-import Privacy from './Privacy';
-
+import Security from './Security';
 
 export default function Main() {
 	const StyledParent = styled.div`
-		width: 80%;
-		margin: 0 30px;
-
-		@media (min-width: 800px) {
+	
+		@media (max-width: 375px) {
+			max-width: 327px;
+		}
+		@media (max-width: 320px) {
+			max-width: 277px;
 		}
 	`;
 
@@ -22,7 +23,7 @@ export default function Main() {
 		margin-bottom: 20px;
 		border-bottom: 0.5px solid #6f7174a2;
 	`;
-	const StyledHeader = styled.h2`
+	const StyledHeader = styled.p`
 		font-weight: 700;
 		font-size: 28px;
 		color: #2b2c34;
@@ -31,6 +32,18 @@ export default function Main() {
 	const StyledOptions = styled.ul`
 		display: flex;
 		gap: 1rem;
+
+		@media screen and (max-width: 428px) {
+			display: flex;
+			overflow-x: scroll;
+			max-width: 428px;
+
+			&::-webkit-scrollbar {
+				width: 0;
+				display: none;
+			}
+		}
+		
 	`;
 
 	const StyledOption = styled.li`
@@ -44,7 +57,7 @@ export default function Main() {
 			border-bottom: 2px solid rgb(35, 59, 169);
 			color: rgb(35, 59, 169);
 		}
-		&:hover{
+		&:hover {
 			cursor: pointer;
 		}
 	`;
@@ -86,7 +99,7 @@ export default function Main() {
 							className={tab === 4 ? 'active-tab' : ''}
 							onClick={() => toggleTab(4)}
 						>
-							Privacy & Security
+							Security
 						</StyledOption>
 					</StyledOptions>
 				</StyledText>
@@ -95,7 +108,7 @@ export default function Main() {
 			{tab === 1 && <Accounts />}
 			{tab === 2 && <Preferences />}
 			{tab === 3 && <Notifications />}
-			{tab === 4 && <Privacy />}
+			{tab === 4 && <Security />}
 		</StyledParent>
 	);
 }
