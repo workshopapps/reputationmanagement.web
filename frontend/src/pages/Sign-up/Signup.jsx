@@ -69,9 +69,7 @@ function Signup() {
 				setSuccessMessage('Account Created')
 				setRequestSuccess(true)
 				clearForm();
-				setTimeout(() => {
-					router('/dashboard')
-				}, 1000);
+				router('/dashboard')
 			}
 			catch (err) {
 				if (err.response.status === 400) {

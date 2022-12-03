@@ -10,9 +10,6 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 
-
-
-
 const RequestForm = () => {
   const router = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
@@ -23,15 +20,13 @@ const RequestForm = () => {
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [ priority, setPriority ] = useState('')
+  const [ priority, setPriority ] = useState(0)
   const [review, setReview] = useState("");
   const [websitename, setWebsiteName] = useState("");
   const [businesstype, setBusinessType] = useState("");
-  //const [name, setName] = useState("");
   const { setRequestSuccessfulModalActive, allRequests, setAllRequests } = useAppContext();
 
   const ApiPrivate = useAxiosPrivate();
-
 
   const clearForm = () => {
     setName()
@@ -45,8 +40,7 @@ const RequestForm = () => {
       e.preventDefault();
       setRequestSuccessfulModalActive(true);
       try{
-        const response = await ApiPrivate.post('/create', {
-          fullName: name,
+        const response = await ApiPrivate.post('/review', {
           email: email,
           timeOfReview: time + date,
           review: review,
@@ -54,7 +48,6 @@ const RequestForm = () => {
           websitename: websitename,
           businesstype: businesstype,
           priority: priority,
-          lastUpdated: 'Now',
           status: 'Pending',
         }
       );
@@ -102,10 +95,10 @@ const RequestForm = () => {
           {/********************START OF FORM SECTION A*************************************************/}
           <div className='form-section-a'>
 
-            <div className='text-input'>
+            {/* <div className='text-input'>
               <label htmlFor="_name"> Name</label>
               <input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter Your Full Name" id="name" required />
-            </div>
+            </div> */}
 
             <div className='text-input'>
               <label htmlFor="email">Email Address</label>
@@ -158,19 +151,19 @@ const RequestForm = () => {
               <h3>Priority level</h3>
 
               <div>
-                <Checkbox label="High" checked={true} onClick={() => setPriority('High')} />
+                <Checkbox label="High" onClick={() => setPriority(3)} />
               </div>
 
               <div>
-                <Checkbox label="Medium" onClick={() => setPriority('Medium')} />
+                <Checkbox label="Medium" onClick={() => setPriority(2)} />
               </div>
 
               <div>
-                <Checkbox label="Low" onClick={() => setPriority('Low')} />
+                <Checkbox label="Low"  onClick={() => setPriority(1)} />
               </div>
 
               <div>
-                <Checkbox label="Not urgent"  onClick={() => setPriority('Not urgent')}/>
+                <Checkbox label="Not urgent" onClick={() => setPriority(0)}/>
               </div>
 
             </div>
