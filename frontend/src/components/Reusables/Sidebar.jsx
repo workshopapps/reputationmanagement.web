@@ -5,13 +5,15 @@ import logo from '../../assets/images/Dashboard/logo.png';
 import { DashboardIcon, SettingsIcon, ProfileIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 import styled from 'styled-components';
-import Cookies from 'js-cookie';
+import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
+import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
+
 
 const Sidebar = (props) => {
-	const handleLogout = () => {
-		localStorage.clear()
-		Cookies.remove('reputeAccessToken')
-	}
+	
+
+	const {isShowing, toggle} = useLogoutConfirmation();
+
 	return (
 		<StyledSidebar className={props.className}>
 			<img src={closeBtn} alt="" onClick={props.closeMenuHandler} />
@@ -40,11 +42,16 @@ const Sidebar = (props) => {
 			</ul>
 			<ul style={{ maxHeight: '50px'}}>
 				<li>
-					<StyledLogoutButton onClick={() => handleLogout()}>
+					<StyledLogoutButton onClick={toggle}>
 						Logout
 					</StyledLogoutButton>
 				</li>
+
+				<LogoutConfirmationModal isShowing={isShowing} hide={toggle} />
 			</ul>
+
+			
+
 		</StyledSidebar>
 	);
 };
