@@ -7,7 +7,6 @@ import Security from './Security';
 
 export default function Main() {
 	const StyledParent = styled.div`
-	
 		@media (max-width: 375px) {
 			max-width: 327px;
 		}
@@ -43,7 +42,6 @@ export default function Main() {
 				display: none;
 			}
 		}
-		
 	`;
 
 	const StyledOption = styled.li`
