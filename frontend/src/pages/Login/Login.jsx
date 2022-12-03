@@ -28,7 +28,7 @@ const Login = () => {
   const [ pageValid, setPageValid ] = useState(false)
 
   useEffect(() => {
-    email !== '' && password.length >= 8 ? setPageValid(true) : setPageValid(false)
+    email !== '' && password.length >= 6 ? setPageValid(true) : setPageValid(false)
   },[ email, password ])
   const { setRequestFailed, setRequestSuccess, setErrMessage, setSuccessMessage} = useAppContext();
   const [ retainAuth, setRetainAuth ] = useState(false)
