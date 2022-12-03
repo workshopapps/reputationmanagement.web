@@ -8,7 +8,7 @@ import google_icon from './Assets/google-icon.svg';
 import facebook_icon from './Assets/facebook-icon.svg';
 import apple_icon from './Assets/apple-icon.svg';
 import Api from '../../api/axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
@@ -16,45 +16,45 @@ import Cookies from "js-cookie";
 
 const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 function Signup() {
-	const [ businessName, setBusinessName ] = useState('')
-	const [ email, setEmail ] = useState('')
-	const [ password, setPassword ] = useState('')
-	const [ confirmPassword, setConfirmPassword ] = useState('')
-	const [ requestPending, setRequestPending ] = useState(false)
+	const [businessName, setBusinessName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
+	const [requestPending, setRequestPending] = useState(false)
 	const router = useNavigate();
 
-	const [ pageValid, setPageValid ] = useState(false);
+	const [pageValid, setPageValid] = useState(false);
 
-	const [ businessNameValid, setBusinessNameValid ] = useState(false);
-	const [ emailValid, setEmailValid ] = useState(false)
-	const [ passwordValid, setPasswordValid] = useState(false)
-	const [ confirmPasswordValid, setConfirmPasswordValid] = useState(false)
+	const [businessNameValid, setBusinessNameValid] = useState(false);
+	const [emailValid, setEmailValid] = useState(false)
+	const [passwordValid, setPasswordValid] = useState(false)
+	const [confirmPasswordValid, setConfirmPasswordValid] = useState(false)
 
-	const [ businessNameFocus, setBusinessNameFocus ] = useState(false);
-	const [ emailFocus, setEmailFocus ] = useState(false)
-	const [ passwordFocus, setPasswordFocus] = useState(false)
-	const [ confirmPasswordFocus, setConfirmPasswordFocus] = useState(false)
-	const [ triedToSubmit, setTriedToSubmit ] = useState(false)
-
+	const [businessNameFocus, setBusinessNameFocus] = useState(false);
+	const [emailFocus, setEmailFocus] = useState(false)
+	const [passwordFocus, setPasswordFocus] = useState(false)
+	const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false)
+	const [triedToSubmit, setTriedToSubmit] = useState(false)
+	const [confirmTerms, setConfirmTerms] = useState(false)
 	const { setRequestSuccess, setErrMessage, setRequestFailed, setSuccessMessage } = useAppContext();
 
-	useEffect(()=> {
+	useEffect(() => {
 		businessName !== '' ? setBusinessNameValid(true) : setBusinessNameValid(false)
 		EMAIL_REGEX.test(email) ? setEmailValid(true) : setEmailValid(false)
 		password.length >= 6 ? setPasswordValid(true) : setPasswordValid(false);
 		confirmPassword === password && confirmPassword.length >= 6 ? setConfirmPasswordValid(true) : setConfirmPasswordValid(false)
-	},[ email, businessName, password, confirmPassword ])
+	}, [email, businessName, password, confirmPassword])
 
 	useEffect(() => {
-		businessNameValid && emailValid && passwordValid && confirmPasswordValid ? setPageValid(true) : setPageValid(false)
-	},[ passwordValid, confirmPasswordValid, businessNameValid, emailValid ])
+		businessNameValid && emailValid && passwordValid && confirmPasswordValid && confirmTerms ? setPageValid(true) : setPageValid(false)
+	}, [passwordValid, confirmPasswordValid, businessNameValid, emailValid, confirmTerms])
 
-	const handleSubmit = async(e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setTriedToSubmit(true)
-		if(pageValid){
+		if (pageValid) {
 			setRequestPending(true)
-			try{
+			try {
 				const response = await Api.post('/auth/create_account',
 					{
 						email: email,
@@ -65,14 +65,17 @@ function Signup() {
 				console.log(response)
 				localStorage.setItem('auth', email)
 				Cookies.set('reputeAccessToken', response?.data)
-				setRequestPending(false) 
+				setRequestPending(false)
 				setSuccessMessage('Account Created')
 				setRequestSuccess(true)
 				clearForm();
+				setTimeout(() => {
+					router('/dashboard')
+				}, 1000);
 			}
-			catch(err){
-				if(err.response.status === 400){
-					setErrMessage(err?.response?.data);
+			catch (err) {
+				if (err.response.status === 400) {
+					setErrMessage(`${err?.response?.data} or Name/Email exist`);
 				}
 				else {
 					setErrMessage('Sign up Failed')
@@ -105,19 +108,19 @@ function Signup() {
 	};
 
 	return (
-		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen" 
-		style={{
-			backgroundImage:`url(${background})`, 
-			backgroundRepeat:"no-repeat", 
-			backgroundSize:"cover",
-			backgroundPosition: 'fixed',
-			display: 'flex',
-			width: '100%',
-			backgroundAttachment: 'fixed',
+		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen"
+			style={{
+				backgroundImage: `url(${background})`,
+				backgroundRepeat: "no-repeat",
+				backgroundSize: "cover",
+				backgroundPosition: 'fixed',
+				display: 'flex',
+				width: '100%',
+				backgroundAttachment: 'fixed',
 			}}>
-				
-			<StyledFormWrapper style={{ maxWidth: '770px' }}> 
-				<img src={Logo} alt="background" className='logo_img'/>
+
+			<StyledFormWrapper style={{ maxWidth: '770px' }}>
+				<img src={Logo} alt="background" className='logo_img' />
 				<h2>
 					Welcome to Fixit
 				</h2>
@@ -127,7 +130,7 @@ function Signup() {
 						<label htmlFor='business-name'>Business Name</label>
 						<input
 							type="text"
-							className={ triedToSubmit && !businessNameValid ? "invalid" : ''}
+							className={triedToSubmit && !businessNameValid ? "invalid" : ''}
 							id="business-name"
 							value={businessName}
 							name="first_name"
@@ -137,7 +140,7 @@ function Signup() {
 							placeholder="e.g Mark and sons"
 							required
 						/>
-						{ !businessNameFocus && !businessNameValid && triedToSubmit && <ErrorMessage error="Enter Your Business Name"/>}
+						{!businessNameFocus && !businessNameValid && triedToSubmit && <ErrorMessage error="Enter Your Business Name" />}
 					</div>
 					<div className="email">
 						<label htmlFor="email">Email</label>
@@ -153,20 +156,20 @@ function Signup() {
 							className={!emailValid && triedToSubmit ? 'invalid' : ''}
 							required
 						/>
-						{ !emailValid && !emailFocus && triedToSubmit && <ErrorMessage error={ email === '' ? "Enter Your Email" : "Enter A Valid Email"}/>}
+						{!emailValid && !emailFocus && triedToSubmit && <ErrorMessage error={email === '' ? "Enter Your Email" : "Enter A Valid Email"} />}
 					</div>
 					<div className="password">
 						<label htmlFor="Password">Password</label>
 						{
-							<p style={{fontSize: '14px', lineHeight: '20px', marginBottom: '10px'}}>
+							<p style={{ fontSize: '14px', lineHeight: '20px', marginBottom: '10px' }}>
 								Password should be a minimum of 6 characters
 							</p>
 						}
-						<div className={ triedToSubmit && !passwordValid ? "invalid password-input" : "password-input"}>
-							<input  
+						<div className={triedToSubmit && !passwordValid ? "invalid password-input" : "password-input"}>
+							<input
 								onChange={(e) => setPassword(e.target.value)}
 								value={password}
-								type={passwordShown ? 'text' : 'password'} className='' placeholder='6+ character long' 
+								type={passwordShown ? 'text' : 'password'} className='' placeholder='6+ character long'
 								onFocus={() => setPasswordFocus(true)}
 								onBlur={() => setPasswordFocus(false)}
 							/>
@@ -174,14 +177,14 @@ function Signup() {
 								<img src={Closed} alt="" />{' '}
 							</button>
 						</div>
-						{ !passwordValid && !passwordFocus && triedToSubmit && <ErrorMessage error={ password === '' ? 'Enter Your Password': "Enter A Valid Password"}/>}
+						{!passwordValid && !passwordFocus && triedToSubmit && <ErrorMessage error={password === '' ? 'Enter Your Password' : "Enter A Valid Password"} />}
 					</div>
 					<div className="password">
 						<label htmlFor="Password">Re-enter password</label>
-						<div className={ !confirmPasswordValid && triedToSubmit ? 'invalid password-input' : 'password-input' }>
-							<input  
-								type={passwordShown1 ? 'text' : 'password'} 
-								placeholder='6+ character long' 
+						<div className={!confirmPasswordValid && triedToSubmit ? 'invalid password-input' : 'password-input'}>
+							<input
+								type={passwordShown1 ? 'text' : 'password'}
+								placeholder='6+ character long'
 								value={confirmPassword}
 								onChange={(e) => setConfirmPassword(e.target.value)}
 								onFocus={() => setConfirmPasswordFocus(true)}
@@ -191,18 +194,41 @@ function Signup() {
 								<img src={Closed} alt="" />{' '}
 							</button>
 						</div>
-						{ !confirmPasswordValid && !confirmPasswordFocus && triedToSubmit && 
-							<ErrorMessage 
+						{!confirmPasswordValid && !confirmPasswordFocus && triedToSubmit &&
+							<ErrorMessage
 								error={
-									confirmPassword === '' 
-										? 
+									confirmPassword === ''
+										?
 										'Confirm Your Password'
 										:
-										confirmPassword === password 
+										confirmPassword === password
 											?
 											"Password Is Invalid"
 											:
 											"Passwords Don't Match"
+								}
+							/>
+						}
+					</div>
+					<div className="terms">
+						<div className={!confirmPasswordValid && triedToSubmit ? 'invalid ' : 'term-form'}>
+							<input
+								type="checkbox"
+								value={confirmTerms}
+								onChange={(e) => setConfirmTerms(!confirmTerms)}
+								className="term-input"
+							// onFocus={() => setConfirmPasswordFocus(true)}
+							// onBlur={() => setConfirmPasswordFocus(false)}
+							/>
+							<label htmlFor="terms" className='term-label'>
+								By signing up, I agree to company <Link to="/terms-of-use"> terms and condition </Link>  and <Link to="/privacy">privacy policy </Link>.
+							</label>
+
+						</div>
+						{!confirmTerms && triedToSubmit &&
+							<ErrorMessage
+								error={
+									!confirmTerms && 'Agree Terms and Condition'
 								}
 							/>
 						}
@@ -212,8 +238,8 @@ function Signup() {
 							!requestPending
 								?
 								"Create Account"
-							:
-							<div className="loading"></div>
+								:
+								<div className="loading"></div>
 						}
 					</button>
 				</div>
@@ -224,18 +250,18 @@ function Signup() {
 						<span></span>
 					</div>
 					<div className="social-icons">
-						<img src={google_icon} alt="" style={{ cursor: 'pointer'}}/>
-						<img src={facebook_icon} alt="" style={{ cursor: 'pointer'}}/>
-						<img src={apple_icon} alt="" style={{ cursor: 'pointer'}}/>
+						<img src={google_icon} alt="" style={{ cursor: 'pointer' }} />
+						<img src={facebook_icon} alt="" style={{ cursor: 'pointer' }} />
+						<img src={apple_icon} alt="" style={{ cursor: 'pointer' }} />
 					</div>
-					<p>Already have an account ? <br /> <span onClick={() => router('/login')} style={{ cursor: 'pointer'}}>Sign In</span></p>
+					<p>Already have an account ? <br /> <span onClick={() => router('/login')} style={{ cursor: 'pointer' }}>Sign In</span></p>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
 
-			<div className="logo" > 
+			<div className="logo" >
 				<img src={Logo} alt="background" />
 			</div>
-			
+
 		</StyledSignupWrapper>
 	);
 }
@@ -408,6 +434,26 @@ const StyledFormWrapper = styled.div`
 			color: #2B2C34;
 			margin-bottom: 8px;
 		}
+
+		.term-form{
+			display:flex;
+			margin-top:15px;
+
+		}
+		.term-label{
+			font-weight: 400;
+			font-size: 14px;
+			a{
+				color: #F16F04;
+			}
+		}
+		.term-input{
+			height: 15px;
+			width:auto;
+			margin-top:5px;
+			margin-right:10px
+		}
+
 		.create{
 			height: 59px;
 			width: 100%;
