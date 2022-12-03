@@ -5,10 +5,12 @@ import logo from '../../assets/images/Dashboard/logo.png';
 import { DashboardIcon, SettingsIcon, ProfileIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 import styled from 'styled-components';
+import Cookies from 'js-cookie';
 
 const Sidebar = (props) => {
 	const handleLogout = () => {
 		localStorage.clear()
+		Cookies.remove('reputeAccessToken')
 	}
 	return (
 		<StyledSidebar className={props.className}>

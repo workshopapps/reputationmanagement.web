@@ -21,15 +21,15 @@ export const StyledStory = styled.div`
 export const StoryHead = styled.h1`
 	font-size: 28px;
 	font-weight: bold;
-	width: max-content;
+	width: 100%;
 	font-family: 'lato', sans-serif;
-	text-align: center;
+	margin: 8px 0;
 `;
 export const StoryP = styled.p`
 	font-size: 16px;
 	font-weight: bold;
 	max-width: 625px;
-	color: #4D5154;
+	color: #4d5154;
 	line-height: 150%;
 	font-family: 'lato', sans-serif;
 	margin-bottom: 10px;
@@ -41,8 +41,8 @@ export const StoryP = styled.p`
 export const StyledStorytxt = styled.div`
 	margin-right: 20px;
 	display: flex;
-    flex-direction: column;
-    align-items: center;
+	flex-direction: column;
+	align-items: center;
 	@media (max-width: 375px) {
 		text-align: center;
 		margin-right: 0;

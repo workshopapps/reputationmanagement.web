@@ -7,7 +7,7 @@ import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {StyledDashboard, StyledContainer} from '../../components/Dashboard/Styles/Dashboard.styled';
 import useAppContext from '../../hooks/useAppContext';
-import Api from '../../api/axios'
+import { ApiPrivate } from '../../api/axios'
 
 
 
@@ -43,7 +43,7 @@ const RequestForm = () => {
       e.preventDefault();
       setRequestSuccessfulModalActive(true);
       try{
-        const response = await Api.post('/api/create', {
+        const response = await ApiPrivate.post('/api/create', {
           fullName: name,
           email: email,
           timeOfReview: time + date,
