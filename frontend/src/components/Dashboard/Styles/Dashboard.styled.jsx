@@ -251,6 +251,7 @@ export const TableContainer = styled.table`
 			font-weight: 500;
 			font-size: 16px;
 			line-height: 24px;
+			text-align: center;
 			/* width: fit-content; */
 			width: 70%;
 			color: #01586c;
@@ -262,18 +263,21 @@ export const TableContainer = styled.table`
 			border-radius: 4px;
 			padding: 4px 16px;
 			width: 70%;
+			text-align: center;
 		}
 	.Medium{
 		background: #FFE5B2;
 		border-radius: 4px;
 		padding: 4px 16px;
 		width: 70%;
+		text-align: center;
 	}
 	.Low{
 		background: #FECDCA;
 		border-radius: 4px;
 		padding: 4px 16px;
 		width: 70%;
+		text-align: center;
 	}
 
 	@media (max-width: 820px) {
