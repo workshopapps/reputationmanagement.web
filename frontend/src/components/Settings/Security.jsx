@@ -10,7 +10,7 @@ import {
 function Security() {
 	return (
 		<StyledTab>
-			<form className="py-2">
+			<form className={styleClass.form}>
 				<div className={styleClass.inputGroupRow}>
 					<HeadingLabel
 						text="Two Factor Authentication"

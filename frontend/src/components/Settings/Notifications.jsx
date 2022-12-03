@@ -10,7 +10,7 @@ import {
 function Notifications() {
 	return (
 		<StyledTab>
-			<form className="py-2">
+			<form className={styleClass.form}>
 				<div className="email_group">
 					<div className={styleClass.inputGroupRow}>
 						<HeadingLabel
