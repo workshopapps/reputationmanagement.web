@@ -56,5 +56,6 @@ const StyledLogoutButton = styled.div`
 	border-radius: 3px;
 	border: none;
 	text-align: center;
+	cursor: pointer;
 `;
 export default Sidebar;
