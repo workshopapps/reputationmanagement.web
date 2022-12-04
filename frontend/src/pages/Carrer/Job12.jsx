@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState } from 'react';
 import Arrow from '../../assets/images/arrow-left.png';
 import Map from '../../assets/images/map.png';
@@ -8,18 +6,14 @@ import { Link } from 'react-router-dom';
 
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import PageLayout from '../../layout/PageLayout';
-import 	Modal from './Modal'
-
-
-
+import Modal from './Modal';
 
 const StyledH2 = styled.h2`
 	font-size: 1.6rem;
 	color: #233ba9;
 	padding: 18px 0;
 `;
-function Carrerpg3() {
-
+function Immigration() {
 	const [openModal, setOpenModal] = useState(false);
 
 	return (
@@ -36,13 +30,17 @@ function Carrerpg3() {
 					<h3 className="mx-3"> Back to all openings</h3>
 				</Link>
 				<section className="my-5">
-					<h1 className="text-3xl mt-10 font-bold">BUSINESS LAWYER</h1>
+					<h1 className="text-3xl mt-10 font-bold">
+						INTELLECTUAL INJURY LAWYER
+					</h1>
 					<div className="flex gap-2 mt-10">
 						<img src={Map} alt="" className="w-5 h-5" />
 						<h3>Remote</h3>
 					</div>
 					<div className="py-8">
-						<StyledH2 className="font-semibold">Hiring Process</StyledH2>
+						<StyledH2 className="font-semibold text-justify">
+							Hiring Process
+						</StyledH2>
 						<h4 className="max-w-4xl">
 							We are looking for people who are passionate about the relentless
 							pursuit of perfection; people who are never satisfied, who want to
@@ -55,7 +53,9 @@ function Carrerpg3() {
 						</h4>
 					</div>
 					<div>
-						<StyledH2 className="font-semibold">Requirements</StyledH2>
+						<StyledH2 className="font-semibold text-justify">
+							Requirements
+						</StyledH2>
 						<h4 className="py-4">
 							Here is what we look for when reviewing CVs & Portfolio's to
 							shortlist candidates for interviews:
@@ -81,4 +81,4 @@ function Carrerpg3() {
 	);
 }
 
-export default Carrerpg3;
+export default Immigration;

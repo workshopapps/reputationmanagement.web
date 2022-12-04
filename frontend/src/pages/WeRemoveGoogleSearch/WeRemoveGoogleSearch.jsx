@@ -394,6 +394,7 @@ position: relative;
 
 &::-webkit-scrollbar{
 	width: 0;
+	display: none;
 }
 `;
 

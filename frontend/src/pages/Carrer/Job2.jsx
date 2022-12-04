@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState } from 'react';
 import Arrow from '../../assets/images/arrow-left.png';
 import Map from '../../assets/images/map.png';
@@ -8,18 +6,14 @@ import { Link } from 'react-router-dom';
 
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import PageLayout from '../../layout/PageLayout';
-import 	Modal from './Modal'
-
-
-
+import Modal from './Modal';
 
 const StyledH2 = styled.h2`
 	font-size: 1.6rem;
 	color: #233ba9;
 	padding: 18px 0;
 `;
-function Carrerpg3() {
-
+function Immigration() {
 	const [openModal, setOpenModal] = useState(false);
 
 	return (
@@ -68,7 +62,7 @@ function Carrerpg3() {
 						</ul>
 					</div>
 					<h3 className="py-7">
-						Cash compensation range
+						Cash compensation range:{' '}
 						<span className="font-bold">150000-200000 USD Annually</span>
 					</h3>
 					<StyledButton onClick={() => setOpenModal(true)} className="my-8">
@@ -81,4 +75,4 @@ function Carrerpg3() {
 	);
 }
 
-export default Carrerpg3;
+export default Immigration;

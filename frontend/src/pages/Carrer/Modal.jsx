@@ -2,10 +2,60 @@
 
 import React, { useState, useEffect } from "react";
 import Successfulmodal from './Successfulmodal'
+import styled from 'styled-components';
+import axios from 'axios';
 
 
+const StyledSelect = styled.select`
+	border: 1px solid #d4d4d4;
+	border-radius: 4px;
+	defaultValue: "";
+`;
 
 const Modal = ({ open, onClose }) => {
+
+	const [firstName, setFirstName] = useState('')
+	const [email, setEmail] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [phoneNo, setPhoneNo] = useState('');
+	const [position, setPositions] = useState('');
+	const [reasons, setReasons] = useState('');
+	const [resume, setResume] = useState('');
+	const [coverLetter, setCoverLetter] = useState('');
+	
+
+	const handleFirstName = (e) => {
+		setFirstName(e.target.value)
+	}
+
+	const handleLastName = (e) => {
+		setLastName(e.target.value);
+	};
+
+	const handleEmail = (e) => {
+		setEmail(e.target.value);
+	};
+
+	const handlePhoneNo = (e) => { 
+		setPhoneNo(e.target.value);
+	};
+	
+	const handlePosition = (e) => { 
+		setPositions(e.target.value);
+	};
+	
+	const handleReasons = (e) => {
+		setReasons(e.target.value);
+	 };
+	
+	const handleResume = (e) => { 
+		setResume(e.target.value);
+	};
+	
+	const handleCoverLetter = (e) => {
+		setCoverLetter(e.target.value);
+	};
+
 
 	const [openModal, setOpenModal] = useState(false);
 
@@ -16,12 +66,12 @@ const Modal = ({ open, onClose }) => {
     const [isSubmit, setIsSubmit] = useState(false)
 
 
-    const handleChange = (e) => {
-        e.preventDefault()
-        const { name, value } = e.target;
-        setFormValues({...formValues, [name]: value});
+    // const handleChange = (e) => {
+    //     e.preventDefault()
+    //     const { name, value } = e.target;
+    //     setFormValues({...formValues, [name]: value});
         
-    }
+    // }
  
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -41,10 +91,10 @@ const Modal = ({ open, onClose }) => {
 		const errors = {}
 		// const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-		if (!values.first_name) {
+		if (!values.firstName) {
 			errors.first_name = "Please enter first name!";
 		}
-		if (!values.last_name) {
+		if (!values.lastName) {
 			errors.last_name = "Please enter last name!";
 		}
 		if (!values.email) {
@@ -66,7 +116,31 @@ const Modal = ({ open, onClose }) => {
 		return errors;
 	}
 
-  if (!open) return null;
+	if (!open) return null;
+
+
+	const SubmitForm = (e) =>  {
+		e.preventDefault()
+		const form = e.currentTarget.closest("form")
+		const url = 'https://api.repute.hng.tech/swagger/api/apply';
+		const data = new FormData(form)
+
+
+		axios.post(url, {
+			FIrstName: data.get('firstName'),
+			LastName: data.get('lastName'),
+			PhoneNumber: data.get('PhoneNo'),
+			Position: data.get('position'),
+			Resume: data.get('resume'),
+			CoverLetter: data.get('coverletter')
+
+		}) 
+			.then(response => {
+			setOpenModal(true)
+		})
+    }
+
+
     return (
 			<>
 				<div className="relative lg:overflow-hidden">
@@ -77,7 +151,12 @@ const Modal = ({ open, onClose }) => {
 								<button onClick={onClose}>X</button>
 							</div>
 
-							<form onSubmit={handleSubmit}>
+							<form
+								onSubmit={handleSubmit}
+								method="post"
+								action=""
+								encType="multipart/formData"
+							>
 								<div className="lg:flex lg:gap-10 lg:mt-3 mt-2">
 									<div className="flex flex-col w-full ">
 										<label className="font-semibold lg:text-base text-sm leading-6">
@@ -85,15 +164,16 @@ const Modal = ({ open, onClose }) => {
 										</label>
 										<input
 											type="text"
-											id="first_name"
-											name="first_name"
-											value={formValues.first_name}
-											onChange={handleChange}
+											id="firstName"
+											name="firstName"
+											// value={formValues.firstName}
+											value={firstName}
+											onChange={handleFirstName}
 											placeholder="First name"
 											className="w-full lg:h-10 h-5 rounded-lg p-5 border-2 focus:outline-[#84CAFF] border-[#D2D3D4]"
 										/>
 										<p className="text-sm pt-2 flex-start text-[#F89687]">
-											{formErrors.first_name}
+											{formErrors.firstName}
 										</p>
 									</div>
 									<div className="flex flex-col w-full">
@@ -102,10 +182,11 @@ const Modal = ({ open, onClose }) => {
 										</label>
 										<input
 											type="text"
-											id="last_name"
-											name="last_name"
-											value={formValues.last_name}
-											onChange={handleChange}
+											id="lastName"
+											name="lastName"
+											value={lastName}
+											// value={formValues.lastName}
+											onChange={handleLastName}
 											placeholder="Last name"
 											className="w-full lg:h-10 h-5 rounded-lg p-5 border-2 border-[#D2D3D4] focus:outline-[#84CAFF]"
 										/>
@@ -123,8 +204,9 @@ const Modal = ({ open, onClose }) => {
 											type="text"
 											id="email"
 											name="email"
-											value={formValues.email}
-											onChange={handleChange}
+											// value={formValues.email}
+											value={email}
+											onChange={handleEmail}
 											placeholder="Email"
 											className="w-full lg:h-10 h-5 rounded-lg p-5 border-2 border-[#D2D3D4] focus:outline-[#84CAFF]"
 										/>
@@ -138,10 +220,11 @@ const Modal = ({ open, onClose }) => {
 										</label>
 										<input
 											type="text"
-											id="phone_no"
-											name="phone_no"
-											value={formValues.phone_no}
-											onChange={handleChange}
+											id="phoneNo"
+											name="phoneNo"
+											value={phoneNo}
+											// value={formValues.phone_no}
+											onChange={handlePhoneNo}
 											placeholder="Phone No"
 											className="w-full lg:h-10 h-5 rounded-lg p-5 border-2 border-[#D2D3D4] focus:outline-[#84CAFF]"
 										/>
@@ -154,18 +237,85 @@ const Modal = ({ open, onClose }) => {
 									<label className="font-semibold lg:text-base text-sm leading-6">
 										Position
 									</label>
-									<input
-										type="text"
-										id="position"
-										name="position"
-										value={formValues.position}
-										onChange={handleChange}
-										className="w-full lg:h-12 h-10 rounded-lg border-2 border-[#D2D3D4] focus:outline-[#84CAFF]"
-									/>
+									<StyledSelect
+										name="filter-jobs"
+										id="select"
+										className="cursor-pointer px-1 py-2 pr-2 rounded-lg border-2 border-[#D2D3D4] focus:outline-[#84CAFF]"
+										value={position}
+										onChange={handlePosition}
+									>
+										<option value="" selected className="cursor-pointer">
+											positions
+										</option>
+										<option value="Business Lawyer" className="cursor-pointer">
+											Business Lawyer
+										</option>
+										<option
+											value="Immigration Lawyer"
+											className="cursor-pointer"
+										>
+											Immigration Lawyer
+										</option>
+										<option
+											value="Criminal Defense Lawyer"
+											className="cursor-pointer"
+										>
+											Criminal Defense Lawyer
+										</option>
+										<option
+											value="EstatePlanningLawyer"
+											className="cursor-pointer"
+										>
+											Estate Planning Lawyer
+										</option>
+										<option value="Family Lawyer" className="cursor-pointer">
+											Family Lawyer
+										</option>
+										<option
+											value="Personal Injury Lawyer"
+											className="cursor-pointer"
+										>
+											Personal Injury Lawyer
+										</option>
+										<option
+											value="Bankruptcy Lawyer"
+											className="cursor-pointer"
+										>
+											Bankruptcy Lawyer
+										</option>
+										<option
+											value="Employment and Labor Lawyer"
+											className="cursor-pointer"
+										>
+											Employment and Labor Lawyer
+										</option>
+										<option value="Tax Lawyer" className="cursor-pointer">
+											Tax Lawyer
+										</option>
+										<option
+											value="Intellectual Property Lawyer"
+											className="cursor-pointer"
+										>
+											Intellectual Property Lawyer
+										</option>
+										<option
+											value="Constitutional Lawyer"
+											className="cursor-pointer"
+										>
+											Constitutional Lawyer
+										</option>
+										<option
+											value="Entertainment Lawyer"
+											className="cursor-pointer"
+										>
+											Entertainment Lawyer
+										</option>
+									</StyledSelect>
 									<p className="text-sm pt-2 flex-start text-[#F89687]">
 										{formErrors.position}
 									</p>
 								</div>
+
 								<div className="lg:mt-3 mt-2">
 									<label className="font-semibold lg:text-base text-sm leading-6">
 										Why would you be a good fit?
@@ -174,10 +324,12 @@ const Modal = ({ open, onClose }) => {
 										type="text"
 										id="reasons"
 										name="reasons"
-										value={formValues.reasons}
-										onChange={handleChange}
+										value={reasons}
+										// value={formValues.reasons}
+										onChange={handleReasons}
 										className="w-full lg:h-12 h-10 rounded-lg border-2 border-[#D2D3D4] focus:outline-[#84CAFF]"
 									/>
+
 									<p className="text-sm pt-2 flex-start text-[#F89687]">
 										{formErrors.reasons}
 									</p>
@@ -198,6 +350,9 @@ const Modal = ({ open, onClose }) => {
 											/>
 											<input
 												type="file"
+												name="resume"
+												value={resume}
+												onChange={handleResume}
 												className="text-[#4D5154] text-xs leading-4  absolute lg:top-[78%] top-[24%] rounded-md p-2 ml-3 lg:-mt-4"
 											/>
 										</div>
@@ -214,6 +369,9 @@ const Modal = ({ open, onClose }) => {
 											/>
 											<input
 												type="file"
+												name="coverletter"
+												value={coverLetter}
+												onChange={handleCoverLetter}
 												className=" text-[#4D5154] text-xs leading-4 absolute lg:top-[78%] top-[73%]  rounded-md p-2 ml-3 lg:-mt-4"
 											/>
 										</div>
@@ -221,13 +379,16 @@ const Modal = ({ open, onClose }) => {
 								</div>
 								<div className="flex justify-center mt-7">
 									<button
-										onClick={() => setOpenModal(true)}
+										onClick={(e) => SubmitForm(e)}
 										className="bg-[#233BA9] text-white font-semibold lg:text-lg text-base leading-7 px-10 py-3 rounded-md"
 									>
 										Submit Application
 									</button>
 								</div>
-								<Successfulmodal open={openModal} onClose={() => setOpenModal(false)} />
+								<Successfulmodal
+									open={openModal}
+									onClose={() => setOpenModal(false)}
+								/>
 							</form>
 						</div>
 					</div>

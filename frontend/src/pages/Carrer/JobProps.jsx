@@ -28,16 +28,34 @@ function JobProps({ title }) {
 				<h5 className="mx-2 font-bold">Remote</h5>
 			</div>
 
-			<Link to="/carrer-pg-3" onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-              }}>
-				<StyledButton
+			<Link
+				to="/carrer-pg-3"
+				onClick={() => {
+					window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+				}}
+			>
+				{/* <StyledButton
 					outlined
 					className=" flex items-center my-5 justify-center"
 				>
 					Apply now
 					<img src={Arrow} alt="" className="mx-2" />
-				</StyledButton>
+				</StyledButton> */}
+				<Link
+					className="my-5"
+					to="/carrer-pg-2"
+					onClick={() => {
+						window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+					}}
+				>
+					<StyledButton 
+						outlined
+						className=" flex items-center my-2 justify-center"
+					>
+						Apply now
+						<img src={Arrow} alt="" className="mx-2" />
+					</StyledButton>
+				</Link>
 			</Link>
 		</StyledDivContainer>
 	);

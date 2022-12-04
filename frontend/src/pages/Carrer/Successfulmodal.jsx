@@ -8,9 +8,9 @@ const  Successfulmodal = ({ open, onClose }) => {
     return (
 			<div className="relative">
 				<div className="bg-[#7c7979] z-10 fixed bg-opacity-60 inset-0 flex flex-col justify-center items-center w-full h-full mx-auto ">
-					<div className="lg:w-[50%] w-[80%] absolute rounded-md top-[20%] z-50 lg:left-[25%] left-[10%] bg-white">
+					<div className="lg:w-[55%] w-[80%] absolute rounded-md top-[20%] z-50 lg:left-[25%] left-[10%] bg-white">
 						<div className="flex justify-between font-bold p-5">
-							<h1>Junior UX Designer</h1>
+							<h1>APPLICATION SENT</h1>
 							<button onClick={onClose}>X</button>
 						</div>
 						<div className="flex flex-col text-center">
@@ -22,8 +22,7 @@ const  Successfulmodal = ({ open, onClose }) => {
 							</h1>
 							<h4 className="text-[#2B2C34] lg:text-xl text-base leading-8 mb-10">
 								Congratulations, we have recieved your application
-								<br /> for Junior UX Designer. You will be notified by email
-								with
+								<br /> for a position in REPUTE as a LAWYER. You will be notified by email with
 								<br />
 								any update about your application.
 								<br />

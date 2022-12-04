@@ -16,6 +16,8 @@ import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
 import GetAQuote from '../pages/GetAQuote/index';
 import RequestForm from '../pages/RequestForm/requestForm';
+import PasswordRecovery from '../pages/PasswordRecovery/passwordRecovery';
+import ChangePassword from '../pages/PasswordRecovery/changePassword';
 
 import DashboardPage from '../pages/Dashboard/DashboardPage';
 
@@ -32,6 +34,18 @@ import Contact from '../pages/ContactUs/Contact';
 import ModalLayout from '../layout/modalLayout';
 import BlogPost from '../pages/Blog/Blog-Post/BlogPost';
 import BlogSeeAll from '../pages/Blog/Blog-See All/BlogSeeAll';
+import Job2 from '../pages/Carrer/Job2';
+import Job3 from '../pages/Carrer/Job3';
+import Job4 from '../pages/Carrer/Job4';
+import Job5 from '../pages/Carrer/Job5';
+import Job6 from '../pages/Carrer/Job6';
+import Job7 from '../pages/Carrer/Job7';
+import Job8 from '../pages/Carrer/Job8';
+import Job9 from '../pages/Carrer/Job9';
+import Job10 from '../pages/Carrer/Job10';
+import Job11 from '../pages/Carrer/Job11';
+import Job12 from '../pages/Carrer/Job12';
+
 
 const Router = () => {
 	return (
@@ -75,6 +89,18 @@ const Router = () => {
 					<Route path="/get-a-quote" element={<GetAQuote />} />
 					<Route path="/career" element={<Carrerpg1 />} />
 					<Route path="/carrer-pg-3" element={<Carrerpg3 />} />
+					<Route path="/job2" element={<Job2 />} />
+					<Route path="/job3" element={<Job3 />} />
+					<Route path="/job4" element={<Job4 />} />
+					<Route path="/job5" element={<Job5 />} />
+					<Route path="/job6" element={<Job6 />} />
+					<Route path="/job7" element={<Job7 />} />
+					<Route path="/job8" element={<Job8 />} />
+					<Route path="/job9" element={<Job9 />} />
+					<Route path="/job10" element={<Job10 />} />
+					<Route path="/job11" element={<Job11 />} />
+					<Route path="/job12" element={<Job12 />} />
+
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
@@ -89,6 +115,11 @@ const Router = () => {
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/settings" element={<Settings />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="/password-recovery" element={<PasswordRecovery />} />
+					<Route
+						path="/password-recovery/change"
+						element={<ChangePassword />}
+					/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
 			</Routes>
