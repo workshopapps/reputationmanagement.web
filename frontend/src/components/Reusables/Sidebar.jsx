@@ -11,13 +11,9 @@ import {
 import { StyledSidebar } from '../Styles/SideBar.styled';
 import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
 import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
-import Cookies from 'js-cookie';
 
 const Sidebar = (props) => {
-	const handleLogout = () => {
-		localStorage.removeItem('auth')
-		Cookies.remove('reputeAccessToken')
-	}
+
 	const { isShowing, toggle } = useLogoutConfirmation();
 
 	return (

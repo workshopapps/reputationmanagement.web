@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PageLayout from '../../../layout/PageLayout';
 
 import {
@@ -6,11 +6,11 @@ import {
 	PostHeader,
 	MainPostSection,
 	ProfileCard,
-	FormContainer,
+	// FormContainer,
 } from './BlogPost.styled';
 import HeroImg from '../Blog-Post/Assets/hero-img.jpg';
 import jackImg from '../Blog-Post/Assets/jack.jpg';
-import emailjs from 'emailjs-com';
+// import emailjs from 'emailjs-com';
 
 import { LikeIcon, FacebookIcon, TwitchIcon } from './Assets/SVGs';
 
@@ -32,23 +32,23 @@ const BlogPost = () => {
 		}
 	};
 
-	const sendMailHandler = (e) => {
-		e.preventDefault();
+	// const sendMailHandler = (e) => {
+	// 	e.preventDefault();
 
-		emailjs
-			.sendForm(
-				'service_diggy8i',
-				'template_3ttmqkn',
-				e.target,
-				'anOmuqvmkJ_xfUC2O'
-			)
-			.then((res) => {
-				// console.log(res);
-			})
-			.catch((err) => {
-				// console.log(err);
-			});
-	};
+	// 	emailjs
+	// 		.sendForm(
+	// 			'service_diggy8i',
+	// 			'template_3ttmqkn',
+	// 			e.target,
+	// 			'anOmuqvmkJ_xfUC2O'
+	// 		)
+	// 		.then((res) => {
+	// 			// console.log(res);
+	// 		})
+	// 		.catch((err) => {
+	// 			// console.log(err);
+	// 		});
+	// };
 
 	return (
 		<PageLayout>
@@ -112,7 +112,7 @@ const BlogPost = () => {
 					</div>
 				</ProfileCard>
 
-				<FormContainer onSubmit={sendMailHandler}>
+				{/* <FormContainer onSubmit={sendMailHandler}>
 					<p>Leave a comment</p>
 					<textarea
 						name="comment"
@@ -132,8 +132,8 @@ const BlogPost = () => {
 
 					<button>Comment</button>
 
-					{/* <div id="toast">TOAST</div> */}
-				</FormContainer>
+					 <div id="toast">TOAST</div>
+				</FormContainer> */}
 			</PostContainer>
 		</PageLayout>
 	);

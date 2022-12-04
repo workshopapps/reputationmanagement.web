@@ -20,7 +20,7 @@ pipeline {
 				sh "cd reputationmanagement.web"
 				sh "cd reputationmanagement.web/frontend && npm i --force && CI=false npm run build"
 			}
-        }
+       		}
     
     		stage("test frontend"){
 
@@ -28,16 +28,17 @@ pipeline {
 				sh "cd reputationmanagement.web"
 				sh "cd reputationmanagement.web/frontend && npm i --force && npm run test"
 			}
-        }
+        	}
 
 		stage("deploy") {
 		
 			steps {
-                sh "sudo cp -rf ${WORKSPACE}/reputationmanagement.web/build/* /home/ehmeeops/reputationmanagement.web/frontend"
-                sh "sudo pm2 start"
+                		sh "sudo cp -rf ${WORKSPACE}/reputationmanagement.web/frontend/build/* /home/ehmeeops/reputationmanagement.web/frontend"
+               			// sh "sudo cd ~ && pm2 start ehmee.ecosystem.config.js"
+				// sh "BUILD_ID=dontKillMe pm2 start ehmee.ecosystem.config.js"
 
 	
-            }
+            	}
 			
 	    }
 	}
