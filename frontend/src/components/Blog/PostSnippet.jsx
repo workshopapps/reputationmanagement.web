@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const StyledPost = styled.section`
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
-	width: 445px;
+	//width: 445px;
 	transform: scale 0.4s;
 
 	@media (max-width: 1080px) {
@@ -17,6 +17,7 @@ const StyledPost = styled.section`
 
 const StyledImg = styled.img`
 	width: 100%;
+	height: 240px;
 `;
 
 const StyledHeader = styled.h2`
@@ -47,10 +48,24 @@ const StyledParagraph = styled.p`
 	}
 `;
 
-function PostSnippet({ img, title, subtitle }) {
+const StyledTag = styled.div`
+	padding: 8px 16px;
+	background: #eef1fc;
+	border-radius: 100px;
+	width: fit-content;
+	color: #233ba9;
+	margin-top: 16px;
+	margin-left: 16px;
+
+	@media (max-width: 650px) {
+	}
+`;
+
+function PostSnippet({ img, tag, title, subtitle }) {
 	return (
 		<StyledPost>
 			<StyledImg src={img} alt="blogpost image" />
+			<StyledTag>{tag}</StyledTag>
 			<StyledHeader>{title}</StyledHeader>
 			<StyledParagraph>{subtitle}</StyledParagraph>
 		</StyledPost>
@@ -59,6 +74,7 @@ function PostSnippet({ img, title, subtitle }) {
 
 PostSnippet.propTypes = {
 	img: PropTypes.string,
+	tag: PropTypes.string,
 	title: PropTypes.string,
 	subtitle: PropTypes.string,
 	display: PropTypes.bool,
