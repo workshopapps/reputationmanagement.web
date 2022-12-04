@@ -1,4 +1,7 @@
 import React from 'react';
+import { useState } from 'react';
+import useAppContext from '../../hooks/useAppContext';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import {
 	styleClass,
 	StyledButton,
@@ -8,9 +11,61 @@ import {
 } from './Settings.styled';
 
 function Security() {
+	const ApiPrivate = useAxiosPrivate();
+	const {
+		setRequestFailed,
+		setRequestSuccess,
+		setErrMessage,
+		setSuccessMessage,
+	} = useAppContext();
+
+	const [form, setForm] = useState({
+		current_password: '',
+		new_password: '',
+		confirm_new_password: '',
+	});
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		console.log(form);
+
+		// Validation
+		if (form.new_password.length < 12) {
+			setErrMessage('New password must contain a minimum of 12 characters');
+			setRequestFailed(true);
+			return;
+		}
+		if (form.new_password !== form.confirm_new_password) {
+			setErrMessage('New password and confirm new password must be the same.');
+			setRequestFailed(true);
+			return;
+		}
+
+		// API request
+		ApiPrivate.post('/auth/change_password', {
+			oldPassword: form.current_password,
+			newPassword: form.new_password,
+		})
+			.then((res) => {
+				setSuccessMessage('Password changed successfully');
+				setRequestSuccess(true);
+				// Reset input fields
+				e.target.reset();
+				setForm({
+					current_password: '',
+					new_password: '',
+					confirm_new_password: '',
+				});
+			})
+			.catch(function (error) {
+				setErrMessage('Password update failed');
+				setRequestFailed(true);
+			});
+	};
+
 	return (
 		<StyledTab>
-			<form className={styleClass.form}>
+			<form onSubmit={onSubmit} className={styleClass.form}>
 				<div className={styleClass.inputGroupRow}>
 					<HeadingLabel
 						text="Two Factor Authentication"
@@ -35,6 +90,10 @@ function Security() {
 						type="password"
 						id="current_password"
 						className={styleClass.input}
+						onChange={(e) => {
+							setForm({ ...form, current_password: e.target.value });
+						}}
+						required
 					/>
 				</div>
 
@@ -46,23 +105,34 @@ function Security() {
 						type="password"
 						id="new_password"
 						className={styleClass.input}
+						onChange={(e) => {
+							setForm({ ...form, new_password: e.target.value });
+						}}
+						required
 					/>
 				</div>
 
 				<div className={styleClass.inputGroup}>
-					<label htmlFor="current_password" className="md:w-1/3 font-semibold">
+					<label
+						htmlFor="confirm_new_password"
+						className="md:w-1/3 font-semibold"
+					>
 						Confirm New Password
 					</label>
 					<input
 						type="password"
-						id="cnf_new_password"
+						id="confirm_new_password"
 						className={styleClass.input}
+						onChange={(e) => {
+							setForm({ ...form, confirm_new_password: e.target.value });
+						}}
+						required
 					/>
 				</div>
 
 				<div className="my-14 flex justify-end">
-					<StyledButtonText>Discard</StyledButtonText>
-					<StyledButton>Save Changes</StyledButton>
+					<StyledButtonText type="reset">Discard</StyledButtonText>
+					<StyledButton type="submit">Save Changes</StyledButton>
 				</div>
 			</form>
 		</StyledTab>
