@@ -32,7 +32,10 @@ export default function PasswordRecovery() {
                 navigate('/password-recovery/change');
 			}
 		} catch (err) {
-            toast.error('Email does not exist');
+            toast.error('Email does not exist', {
+                position: "top-left",
+                autoClose: 2000,
+            });
 		}
 	};
 	return (
