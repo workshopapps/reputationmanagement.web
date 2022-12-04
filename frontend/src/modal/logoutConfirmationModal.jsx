@@ -8,16 +8,10 @@ import Cookies from 'js-cookie';
 //const response =  Api.post('/auth/sign_in')
 
 const handleLogout = () => {
-	console.log(Cookies.get('reputeAccessToken'))
 	Cookies.set('reputeAccessToken')
-	Cookies.remove('reputeAccessToken', {path: '/'})
+	Cookies.remove('reputeAccessToken')
 	localStorage.removeItem('auth')
-	//sessionStorage.clear(); //for sessionStorage
-	localStorage.clear();
 	window.location.href = '/login';
-	
-
-	
 	
 };
 
