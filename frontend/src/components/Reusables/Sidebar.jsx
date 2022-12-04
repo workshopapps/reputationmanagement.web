@@ -2,17 +2,18 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
-import { DashboardIcon, SettingsIcon, SignoutIcon } from '../Dashboard/Icons';
+import {
+	DashboardIcon,
+	SettingsIcon,
+	SignoutIcon,
+	ProfileIcon,
+} from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
-import Cookies from 'js-cookie';
+import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
+import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
 
 const Sidebar = (props) => {
-	const router = useNavigate();
-	const handleLogout = () => {
-		Cookies.remove('repboostAccessToken');
-		localStorage.removeItem('auth');
-		router('/login', { replace: true });
-	};
+	const { isShowing, toggle } = useLogoutConfirmation();
 
 	return (
 		<StyledSidebar className={props.className}>
@@ -21,30 +22,36 @@ const Sidebar = (props) => {
 				<img src={logo} alt="" />
 			</div>
 
-			<section>
-				<ul>
-					<li>
-						<NavLink to="/dashboard">
-							<DashboardIcon />
-							Dashboard
-						</NavLink>
-					</li>
-				</ul>
-				<ul>
-					<li>
-						<NavLink to="/settings">
-							<SettingsIcon />
-							Settings
-						</NavLink>
-					</li>
-					<li>
-						<button onClick={() => handleLogout()}>
-							<SignoutIcon />
-							Signout
-						</button>
-					</li>
-				</ul>
-			</section>
+			<ul>
+				<li>
+					<NavLink to="/dashboard">
+						<DashboardIcon />
+						Dashboard
+					</NavLink>
+				</li>
+
+				<li>
+					<NavLink to="/profile">
+						<ProfileIcon />
+						profile
+					</NavLink>
+				</li>
+				<li>
+					<NavLink to="/settings">
+						<SettingsIcon />
+						Settings
+					</NavLink>
+				</li>
+
+				<li>
+					<button onClick={toggle}>
+						<SignoutIcon />
+						Signout
+					</button>
+				</li>
+			</ul>
+
+			<LogoutConfirmationModal isShowing={isShowing} hide={toggle} />
 		</StyledSidebar>
 	);
 };

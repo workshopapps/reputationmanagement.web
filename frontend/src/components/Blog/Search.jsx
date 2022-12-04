@@ -4,7 +4,7 @@ import { CiSearch } from 'react-icons/ci';
 import { useState } from 'react';
 
 const StyledForm = styled.form`
-	border: 1px solid #e4e4e5;
+	border: 1px solid #bcbdbe;
 	border-radius: 8px;
 	width: 40%;
 	height: 48px;
@@ -13,16 +13,16 @@ const StyledForm = styled.form`
 	display: flex;
 	align-items: center;
 	> svg {
-		font-size: 1.3rem;
-		color: #8e9093;
+		font-size: 2rem;
+		color: #757577;
 		margin: 0 10px;
 	}
 
 	@media (max-width: 1200px) {
 		width: 70%;
 	}
-	@media (max-width: 400px) {
-		/* width: 90%; */
+	@media (max-width: 520px) {
+		 width: 90%; 
 	}
 `;
 

@@ -5,10 +5,28 @@ import hero_bg from '../../assets/images/blog_images/images/hero_bg.png';
 
 const StyledSection = styled.section`
 	width: 100%;
+	padding-left: 64px;
+	padding-right: 64px;
+	padding-top: 24px;
+
+	@media (max-width: 850px) {
+		padding-left: 34px;
+	padding-right: 34px;
+	}
+
+	@media (max-width: 520px) {
+		padding-left: 20px;
+	padding-right: 20px;
+	}
+`;
+
+const StyledSectionInner = styled.section`
+	width: 100%;
 	background: url(${hero_bg});
 	background-size: cover;
 	height: 450px;
 	padding: 80px;
+	border-radius: 8px;
 	@media (max-width: 800px) {
 		padding: 25px;
 		background-repeat: round;
@@ -22,8 +40,7 @@ const StyledBody = styled.div`
 	a {
 		background: #f16f04;
 		border-radius: 4px;
-		width: 150px;
-		height: 40px;
+		padding: 16px 24px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -31,6 +48,7 @@ const StyledBody = styled.div`
 		margin-top: 35px;
 		border: 3px solid #f16f04;
 		text-decoration: none;
+		width: 145px;
 
 		@media (max-width: 800px) {
 			margin-top: 8px;
@@ -77,6 +95,7 @@ const StyledParagraph = styled.p`
 export default function Hero() {
 	return (
 		<StyledSection>
+			<StyledSectionInner>
 			<StyledBody>
 				<StyledHeader>
 					6 Efficient Techniques to Protect Your Brand Reputation in 2023
@@ -87,6 +106,7 @@ export default function Hero() {
 				</StyledParagraph>
 				<Link to="/blog-post">Read Article</Link>
 			</StyledBody>
+			</StyledSectionInner>
 		</StyledSection>
 	);
 }
