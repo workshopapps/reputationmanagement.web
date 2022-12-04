@@ -132,7 +132,7 @@ const BlogPost = () => {
 
 					<button>Comment</button>
 
-					<div id="toast">TOAST</div>
+					{/* <div id="toast">TOAST</div> */}
 				</FormContainer>
 			</PostContainer>
 		</PageLayout>
