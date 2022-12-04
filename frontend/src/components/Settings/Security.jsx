@@ -19,6 +19,7 @@ function Security() {
 		setSuccessMessage,
 	} = useAppContext();
 
+	const [requestPending, setRequestPending] = useState(false);
 	const [form, setForm] = useState({
 		current_password: '',
 		new_password: '',
@@ -27,8 +28,6 @@ function Security() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		console.log(form);
-
 		// Validation
 		if (form.new_password.length < 12) {
 			setErrMessage('New password must contain a minimum of 12 characters');
@@ -41,6 +40,7 @@ function Security() {
 			return;
 		}
 
+		setRequestPending(true);
 		// API request
 		ApiPrivate.post('/auth/change_password', {
 			oldPassword: form.current_password,
@@ -49,6 +49,7 @@ function Security() {
 			.then((res) => {
 				setSuccessMessage('Password changed successfully');
 				setRequestSuccess(true);
+				setRequestPending(false);
 				// Reset input fields
 				e.target.reset();
 				setForm({
@@ -60,6 +61,7 @@ function Security() {
 			.catch(function (error) {
 				setErrMessage('Password update failed');
 				setRequestFailed(true);
+				setRequestPending(false);
 			});
 	};
 
@@ -132,7 +134,9 @@ function Security() {
 
 				<div className="my-14 flex justify-end">
 					<StyledButtonText type="reset">Discard</StyledButtonText>
-					<StyledButton type="submit">Save Changes</StyledButton>
+					<StyledButton type="submit">
+						{requestPending ? 'Loading...' : 'Save Changes'}
+					</StyledButton>
 				</div>
 			</form>
 		</StyledTab>
