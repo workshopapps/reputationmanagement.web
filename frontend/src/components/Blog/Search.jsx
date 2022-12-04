@@ -42,12 +42,10 @@ const Search = (props) => {
 				<StyledInput
 					type="text"
 					placeholder="Search for anything..."
-					onChange={props.onchange}
-					value={props.value}
-					// onChange={(e) => {
-					// 	setUserInput(e.target.value);
-					// }}
-					// value={userInput}
+					onChange={(e) => {
+						setUserInput(e.target.value);
+					}}
+					value={userInput}
 				/>
 			</StyledForm>
 		</>

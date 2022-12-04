@@ -32,7 +32,7 @@ export default function Main() {
 		ApiPrivate.get('/customer/language').then((res) => {
 			setUserLanguage(res.data);
 		});
-	}, []);
+	}, [ ApiPrivate ]);
 
 	return (
 		<StyledParent>

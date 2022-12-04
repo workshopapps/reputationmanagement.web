@@ -73,7 +73,7 @@ function Signup() {
 			}
 			catch (err) {
 				if (err.response.status === 400) {
-					setErrMessage(`${err?.response?.data} or Name/Email exist`);
+					setErrMessage(err?.response?.data)
 				}
 				else {
 					setErrMessage('Sign up Failed')
