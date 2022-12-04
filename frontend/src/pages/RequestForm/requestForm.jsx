@@ -44,17 +44,18 @@ const RequestForm = () => {
 		e.preventDefault();
 		setRequestSuccessfulModalActive(true);
 		try {
-		// 	  const response = await ApiPrivate.post('/review', {
-		// 	    email: email,
-		// 	    timeOfReview: time + date,
-		// 	    reviewString: review,
-		// 	    rating: rating,
-		// 	    websitename: websitename,
-		// 	    businesstype: businesstype,
-		// 	    priority: priority,
-		// 	    status: 0,
-		// 	  }
-		// 	);
+			  const response = await ApiPrivate.post('/review', {
+			    email: email,
+			    timeOfReview: time + date,
+			    reviewString: review,
+			    rating: rating,
+			    websitename: websitename,
+			    businesstype: businesstype,
+			    priority: priority,
+			    status: 0,
+			  }
+			);
+			console.log(response)
 			setAllRequests((prev) => {
 				return [
 					...prev,
@@ -70,11 +71,9 @@ const RequestForm = () => {
 					},
 				];
 			});
-
-			// response &&
-			setRequestSuccessfulModalActive(true) &&
-				router('/request-successful') &&
-				clearForm();
+			setRequestSuccessfulModalActive(true)
+			router('/request-successful')
+			clearForm();
 		} catch (err) {
 			setRequestSuccessfulModalActive(false);
 			console.log(err);
