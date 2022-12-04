@@ -41,7 +41,7 @@ const Router = () => {
 			<Routes>
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
-						{/* <Route path="/dashboard" element={<DashboardPage />} /> */}
+						<Route path="/dashboard" element={<DashboardPage />} />
 						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/profile" element={<Profile />} />
@@ -52,7 +52,6 @@ const Router = () => {
 						/>
 					</Route>
 					<Route path="/" element={<LandingPage />} />
-					<Route path="/dashboard" element={<DashboardPage />} />
 
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
