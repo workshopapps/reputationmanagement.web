@@ -1,17 +1,13 @@
-/** @format */
-
-import React, { useState } from 'react';
-import Arrow from '../../assets/images/arrow-left.png';
-import Map from '../../assets/images/map.png';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import PageLayout from '../../layout/PageLayout';
-import 	Modal from './Modal'
+import { availableJobs } from './jobData';
+import { GrLocation } from 'react-icons/gr';
+import { BiArrowBack } from 'react-icons/bi';
 
-
-
+import Modal from './Modal';
 
 const StyledH2 = styled.h2`
 	font-size: 1.6rem;
@@ -19,40 +15,39 @@ const StyledH2 = styled.h2`
 	padding: 18px 0;
 `;
 function Carrerpg3() {
-
 	const [openModal, setOpenModal] = useState(false);
+	const [jobDetails, setJobDetails] = useState([]);
+	const { id } = useParams();
+	const getJobDetails = () => {
+		const result = availableJobs.find((availble) => availble.id === id);
+		setJobDetails(result);
+	};
+	useEffect(() => {
+		getJobDetails();
+	}, []);
 
 	return (
 		<PageLayout>
 			<section className="p-8">
 				<Link
-					className="flex my-12 "
+					className="flex items-center text-lg my-12 "
 					to="/carrer-pg-2"
 					onClick={() => {
 						window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 					}}
 				>
-					<img src={Arrow} alt="" />
+					<BiArrowBack className="text-lg" />
 					<h3 className="mx-3"> Back to all openeings</h3>
 				</Link>
 				<section className="my-5">
 					<h1 className="text-3xl">Junior UX Designer</h1>
-					<div className="flex py-3">
-						<img src={Map} alt="" />
-						<h3>Remote</h3>
+					<div className="flex items-center mt-4">
+						<GrLocation className="mr-2 text-lg" />
+						<h3 className="text-lg">Remote</h3>
 					</div>
-					<div className="py-12">
+					<div className="py-4">
 						<StyledH2 className="font-semibold">Hiring Process</StyledH2>
-						<h4 className="max-w-4xl">
-							We are looking for people who are passionate about the relentless
-							pursuit of perfection; people who are never satisfied, who want to
-							change the world and make it into their own image, who want to
-							leave a mark; people who want to join an exceptional and
-							extraordinary team of individuals creating great products and
-							having an impact on millions of lives across Africa and the world
-							at large; people who are either exceptionally gifted at what they
-							do or want to grow to become exceptionally gifted at what they do.
-						</h4>
+						<h4 className="max-w-4xl">{jobDetails.jobDescription}</h4>
 					</div>
 					<div>
 						<StyledH2 className="font-semibold">Requirements</StyledH2>
@@ -60,12 +55,10 @@ function Carrerpg3() {
 							Here is what we look for when reviewing CVs & Portfolio's to
 							shortlist candidates for interviews:
 						</h4>
-						<ul className="py-6 list-disc mx-12">
-							<li>A good looking Portfolio</li>
-							<li>Relevant experience in the role you are applying for</li>
-							<li>Volunteer experience</li>
-							<li>Relevant industry experience</li>
-							<li>High IQ and EQ</li>
+						<ul className="py-6 list-disc mx-5">
+							{jobDetails.jobRequirements?.map((requiremnt, i) => {
+								return <li key={i}>{requiremnt}</li>;
+							})}
 						</ul>
 					</div>
 					<h3 className="py-7">

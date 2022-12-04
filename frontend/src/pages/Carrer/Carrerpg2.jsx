@@ -1,5 +1,3 @@
-/** @format */
-
 import React from 'react';
 import JobProps from './JobProps';
 import {
@@ -7,11 +5,10 @@ import {
 	// StyledTextButton,
 } from '../../components/Styles/Body/Button.styled';
 import SearchIcon from '../../assets/images/Search.png';
-
 import styled from 'styled-components';
 import PageLayout from '../../layout/PageLayout';
+import { availableJobs } from './jobData';
 import Modal from './Modal';
-
 
 const StyledBackGround = styled.section`
 	background: #233ba9;
@@ -118,18 +115,15 @@ function Carrerpg2() {
 					</div>
 				</section>
 				<section className="jobs-grid place-items-center grid lg:grid-cols-3  grid-cols-1 gap-4">
-					<JobProps title={'Software Engineer'} />
-					<JobProps title={'Junior UX Designer'} />
-					<JobProps title={'Senior UX Designer'} />
-					<JobProps title={'Backend Developer'} />
-					<JobProps title={'Full Stack Developer'} />
-					<JobProps title={'Front-end Developer'} />
-					<JobProps title={'Marketing Expert'} />
-					<JobProps title={'Graphics Designer'} />
-					<JobProps title={'Product Manager'} />
-					<JobProps title={'Hardware Engineer'} />
-					<JobProps title={'Sales Manager'} />
-					<JobProps title={'System Manager'} />
+					{availableJobs.map((availableJob) => {
+						return (
+							<JobProps
+								key={availableJob.id}
+								title={availableJob.jobTitle}
+								id={availableJob.id}
+							/>
+						);
+					})}
 				</section>
 				<section className=" mt-11 block lg:hidden">
 					<div className="flex items-center justify-center">

@@ -35,6 +35,7 @@ import ModalLayout from '../layout/modalLayout';
 import BlogPost from '../pages/Blog/Blog-Post/BlogPost';
 import BlogSeeAll from '../pages/Blog/Blog-See All/BlogSeeAll';
 
+
 const Router = () => {
 	return (
 		<BrowserRouter>
@@ -64,8 +65,8 @@ const Router = () => {
 					<Route path="/privacy" element={<PrivacyPolicy />} />
 					<Route path="/get-a-quote" element={<GetAQuote />} />
 					<Route path="/career" element={<Carrerpg1 />} />
-					<Route path="/carrer-pg-3" element={<Carrerpg3 />} />
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
+					<Route path="/carrer-pg-2/:id" element={<Carrerpg3 />} />
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
 					<Route path="/profile" element={<Profile />} />
@@ -79,8 +80,11 @@ const Router = () => {
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/settings" element={<Settings />} />
 					<Route path="/contact" element={<Contact />} />
-					<Route path='/password-recovery' element={<PasswordRecovery />}/>
-					<Route path='/password-recovery/change' element={<ChangePassword />}/>
+					<Route path="/password-recovery" element={<PasswordRecovery />} />
+					<Route
+						path="/password-recovery/change"
+						element={<ChangePassword />}
+					/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
 			</Routes>
