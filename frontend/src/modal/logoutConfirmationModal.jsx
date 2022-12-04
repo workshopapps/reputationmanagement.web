@@ -4,17 +4,18 @@ import ReactDOM from 'react-dom';
 import logo from '../assets/images/logOutConfirmation/signoutlogo.svg';
 import Cookies from 'js-cookie';
 
+
 const handleLogout = () => {
-	Cookies.set('reputeAccessToken')
-	Cookies.remove('reputeAccessToken')
-	localStorage.removeItem('auth')
-	window.location.href = '/login';
 	
+		Cookies.remove('repboostAccessToken');
+		localStorage.removeItem('auth');
+		window.location.href = '/login'
 };
 
 const LogoutConfirmationModal = ({ isShowing, hide }) =>
 	isShowing
 		? ReactDOM.createPortal(
+			
 				<React.Fragment>
 					<ModalOverlay className="modal-overlay" />
 					<ModalWrapper
