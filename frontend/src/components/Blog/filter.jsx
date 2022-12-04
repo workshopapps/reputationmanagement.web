@@ -103,7 +103,7 @@ const ResponsiveMenu = styled.button`
 	align-items: center;
 	justify-content: center;
 	padding: 4px 12px;
-	width: 150px;
+	width: 170px;
 	background-color: #eef1fc;
 	margin-bottom: 40px;
 	border-radius: 8px;
