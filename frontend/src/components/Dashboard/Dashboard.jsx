@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../Reusables/Sidebar';
+import Sidebar from '../Reusables/DashboardSidebar';
 import WebAppNav from '../Reusables/WebAppNav';
 import { useState } from 'react';
 import GlobalStyles from './Styles/Global';
