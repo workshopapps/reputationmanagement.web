@@ -5,12 +5,11 @@ import logo from '../assets/images/logOutConfirmation/signoutlogo.svg';
 import Cookies from 'js-cookie';
 
 const handleLogout = () => {
-	localStorage.clear();
-	Cookies.remove('reputeAccessToken', {
-		path: '/',
-		domain: 'http://localhost:3000',
-	});
+	Cookies.set('reputeAccessToken')
+	Cookies.remove('reputeAccessToken')
+	localStorage.removeItem('auth')
 	window.location.href = '/login';
+	
 };
 
 const LogoutConfirmationModal = ({ isShowing, hide }) =>
