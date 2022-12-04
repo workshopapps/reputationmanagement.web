@@ -31,7 +31,8 @@ const StyledHeader = styled.h2`
 	@media (max-width: 650px) {
 		font-size: 1rem;
 		font-weight: 400;
-		padding: 8px 4px 12px;
+		padding: 10px;
+	padding-left: 15px;
 	}
 `;
 
@@ -43,9 +44,6 @@ const StyledParagraph = styled.p`
 	padding: 0 10px 20px 10px;
 	cursor: default;
 
-	@media (max-width: 650px) {
-		display: none;
-	}
 `;
 
 const StyledTag = styled.div`

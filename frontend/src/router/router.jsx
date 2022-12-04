@@ -35,7 +35,6 @@ import ModalLayout from '../layout/modalLayout';
 import BlogPost from '../pages/Blog/Blog-Post/BlogPost';
 import BlogSeeAll from '../pages/Blog/Blog-See All/BlogSeeAll';
 
-
 const Router = () => {
 	return (
 		<BrowserRouter>
@@ -43,13 +42,17 @@ const Router = () => {
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
 						<Route path="/dashboard" element={<DashboardPage />} />
-						<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
-						<Route path='/profile' element={<Profile />}/>
+						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
-						<Route path="/request-successful" element={<RequestSuccessfulSm />} />
+						<Route
+							path="/request-successful"
+							element={<RequestSuccessfulSm />}
+						/>
 					</Route>
 					<Route path="/" element={<LandingPage />} />
+
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/about-us" element={<AboutPage />} />
