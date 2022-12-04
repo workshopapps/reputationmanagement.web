@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ResetSuccess from '../../modal/resetpasswordsuccess/resetpasswordsuccessful';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 // import { even } from 'prelude-ls';
 import Api from '../../api/axios';
 import bg_img from '../../assets/images/woman_on_phone.png'

@@ -5,7 +5,7 @@ import bg_img from '../../assets/images/woman_on_phone.png'
 import repute_logo from '../../assets/images/repute_logo.png'
 import arrow_left from '../../assets/images/password_arrow_left.png'
 import authentication_icon from '../../assets/images/authenticate_img.png'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Api from '../../api/axios';
 
 
