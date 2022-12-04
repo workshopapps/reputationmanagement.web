@@ -34,7 +34,8 @@ pipeline {
 		
 			steps {
                 sh "sudo cp -rf ${WORKSPACE}/reputationmanagement.web/frontend/build/* /home/ehmeeops/reputationmanagement.web/frontend"
-                sh "sudo cd ~ && pm2 start ehmee.ecosystem.config.js"
+               // sh "sudo cd ~ && pm2 start ehmee.ecosystem.config.js"
+		BUILD_ID=dontKillMe PM2 start ehmee.ecosystem.config.js
 
 	
             	}
