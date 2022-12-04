@@ -1,6 +1,6 @@
 import React from 'react';
 import useAppContext from '../../hooks/useAppContext';
-import { CustomApiPrivate } from './Main';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import {
 	styleClass,
 	StyledButton,
@@ -10,6 +10,7 @@ import {
 
 function Preferences({ userLanguage, setUserLanguage }) {
 	const languages = ['english', 'german', 'russian', 'chinese'];
+	const ApiPrivate = useAxiosPrivate();
 	const {
 		setRequestFailed,
 		setRequestSuccess,
@@ -19,7 +20,7 @@ function Preferences({ userLanguage, setUserLanguage }) {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		CustomApiPrivate.post('/customer/language?language=' + userLanguage)
+		ApiPrivate.post('/customer/language?language=' + userLanguage)
 			.then((res) => {
 				setUserLanguage(res.data);
 				setSuccessMessage('Update successful');

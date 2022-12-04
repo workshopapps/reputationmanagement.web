@@ -1,6 +1,5 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Accounts from './Accounts';
 import Notifications from './Notifications';
 import Preferences from './Preferences';
@@ -20,10 +19,11 @@ export default function Main() {
 		setTab(index);
 	};
 
+	const ApiPrivate = useAxiosPrivate();
 	const [userLanguage, setUserLanguage] = useState('english');
 
 	useEffect(() => {
-		CustomApiPrivate.get('/customer/language').then((res) => {
+		ApiPrivate.get('/customer/language').then((res) => {
 			setUserLanguage(res.data);
 		});
 	}, []);
@@ -77,12 +77,3 @@ export default function Main() {
 		</StyledParent>
 	);
 }
-
-export const CustomApiPrivate = axios.create({
-	baseURL: process.env.REACT_APP_API_URL,
-	// withCredentials: true,
-	headers: {
-		'Content-Type': 'application/json',
-		Authorization: 'Bearer ' + Cookies.get('reputeAccessToken'),
-	},
-});
