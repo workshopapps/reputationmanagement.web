@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 
 const Sidebar = (props) => {
 	const handleLogout = () => {
-		localStorage.clear()
+		localStorage.removeItem('auth')
 		Cookies.remove('reputeAccessToken')
 	}
 	return (
