@@ -104,5 +104,5 @@ export const FaqAnswer = styled.div.attrs((props) => ({
 	max-height: 0;
 	overflow-y: hidden;
 	transition: all 0.4s ease;
-	padding-top: 20px;
+	
 `;
