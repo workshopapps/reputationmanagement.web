@@ -25,7 +25,7 @@ import {
 } from './assets';
 import styled from 'styled-components';
 import Api, { ApiPrivate } from '../../api/axios';
-import axios from 'axios';
+
 
 
 const LandingPage = () => {
@@ -53,7 +53,7 @@ const LandingPage = () => {
 
 		e.preventDefault();
 
-		await ApiPrivate.post("/dummy", formData)
+		await ApiPrivate.post("/api/quote", formData)
 	}
 
 	return (
