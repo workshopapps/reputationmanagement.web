@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import {
@@ -10,6 +11,7 @@ import {
 
 function Preferences({ userLanguage, setUserLanguage }) {
 	const languages = ['english', 'german', 'russian', 'chinese'];
+	const [requestPending, setRequestPending] = useState(false);
 	const ApiPrivate = useAxiosPrivate();
 	const {
 		setRequestFailed,
@@ -20,15 +22,19 @@ function Preferences({ userLanguage, setUserLanguage }) {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
+		setRequestPending(true);
+
 		ApiPrivate.post('/customer/language?language=' + userLanguage)
 			.then((res) => {
 				setUserLanguage(res.data);
 				setSuccessMessage('Update successful');
 				setRequestSuccess(true);
+				setRequestPending(false);
 			})
 			.catch(function (error) {
 				setErrMessage('Update failed');
 				setRequestFailed(true);
+				setRequestPending(false);
 			});
 	};
 
@@ -71,7 +77,9 @@ function Preferences({ userLanguage, setUserLanguage }) {
 
 				<div className="my-14 flex justify-end">
 					<StyledButtonText type="reset">Discard</StyledButtonText>
-					<StyledButton type="submit">Save Changes</StyledButton>
+					<StyledButton type="submit">
+						{requestPending ? 'Loading...' : 'Save Changes'}
+					</StyledButton>{' '}
 				</div>
 			</form>
 		</StyledTab>
