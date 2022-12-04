@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import avatar from '../../assets/images/Settings/human.svg';
+import useAppContext from '../../hooks/useAppContext';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import {
 	StyledTab,
 	StyledButton,
@@ -8,9 +10,26 @@ import {
 } from './Settings.styled';
 
 function Accounts() {
+	const ApiPrivate = useAxiosPrivate();
+	const {
+		setRequestFailed,
+		setRequestSuccess,
+		setErrMessage,
+		setSuccessMessage,
+	} = useAppContext();
+
 	const handleSubmit = (form) => {
 		console.log(form);
-		// Call API here
+		// API request
+		ApiPrivate.post('/customer/profile', form)
+			.then((res) => {
+				setSuccessMessage('Updated successfully');
+				setRequestSuccess(true);
+			})
+			.catch(function (error) {
+				setErrMessage('Update failed');
+				setRequestFailed(true);
+			});
 	};
 
 	return (
