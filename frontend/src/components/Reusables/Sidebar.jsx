@@ -7,7 +7,7 @@ import { StyledSidebar } from '../Styles/SideBar.styled';
 import styled from 'styled-components';
 import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
 import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
-
+import logout from "../../assets/images/logout.svg"
 
 const Sidebar = (props) => {
 	
@@ -43,7 +43,7 @@ const Sidebar = (props) => {
 			<ul style={{ maxHeight: '50px'}}>
 				<li>
 					<StyledLogoutButton onClick={toggle}>
-						Logout
+					<img src={logout} alt="logout"/>Logout
 					</StyledLogoutButton>
 				</li>
 
@@ -57,8 +57,10 @@ const Sidebar = (props) => {
 };
 
 const StyledLogoutButton = styled.div`
-	background-color: #233BA9;
-	color: #ffffff;
+	//position: absolute;
+	display: flex;
+	align-items: center;
+	color: gray;
 	padding: 10px 55px;
 	max-width: 100%;
 	margin-left: 2rem;
@@ -66,5 +68,9 @@ const StyledLogoutButton = styled.div`
 	border: none;
 	text-align: center;
 	cursor: pointer;
+
+	img {
+		margin-right: 5px;
+	}
 `;
 export default Sidebar;

@@ -8,12 +8,17 @@ import Cookies from 'js-cookie';
 //const response =  Api.post('/auth/sign_in')
 
 const handleLogout = () => {
+	console.log(Cookies.get('reputeAccessToken'))
+	Cookies.set('reputeAccessToken')
+	Cookies.remove('reputeAccessToken', {path: '/'})
+	localStorage.removeItem('auth')
+	//sessionStorage.clear(); //for sessionStorage
 	localStorage.clear();
-	Cookies.remove('reputeAccessToken', {
-		path: '/',
-		domain: 'http://localhost:3000',
-	});
 	window.location.href = '/login';
+	
+
+	
+	
 };
 
 const LogoutConfirmationModal = ({ isShowing, hide }) =>
