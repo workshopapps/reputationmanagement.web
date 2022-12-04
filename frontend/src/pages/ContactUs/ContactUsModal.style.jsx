@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 	top: 0;
 	right: 0;
 	bottom: 0;
-	background: #f8fbff;
+	background: rgba(248, 251, 255, 0.1);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -17,6 +17,7 @@ export const Wrapper = styled.div`
 		box-shadow: 4px 4px 16px rgba(120, 122, 125, 0.15);
 		padding: 60px 20px;
 		border: none;
+		border-radius: 35px;
 	}
 	.modal__header {
 		display: flex;
