@@ -13,6 +13,8 @@ export default function ChangePassword() {
 	const [token, setToken] = React.useState('');
 	const [password, setPassword] = React.useState('');
 	const [confirmPassword, setConfirmPassword] = React.useState('');
+	const [passwordShown] = React.useState(false);
+	const [confirmPasswordShown ] = React.useState(false);
 	// const [passwordShown, setPasswordShown] = React.useState(false);
 	// const [confirmPasswordShown, setConfirmPasswordShown] = React.useState(false);
 	const [resetPasswordModal, setResetPasswordModal] = React.useState(false);
@@ -34,13 +36,13 @@ export default function ChangePassword() {
 		setToken(event.target.value);
 	};
 
-	// const handleChange = (event) => {
-	// 	setPassword(event.target.value);
-	// };
+	const handleChange = (event) => {
+		setPassword(event.target.value);
+	};
 
-	// const handleConfirm = (event) => {
-	// 	setConfirmPassword(event.target.value);
-	// };
+	const handleConfirm = (event) => {
+		setConfirmPassword(event.target.value);
+	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -88,6 +90,28 @@ export default function ChangePassword() {
 							required
 							onChange={handleToken}
 							value={token}
+						/>
+					</StyledFormInput>
+
+					<label htmlFor="password">Enter new password</label>
+					<StyledFormInput>
+						<StyledInput
+							type= {passwordShown ? 'text' : 'password'}
+							placeholder="Max of 8 characters"
+							required
+							onChange={handleChange}
+							value={password}
+						/>
+					</StyledFormInput>
+
+					<label htmlFor="password">Confirm the new password</label>
+					<StyledFormInput>
+						<StyledInput
+							type= {confirmPasswordShown ? 'text' : 'password'}
+							placeholder="Ensure it is the same"
+							required
+							onChange={handleConfirm}
+							value={confirmPassword}
 						/>
 					</StyledFormInput>
 
