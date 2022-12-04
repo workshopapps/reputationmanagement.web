@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
 import {
@@ -11,8 +11,13 @@ import {
 import { StyledSidebar } from '../Styles/SideBar.styled';
 import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
 import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
+import Cookies from 'js-cookie';
 
 const Sidebar = (props) => {
+	const handleLogout = () => {
+		localStorage.removeItem('auth')
+		Cookies.remove('reputeAccessToken')
+	}
 	const { isShowing, toggle } = useLogoutConfirmation();
 
 	return (

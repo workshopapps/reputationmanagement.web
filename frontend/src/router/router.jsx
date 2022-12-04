@@ -41,27 +41,14 @@ const Router = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route element={<ModalLayout />}>
-					{/* PROTECTED ROUTES */}
 					<Route element={<RequireAuth />}>
-						{/* <Route path="/dashboard" element={<DashboardPage />} />
+						<Route path="/dashboard" element={<DashboardPage />} />
 						<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path='/profile' element={<Profile />}/>
 						<Route path="/request-form" element={<RequestForm />} />
-						<Route path="/request-successful" element={<RequestSuccessfulSm />} /> */}
+						<Route path="/request-successful" element={<RequestSuccessfulSm />} />
 					</Route>
-
-					{/* Unprotect This start  */}
-					<Route path="/dashboard" element={<DashboardPage />} />
-					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
-					<Route path="/settings" element={<Settings />} />
-					<Route path="/profile" element={<Profile />} />
-					<Route path="/request-form" element={<RequestForm />} />
-					<Route path="/request-successful" element={<RequestSuccessfulSm />} />
-					
-
-					{/* Unprotect This End  */}
-
 					<Route path="/" element={<LandingPage />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
