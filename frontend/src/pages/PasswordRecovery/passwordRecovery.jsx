@@ -5,23 +5,39 @@ import bg_img from '../../assets/images/woman_on_phone.png'
 import repute_logo from '../../assets/images/repute_logo.png'
 import arrow_left from '../../assets/images/password_arrow_left.png'
 import authentication_icon from '../../assets/images/authenticate_img.png'
+import { ToastContainer, toast } from 'react-toastify';
+import Api from '../../api/axios';
 
 
 export default function PasswordRecovery() {
-    const navigate = useNavigate();
-    const [email, setEmail] = React.useState("")
+	const navigate = useNavigate();
+	const [email, setEmail] = React.useState('');
 
-   function handleChange(event){
-        setEmail(event.target.value);
-   }
-    function handleSubmit(event){
-        event.preventDefault();
-        navigate('/password-recovery/change')
-    }
-  return (
-        <StyledParent>
-            <StyledSection onSubmit={handleSubmit}>
-                
+	const handleChange = (e) => {
+		setEmail(e.target.value);
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		
+
+		try {
+			const response = Api.post('/auth/forgotpassword', {
+				emailAddress: email,
+			});
+			if ((await response).status === 200) {
+				toast.success('Reset link sent to email address');
+                localStorage.setItem('auth', email);
+				setEmail('');
+                navigate('/password-recovery/change');
+			}
+		} catch (err) {
+            toast.error('Email does not exist');
+		}
+	};
+	return (
+		<StyledParent>
+			<StyledSection onSubmit={handleSubmit}>
                 <StyledLogo src={repute_logo} alt="repute logo"/>
                 <div>
                     <Link to="/login">
@@ -44,12 +60,13 @@ export default function PasswordRecovery() {
 
                     <StyledSubmit type="submit">Sign in</StyledSubmit>
                 </StyledForm>
-            </StyledSection>
-            <StyledDiv>
+        </StyledSection>
+        <StyledDiv>
                 <StyledImg src={bg_img} className='background' alt="woman on the phone calling"  />
                 <StyledImgText>Welcome back, <span><Link to="/blog">click here</Link></span> to check out our new updates</StyledImgText>
-            </StyledDiv>
-        </StyledParent>  
+        </StyledDiv>
+        
+    </StyledParent>
   )
 }
 
@@ -208,21 +225,22 @@ margin-top: 15px;
 
 @media (max-width: 500px){
     width: 80%;
-    margin: 0 auto;
+    margin: 15px auto 0;
 }
 `
 
 const StyledSubmit = styled.button`
 background-color: #233ba9;
 width: 100%;
-margin-top: 60px;
+margin-top: 20px;
 padding: 10px 20px;
 color: #fff;
 border-radius: 15px;
 text-align: center;
 
-    @media (max-width: 500px){
+@media (max-width: 500px){
         width: 80%;
         margin: 60px auto 0;
     }
 `
+
