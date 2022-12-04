@@ -25,7 +25,7 @@ import {
 } from './assets';
 import styled from 'styled-components';
 import Api, { ApiPrivate } from '../../api/axios';
-
+import { post } from 'internal-slot';
 
 
 const LandingPage = () => {
@@ -49,11 +49,9 @@ const LandingPage = () => {
     }
 
 
-	const handleSubmit = async (e) => {
-
+	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		await ApiPrivate.post("/api/quote", formData)
+		// await ApiPrivate.post("/api/quote", formData)
 	}
 
 	return (
@@ -72,7 +70,7 @@ const LandingPage = () => {
 								reviewing and sorting negative comments about your business.
 							</h5>
 
-							<form onSubmit={handleSubmit}>
+							<form onSubmit={(e) => handleSubmit(e)}>
 								<div>
 									<input type="text" placeholder="Fullname*" required onChange={handleChange}/>
 									<input type="text" placeholder="Phone*" required onChange={handleChange}/>
