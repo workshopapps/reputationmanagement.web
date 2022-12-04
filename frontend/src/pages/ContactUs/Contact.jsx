@@ -4,6 +4,7 @@ import { BsPersonFill } from 'react-icons/bs';
 import { MdContactMail } from 'react-icons/md';
 import { TbMessage } from 'react-icons/tb';
 import { useState, useRef } from 'react';
+import ContactUsModal from './ContactUsModal';
 
 const ContactPageWraper = styled.div`
 	* {
@@ -415,6 +416,7 @@ function Contact() {
 	const [personlForm, setPersonalForm] = useState(true);
 	const [contactForm, setContactForm] = useState(false);
 	const [messageForm, setMessageForm] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
 	const handleScroll = (ref) => {
 		window.scrollTo({
@@ -558,7 +560,12 @@ function Contact() {
 									experiencing
 								</p>
 
-								<form>
+								<form
+									onSubmit={(e) => {
+										e.preventDefault();
+										setShowModal(true);
+									}}
+								>
 									<div>
 										<textarea></textarea>
 									</div>
@@ -571,6 +578,9 @@ function Contact() {
 					</ContactFormSection>
 				</div>
 			</ContactPageWraper>
+			{showModal && (
+				<ContactUsModal showModal={showModal} setShowModal={setShowModal} />
+			)}
 		</PageLayout>
 	);
 }
