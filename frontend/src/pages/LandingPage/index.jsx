@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../layout/PageLayout';
 import {
@@ -24,14 +24,36 @@ import {
 	star_icon,
 } from './assets';
 import styled from 'styled-components';
+import Api, { ApiPrivate } from '../../api/axios';
+import axios from 'axios';
+
 
 const LandingPage = () => {
 
-	const handleSubmit = (e) => {
+	const [formData, setFormData] = useState({
+		fullName: "",
+		phone: "",
+		email: "",
+		businessName: "",
+		review: ""
 
-		e.preventDefault()
+	})
 
 
+	const handleChange = (event) => {
+
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        })
+    }
+
+
+	const handleSubmit = async (e) => {
+
+		e.preventDefault();
+
+		await ApiPrivate.post("", formData)
 	}
 
 	return (
@@ -52,22 +74,29 @@ const LandingPage = () => {
 
 							<form onSubmit={handleSubmit}>
 								<div>
-									<input type="text" placeholder="Fullname*" required/>
-									<input type="text" placeholder="Phone*" required/>
+									<input type="text" placeholder="Fullname*" required onChange={handleChange}/>
+									<input type="text" placeholder="Phone*" required onChange={handleChange}/>
 								</div>
 								<div>
-									<input type="email" placeholder="Email*" required/>
-									<input type="text" placeholder='Business Name*' required/>
+									<input type="email" placeholder="Email*" required onChange={handleChange}/>
+									<input type="text" placeholder='Business Name*' required onChange={handleChange}/>
 								</div>
 								<div>
-									<select>
-										<option value="1" style={{backgroundColor : "transparent"}}>Where is the review?</option>
+									<select onChange={handleChange}>
+										<option value="1">Where is the review?</option>
+										<option value="2">Google</option>
 									</select>
 								</div>
 
-								<StyledButton className='hero-form-button'>Submit</StyledButton>
+								<div className='form-footer-info'>
+									<p>Your details are safe & confidential <br/>View our <a href='/privacy'>Privacy Policy.</a></p>
+								</div>
+
+								<StyledButton className='hero-form-button' type='submit'>Submit</StyledButton>
 
 							</form>
+
+							
 
 							<div className="hero-text-btn-sec">
 
