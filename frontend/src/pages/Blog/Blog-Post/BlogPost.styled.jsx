@@ -168,6 +168,26 @@ export const ProfileCard = styled.section`
 		.mobile-shareBtn {
 			display: none;
 		}
+
+		button {
+			cursor: default;
+		}
+
+		button,
+		a {
+			border: 1px solid #d2d3d4;
+			padding: 8px 6px;
+
+			&:hover {
+				background-color: #233ba9;
+				border: 1px solid #233ba9;
+			}
+
+			svg {
+				width: 24px;
+				height: 24px;
+			}
+		}
 	}
 
 	@media (max-width: 552px) {
@@ -194,12 +214,12 @@ export const ProfileCard = styled.section`
 				display: none;
 			}
 
-			.mobile-likeBtn,
-			.mobile-shareBtn {
+			#mobile-likeBtn {
 				display: block;
-
-				height: 16px;
-				width: 16px;
+				svg {
+					height: 16px;
+					width: 16px;
+				}
 			}
 		}
 	}
@@ -208,6 +228,7 @@ export const ProfileCard = styled.section`
 export const FormContainer = styled.form`
 	background-color: #eef1fc;
 	padding: 32px;
+	position: relative;
 
 	p {
 		font-weight: 600;
@@ -257,6 +278,21 @@ export const FormContainer = styled.form`
 		font-weight: 600;
 		font-size: 18px;
 		line-height: 27px;
+		cursor: default;
+	}
+
+	#toast {
+		background-color: white;
+		border-radius: 14px;
+		padding: 8px 10px;
+		width: fit-content;
+		position: absolute;
+		right: 0;
+		bottom: 30%;
+		font-weight: 700;
+		transform: translateX(200%);
+		display: none;
+		transition: transform 2s;
 	}
 
 	@media (max-width: 477px) {
