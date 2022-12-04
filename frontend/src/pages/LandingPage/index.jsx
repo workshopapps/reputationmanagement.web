@@ -89,7 +89,7 @@ const LandingPage = () => {
 								</div>
 
 								<div className='form-footer-info'>
-									<p>Your details are safe & confidential <br/>View our <a href='/privacy'>Privacy Policy.</a></p>
+									<p>Your details are safe & confidential <br/>View our <a href='/privacy' className='form-footer-link'>Privacy Policy.</a></p>
 								</div>
 
 								<StyledButton className='hero-form-button' type='submit'>Submit</StyledButton>
