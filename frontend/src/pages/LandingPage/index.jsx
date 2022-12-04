@@ -26,6 +26,14 @@ import {
 import styled from 'styled-components';
 
 const LandingPage = () => {
+
+	const handleSubmit = (e) => {
+
+		e.preventDefault()
+
+
+	}
+
 	return (
 		<PageLayout>
 			<StyledLandingPage>
@@ -42,12 +50,26 @@ const LandingPage = () => {
 								reviewing and sorting negative comments about your business.
 							</h5>
 
+							<form onSubmit={handleSubmit}>
+								<div>
+									<input type="text" placeholder="Fullname*" required/>
+									<input type="text" placeholder="Phone*" required/>
+								</div>
+								<div>
+									<input type="email" placeholder="Email*" required/>
+									<input type="text" placeholder='Business Name*' required/>
+								</div>
+								<div>
+									<select>
+										<option value="1" style={{backgroundColor : "transparent"}}>Where is the review?</option>
+									</select>
+								</div>
+
+								<StyledButton className='hero-form-button'>Submit</StyledButton>
+
+							</form>
+
 							<div className="hero-text-btn-sec">
-								<a href="#learn-more">
-									<StyledButton className="hero-button">
-										Learn More
-									</StyledButton>
-								</a>
 
 								<div className="hero-text-star">
 									<img src={star_icon} alt="star-icon" />
