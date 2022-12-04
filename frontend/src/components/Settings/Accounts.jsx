@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import avatar from '../../assets/images/Settings/human.svg';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import {
