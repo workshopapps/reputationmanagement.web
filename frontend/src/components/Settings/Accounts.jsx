@@ -45,12 +45,9 @@ function Accounts({ user, setUser }) {
 
 	return (
 		<StyledTab>
-			<div className="pt-4">
-				<h3>Profile Information</h3>
-				<p className="text-[#787A7D]">
-					This information will be publicly displayed so be careful what you
-					fill
-				</p>
+			<div className="pt-4 mb-8">
+				<h3>Company Information</h3>
+				<p className="text-[#787A7D]">Update your company information here</p>
 			</div>
 			<AccountForm
 				handleSubmit={handleSubmit}
@@ -70,8 +67,6 @@ const AccountForm = ({
 	requestPending,
 	setRequestPending,
 }) => {
-	const [avatarFile, setAvatarFile] = useState(avatar);
-
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setRequestPending(true);
@@ -80,27 +75,9 @@ const AccountForm = ({
 
 	return (
 		<form onSubmit={onSubmit} className={styleClass.form}>
-			<div className="mt-4 mb-7">
-				<label htmlFor="userPhoto">
-					<img
-						src={avatarFile}
-						className="h-[80px] w-[80px] rounded-full object-cover"
-						alt="avatar"
-					/>
-				</label>
-				<input
-					type="file"
-					id="userPhoto"
-					className="hidden"
-					onChange={(e) => {
-						setAvatarFile(URL.createObjectURL(e.target.files[0]));
-					}}
-				/>
-			</div>
-
 			<div className={styleClass.inputGroup}>
 				<label htmlFor="business-name" className={styleClass.inputLabel}>
-					Business Name
+					Company Name
 				</label>
 
 				<input
@@ -116,7 +93,7 @@ const AccountForm = ({
 
 			<div className={styleClass.inputGroup}>
 				<label htmlFor="email" className={styleClass.inputLabel}>
-					Email
+					Email Address
 				</label>
 				<input
 					type="email"
