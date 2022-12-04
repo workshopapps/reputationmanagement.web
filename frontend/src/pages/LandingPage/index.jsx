@@ -53,7 +53,7 @@ const LandingPage = () => {
 
 		e.preventDefault();
 
-		await ApiPrivate.post("", formData)
+		await ApiPrivate.post("/dummy", formData)
 	}
 
 	return (
