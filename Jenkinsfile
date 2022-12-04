@@ -33,7 +33,7 @@ pipeline {
 		stage("deploy") {
 		
 			steps {
-                sh "sudo cp -rf ${WORKSPACE}/reputationmanagement.web/build/* /home/ehmeeops/reputationmanagement.web/frontend"
+                sh "sudo cp -rf ${WORKSPACE}/reputationmanagement.web/frontend/build/* /home/ehmeeops/reputationmanagement.web/frontend"
                 sh "sudo pm2 start"
 
 	
