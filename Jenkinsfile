@@ -20,7 +20,7 @@ pipeline {
 				sh "cd reputationmanagement.web"
 				sh "cd reputationmanagement.web/frontend && npm i --force && CI=false npm run build"
 			}
-        }
+       		}
     
     		stage("test frontend"){
 
@@ -28,7 +28,7 @@ pipeline {
 				sh "cd reputationmanagement.web"
 				sh "cd reputationmanagement.web/frontend && npm i --force && npm run test"
 			}
-        }
+        	}
 
 		stage("deploy") {
 		
@@ -37,7 +37,7 @@ pipeline {
                 sh "sudo pm2 start"
 
 	
-            }
+            	}
 			
 	    }
 	}
