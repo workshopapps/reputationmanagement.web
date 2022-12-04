@@ -9,7 +9,7 @@ import {
 	styleClass,
 } from './Settings.styled';
 
-function Accounts() {
+function Accounts({ user, setUser }) {
 	const ApiPrivate = useAxiosPrivate();
 	const {
 		setRequestFailed,
@@ -17,18 +17,29 @@ function Accounts() {
 		setErrMessage,
 		setSuccessMessage,
 	} = useAppContext();
+	const [requestPending, setRequestPending] = useState(false);
 
-	const handleSubmit = (form) => {
-		console.log(form);
+	const handleSubmit = () => {
+		setRequestPending(true);
+
+		if (!user.phoneNumber) {
+			setErrMessage('Phone number is required');
+			setRequestFailed(true);
+			setRequestPending(false);
+			return;
+		}
+
 		// API request
-		ApiPrivate.post('/customer/profile', form)
+		ApiPrivate.put('/auth/details', user)
 			.then((res) => {
 				setSuccessMessage('Updated successfully');
 				setRequestSuccess(true);
+				setRequestPending(false);
 			})
 			.catch(function (error) {
 				setErrMessage('Update failed');
 				setRequestFailed(true);
+				setRequestPending(false);
 			});
 	};
 
@@ -41,22 +52,30 @@ function Accounts() {
 					fill
 				</p>
 			</div>
-			<AccountForm handleSubmit={handleSubmit} />
+			<AccountForm
+				handleSubmit={handleSubmit}
+				user={user}
+				setUser={setUser}
+				requestPending={requestPending}
+				setRequestPending={setRequestPending}
+			/>
 		</StyledTab>
 	);
 }
 
-const AccountForm = ({ handleSubmit }) => {
-	const [form, setForm] = useState({
-		BusinessName: 'Raya',
-		email: 'raya@enterprise.ng',
-		phone: '09038254560',
-		photo: avatar,
-	});
+const AccountForm = ({
+	handleSubmit,
+	user,
+	setUser,
+	requestPending,
+	setRequestPending,
+}) => {
+	const [avatarFile, setAvatarFile] = useState(avatar);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		handleSubmit(form);
+		setRequestPending(true);
+		handleSubmit();
 	};
 
 	return (
@@ -64,7 +83,7 @@ const AccountForm = ({ handleSubmit }) => {
 			<div className="mt-4 mb-7">
 				<label htmlFor="userPhoto">
 					<img
-						src={form.photo}
+						src={avatarFile}
 						className="h-[80px] w-[80px] rounded-full object-cover"
 						alt="avatar"
 					/>
@@ -74,8 +93,7 @@ const AccountForm = ({ handleSubmit }) => {
 					id="userPhoto"
 					className="hidden"
 					onChange={(e) => {
-						console.log(e.target.files[0]);
-						setForm({ ...form, photo: URL.createObjectURL(e.target.files[0]) });
+						setAvatarFile(URL.createObjectURL(e.target.files[0]));
 					}}
 				/>
 			</div>
@@ -89,9 +107,9 @@ const AccountForm = ({ handleSubmit }) => {
 					type="text"
 					id="business-name"
 					className={styleClass.input}
-					value={form.BusinessName}
+					value={user.businessEntityName}
 					onChange={(e) => {
-						setForm({ ...form, BusinessName: e.target.value });
+						setUser({ ...user, businessEntityName: e.target.value });
 					}}
 				/>
 			</div>
@@ -104,31 +122,33 @@ const AccountForm = ({ handleSubmit }) => {
 					type="email"
 					id="email"
 					className={styleClass.input}
-					value={form.email}
+					value={user.email}
 					onChange={(e) => {
-						setForm({ ...form, email: e.target.value });
+						setUser({ ...user, email: e.target.value });
 					}}
 				/>
 			</div>
 
 			<div className={styleClass.inputGroup}>
-				<label htmlFor="phone" className={styleClass.inputLabel}>
+				<label htmlFor="phoneNumber" className={styleClass.inputLabel}>
 					Phone number
 				</label>
 				<input
 					type="text"
-					id="phone"
+					id="phoneNumber"
 					className={styleClass.input}
-					value={form.phone}
+					value={user.phoneNumber}
 					onChange={(e) => {
-						setForm({ ...form, phone: e.target.value });
+						setUser({ ...user, phoneNumber: e.target.value });
 					}}
 				/>
 			</div>
 
 			<div className="my-14 flex justify-end">
 				<StyledButtonText type="reset">Discard</StyledButtonText>
-				<StyledButton type="submit">Save Changes</StyledButton>
+				<StyledButton type="submit">
+					{requestPending ? 'Loading...' : 'Save Changes'}
+				</StyledButton>
 			</div>
 		</form>
 	);

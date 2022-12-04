@@ -44,17 +44,17 @@ const RequestForm = () => {
 		e.preventDefault();
 		setRequestSuccessfulModalActive(true);
 		try {
-			//   const response = await ApiPrivate.post('/review', {
-			//     email: email,
-			//     timeOfReview: time + date,
-			//     review: review,
-			//     rating: rating,
-			//     websitename: websitename,
-			//     businesstype: businesstype,
-			//     priority: priority,
-			//     status: 'Pending',
-			//   }
-			// );
+		// 	  const response = await ApiPrivate.post('/review', {
+		// 	    email: email,
+		// 	    timeOfReview: time + date,
+		// 	    reviewString: review,
+		// 	    rating: rating,
+		// 	    websitename: websitename,
+		// 	    businesstype: businesstype,
+		// 	    priority: priority,
+		// 	    status: 0,
+		// 	  }
+		// 	);
 			setAllRequests((prev) => {
 				return [
 					...prev,

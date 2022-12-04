@@ -3,9 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import logo from '../assets/images/logOutConfirmation/signoutlogo.svg';
 import Cookies from 'js-cookie';
-//import Api from '../api/axios';
-
-//const response =  Api.post('/auth/sign_in')
 
 const handleLogout = () => {
 	Cookies.set('reputeAccessToken')

@@ -154,8 +154,8 @@ function Blog() {
 
 					<Pagination />
 
-					<Footer />
 				</div>
+				<Footer />
 			</PageLayout>
 		</section>
 	);
