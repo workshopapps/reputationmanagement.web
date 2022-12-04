@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
-import { DashboardIcon, SettingsIcon, ProfileIcon } from '../Dashboard/Icons';
+import { DashboardIcon, SettingsIcon, SignoutIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 import styled from 'styled-components';
 import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
@@ -16,8 +16,10 @@ const Sidebar = (props) => {
 
 	return (
 		<StyledSidebar className={props.className}>
-			<img src={closeBtn} alt="" onClick={props.closeMenuHandler} />
-			<img src={logo} alt="" />
+			<div>
+				<img src={closeBtn} alt="" onClick={props.closeMenuHandler} />
+				<img src={logo} alt="" />
+			</div>
 
 			<ul>
 				<li>

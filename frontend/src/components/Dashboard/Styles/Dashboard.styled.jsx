@@ -20,14 +20,16 @@ export const StyledContainer = styled.div`
 	grid-area: main;
 	padding-left: 3rem;
 	padding-right: 3rem;
-	.noRequest{
+	.noRequest {
 		text-align: center;
 		width: 100%;
 		font-weight: 600;
 		font-size: 30px;
 		line-height: 24px;
 		color: #292d32;
-		padding-top: 50px;
+		margin: 0 auto;
+		margin-top: 50px;
+		margin-bottom: 50px;
 	}
 
 	@media (max-width: 820px) {
@@ -48,7 +50,7 @@ export const Header = styled.div`
 		font-weight: 700;
 		font-size: 28px;
 		line-height: 150%;
-		color: #292D32;
+		color: #292d32;
 		gap: 1rem;
 	}
 
@@ -74,7 +76,7 @@ export const Header = styled.div`
 		a {
 			display: block;
 		}
-		h1{
+		h1 {
 			font-size: 23px;
 		}
 	}
@@ -175,6 +177,14 @@ export const TableContainer = styled.table`
 		border-collapse: collapse;
 	}
 
+	thead tr {
+		border-bottom: 1px solid #e4e4e5;
+	}
+
+	tbody tr {
+		border-bottom: 1px solid #d2d3d4;
+	}
+
 	th {
 		background: rgba(228, 228, 229, 0.3);
 		text-align: left;
@@ -192,7 +202,6 @@ export const TableContainer = styled.table`
 	td {
 		padding-top: 24px;
 		padding-bottom: 19px;
-		border-top: 1px solid #d2d3d4;
 
 		&:first-child {
 			padding-left: 16px;
@@ -224,7 +233,7 @@ export const TableContainer = styled.table`
 			color: #292d32;
 			padding-left: 20px;
 
-			&::before{ 
+			&::before {
 				content: ' ';
 				position: absolute;
 				/* left: 48rem; */
@@ -251,33 +260,43 @@ export const TableContainer = styled.table`
 			font-weight: 500;
 			font-size: 16px;
 			line-height: 24px;
-			text-align: center;
-			/* width: fit-content; */
-			width: 70%;
+			width: fit-content;
+			// width: 70%;
 			color: #01586c;
 			white-space: nowrap;
 		}
 	}
-	.High{
-			background: #D1FADF;
-			border-radius: 4px;
-			padding: 4px 16px;
-			width: 70%;
-			text-align: center;
-		}
-	.Medium{
-		background: #FFE5B2;
+
+	.High,
+	.Low,
+	.Medium,
+	.Urgent {
 		border-radius: 4px;
 		padding: 4px 16px;
-		width: 70%;
-		text-align: center;
+		width: fit-content;
 	}
-	.Low{
-		background: #FECDCA;
-		border-radius: 4px;
-		padding: 4px 16px;
-		width: 70%;
-		text-align: center;
+
+	.High.mobile,
+	.Low.mobile,
+	.Medium.mobile,
+	.Urgent.mobile {
+		display: none;
+	}
+
+	.High {
+		background: #d1fadf;
+		color: #027a48;
+	}
+
+	.Medium {
+		background: #ffe5b2;
+		color: #d6981b;
+	}
+
+	.Low,
+	.Urgent {
+		background: #fecdca;
+		color: #b42318;
 	}
 
 	@media (max-width: 820px) {
@@ -290,13 +309,44 @@ export const TableContainer = styled.table`
 			line-height: 20px;
 		}
 
+		.High.desktop,
+		.Low.desktop,
+		.Medium.desktop,
+		.Urgent.desktop {
+			display: none;
+		}
+
+		.High.mobile,
+		.Low.mobile,
+		.Medium.mobile,
+		.Urgent.mobile {
+			display: flex;
+			height: 20px;
+			width: 20px;
+			border-radius: 50%;
+			padding: 0;
+		}
+
+		.High {
+			background: #027a48;
+		}
+
+		.Medium {
+			background: #d6981b;
+		}
+
+		.Low,
+		.Urgent {
+			background: #b42318;
+		}
+
 		td {
 			&:nth-of-type(5),
 			&:nth-of-type(6) {
 				display: none;
 			}
 			&:nth-of-type(4) p {
-			padding-left: 25px;
+				padding-left: 25px;
 			}
 		}
 	}
