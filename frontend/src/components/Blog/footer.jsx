@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	return (
-		<>
+		<FooterParentMain>
 			<FooterMain>
 				<div>
 					<Headin1>Get in touch with us today</Headin1>
@@ -46,25 +46,20 @@ const Footer = () => {
 					</form>
 				</FormMain>
 			</FooterMain>
-		</>
+		</FooterParentMain>
 	);
 };
 
 export default Footer;
 
 const FooterMain = styled.section`
-	background: url(${bg}), #eef1fc;
-	background-repeat: no-repeat;
-	padding: 40px 64px 40px 64px;
+	max-width: 1500px;
+	width: 1500px;
 	display: flex;
 	justify-content: space-between;
     align-items: center;
 
-    @media (max-width:1000px) {
-        padding: 40px 34px 40px 34px;
-    }
-
-    @media (max-width:850px) {
+	@media (max-width:850px) {
         text-align: center;
       flex-direction: column;
       justify-content: center ;
@@ -191,4 +186,18 @@ const FormSec1 = styled.section`
         width: 100%;
       }
     }
+`;
+
+const FooterParentMain = styled.div`
+	background: url(${bg}), #eef1fc;
+	background-repeat: no-repeat;
+	padding: 40px 64px 40px 64px;
+	display: flex;
+	justify-content: center;
+	
+    @media (max-width:1000px) {
+        padding: 40px 34px 40px 34px;
+    }
+
+  
 `;
