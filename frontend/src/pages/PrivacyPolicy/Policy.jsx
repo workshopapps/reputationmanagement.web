@@ -6,14 +6,14 @@ export default function Policy() {
 		<StyledPolicy>
 			<h3>Our Privacy Policy</h3>
 			<p>
-				FIXIT provides this Privacy Policy to inform you of our policies and
+				REPUTE provides this Privacy Policy to inform you of our policies and
 				procedures regarding the collection, use and disclosure of personal
 				information when you use our services, such as:
 			</p>
 			<ul>
 				<li>
-					Visit our website at [https://repute.hng.tech] or any website of ours that
-					links to this privacy policy
+					Visit our website at [https://repute.hng.tech] or any website of ours
+					that links to this privacy policy
 				</li>
 				<li>
 					Engage with us in other related ways, including sales and marketing.

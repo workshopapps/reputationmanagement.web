@@ -16,7 +16,7 @@ const Footer = () => {
 
 				<div className="p-5 text-center">
 					<p className="text-[15px] font-[100] text-[#ddd] leading-[16px]">
-						© 2022 Fixit. All rights reserved
+						© 2022 Repute. All rights reserved
 					</p>
 				</div>
 			</footer>
