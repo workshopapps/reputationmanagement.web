@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
@@ -8,7 +9,7 @@ import {
 	styleClass,
 } from './Settings.styled';
 
-function Accounts({ user, setUser }) {
+function Accounts({ user, setUser, currentEmail }) {
 	const ApiPrivate = useAxiosPrivate();
 	const {
 		setRequestFailed,
@@ -20,26 +21,28 @@ function Accounts({ user, setUser }) {
 
 	const handleSubmit = () => {
 		setRequestPending(true);
-
-		if (!user.phoneNumber) {
-			setErrMessage('Phone number is required');
-			setRequestFailed(true);
-			setRequestPending(false);
-			return;
-		}
-
 		// API request
 		ApiPrivate.put('/auth/details', user)
 			.then((res) => {
 				setSuccessMessage('Updated successfully');
 				setRequestSuccess(true);
 				setRequestPending(false);
+				// Log out if email was changed
+				if (currentEmail !== user.email) {
+					handleLogout();
+				}
 			})
 			.catch(function (error) {
 				setErrMessage('Update failed');
 				setRequestFailed(true);
 				setRequestPending(false);
 			});
+	};
+
+	const handleLogout = () => {
+		Cookies.remove('reputeAccessToken');
+		localStorage.removeItem('auth');
+		window.location.href = '/login';
 	};
 
 	return (
@@ -83,10 +86,11 @@ const AccountForm = ({
 					type="text"
 					id="business-name"
 					className={styleClass.input}
-					value={user.businessEntityName}
+					value={user.businessEntityName || ''}
 					onChange={(e) => {
 						setUser({ ...user, businessEntityName: e.target.value });
 					}}
+					required
 				/>
 			</div>
 
@@ -98,10 +102,11 @@ const AccountForm = ({
 					type="email"
 					id="email"
 					className={styleClass.input}
-					value={user.email}
+					value={user.email || ''}
 					onChange={(e) => {
 						setUser({ ...user, email: e.target.value });
 					}}
+					required
 				/>
 			</div>
 
@@ -113,10 +118,11 @@ const AccountForm = ({
 					type="text"
 					id="phoneNumber"
 					className={styleClass.input}
-					value={user.phoneNumber}
+					value={user.phoneNumber || ''}
 					onChange={(e) => {
 						setUser({ ...user, phoneNumber: e.target.value });
 					}}
+					required
 				/>
 			</div>
 
