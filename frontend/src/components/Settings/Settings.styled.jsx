@@ -31,12 +31,13 @@ export const StyledTab = styled.div`
 	}
 `;
 
-export const StyledButtonOutline = styled.button`
+export const StyledButtonOutline = styled.div`
 	color: #233ba9;
 	border: 1px solid #233ba9;
 	padding: 10px 25px;
 	border-radius: 3px;
 	text-align: center;
+	cursor: pointer;
 `;
 
 export const StyledButton = styled.button`
