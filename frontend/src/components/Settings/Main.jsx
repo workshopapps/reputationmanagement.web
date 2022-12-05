@@ -21,18 +21,20 @@ export default function Main() {
 
 	const ApiPrivate = useAxiosPrivate();
 	const [userLanguage, setUserLanguage] = useState('english');
-	const [user, setUser] = useState([]);
+	const [currentEmail, setCurrentEmail] = useState('');
+	const [user, setUser] = useState({});
 
 	useEffect(() => {
 		// Get current user details
 		ApiPrivate.get('/auth/details').then((res) => {
 			setUser(res.data);
+			setCurrentEmail(res.data.email);
 		});
 		// Get current user language
 		ApiPrivate.get('/customer/language').then((res) => {
 			setUserLanguage(res.data);
 		});
-	}, [ ApiPrivate ]);
+	}, [ApiPrivate]);
 
 	return (
 		<StyledParent>
@@ -71,7 +73,9 @@ export default function Main() {
 				</StyledText>
 			</div>
 
-			{tab === 1 && <Accounts user={user} setUser={setUser} />}
+			{tab === 1 && (
+				<Accounts user={user} setUser={setUser} currentEmail={currentEmail} />
+			)}
 			{tab === 2 && (
 				<Preferences
 					userLanguage={userLanguage}
