@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
+import styled from 'styled-components';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import {
@@ -20,11 +22,9 @@ function Security() {
 	} = useAppContext();
 
 	const [requestPending, setRequestPending] = useState(false);
-	const [form, setForm] = useState({
-		current_password: '',
-		new_password: '',
-		confirm_new_password: '',
-	});
+	const [passwordShown, setPasswordShown] = useState(false);
+	const [NewPasswordShown, setNewPasswordShown] = useState(false);
+	const [form, setForm] = useState({});
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -88,30 +88,42 @@ function Security() {
 					<label htmlFor="current_password" className="md:w-1/3 font-semibold">
 						Current Password
 					</label>
-					<input
-						type="password"
-						id="current_password"
-						className={styleClass.input}
-						onChange={(e) => {
-							setForm({ ...form, current_password: e.target.value });
-						}}
-						required
-					/>
+
+					<InputField className={styleClass.input}>
+						<input
+							type={passwordShown ? 'text' : 'password'}
+							id="current_password"
+							onChange={(e) => {
+								setForm({ ...form, current_password: e.target.value });
+							}}
+							required
+						/>
+						<PasswordButton
+							togglePassword={() => setPasswordShown(!passwordShown)}
+							inputStatus={passwordShown}
+						/>
+					</InputField>
 				</div>
 
 				<div className={styleClass.inputGroup}>
 					<label htmlFor="new_password" className="md:w-1/3 font-semibold">
 						New Password
 					</label>
-					<input
-						type="password"
-						id="new_password"
-						className={styleClass.input}
-						onChange={(e) => {
-							setForm({ ...form, new_password: e.target.value });
-						}}
-						required
-					/>
+
+					<InputField className={styleClass.input}>
+						<input
+							type={NewPasswordShown ? 'text' : 'password'}
+							id="new_password"
+							onChange={(e) => {
+								setForm({ ...form, new_password: e.target.value });
+							}}
+							required
+						/>
+						<PasswordButton
+							togglePassword={() => setNewPasswordShown(!NewPasswordShown)}
+							inputStatus={NewPasswordShown}
+						/>
+					</InputField>
 				</div>
 
 				<div className={styleClass.inputGroup}>
@@ -121,15 +133,21 @@ function Security() {
 					>
 						Confirm New Password
 					</label>
-					<input
-						type="password"
-						id="confirm_new_password"
-						className={styleClass.input}
-						onChange={(e) => {
-							setForm({ ...form, confirm_new_password: e.target.value });
-						}}
-						required
-					/>
+
+					<InputField className={styleClass.input}>
+						<input
+							type={NewPasswordShown ? 'text' : 'password'}
+							id="confirm_new_password"
+							onChange={(e) => {
+								setForm({ ...form, confirm_new_password: e.target.value });
+							}}
+							required
+						/>
+						<PasswordButton
+							togglePassword={() => setNewPasswordShown(!NewPasswordShown)}
+							inputStatus={NewPasswordShown}
+						/>
+					</InputField>
 				</div>
 
 				<div className="my-14 flex justify-end">
@@ -153,5 +171,30 @@ const HeadingLabel = ({ text, sub_text }) => {
 		</div>
 	);
 };
+
+const PasswordButton = ({ togglePassword, inputStatus }) => {
+	return (
+		<button onClick={() => togglePassword()} type="button">
+			{inputStatus ? <FaRegEyeSlash /> : <FaRegEye />}
+		</button>
+	);
+};
+
+const InputField = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	button {
+		position: absolute;
+		right: 14px;
+		font-size: 20px;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+`;
 
 export default Security;
