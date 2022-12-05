@@ -109,6 +109,7 @@ export const StyledArticle = styled.section`
 			padding: 30px 20px;
 			margin: 12px 0;
 			border-radius: 8px;
+			width: 370px;
 			border: 1px solid #d2d3d4;
 			height: 100%;
 			// box-shadow: 4px 4px 10px rgba(120, 122, 125, 0.1);
