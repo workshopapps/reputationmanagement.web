@@ -150,7 +150,7 @@ const Modal = ({ open, onClose }) => {
 									/>
 									
 								</div>
-								<div className="flex flex-col w-full">
+								<div className="flex flex-col w-full mt-5 lg:mt-0">
 									<label className="font-semibold lg:text-base text-sm leading-6">
 										Phone No
 									</label>
@@ -167,7 +167,7 @@ const Modal = ({ open, onClose }) => {
 								
 								</div>
 							</div>
-							<div className="lg:mt-3 mt-5">
+							<div className="lg:mt-3 mt-6">
 								<label className="font-semibold lg:text-base text-sm leading-6">
 									Position
 								</label>
@@ -280,14 +280,14 @@ const Modal = ({ open, onClose }) => {
 											className="text-[#4D5154] text-xs leading-4  absolute lg:top-[78%] top-[24%] rounded-md p-2 ml-3 lg:-mt-4"
 										/>
 									</div>
-									<div className="flex flex-col w-full">
+									<div className="flex flex-col w-full mt-5">
 										<label
 											className="font-bold text-base leading-6 text-[#FF8017]
 "
 										>
 											ATTACH COVER LETTER
 										</label>
-										<div className="w-full lg:h-16 h-14 rounded-lg p-5 border-2 border-[#D2D3D4] focus:outline-[#84CAFF]">
+										<div className="w-full lg:h-16 h-14  rounded-lg p-5 border-2 border-[#D2D3D4] focus:outline-[#84CAFF]">
 											<input
 												type="file"
 												name="coverletter"
