@@ -191,7 +191,7 @@ const StyledDiv = styled.div`
 	max-height: 100vh;
 	position: relative;
 
-	@media (max-width: 600px) {
+	@media (max-width: 900px) {
 		display: none;
 	}
 `;
