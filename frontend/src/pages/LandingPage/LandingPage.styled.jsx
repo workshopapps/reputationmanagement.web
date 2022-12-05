@@ -192,11 +192,13 @@ export const HeroTextDiv = styled.div`
 				//top: 0;
 				right: 0;
 				margin-right: -6rem;
-				margin-top: .8rem;
+				// margin-top: .8rem;
 
 				@media (max-width:640px) {
 					right: 0;
-					margin-top: -4rem;
+					padding-bottom: -8rem;
+					margin-right: 4rem;
+					z-index: -1;
             			}
 
 				@media (max-width:520px) {
@@ -204,6 +206,89 @@ export const HeroTextDiv = styled.div`
 					margin-top: -4rem;
             			}
 				}
+
+
+
+				form{
+					margin-top: 37px;
+	
+					div{
+						display: flex;
+						justify-content: space-between;
+						margin-top: 12px;
+					}
+		
+					div input{
+						border: 1px solid #667085;
+						border-radius: 8px;
+						height: 43px;
+						width: 245px;
+						gap: 13px;
+						padding-left: 12px;
+						&::placeholder{
+							font-size: 14px;
+							color: #667085;
+						}
+						&:focus{
+							outline: none;
+						}
+					}
+	
+					div select{
+						width: 100%;
+						border: 1px solid #787A7D;
+						border-radius: 8px;
+						height: 43px;
+						font-size: 15px;
+						color: #6F7174;
+						padding: 0 12px;
+						margin-top: 12px;
+	
+						&:focus{
+							outline: none;
+						}
+							
+					}
+
+					.form-footer-info{
+						margin-top: 9px;
+					}
+
+					.form-footer-info p{
+						font-size: 12px;
+						color: #6F7174;
+					}
+
+					.form-footer-info p > a{
+						color: #F16F04;
+					}
+	
+					.hero-form-button{
+						width: 100%;
+					}
+	
+	
+					@media (max-width:640px){
+						width: 100%;
+						padding: 0 20px;
+						margin-bottom: 30px;
+	
+						div{
+							flex-direction: column;
+							gap: 12px;
+						}
+	
+						div input{
+							width: 100%;
+						}
+
+						.form-footer-info{
+							text-align: left;
+						}
+					}
+	
+				}
+	
 			}
 
 
@@ -227,65 +312,7 @@ export const HeroTextDiv = styled.div`
 
 
 
-			form{
-				margin-top: 37px;
-
-				div{
-					display: flex;
-					justify-content: space-between;
-					margin-top: 12px;
-				}
-	
-				div input{
-					border: 1px solid #667085;
-					border-radius: 8px;
-					height: 43px;
-					width: 245px;
-					gap: 13px;
-					padding-left: 12px;
-					&::placeholder{
-						font-size: 14px;
-						color: #667085;
-					}
-					&:focus{
-						outline: none;
-					}
-				}
-
-				div select{
-					width: 100%;
-					border: 1px solid #787A7D;
-					border-radius: 8px;
-					height: 43px;
-					font-size: 15px;
-					color: #6F7174;
-					padding: 0 12px;
-					margin-top: 12px;
-
-					&:focus{
-						outline: none;
-					}
-						
-				}
-
-				.hero-form-button{
-					width: 100%;
-				}
-
-
-				@media (max-width:640px){
-					div{
-						flex-direction: column;
-						gap: 12px;
-					}
-
-					div input{
-						width: 100%;
-					}
-				}
-
-			}
-
+			
 
 
 			
