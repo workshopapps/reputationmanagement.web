@@ -12,7 +12,8 @@ import Api from '../../api/axios';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext'
-import fixit_logo from '../Sign-up/Assets/Logo(1).png'
+// import fixit_logo from '../Sign-up/Assets/Logo(1).png'
+import repute_logo from '../../assets/images/repute_logo.png';
 import Cookies from 'js-cookie';
 
 
@@ -73,7 +74,7 @@ const Login = () => {
   return (
     <ParentContainer style={{ maxWidth: '1540px', margin: '0 auto', display: 'flex'}}>
       <FormSection>
-          <ImgSectionSm src={fixit_logo} alt=""/>
+          <ImgSectionSm src={repute_logo} alt=""/>
         <StyledForm>
           <StyledHead1 onClick={() => setRequestFailed(true)}>
               Welcome Back
@@ -155,7 +156,7 @@ const Login = () => {
       </FormSection>
 
       <ImgSection>
-          <img src={fixit_logo} alt=""/>
+          <img src={repute_logo} alt=""/>
       </ImgSection>
 
     </ParentContainer>

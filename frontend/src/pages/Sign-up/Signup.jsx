@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import Closed from './Assets/eye-slash.png';
-import Logo from './Assets/Logo(1).png';
+// import Logo from './Assets/Logo(1).png';
+import repute_logo from '../../assets/images/repute_logo.png';
 import background from './Assets/image-logo.png';
 import styled from 'styled-components';
 import google_icon from './Assets/google-icon.svg';
@@ -73,7 +74,7 @@ function Signup() {
 			}
 			catch (err) {
 				if (err.response.status === 400) {
-					setErrMessage(err?.response?.data)
+					setErrMessage(`${err?.response?.data} or Name/Email exist`);
 				}
 				else {
 					setErrMessage('Sign up Failed')
@@ -118,7 +119,7 @@ function Signup() {
 			}}>
 
 			<StyledFormWrapper style={{ maxWidth: '770px' }}>
-				<img src={Logo} alt="background" className='logo_img' />
+				<img src={repute_logo} alt="background" className='logo_img' />
 				<h2>
 					Welcome to Fixit
 				</h2>
@@ -257,7 +258,7 @@ function Signup() {
 			</StyledFormWrapper>
 
 			<div className="logo" >
-				<img src={Logo} alt="background" />
+				<img src={repute_logo} alt="background" />
 			</div>
 
 		</StyledSignupWrapper>
