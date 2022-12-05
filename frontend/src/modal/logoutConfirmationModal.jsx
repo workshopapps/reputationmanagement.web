@@ -60,7 +60,7 @@ const ModalOverlay = styled.div`
 	left: 0;
 	z-index: 1040;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-color: #000;
 	opacity: 0.5;
 `;
@@ -161,7 +161,7 @@ const ModalWrapper = styled.div`
 		}
 
 		@media (max-width: 500px) {
-			width: 300px;
+			width: 350px;
 		}
 	}
 
