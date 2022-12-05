@@ -179,7 +179,7 @@ const StyledSection = styled.section`
 	position: relative;
 	width: 90%;
 	max-width: 600px;
-	margin: 50px auto;
+	margin: 20px auto 0;
 
 	@media (max-width: 500px) {
 		margin: 5px auto;
@@ -188,7 +188,7 @@ const StyledSection = styled.section`
 
 const StyledDiv = styled.div`
 	width: 50%;
-	height: 100vh;
+	max-height: 100vh;
 	position: relative;
 
 	@media (max-width: 600px) {
@@ -198,10 +198,10 @@ const StyledDiv = styled.div`
 
 const StyledLogo = styled.img`
 	margin: 0 auto;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 
 	@media (max-width: 500px) {
-		margin-top: 60px;
+		margin-top: 40px;
 	}
 `;
 
