@@ -30,7 +30,7 @@ function Immigration() {
 					<h3 className="mx-3"> Back to all openings</h3>
 				</Link>
 				<section className="my-5">
-					<h1 className="text-3xl mt-10 font-bold">BUSINESS LAWYER</h1>
+					<h1 className="text-3xl mt-10 font-bold">IMMIGRATION LAWYER</h1>
 					<div className="flex gap-2 mt-10">
 						<img src={Map} alt="" className="w-5 h-5" />
 						<h3>Remote</h3>

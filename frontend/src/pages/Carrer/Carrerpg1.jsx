@@ -183,7 +183,7 @@ function Carrerpg1() {
 
 							<Link
 								className="my-5"
-								to="/carrer-pg-3"
+								to="/job1"
 								onClick={() => {
 									window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 								}}

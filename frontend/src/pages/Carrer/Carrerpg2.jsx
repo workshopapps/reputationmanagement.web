@@ -73,7 +73,7 @@ function Carrerpg2({DescriptionProps }) {
 								id="select"
 								className="cursor-pointer px-5 py-3 hidden lg:block"
 							>
-								<option value="" selected className="cursor-pointer">
+								<option value=""  className="cursor-pointer">
 									Filter
 								</option>
 								<option value="Business Lawyer" className="cursor-pointer">
@@ -124,7 +124,7 @@ function Carrerpg2({DescriptionProps }) {
 								id="select"
 								className="cursor-pointer px-1 py-3 lg:hidden"
 							>
-								<option value="" selected className="cursor-pointer">
+								<option value=""  className="cursor-pointer">
 									Filter
 								</option>
 								<option value="Business Lawyer" className="cursor-pointer">
@@ -200,7 +200,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/carrer-pg-3"
+							to="/job1"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}

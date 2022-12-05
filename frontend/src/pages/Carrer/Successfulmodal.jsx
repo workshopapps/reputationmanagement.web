@@ -20,7 +20,7 @@ const  Successfulmodal = ({ open, onClose }) => {
 							<h1 className="text-[#2B2C34] lg:text-4xl text-2xl leading-9 mb-10">
 								Application Sent!
 							</h1>
-							<h4 className="text-[#2B2C34] lg:text-xl text-base leading-8 mb-10">
+							<h4 className="text-[#2B2C34] lg:text-xl text-base leading-8 mb-10 p-3">
 								Congratulations, we have recieved your application
 								<br /> for a position in REPUTE as a LAWYER. You will be notified by email with
 								<br />
