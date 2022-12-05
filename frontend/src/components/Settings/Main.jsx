@@ -1,70 +1,38 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Accounts from './Accounts';
 import Notifications from './Notifications';
 import Preferences from './Preferences';
 import Security from './Security';
+import {
+	StyledHeader,
+	StyledOption,
+	StyledOptions,
+	StyledParent,
+	StyledText,
+} from './Settings.styled';
 
 export default function Main() {
-	const StyledParent = styled.div`
-		@media (max-width: 375px) {
-			max-width: 327px;
-		}
-		@media (max-width: 320px) {
-			max-width: 277px;
-		}
-	`;
-
-	const StyledText = styled.div`
-		display: flex;
-		flex-direction: column;
-		gap: 2.185rem;
-		margin-bottom: 20px;
-		border-bottom: 0.5px solid #6f7174a2;
-	`;
-	const StyledHeader = styled.p`
-		font-weight: 700;
-		font-size: 28px;
-		color: #2b2c34;
-	`;
-
-	const StyledOptions = styled.ul`
-		display: flex;
-		gap: 1rem;
-
-		@media screen and (max-width: 428px) {
-			display: flex;
-			overflow-x: scroll;
-			max-width: 428px;
-
-			&::-webkit-scrollbar {
-				width: 0;
-				display: none;
-			}
-		}
-	`;
-
-	const StyledOption = styled.li`
-		color: #787a7d;
-		background: transparent;
-		border: 0;
-		padding-bottom: 10px;
-		list-style: none;
-
-		&.active-tab {
-			border-bottom: 2px solid rgb(35, 59, 169);
-			color: rgb(35, 59, 169);
-		}
-		&:hover {
-			cursor: pointer;
-		}
-	`;
-
 	const [tab, setTab] = useState(1);
 
 	const toggleTab = (index) => {
 		setTab(index);
 	};
+
+	const ApiPrivate = useAxiosPrivate();
+	const [userLanguage, setUserLanguage] = useState('english');
+	const [user, setUser] = useState([]);
+
+	useEffect(() => {
+		// Get current user details
+		ApiPrivate.get('/auth/details').then((res) => {
+			setUser(res.data);
+		});
+		// Get current user language
+		ApiPrivate.get('/customer/language').then((res) => {
+			setUserLanguage(res.data);
+		});
+	}, []);
 
 	return (
 		<StyledParent>
@@ -76,7 +44,7 @@ export default function Main() {
 							className={tab === 1 ? 'active-tab' : ''}
 							onClick={() => toggleTab(1)}
 						>
-							Accounts
+							Account
 						</StyledOption>
 
 						<StyledOption
@@ -103,8 +71,13 @@ export default function Main() {
 				</StyledText>
 			</div>
 
-			{tab === 1 && <Accounts />}
-			{tab === 2 && <Preferences />}
+			{tab === 1 && <Accounts user={user} setUser={setUser} />}
+			{tab === 2 && (
+				<Preferences
+					userLanguage={userLanguage}
+					setUserLanguage={setUserLanguage}
+				/>
+			)}
 			{tab === 3 && <Notifications />}
 			{tab === 4 && <Security />}
 		</StyledParent>

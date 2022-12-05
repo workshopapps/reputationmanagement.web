@@ -52,27 +52,19 @@ const Router = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route element={<ModalLayout />}>
-					{/* PROTECTED ROUTES */}
 					<Route element={<RequireAuth />}>
-						{/* <Route path="/dashboard" element={<DashboardPage />} />
-						<Route path='/lawyer-dashboard' element={<LawyerDashboard />} />
+						<Route path="/dashboard" element={<DashboardPage />} />
+						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
-						<Route path='/profile' element={<Profile />}/>
+						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
-						<Route path="/request-successful" element={<RequestSuccessfulSm />} /> */}
+						<Route
+							path="/request-successful"
+							element={<RequestSuccessfulSm />}
+						/>
 					</Route>
-
-					{/* Unprotect This start  */}
-					<Route path="/dashboard" element={<DashboardPage />} />
-					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
-					<Route path="/settings" element={<Settings />} />
-					<Route path="/profile" element={<Profile />} />
-					<Route path="/request-form" element={<RequestForm />} />
-					<Route path="/request-successful" element={<RequestSuccessfulSm />} />
-
-					{/* Unprotect This End  */}
-
 					<Route path="/" element={<LandingPage />} />
+
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/about-us" element={<AboutPage />} />
@@ -102,6 +94,7 @@ const Router = () => {
 					<Route path="/job12" element={<Job12 />} />
 
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
+					<Route path="/carrer-pg-2/:id" element={<Carrerpg3 />} />
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
 					<Route path="/profile" element={<Profile />} />

@@ -21,7 +21,6 @@ import Star2 from '../../assets/images/Vectorstar2.png';
 import Map from '../../assets/images/map.png';
 import Arrow from '../../assets/images/arrow-right.png';
 
-
 import PageLayout from '../../layout/PageLayout';
 
 const StyledHeader = styled.h1`

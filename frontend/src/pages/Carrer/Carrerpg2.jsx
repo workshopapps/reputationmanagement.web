@@ -105,16 +105,16 @@ function Carrerpg2({DescriptionProps }) {
 							<div className="flex items-center justify-center ">
 								<h3 className="text-slate-400">Showing 1-12 of 70</h3>
 								<Link
-									className="my-5"
-									to="#"
-									onClick={() => {
-										window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-									}}
-								>
-									<StyledButton outlined className="mx-3">
-										Show all
+							className="my-5"
+							to="#"
+							onClick={() => {
+								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+							}}
+						>
+								<StyledButton outlined className="mx-3">
+									Show all
 									</StyledButton>
-								</Link>
+									</Link>
 							</div>
 						</div>
 
