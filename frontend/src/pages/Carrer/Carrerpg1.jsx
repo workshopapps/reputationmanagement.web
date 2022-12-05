@@ -94,7 +94,7 @@ function Carrerpg1() {
 						<StyledText className="max-w-md mt-3">
 							We are all about growth, and growing with our clients. If you’re
 							looking to hitch your career to a company that’s going places,
-							look no further than FIXIT.
+							look no further than Repute.
 						</StyledText>
 						<div className="btns flex mt-8 flex-col md:flex-row">
 							<Link
@@ -140,12 +140,12 @@ function Carrerpg1() {
 						<DescriptionProps
 							src={pink}
 							title="You with us"
-							description="FIXIT employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
+							description="REPUTE employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
 						/>
 						<DescriptionProps
 							src={blue}
 							title="We are particular about growth"
-							description="FIXIT is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than FIXIT. We aspire to do bigger and better things – and take our growth and performance to new heights."
+							description="REPUTE is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than REPUTE. We aspire to do bigger and better things – and take our growth and performance to new heights."
 						/>
 						<DescriptionProps
 							src={orange}
@@ -276,11 +276,11 @@ function Carrerpg1() {
 				</section>
 				<section className="img-carousel mt-11 py-5 flex flex-col justify-center items-center">
 					<h1 className="text-3xl font-semibold mt-10">
-						Picture yourself as <StyledSpanText>FIXIT</StyledSpanText>
+						Picture yourself as <StyledSpanText>REPUTE</StyledSpanText>
 					</h1>
 					<h6>
 						follow us on instagram:{' '}
-						<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
+						<StyledSpanTextBlue>@_repute</StyledSpanTextBlue>
 					</h6>
 					<div
 						className="image-carousel flex mt-20 items-center justify-center"

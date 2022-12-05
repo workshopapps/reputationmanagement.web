@@ -9,7 +9,7 @@ export const article = [
 	{
 		icon: book,
 		title: 'Getting Started',
-		text: 'Fixit 101',
+		text: 'Repute 101',
 		link: './login',
 	},
 	{
