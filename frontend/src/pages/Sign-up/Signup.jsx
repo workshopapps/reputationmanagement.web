@@ -62,7 +62,6 @@ function Signup() {
 						businessEntityName: businessName,
 					}
 				)
-				console.log(response)
 				localStorage.setItem('auth', email)
 				Cookies.set('reputeAccessToken', response?.data)
 				setRequestPending(false)

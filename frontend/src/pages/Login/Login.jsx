@@ -50,7 +50,6 @@ const Login = () => {
         )
         localStorage.setItem('auth',email)
         Cookies.set('reputeAccessToken', response?.data)
-        console.log(response?.data)
         setRequestPending(false)
         router('/dashboard')
         setSuccessMessage('Login successful')
