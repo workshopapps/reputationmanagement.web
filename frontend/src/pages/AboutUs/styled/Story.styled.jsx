@@ -5,7 +5,7 @@ export const StyledStory = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 56px 64px;
-	max-width: 1540px;
+	max-width: 93%;
 	margin: 0 auto;
 	@media (max-width: 1350px) {
 		flex-direction: column;
@@ -23,7 +23,7 @@ export const StoryHead = styled.h1`
 	font-weight: bold;
 	width: 100%;
 	font-family: 'lato', sans-serif;
-	margin: 8px 0;
+	margin-bottom: 30px;
 `;
 export const StoryP = styled.p`
 	font-size: 16px;
