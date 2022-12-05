@@ -46,18 +46,20 @@ function Preferences({ userLanguage, setUserLanguage }) {
 						Preferred Language
 					</label>
 
-					<select
-						className={styleClass.selectClass}
-						value={userLanguage}
-						onChange={(e) => setUserLanguage(e.target.value)}
-						required
-					>
-						{languages.map((item) => (
-							<option key={item} value={item}>
-								{item}
-							</option>
-						))}
-					</select>
+					<div className="w-full">
+						<select
+							className={styleClass.selectClass + ' max-w-[380px]'}
+							value={userLanguage}
+							onChange={(e) => setUserLanguage(e.target.value)}
+							required
+						>
+							{languages.map((item) => (
+								<option key={item} value={item}>
+									{item}
+								</option>
+							))}
+						</select>
+					</div>
 				</div>
 
 				<div className={styleClass.inputGroup}>
@@ -79,7 +81,7 @@ function Preferences({ userLanguage, setUserLanguage }) {
 					<StyledButtonText type="reset">Discard</StyledButtonText>
 					<StyledButton type="submit">
 						{requestPending ? 'Loading...' : 'Save Changes'}
-					</StyledButton>{' '}
+					</StyledButton>
 				</div>
 			</form>
 		</StyledTab>

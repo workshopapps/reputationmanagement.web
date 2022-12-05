@@ -1,22 +1,18 @@
 import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
 import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
 import { DashboardIcon, SettingsIcon, SignoutIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
-import Cookies from 'js-cookie';
+
 
 const Sidebar = (props) => {
-	const router = useNavigate();
+	
 	const { isShowing, toggle } = useLogoutConfirmation();
 
-	const handleLogout = () => {
-		Cookies.remove('repboostAccessToken');
-		localStorage.removeItem('auth');
-		router('/login', { replace: true });
-	};
+	
 
 	return (
 		<StyledSidebar className={props.className}>
@@ -42,7 +38,7 @@ const Sidebar = (props) => {
 						</NavLink>
 					</li>
 					<li>
-						<button onClick={() => handleLogout()}>
+						<button onClick={toggle}>
 							<SignoutIcon />
 							Signout
 						</button>

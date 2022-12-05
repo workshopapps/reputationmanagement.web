@@ -11,6 +11,7 @@ import Arrow from '../../assets/images/arrow-right.png';
 
 
 import Modal from './Modal';
+import { useCallback } from 'react';
 
 const StyledH2 = styled.h2`
 	font-size: 1.6rem;
@@ -21,13 +22,13 @@ function Carrerpg3() {
 	const [openModal, setOpenModal] = useState(false);
 	const [jobDetails, setJobDetails] = useState([]);
 	const { id } = useParams();
-	const getJobDetails = () => {
+	const getJobDetails = useCallback(() => {
 		const result = availableJobs.find((availble) => availble.id === id);
 		setJobDetails(result);
-	};
+	},[ id ])
 	useEffect(() => {
 		getJobDetails();
-	}, []);
+	}, [ getJobDetails ]);
 
 	return (
 		<PageLayout>

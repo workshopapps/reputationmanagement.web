@@ -57,7 +57,13 @@ const Login = () => {
         setRequestSuccess(true)
       }
       catch(err) {
-        setErrMessage('Login failed');
+        if ( err?.response?.status === 400 ){
+          setErrMessage(err?.response?.data)
+        }
+        else{
+          setErrMessage('Login failed');
+        }
+
         setRequestFailed(true)
         console.log(err)
         setRequestPending(false)

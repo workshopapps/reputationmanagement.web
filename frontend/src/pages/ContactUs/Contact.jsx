@@ -400,17 +400,17 @@ const MessageForm = styled(PersonalInfoForm).attrs((props) => ({
 `;
 
 function Contact() {
-	const [contactDetailsFrom, setContactDetailsForm] = useState({
-		name: '',
-		company: '',
-		email: '',
-		phoneNumber: '',
-		mailingAddress: '',
-		country: '',
-		city: '',
-		zipCode: '',
-		message: '',
-	});
+	// const [contactDetailsFrom, setContactDetailsForm] = useState({
+	// 	name: '',
+	// 	company: '',
+	// 	email: '',
+	// 	phoneNumber: '',
+	// 	mailingAddress: '',
+	// 	country: '',
+	// 	city: '',
+	// 	zipCode: '',
+	// 	message: '',
+	// });
 	const contactRef = useRef(null);
 	const messageRef = useRef(null);
 	const [personlForm, setPersonalForm] = useState(true);
