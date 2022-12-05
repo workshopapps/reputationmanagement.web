@@ -36,12 +36,6 @@ function Notifications() {
 		e.preventDefault();
 		setRequestPending(true);
 
-		const data = new FormData(e.target);
-		console.log(data.get('email_complaint'));
-
-		console.log(data);
-		console.log(checkboxGroup);
-
 		ApiPrivate.post('/customer/notifications', { ...checkboxGroup })
 			.then((res) => {
 				setSuccessMessage('Updated successfully');

@@ -25,6 +25,7 @@ function Security() {
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [NewPasswordShown, setNewPasswordShown] = useState(false);
 	const [form, setForm] = useState({});
+	const [twoFA, setTwoFA] = useState(false);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -39,7 +40,6 @@ function Security() {
 			setRequestFailed(true);
 			return;
 		}
-
 		setRequestPending(true);
 		// API request
 		ApiPrivate.post('/auth/change_password', {
@@ -73,7 +73,9 @@ function Security() {
 						text="Two Factor Authentication"
 						sub_text="When enabled, your account is further protected from being hacked"
 					/>
-					<StyledButtonOutline>Enable</StyledButtonOutline>
+					<StyledButtonOutline onClick={() => setTwoFA(!twoFA)}>
+						{twoFA ? 'Disable' : 'Enable'}
+					</StyledButtonOutline>
 				</div>
 
 				<div className="w-full mt-12 mb-8">

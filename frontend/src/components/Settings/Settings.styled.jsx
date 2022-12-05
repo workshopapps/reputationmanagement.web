@@ -37,6 +37,7 @@ export const StyledButtonOutline = styled.div`
 	padding: 10px 25px;
 	border-radius: 3px;
 	text-align: center;
+	user-select: none;
 	cursor: pointer;
 `;
 
