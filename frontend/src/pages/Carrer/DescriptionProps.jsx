@@ -21,11 +21,12 @@ const StyledImg = styled.img`
 function DescriptionProps({ src, title, description }) {
 	return (
 		<div className="descriptions flex flex-col px-6 py-4 max-w-md">
-			<StyledImg src={src} alt="" />
+			<StyledImg  />
 			<StyledHeader className="font-bold">{title}</StyledHeader>
 			<h4>{description}</h4>
 		</div>
 	);
+	// src={src} alt=""
 }
 
 export default DescriptionProps;

@@ -1,34 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Arrow from '../../assets/images/arrow-left.png';
+import Map from '../../assets/images/map.png';
 import styled from 'styled-components';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import PageLayout from '../../layout/PageLayout';
-import { availableJobs } from './jobData';
-import Map from '../../assets/images/map.png';
-// import { GrLocation } from 'react-icons/gr';
-// import { BiArrowBack } from 'react-icons/bi';
-import Arrow from '../../assets/images/arrow-right.png';
-
-
 import Modal from './Modal';
-import { useCallback } from 'react';
 
 const StyledH2 = styled.h2`
 	font-size: 1.6rem;
 	color: #233ba9;
 	padding: 18px 0;
 `;
-function Carrerpg3() {
+function Immigration() {
 	const [openModal, setOpenModal] = useState(false);
-	const [jobDetails, setJobDetails] = useState([]);
-	const { id } = useParams();
-	const getJobDetails = useCallback(() => {
-		const result = availableJobs.find((availble) => availble.id === id);
-		setJobDetails(result);
-	},[ id ])
-	useEffect(() => {
-		getJobDetails();
-	}, [ getJobDetails ]);
 
 	return (
 		<PageLayout>
@@ -44,17 +30,32 @@ function Carrerpg3() {
 					<h3 className="mx-3"> Back to all openings</h3>
 				</Link>
 				<section className="my-5">
-					<h1 className="text-3xl mt-10 font-bold">BUSINESS LAWYER</h1>
+					<h1 className="text-3xl mt-10 font-bold">
+						INTELLECTUAL INJURY LAWYER
+					</h1>
 					<div className="flex gap-2 mt-10">
 						<img src={Map} alt="" className="w-5 h-5" />
 						<h3>Remote</h3>
 					</div>
 					<div className="py-8">
-						<StyledH2 className="font-semibold">Hiring Process</StyledH2>
-						<h4 className="max-w-4xl">{jobDetails.jobDescription}</h4>
+						<StyledH2 className="font-semibold text-justify">
+							Hiring Process
+						</StyledH2>
+						<h4 className="max-w-4xl">
+							We are looking for people who are passionate about the relentless
+							pursuit of perfection; people who are never satisfied, who want to
+							change the world and make it into their own image, who want to
+							leave a mark; people who want to join an exceptional and
+							extraordinary team of individuals creating great products and
+							having an impact on millions of lives across Africa and the world
+							at large; people who are either exceptionally gifted at what they
+							do or want to grow to become exceptionally gifted at what they do.
+						</h4>
 					</div>
 					<div>
-						<StyledH2 className="font-semibold">Requirements</StyledH2>
+						<StyledH2 className="font-semibold text-justify">
+							Requirements
+						</StyledH2>
 						<h4 className="py-4">
 							Here is what we look for when reviewing CVs & Portfolio's to
 							shortlist candidates for interviews:
@@ -80,4 +81,4 @@ function Carrerpg3() {
 	);
 }
 
-export default Carrerpg3;
+export default Immigration;
