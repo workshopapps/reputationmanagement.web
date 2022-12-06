@@ -24,35 +24,48 @@ import {
 	star_icon,
 } from './assets';
 import styled from 'styled-components';
-import Api, { ApiPrivate } from '../../api/axios';
-import { post } from 'internal-slot';
+import { ApiPrivate } from '../../api/axios';
 
 
 const LandingPage = () => {
 
 	const [formData, setFormData] = useState({
-		fullName: "",
-		phone: "",
 		email: "",
-		businessName: "",
-		review: ""
-
+  		phoneNumber: "",
+  		businessName: "",
+  		reviewLocation: ""
 	})
 
-
 	const handleChange = (event) => {
-
-        setFormData({
-            ...formData,
+		
+		setFormData({
+			...formData,
             [event.target.name]: event.target.value
         })
     }
 
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		// await ApiPrivate.post("/api/quote", formData)
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		// console.log(formData)
+		try{
+			const res = await ApiPrivate.post("/quote", formData)
+			// console.log(res.status)
+			if(res.status === 201){
+				alert("Your response has been submitted");
+				setFormData({
+					email: "",
+					phoneNumber: "",
+					businessName: "",
+					reviewLocation: ""
+				})
+			}
+		}catch(error){
+			console.error(error)
+			// return error
+		}
 	}
+
+
 
 	return (
 		<PageLayout>
@@ -72,17 +85,17 @@ const LandingPage = () => {
 
 							<form onSubmit={(e) => handleSubmit(e)}>
 								<div>
-									<input type="text" placeholder="Fullname*" required onChange={handleChange}/>
-									<input type="text" placeholder="Phone*" required onChange={handleChange}/>
+									<input type="text" placeholder="Fullname*"/>
+									<input type="text" placeholder="Phone*" name="phoneNumber" required onChange={handleChange}/>
 								</div>
 								<div>
-									<input type="email" placeholder="Email*" required onChange={handleChange}/>
-									<input type="text" placeholder='Business Name*' required onChange={handleChange}/>
+									<input type="email" placeholder="Email*" name="email" required onChange={handleChange}/>
+									<input type="text" placeholder='Business Name*' name="businessName"required onChange={handleChange}/>
 								</div>
 								<div>
-									<select onChange={handleChange}>
+									<select onChange={handleChange} name="reviewLocation">
 										<option value="1">Where is the review?</option>
-										<option value="2">Google</option>
+										<option value="Google">Google</option>
 									</select>
 								</div>
 
