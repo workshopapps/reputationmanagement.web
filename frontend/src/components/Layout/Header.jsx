@@ -52,7 +52,7 @@ const Header = () => {
 							to="/blog"
 							className={currentRoute === '/blog' ? 'active' : ''}
 						>
-							Blog
+							Pricing
 						</NavLink>
 						<NavLink
 							to="/contact"
