@@ -22,6 +22,7 @@ import john from '../../assets/images/blog_images/images/john.png';
 import teamfooter from '../../assets/images/blog_images/images/teamfooter.jpg';
 import TeamTemplate from './TeamTemplate';
 
+
 const StyledHeader1 = styled.h1`
 	font-size: 30px;
 	font-weight: bold;
@@ -33,6 +34,7 @@ const StyledTeam = styled.span`
 	font-weight: bold;
 	color: #fc9a4a;
 `;
+
 
 // -------SolomonWole work -------
 const StyledBg = styled.div`
@@ -95,43 +97,43 @@ const TeamFooter = styled.div`
 		margin-bottom: 30px;
 	}
 
-	@media screen and (min-width: 589px) {
-		.footImg {
-			height: 300px;
-			min-width: 100%;
-		}
-	}
-	@media screen and (max-width: 584px) {
-		.footImg {
-			height: 350px;
-			min-width: 100%;
-		}
-	}
-	@media screen and (max-width: 433px) {
-		.footImg {
-			height: 380px;
-			min-width: 100%;
-		}
-	}
-	@media screen and (max-width: 355px) {
-		.footImg {
-			height: 400px;
-			min-width: 100%;
-		}
-	}
-	@media screen and (max-width: 307px) {
-		.footImg {
-			height: 450px;
-			min-width: 100%;
-		}
-	}
+    @media screen and (min-width:589px) {
+        .footImg {
+            height: 300px;
+            min-width: 100%;
+        }
+    }
+    @media screen and (max-width:584px) {
+        .footImg {
+            height: 350px;
+            min-width: 100%;
+        }
+    }
+    @media screen and (max-width:433px) {
+        .footImg {
+            height: 380px;
+            min-width: 100%;
+        }
+    }
+    @media screen and (max-width:355px) {
+        .footImg {
+            height: 400px;
+            min-width: 100%;
+        }
+    }
+    @media screen and (max-width:307px) {
+        .footImg {
+            height: 450px;
+            min-width: 100%;
+        }
+    }
 
-	@media screen and (min-width: 1024px) {
-		// .footImg {
-		//     height: 300px;
-		//     min-width: 100%;
-		// }
-	}
+	@media screen and (min-width:1024px) {
+        // .footImg {
+        //     height: 300px;
+        //     min-width: 100%;
+        // }
+    }
 `;
 
 const HeadBg = styled.div`
@@ -140,12 +142,13 @@ const HeadBg = styled.div`
 	padding: 30px 40px;
 	color: #fff;
 	text-align: center;
-	border: none;
-	border-radius: 8px;
+    border: none;
+    border-radius: 8px;
 
-	@media screen and (min-width: 1024px) {
-		padding: 30px 150px;
-	}
+    @media screen and (min-width:1024px) {
+        padding: 30px 150px;
+    }
+    
 `;
 
 function Ourteam() {
@@ -226,45 +229,44 @@ function Ourteam() {
 		},
 	]);
 	return (
-		<>
-			<PageLayout>
-				<StyledBg>
-					<StyledContainer>
-						<HeadBg style={{ maxWidth: '1540px', margin: '0 auto' }}>
-							<StyledHeader1>
-								Meet our <StyledTeam> Team </StyledTeam>
-							</StyledHeader1>
-							<p>
-								Businesses are at the mercy of negative reviews. Words can have
-								devastating impact on brand reputation and can affect future
-								sales and recruitment efforts. Here at Repute, we provide quick
-								and reliable actions to erase negative reviews. Here are the key
-								members that make up the team.
-							</p>
-						</HeadBg>
-					</StyledContainer>
-					<TeamTemplate teamTemplate={teamTemplate} />
-					<TeamFooter>
-						<img src={teamfooter} alt="Team footer" className="footImg" />
-						<div className="footContent">
-							<StyledContainer>
-								<StyledH2Center>
-									Want to be part of something special?
-								</StyledH2Center>
-								<StyledText center>
-									Brand reputation management is our core responsibility and
-									this is made possible by a great team. There really is no
-									company like REPUTE, and you can join us.
-								</StyledText>
-								<Link to="/career">
-									<StyledButton>Get Started</StyledButton>
-								</Link>
-							</StyledContainer>
-						</div>
-					</TeamFooter>
-				</StyledBg>
-			</PageLayout>
-		</>
+        <>
+		<PageLayout>
+			<StyledBg>
+            <StyledContainer>
+				<HeadBg style={{ maxWidth: '1540px', margin: '0 auto'}}>
+					<StyledHeader1>
+						Meet our <StyledTeam> Team </StyledTeam>
+					</StyledHeader1>
+					<p>
+						Businesses are at the mercy of negative reviews. Words can have
+						devastating impact on brand reputation and can affect future sales
+						and recruitment efforts. Here at Fixit, we provide quick and
+						reliable actions to erase negative reviews. Here are the key members
+						that make up the team.
+					</p>
+				</HeadBg>
+                </StyledContainer>
+				<TeamTemplate teamTemplate={teamTemplate}/>
+				<TeamFooter>
+					<img src={teamfooter} alt="Team footer" className="footImg" />
+					<div className="footContent">
+						<StyledContainer>
+							<StyledH2Center>
+								Want to be part of something special?
+							</StyledH2Center>
+							<StyledText center>
+								Brand reputation management is our core responsibility and this
+								is made possible by a great team. There really is no company
+								like Fixit, and you can join us.
+							</StyledText>
+							<Link to="/career">
+								<StyledButton>Get Started</StyledButton>
+							</Link>
+						</StyledContainer>
+					</div>
+				</TeamFooter>
+			</StyledBg>
+		</PageLayout></>
 	);
 }
 

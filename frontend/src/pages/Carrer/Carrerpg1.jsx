@@ -1,6 +1,6 @@
 /** @format */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import pink from '../../assets/images/pinkCircle.png';
 import blue from '../../assets/images/blueCircle.png';
 import styled from 'styled-components';
@@ -81,7 +81,14 @@ const style = {
 	height: '80%',
 };
 
+
+
 function Carrerpg1() {
+
+	useEffect(() => {
+	window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+	}, [])
+	
 	return (
 		<PageLayout>
 			<div className="carrer-landing-pg py-12">
@@ -94,7 +101,7 @@ function Carrerpg1() {
 						<StyledText className="max-w-md mt-3">
 							We are all about growth, and growing with our clients. If you’re
 							looking to hitch your career to a company that’s going places,
-							look no further than Repute.
+							look no further than FIXIT.
 						</StyledText>
 						<div className="btns flex mt-8 flex-col md:flex-row">
 							<Link
@@ -140,12 +147,12 @@ function Carrerpg1() {
 						<DescriptionProps
 							src={pink}
 							title="You with us"
-							description="REPUTE employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
+							description="FIXIT employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
 						/>
 						<DescriptionProps
 							src={blue}
 							title="We are particular about growth"
-							description="REPUTE is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than REPUTE. We aspire to do bigger and better things – and take our growth and performance to new heights."
+							description="FIXIT is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than FIXIT. We aspire to do bigger and better things – and take our growth and performance to new heights."
 						/>
 						<DescriptionProps
 							src={orange}
@@ -276,11 +283,11 @@ function Carrerpg1() {
 				</section>
 				<section className="img-carousel mt-11 py-5 flex flex-col justify-center items-center">
 					<h1 className="text-3xl font-semibold mt-10">
-						Picture yourself as <StyledSpanText>REPUTE</StyledSpanText>
+						Picture yourself as <StyledSpanText>FIXIT</StyledSpanText>
 					</h1>
 					<h6>
 						follow us on instagram:{' '}
-						<StyledSpanTextBlue>@_repute</StyledSpanTextBlue>
+						<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
 					</h6>
 					<div
 						className="image-carousel flex mt-20 items-center justify-center"

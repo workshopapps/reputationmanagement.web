@@ -1,56 +1,24 @@
-import { useNavigate } from "react-router-dom";
-
-const TableData = (props) => {
-	const router = useNavigate();
-	
+const TableData = ({ data }) => {
 	return (
-		<tr onClick={() => router(`/request?requestId=${props.id}`)}>
-			<td>{props.no}</td>
+		<tr>
+			<td>0{data.id}</td>
 
 			<td>
-				<p className={`priority-${props.priority} priority desktop`}>
-					{
-						props.priority === 3
-							?
-							'High'
-							:
-							props.priority === 2
-								?
-								'Medium'
-								:
-								props.priority === 1
-									?
-									'Low'
-									:
-									'Not Urgent'
-					}
-				</p>
-				<span className={`${props.priority} mobile`}></span>
+				<p className={`${data.priority} desktop`}>{data.priority}</p>
+				<span className={`${data.priority} mobile`}></span>
 			</td>
 
 			<td>
-				<p>{props.ticketName}</p>
+				<p>{data.ticketName}</p>
 			</td>
 			<td>
-				<p>{props.dueDate}</p>
+				<p>{data.dueDate}</p>
 			</td>
 			<td>
-				<p>{props.lastUpdated}</p>
+				<p>{data.lastUpdated}</p>
 			</td>
 			<td>
-				<p>
-					{
-						props.status ===  2
-							?
-							'Completedp'
-							:
-							props.status === 1
-								?
-								'In Progress'
-								:
-								'Pending'
-					}
-				</p>
+				<p>{data.status}</p>
 			</td>
 		</tr>
 	);

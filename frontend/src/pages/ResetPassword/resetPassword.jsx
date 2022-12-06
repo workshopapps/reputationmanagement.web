@@ -8,6 +8,7 @@ export default function ResetPassword() {
 
    function handleChange(event){
         setEmail(event.target.value);
+        console.log(event.target.value);
    }
     function handleSubmit(event){
         event.preventDefault();

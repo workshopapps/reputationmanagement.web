@@ -36,7 +36,6 @@ export const FaqWraper = styled.div.attrs((props) => ({
 	}
 
 	p {
-		padding-top:10px;
 		font-weight: 400;
 		font-size: 22px;
 		line-height: 150%;
@@ -90,7 +89,6 @@ export const FaqArrowDown = styled.div.attrs((props) => ({
 		position: absolute;
 		color:#98A2B3;
 		font-weight:200;
-	
 	}
 
 	@media screen and (max-width: 520px) {

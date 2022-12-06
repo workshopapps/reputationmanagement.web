@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { article } from './data';
 import { StyledArticle } from './Support.styled';
 

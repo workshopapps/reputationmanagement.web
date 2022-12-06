@@ -8,7 +8,7 @@ const  Successfulmodal = ({ open, onClose }) => {
     return (
 			<div className="relative">
 				<div className="bg-[#7c7979] z-10 fixed bg-opacity-60 inset-0 flex flex-col justify-center items-center w-full h-full mx-auto ">
-					<div className="lg:w-[55%] w-[80%] absolute rounded-md top-[20%] z-50 lg:left-[25%] left-[10%] bg-white">
+					<div className="lg:w-[55%] w-[80%] absolute rounded-md top-[11%] lg:top-[20%] z-50 lg:left-[25%] left-[10%] bg-white overflow-y">
 						<div className="flex justify-between font-bold p-5">
 							<h1>APPLICATION SENT</h1>
 							<button onClick={onClose}>X</button>
@@ -20,15 +20,16 @@ const  Successfulmodal = ({ open, onClose }) => {
 							<h1 className="text-[#2B2C34] lg:text-4xl text-2xl leading-9 mb-10">
 								Application Sent!
 							</h1>
-							<h4 className="text-[#2B2C34] lg:text-xl text-base leading-8 mb-10 p-3">
+							<h4 className="text-[#2B2C34] lg:text-xl text-base leading-8 mb-10 p-2">
 								Congratulations, we have recieved your application
-								<br /> for a position in REPUTE as a LAWYER. You will be notified by email with
+								<br /> for a position in REPUTE as a LAWYER. You will be
+								notified by email with
 								<br />
 								any update about your application.
 								<br />
 							</h4>
 						</div>
-						<div className="flex justify-center pb-5">
+						<div className="flex justify-center pb-5 -mt-3">
 							<button className="px-5 py-3 bg-[#233BA9] text-white">
 								<Link
 									className="flex "
