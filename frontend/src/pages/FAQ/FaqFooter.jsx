@@ -23,14 +23,14 @@ function FaqFooter() {
 				</FaqFooterHeading>
 
 				<FaqFooterSubHeading>
-				Always send us a message, we will get back to you shortly, Always send us a message , we will get back to you shortly.
+				Always send us a message, we will get back to you shortly.
 				</FaqFooterSubHeading>
 				</FaqHeadingMain>
 
 				<FaqFooterLinks>
 					<FaqFooterLinksParent>
 					<SendMailLink
-						href="mailto:sinachpat@gmail.com"
+						href="https://twitter.com/messages/compose?recipient_id=981997459604934664&text=Hello%20Fixit"
 						background="#233BA9"
 						color="#FFFFFF"
 					>
@@ -49,7 +49,7 @@ function FaqFooter() {
 					<SendMailLink
 						background="transparent"
 						color="#233BA9"
-						href="https://twitter.com/messages/compose?recipient_id=981997459604934664&text=Hello%20Fixit"
+						href="+(234)-7354-1234"
 						className="twitter-dm-button"
 						data-screen-name="@sinachpatrick"
 						target="blank"
@@ -69,7 +69,7 @@ function FaqFooter() {
 					<SendMailLink
 						background="transparent"
 						color="#233BA9"
-						href="https://twitter.com/messages/compose?recipient_id=981997459604934664&text=Hello%20Fixit"
+						href=" mailto:sinachpat@gmail.com"
 						className="twitter-dm-button"
 						data-screen-name="@sinachpatrick"
 						target="blank"
