@@ -35,6 +35,7 @@ function Carrerpg2({DescriptionProps }) {
 	return (
 		<PageLayout>
 			<div>
+			<StyledContainer>
 				<StyledBackGround className="flex flex-col text-white items-center justify-center p-4">
 					<h1 className="text-3xl">All Open Positions</h1>
 					<h5 className="text-center w-3/5 mt-4 py-4">
@@ -44,7 +45,7 @@ function Carrerpg2({DescriptionProps }) {
 					</h5>
 				</StyledBackGround>
 
-				<StyledContainer>
+				
 				{/* search bar  */}
 				<section className="flex flex-row mt-8 justify-center items-center ">
 					<StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full md:w-3/5 lg:w-3/5 scale-75 md:scale-100">
@@ -81,9 +82,9 @@ function Carrerpg2({DescriptionProps }) {
 									Estate Planning Lawyer
 								</option>
 							</StyledSelect>
-							<StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
+							{/* <StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
 								Search
-							</StyledButton>
+							</StyledButton> */}
 						</div>
 					</StyledBox>
 				</section>
