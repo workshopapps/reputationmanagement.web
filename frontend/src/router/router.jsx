@@ -6,7 +6,7 @@ import Carrerpg2 from '../pages/Carrer/Carrerpg2';
 import Faqs from '../pages/FAQ/Faqs';
 import LandingPage from '../pages/LandingPage';
 import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
-import Termsofuse from '../pages/TermsOfUse/TermsOfUse';
+import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
 import LawyerDashboard from '../pages/LawyerDashboard/LawyerDashboard';

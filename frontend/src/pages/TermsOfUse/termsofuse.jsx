@@ -8,7 +8,7 @@ import {
 	MainContent,
 } from './TermsOfUse.styled';
 
-function PrivacyPolicy() {
+function TermsOfUse() {
 	return (
 		<>
 			<PageLayout>
@@ -458,4 +458,4 @@ function PrivacyPolicy() {
 	);
 }
 
-export default PrivacyPolicy;
+export default TermsOfUse;
