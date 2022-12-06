@@ -1,6 +1,7 @@
 import React from 'react';
 import AppProvider from '../context/appContext';
 import Router from '../router/router';
+import * as Sentry from "@sentry/react";
 
 function App() {
 	return (
@@ -11,4 +12,5 @@ function App() {
 		</div>
 	);
 }
-export default App;
+//export default App;
+export default Sentry.withProfiler(App);
