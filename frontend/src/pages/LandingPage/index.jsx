@@ -24,8 +24,7 @@ import {
 	star_icon,
 } from './assets';
 import styled from 'styled-components';
-import Api, { ApiPrivate } from '../../api/axios';
-import { post } from 'internal-slot';
+// import { ApiPrivate } from '../../api/axios';
 
 
 const LandingPage = () => {
@@ -236,9 +235,9 @@ const LandingPage = () => {
 							your business rights.
 						</h4>
 
-						<Link to="get-a-quote">
+						<Link to="contact">
 							<StyledButton className="flex items-center mx-auto">
-								<span>Get a Quote</span>
+								<span>Contact Us</span>
 							</StyledButton>
 						</Link>
 					</div>
