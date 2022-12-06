@@ -15,18 +15,16 @@ import TrustImg from '../img/Trust.png';
 import ProfessionalImg from '../img/Professionalism.png';
 import Convenience from '../img/Convenience.png';
 
-
 export default function Fix() {
 	return (
 		<div data-testid="fixit-element">
 			<StyledFixHeader>
-				Why Choose <StyledColorBlue> Fix</StyledColorBlue>
-				<StyledColor>It</StyledColor>?
+				Why Choose <StyledColorBlue> Repu</StyledColorBlue>
+				<StyledColor>te</StyledColor> ?
 			</StyledFixHeader>
 			<StyledFixBox>
 				<StyledFixCenter>
 					<ImgsContainer>
-				
 						<StyledFixImg src={TrustImg} alt="trust" />
 					</ImgsContainer>
 
@@ -48,7 +46,7 @@ export default function Fix() {
 						<Plato>
 							Our site is quite easy to use through simple steps: sign up, lodge
 							your complaint, then sit back and view the real-time status
-							updates on your dashboard, while we FixIt for you
+							updates on your dashboard, while we fixIt for you
 						</Plato>
 					</StyledFixp>
 				</StyledFixCenter>

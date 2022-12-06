@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/images/repute_logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
-import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
+import { StyledButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
 
 const Header = () => {
@@ -12,11 +12,22 @@ const Header = () => {
 	const location = useLocation();
 	const currentRoute = location.pathname;
 	const router = useNavigate();
+
+	const loggedin = localStorage.getItem('auth');
+
 	return (
-		<header style={{ width: '100vw', position: 'fixed', top: '0', backgroundColor: '#ffffff', zIndex: '5' }}>
+		<header
+			style={{
+				width: '100vw',
+				position: 'fixed',
+				top: '0',
+				backgroundColor: '#ffffff',
+				zIndex: '5',
+			}}
+		>
 			<StyledContainer>
 				<StyledNav className="">
-					<img src={Logo} alt="FixIt" className="logo" />
+					<img src={Logo} alt="Repute" className="logo" />
 
 					<img
 						src={MenuIcon}
@@ -31,9 +42,24 @@ const Header = () => {
 						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink to="/about-us" className={currentRoute === '/about-us' ? 'active' : ''}>About Us</NavLink>
-						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
-						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
+						<NavLink
+							to="/about-us"
+							className={currentRoute === '/about-us' ? 'active' : ''}
+						>
+							About Us
+						</NavLink>
+						<NavLink
+							to="/pricing"
+							className={currentRoute === '/pricing' ? 'active' : ''}
+						>
+							Pricing
+						</NavLink>
+						<NavLink
+							to="/contact"
+							className={currentRoute === '/contact' ? 'active' : ''}
+						>
+							Contact
+						</NavLink>
 						{/* <NavLink to="/dashboard" className={currentRoute === '/dashboard' ? 'active' : ''}>Dashboard</NavLink> */}
 					</div>
 
@@ -41,19 +67,42 @@ const Header = () => {
 						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink to="/about" className={currentRoute === '/about' ? 'active' : ''}>About Us</NavLink>
-						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
-						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
-						<StyledNavButton onClick={() => router('/login')}>Login</StyledNavButton>
-						<StyledNavButton onClick={() => router('/signup')}>Register</StyledNavButton>
+						<NavLink
+							to="/about"
+							className={currentRoute === '/about' ? 'active' : ''}
+						>
+							About Us
+						</NavLink>
+						<NavLink
+							to="/pricing"
+							className={currentRoute === '/pricing' ? 'active' : ''}
+						>
+							Pricing
+						</NavLink>
+						<NavLink
+							to="/contact"
+							className={currentRoute === '/contact' ? 'active' : ''}
+						>
+							Contact
+						</NavLink>
+						{/*
+						<StyledNavButton onClick={() => router('/login')}>
+							Login
+						</StyledNavButton>
+					*/}
+						<StyledNavButton onClick={() => router('/dashboard')}>
+							Dashboard
+						</StyledNavButton>
 					</ul>
 
 					<div className="navButtons">
+						{/*
 						<Link to="/login">
 							<StyledTextButton>Login</StyledTextButton>
 						</Link>
-						<Link to="/signup">
-							<StyledButton>Register</StyledButton>
+						*/}
+						<Link to="/dashboard">
+							<StyledButton>Dashboard</StyledButton>
 						</Link>
 					</div>
 				</StyledNav>
@@ -62,14 +111,14 @@ const Header = () => {
 	);
 };
 const StyledNavButton = styled.button`
-	background: #233BA9;
-    padding: 10px 40px;
-    border-radius: 6px;
-    color: #fff;
-    border: 1px #233BA9 solid;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
+	background: #233ba9;
+	padding: 10px 40px;
+	border-radius: 6px;
+	color: #fff;
+	border: 1px #233ba9 solid;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
 	margin: 14px 0;
 	margin-left: 18px;
 `;

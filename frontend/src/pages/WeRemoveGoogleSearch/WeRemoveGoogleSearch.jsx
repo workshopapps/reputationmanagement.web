@@ -25,37 +25,37 @@ const WeRemoveGoogleSearch = () => {
 		{
 			image: Avater0,
 			name: 'Steve Harry',
-			text: 'FIXIT’s priority on business reputation is top-notch and their services is even better!',
+			text: 'REPUTE’s priority on business reputation is top-notch and their services is even better!',
 			id: 1,
 		},
 		{
 			image: Avater1,
 			name: 'Morgan Troy',
-			text: 'In about a month FIXIT helped my business remove a google search that was a struggle to fix',
+			text: 'In about a month REPUTE helped my business remove a google search that was a struggle to fix',
 			id: 2,
 		},
 		{
 			image: Avater2,
 			name: 'Isaac Christopher',
-			text: 'FIXIT remains the one best solution for business reputation management needs',
+			text: 'REPUTE remains the one best solution for business reputation management needs',
 			id: 3,
 		},
 		{
 			image: Avater3,
 			name: 'Francis Adams',
-			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
+			text: 'REPUTE resolved our google search issues in a couple of days. I’m everly grateful',
 			id: 4,
 		},
 		{
 			image: Avater4,
 			name: 'Anthonia Francis',
-			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
+			text: 'REPUTE resolved our google search issues in a couple of days. I’m everly grateful',
 			id: 5,
 		},
 		{
 			image: Avater5,
 			name: 'Anthonia Francis',
-			text: 'FIXIT resolved our google search issues in a couple of days. I’m everly grateful',
+			text: 'REPUTE resolved our google search issues in a couple of days. I’m everly grateful',
 			id: 6,
 		},
 	]);
@@ -113,7 +113,7 @@ const WeRemoveGoogleSearch = () => {
 						<StyledH3>What wrong google searches can do</StyledH3>
 						<StyledText>
 							It may sound daunting to have anything removed from Google, but
-							FIXIT got you covered
+							REPUTE got you covered
 						</StyledText>
 					</div>
 					<div>
@@ -141,7 +141,7 @@ const WeRemoveGoogleSearch = () => {
 					<div>
 						<StyledH2>Take Adavantage of our Services today</StyledH2>
 						<StyledText2>
-							We do not give half-hearted solutions at FIXIT. Instead than
+							We do not give half-hearted solutions at REPUTE. Instead than
 							covering over the issue, we get rid of it completely. The problems
 							these pages create will persist until they are no longer
 							accessible via Google search results; if we fail to do so, you
@@ -196,7 +196,7 @@ const WeRemoveGoogleSearch = () => {
 							<h2>Thera’s Holdings Ltd</h2>
 							<p>
 								Bad google search results were fixed, and we continue to rely on
-								FIXIT for all reputation problems
+								REPUTE for all reputation problems
 							</p>
 						</div>
 					</StyledBox>
@@ -209,7 +209,7 @@ const WeRemoveGoogleSearch = () => {
 							</h2>
 							<p>
 								Bad google search results were fixed, and we continue to rely on
-								FIXIT for all reputation problems
+								REPUTE for all reputation problems
 							</p>
 						</div>
 					</StyledBox>
@@ -220,7 +220,7 @@ const WeRemoveGoogleSearch = () => {
 							<h2>Andrews consulting</h2>
 							<p>
 								Bad google search results were fixed, and we continue to rely on
-								FIXIT for all reputation problems
+								REPUTE for all reputation problems
 							</p>
 						</div>
 					</StyledBox>

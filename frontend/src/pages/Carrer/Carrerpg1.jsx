@@ -16,9 +16,10 @@ import { Link } from 'react-router-dom';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import DescriptionProps from './DescriptionProps';
 import CarrerLandImg from '../../assets/images/CarrerLand.png';
-import JobProps from './JobProps';
 import Star from '../../assets/images/Vectorstar.png';
 import Star2 from '../../assets/images/Vectorstar2.png';
+import Map from '../../assets/images/map.png';
+import Arrow from '../../assets/images/arrow-right.png';
 
 import PageLayout from '../../layout/PageLayout';
 
@@ -28,6 +29,19 @@ const StyledHeader = styled.h1`
 	font-size: 3.5rem;
 	padding: 4px 0;
 `;
+
+const StyledDivContainer = styled.div`
+	width: 350px;
+	padding: 25px 20px;
+	margin: 10px 0;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	border: 1px solid #e4e4e5;
+`;
+
 const StyledBackGround = styled.section`
 	background: linear-gradient(
 		0deg,
@@ -80,7 +94,7 @@ function Carrerpg1() {
 						<StyledText className="max-w-md mt-3">
 							We are all about growth, and growing with our clients. If you’re
 							looking to hitch your career to a company that’s going places,
-							look no further than FIXIT.
+							look no further than Repute.
 						</StyledText>
 						<div className="btns flex mt-8 flex-col md:flex-row">
 							<Link
@@ -126,12 +140,12 @@ function Carrerpg1() {
 						<DescriptionProps
 							src={pink}
 							title="You with us"
-							description="FIXIT employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
+							description="REPUTE employees recognize their responsibility to uphold the values that have been established over the years. These values outline what we stand for and influence the way we behave, both with our clients and with one another."
 						/>
 						<DescriptionProps
 							src={blue}
 							title="We are particular about growth"
-							description="FIXIT is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than FIXIT. We aspire to do bigger and better things – and take our growth and performance to new heights."
+							description="REPUTE is all about growth, and growing with our clients. If you’re looking to hitch your career to a company that’s going places, look no further than REPUTE. We aspire to do bigger and better things – and take our growth and performance to new heights."
 						/>
 						<DescriptionProps
 							src={orange}
@@ -153,9 +167,99 @@ function Carrerpg1() {
 						good fit for <br /> the position feel free to apply.{' '}
 					</h4>
 					<div className="jobs mt-12 place-items-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 ">
-						<JobProps title={'Software Engineer'} />
-						<JobProps title={'Junior UX Designer'} />
-						<JobProps title={'Senior UX Designer'} />
+						<StyledDivContainer>
+							<h2 className="text-2xl font-bold mt-12">BUSINESS LAWYER</h2>
+
+							<div className=" flex flex-col mt-5 leading-7">
+								<h4>
+									We are currently looking for a with BUSINESS LAWYER vast
+									experience
+								</h4>
+							</div>
+							<div className="flex gap-2 mt-8">
+								<img src={Map} alt="" className="w-full" />
+								<h5 className="mx-2 font-bold">Remote</h5>
+							</div>
+
+							<Link
+								className="my-5"
+								to="/job1"
+								onClick={() => {
+									window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+								}}
+							>
+								<StyledButton
+									outlined
+									className=" flex items-center mt-3 justify-center"
+								>
+									Apply now
+									<img src={Arrow} alt="" className="mx-2" />
+								</StyledButton>
+							</Link>
+						</StyledDivContainer>
+
+						<StyledDivContainer>
+							<h2 className="text-2xl font-bold mt-12">IMMIGRATION LAWYER</h2>
+
+							<div className=" flex flex-col mt-5 leading-7">
+								<h4>
+									We are currently looking for a with IMMIGRATION LAWYER vast
+									experience
+								</h4>
+							</div>
+							<div className="flex gap-2 mt-8">
+								<img src={Map} alt="" className="w-full" />
+								<h5 className="mx-2 font-bold">Remote</h5>
+							</div>
+
+							<Link
+								className="my-5"
+								to="/job2"
+								onClick={() => {
+									window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+								}}
+							>
+								<StyledButton
+									outlined
+									className=" flex items-center mt-3 justify-center"
+								>
+									Apply now
+									<img src={Arrow} alt="" className="mx-2" />
+								</StyledButton>
+							</Link>
+						</StyledDivContainer>
+
+						<StyledDivContainer>
+							<h2 className="text-2xl font-bold mt-10">
+								ESTATE PLANNING LAWYER
+							</h2>
+							<div className=" flex flex-col mt-3">
+								<h4>
+									We are currently looking for a with ESTATE PLANNING LAWYER
+									LAWYER vast experience
+								</h4>
+							</div>
+							<div className="flex gap-2 mt-5">
+								<img src={Map} alt="" className="w-full" />
+								<h5 className="mx-2 font-bold">Remote</h5>
+							</div>
+
+							<Link
+								className="my-5"
+								to="/job3"
+								onClick={() => {
+									window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+								}}
+							>
+								<StyledButton
+									outlined
+									className=" flex items-center mt-1 justify-center"
+								>
+									Apply now
+									<img src={Arrow} alt="" className="mx-2" />
+								</StyledButton>
+							</Link>
+						</StyledDivContainer>
 					</div>
 					<div className="flex items-center justify-center">
 						<Link
@@ -172,11 +276,11 @@ function Carrerpg1() {
 				</section>
 				<section className="img-carousel mt-11 py-5 flex flex-col justify-center items-center">
 					<h1 className="text-3xl font-semibold mt-10">
-						Picture yourself as <StyledSpanText>FIXIT</StyledSpanText>
+						Picture yourself as <StyledSpanText>REPUTE</StyledSpanText>
 					</h1>
 					<h6>
 						follow us on instagram:{' '}
-						<StyledSpanTextBlue>@_fixit</StyledSpanTextBlue>
+						<StyledSpanTextBlue>@_repute</StyledSpanTextBlue>
 					</h6>
 					<div
 						className="image-carousel flex mt-20 items-center justify-center"

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
 import Sidebar from '../../components/Reusables/Sidebar';
@@ -11,14 +10,14 @@ import {
 } from '../../components/Dashboard/Styles/Dashboard.styled';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import RequestFailed from '../../components/request status/requestFailed';
 
 const RequestForm = () => {
-	const router = useNavigate();
 	const [openMenu, setOpenMenu] = useState(false);
 	const [rating, setRating] = useState(0); ///set initial state for rating
 
 	//const [checked, setChecked] = useState(false);
-	// const [name, setName] = useState("");
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
@@ -26,7 +25,7 @@ const RequestForm = () => {
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const { setRequestSuccessfulModalActive, allRequests, setAllRequests } =
+	const { setRequestSuccessfulModalActive, setErrMessage, setRequestFailed } =
 		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
@@ -42,7 +41,6 @@ const RequestForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setRequestSuccessfulModalActive(true);
 		try {
 			  const response = await ApiPrivate.post('/review', {
 			    email: email,
@@ -53,28 +51,36 @@ const RequestForm = () => {
 			    businesstype: businesstype,
 			    priority: priority,
 			    status: 0,
+				complainerName: name,
 			  }
 			);
 			console.log(response)
-			setAllRequests((prev) => {
-				return [
-					...prev,
-					{
-						id: prev.length + 1,
-						no: allRequests.length + 1,
-						priority: priority,
-						ticketName: websitename,
-						source: websitename,
-						dueDate: 'Today',
-						lastUpdated: 'Now',
-						status: 'Pending',
-					},
-				];
-			});
-			setRequestSuccessfulModalActive(true)
-			router('/request-successful')
+			setRequestSuccessfulModalActive(true);
 			clearForm();
 		} catch (err) {
+			setRequestFailed(true)
+			if (err?.response?.status === 400 ){
+				err.response?.data?.errors.email
+					?
+					setErrMessage(err.response?.data?.errors.email)
+					:
+					err.response?.data?.errors?.reviewString
+						?
+						setErrMessage('The review field is required')
+						:
+						err.response?.data?.errors?.websiteName
+							?
+							setErrMessage('The website name field is required')
+							:
+							err.response?.data?.error?.businessType
+								?
+								setErrMessage('The business type is required')
+								:
+								setErrMessage('Server error')
+			}
+			else{
+				setErrMessage("Couldn't fetch requests")
+			}
 			setRequestSuccessfulModalActive(false);
 			console.log(err);
 		}
@@ -82,6 +88,7 @@ const RequestForm = () => {
 
 	return (
 		<>
+			<RequestFailed/>
 			<StyledDashboard>
 				<Sidebar
 					className={`${openMenu ? 'open' : ''}`}
@@ -90,22 +97,20 @@ const RequestForm = () => {
 				<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
 				<StyledContainer>
 					<StyledContainers className="container">
-						<span className="container-title1">Request Removal Form</span>
 
-						<h2 className="container-title">Kindly Fill in your complain</h2>
+						<h2 className="container-title">Kindly Fill in Your Request</h2>
 						{/********************START OF FORM*************************************************/}
 						<form className="form">
 							<h4 className="form-heading">
-								Filling in the customer that drop the bad reviews data and the
-								review dropped
+								Fill in the details of the individual that drop the bad review and the review
 							</h4>
 
 							{/********************START OF FORM SECTION A*************************************************/}
 							<div className="form-section-a">
-								{/* <div className='text-input'>
-              <label htmlFor="_name"> Name</label>
-              <input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter Your Full Name" id="name" required />
-            </div> */}
+								<div className='text-input'>
+									<label htmlFor="_name"> Name</label>
+									<input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name of the complainer" id="name" required />
+								</div>
 
 								<div className="text-input">
 									<label htmlFor="email">Email Address</label>
@@ -207,25 +212,25 @@ const RequestForm = () => {
 									<div>
 										<Checkbox
 											label="High"
-											onClick={() => setPriority('High')}
+											onClick={() => setPriority(3)}
 										/>
 									</div>
 
 									<div>
 										<Checkbox
 											label="Medium"
-											onClick={() => setPriority('Medium')}
+											onClick={() => setPriority(2)}
 										/>
 									</div>
 
 									<div>
-										<Checkbox label="Low" onClick={() => setPriority('Low')} />
+										<Checkbox label="Low" onClick={() => setPriority(0)} />
 									</div>
 
 									<div>
 										<Checkbox
 											label="Not urgent"
-											onClick={() => setPriority('Not Urgent')}
+											onClick={() => setPriority(0)}
 										/>
 									</div>
 								</div>
@@ -262,7 +267,8 @@ const StyledContainers = styled.div`
 	}
 	.container-title {
 		font-size: 24px;
-		margin-top: 40px;
+		margin-top: 32px;
+		margin-bottom: 1rem;
 	}
 
 	.form {

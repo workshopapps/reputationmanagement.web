@@ -4,7 +4,6 @@ import AboutPage from '../pages/AboutUs/AboutPage';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
 import Faqs from '../pages/FAQ/Faqs';
-import Carrerpg3 from '../pages/Carrer/Carrerpg3';
 import LandingPage from '../pages/LandingPage';
 import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
@@ -34,6 +33,20 @@ import Contact from '../pages/ContactUs/Contact';
 import ModalLayout from '../layout/modalLayout';
 import BlogPost from '../pages/Blog/Blog-Post/BlogPost';
 import BlogSeeAll from '../pages/Blog/Blog-See All/BlogSeeAll';
+import Job1 from '../pages/Carrer/Job1';
+import Job2 from '../pages/Carrer/Job2';
+import Job3 from '../pages/Carrer/Job3';
+import Job4 from '../pages/Carrer/Job4';
+import Job5 from '../pages/Carrer/Job5';
+import Job6 from '../pages/Carrer/Job6';
+import Job7 from '../pages/Carrer/Job7';
+import Job8 from '../pages/Carrer/Job8';
+import Job9 from '../pages/Carrer/Job9';
+import Job10 from '../pages/Carrer/Job10';
+import Job11 from '../pages/Carrer/Job11';
+import Job12 from '../pages/Carrer/Job12';
+import RequestDetails from '../pages/Request Details/requestDetails';
+
 
 const Router = () => {
 	return (
@@ -46,6 +59,7 @@ const Router = () => {
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
+						<Route path="/request" element={<RequestDetails />} />
 						<Route
 							path="/request-successful"
 							element={<RequestSuccessfulSm />}
@@ -68,8 +82,21 @@ const Router = () => {
 					<Route path="/privacy" element={<PrivacyPolicy />} />
 					<Route path="/get-a-quote" element={<GetAQuote />} />
 					<Route path="/career" element={<Carrerpg1 />} />
+					<Route path="/job1" element={<Job1 />} />
+					<Route path="/job2" element={<Job2 />} />
+					<Route path="/job3" element={<Job3 />} />
+					<Route path="/job4" element={<Job4 />} />
+					<Route path="/job5" element={<Job5 />} />
+					<Route path="/job6" element={<Job6 />} />
+					<Route path="/job7" element={<Job7 />} />
+					<Route path="/job8" element={<Job8 />} />
+					<Route path="/job9" element={<Job9 />} />
+					<Route path="/job10" element={<Job10 />} />
+					<Route path="/job11" element={<Job11 />} />
+					<Route path="/job12" element={<Job12 />} />
+
 					<Route path="/carrer-pg-2" element={<Carrerpg2 />} />
-					<Route path="/carrer-pg-2/:id" element={<Carrerpg3 />} />
+					{/* <Route path="/carrer-pg-2/:id" element={<job1 />} /> */}
 					<Route path="/FAQ" element={<Faqs />} />
 					<Route path="/glassdoor" element={<GlassDoor />} />
 					<Route path="/profile" element={<Profile />} />

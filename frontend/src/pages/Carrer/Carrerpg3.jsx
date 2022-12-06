@@ -4,8 +4,11 @@ import { Link, useParams } from 'react-router-dom';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import PageLayout from '../../layout/PageLayout';
 import { availableJobs } from './jobData';
-import { GrLocation } from 'react-icons/gr';
-import { BiArrowBack } from 'react-icons/bi';
+import Map from '../../assets/images/map.png';
+// import { GrLocation } from 'react-icons/gr';
+// import { BiArrowBack } from 'react-icons/bi';
+import Arrow from '../../assets/images/arrow-right.png';
+
 
 import Modal from './Modal';
 import { useCallback } from 'react';
@@ -31,22 +34,22 @@ function Carrerpg3() {
 		<PageLayout>
 			<section className="p-8">
 				<Link
-					className="flex items-center text-lg my-12 "
+					className="flex my-5 "
 					to="/carrer-pg-2"
 					onClick={() => {
 						window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 					}}
 				>
-					<BiArrowBack className="text-lg" />
-					<h3 className="mx-3"> Back to all openeings</h3>
+					<img src={Arrow} alt="" />
+					<h3 className="mx-3"> Back to all openings</h3>
 				</Link>
 				<section className="my-5">
-					<h1 className="text-3xl">Junior UX Designer</h1>
-					<div className="flex items-center mt-4">
-						<GrLocation className="mr-2 text-lg" />
-						<h3 className="text-lg">Remote</h3>
+					<h1 className="text-3xl mt-10 font-bold">BUSINESS LAWYER</h1>
+					<div className="flex gap-2 mt-10">
+						<img src={Map} alt="" className="w-5 h-5" />
+						<h3>Remote</h3>
 					</div>
-					<div className="py-4">
+					<div className="py-8">
 						<StyledH2 className="font-semibold">Hiring Process</StyledH2>
 						<h4 className="max-w-4xl">{jobDetails.jobDescription}</h4>
 					</div>
@@ -56,14 +59,15 @@ function Carrerpg3() {
 							Here is what we look for when reviewing CVs & Portfolio's to
 							shortlist candidates for interviews:
 						</h4>
-						<ul className="py-6 list-disc mx-5">
-							{jobDetails.jobRequirements?.map((requiremnt, i) => {
-								return <li key={i}>{requiremnt}</li>;
-							})}
+						<ul className="py-6 list-disc mx-12">
+							<li>Relevant experience in the role you are applying for</li>
+							<li>Volunteer experience</li>
+							<li>Relevant industry experience</li>
+							<li>High IQ and EQ</li>
 						</ul>
 					</div>
 					<h3 className="py-7">
-						Cash compensation range:{' '}
+						Cash compensation range
 						<span className="font-bold">150000-200000 USD Annually</span>
 					</h3>
 					<StyledButton onClick={() => setOpenModal(true)} className="my-8">
