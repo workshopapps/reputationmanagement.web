@@ -96,8 +96,8 @@ workflows:
           requires: [build-frontend]
       - scan-frontend:
           requires: [build-frontend]
-      - build-frontend-docker-image:
-          requires: [test-frontend, scan-frontend] #remember to channge to test
-          filters:
-            branches:
-              only: [dev]
+     # - build-frontend-docker-image:
+      #    requires: [test-frontend, scan-frontend] #remember to channge to test
+       #   filters:
+        #    branches:
+         #     only: [dev]
