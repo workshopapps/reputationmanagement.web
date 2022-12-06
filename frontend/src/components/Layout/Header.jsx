@@ -47,8 +47,20 @@ const Header = () => {
 						<NavLink to="/about" className={currentRoute === '/about' ? 'active' : ''}>About Us</NavLink>
 						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
 						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
-						{/* <StyledNavButton onClick={() => router('/login')}>Login</StyledNavButton> */}
-						{/* <StyledNavButton onClick={() => router('/signup')}>Register</StyledNavButton> */}
+						{loggedin ? (
+							<StyledNavButton onClick={() => router('/dashboard')}>
+								Dashboard
+							</StyledNavButton>
+						) : (
+							<>
+								<StyledNavButton onClick={() => router('/login')}>
+									Login
+								</StyledNavButton>
+								<StyledNavButton onClick={() => router('/signup')}>
+									Register
+								</StyledNavButton>
+							</>
+						)}
 					</ul>
 					{loggedin ? (
 						<div className="navButtons">

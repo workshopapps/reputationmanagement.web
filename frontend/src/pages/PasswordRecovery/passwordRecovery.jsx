@@ -28,7 +28,7 @@ export default function PasswordRecovery() {
 					position: 'top-left',
 					autoClose: 2000,
 				});
-				localStorage.setItem('auth', email);
+				localStorage.setItem('forgot', email);
 				setEmail('');
 				navigate('/password-recovery/change');
 			}

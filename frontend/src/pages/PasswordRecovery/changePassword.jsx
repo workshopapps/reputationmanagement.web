@@ -43,7 +43,7 @@ export default function ChangePassword() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const email = localStorage.getItem('auth');
+		const email = localStorage.getItem('forgot');
 
 		if (password !== confirmPassword) {
 			toast.error('Password does not match', {
@@ -60,7 +60,7 @@ export default function ChangePassword() {
 			});
 
 			if ((await response).status === 200) {
-				localStorage.clear('auth', email);
+				localStorage.clear('forgot', email);
 				setToken('');
 				setPassword('');
 				setConfirmPassword('');
