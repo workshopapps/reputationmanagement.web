@@ -1,51 +1,37 @@
 /** @format */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	StyledButton,
 	// StyledTextButton,
 } from '../../components/Styles/Body/Button.styled';
 import SearchIcon from '../../assets/images/Search.png';
-
 import styled from 'styled-components';
 import PageLayout from '../../layout/PageLayout';
 import Modal from './Modal';
 import { Link } from 'react-router-dom';
-import Map from '../../assets/images/map.png';
-import Arrow from '../../assets/images/arrow-right.png';
+import OpeningTemplate from './template/OpeningTemplate';
+import data from './template/Data';
 
-
-
-
-const StyledBackGround = styled.section`
-	background: #233ba9;
-	border-radius: 8px;
-`;
-
-const StyledBox = styled.div`
-	background: #ffffff;
-
-	border: 1px solid #d2d3d4;
-	border-radius: 4px;
-`;
-const StyledSelect = styled.select`
-	border: 1px solid #d4d4d4;
-	border-radius: 4px;
-`;
-
-const StyledDivContainer = styled.div`
-	width: 350px;
-	padding: 25px 20px;
-	margin: 10px 0;
-	height: 300px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	border: 1px solid #e4e4e5;
-`;
 
 function Carrerpg2({DescriptionProps }) {
+	const [openings, setOpenings] = useState(data);
+	const [searchTerm, setSearchTerm] = useState('');
+	useEffect(() => {
+		if (searchTerm === '') {
+			setOpenings(data);
+		} else {
+			const bla = data.filter((open) =>
+				open.title.toLowerCase().includes(searchTerm.toLowerCase())
+			);
+			setOpenings(bla);
+		}
+	}, [searchTerm]);
+
+	const searchChange = (e) => {
+		setSearchTerm(e.target.value);
+	};
+
 	return (
 		<PageLayout>
 			<div>
@@ -57,6 +43,9 @@ function Carrerpg2({DescriptionProps }) {
 						can be all proud of.
 					</h5>
 				</StyledBackGround>
+
+				<StyledContainer>
+				{/* search bar  */}
 				<section className="flex flex-row mt-8 justify-center items-center ">
 					<StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full md:w-3/5 lg:w-3/5 scale-75 md:scale-100">
 						<div className="flex justify-center items-center ">
@@ -98,8 +87,10 @@ function Carrerpg2({DescriptionProps }) {
 						</div>
 					</StyledBox>
 				</section>
+				{/* search bar  */}
+
 				<section className="my-11 px-12">
-					<div className="flex justify-between items-center">
+					<div className="lg:flex block justify-between items-center">
 						<h2 className="font-bold text-xl">Browse Open Positions</h2>
 						<div className="hidden lg:block">
 							<div className="flex items-center justify-center ">
@@ -183,379 +174,12 @@ function Carrerpg2({DescriptionProps }) {
 						</div>
 					</div>
 				</section>
-				<section className="jobs-grid place-items-center grid lg:grid-cols-3  grid-cols-1 gap-4">
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-12">BUSINESS LAWYER</h2>
 
-						<div className=" flex flex-col mt-5 leading-7">
-							<h4>
-								We are currently looking for a with BUSINESS LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-8">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
+				<StyledGrid>
+						<OpeningTemplate openings={openings} searchTerm={searchTerm} />
+					</StyledGrid>
+				</StyledContainer>
 
-						<Link
-							className="my-5"
-							to="/job1"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-3 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-12">IMMIGRATION LAWYER</h2>
-
-						<div className=" flex flex-col mt-5 leading-7">
-							<h4>
-								We are currently looking for a with IMMIGRATION LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-8">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job2"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-3 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-10">ESTATE PLANNING LAWYER</h2>
-						<div className=" flex flex-col mt-3">
-							<h4>
-								We are currently looking for a with ESTATE PLANNING LAWYER
-								LAWYER vast experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-5">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job3"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-1 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-10">
-							CRIMINAL DEFENSE LAWYER
-						</h2>
-						<div className=" flex flex-col mt-3">
-							<h4>
-								We are currently looking for a with CRIMINAL DEFENSE LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-5">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job4"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-1 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-10">
-							EMPLOYMENT AND LABOR LAWYER
-						</h2>
-						<div className=" flex flex-col mt-3">
-							<h4>
-								We are currently looking for a with EMPLOYMENT AND LABOR LAWYER
-								vast experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-5">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job5"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-1 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-12">CONSTITUTION LAWYER</h2>
-
-						<div className=" flex flex-col mt-5 leading-7">
-							<h4>
-								We are currently looking for a with CONSTITUTION LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-8">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job6"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-4 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-12">BANKRUPTCY LAWYER</h2>
-
-						<div className=" flex flex-col mt-5 leading-7">
-							<h4>
-								We are currently looking for a with BANKRUPTCY LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-8">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job7"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-3 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-12">FAMILY LAWYER</h2>
-
-						<div className=" flex flex-col mt-5 leading-7">
-							<h4>
-								We are currently looking for a with FAMILY LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-8">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job8"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-3 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-12">TAX LAWYER</h2>
-
-						<div className=" flex flex-col mt-5 leading-7">
-							<h4>
-								We are currently looking for a with TAX LAWYER vast experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-8">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job9"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-3 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-10">PERSONAL INJURY LAWYER</h2>
-						<div className=" flex flex-col mt-2 leading-7">
-							<h4>
-								We are currently looking for a with PERSONAL INJURY LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-3">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job10"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-1 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-10">ENTERTAINMENT LAWYER</h2>
-
-						<div className=" flex flex-col mt-8 leading-7">
-							<h4>
-								We are currently looking for a with ENTERTAINMENT LAWYER vast
-								experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-8">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job11"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-1 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-
-					<StyledDivContainer>
-						<h2 className="text-2xl font-bold mt-10">
-							INTELLECTUAL INJURY LAWYER
-						</h2>
-						<div className=" flex flex-col mt-3">
-							<h4>
-								We are currently looking for a with INTELLECTUAL INJURY LAWYER
-								vast experience
-							</h4>
-						</div>
-						<div className="flex gap-2 mt-5">
-							<img src={Map} alt="" className="w-full" />
-							<h5 className="mx-2 font-bold">Remote</h5>
-						</div>
-
-						<Link
-							className="my-5"
-							to="/job12"
-							onClick={() => {
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-							}}
-						>
-							<StyledButton
-								outlined
-								className=" flex items-center mt-1 justify-center"
-							>
-								Apply now
-								<img src={Arrow} alt="" className="mx-2" />
-							</StyledButton>
-						</Link>
-					</StyledDivContainer>
-				</section>
 				<section className=" mt-11 block lg:hidden">
 					<div className="flex items-center justify-center">
 						<Link
@@ -576,5 +200,49 @@ function Carrerpg2({DescriptionProps }) {
 		</PageLayout>
 	);
 }
+
+// Styling 
+
+const StyledContainer = styled.div`
+	max-width: 1240px;
+	margin: 0 auto;
+
+	@media screen and (max-width: 1280px) {
+		padding: 0 20px;
+	}
+`;
+
+const StyledGrid = styled.div`
+	display: grid;
+	-moz-column-gap: 16px;
+	column-gap: 16px;
+	row-gap: 16px;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin-bottom: 50px;
+
+	@media screen and (max-width: 894px) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	@media screen and (max-width: 612px) {
+		grid-template-columns: 1fr;
+	}
+`;
+
+const StyledBackGround = styled.section`
+	background: #233ba9;
+	border-radius: 8px;
+`;
+
+const StyledBox = styled.div`
+	background: #ffffff;
+
+	border: 1px solid #d2d3d4;
+	border-radius: 4px;
+`;
+const StyledSelect = styled.select`
+	border: 1px solid #d4d4d4;
+	border-radius: 4px;
+`;
 
 export default Carrerpg2;
