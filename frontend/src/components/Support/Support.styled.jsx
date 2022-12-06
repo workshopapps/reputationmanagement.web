@@ -141,7 +141,7 @@ export const StyledQuestion = styled.section`
 	.cta {
 		margin-top: 3rem;
 	}
-	h4 {
+	a {
 		font-size: 1.4rem !important;
 		margin-bottom: 1rem;
 	}
