@@ -17,7 +17,9 @@ const Question = () => {
 					<div className="flex my-2">
 						<img src={mail} alt="mail" width="20%" />
 						<div className="px-7">
-							<h4 className="font-bold">Live Chat</h4>
+							<a href="./live-chat" className="font-bold">
+								Live Chat
+							</a>
 							<p className="">Get one -on-one support now</p>
 						</div>
 					</div>
@@ -25,7 +27,9 @@ const Question = () => {
 					<div className="flex my-2">
 						<img src={call} alt="mail" width="20%" />
 						<div className="px-7">
-							<h4 className="font-bold">Call Support</h4>
+							<a href="tel:+(234)-7354-1234" className="font-bold">
+								Call Support
+							</a>
 							<p className="">Call +(234)-7354-1234</p>
 						</div>
 					</div>
