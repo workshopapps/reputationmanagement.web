@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/Dashboard/logo.png';
 import menu from '../../assets/images/Dashboard/menu.jpg';
 import message from '../../assets/images/Dashboard/message.svg';
@@ -16,8 +16,10 @@ import {
 } from '../Styles/WebAppNav.styled';
 
 const WebAppNav = (props) => {
+	const currentRoute = useLocation();
 	return (
 		<StyledWebAppNav>
+			{ (currentRoute.pathname === '/request-form' ||  currentRoute.pathname === '/request-form') && <h3>Request Removal Form</h3>}
 			<LogoContainer>
 				<div>
 					<img src={menu} alt="" onClick={props.openMenuHandler} />
@@ -41,6 +43,7 @@ const WebAppNav = (props) => {
 					</div>
 
 					<img src={human} alt="" />
+					{ (currentRoute.pathname === '/request-form' ||  currentRoute.pathname === '/request-form') && <p>Mr Team Socket</p>}
 				</ProfilePictureContainer>
 			</NavItems>
 		</StyledWebAppNav>

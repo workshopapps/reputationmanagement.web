@@ -12,11 +12,33 @@ export const StyledWebAppNav = styled.nav`
 		border-bottom: 1px solid #d2d3d4;
 		padding: 16px 19px;
 		margin-bottom: 16px;
+		h3,p{
+			display: none;
+		}
 	}
 
 	@media (max-width: 820px) {
 		padding-left: 12px;
 		padding-right: 12px;
+	}
+	h3{
+		font-family: Lato;
+		font-size: 22px;
+		font-weight: 600;
+		line-height: 33px;
+		letter-spacing: 0em;
+		text-align: left;
+		color: #2B2C34;
+		margin-left: 3rem;
+	}
+	p{
+		font-family: Lato;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 21px;
+		letter-spacing: 0em;
+		text-align: left;
+		color: #2B2C34;
 	}
 `;
 

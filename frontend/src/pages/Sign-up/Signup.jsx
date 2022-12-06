@@ -77,17 +77,18 @@ function Signup() {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/auth/create_account', {
-					email: email,
-					password: password,
-					businessEntityName: businessName,
-				});
-				console.log(response);
-				localStorage.setItem('auth', email);
-				Cookies.set('reputeAccessToken', response?.data);
-				setRequestPending(false);
-				setSuccessMessage('Account Created');
-				setRequestSuccess(true);
+				const response = await Api.post('/auth/create_account',
+					{
+						email: email,
+						password: password,
+						businessEntityName: businessName,
+					}
+				)
+				localStorage.setItem('auth', email)
+				Cookies.set('reputeAccessToken', response?.data)
+				setRequestPending(false)
+				setSuccessMessage('Account Created')
+				setRequestSuccess(true)
 				clearForm();
 				router('/dashboard');
 			} catch (err) {

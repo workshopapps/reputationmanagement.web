@@ -6,7 +6,7 @@ import RequestSuccess from "../components/request status/RequestSuccess";
 import useAppContext from '../hooks/useAppContext'
 import RequestSuccessful from "../modal/request-successful/requestSuccessful";
 
-const ModalLayout = ({children}) => {
+const ModalLayout = () => {
     const { setRequestSuccess, requestSuccess, setRequestFailed, requestFailed, errMessage, successMessage, requestSuccessfulModalActive } = useAppContext();
     return(
         <StyledLayout>

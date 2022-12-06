@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
 import Sidebar from '../../components/Reusables/Sidebar';
@@ -11,8 +11,9 @@ import {
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
+import { useLocation } from 'react-router-dom';
 
-const RequestForm = () => {
+const RequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [rating, setRating] = useState(0); ///set initial state for rating
 
@@ -20,12 +21,11 @@ const RequestForm = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
-	const [time, setTime] = useState('');
 	const [priority, setPriority] = useState(0);
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const { setRequestSuccessfulModalActive, setErrMessage, setRequestFailed } =
+	const { setRequestSuccessfulModalActive, setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage } =
 		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
@@ -39,12 +39,50 @@ const RequestForm = () => {
 		setBusinessType();
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+    const location = useLocation()
+    const requestId = new URLSearchParams(location.search).get('requestId');
+
+    const fetchComplaintDetails = useCallback(async() => {
+        try{
+            const response = await ApiPrivate.get(`review/${requestId}`)
+            console.log(response)
+            setEmail(response?.data?.email)
+            setPriority(response?.data?.priority)
+            setRating(response?.data?.rating)
+            setReview(response?.data?.reviewString)
+            setPriority(response?.data?.status)
+            setWebsiteName(response?.data?.websiteName)
+            setDate(response?.data?.lastUpdated)
+        }
+        catch(err){
+            setErrMessage("can't get details of request")
+            setRequestFailed(true)
+            console.log(err)
+        }
+    },[ ApiPrivate,requestId, setErrMessage, setRequestFailed ])
+
+    const handleDelete = async() => {
+        try{
+            const response = await ApiPrivate.delete(`/api/review/${requestId}`)
+            setSuccessMessage('Request deleted successfully')
+            setRequestSuccess(true)
+            console.log(response)
+        }
+        catch(err){
+            console.log(err)
+            setErrMessage('Unable to delete request')
+            setRequestFailed(true)
+        }
+    }
+
+    useEffect(() => {
+        fetchComplaintDetails();
+    },[ fetchComplaintDetails ])
+
+	const handleSubmit = async () => {
 		try {
 			  const response = await ApiPrivate.post('/review', {
 			    email: email,
-			    timeOfReview: time + date,
 			    reviewString: review,
 			    rating: rating,
 			    websitename: websitename,
@@ -85,7 +123,10 @@ const RequestForm = () => {
 			console.log(err);
 		}
 	};
-
+    useEffect(() => {
+        console.log(date)
+        console.log(date.substring(11,16))
+    },[date])
 	return (
 		<>
 			<RequestFailed/>
@@ -98,11 +139,11 @@ const RequestForm = () => {
 				<StyledContainer>
 					<StyledContainers className="container">
 
-						<h2 className="container-title">Kindly Fill in Your Request</h2>
+						<h2 className="container-title">Complaint Details</h2>
 						{/********************START OF FORM*************************************************/}
 						<form className="form">
 							<h4 className="form-heading">
-								Fill in the details of the individual that drop the bad review and the review
+                                Details of the complainer
 							</h4>
 
 							{/********************START OF FORM SECTION A*************************************************/}
@@ -132,8 +173,8 @@ const RequestForm = () => {
 											type="date"
 											name="date"
 											id="date"
-											onChange={(e) => setDate(e.target.value)}
-											required
+                                            value={date.substring(0,10) || ''}
+											readOnly
 										/>
 									</div>
 
@@ -144,7 +185,8 @@ const RequestForm = () => {
 											name="time"
 											id="time"
 											required
-											onChange={(e) => setTime(e.target.value)}
+                                            value={date.substring(11,16)}
+                                            reaOonly
 										/>
 									</div>
 								</div>
@@ -237,14 +279,11 @@ const RequestForm = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								<button
-									onClick={(e) => {
-										e.preventDefault();
-										handleSubmit(e);
-									}}
-									type="submit"
-								>
-									Submit
+                                <button className='delete' onClick={() => handleDelete()}>
+                                    Delete
+								</button>
+								<button onClick={() => handleSubmit()}>
+                                    Save Changes
 								</button>
 							</div>
 						</form>
@@ -255,7 +294,7 @@ const RequestForm = () => {
 	);
 };
 
-export default RequestForm;
+export default RequestDetails;
 
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
@@ -422,6 +461,21 @@ const StyledContainers = styled.div`
 					background: #0a1d88;
 				}
 			}
+            .delete{
+                height: 59px;
+                width: 220px;
+                border-radius: 4px;
+                border: 1px solid rgba(240, 55, 56, 1);
+                font-family: Lato;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 27px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: rgba(240, 55, 56, 1);
+                background-color: transparent;
+                margin-right: 16px;
+            }
 
 			@media (max-width: 500px) {
 				justify-content: center;

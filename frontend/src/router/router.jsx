@@ -45,6 +45,7 @@ import Job9 from '../pages/Carrer/Job9';
 import Job10 from '../pages/Carrer/Job10';
 import Job11 from '../pages/Carrer/Job11';
 import Job12 from '../pages/Carrer/Job12';
+import RequestDetails from '../pages/Request Details/requestDetails';
 
 
 const Router = () => {
@@ -58,6 +59,7 @@ const Router = () => {
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
+						<Route path="/request" element={<RequestDetails />} />
 						<Route
 							path="/request-successful"
 							element={<RequestSuccessfulSm />}

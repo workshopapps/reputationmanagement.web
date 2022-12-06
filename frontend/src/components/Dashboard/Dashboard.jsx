@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Sidebar from '../Reusables/Sidebar';
 import WebAppNav from '../Reusables/WebAppNav';
 import { useState } from 'react';
@@ -22,8 +22,30 @@ import searchBtn from '../../assets/images/Dashboard/search.svg';
 import TableData from './TableData';
 import { NavLink } from 'react-router-dom';
 import useAppContext from '../../hooks/useAppContext';
+import { useEffect } from 'react';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Dashboard = () => {
+
+	const { setRequestFailed, setAllRequests, setErrMessage } = useAppContext();
+
+	const ApiPrivate = useAxiosPrivate();
+
+	const fetchAllRequests = useCallback(async() => {
+		try{
+			const response = await ApiPrivate.get('/reviews?pageNumber=0&pageSize=10')
+			setAllRequests(response?.data)
+		}
+		catch(err){
+			console.log(err)
+			setErrMessage("Couldn't fetch requests")
+			setRequestFailed(true)
+		}
+	},[ ApiPrivate, setAllRequests, setErrMessage, setRequestFailed ])
+
+	useEffect(() => {
+		fetchAllRequests()
+	},[ fetchAllRequests ])
 	const [openMenu, setOpenMenu] = useState(false);
 	const [searchTicket, setSearchTicket] = useState('');
 	const { allRequests } = useAppContext();
@@ -113,8 +135,12 @@ const Dashboard = () => {
 
 									return data;
 								})
-								.map((data) => {
-									return <TableData data={data} key={data.id} />;
+								.map((data, index) => {
+									return (
+									<TableData  id={data.reviewId} ticketName={data.websiteName} lastUpdated={data.lastUpdated} priority={data.priority} status={data.status} key={index} no={index}
+										
+									/>
+									)
 								})}
 						</tbody>
 					)}

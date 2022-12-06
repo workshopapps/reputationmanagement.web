@@ -39,32 +39,35 @@ const Login = () => {
 	} = useAppContext();
 	const [retainAuth, setRetainAuth] = useState(false);
 
-	const togglePassword = () => {
-		setPasswordShown(!passwordShown);
-	};
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		setTriedToSubmit(true);
-		if (pageValid) {
-			setRequestPending(true);
-			try {
-				const response = await Api.post('/auth/sign_in', {
-					email: email,
-					password: password,
-				});
-				localStorage.setItem('auth', email);
-				Cookies.set('reputeAccessToken', response?.data);
-				console.log(response?.data);
-				setRequestPending(false);
-				router('/dashboard');
-				setSuccessMessage('Login successful');
-				setRequestSuccess(true);
-			} catch (err) {
-				if (err?.response?.status === 400) {
-					setErrMessage(err?.response?.data);
-				} else {
-					setErrMessage('Login failed');
-				}
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    setTriedToSubmit(true)
+    if(pageValid){
+      setRequestPending(true)
+      try{
+        const response = await Api.post('/auth/sign_in',
+          {
+            email: email,
+            password: password,
+          }
+        )
+        localStorage.setItem('auth',email)
+        Cookies.set('reputeAccessToken', response?.data)
+        setRequestPending(false)
+        router('/dashboard')
+        setSuccessMessage('Login successful')
+        setRequestSuccess(true)
+      }
+      catch(err) {
+        if ( err?.response?.status === 400 ){
+          setErrMessage(err?.response?.data)
+        }
+        else{
+          setErrMessage('Login failed');
+        }
 
 				setRequestFailed(true);
 				console.log(err);
