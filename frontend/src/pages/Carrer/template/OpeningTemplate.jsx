@@ -42,7 +42,7 @@ const OpeningTemplate = ({ openings }) => {
 				})
 			) : (
 				<StyledErrorbox>
-					<StyledErrorText>Openings does not exist</StyledErrorText>
+					<StyledErrorText>Position does not exist</StyledErrorText>
 				</StyledErrorbox>
 			)}
 		</>
