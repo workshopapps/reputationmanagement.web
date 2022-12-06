@@ -44,26 +44,26 @@ const LandingPage = () => {
         })
     }
 
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-		// console.log(formData)
-		try{
-			const res = await ApiPrivate.post("/quote", formData)
-			// console.log(res.status)
-			if(res.status === 201){
-				alert("Your response has been submitted");
-				setFormData({
-					email: "",
-					phoneNumber: "",
-					businessName: "",
-					reviewLocation: ""
-				})
-			}
-		}catch(error){
-			console.error(error)
-			// return error
-		}
-	}
+	// const handleSubmit = async (event) => {
+	// 	event.preventDefault();
+	// 	console.log(formData)
+	// 	try{
+	// 		const res = await ApiPrivate.post("/quote", formData)
+	// 		console.log(res.status)
+	// 		if(res.status === 201){
+	// 			alert("Your response has been submitted");
+	// 			setFormData({
+	// 				email: "",
+	// 				phoneNumber: "",
+	// 				businessName: "",
+	// 				reviewLocation: ""
+	// 			})
+	// 		}
+	// 	}catch(error){
+	// 		console.error(error)
+	// 		return error
+	// 	}
+	// }
 
 
 
@@ -83,7 +83,7 @@ const LandingPage = () => {
 								reviewing and sorting negative comments about your business.
 							</h5>
 
-							<form onSubmit={(e) => handleSubmit(e)}>
+							<form>
 								<div>
 									<input type="text" placeholder="Fullname*"/>
 									<input type="text" placeholder="Phone*" name="phoneNumber" required onChange={handleChange}/>
