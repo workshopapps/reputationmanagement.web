@@ -35,7 +35,6 @@ export const Header = styled.header`
 export const Main = styled.main`
 	display: grid;
 	grid-template-columns: 30% 70%;
-	gap: 32px;
 	padding-top: 88px;
     padding-bottom: 100px;
 
