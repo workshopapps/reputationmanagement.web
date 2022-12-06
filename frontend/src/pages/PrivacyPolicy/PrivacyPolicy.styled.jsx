@@ -107,6 +107,7 @@ export const MainContent = styled.div`
 			font-size: 16px;
 			line-height: 150%;
 			color: #2b2c34;
+			padding-bottom: 4px;
 		}
 		ul {
 			list-style-type: disc;
