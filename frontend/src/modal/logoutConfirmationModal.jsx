@@ -105,9 +105,15 @@ const ModalInner = styled.div`
 			border-radius: 4px;
 			color: #6f7174;
 			margin-right: 70px;
+			transition: 0.5s;
 
             @media (max-width: 500px) {
 				margin-right: 30px;
+			}
+
+			&:hover {
+				background-color: #ff8017;
+				color: white;
 			}
 		}
 
@@ -116,8 +122,13 @@ const ModalInner = styled.div`
 			border: 1px solid #ff8017;
 			color: #ff8017;
 			border-radius: 4px;
+			transition: 0.5s;
             @media (max-width: 500px) {
 				padding: 13px 20px;
+			}
+			&:hover {
+				background-color: #ff8017;
+				color: white;
 			}
 		}
 
