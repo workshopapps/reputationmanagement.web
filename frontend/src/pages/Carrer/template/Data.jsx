@@ -50,6 +50,11 @@ const data = [
         to: '/job10'
     },
     {
+        title: 'PERSONAL INJURY LAWYER',
+        desc: 'We are currently looking for a with BUSINESS LAWYER vast experience',
+        to: '/job11'
+    },
+    {
         title: 'INTELLECTUAL INJURY LAWYER',
         desc: 'We are currently looking for a with BUSINESS LAWYER vast experience',
         to: '/job12'

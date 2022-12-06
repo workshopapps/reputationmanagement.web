@@ -102,9 +102,11 @@ const Header = () => {
 						)}
 					</ul>
 					{loggedin ? (
-						<div className="navButtons"><Link to="/dashboard">
-							<StyledButton>Dashboard</StyledButton>
-						</Link></div>
+						<div className="navButtons">
+							<Link to="/dashboard">
+								<StyledButton>Dashboard</StyledButton>
+							</Link>
+						</div>
 					) : (
 						<>
 							<div className="navButtons">
