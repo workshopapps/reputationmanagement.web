@@ -80,6 +80,13 @@ export const StyledSidebar = styled.aside`
 		right: 1rem;
 	}
 
+	.logo {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
 	@media (max-width: 1140px) {
 		transform: translateX(-100%);
 		transition: transform 1s ease;
