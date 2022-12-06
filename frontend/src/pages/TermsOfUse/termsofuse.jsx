@@ -14,7 +14,7 @@ function TermsOfUse() {
 			<PageLayout>
 				<Container>
 					<Header>
-						<h1>Terms & Conditions</h1>
+						<h1 data-testid="headingtext">Terms & Conditions</h1>
 					</Header>
 					<Main>
 						<ContentLinks>
@@ -76,9 +76,9 @@ function TermsOfUse() {
 								</li>
 							</ul>
 						</ContentLinks>
-						<MainContent>
+						<MainContent data-testid="terms">
 							<section>
-								<h3 id="sec_1">Repute Terms of Use</h3>
+								<h3 id="sec_1" >Repute Terms of Use</h3>
 								<p>EFFECTIVE MARCH 2022</p>
                                 {" "}
 								<p>
@@ -106,11 +106,11 @@ function TermsOfUse() {
 								</p>
 							</section>
 							<section>
-								<h3 id="sec_2">Eligibility</h3>
+								<h3 id="sec_2" >Eligibility</h3>
 								<p>We invite users and visitors to REPUTE.com.</p>
 							</section>
 							<section>
-								<h3 id="sec_3">Services</h3>
+								<h3 id="sec_3" >Services</h3>
 								<p>
 									The company provides services such as content removals,
 									content creation, search engine optimization. Customers are
@@ -125,7 +125,7 @@ function TermsOfUse() {
 								</p>
 							</section>
 							<section>
-								<h3 id="sec_4">License and Ownership</h3>
+								<h3 id="sec_4" >License and Ownership</h3>
 								<p>
 									The company may ask to provide information that is considered
 									useful to provide services.
@@ -141,7 +141,7 @@ function TermsOfUse() {
 								</p>
 							</section>
 							<section>
-								<h3 id="sec_5">Account Creation</h3>
+								<h3 id="sec_5" >Account Creation</h3>
 								<p>
 									The company may offer you the option to create an account
 									which will require you to provide information needed for the
