@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/images/repute_logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
-import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
+import { StyledButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
 
 const Header = () => {
@@ -49,10 +49,10 @@ const Header = () => {
 							About Us
 						</NavLink>
 						<NavLink
-							to="/blog"
-							className={currentRoute === '/blog' ? 'active' : ''}
+							to="/pricing"
+							className={currentRoute === '/pricing' ? 'active' : ''}
 						>
-							Blog
+							Pricing
 						</NavLink>
 						<NavLink
 							to="/contact"
@@ -74,10 +74,10 @@ const Header = () => {
 							About Us
 						</NavLink>
 						<NavLink
-							to="/blog"
-							className={currentRoute === '/blog' ? 'active' : ''}
+							to="/pricing"
+							className={currentRoute === '/pricing' ? 'active' : ''}
 						>
-							Blog
+							Pricing
 						</NavLink>
 						<NavLink
 							to="/contact"
@@ -85,38 +85,26 @@ const Header = () => {
 						>
 							Contact
 						</NavLink>
-
-						{loggedin ? (
-							<StyledNavButton onClick={() => router('/dashboard')}>
-								Dashboard
-							</StyledNavButton>
-						) : (
-							<>
-								<StyledNavButton onClick={() => router('/login')}>
-									Login
-								</StyledNavButton>
-								<StyledNavButton onClick={() => router('/signup')}>
-									Register
-								</StyledNavButton>
-							</>
-						)}
+						{/*
+						<StyledNavButton onClick={() => router('/login')}>
+							Login
+						</StyledNavButton>
+					*/}
+						<StyledNavButton onClick={() => router('/dashboard')}>
+							Dashboard
+						</StyledNavButton>
 					</ul>
-					{loggedin ? (
-						<div className="navButtons"><Link to="/dashboard">
+
+					<div className="navButtons">
+						{/*
+						<Link to="/login">
+							<StyledTextButton>Login</StyledTextButton>
+						</Link>
+						*/}
+						<Link to="/dashboard">
 							<StyledButton>Dashboard</StyledButton>
-						</Link></div>
-					) : (
-						<>
-							<div className="navButtons">
-								<Link to="/login">
-									<StyledTextButton>Login</StyledTextButton>
-								</Link>
-								<Link to="/signup">
-									<StyledButton>Register</StyledButton>
-								</Link>
-							</div>
-						</>
-					)}
+						</Link>
+					</div>
 				</StyledNav>
 			</StyledContainer>
 		</header>
