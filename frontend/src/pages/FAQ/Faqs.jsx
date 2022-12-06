@@ -8,17 +8,17 @@ function Faqs() {
 	const [faqs, setFaqs] = useState([
 		{
 			id: 1,
-			question: 'How does REPUTE work?',
+			question: 'How does FixIt work?',
 			answer:
-				'REPUTE is a reputation management website that deals swiftly and strategically with responding to customer/client engagement across multiple review sites to improve your brand’s image. REPUTE helps to polish your brands image so that its first impression on prospective customers is positive',
+				'FixIt is a reputation management website that deals swiftly and strategically with responding to customer/client engagement across multiple review sites to improve your brand’s image. FixIt helps to polish your brands image so that its first impression on prospective customers is positive',
 			open: false,
 		},
 
 		{
 			id: 2,
-			question: 'How can I manage my reputation with REPUTE?',
+			question: 'How can I manage my reputation with Fixit?',
 			answer:
-				'The first thing you need to do is sign up on REPUTE website after which you can now login to your dashboard. On your dashboard, click on the “New Complaint” button. This will take you to a removal request page. Fill out the form correctly and submit. A lawyer will contact you and the process of taking down the bad review will begin. Once the review is taken down successfully, you will get a notification on your dashboard. ',
+				'The first thing you need to do is sign up on FixIt website after which you can now login to your dashboard. On your dashboard, click on the “New Complaint” button. This will take you to a removal request page. Fill out the form correctly and submit. A lawyer will contact you and the process of taking down the bad review will begin. Once the review is taken down successfully, you will get a notification on your dashboard. ',
 			open: false,
 		},
 
@@ -32,9 +32,9 @@ function Faqs() {
 
 		{
 			id: 4,
-			question: 'Can I make use of my personal Lawyer on REPUTE?',
+			question: 'Can I make use of my personal Lawyer on FixIt?',
 			answer:
-				'Unfortunately, No. We have a team of highly professional lawyers on REPUTE who are ready to give their best and go all out in ensuring that your brand is free from negative reviews. So, rest assured that you are in safe hands and you will receive Excellent results',
+				'Unfortunately, No. We have a team of highly professional lawyers on FixIt who are ready to give their best and go all out in ensuring that your brand is free from negative reviews. So, rest assured that you are in safe hands and you will receive Excellent results',
 			open: false,
 		},
 
@@ -42,7 +42,7 @@ function Faqs() {
 			id: 5,
 			question: 'What if the negative review was left on Social Media?',
 			answer:
-				'That is not a problem. on the removal request form, there are options for where the review was left. Tick the one that is applicable to you and relax while REPUTE fixes it for you.',
+				'That is not a problem. on the removal request form, there are options for where the review was left. Tick the one that is applicable to you and relax while FixIt fixes it for you.',
 			open: false,
 		},
 	]);

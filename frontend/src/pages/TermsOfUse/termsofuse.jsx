@@ -8,23 +8,20 @@ const Headtext = styled.h2`
 	font-size: 30px;
 	line-height: 24px;
 	color: #01b0d8;
-	padding-bottom: ${(props) => {
-		return props.className || '15px';
-	}};
+    padding-bottom: ${(props)=>{return ( props.className || '15px')}};
 
 	@media (max-width: 768px) {
 		font-size: 1.3em;
 	}
+
 `;
 const P = styled.p`
-	/* margin: 0 0.8em 0; */
-	text-align: justify;
-`;
+		/* margin: 0 0.8em 0; */
+		text-align:  justify;
+`;;
 
 const Termsofuse = () => {
-	const Heading = ({ text, className }) => (
-		<Headtext className={className}>{text} </Headtext>
-	);
+	const Heading = ({ text, className }) => <Headtext className={className}>{text} </Headtext>;
 	return (
 		<div data-testid="terms">
 			<PageLayout>
@@ -38,16 +35,16 @@ const Termsofuse = () => {
 					</h1>
 				</div>
 				<div className="w-4/5 m-auto pb-5">
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Effective March 2022" />
 						<article>
 							<P>
-								REPUTE operates Repute.com and associated sites and mobile
+								FixIt operates FixIt.com and associated sites and mobile
 								applications.
 							</P>
 							<P>
 								Please read these Terms of Use carefully, They govern your
-								access to and use of REPUTE.com, Its content, and the services
+								access to and use of FixIt.com, Its content, and the services
 								offered on or through it.These Terms of Use constitute a binding
 								legal agreement between you and us.
 							</P>
@@ -64,13 +61,13 @@ const Termsofuse = () => {
 						</article>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Eligibility" />
-						<P> We invite users and visitors to REPUTE.com.</P>
+						<P> We invite users and visitors to FixIt.com.</P>
 					</div>
 
-					<div className="pb-5">
-						<Heading text="Services" className="pb-10" />
+					<div className='pb-5'>
+						<Heading text="Services" className='pb-10' />
 						<P>
 							{' '}
 							The company provides services such as content removals, content
@@ -86,8 +83,8 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
-						<Heading text="License and Ownership" className="pb-6" />
+					<div className='pb-5'>
+						<Heading text="License and Ownership" className='pb-6' />
 						<P>
 							{' '}
 							The company may ask to provide information that is considered
@@ -104,7 +101,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Account Creation" />
 						<P>
 							{' '}
@@ -116,16 +113,16 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Users" />
 						<P>
 							Visitors may, subject to these Terms of Use, access and browse
-							REPUTE.com and use the other REPUTE.com services provided to
+							FixIt.com and use the other FixIt.com services provided to
 							visitors.
 						</P>
 						<P>
 							{' '}
-							You must be at least 13 years old to post comments on Repute.com
+							You must be at least 13 years old to post comments on FixIt.com
 							and to give us your email address or any other personally
 							identifiable information about you. If you are under 13, please do
 							not give us any information about yourself, including your name,
@@ -135,19 +132,19 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Privacy" />
 						<P>
 							Our privacy policy describes how we collect, use and disclose
 							information we receive from users and visitors. By using
-							REPUTE.com, you agree to the terms described in them. If you have
+							Fixit.com, you agree to the terms described in them. If you have
 							provided the company with your contact information, we can use it
 							to communicate with you. You may unsubscribe from marketing and
 							research communications by following the descriptions in them.{' '}
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Your Obligations" />
 						<P>
 							{' '}
@@ -179,7 +176,7 @@ const Termsofuse = () => {
 						</ul>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Client Acknowledgement" />
 						<P>
 							{' '}
@@ -204,7 +201,7 @@ const Termsofuse = () => {
 						</ul>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Fees and Payments" />
 						<P>
 							{' '}
@@ -227,7 +224,7 @@ const Termsofuse = () => {
 						</ul>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Termination" />
 						<P>
 							{' '}
@@ -246,7 +243,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Warranties" />
 						<P>
 							{' '}
@@ -268,7 +265,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Refund Policy" />
 						<P>
 							{' '}
@@ -295,17 +292,17 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Content" />
 						<P>
-							Repute.com contains both WhoKnows content and user content. The
+							FixIt.com contains both WhoKnows content and user content. The
 							content on WhoKnows.com and any authorized clients are licensed,
 							not sold. Such content is protected by copyright laws and, if
 							applicable, by international treaties.
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Software" />
 						<P>
 							{' '}
@@ -327,7 +324,7 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="User Content" />
 						<P>
 							User content includes text, graphics, and other material and
@@ -337,7 +334,7 @@ const Termsofuse = () => {
 							Users have the ability to edit and modify all of their listed
 							skills before they are published to the network. Users cannot edit
 							or modify the details listed on each other’s profiles. The
-							complete list of searchable terms to be used by the REPUTE
+							complete list of searchable terms to be used by the FixIt
 							Discovery Engine are chosen by the enterprise client’s
 							administrator. All of the content stored within each user’s
 							profile is not publicly available, nor is it searchable by
@@ -353,7 +350,7 @@ const Termsofuse = () => {
 						<P>
 							We expect our users and visitors to act responsibly, respectfully,
 							and lawfully on WhoKnows.com. You agree not to post content on
-							your Repute.com profile that, or the act of posting of which: (1)
+							your FixIt.com profile that, or the act of posting of which: (1)
 							is unlawful, obscene, pornographic, violent, defamatory,
 							fraudulent, harassing, or harmful to others; (2) violates the
 							rights, including intellectual property rights, or the privacy of
@@ -365,16 +362,16 @@ const Termsofuse = () => {
 							liability. We reserve the right to review any user content and
 							determine, in our discretion, whether it violates these Terms of
 							Use. However, we assume no obligation to do so and have no
-							responsibility for user content on REPUTE.com. To report user
+							responsibility for user content on FixIt.com. To report user
 							content, you may contact us through
-							https://REPUTE.zendesk.com/hc/en-us.
+							https://FixIt.zendesk.com/hc/en-us.
 						</P>
 						<P>
 							We reserve the right to refuse to post or to remove or delete any
 							user content on WhoKnows.com, at our discretion and with or
 							without notice. When you delete your skills from your WhoKnows
 							Full Profile, we will remove them from your account view and other
-							public areas on REPUTE.com as soon as possible, and in any event
+							public areas on FixIt.com as soon as possible, and in any event
 							within 48 hours unless there are unforeseen circumstances.
 							Residual data may remain on our servers for up to 90 days. After
 							such period, we may retain copies only if there is a pending legal
@@ -383,17 +380,17 @@ const Termsofuse = () => {
 						</P>
 						<P>
 							You represent and warrant that: (1) you own the content that you
-							post on Repute.com or otherwise have the right to post it on
-							Repute.com and grant the above licenses with respect to such
-							content; (2) your posting of any content on Repute.com does not
+							post on FixIt.com or otherwise have the right to post it on
+							FixIt.com and grant the above licenses with respect to such
+							content; (2) your posting of any content on FixIt.com does not
 							violate any law, regulation, court or administrative order, or the
 							rights of any third party; and (3) your posting of any content on
-							Repute.com does not breach any contract between you and a third
+							FixIt.com does not breach any contract between you and a third
 							party.
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="General" />
 						<P>
 							Our failure to enforce any right will not constitute a waiver of
@@ -412,11 +409,11 @@ const Termsofuse = () => {
 						</P>
 					</div>
 
-					<div className="pb-5">
+					<div className='pb-5'>
 						<Heading text="Company Information" />
 						<P>
-							Repute, Inc. is a corporation organized under the laws of the State
-							of California, USA. Our headquarters are at: Repute, Inc.425
+							FixIt, Inc. is a corporation organized under the laws of the State
+							of California, USA. Our headquarters are at: FixIt, Inc.425
 							Liverpool StRedwood City, CA 940631-800-348-5031
 						</P>
 					</div>

@@ -7,7 +7,6 @@ export const StyledFixHeader = styled.h1`
 	font-size: 28px;
 	font-weight: bold;
 	font-family: 'lato', sans-serif;
-	color: #6f7174;
 `;
 export const StyledFixCenter = styled.div`
 	padding: 0px 0px 24px;
@@ -18,11 +17,10 @@ export const StyledFixCenter = styled.div`
 `;
 export const ImgsContainer = styled.div`
 	max-width: 304px;
-	height: 253px;
 `;
 export const StyledFixImg = styled.img`
 	width: 100%;
-	height: 100%;
+	height: 253px;
 	border-radius: 8px;
 `;
 export const StyledFixBox = styled.div`

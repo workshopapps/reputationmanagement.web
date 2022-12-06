@@ -16,18 +16,10 @@ const Header = () => {
 	const loggedin = localStorage.getItem('auth');
 
 	return (
-		<header
-			style={{
-				width: '100vw',
-				position: 'fixed',
-				top: '0',
-				backgroundColor: '#ffffff',
-				zIndex: '5',
-			}}
-		>
+		<header style={{ width: '100vw', position: 'fixed', top: '0', backgroundColor: '#ffffff', zIndex: '5' }}>
 			<StyledContainer>
 				<StyledNav className="">
-					<img src={Logo} alt="Repute" className="logo" />
+					<img src={Logo} alt="FixIt" className="logo" />
 
 					<img
 						src={MenuIcon}
@@ -42,24 +34,9 @@ const Header = () => {
 						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink
-							to="/about-us"
-							className={currentRoute === '/about-us' ? 'active' : ''}
-						>
-							About Us
-						</NavLink>
-						<NavLink
-							to="/blog"
-							className={currentRoute === '/blog' ? 'active' : ''}
-						>
-							Blog
-						</NavLink>
-						<NavLink
-							to="/contact"
-							className={currentRoute === '/contact' ? 'active' : ''}
-						>
-							Contact
-						</NavLink>
+						<NavLink to="/about-us" className={currentRoute === '/about-us' ? 'active' : ''}>About Us</NavLink>
+						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
+						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
 						{/* <NavLink to="/dashboard" className={currentRoute === '/dashboard' ? 'active' : ''}>Dashboard</NavLink> */}
 					</div>
 
@@ -67,39 +44,11 @@ const Header = () => {
 						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
 							Home
 						</NavLink>
-						<NavLink
-							to="/about"
-							className={currentRoute === '/about' ? 'active' : ''}
-						>
-							About Us
-						</NavLink>
-						<NavLink
-							to="/blog"
-							className={currentRoute === '/blog' ? 'active' : ''}
-						>
-							Blog
-						</NavLink>
-						<NavLink
-							to="/contact"
-							className={currentRoute === '/contact' ? 'active' : ''}
-						>
-							Contact
-						</NavLink>
-
-						{loggedin ? (
-							<StyledNavButton onClick={() => router('/dashboard')}>
-								Dashboard
-							</StyledNavButton>
-						) : (
-							<>
-								<StyledNavButton onClick={() => router('/login')}>
-									Login
-								</StyledNavButton>
-								<StyledNavButton onClick={() => router('/signup')}>
-									Register
-								</StyledNavButton>
-							</>
-						)}
+						<NavLink to="/about" className={currentRoute === '/about' ? 'active' : ''}>About Us</NavLink>
+						<NavLink to="/blog" className={currentRoute === '/blog' ? 'active' : ''}>Blog</NavLink>
+						<NavLink to="/contact" className={currentRoute === '/contact' ? 'active' : ''}>Contact</NavLink>
+						{/* <StyledNavButton onClick={() => router('/login')}>Login</StyledNavButton> */}
+						{/* <StyledNavButton onClick={() => router('/signup')}>Register</StyledNavButton> */}
 					</ul>
 					{loggedin ? (
 						<div className="navButtons">
@@ -125,14 +74,14 @@ const Header = () => {
 	);
 };
 const StyledNavButton = styled.button`
-	background: #233ba9;
-	padding: 10px 40px;
-	border-radius: 6px;
-	color: #fff;
-	border: 1px #233ba9 solid;
-	font-size: 1rem;
-	font-style: normal;
-	font-weight: 400;
+	background: #233BA9;
+    padding: 10px 40px;
+    border-radius: 6px;
+    color: #fff;
+    border: 1px #233BA9 solid;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
 	margin: 14px 0;
 	margin-left: 18px;
 `;

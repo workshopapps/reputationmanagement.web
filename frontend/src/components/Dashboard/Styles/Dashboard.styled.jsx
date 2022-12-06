@@ -267,28 +267,34 @@ export const TableContainer = styled.table`
 		}
 	}
 
-	.priority {
+	.High,
+	.Low,
+	.Medium,
+	.Urgent {
 		border-radius: 4px;
 		padding: 4px 16px;
 		width: fit-content;
 	}
 
-	.mobile {
+	.High.mobile,
+	.Low.mobile,
+	.Medium.mobile,
+	.Urgent.mobile {
 		display: none;
 	}
 
-	.priority-3 {
+	.High {
 		background: #d1fadf;
 		color: #027a48;
 	}
 
-	.priority-2 {
+	.Medium {
 		background: #ffe5b2;
 		color: #d6981b;
 	}
 
-	.priority-1,
-	.priority-0 {
+	.Low,
+	.Urgent {
 		background: #fecdca;
 		color: #b42318;
 	}

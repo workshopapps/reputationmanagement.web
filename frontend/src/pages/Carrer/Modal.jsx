@@ -167,7 +167,7 @@ const Modal = ({ open, onClose }) => {
 								
 								</div>
 							</div>
-							<div className="lg:mt-3 mt-6">
+							<div className="lg:mt-3 mt-5">
 								<label className="font-semibold lg:text-base text-sm leading-6">
 									Position
 								</label>
@@ -270,7 +270,7 @@ const Modal = ({ open, onClose }) => {
 										</label>
 										<div
 											className="w-full lg:h-16 h-14 rounded-lg p-5
-											border-2 border-[#D2D3D4] focus:outline-[#84CAFF]"
+											border-2 border-[#D2D3D4] focus:outline-[#84CAFF] mt-5"
 										></div>
 										<input
 											type="file"
@@ -292,7 +292,7 @@ const Modal = ({ open, onClose }) => {
 												type="file"
 												name="coverletter"
 												onChange={handleCoverLetter}
-												className=" text-[#4D5154] text-xs leading-4 absolute lg:top-[78%] top-[73%]  rounded-md p-2 ml-3 lg:-mt-4"
+												className=" text-[#4D5154] text-xs leading-4 absolute lg:top-[78%] top-[76%] rounded-md lg:p-2 p-1 lg:-mt-4 mr-2 lg:mr-0"
 											/>
 										</div>
 									</div>

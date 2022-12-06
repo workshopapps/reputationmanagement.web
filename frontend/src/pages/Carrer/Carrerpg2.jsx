@@ -50,11 +50,11 @@ function Carrerpg2({ DescriptionProps }) {
 							<div className="flex justify-center items-center ">
 								<img src={SearchIcon} alt="" />
 								<input
+									onChange={searchChange}
+									value={searchTerm}
 									type="text"
 									placeholder="Search job openings"
 									className="border-0 outline-0 p-3"
-									onChange={searchChange}
-									value={searchTerm}
 								/>
 							</div>
 							<div className="flex">
@@ -86,15 +86,15 @@ function Carrerpg2({ DescriptionProps }) {
 									</option>
 								</StyledSelect>
 								{/* <StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
-                  Search
-                </StyledButton> */}
+                                Search
+                            </StyledButton> */}
 							</div>
 						</StyledBox>
 					</section>
 					{/* search bar  */}
 
 					<section className="my-11 px-12">
-						<div className="flex justify-between items-center">
+						<div className="lg:flex block justify-between items-center">
 							<h2 className="font-bold text-xl">Browse Open Positions</h2>
 							<div className="hidden lg:block">
 								<div className="flex items-center justify-center ">
