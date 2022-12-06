@@ -71,7 +71,7 @@ function Carrerpg2({DescriptionProps }) {
 							<StyledSelect
 								name="filter-jobs"
 								id="select"
-								className="cursor-pointer px-5 py-3 hidden lg:block"
+								className="cursor-pointer px-3 lg:px-4 py-3 hidden lg:block"
 							>
 								<option value=""  className="cursor-pointer">
 									Filter
@@ -92,15 +92,15 @@ function Carrerpg2({DescriptionProps }) {
 									Estate Planning Lawyer
 								</option>
 							</StyledSelect>
-							<StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
+							{/* <StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
 								Search
-							</StyledButton>
+							</StyledButton> */}
 						</div>
 					</StyledBox>
 				</section>
 				<section className="my-11 px-12">
-					<div className="flex justify-between items-center">
-						<h2 className="font-bold text-xl">Browse Open Positions</h2>
+					<div className="block lg:flex justify-between items-center">
+						<h2 className="font-bold lg:text-xl text-xl block lg:flex">Browse Open Positions</h2>
 						<div className="hidden lg:block">
 							<div className="flex items-center justify-center ">
 								<h3 className="text-slate-400">Showing 1-12 of 70</h3>
@@ -183,6 +183,8 @@ function Carrerpg2({DescriptionProps }) {
 						</div>
 					</div>
 				</section>
+
+
 				<section className="jobs-grid place-items-center grid lg:grid-cols-3  grid-cols-1 gap-4">
 					<StyledDivContainer>
 						<h2 className="text-2xl font-bold mt-12">BUSINESS LAWYER</h2>
@@ -293,7 +295,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job5"
+							to="/job4"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -325,7 +327,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job6"
+							to="/job5"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -356,7 +358,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job7"
+							to="/job6"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -387,7 +389,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job8"
+							to="/job7"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -418,7 +420,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job9"
+							to="/job8"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -448,7 +450,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job10"
+							to="/job9"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -478,7 +480,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job11"
+							to="/job10"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -509,7 +511,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job4"
+							to="/job11"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
