@@ -7,18 +7,16 @@ import logo from '../../assets/images/Dashboard/logo.png';
 import { DashboardIcon, SettingsIcon, SignoutIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 
-
 const Sidebar = (props) => {
-	
 	const { isShowing, toggle } = useLogoutConfirmation();
-
-	
 
 	return (
 		<StyledSidebar className={props.className}>
 			<div>
 				<img src={closeBtn} alt="" onClick={props.closeMenuHandler} />
-				<img src={logo} alt="" />
+				<NavLink to="/" className="logo">
+					<img src={logo} alt="" />
+				</NavLink>
 			</div>
 
 			<section>
