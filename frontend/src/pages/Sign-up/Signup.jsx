@@ -253,7 +253,7 @@ function Signup() {
 						<img src={facebook_icon} alt="" style={{ cursor: 'pointer' }} />
 						<img src={apple_icon} alt="" style={{ cursor: 'pointer' }} />
 					</div>
-					<p>Already have an account ? <br /> <span onClick={() => router('/login')} style={{ cursor: 'pointer' }}>Sign In</span></p>
+					<p>Already have an account ? <span onClick={() => router('/login')} style={{ cursor: 'pointer' }}>Sign In</span></p>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
 
@@ -387,12 +387,16 @@ const StyledFormWrapper = styled.div`
 	
 	h2{
 		font-family: Lato;
-		font-size: 57px;
+		font-size: 52px;
 		font-weight: 700;
 		line-height: 68px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #2B2C34;		
+		color: #2B2C34;	
+		
+		@media (max-width: 750px){
+			font-size: 36px;
+		}
 	}
 	.loading{
         width: 20px;
@@ -421,6 +425,10 @@ const StyledFormWrapper = styled.div`
 		text-align: left;
 		color: #6F7174;
 		margin-top: 4px;
+
+		@media (max-width: 750px){
+			font-size: 20px;
+		}
 	}
 	.form{
 		label{

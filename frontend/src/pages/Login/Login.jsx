@@ -121,7 +121,7 @@ const Login = () => {
                 </div>
 
               <ForgotPass>
-                <Link className='' to="/password-recovery">forgot password</Link>
+                <Link className='' to="/password-recovery">Forgot password</Link>
                 </ForgotPass>
               </Remember>
 
@@ -256,16 +256,16 @@ const StyledForm = styled.form`
 `;
 
 const StyledHead1 = styled.h1`
-    font-size: 57px;
+    font-size: 48px;
     font-weight: 700px;
 
     @media screen and (min-width: 768px) and (max-width:1000px) {
-      font-size: 47px;
+      font-size: 32px;
     
    }
 
     @media (max-width:520px) {
-      font-size: 32px;
+      font-size: 24px;
    }
 
 `;
@@ -276,7 +276,7 @@ const SubHead = styled.h5`
    color:#6F7174;
 
    @media (max-width: 500px) {
-    font-size: 24px;
+    font-size: 16px;
    }
 `;
 
@@ -454,6 +454,7 @@ align-items: center;
       width: 100%;
       max-width: 350px;
       justify-content:space-between ;
+      cursor: pointer;
 
       div {
         height: 48px;
