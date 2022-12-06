@@ -293,7 +293,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job5"
+							to="/job4"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -325,7 +325,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job6"
+							to="/job5"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -356,7 +356,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job7"
+							to="/job6"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -387,7 +387,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job8"
+							to="/job7"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -418,7 +418,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job9"
+							to="/job8"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -448,7 +448,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job10"
+							to="/job9"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -478,7 +478,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job11"
+							to="/job10"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}
@@ -509,7 +509,7 @@ function Carrerpg2({DescriptionProps }) {
 
 						<Link
 							className="my-5"
-							to="/job4"
+							to="/job11"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 							}}

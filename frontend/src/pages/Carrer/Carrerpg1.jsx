@@ -1,6 +1,6 @@
 /** @format */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import pink from '../../assets/images/pinkCircle.png';
 import blue from '../../assets/images/blueCircle.png';
 import styled from 'styled-components';
@@ -81,7 +81,14 @@ const style = {
 	height: '80%',
 };
 
+
+
 function Carrerpg1() {
+
+	useEffect(() => {
+	window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+	}, [])
+	
 	return (
 		<PageLayout>
 			<div className="carrer-landing-pg py-12">
