@@ -224,7 +224,7 @@ const RequestForm = () => {
 									</div>
 
 									<div>
-										<Checkbox label="Low" onClick={() => setPriority(0)} />
+										<Checkbox label="Low" onClick={() => setPriority(1)} />
 									</div>
 
 									<div>

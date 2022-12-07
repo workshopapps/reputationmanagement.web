@@ -34,7 +34,7 @@ const StyledRequestSuccess = styled.div`
     background-color: hsl(140,40%,55%);
     gap: 10px;
     transition: all ease 0.5s;
-    z-index: 4;
+    z-index: 5;
     img{
         width: 50px;
         height: 50px;

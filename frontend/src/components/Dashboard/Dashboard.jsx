@@ -114,9 +114,9 @@ const Dashboard = () => {
 							<th>No</th>
 							<th>Priority</th>
 							<th>Ticket Name</th>
-							<th>Due Date</th>
-							<th>Last Updated</th>
 							<th>Status</th>
+							<th>Last Updated</th>
+							<th></th>
 						</tr>
 					</thead>
 					{allRequests.length >= 1 && (
@@ -137,7 +137,7 @@ const Dashboard = () => {
 								})
 								.map((data, index) => {
 									return (
-									<TableData  id={data.reviewId} ticketName={data.websiteName} lastUpdated={data.lastUpdated} priority={data.priority} status={data.status} key={index} no={index}
+									<TableData  id={data.reviewId} ticketName={data.complainerName} lastUpdated={data.lastUpdated} priority={data.priority} status={data.status} key={index} no={index}
 										
 									/>
 									)

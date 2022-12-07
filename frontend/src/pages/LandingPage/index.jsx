@@ -24,11 +24,12 @@ import {
 	star_icon,
 } from './assets';
 import styled from 'styled-components';
-import { ApiPrivate } from '../../api/axios';
+import Api from '../../api/axios';
+import useAppContext from '../../hooks/useAppContext'
 
 
 const LandingPage = () => {
-
+	const [ loading, setLoading ] = useState(false)
 	const [formData, setFormData] = useState({
 		email: "",
 		phone: "",
@@ -45,30 +46,25 @@ const LandingPage = () => {
 		})
 	}
 
-	// const handleSubmit = async (event) => {
-	const handleSubmit = (event) => {
+	const { setRequestSuccess, setSuccessMessage } = useAppContext()
+	const handleSubmit = async(event) => {
+		setLoading(true)
 		event.preventDefault();
-		// console.log(formData)
 		try {
-
-			const res = ApiPrivate.post("/createquote", formData).then(
-				(res) => {
-					if (res.status === 201) {
-						alert("Your response has been submitted");
-						setFormData({
-							email: "",
-							phone: "",
-							businessName: "",
-							reviewLocation: "",
-							fullName: ""
-						})
-					}
-				}
-			)
-			// console.log(res.status)
-			// 
+			const response = await Api.post("/createquote", formData)
+			setLoading(false)
+			setSuccessMessage("Your response has been submitted")
+			setRequestSuccess(true)
+			setFormData({
+				email: "",
+				phone: "",
+				businessName: "",
+				reviewLocation: "",
+				fullName: ""
+			})
+			console.log(response)
 		} catch (error) {
-			// console.error(error)
+			setLoading(false)
 			return error
 		}
 	}
@@ -108,7 +104,15 @@ const LandingPage = () => {
 									<p>Your details are safe & confidential <br />View our <a href='/privacy' className='form-footer-link'>Privacy Policy.</a></p>
 								</div>
 
-								<StyledButton className='hero-form-button' type='submit'>Submit</StyledButton>
+								<StyledButton className='hero-form-button' type='submit'>
+									{
+										!loading
+											?
+										"Submit"
+										:
+										<div className="loading"></div>
+									}
+								</StyledButton>
 
 							</form>
 

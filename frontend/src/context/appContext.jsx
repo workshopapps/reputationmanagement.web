@@ -8,7 +8,7 @@ const AppProvider = ({children}) => {
     const [ requestSuccessfulModalActive, setRequestSuccessfulModalActive ] = useState(false)
     const [ allRequests, setAllRequests ] = useState(TableDatas);
     const [ errMessage, setErrMessage ] = useState('Sign up Failed');
-    const [ successMessage, setSuccessMessage ] = useState('Sign up Failed');
+    const [ successMessage, setSuccessMessage ] = useState('Request succcessful');
     const [ requestSuccess, setRequestSuccess ] = useState(false);
 	const [ requestFailed, setRequestFailed ] = useState(false);
 
