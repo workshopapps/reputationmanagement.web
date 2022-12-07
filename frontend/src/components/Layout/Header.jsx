@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/repute_logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
-import { StyledButton } from '../Styles/Body/Button.styled';
+import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
 
 const Header = () => {
@@ -85,26 +85,43 @@ const Header = () => {
 						>
 							Contact
 						</NavLink>
-						{/*
-						<StyledNavButton onClick={() => router('/login')}>
-							Login
-						</StyledNavButton>
-					*/}
-						<StyledNavButton onClick={() => router('/dashboard')}>
-							Dashboard
-						</StyledNavButton>
+
+						{loggedin ? (
+							<StyledNavButton onClick={() => router('/dashboard')}>
+								Dashboard
+							</StyledNavButton>
+						) : (
+							<>
+								<StyledNavButton onClick={() => router('/login')}>
+									Login
+								</StyledNavButton>
+
+								<StyledNavButton onClick={() => router('/signup')}>
+									Sign up
+								</StyledNavButton>
+							</>
+						)}
 					</ul>
 
-					<div className="navButtons">
-						{/*
-						<Link to="/login">
-							<StyledTextButton>Login</StyledTextButton>
-						</Link>
-						*/}
-						<Link to="/dashboard">
-							<StyledButton>Dashboard</StyledButton>
-						</Link>
-					</div>
+					{loggedin ? (
+						<div className="navButtons">
+							<Link to="/dashboard">
+								<StyledButton>Dashboard</StyledButton>
+							</Link>
+						</div>
+					) : (
+						<>
+							<div className="navButtons">
+								<Link to="/login">
+									<StyledTextButton>Login</StyledTextButton>
+								</Link>
+
+								<Link to="/signup">
+									<StyledButton>Sign up</StyledButton>
+								</Link>
+							</div>
+						</>
+					)}
 				</StyledNav>
 			</StyledContainer>
 		</header>

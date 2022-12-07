@@ -61,13 +61,13 @@ const StyledErrorText = styled.h2`
 	font-weight: 700;
 	font-size: 120%;
 	border: 2px rgb(255, 0, 0) solid;
-	padding: 15px
+	padding: 15px;
 `;
 
 const StyledDivContainer = styled.div`
 	width: 350px;
 	padding: 25px 20px;
-	height: 300px;
+	height: 340px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
