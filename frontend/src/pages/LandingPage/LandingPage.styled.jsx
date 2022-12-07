@@ -234,7 +234,7 @@ export const HeroTextDiv = styled.div`
 						}
 					}
 	
-					div select{
+					div .review-input{
 						width: 100%;
 						border: 1px solid #787A7D;
 						border-radius: 8px;
