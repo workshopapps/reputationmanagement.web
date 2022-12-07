@@ -14,7 +14,6 @@ const Header = () => {
 	const router = useNavigate();
 
 	const loggedin = localStorage.getItem('auth');
-	console.log(loggedin)
 
 	return (
 		<header

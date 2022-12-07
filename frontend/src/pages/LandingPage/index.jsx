@@ -46,10 +46,10 @@ const LandingPage = () => {
 		})
 	}
 
-	const { setRequestSuccess, setSuccessMessage } = useAppContext()
-	const handleSubmit = async(event) => {
+	const { setRequestSuccess, setSuccessMessage, setRequestFailed, setErrMessage } = useAppContext();
+
+	const handleSubmit = async() => {
 		setLoading(true)
-		event.preventDefault();
 		try {
 			const response = await Api.post("/createquote", formData)
 			setLoading(false)
@@ -65,6 +65,8 @@ const LandingPage = () => {
 			console.log(response)
 		} catch (error) {
 			setLoading(false)
+			setErrMessage('Request failed')
+			setRequestFailed(true)
 			return error
 		}
 	}
