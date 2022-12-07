@@ -16,6 +16,7 @@ import { LikeIcon, FacebookIcon, TwitchIcon } from './Assets/SVGs';
 
 import { Posts } from './Assets/data';
 import Post from './Post';
+import { useEffect } from 'react';
 
 const BlogPost = () => {
 	const [liked, setLiked] = useState(true);
@@ -31,7 +32,9 @@ const BlogPost = () => {
 			e.currentTarget.style.border = '1px solid #d2d3d4';
 		}
 	};
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	// const sendMailHandler = (e) => {
 	// 	e.preventDefault();
 

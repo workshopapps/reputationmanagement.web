@@ -22,6 +22,7 @@ import Map from '../../assets/images/map.png';
 import Arrow from '../../assets/images/arrow-right.png';
 
 import PageLayout from '../../layout/PageLayout';
+import { useEffect } from 'react';
 
 const StyledHeader = styled.h1`
 	color: #fdb172;
@@ -82,6 +83,9 @@ const style = {
 };
 
 function Carrerpg1() {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<div className="carrer-landing-pg py-12">

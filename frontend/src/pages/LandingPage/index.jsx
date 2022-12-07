@@ -26,6 +26,7 @@ import {
 import styled from 'styled-components';
 import Api from '../../api/axios';
 import useAppContext from '../../hooks/useAppContext'
+import { useEffect } from 'react';
 
 
 const LandingPage = () => {
@@ -70,9 +71,9 @@ const LandingPage = () => {
 			return error
 		}
 	}
-
-
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<StyledLandingPage>

@@ -29,7 +29,9 @@ function Carrerpg3() {
 	useEffect(() => {
 		getJobDetails();
 	}, [ getJobDetails ]);
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<section className="p-8">

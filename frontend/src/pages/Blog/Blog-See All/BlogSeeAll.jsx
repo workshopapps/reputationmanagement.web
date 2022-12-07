@@ -5,13 +5,16 @@ import { PostSnippetContainer } from './BlogSeeAll.styled';
 import Search from '../../../components/Blog/Search';
 
 import { PostsData } from './data';
+import { useEffect } from 'react';
 
 const BlogSeeAll = () => {
 	const [search, setSearch] = useState('');
 	const searchPostHandler = (e) => {
 		setSearch(e.target.value);
 	};
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<section>

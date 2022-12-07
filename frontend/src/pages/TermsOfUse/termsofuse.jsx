@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import PageLayout from '../../layout/PageLayout';
 import {
 	Container,
@@ -9,6 +10,9 @@ import {
 } from './TermsOfUse.styled';
 
 function TermsOfUse() {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<>
 			<PageLayout>

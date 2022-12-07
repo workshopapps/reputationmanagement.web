@@ -5,6 +5,7 @@ import { MdContactMail } from 'react-icons/md';
 import { TbMessage } from 'react-icons/tb';
 import { useState, useRef } from 'react';
 import ContactUsModal from './ContactUsModal';
+import { useEffect } from 'react';
 
 const ContactPageWraper = styled.div`
 	* {
@@ -425,7 +426,9 @@ function Contact() {
 			behavior: 'smooth',
 		});
 	};
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<ContactPageWraper className="contact-page">

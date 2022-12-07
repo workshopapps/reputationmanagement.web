@@ -7,6 +7,7 @@ import Api from '../../api/axios';
 import bg_img from '../../assets/images/woman_on_phone.png';
 import repute_logo from '../../assets/images/repute_logo.png';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function ChangePassword() {
 	const [token, setToken] = React.useState('');
@@ -40,6 +41,10 @@ export default function ChangePassword() {
 	const handleConfirm = (event) => {
 		setConfirmPassword(event.target.value);
 	};
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();

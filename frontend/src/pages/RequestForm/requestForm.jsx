@@ -11,6 +11,7 @@ import {
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
+import { useEffect } from 'react';
 
 const RequestForm = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -85,7 +86,9 @@ const RequestForm = () => {
 			console.log(err);
 		}
 	};
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<>
 			<RequestFailed/>

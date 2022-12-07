@@ -29,12 +29,16 @@ import { AiFillStar } from 'react-icons/ai';
 import { FaStarHalf } from 'react-icons/fa';
 import { howWeWorkDetails, topUsers, reviews } from './data';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const GlassDoor = () => {
 	const navigate = useNavigate();
 	const handleClick = () => {
 		navigate('/signup');
 	};
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<Wrapper>

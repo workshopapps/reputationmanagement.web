@@ -11,6 +11,7 @@ import avatar from './assets/avatar.png'
 // import Sidenav from '../../components/LawyerDashboard/Sidenav'
 import Sidebar from '../../components/Reusables/Sidebar.jsx' 
 import WebAppNav from '../../components/Reusables/WebAppNav'
+import { useEffect } from 'react'
 // import Web from '../../components/Reusables/Sidebar.js' 
 
 // import Sidebar from '../../'
@@ -20,6 +21,10 @@ import WebAppNav from '../../components/Reusables/WebAppNav'
 
 function App() {
     const [openMenu, setOpenMenu] = useState(false)
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
   return (
 
     <BodyWrapper>

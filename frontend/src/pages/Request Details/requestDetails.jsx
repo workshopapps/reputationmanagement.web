@@ -30,6 +30,10 @@ const RequestDetails = () => {
 
 	const ApiPrivate = useAxiosPrivate();
 
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
+
 	const clearForm = () => {
 		// setName()
 		setEmail();

@@ -22,6 +22,7 @@ import hamburger from '../../assets/images/hamburger.svg';
 import x from '../../assets/images/x.svg';
 import logo from '../../assets/images/logo.png';
 import Menu from './MobileMenu';
+import { useEffect } from 'react';
 
 function LawyerDashboard() {
 	// const [tickets, setTickets] = useState([
@@ -91,7 +92,9 @@ function LawyerDashboard() {
 	function toggleMenu() {
 		setMenuActive(!menuActive);
 	}
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<div className="h-screen w-screen flex relative">
 			<Sidenav />

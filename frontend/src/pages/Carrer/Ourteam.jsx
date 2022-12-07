@@ -21,6 +21,7 @@ import patrick from '../../assets/images/blog_images/images/patrick.png';
 import john from '../../assets/images/blog_images/images/john.png';
 import teamfooter from '../../assets/images/blog_images/images/teamfooter.jpg';
 import TeamTemplate from './TeamTemplate';
+import { useEffect } from 'react';
 
 const StyledHeader1 = styled.h1`
 	font-size: 30px;
@@ -225,6 +226,9 @@ function Ourteam() {
 			id: 12,
 		},
 	]);
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<>
 			<PageLayout>

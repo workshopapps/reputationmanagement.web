@@ -19,8 +19,12 @@ import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
 import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
 import Left from '../../assets/images/WeRemoveGoogleSearch/left.svg';
 import Right from '../../assets/images/WeRemoveGoogleSearch/right.svg';
+import { useEffect } from 'react';
 
 const WeRemoveGoogleSearch = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	const [testimonialTemplate] = useState([
 		{
 			image: Avater0,
