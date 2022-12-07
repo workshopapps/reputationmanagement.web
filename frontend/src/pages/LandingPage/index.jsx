@@ -254,9 +254,9 @@ const LandingPage = () => {
 							your business rights.
 						</h4>
 
-						<Link to="get-a-quote">
+						<Link to="contact">
 							<StyledButton className="flex items-center mx-auto">
-								<span>Get a Quote</span>
+								<span>Contact Us</span>
 							</StyledButton>
 						</Link>
 					</div>

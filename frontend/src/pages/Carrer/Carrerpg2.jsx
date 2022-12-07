@@ -34,27 +34,27 @@ function Carrerpg2({ DescriptionProps }) {
 	return (
 		<PageLayout>
 			<div>
-				<StyledBackGround className="flex flex-col text-white items-center justify-center p-4">
-					<h1 className="text-3xl">All Open Positions</h1>
-					<h5 className="text-center w-3/5 mt-4 py-4">
-						If you see a position that makes your heart skip a beat, please
-						apply. Come join us and help us build a global company to which we
-						can be all proud of.
-					</h5>
-				</StyledBackGround>
-
 				<StyledContainer>
+					<StyledBackGround className="flex flex-col text-white items-center justify-center p-4">
+						<h1 className="text-3xl">All Open Positions</h1>
+						<h5 className="text-center w-3/5 mt-4 py-4">
+							If you see a position that makes your heart skip a beat, please
+							apply. Come join us and help us build a global company to which we
+							can be all proud of.
+						</h5>
+					</StyledBackGround>
+
 					{/* search bar  */}
 					<section className="flex flex-row mt-8 justify-center items-center ">
 						<StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full md:w-3/5 lg:w-3/5 scale-75 md:scale-100">
 							<div className="flex justify-center items-center ">
 								<img src={SearchIcon} alt="" />
 								<input
+									onChange={searchChange}
+									value={searchTerm}
 									type="text"
 									placeholder="Search job openings"
 									className="border-0 outline-0 p-3"
-									onChange={searchChange}
-									value={searchTerm}
 								/>
 							</div>
 							<div className="flex">
@@ -85,16 +85,16 @@ function Carrerpg2({ DescriptionProps }) {
 										Estate Planning Lawyer
 									</option>
 								</StyledSelect>
-								<StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
-									Search
-								</StyledButton>
+								{/* <StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
+                                Search
+                            </StyledButton> */}
 							</div>
 						</StyledBox>
 					</section>
 					{/* search bar  */}
 
 					<section className="my-11 px-12">
-						<div className="flex justify-between items-center">
+						<div className="lg:flex block justify-between items-center">
 							<h2 className="font-bold text-xl">Browse Open Positions</h2>
 							<div className="hidden lg:block">
 								<div className="flex items-center justify-center ">
@@ -234,7 +234,7 @@ const StyledGrid = styled.div`
 		grid-template-columns: 1fr 1fr;
 	}
 
-	@media screen and (max-width: 612px) {
+	@media screen and (max-width: 750px) {
 		grid-template-columns: 1fr;
 	}
 `;
@@ -242,6 +242,7 @@ const StyledGrid = styled.div`
 const StyledBackGround = styled.section`
 	background: #233ba9;
 	border-radius: 8px;
+	margin-top: 30px;
 `;
 
 const StyledBox = styled.div`

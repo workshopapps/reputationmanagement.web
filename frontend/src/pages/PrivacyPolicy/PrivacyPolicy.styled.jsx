@@ -36,7 +36,7 @@ export const Main = styled.main`
 	display: grid;
 	grid-template-columns: 30% 70%;
 	padding-top: 88px;
-    padding-bottom: 100px;
+	padding-bottom: 100px;
 
 	@media (max-width: 1020px) {
 		display: flex;
@@ -51,7 +51,7 @@ export const ContentLinks = styled.div`
 	gap: 16px;
 	font-family: 'Lato';
 	height: fit-content;
-    padding-bottom: 40px;
+	padding-bottom: 40px;
 	h3 {
 		font-style: normal;
 		font-weight: 700;
@@ -80,7 +80,7 @@ export const ContentLinks = styled.div`
 export const MainContent = styled.div`
 	display: flex;
 	flex-direction: column;
-    max-width: 100%;
+	max-width: 100%;
 	section {
 		padding-bottom: 40px;
 		h3 {
@@ -107,6 +107,7 @@ export const MainContent = styled.div`
 			font-size: 16px;
 			line-height: 150%;
 			color: #2b2c34;
+			padding-bottom: 4px;
 		}
 		ul {
 			list-style-type: disc;

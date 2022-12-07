@@ -78,21 +78,19 @@ function TermsOfUse() {
 						</ContentLinks>
 						<MainContent data-testid="terms">
 							<section>
-								<h3 id="sec_1" >Repute Terms of Use</h3>
-								<p>EFFECTIVE MARCH 2022</p>
-                                {" "}
+								<h3 id="sec_1">Repute Terms of Use</h3>
+								<p>EFFECTIVE MARCH 2022</p>{' '}
 								<p>
 									REPUTE operates Repute.com and associated sites and mobile
 									applications.
-								</p>
-                                {" "}
+								</p>{' '}
 								<p>
 									Please read these Terms of Use carefully, They govern your
 									access to and use of REPUTE.com, Its content, and the services
 									offered on or through it.These Terms of Use constitute a
 									binding legal agreement between you and us.
-								</p>
-                                {" "}
+								</p>{' '}
+								<br />
 								<p>
 									YOUR ACCESS OR USE OF OUR WEBSITE MEANS THAT YOU HAVE READ AND
 									YOU UNDERSTAND AND AGREE TO BE BOUND BY THESE TERMS OF USE. IF
@@ -106,11 +104,11 @@ function TermsOfUse() {
 								</p>
 							</section>
 							<section>
-								<h3 id="sec_2" >Eligibility</h3>
+								<h3 id="sec_2">Eligibility</h3>
 								<p>We invite users and visitors to REPUTE.com.</p>
 							</section>
 							<section>
-								<h3 id="sec_3" >Services</h3>
+								<h3 id="sec_3">Services</h3>
 								<p>
 									The company provides services such as content removals,
 									content creation, search engine optimization. Customers are
@@ -125,7 +123,7 @@ function TermsOfUse() {
 								</p>
 							</section>
 							<section>
-								<h3 id="sec_4" >License and Ownership</h3>
+								<h3 id="sec_4">License and Ownership</h3>
 								<p>
 									The company may ask to provide information that is considered
 									useful to provide services.
@@ -141,7 +139,7 @@ function TermsOfUse() {
 								</p>
 							</section>
 							<section>
-								<h3 id="sec_5" >Account Creation</h3>
+								<h3 id="sec_5">Account Creation</h3>
 								<p>
 									The company may offer you the option to create an account
 									which will require you to provide information needed for the
@@ -191,22 +189,22 @@ function TermsOfUse() {
 								</p>
 								<ul>
 									<li>
-										- You must provide the company access to relevant personnel
-										of the client and all information, documentation and online
+										You must provide the company access to relevant personnel of
+										the client and all information, documentation and online
 										account as requested by the company for the purpose of
 										company’s performance of its obligations under this
 										agreement.
 									</li>
 									<li>
-										- Our reliance upon any image or data or documentation
+										Our reliance upon any image or data or documentation
 										provided by you.
 									</li>
 									<li>
-										- Our compliance with any instructions by you in relation to
+										Our compliance with any instructions by you in relation to
 										provision of services.
 									</li>
 									<li>
-										- Any damage to the reputation of the company suffered as a
+										Any damage to the reputation of the company suffered as a
 										consequence of a breach of agreement, except that the
 										company has contributed to the loss.
 									</li>
@@ -221,16 +219,16 @@ function TermsOfUse() {
 								</p>
 								<ul>
 									<li>
-										- If the company is required to provide services in
+										If the company is required to provide services in
 										circumstances order than those anticipated in this
 										agreement.
 									</li>
 									<li>
-										- If there is any change in the timing of the services. The
+										If there is any change in the timing of the services. The
 										date for the provision of services will be delayed.
 									</li>
 									<li>
-										- The company may need to increase the fees relating to the
+										The company may need to increase the fees relating to the
 										provision of any amended services which occurs as a result
 										of any event provided that the clients consent to the
 										increase in fees
@@ -381,6 +379,7 @@ function TermsOfUse() {
 									perform, and use your user content in connection with
 									providing our services.
 								</p>
+								<br />
 								<p>
 									We expect our users and visitors to act responsibly,
 									respectfully, and lawfully on WhoKnows.com. You agree not to
@@ -401,6 +400,7 @@ function TermsOfUse() {
 									content, you may contact us through
 									https://REPUTE.zendesk.com/hc/en-us.
 								</p>
+								<br />
 								<p>
 									We reserve the right to refuse to post or to remove or delete
 									any user content on WhoKnows.com, at our discretion and with
@@ -413,6 +413,7 @@ function TermsOfUse() {
 									there is a pending legal issue with such content or if we are
 									otherwise required by law, regulation, or legal process.
 								</p>
+								<br />
 								<p>
 									You represent and warrant that: (1) you own the content that
 									you post on Repute.com or otherwise have the right to post it
@@ -423,6 +424,7 @@ function TermsOfUse() {
 									of any content on Repute.com does not breach any contract
 									between you and a third party.
 								</p>
+								<br />
 							</section>
 							<section>
 								<h3 id="sec_17">General</h3>
