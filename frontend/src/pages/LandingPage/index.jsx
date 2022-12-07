@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../layout/PageLayout';
 import {
@@ -31,39 +31,47 @@ const LandingPage = () => {
 
 	const [formData, setFormData] = useState({
 		email: "",
-  		phoneNumber: "",
-  		businessName: "",
-  		reviewLocation: ""
+		phone: "",
+		businessName: "",
+		reviewLocation: "",
+		fullName: ""
 	})
 
 	const handleChange = (event) => {
-		
+
 		setFormData({
 			...formData,
-            [event.target.name]: event.target.value
-        })
-    }
+			[event.target.name]: event.target.value
+		})
+	}
 
 	// const handleSubmit = async (event) => {
-	// 	event.preventDefault();
-	// 	console.log(formData)
-	// 	try{
-	// 		const res = await ApiPrivate.post("/quote", formData)
-	// 		console.log(res.status)
-	// 		if(res.status === 201){
-	// 			alert("Your response has been submitted");
-	// 			setFormData({
-	// 				email: "",
-	// 				phoneNumber: "",
-	// 				businessName: "",
-	// 				reviewLocation: ""
-	// 			})
-	// 		}
-	// 	}catch(error){
-	// 		console.error(error)
-	// 		return error
-	// 	}
-	// }
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		// console.log(formData)
+		try {
+
+			const res = ApiPrivate.post("/createquote", formData).then(
+				(res) => {
+					if (res.status === 201) {
+						alert("Your response has been submitted");
+						setFormData({
+							email: "",
+							phone: "",
+							businessName: "",
+							reviewLocation: "",
+							fullName: ""
+						})
+					}
+				}
+			)
+			// console.log(res.status)
+			// 
+		} catch (error) {
+			// console.error(error)
+			return error
+		}
+	}
 
 
 
@@ -79,35 +87,32 @@ const LandingPage = () => {
 							</h1>
 
 							<h5>
-								We offer services that improve your brand’s image; they include
+								We offer services that improve your brand&apos;s image; they include
 								reviewing and sorting negative comments about your business.
 							</h5>
 
-							<form>
+							<form onSubmit={handleSubmit}>
 								<div>
-									<input type="text" placeholder="Fullname*"/>
-									<input type="text" placeholder="Phone*" name="phoneNumber" required onChange={handleChange}/>
+									<input type="text" placeholder="Fullname*" name="fullName" onChange={handleChange} value={formData.fullName} required />
+									<input type="text" placeholder="Phone*" name="phone" onChange={handleChange} value={formData.phone} required />
 								</div>
 								<div>
-									<input type="email" placeholder="Email*" name="email" required onChange={handleChange}/>
-									<input type="text" placeholder='Business Name*' name="businessName"required onChange={handleChange}/>
+									<input type="email" placeholder="Email*" name="email" onChange={handleChange} value={formData.email} required />
+									<input type="text" placeholder='Business Name*' name="businessName" onChange={handleChange} value={formData.businessName} required />
 								</div>
 								<div>
-									<select onChange={handleChange} name="reviewLocation">
-										<option value="1">Where is the review?</option>
-										<option value="Google">Google</option>
-									</select>
+									<input name="reviewLocation" placeholder='Where is the review?' className='review-input' onChange={handleChange} value={formData.reviewLocation} required />
 								</div>
 
 								<div className='form-footer-info'>
-									<p>Your details are safe & confidential <br/>View our <a href='/privacy' className='form-footer-link'>Privacy Policy.</a></p>
+									<p>Your details are safe & confidential <br />View our <a href='/privacy' className='form-footer-link'>Privacy Policy.</a></p>
 								</div>
 
 								<StyledButton className='hero-form-button' type='submit'>Submit</StyledButton>
 
 							</form>
 
-							
+
 
 							<div className="hero-text-btn-sec">
 
