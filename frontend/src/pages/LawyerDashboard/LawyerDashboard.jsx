@@ -23,6 +23,8 @@ import x from '../../assets/images/x.svg';
 import logo from '../../assets/images/logo.png';
 import Menu from './MobileMenu';
 import { useEffect } from 'react';
+import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
+
 
 function LawyerDashboard() {
 	// const [tickets, setTickets] = useState([
@@ -96,10 +98,10 @@ function LawyerDashboard() {
 		window.scrollTo(0, 0)
 	  }, [])
 	return (
-		<div className="h-screen w-screen flex relative">
-			<Sidenav />
+		<div className="h-screen flex relative">
+			<Sidebarr />
 
-			<div className="flex flex-col w-full md:w-[80vw] relative md:absolute right-0">
+			<div className="inline-flex flex-col w-full lg:w-[75%] relative md:absolute right-0">
 				<div className="flex justify-between fixed md:static items-center w-full px-5 h-[12vh] bg-white z-10 border-b md:border-none">
 					<form
 						action=""
