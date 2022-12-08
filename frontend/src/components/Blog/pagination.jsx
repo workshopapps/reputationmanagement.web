@@ -1,60 +1,94 @@
+import React from 'react';
 import styled from 'styled-components';
 
-const Pagination = () => {
+const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
+	const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
+
+	const nextPage = () => {
+		if (currentPage !== nPages) setCurrentPage(currentPage + 1);
+	};
+	const prevPage = () => {
+		if (currentPage !== 1) setCurrentPage(currentPage - 1);
+	};
 	return (
-		<>
-			<StyledSection>
-				<div>
-					<div>&#10094; </div>
-					<div>1</div>
-					<div>2</div>
-					<div>3</div>
-					<div>...</div>
-					<div>&#10095;</div>
-				</div>
-			</StyledSection>
-		</>
+		<StyledNav>
+			<ul className="pagination justify-content-center">
+				<li className="page-item">
+					<button className="page-link" onClick={prevPage} href="#">
+						&#10094;
+					</button>
+				</li>
+				{pageNumbers.map((pgNumber) => (
+					<li
+						key={pgNumber}
+						className={`page-item ${currentPage === pgNumber ? 'active' : ''} `}
+					>
+						<button
+							onClick={() => setCurrentPage(pgNumber)}
+							className="page-link"
+							href="#"
+						>
+							{pgNumber}
+						</button>
+					</li>
+				))}
+				<li className="page-item">
+					<button className="page-link" onClick={nextPage} href="#">
+						&#10095;
+					</button>
+				</li>
+			</ul>
+		</StyledNav>
 	);
 };
 
 export default Pagination;
 
-const StyledSection = styled.section`
+const StyledNav = styled.nav`
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	margin-top: 100px;
-	margin-bottom: 100px;
-	div {
+	align-items: center;
+
+	ul {
 		display: flex;
-		div {
+		margin-top: 70px;
+		margin-bottom: 70px;
+
+		li {
 			border: 1px solid #233ba9;
-			width: 48px;
-			height: 40px;
+
 			color: #233ba9;
-			display: inline-flex;
-			justify-content: center;
-			align-items: center;
+
 			margin-right: 24px;
-            transition: 0.5s;
+			transition: 0.5s;
 
-            &:nth-child(2) {
-                background-color: #233ba9;
-                color: white;
-            }
+			&:hover {
+				cursor: pointer;
+				background-color: #233ba9;
+				color: white;
+			}
 
-            &:hover {
-                cursor: pointer;
-                background-color: #233ba9;
-                color: white;
-            }
+			&:active {
+				background-color: #233ba9;
+			}
 
-            @media (max-width:520px) {
-                width: 38px;
-			height: 40px;
-            margin-right: 14px;
-        
-    }
+			button {
+				width: 48px;
+				height: 40px;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+
+				&:active {
+					color: blue;
+				}
+			}
+		}
+
+		.active {
+			background-color: #233ba9;
+			color: white;
 		}
 	}
 `;
