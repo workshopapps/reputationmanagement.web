@@ -8,7 +8,7 @@ const  Successfulmodal = ({ open, onClose }) => {
     return (
 			<div className="relative">
 				<div className="bg-[#7c7979] z-10 fixed bg-opacity-60 inset-0 flex flex-col justify-center items-center w-full h-full mx-auto ">
-					<div className="lg:w-[55%] w-[80%] absolute rounded-md top-[20%] z-50 lg:left-[25%] left-[10%] bg-white">
+					<div className="lg:w-[55%] w-[80%] absolute rounded-md lg:top-[20%] top-[10%] z-50 lg:left-[23%] left-[10%] bg-white">
 						<div className="flex justify-between font-bold p-5">
 							<h1>APPLICATION SENT</h1>
 							<button onClick={onClose}>X</button>
