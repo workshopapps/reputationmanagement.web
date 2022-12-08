@@ -5,7 +5,6 @@ import menu from '../../assets/images/Dashboard/menu.jpg';
 import message from '../../assets/images/Dashboard/message.svg';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-
 // import notificaton from '../../assets/images/Dashboard/notification.svg';
 // import search from '../../assets/images/Dashboard/search.svg';
 // import human from '../../assets/images/Settings/human.svg';
@@ -19,25 +18,22 @@ import {
 
 const WebAppNav = (props) => {
 	const currentRoute = useLocation();
-	const ApiPrivate = useAxiosPrivate();	
+	const ApiPrivate = useAxiosPrivate();
 
 	const data = ApiPrivate.request('/auth/details');
 	try {
 		data.then((res) => {
-			
-
-			if(res != null){
+			if (res != null) {
 				console.log(res.data.businessEntityName);
 				localStorage.setItem('user', res.data.businessEntityName);
 			}
-		})
+		});
 	} catch (error) {
-		console.log('not found')
+		console.log('not found');
 	}
-	
+
 	const userName = localStorage.getItem('user');
-	
-	
+
 	return (
 		<StyledWebAppNav>
 			{(currentRoute.pathname === '/request-form' ||
@@ -49,20 +45,24 @@ const WebAppNav = (props) => {
 					<img src={menu} alt="" onClick={props.openMenuHandler} />
 				</div>
 				<div>
-					<img src={logo} alt="" />
+					<img src={logo} id="site-logo" alt="" />
 				</div>
 			</LogoContainer>
-			
+
 			<NavItems>
-			{(currentRoute.pathname === '/request-form' ||
-					currentRoute.pathname === '/request-form') ? '' : <NavLink to="/request-form">
-					<img src={message} alt="" />
-					New Request
-				</NavLink>}
+				{currentRoute.pathname === '/request-form' ||
+				currentRoute.pathname === '/request-form' ? (
+					''
+				) : (
+					<NavLink to="/request-form">
+						<img src={message} alt="" />
+						New Request
+					</NavLink>
+				)}
 
 				<ProfilePictureContainer>
-						<p>Hi, {userName}</p>
-					</ProfilePictureContainer>
+					<p>Hi, {userName}</p>
+				</ProfilePictureContainer>
 			</NavItems>
 		</StyledWebAppNav>
 	);
