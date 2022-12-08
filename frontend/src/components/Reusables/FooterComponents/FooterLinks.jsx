@@ -93,7 +93,8 @@ const StyledSubscribe = styled.div`
 	}
 `;
 
-const fHeadingClasses = 'my-1 mt-4 md:mt-0 text-2xl font-[600] text-[#F7F7F7]';
+const fHeadingClasses =
+	'my-1 mt-4 md:mt-0 text-1.3xl font-[500] text-[#F7F7F7]';
 
 const aStyle = `block pb-1 flex self-start text-[15px] hover:text-[#F16F04] font-[400] text-[#F1F3F9] text-md`;
 

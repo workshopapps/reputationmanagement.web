@@ -16,15 +16,7 @@ const Header = () => {
 	const loggedin = localStorage.getItem('auth');
 
 	return (
-		<header
-			style={{
-				width: '100vw',
-				position: 'fixed',
-				top: '0',
-				backgroundColor: '#ffffff',
-				zIndex: '5',
-			}}
-		>
+		<StyledHeader>
 			<StyledContainer>
 				<StyledNav className="">
 					<img src={Logo} alt="Repute" className="logo" />
@@ -48,12 +40,14 @@ const Header = () => {
 						>
 							About Us
 						</NavLink>
-						{/* <NavLink
+						{/*
+						<NavLink
 							to="/pricing"
 							className={currentRoute === '/pricing' ? 'active' : ''}
 						>
 							Pricing
-						</NavLink> */}
+						</NavLink>
+					*/}
 						<NavLink
 							to="/contact"
 							className={currentRoute === '/contact' ? 'active' : ''}
@@ -86,11 +80,11 @@ const Header = () => {
 							Contact
 						</NavLink>
 
-						{loggedin ? 
+						{loggedin ? (
 							<StyledNavButton onClick={() => router('/dashboard')}>
 								Dashboard
 							</StyledNavButton>
-						:
+						) : (
 							<>
 								<StyledNavButton onClick={() => router('/login')}>
 									Login
@@ -100,7 +94,7 @@ const Header = () => {
 									Sign up
 								</StyledNavButton>
 							</>
-						}
+						)}
 					</ul>
 
 					{loggedin ? (
@@ -124,7 +118,7 @@ const Header = () => {
 					)}
 				</StyledNav>
 			</StyledContainer>
-		</header>
+		</StyledHeader>
 	);
 };
 const StyledNavButton = styled.button`
@@ -166,11 +160,11 @@ const StyledNav = styled.nav`
 			padding: 6px 18px;
 		}
 	}
-	.navButtons{
+	.navButtons {
 		display: flex;
 	}
 	@media screen and (max-width: 900px) {
-		.navButtons{
+		.navButtons {
 			display: none;
 		}
 	}
@@ -186,7 +180,7 @@ const StyledNav = styled.nav`
 			left: 18px;
 			cursor: pointer;
 		}
-		.navLinks{
+		.navLinks {
 			display: none;
 		}
 	}
@@ -207,6 +201,16 @@ const NavLink = styled(Link)`
 
 	&:hover {
 		color: #233ba9;
+	}
+`;
+const StyledHeader = styled.header`
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	background-color: #ffffff;
+	z-index: 5;
+	@media (max-width: 900px) {
+		opacity: 0.8;
 	}
 `;
 
