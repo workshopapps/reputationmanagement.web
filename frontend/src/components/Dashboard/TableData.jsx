@@ -6,7 +6,7 @@ const TableData = (props) => {
 	
 	return (
 		<tr>
-			<td>{props.no}</td>
+			<td>{props.no + 1}</td>
 
 			<td>
 				<p className={`priority-${props.priority} priority desktop`}>
