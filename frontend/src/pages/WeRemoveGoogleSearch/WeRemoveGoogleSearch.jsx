@@ -25,8 +25,8 @@ import { useEffect } from 'react';
 
 const WeRemoveGoogleSearch = () => {
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	const [testimonialTemplate] = useState([
 		{
 			image: Avater0,
@@ -245,12 +245,9 @@ const WeRemoveGoogleSearch = () => {
 					</Link>
 				</StyledContainer>
 			</ColorBg2>
-			
 		</PageLayout>
 	);
 };
-
-
 
 export default WeRemoveGoogleSearch;
 

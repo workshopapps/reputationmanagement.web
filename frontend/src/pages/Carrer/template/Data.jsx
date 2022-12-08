@@ -41,7 +41,7 @@ const data = [
 	},
 	{
 		title: 'FAMILY LAWYER',
-		desc: 'We are currently looking for a with BUSINESS LAWYER vast experience good',
+		desc: 'We are currently looking for a with BUSINESS LAWYER vast experience',
 		to: '/job9',
 	},
 	{

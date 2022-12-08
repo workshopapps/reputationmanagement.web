@@ -1,10 +1,10 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
-import {
-	StyledButton,
-	// StyledTextButton,
-} from '../../components/Styles/Body/Button.styled';
+// import {
+// 	StyledButton,
+// 	// StyledTextButton,
+// } from '../../components/Styles/Body/Button.styled';
 import SearchIcon from '../../assets/images/Search.png';
 import styled from 'styled-components';
 import PageLayout from '../../layout/PageLayout';
@@ -32,8 +32,8 @@ function Carrerpg2({ DescriptionProps }) {
 		setSearchTerm(e.target.value);
 	};
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<PageLayout>
@@ -134,7 +134,7 @@ function Carrerpg2({ DescriptionProps }) {
 							</div> */}
 
 							{/* <div className="block lg:hidden"> */}
-								{/* <StyledSelect
+							{/* <StyledSelect
 									name="filter-jobs"
 									id="select"
 									className="cursor-pointer px-1 py-3 lg:hidden"
@@ -200,7 +200,7 @@ function Carrerpg2({ DescriptionProps }) {
 										Entertainment Lawyer
 									</option>
 								</StyledSelect> */}
-								{/* <img src={MenuIcon} alt="" /> */}
+							{/* <img src={MenuIcon} alt="" /> */}
 							{/* </div> */}
 						</div>
 					</section>
@@ -238,7 +238,7 @@ const StyledH2 = styled.h2`
 	font-weight: 600;
 	text-align: center;
 	margin-bottom: 20px;
-`
+`;
 
 const SearchInput = styled.div`
 	margin-top: 30px;
@@ -271,7 +271,7 @@ const CenterSearch = styled.div`
 
 const StyledContainer = styled.div`
 	max-width: 1200px;
-    margin: 0 auto;
+	margin: 0 auto;
 
 	@media screen and (max-width: 1238px) {
 		margin: 0 20px;
@@ -289,7 +289,6 @@ const StyledGrid = styled.div`
 
 	@media screen and (max-width: 894px) {
 		grid-template-columns: 1fr 1fr;
-		
 	}
 
 	@media screen and (max-width: 750px) {
