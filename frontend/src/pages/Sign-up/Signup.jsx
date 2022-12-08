@@ -13,6 +13,8 @@ import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
+import fixit_logo from '../../assets/images/logo.png';
+
 
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
@@ -57,10 +59,10 @@ function Signup() {
 
 	useEffect(() => {
 		businessNameValid &&
-		emailValid &&
-		passwordValid &&
-		confirmPasswordValid &&
-		confirmTerms
+			emailValid &&
+			passwordValid &&
+			confirmPasswordValid &&
+			confirmTerms
 			? setPageValid(true)
 			: setPageValid(false);
 	}, [
@@ -126,21 +128,15 @@ function Signup() {
 
 	return (
 		<StyledSignupWrapper
-			className="SignUp box-border min-h-32 flex flex-row h-screen"
-			style={{
-				backgroundImage: `url(${background})`,
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover',
-				backgroundPosition: 'fixed',
-				display: 'flex',
-				width: '100%',
-				backgroundAttachment: 'fixed',
-			}}
+			className="SignUp box-border flex flex-row h-screen"
 		>
-			<StyledFormWrapper style={{ maxWidth: '770px' }}>
-				<img src={Logo} alt="background" className="logo_img" />
-				<h2>Welcome to REPUTE</h2>
-				<p>Sign up to begin with us</p>
+			<StyledFormWrapper>
+
+
+				<img src={fixit_logo} alt="" className='text-center ml-auto mr-auto my-10' />
+
+				<SubHead className='text-center font-bold my-10'>Sign up to create an account</SubHead>
+
 				<div className="form">
 					<div className="business-name">
 						<label htmlFor="business-name">Business Name</label>
@@ -254,8 +250,8 @@ function Signup() {
 										confirmPassword === ''
 											? 'Confirm Your Password'
 											: confirmPassword === password
-											? 'Password Is Invalid'
-											: "Passwords Don't Match"
+												? 'Password Is Invalid'
+												: "Passwords Don't Match"
 									}
 								/>
 							)}
@@ -273,8 +269,8 @@ function Signup() {
 								value={confirmTerms}
 								onChange={(e) => setConfirmTerms(!confirmTerms)}
 								className="term-input"
-								// onFocus={() => setConfirmPasswordFocus(true)}
-								// onBlur={() => setConfirmPasswordFocus(false)}
+							// onFocus={() => setConfirmPasswordFocus(true)}
+							// onBlur={() => setConfirmPasswordFocus(false)}
 							/>
 							<label htmlFor="terms" className="term-label">
 								By signing up, I agree to company{' '}
@@ -304,35 +300,25 @@ function Signup() {
 					</div>
 					<div className="social-icons">
 						<img src={google_icon} alt="" style={{ cursor: 'pointer' }} />
-						<img src={facebook_icon} alt="" style={{ cursor: 'pointer' }} />
-						<img src={apple_icon} alt="" style={{ cursor: 'pointer' }} />
 					</div>
-					<p>
-						Already have an account ? <br />{' '}
-						<span
+					<h6 className='text-sm mb-1'>
+						Already have an account ? <span
 							onClick={() => router('/login')}
 							style={{ cursor: 'pointer' }}
 						>
 							Sign In
 						</span>
-					</p>
+					</h6>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
 
-			<div className="logo">
-				<img src={Logo} alt="background" />
-			</div>
 		</StyledSignupWrapper>
 	);
 }
 const StyledSignupWrapper = styled.div`
 	max-height: 100vh;
 	position: relative;
-	@media (max-width: 910px) {
-		background-image: none !important;
-	}
-
-	.account-type {
+		.account-type {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 30px;
@@ -400,16 +386,16 @@ const StyledSignupOptions = styled.div`
 		margin-top: 32px;
 		max-width: 95%;
 	}
-	p {
+	h6 {
 		font-family: Lato;
-		font-size: 12px;
-		font-weight: 700;
-		line-height: 18px;
-		letter-spacing: 0.01em;
+		font-size: 15px;
+		// font-weight: 700;
+		// line-height: 18px;
+		// letter-spacing: 0.01em;
 		text-align: left;
 		color: #6f7174;
-		white-space: nowrap;
 		margin-top: 32px !important;
+		margin-bottom: 50px !important;
 		span {
 			color: blue;
 			text-decoration: underline;
@@ -417,19 +403,22 @@ const StyledSignupOptions = styled.div`
 	}
 `;
 const StyledFormWrapper = styled.div`
-	padding: 30px 55px 35px 63px;
+	width: 50vw;
+	height: 100%;
+	padding-top: 30px;
 	background-color: #ffffff;
-	width: 50%;
-	overflow-x: scroll;
-	@media (min-width: 9100px) {
-		min-width: 566px;
-	}
-	@media (max-width: 910px) {
+	// padding-left: 62px;
+	// padding-right: 79px;
+	margin-left:auto;
+	margin-right:auto;
+	@media (max-width: 900px) {
 		width: 100%;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
-	@media (max-width: 530px) {
-		padding-left: 30px;
-		padding-right: 30px;
+
+	@media (max-width: 500px) {
+		margin-top: 0;
 		padding-top: 0;
 	}
 
@@ -541,7 +530,8 @@ const StyledFormWrapper = styled.div`
 			letter-spacing: 0em;
 			text-align: left;
 			::placeholder {
-				color: #6f7174;
+				// color: #6f7179;
+				font-size:15px;
 			}
 		}
 		.business-name {
@@ -578,4 +568,14 @@ const StyledFormWrapper = styled.div`
 		}
 	}
 `;
+const SubHead = styled.h5`
+	font-size: 24px;
+	font-weight: 600;
+	color: #6f7174;
+
+	@media (max-width: 500px) {
+		font-size: 24px;
+	}
+`;
+
 export default Signup;

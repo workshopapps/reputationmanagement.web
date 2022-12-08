@@ -2,8 +2,6 @@
 //import image from '../../src/Sign-up/Assets/background.png';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import apple from '../Sign-up/Assets/apple-icon.svg';
-import facebook from '../Sign-up/Assets/facebook-icon.svg';
 import google from '../Sign-up/Assets/google-icon.svg';
 import img1 from '../Sign-up/Assets/loginBG.svg';
 import styled from 'styled-components';
@@ -39,41 +37,41 @@ const Login = () => {
 	} = useAppContext();
 	const [retainAuth, setRetainAuth] = useState(false);
 
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
-  };
+	const togglePassword = () => {
+		setPasswordShown(!passwordShown);
+	};
 
 
-  useEffect(() => {
-	window.scrollTo(0, 0)
-  }, [])
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
 
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    setTriedToSubmit(true)
-    if(pageValid){
-      setRequestPending(true)
-      try{
-        const response = await Api.post('/auth/sign_in',
-          {
-            email: email,
-            password: password,
-          }
-        )
-        localStorage.setItem('auth',email)
-        Cookies.set('reputeAccessToken', response?.data)
-        setRequestPending(false)
-        router('/dashboard')
-        setSuccessMessage('Login successful')
-        setRequestSuccess(true)
-      }
-      catch(err) {
-        if ( err?.response?.status === 400 ){
-          setErrMessage(err?.response?.data)
-        }
-        else{
-          setErrMessage('Login failed');
-        }
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		setTriedToSubmit(true)
+		if (pageValid) {
+			setRequestPending(true)
+			try {
+				const response = await Api.post('/auth/sign_in',
+					{
+						email: email,
+						password: password,
+					}
+				)
+				localStorage.setItem('auth', email)
+				Cookies.set('reputeAccessToken', response?.data)
+				setRequestPending(false)
+				router('/dashboard')
+				setSuccessMessage('Login successful')
+				setRequestSuccess(true)
+			}
+			catch (err) {
+				if (err?.response?.status === 400) {
+					setErrMessage(err?.response?.data)
+				}
+				else {
+					setErrMessage('Login failed');
+				}
 
 				setRequestFailed(true);
 				console.log(err);
@@ -86,13 +84,11 @@ const Login = () => {
 			style={{ maxWidth: '1540px', margin: '0 auto', display: 'flex' }}
 		>
 			<FormSection>
-				<ImgSectionSm src={fixit_logo} alt="" />
 				<StyledForm>
-					<StyledHead1 onClick={() => setRequestFailed(true)}>
-						Welcome Back
-					</StyledHead1>
+					
+					<img src={fixit_logo} alt="" className='text-center ml-auto mr-auto my-10' />
 
-					<SubHead>Log in to continue</SubHead>
+					<SubHead className='text-center font-bold my-10'>Sign in to continue</SubHead>
 
 					<Input1 className="text-input">
 						<label htmlFor="email">Email</label>
@@ -104,7 +100,7 @@ const Login = () => {
 							placeholder="johndoe@gmail.com"
 							id="email"
 							required
-							className={email === '' && triedToSubmit ? 'invalid' : ''}
+							className={email === '' && triedToSubmit ? 'mt-3 invalid' : 'mt-3'}
 						/>
 						{email === '' && triedToSubmit && (
 							<ErrorMessage error="Enter Your Email" />
@@ -112,19 +108,19 @@ const Login = () => {
 					</Input1>
 
 					<Input2 className="text-input">
-						<label htmlFor="email">Password</label>
+						<label htmlFor="password">Password</label>
 						<div
 							className={
 								password < 8 && triedToSubmit
-									? 'invalid input2-div'
-									: 'input2-div'
+									? 'mt-3 invalid input2-div'
+									: 'mt-3 input2-div'
 							}
 						>
 							<input
 								type={passwordShown ? 'text' : 'password'}
 								name="password"
 								value={password}
-								placeholder="6+ character long"
+								placeholder="8+ character long"
 								id="email"
 								required
 								onChange={(e) => setPassword(e.target.value)}
@@ -158,30 +154,29 @@ const Login = () => {
 
 						<ForgotPass>
 							<Link className="" to="/password-recovery">
-								forgot password
+								forgot password?
 							</Link>
 						</ForgotPass>
 					</Remember>
 
 					<SubmitBtn onClick={(e) => handleSubmit(e)}>
-						{!requestPending ? 'Log In' : <div className="loading"></div>}
+						{!requestPending ? 'Sign In' : <div className="loading"></div>}
 					</SubmitBtn>
 				</StyledForm>
 
 				<Loginwith>
 					<span></span>
-					<h4>or log in with</h4>
+					<h4>or Sign in with</h4>
 					<span></span>
 				</Loginwith>
 
 				<FormFooter>
 					<div className="form-footer-icon">
 						<img src={google} alt="google" />
-						<img src={apple} alt="apple" />
-						<img src={facebook} alt="facebook" />
+
 					</div>
 
-					<div className="footer-text">
+					<div className="footer-text ">
 						Don't have an account?{' '}
 						<span
 							onClick={() => router('/signup')}
@@ -193,9 +188,6 @@ const Login = () => {
 				</FormFooter>
 			</FormSection>
 
-			<ImgSection>
-				<img src={fixit_logo} alt="" />
-			</ImgSection>
 		</ParentContainer>
 	);
 };
@@ -203,38 +195,39 @@ const Login = () => {
 export default Login;
 
 const ImgSectionSm = styled.img`
-	height: 100px;
-	width: 100px;
-	object-fit: contain;
-	margin-left: auto;
+	// height: 100px;
+	// width: 100px;
+	// object-fit: contain;
+	// margin-left: auto;
 
 	@media (min-width: 901px) {
-		display: none;
+		// display: none;
 	}
 `;
 const ParentContainer = styled.div`
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
 	background-size: cover;
-	background-position: left top;
-	background-repeat: no-repeat;
-	background-position-x: left;
-	background-image: url(${img1});
-	@media (min-width: 2000px) {
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-	}
+	// background-position: left top;
+	// background-repeat: no-repeat;
+	// background-position-x: left;
+	// background-image: url(${img1});
+	// @media (min-width: 2000px) {
+	// 	width: 100%;
+	// 	justify-content: center;
+	// 	align-items: center;
+	// }
 
-	@media (max-width: 500px) {
-		margin-bottom: 30px;
-	}
+	// @media (max-width: 500px) {
+	// 	margin-bottom: 30px;
+	// }
 
 	.footer-text {
 		font-family: Lato;
-		font-size: 24px !important;
+		font-size: 14px !important;
 		font-weight: 400 !important;
 		line-height: 29px;
+		margin-bottom: 50px;
 		-webkit-letter-spacing: 0.01em;
 		-moz-letter-spacing: 0.01em;
 		-ms-letter-spacing: 0.01em;
@@ -264,13 +257,14 @@ const ImgSection = styled.div`
 	}
 `;
 const FormSection = styled.section`
-	width: 50%;
+	width: 50vw;
 	height: 100%;
 	padding-top: 30px;
-	overflow-x: scroll;
 	background-color: #ffffff;
-	padding-left: 62px;
-	padding-right: 79px;
+	// padding-left: 62px;
+	// padding-right: 79px;
+	margin-left:auto;
+	margin-right:auto;
 	@media (max-width: 900px) {
 		width: 100%;
 		padding-left: 20px;
@@ -286,7 +280,7 @@ const StyledForm = styled.form`
 	margin: 0;
 `;
 
-const StyledHead1 = styled.h1`
+const StyledHead1 = styled.h4`
 	font-size: 57px;
 	font-weight: 700px;
 
@@ -301,7 +295,7 @@ const StyledHead1 = styled.h1`
 
 const SubHead = styled.h5`
 	font-size: 24px;
-	font-weight: 400;
+	font-weight: 600;
 	color: #6f7174;
 
 	@media (max-width: 500px) {
@@ -315,7 +309,7 @@ const Input1 = styled.div`
 	flex-direction: column;
 
 	label {
-		margin-bottom: 8px;
+		font-weight:500;
 	}
 
 	input {
@@ -332,7 +326,7 @@ const Input2 = styled.div`
 	margin-top: 20px;
 
 	label {
-		margin-bottom: 8px;
+		font-weight:500;
 	}
 
 	.input2-div {
@@ -362,7 +356,7 @@ const Input2 = styled.div`
 `;
 
 const Remember = styled.div`
-	margin-top: 10px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: space-between;
 
@@ -418,7 +412,7 @@ const ForgotPass = styled.div`
 `;
 
 const SubmitBtn = styled.button`
-	margin-top: 20px;
+	margin-top: 50px;
 	width: 100%;
 	height: 59px;
 	border-radius: 7px;
@@ -480,18 +474,18 @@ const FormFooter = styled.div`
 		justify-content: space-between;
 
 		div {
-			height: 48px;
-			width: 48px;
-			border: 1px solid #787a7d;
-			border-radius: 8px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			//margin-left: 80px;
-			gap: 30px;
+			// height: 48px;
+			// width: 48px;
+			// border: 1px solid #787a7d;
+			// border-radius: 8px;
+			// display: flex;
+			// justify-content: space-between;
+			// align-items: center;
+			// //margin-left: 80px;
+			// gap: 30px;
 
 			img {
-				height: 23px;
+				height: 100%;
 			}
 		}
 	}
