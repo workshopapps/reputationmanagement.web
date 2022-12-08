@@ -5,6 +5,7 @@ export const StyledSidebar = styled.aside`
 		font-family: 'Lato', sans-serif;
 	}
 
+	z-index: 99;
 	grid-area: sidebar;
 	padding: 32px 135px 32px 64px;
 	background-color: white;
