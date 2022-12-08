@@ -7,16 +7,6 @@ import lineChart from '../../assets/images/lineChart.svg';
 import arrowDown from '../../assets/images/arrowDown.svg';
 import arrowUp from '../../assets/images/arrowUp.svg';
 import requestsIcon from '../../assets/images/requestsIcon.svg';
-import low from '../../assets/images/low.svg';
-import medium from '../../assets/images/medium.svg';
-import high from '../../assets/images/high.svg';
-import today from '../../assets/images/today.svg';
-import thisWeek from '../../assets/images/thisWeek.svg';
-import nextWeek from '../../assets/images/nextWeek.svg';
-import doughnut from '../../assets/images/doughnut.svg';
-import failed from '../../assets/images/failed.svg';
-import progress from '../../assets/images/progress.svg';
-import successful from '../../assets/images/successful.svg';
 import hamburger from '../../assets/images/hamburger.svg';
 import x from '../../assets/images/x.svg';
 import logo from '../../assets/images/logo.png';
@@ -31,13 +21,6 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 
 function LawyerDashboard() {
 	const [tickets, setTickets] = useState([
-	    {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
 	]);
 	const { setRequestFailed, setErrMessage } = useAppContext();
 
@@ -79,8 +62,7 @@ function LawyerDashboard() {
 
 			<div className="inline-flex flex-col w-full lg:w-[75%] relative md:absolute right-0">
 				<div className="flex justify-between fixed md:static items-center w-full px-5 h-[12vh] bg-white z-10 border-b md:border-none">
-					<form
-						action=""
+					<div
 						className="hidden md:flex items-center border rounded-md overflow-hidden h-[40px] w-2/5"
 					>
 						<img src={searchIcon} alt="" className="px-2 h-[24px]" />
@@ -91,7 +73,7 @@ function LawyerDashboard() {
 							value={searchTicket}
 							onChange={(e) => setSearchTicket(e.target.value)}
 						/>
-					</form>
+					</div>
 
 					<button className="flex md:hidden" onClick={toggleMenu}>
 						<img src={menuActive ? x : hamburger} alt="" className="w-[25px]" />

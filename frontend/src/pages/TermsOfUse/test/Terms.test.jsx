@@ -4,13 +4,16 @@ import Termsofuse from '../termsofuse'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 test('should render Terms of Use Page', () => {
- render( <Router>
- <Termsofuse/>
+  window.scrollTo = jest.fn()
+ render( 
+ <Router>
+  <Termsofuse/>
  </Router>)
   const terms = screen.getByTestId('terms')
 expect(terms).toBeInTheDocument();
  })
  test('Heading text should be present', () => {
+  window.scrollTo = jest.fn()
    render( <Router>
    <Termsofuse/>  
    </Router>)

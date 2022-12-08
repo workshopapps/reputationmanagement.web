@@ -2,11 +2,15 @@ import React from 'react'
 import { render, screen } from '@testing-library/react';
 import LawyerDashboard from './LawyerDashboard';
 import { BrowserRouter as Router } from 'react-router-dom';
+import AppProvider from '../../context/appContext'
 
 test('should render non-dynamic contents to be displayed correctly', () => {
+	window.scrollTo = jest.fn()
 	render(
 		<Router>
-			<LawyerDashboard />
+			<AppProvider>
+				<LawyerDashboard />
+			</AppProvider>
 		</Router>
 	);
 	const totalRequest = screen.getByText(/Total requests/i);
@@ -22,7 +26,9 @@ test('should render non-dynamic contents to be displayed correctly', () => {
 test('should render the table correctly', () => {
 	render(
 		<Router>
-			<LawyerDashboard />
+			<AppProvider>
+				<LawyerDashboard />
+			</AppProvider>
 		</Router>
 	);
 	const table = screen.getByRole("table");

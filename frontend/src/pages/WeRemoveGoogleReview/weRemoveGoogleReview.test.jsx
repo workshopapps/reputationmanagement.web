@@ -6,6 +6,7 @@ import WeRemoveGoogleReview from './WeRemoveGoogleReview';
 describe('Testing Google Review Components', () => {
 
 test('render The Components of Google Review Properly In the Document', () => {
+	window.scrollTo = jest.fn()
 	render(
 		<Router>
 			<WeRemoveGoogleReview />
