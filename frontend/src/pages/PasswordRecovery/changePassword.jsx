@@ -1,24 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import ResetSuccess from '../../modal/resetpasswordsuccess/resetpasswordsuccessful';
-import { toast } from 'react-toastify';
-// import { even } from 'prelude-ls';
+import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
 import bg_img from '../../assets/images/woman_on_phone.png';
 import repute_logo from '../../assets/images/repute_logo.png';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import REPUTE from './repute.svg';
+import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
 export default function ChangePassword() {
 	const [token, setToken] = React.useState('');
 	const [password, setPassword] = React.useState('');
 	const [confirmPassword, setConfirmPassword] = React.useState('');
-	const [passwordShown] = React.useState(false);
-	const [confirmPasswordShown] = React.useState(false);
-	// const [passwordShown, setPasswordShown] = React.useState(false);
-	// const [confirmPasswordShown, setConfirmPasswordShown] = React.useState(false);
+	const [passwordShown, setPasswordShown] = React.useState(false);
+	const [confirmPasswordShown, setConfirmPasswordShown] = React.useState(false);
 	const [resetPasswordModal, setResetPasswordModal] = React.useState(false);
 	const [showPasswordModal, setShowPasswordModal] = React.useState(false);
+	const [requestPending, setRequestPending] = React.useState(false);
 
 	// const togglePassword = (event) => {
 	// 	event.preventDefault();
@@ -29,6 +29,13 @@ export default function ChangePassword() {
 	// 	event.preventDefault();
 	// 	setConfirmPasswordShown((prevState) => !prevState);
 	// };
+
+	const togglePassword = () => {
+		setPasswordShown(!passwordShown);
+	};
+	const togglePassword2 = () => {
+		setConfirmPasswordShown(!confirmPasswordShown);
+	};
 
 	const handleToken = (event) => {
 		setToken(event.target.value);
@@ -43,18 +50,20 @@ export default function ChangePassword() {
 	};
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	}, [])
+		window.scrollTo(0, 0);
+	}, []);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const email = localStorage.getItem('auth');
+		setRequestPending(true);
 
 		if (password !== confirmPassword) {
 			toast.error('Password does not match', {
 				position: 'top-left',
 				autoClose: 2000,
 			});
+			setRequestPending(false);
 		}
 		try {
 			const response = Api.post('/auth/reset-password', {
@@ -73,109 +82,280 @@ export default function ChangePassword() {
 				setResetPasswordModal(true);
 			}
 		} catch (err) {
-			setShowPasswordModal(true);
-			setResetPasswordModal(false);
+			// setShowPasswordModal(true);
+			// setResetPasswordModal(false);
+			setRequestPending(false);
 		}
 	};
 
 	return (
-		<StyledParent>
-			<StyledSection onSubmit={handleSubmit}>
-				<StyledLogo src={repute_logo} alt="repute logo" />
-				<StyledHeader>Reset Password</StyledHeader>
-				<StyledParagraph>
-					Please enter and confirm your new password
-				</StyledParagraph>
+		<>
+			<LoginContainer>
+				<Link to="/">
+					<ReputeLogo>
+						<img src={REPUTE} alt="Repute Logo" />
+					</ReputeLogo>
+				</Link>
+				<h2>Reset Password</h2>
+				<p>Please enter and confirm your new password</p>
 
-				<StyledForm style={{ opacity: showPasswordModal ? 0.4 : 1 }}>
-					<label htmlFor="token">Enter token</label>
-					<StyledFormInput>
-						<StyledInput
-							type="text"
-							name="token"
-							placeholder="Enter token sent to email"
-							required
-							onChange={handleToken}
-							value={token}
-						/>
-					</StyledFormInput>
+				<form>
+					<StyledlogForm>
+						{/* <label htmlFor="email">Email</label> */}
+						<StyledBox>
+							<StyledInput
+								type="text"
+								name="token"
+								placeholder="Enter token sent to email"
+								required
+								onChange={handleToken}
+								value={token}
+							/>
+						</StyledBox>
+					</StyledlogForm>
 
-					<label htmlFor="password">Enter new password</label>
-					<StyledFormInput>
-						<StyledInput
-							type={passwordShown ? 'text' : 'password'}
-							placeholder="Max of 8 characters"
-							required
-							onChange={handleChange}
-							value={password}
-						/>
-					</StyledFormInput>
+					{/* Password  */}
 
-					<label htmlFor="password">Confirm the new password</label>
-					<StyledFormInput>
-						<StyledInput
-							type={confirmPasswordShown ? 'text' : 'password'}
-							placeholder="Ensure it is the same"
-							required
-							onChange={handleConfirm}
-							value={confirmPassword}
-						/>
-					</StyledFormInput>
+					<StyledlogForm>
+						{/* <label htmlFor="password">Password</label> */}
+						<StyledBox>
+							<StyledInput2
+								type={passwordShown ? 'text' : 'password'}
+								placeholder="New Password"
+								required
+								onChange={handleChange}
+								value={password}
+							/>
+							<button onClick={() => togglePassword()} type="button">
+								{passwordShown ? <FaRegEye /> : <FaRegEyeSlash />}
+							</button>
+						</StyledBox>
+					</StyledlogForm>
 
-					{/* <label htmlFor="password">Enter new password</label>
-					<StyledDiv>
-						<StyledInput
-							type={passwordShown ? 'text' : 'password'}
-							placeholder="Max of 8 characters"
-							required
-							onChange={handleChange}
-							value={password}
-						/>
-						<button onClick={togglePassword}>
-							<FaRegEyeSlash />
-						</button>
-					</StyledDiv>
+					{/* Retype Password  */}
 
-					<label htmlFor="password">Confirm the new password</label>
-					<StyledFormInput>
-						<StyledInput
-							type={confirmPasswordShown ? 'text' : 'password'}
-							placeholder="Ensure it is the same"
-							required
-							onChange={handleConfirm}
-							value={confirmPassword}
-						/>
-						<button onClick={toggleConfirmPassword}>
-							<FaRegEyeSlash />
-						</button>
-					</StyledFormInput> */}
+					<StyledlogForm>
+						{/* <label htmlFor="password">Password</label> */}
+						<StyledBox>
+							<StyledInput2
+								type={confirmPasswordShown ? 'text' : 'password'}
+								placeholder="Re-type Password"
+								required
+								onChange={handleConfirm}
+								value={confirmPassword}
+							/>
+							<button onClick={() => togglePassword2()} type="button">
+								{confirmPasswordShown ? <FaRegEye /> : <FaRegEyeSlash />}
+							</button>
+						</StyledBox>
+					</StyledlogForm>
 
-					<StyledSubmit type="submit">Sign in</StyledSubmit>
-				</StyledForm>
+					<SubmitBtn onClick={handleSubmit}>
+						{!requestPending ? 'Log In' : <div className="loading"></div>}
+					</SubmitBtn>
+				</form>
+
+				{/* jsjbsjfjfjfsjfjfjfs  */}
+
+
 				<StyledModal>
 					{showPasswordModal && (
 						<ResetSuccess resetPasswordModal={resetPasswordModal} />
 					)}
 				</StyledModal>
-			</StyledSection>
-			<StyledDiv>
-				<StyledImg
-					src={bg_img}
-					className="background"
-					alt="woman on the phone calling"
-				/>
-				<StyledImgText>
-					Welcome back,{' '}
-					<span>
-						<Link to="/blog">click here</Link>
-					</span>{' '}
-					to check out our new updates
-				</StyledImgText>
-			</StyledDiv>
-		</StyledParent>
+			</LoginContainer>
+			<ToastContainer />
+
+			{/* Old Code */}
+			{/* <>
+				<StyledParent>
+					<StyledSection onSubmit={handleSubmit}>
+						<StyledLogo src={repute_logo} alt="repute logo" />
+						<StyledHeader>Reset Password</StyledHeader>
+						<StyledParagraph>
+							Please enter and confirm your new password
+						</StyledParagraph>
+
+						<StyledForm style={{ opacity: showPasswordModal ? 0.4 : 1 }}>
+							<label htmlFor="token">Enter token</label>
+							<StyledFormInput>
+								<StyledInput
+									type="text"
+									name="token"
+									placeholder="Enter token sent to email"
+									required
+									onChange={handleToken}
+									value={token}
+								/>
+							</StyledFormInput>
+
+							<label htmlFor="password">Enter new password</label>
+							<StyledFormInput>
+								<StyledInput
+									type={passwordShown ? 'text' : 'password'}
+									placeholder="Max of 8 characters"
+									required
+									onChange={handleChange}
+									value={password}
+								/>
+							</StyledFormInput>
+
+							<label htmlFor="password">Confirm the new password</label>
+							<StyledFormInput>
+								<StyledInput
+									type={confirmPasswordShown ? 'text' : 'password'}
+									placeholder="Ensure it is the same"
+									required
+									onChange={handleConfirm}
+									value={confirmPassword}
+								/>
+							</StyledFormInput>
+
+							<StyledSubmit type="submit">Sign in</StyledSubmit>
+						</StyledForm>
+
+						<StyledModal>
+							{showPasswordModal && (
+								<ResetSuccess resetPasswordModal={resetPasswordModal} />
+							)}
+						</StyledModal>
+					</StyledSection>
+					<StyledDiv>
+						<StyledImg
+							src={bg_img}
+							className="background"
+							alt="woman on the phone calling"
+						/>
+						<StyledImgText>
+							Welcome back,{' '}
+							<span>
+								<Link to="/blog">click here</Link>
+							</span>{' '}
+							to check out our new updates
+						</StyledImgText>
+					</StyledDiv>
+				</StyledParent>
+			</> */}
+		</>
 	);
 }
 
+// New Style
+
+const LoginContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
+	width: 80%;
+	margin: 0 auto;
+	height: 100vh;
+
+	h2 {
+		font-style: normal;
+		font-weight: 700;
+		font-size: 28px;
+		color: #2b2c34;
+		text-align: center;
+	}
+	p {
+		color: #6f7174;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 430px;
+	}
+`;
+const ReputeLogo = styled.div`
+	margin-top: 30px;
+	margin-bottom: 40px;
+	img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 40%;
+	}
+	@media (max-width: 320px) {
+		margin-bottom: 10px;
+	}
+`;
+const StyledBack = styled.div`
+	margin: 30px 0;
+	a {
+		display: flex;
+		justify-content: center;
+		color: #000;
+		font-weight: 700;
+		text-align: start;
+		img {
+			margin-right: 5px;
+		}
+	}
+`;
+const StyledlogForm = styled.div`
+	display: flex;
+	flex-direction: column;
+	min-width: 100%;
+	margin-bottom: 20px;
+`;
+const StyledBox = styled.div`
+	border: 2px solid #d2d3d4;
+	border-radius: 4px;
+`;
+
+const StyledInput = styled.input`
+	border: none;
+	padding: 10px 10px;
+	width: 100%;
+
+	&:focus {
+		outline: none;
+	}
+`;
+const StyledInput2 = styled.input`
+	border: none;
+	padding: 10px 10px;
+	width: 93%;
+
+	&:focus {
+		outline: none;
+	}
+`;
+const SubmitBtn = styled.button`
+	margin-bottom: 30px;
+	margin-top: 20px;
+	width: 100%;
+	border-radius: 4px;
+	background-color: #233ba9;
+	color: white;
+	padding: 10px;
+
+	.loading {
+		width: 20px;
+		height: 20px;
+		border: 2px solid #fff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+		@keyframes rotation {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	}
+	@media (max-width: 360px) {
+		margin-top: -4px;
+	}
+`;
+
+// Styled
 const StyledParent = styled.div`
 	display: flex;
 `;
@@ -299,18 +479,18 @@ const StyledModal = styled.div`
 	width: 80%;
 `;
 
-const StyledInput = styled.input`
-	background: #ffffff;
-	border: 1px solid #e8e8e8;
-	border-radius: 8px;
-	padding: 8px 20px;
-	margin-top: 15px;
-	margin-bottom: 20px;
+// const StyledInput = styled.input`
+// 	background: #ffffff;
+// 	border: 1px solid #e8e8e8;
+// 	border-radius: 8px;
+// 	padding: 8px 20px;
+// 	margin-top: 15px;
+// 	margin-bottom: 20px;
 
-	&:focus {
-		outline: 1px solid #233ba9;
-	}
-`;
+// 	&:focus {
+// 		outline: 1px solid #233ba9;
+// 	}
+// `;
 
 const StyledSubmit = styled.button`
 	background-color: #233ba9;

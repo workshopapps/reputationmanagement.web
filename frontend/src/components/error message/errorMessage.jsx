@@ -12,10 +12,14 @@ const ErrorMessage = (props) => {
 export default ErrorMessage;
 
 const StyledErrorMessage = styled.div`
-    display: flex ;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    // align-items: center;
+    gap: 5px;
+    margin: -13px 0;
+    img{
+        margin-top: -28px;
+    }
     p{
         color: #D8340F !important;
         font-size: 16px !important;

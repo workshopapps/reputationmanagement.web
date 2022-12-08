@@ -25,55 +25,58 @@ import {
 } from './assets';
 import styled from 'styled-components';
 import Api from '../../api/axios';
-import useAppContext from '../../hooks/useAppContext'
+import useAppContext from '../../hooks/useAppContext';
 import { useEffect } from 'react';
 
-
 const LandingPage = () => {
-	const [ loading, setLoading ] = useState(false)
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
-		email: "",
-		phone: "",
-		businessName: "",
-		reviewLocation: "",
-		fullName: ""
-	})
+		email: '',
+		phone: '',
+		businessName: '',
+		reviewLocation: '',
+		fullName: '',
+	});
 
 	const handleChange = (event) => {
-
 		setFormData({
 			...formData,
-			[event.target.name]: event.target.value
-		})
-	}
+			[event.target.name]: event.target.value,
+		});
+	};
 
-	const { setRequestSuccess, setSuccessMessage, setRequestFailed, setErrMessage } = useAppContext();
+	const {
+		setRequestSuccess,
+		setSuccessMessage,
+		setRequestFailed,
+		setErrMessage,
+	} = useAppContext();
 
-	const handleSubmit = async() => {
-		setLoading(true)
+	const handleSubmit = async () => {
+		setLoading(true);
 		try {
-			const response = await Api.post("/createquote", formData)
-			setLoading(false)
-			setSuccessMessage("Your response has been submitted")
-			setRequestSuccess(true)
+			const response = await Api.post('/createquote', formData);
+			setLoading(false);
+			setSuccessMessage('Your response has been submitted');
+			setRequestSuccess(true);
 			setFormData({
-				email: "",
-				phone: "",
-				businessName: "",
-				reviewLocation: "",
-				fullName: ""
-			})
-			console.log(response)
+				email: '',
+				phone: '',
+				businessName: '',
+				reviewLocation: '',
+				fullName: '',
+			});
+			console.log(response);
 		} catch (error) {
-			setLoading(false)
-			setErrMessage('Request failed')
-			setRequestFailed(true)
-			return error
+			setLoading(false);
+			setErrMessage('Request failed');
+			setRequestFailed(true);
+			return error;
 		}
-	}
+	};
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<StyledLandingPage>
@@ -86,43 +89,75 @@ const LandingPage = () => {
 							</h1>
 
 							<h5>
-								We offer services that improve your brand&apos;s image; they include
-								reviewing and sorting negative comments about your business.
+								We offer services that improve your brand&apos;s image; they
+								include reviewing and sorting negative comments about your
+								business.
 							</h5>
 
 							<form onSubmit={handleSubmit}>
 								<div>
-									<input type="text" placeholder="Fullname*" name="fullName" onChange={handleChange} value={formData.fullName} required />
-									<input type="text" placeholder="Phone*" name="phone" onChange={handleChange} value={formData.phone} required />
+									<input
+										type="text"
+										placeholder="Fullname*"
+										name="fullName"
+										onChange={handleChange}
+										value={formData.fullName}
+										required
+									/>
+									<input
+										type="text"
+										placeholder="Phone*"
+										name="phone"
+										onChange={handleChange}
+										value={formData.phone}
+										required
+									/>
 								</div>
 								<div>
-									<input type="email" placeholder="Email*" name="email" onChange={handleChange} value={formData.email} required />
-									<input type="text" placeholder='Business Name*' name="businessName" onChange={handleChange} value={formData.businessName} required />
+									<input
+										type="email"
+										placeholder="Email*"
+										name="email"
+										onChange={handleChange}
+										value={formData.email}
+										required
+									/>
+									<input
+										type="text"
+										placeholder="Business Name*"
+										name="businessName"
+										onChange={handleChange}
+										value={formData.businessName}
+										required
+									/>
 								</div>
 								<div>
-									<input name="reviewLocation" placeholder='Where is the review?' className='review-input' onChange={handleChange} value={formData.reviewLocation} required />
+									<input
+										name="reviewLocation"
+										placeholder="Where is the review?"
+										className="review-input"
+										onChange={handleChange}
+										value={formData.reviewLocation}
+										required
+									/>
 								</div>
 
-								<div className='form-footer-info'>
-									<p>Your details are safe & confidential <br />View our <a href='/privacy' className='form-footer-link'>Privacy Policy.</a></p>
+								<div className="form-footer-info">
+									<p>
+										Your details are safe & confidential <br />
+										View our{' '}
+										<a href="/privacy" className="form-footer-link">
+											Privacy Policy.
+										</a>
+									</p>
 								</div>
 
-								<StyledButton className='hero-form-button' type='submit'>
-									{
-										!loading
-											?
-										"Submit"
-										:
-										<div className="loading"></div>
-									}
+								<StyledButton className="hero-form-button" type="submit">
+									{!loading ? 'Submit' : <div className="loading"></div>}
 								</StyledButton>
-
 							</form>
 
-
-
 							<div className="hero-text-btn-sec">
-
 								<div className="hero-text-star">
 									<img src={star_icon} alt="star-icon" />
 								</div>
