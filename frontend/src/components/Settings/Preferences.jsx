@@ -2,17 +2,19 @@ import React from 'react';
 import { useState } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import {
-	styleClass,
-	StyledButton,
-	StyledButtonText,
-	StyledTab,
-} from './Settings.styled';
+import { styleClass, StyledButton, StyledTab } from './Settings.styled';
 
 function Preferences({ userLanguage, setUserLanguage }) {
-	const languages = ['english', 'german', 'russian', 'chinese'];
-	const [requestPending, setRequestPending] = useState(false);
 	const ApiPrivate = useAxiosPrivate();
+	const languages = ['english', 'german', 'russian', 'chinese'];
+
+	const [requestPending, setRequestPending] = useState(false);
+	const [accessibility, setAccessibility] = useState({
+		screenReader: false,
+		largeText: false,
+		contrastColors: false,
+	});
+
 	const {
 		setRequestFailed,
 		setRequestSuccess,
@@ -36,6 +38,28 @@ function Preferences({ userLanguage, setUserLanguage }) {
 				setRequestFailed(true);
 				setRequestPending(false);
 			});
+	};
+
+	const CheckInputGroup = ({ id, checked, label }) => {
+		return (
+			<div className="flex items-center mb-1">
+				<input
+					className={styleClass.inputCheckClass}
+					type="checkbox"
+					value={id}
+					id={id}
+					checked={checked}
+					onChange={(e) => {
+						setAccessibility((prev) => {
+							return { ...prev, [id]: !checked };
+						});
+					}}
+				/>
+				<label className="inline-block text-gray-800" htmlFor={id}>
+					{label}
+				</label>
+			</div>
+		);
 	};
 
 	return (
@@ -68,17 +92,25 @@ function Preferences({ userLanguage, setUserLanguage }) {
 					</label>
 
 					<div className="w-full">
-						<CheckInputGroup id="screen-reader" label="I use a screen reader" />
-						<CheckInputGroup id="large-text" label="I use large text" />
 						<CheckInputGroup
-							id="contrast-colors"
+							id="screenReader"
+							checked={accessibility.screenReader}
+							label="I use a screen reader"
+						/>
+						<CheckInputGroup
+							id="largeText"
+							checked={accessibility.largeText}
+							label="I use large text"
+						/>
+						<CheckInputGroup
+							id="contrastColors"
+							checked={accessibility.contrastColors}
 							label="I use high contrast colors"
 						/>
 					</div>
 				</div>
 
 				<div className="my-14 flex justify-end">
-					<StyledButtonText type="reset">Discard</StyledButtonText>
 					<StyledButton type="submit">
 						{requestPending ? 'Loading...' : 'Save Changes'}
 					</StyledButton>
@@ -87,21 +119,5 @@ function Preferences({ userLanguage, setUserLanguage }) {
 		</StyledTab>
 	);
 }
-
-const CheckInputGroup = ({ id, label }) => {
-	return (
-		<div className="flex items-center">
-			<input
-				className={styleClass.inputCheckClass}
-				type="checkbox"
-				value={id}
-				id={id}
-			/>
-			<label className="inline-block text-gray-800" htmlFor={id}>
-				{label}
-			</label>
-		</div>
-	);
-};
 
 export default Preferences;
