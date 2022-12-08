@@ -114,49 +114,49 @@ const WeRemoveGoogleSearch = () => {
 
 			<StyledContainer>
 				<StyledGrid text>
-					<div>
+					<StyledParent>
 						<img src={Vector1} alt="Vector1" />
 						<StyledH3>What wrong google searches can do</StyledH3>
 						<StyledText>
 							It may sound daunting to have anything removed from Google, but
 							REPUTE got you covered
 						</StyledText>
-					</div>
-					<div>
+					</StyledParent>
+					<StyledParent>
 						<img src={Vector2} alt="Vector2" />
 						<StyledH3>Protect your business Reputation</StyledH3>
 						<StyledText>
 							Our team of experts provide speedy results, and we profer the best
 							solutions.
 						</StyledText>
-					</div>
-					<div>
+					</StyledParent>
+					<StyledParent>
 						<img src={Vector3} alt="Vector3" />
 						<StyledH3>We remove bad google searches</StyledH3>
 						<StyledText>
 							Bad google search results can have a devastating effect on your
 							brand's reputation
 						</StyledText>
-					</div>
+					</StyledParent>
 				</StyledGrid>
 				<Spacer />
 				<StyledGrid grid>
 					<div className="imgDisplay">
 						<img src={Image2} alt="Image2" />
 					</div>
-					<div>
-						<StyledH2>Take Adavantage of our Services today</StyledH2>
+					<StyledProposal>
+						<StyledH2>Take Advantage of our Services today</StyledH2>
 						<StyledText2>
-							We do not give half-hearted solutions at REPUTE. Instead than
+							We do not give half-hearted solutions at REPUTE. Rather than
 							covering over the issue, we get rid of it completely. The problems
 							these pages create will persist until they are no longer
-							accessible via Google search results; if we fail to do so, you
+							accessible via Google search results; If we fail to do so, you
 							incur no cost. That's how simple it is!
 						</StyledText2>
 						<Link to="/contact">
 							<StyledButton top>Contact our experts</StyledButton>
 						</Link>
-					</div>
+					</StyledProposal>
 
 					<div className="imgDisplay2">
 						<img src={Image2} alt="Image2" />
@@ -255,6 +255,7 @@ export const StyledBox = Styled.div`
 border: 1px rgba(0, 0, 0, 0.1) solid;
 border-radius: 8px;
 padding-bottom: 20px;
+text-align: center;
 
 .padding{
 	margin: 0 10px;
@@ -287,6 +288,14 @@ max-width: 700px;
 margin: 0 auto;
 color: #787A7D;
 text-align: ${(props) => (props.center ? 'center' : 'start')};
+
+@media (max-width: 700px){
+	text-align: center !important;
+}
+
+@media (max-width: 500px){
+	font-size: 16px;
+}
 `;
 
 export const StyledGrid = Styled.div`
@@ -321,6 +330,22 @@ export const StyledGrid = Styled.div`
 
 	}
 `;
+
+const StyledParent = Styled.div`
+	@media (max-width: 700px){
+		text-align: center;
+
+		img {
+		margin: 0 auto;
+	}
+	}
+`
+
+const StyledProposal = Styled.div`
+	@media (max-width: 700px){
+		text-align: center;
+	}
+`
 
 export const ColorBg2 = Styled.div`
 background: #EEF1FC;
@@ -414,6 +439,10 @@ margin-top: 100px;
 
 export const Spacer = Styled.div`
 	margin-top: 60px; 
+
+	@media (max-width: 500px){
+		margin-top: 20px;
+	}
 `;
 
 export const SpacerSmall = Styled.div`
@@ -478,7 +507,7 @@ export const StyledButton = Styled.button`
 
     @media screen and (max-width: 460px) {
         margin-bottom: ${(props) => (props.bottom ? '20px' : 0)};
-        margin-top: ${(props) => (props.top ? '20px' : 0)};
+        /* margin-top: ${(props) => (props.top ? '20px' : 0)}; */
         min-width: ${(props) => (props.width ? '94%' : '')};
         padding: 20px 40px;
     }
@@ -520,7 +549,7 @@ span{
     margin: 20px 0;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
     font-size: 1.8rem;
     line-height: 35px;
 }
@@ -544,12 +573,13 @@ span{
 
 @media screen and (max-width: 640px) {
     max-width: 100%;
+	font-size: 24px;
 }
 `;
 
 export const StyledH2Center = Styled(StyledH2)`
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
 	@media screen and (max-width: 680px) {
         font-size: 24px;
