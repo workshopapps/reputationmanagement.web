@@ -21,11 +21,14 @@ const RequestDetails = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
+	const [ time, setTime ] = useState('')
+	const [ year, setYear ] = useState('')
 	const [priority, setPriority] = useState(0);
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const { setRequestSuccessfulModalActive, setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage } =
+	const [ loading, setLoading ] = useState(false)
+	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, requestSuccess, requestFailed } =
 		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
@@ -67,6 +70,11 @@ const RequestDetails = () => {
         }
     },[ ApiPrivate,requestId, setErrMessage, setRequestFailed ])
 
+	useEffect(() => {
+		setYear(date.substring(0,10) || '')
+		setTime(date.substring(11,16))
+	},[ date ])
+
     const handleDelete = async(e) => {
 		e.preventDefault();
         try{
@@ -88,23 +96,75 @@ const RequestDetails = () => {
     },[ fetchComplaintDetails ])
 
 	const handleSubmit = async (e) => {
+		setLoading(true)
 		e.preventDefault();
 		try {
-			  const response = await ApiPrivate.patch(`/review/${requestId}`, {
-			    email: email,
-			    reviewString: review,
-			    rating: rating,
-			    websitename: websitename,
-			    businesstype: businesstype,
-			    priority: priority,
-			    status: 0,
-				complainerName: name,
-			  }
-			);
-			console.log(response)
-			setRequestSuccessfulModalActive(true);
+			  const response = await ApiPrivate.patch(`/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/email',
+					op: 'replace',
+					value: email,
+				}])
+			//   const timeResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+			// 	{
+			// 		operationType: 2,
+			// 		path: '/timeOfReview',
+			// 		op: 'replace',
+			// 		value: year + time,
+			// 	}])
+			  const reviewResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/reviewString',
+					op: 'replace',
+					value: review,
+				}])
+			  const ratingResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/rating',
+					op: 'replace',
+					value: rating,
+				}])
+			  const websiteResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/websiteName',
+					op: 'replace',
+					value: websitename,
+				}])
+			  const businessResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/businessType',
+					op: 'replace',
+					value: businesstype,
+				}])
+			  const priorityResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/priority',
+					op: 'replace',
+					value: priority,
+				}])
+				const nameResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/complainerName',
+					op: 'replace',
+					value: name,
+				}])
+				setLoading(false)
+			console.log(response,reviewResponse,ratingResponse,websiteResponse, businessResponse, priorityResponse, nameResponse)
+			setSuccessMessage('Request updated successfully')
+			setRequestSuccess(true)
 			clearForm();
+			setTimeout(() => {
+				router('/dashboard')
+			},2000)
 		} catch (err) {
+			setLoading(false)
 			if (err?.response?.status === 400 ){
 				err.response?.data?.errors.email
 					?
@@ -129,14 +189,9 @@ const RequestDetails = () => {
 				setErrMessage("Couldn't update request")
 				setRequestFailed(true)
 			}
-			setRequestSuccessfulModalActive(false);
 			console.log(err);
 		}
 	};
-    useEffect(() => {
-        console.log(date)
-        console.log(date.substring(11,16))
-    },[date])
 	return (
 		<>
 			<RequestFailed/>
@@ -183,7 +238,8 @@ const RequestDetails = () => {
 											type="date"
 											name="date"
 											id="date"
-                                            value={date.substring(0,10) || ''}
+                                            value={year}
+											onChange={(e) => setYear(e.target.value)}
 											readOnly
 										/>
 									</div>
@@ -195,8 +251,8 @@ const RequestDetails = () => {
 											name="time"
 											id="time"
 											required
-                                            value={date.substring(11,16)}
-											readOnly
+                                            value={time}
+											onChange={(e) => setTime(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -296,7 +352,13 @@ const RequestDetails = () => {
                                     Delete
 								</button>
 								<button className='submit' onClick={(e) => handleSubmit(e)}>
-                                    Save Changes
+								{
+										!loading
+											?
+										"Save Changes"
+										:
+										<div className="loading"></div>
+									}
 								</button>
 							</div>
 						</form>
@@ -472,6 +534,26 @@ const StyledContainers = styled.div`
 
 				&:hover {
 					background: #0a1d88;
+				}
+				.loading{
+					width: 20px;
+					height: 20px;
+					border: 2px solid #FFF;
+					border-bottom-color: transparent;
+					border-radius: 50%;
+					display: inline-block;
+					box-sizing: border-box;
+					animation: rotation 1s linear infinite;
+					margin: 0 !important;
+					padding: 10px;
+					@keyframes rotation {
+						0% {
+							transform: rotate(0deg);
+						}
+						100% {
+							transform: rotate(360deg);
+						}
+					}
 				}
 			}
             .delete{

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
-import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {
 	StyledDashboard,
@@ -11,25 +10,30 @@ import {
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
-import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
 
-const RequestForm = () => {
+const LawyerRequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [rating, setRating] = useState(0); ///set initial state for rating
-
+	const router = useNavigate();
 	//const [checked, setChecked] = useState(false);
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
-	const [time, setTime] = useState('');
 	const [priority, setPriority] = useState(0);
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const { setRequestSuccessfulModalActive, setErrMessage, setRequestFailed } =
+	const [ loading, setLoading ] = useState(false)
+	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, requestSuccess, requestFailed } =
 		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 
 	const clearForm = () => {
 		// setName()
@@ -40,60 +44,62 @@ const RequestForm = () => {
 		setBusinessType();
 	};
 
+    const location = useLocation()
+    const requestId = new URLSearchParams(location.search).get('requestId');
+
+    const fetchComplaintDetails = useCallback(async() => {
+        try{
+            const response = await ApiPrivate.get(`/lawyer/reviews/${requestId}`)
+            console.log(response)
+            setEmail(response?.data?.email)
+            setPriority(response?.data?.priority)
+			setName(response?.data?.complainerName)
+            setRating(response?.data?.rating)
+            setReview(response?.data?.reviewString)
+            setPriority(response?.data?.status)
+            setWebsiteName(response?.data?.websiteName)
+            setDate(response?.data?.createdAt)
+			setBusinessType(response?.data?.businessType)
+        }
+        catch(err){
+            setErrMessage("can't get details of request")
+            setRequestFailed(true)
+            console.log(err)
+        }
+    },[ ApiPrivate,requestId, setErrMessage, setRequestFailed ])
+
+
+    useEffect(() => {
+        fetchComplaintDetails();
+    },[ fetchComplaintDetails ])
+
 	const handleSubmit = async (e) => {
+		setLoading(true)
 		e.preventDefault();
 		try {
-			  const response = await ApiPrivate.post('/review', {
-			    email: email,
-			    timeOfReview: date +'T'+time,
-			    reviewString: review,
-			    rating: rating,
-			    websitename: websitename,
-			    businesstype: businesstype,
-			    priority: priority,
-			    status: 0,
-				complainerName: name,
-			  }
-			);
+			  const response = await ApiPrivate.post(`/lawyer/ClaimReview?reviewId=${requestId}`
+            )
+			setLoading(false)
 			console.log(response)
-			setRequestSuccessfulModalActive(true);
+			setSuccessMessage('Request claimed successfully')
+			setRequestSuccess(true)
 			clearForm();
-		} catch (err) {
+			const reroute = setTimeout(() => {
+				router('/lawyer-dashboard')
+			},2000)
+		} 
+        catch (err) {
+			setLoading(false)
+            setErrMessage('Unable to claim request')
 			setRequestFailed(true)
-			if (err?.response?.status === 400 ){
-				err.response?.data?.errors.email
-					?
-					setErrMessage(err.response?.data?.errors.email)
-					:
-					err.response?.data?.errors?.reviewString
-						?
-						setErrMessage('The review field is required')
-						:
-						err.response?.data?.errors?.websiteName
-							?
-							setErrMessage('The website name field is required')
-							:
-							err.response?.data?.error?.businessType
-								?
-								setErrMessage('The business type is required')
-								:
-								setErrMessage('Server error')
-			}
-			else{
-				setErrMessage("Couldn't fetch requests")
-			}
-			setRequestSuccessfulModalActive(false);
-			console.log(err);
+            console.log(err)
 		}
 	};
-	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
 	return (
 		<>
 			<RequestFailed/>
 			<StyledDashboard>
-				<Sidebar
+				<Sidebarr
 					className={`${openMenu ? 'open' : ''}`}
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
@@ -101,18 +107,18 @@ const RequestForm = () => {
 				<StyledContainer>
 					<StyledContainers className="container">
 
-						<h2 className="container-title">Kindly Fill in Your Request</h2>
+						<h2 className="container-title">Complaint Details</h2>
 						{/********************START OF FORM*************************************************/}
 						<form className="form">
 							<h4 className="form-heading">
-								Fill in the details of the individual that drop the bad review and the review
+                                Details of the complainer
 							</h4>
 
 							{/********************START OF FORM SECTION A*************************************************/}
 							<div className="form-section-a">
 								<div className='text-input'>
 									<label htmlFor="_name"> Name</label>
-									<input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name of the complainer" id="name" required />
+									<input type="text" name="_name" value={name} readOnly placeholder="Enter name of the complainer" id="name" required />
 								</div>
 
 								<div className="text-input">
@@ -121,10 +127,9 @@ const RequestForm = () => {
 										type="email"
 										name="email"
 										value={email}
-										onChange={(e) => setEmail(e.target.value)}
 										placeholder="johndoe@gmail.com"
 										id="email"
-										required
+                                        readOnly
 									/>
 								</div>
 
@@ -135,8 +140,8 @@ const RequestForm = () => {
 											type="date"
 											name="date"
 											id="date"
-											onChange={(e) => setDate(e.target.value)}
-											required
+                                            value={ date ? date.substring(0,10) : ''}
+											readOnly
 										/>
 									</div>
 
@@ -147,7 +152,8 @@ const RequestForm = () => {
 											name="time"
 											id="time"
 											required
-											onChange={(e) => setTime(e.target.value)}
+                                            value={date ? date.substring(11,16) : ''}
+                                            readOnly
 										/>
 									</div>
 								</div>
@@ -157,15 +163,15 @@ const RequestForm = () => {
 										<label>The bad review</label>
 										<textarea
 											value={review}
-											onChange={(e) => setReview(e.target.value)}
+                                            readOnly
 										/>
 									</div>
 
 									<div className="review-range">
 										<Rate
 											rating={rating}
-											onRating={(rate) => setRating(rate)}
 											className="rate"
+                                            disabled
 										/>
 
 										<label htmlFor="vol">
@@ -189,7 +195,7 @@ const RequestForm = () => {
 										type="text"
 										name="name_of_website"
 										value={websitename}
-										onChange={(e) => setWebsiteName(e.target.value)}
+										readOnly
 										placeholder=""
 										required
 									/>
@@ -203,7 +209,7 @@ const RequestForm = () => {
 										type="text"
 										name="business_type"
 										value={businesstype}
-										onChange={(e) => setBusinessType(e.target.value)}
+										readOnly
 										placeholder=""
 										required
 									/>
@@ -216,6 +222,7 @@ const RequestForm = () => {
 										<Checkbox
 											label="High"
 											onClick={() => setPriority(3)}
+											checked={priority === 3}
 										/>
 									</div>
 
@@ -223,31 +230,33 @@ const RequestForm = () => {
 										<Checkbox
 											label="Medium"
 											onClick={() => setPriority(2)}
+											checked={priority === 2}
 										/>
 									</div>
 
 									<div>
-										<Checkbox label="Low" onClick={() => setPriority(1)} />
+										<Checkbox label="Low" onClick={() => setPriority(0)} checked={priority === 1}/>
 									</div>
 
 									<div>
 										<Checkbox
 											label="Not urgent"
 											onClick={() => setPriority(0)}
+											checked={priority === 0}
 										/>
 									</div>
 								</div>
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								<button
-									onClick={(e) => {
-										e.preventDefault();
-										handleSubmit(e);
-									}}
-									type="submit"
-								>
-									Submit
+								<button className='submit' onClick={(e) => handleSubmit(e)}>
+								{
+										!loading
+											?
+										"Claim Ticket"
+										:
+										<div className="loading"></div>
+									}
 								</button>
 							</div>
 						</form>
@@ -258,7 +267,7 @@ const RequestForm = () => {
 	);
 };
 
-export default RequestForm;
+export default LawyerRequestDetails;
 
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
@@ -291,7 +300,6 @@ const StyledContainers = styled.div`
 
 				input {
 					height: 56px;
-					width: 60%;
 					padding: 0px 10px 0px 10px;
 					border: 1px solid #d2d3d4;
 					border-radius: 8px;
@@ -340,7 +348,6 @@ const StyledContainers = styled.div`
 					textarea {
 						max-height: 190px;
 						height: 190px;
-						width: 60%;
 						font-size: 16px;
 						border: 1px solid #d2d3d4;
 						border-radius: 8px;
@@ -385,7 +392,6 @@ const StyledContainers = styled.div`
 
 				input {
 					height: 56px;
-					width: 60%;
 					padding: 0px 10px 0px 10px;
 					border: 1px solid #d2d3d4;
 					border-radius: 8px;
@@ -411,9 +417,9 @@ const StyledContainers = styled.div`
 		.btn-submit {
 			margin-top: 32px;
 			display: flex;
-			justify-content: flex-start;
+			justify-content: flex-end;
 
-			button {
+			.submit{
 				width: 220px;
 				height: 59px;
 				background: #233ba9;
@@ -427,7 +433,42 @@ const StyledContainers = styled.div`
 				&:hover {
 					background: #0a1d88;
 				}
+				.loading{
+					width: 20px;
+					height: 20px;
+					border: 2px solid #FFF;
+					border-bottom-color: transparent;
+					border-radius: 50%;
+					display: inline-block;
+					box-sizing: border-box;
+					animation: rotation 1s linear infinite;
+					margin: 0 !important;
+					padding: 10px;
+					@keyframes rotation {
+						0% {
+							transform: rotate(0deg);
+						}
+						100% {
+							transform: rotate(360deg);
+						}
+					}
+				}
 			}
+            .delete{
+                height: 59px;
+                width: 220px;
+                border-radius: 4px;
+                border: 1px solid rgba(240, 55, 56, 1);
+                font-family: Lato;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 27px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: rgba(240, 55, 56, 1);
+                background-color: transparent;
+                margin-right: 16px;
+            }
 
 			@media (max-width: 500px) {
 				justify-content: center;

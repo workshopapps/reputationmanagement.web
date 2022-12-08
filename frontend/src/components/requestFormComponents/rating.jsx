@@ -4,7 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import styled from "styled-components";
 import { useCallback } from "react";
 
-const Rate = ({ count, rating, color, onRating }) => {
+const Rate = ({ count, rating, color, onRating, props }) => {
     const [hoverRating, setHoverRating] = useState(0);
 
     const getColor = useCallback((index) => {
@@ -35,13 +35,13 @@ const Rate = ({ count, rating, color, onRating }) => {
                 <FaStar
                     key={idx}
                     className="cursor-pointer"
-                    onClick={() => onRating(idx)}
+                    onClick={() => onRating ? onRating(idx) : ''}
                     style={{ color: getColor(idx) }}
                     onMouseEnter={() => setHoverRating(idx)}
                     onMouseLeave={() => setHoverRating(0)}
                 />
             ));
-    }, [count, getColor, onRating]);
+    }, [count, getColor, onRating ]);
 
     return <StyledRating>{starRating}</StyledRating>;
 };

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Sidenav from '../../components/LawyerDashboard/Sidenav';
 import searchIcon from '../../assets/images/searchIcon.png';
 import notificationsIcon from '../../assets/images/notificationsIcon.svg';
 import profileImg from '../../assets/images/profileImg.svg';
@@ -24,70 +23,47 @@ import logo from '../../assets/images/logo.png';
 import Menu from './MobileMenu';
 import { useEffect } from 'react';
 import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
+import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
+import { LawyerTableData } from '../../components/Dashboard/TableData';
+import useAppContext from '../../hooks/useAppContext'
+import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 
 
 function LawyerDashboard() {
-	// const [tickets, setTickets] = useState([
-	//     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-	//     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-	//     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	//     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	//     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	//     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
-	//     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
-	// ]);
+	const [tickets, setTickets] = useState([
+	    {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
+	    {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
+	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+	    {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+	    {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+	]);
+	const { setRequestFailed, setErrMessage } = useAppContext();
 
-	const tickets = [
-		{
-			no: '123',
-			title: 'Afrobox Review',
-			priority: high,
-			dueDate: today,
-			lastUpdated: '4 days ago',
-		},
-		{
-			no: '123',
-			title: 'Afrobox Review',
-			priority: high,
-			dueDate: today,
-			lastUpdated: '4 days ago',
-		},
-		{
-			no: '123',
-			title: 'Afrobox Review',
-			priority: medium,
-			dueDate: thisWeek,
-			lastUpdated: '4 days ago',
-		},
-		{
-			no: '123',
-			title: 'Afrobox Review',
-			priority: medium,
-			dueDate: thisWeek,
-			lastUpdated: '4 days ago',
-		},
-		{
-			no: '123',
-			title: 'Afrobox Review',
-			priority: medium,
-			dueDate: thisWeek,
-			lastUpdated: '4 days ago',
-		},
-		{
-			no: '123',
-			title: 'Afrobox Review',
-			priority: low,
-			dueDate: nextWeek,
-			lastUpdated: '4 days ago',
-		},
-		{
-			no: '123',
-			title: 'Afrobox Review',
-			priority: low,
-			dueDate: nextWeek,
-			lastUpdated: '4 days ago',
-		},
-	];
+	const [ searchTicket, setSearchTicket ] = useState('');
+
+	const ApiPrivate = useAxiosPrivate();
+
+	const fetchDetails = useCallback(async() => {
+		try{
+			const response = await ApiPrivate.get('/lawyer/reviews?pageNumber=0&pageSize=100')
+			setTickets(response?.data)
+			console.log(response)
+		}
+		catch(err){
+			if ( err?.response?.status ){
+				setErrMessage('Shey you be lawyer ni')
+				setRequestFailed(true)
+			}
+			console.log(err)
+
+		}
+	},[ ApiPrivate, setErrMessage, setRequestFailed ])
+
+	useEffect(() => {
+		fetchDetails()
+	},[ fetchDetails ])
 
 	const [menuActive, setMenuActive] = useState(false);
 
@@ -112,6 +88,8 @@ function LawyerDashboard() {
 							type="text"
 							placeholder="Search for anything..."
 							className="outline-none px-2"
+							value={searchTicket}
+							onChange={(e) => setSearchTicket(e.target.value)}
 						/>
 					</form>
 
@@ -179,13 +157,53 @@ function LawyerDashboard() {
 						</div>
 					</div>
 
-					<div className="flex flex-col-reverse items-center md:flex-row mt-5 w-full">
-						<div className="w-full md:w-[60%]">
+					<div className="flex flex-col items-center mt-5 w-full">
+						<div className="w-full">
 							<h2 className="text-xl font-[600] mb-2 hidden md:flex">
 								Current Tickets
 							</h2>
+							<TableContainer>
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Priority</th>
+										<th>Ticket Name</th>
+										<th>Status</th>
+										<th>Last Updated</th>
+										<th></th>
+									</tr>
+								</thead>
+								{tickets.length >= 1 && (
+									<tbody>
+										{tickets ?
+											tickets
+											.filter((data) => {
+												if (searchTicket === '') {
+													return data;
+												} else if (
+													data.ticketName
+														.toLowerCase()
+														.includes(searchTicket.toLowerCase())
+												) {
+													return data;
+												}
 
-							<div className="w-full overflow-x-auto my-2">
+												return data;
+											})
+											.map((data, index) => {
+												return (
+												<LawyerTableData  id={data.reviewId} ticketName={data.complainerName} lastUpdated={data.lastUpdated} priority={data.priority} status={data.status} key={index} no={index}
+													
+												/>
+												)
+											})
+											:
+											''
+										}
+									</tbody>
+								)}
+							</TableContainer>
+							{/* <div className="w-full overflow-x-auto my-2">
 								<table className="w-full">
 									<tbody>
 										<tr className="bg-gray-200 border-b">
@@ -216,7 +234,7 @@ function LawyerDashboard() {
 										})}
 									</tbody>
 								</table>
-							</div>
+							</div> */}
 						</div>
 
 						<div className="py-5 border rounded-lg ml-0 md:ml-3 my-2">

@@ -48,12 +48,12 @@ const Header = () => {
 						>
 							About Us
 						</NavLink>
-						<NavLink
+						{/* <NavLink
 							to="/pricing"
 							className={currentRoute === '/pricing' ? 'active' : ''}
 						>
 							Pricing
-						</NavLink>
+						</NavLink> */}
 						<NavLink
 							to="/contact"
 							className={currentRoute === '/contact' ? 'active' : ''}
@@ -73,12 +73,12 @@ const Header = () => {
 						>
 							About Us
 						</NavLink>
-						<NavLink
+						{/* <NavLink
 							to="/pricing"
 							className={currentRoute === '/pricing' ? 'active' : ''}
 						>
 							Pricing
-						</NavLink>
+						</NavLink> */}
 						<NavLink
 							to="/contact"
 							className={currentRoute === '/contact' ? 'active' : ''}

@@ -1,12 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import Closed from './Assets/eye-slash.png';
-import Logo from './Assets/Logo(1).png';
+import REPUTE from './Assets/repute.svg';
 import background from './Assets/image-logo.png';
 import styled from 'styled-components';
-import google_icon from './Assets/google-icon.svg';
-import facebook_icon from './Assets/facebook-icon.svg';
-import apple_icon from './Assets/apple-icon.svg';
+import GOOGLE from '../Login/google.svg';
 import Api from '../../api/axios';
 import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from '../../components/error message/errorMessage';
@@ -137,8 +135,8 @@ function Signup() {
 				backgroundAttachment: 'fixed',
 			}}
 		>
-			<StyledFormWrapper style={{ maxWidth: '770px' }}>
-				<img src={Logo} alt="background" className="logo_img" />
+			<StyledFormWrapper>
+				<img src={REPUTE} alt="background" className="logo_img" />
 				<h2>Welcome to REPUTE</h2>
 				<p>Sign up to begin with us</p>
 				<div className="form">
@@ -303,12 +301,13 @@ function Signup() {
 						<span></span>
 					</div>
 					<div className="social-icons">
-						<img src={google_icon} alt="" style={{ cursor: 'pointer' }} />
-						<img src={facebook_icon} alt="" style={{ cursor: 'pointer' }} />
-						<img src={apple_icon} alt="" style={{ cursor: 'pointer' }} />
+						<button>
+							<img src={GOOGLE} alt=""/>
+							Sign in with Google
+						</button>
 					</div>
 					<p>
-						Already have an account ? <br />{' '}
+						Already have an account ?{' '}
 						<span
 							onClick={() => router('/login')}
 							style={{ cursor: 'pointer' }}
@@ -318,17 +317,13 @@ function Signup() {
 					</p>
 				</StyledSignupOptions>
 			</StyledFormWrapper>
-
-			<div className="logo">
-				<img src={Logo} alt="background" />
-			</div>
 		</StyledSignupWrapper>
 	);
 }
 const StyledSignupWrapper = styled.div`
 	max-height: 100vh;
 	position: relative;
-	@media (max-width: 910px) {
+	@media (max-width: 1230px) {
 		background-image: none !important;
 	}
 
@@ -351,18 +346,6 @@ const StyledSignupWrapper = styled.div`
 			}
 		}
 	}
-	.logo {
-		position: fixed;
-		display: flex;
-		align-items: flex-start;
-		padding-right: 10px;
-		width: 100%;
-		justify-content: flex-end;
-
-		@media (max-width: 500px) {
-			display: none;
-		}
-	}
 	.invalid {
 		border-color: #d8340f !important;
 	}
@@ -371,6 +354,8 @@ const StyledSignupOptions = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
+	max-width: 560px;
 	.or {
 		display: flex;
 		gap: 18.76px;
@@ -394,11 +379,36 @@ const StyledSignupOptions = styled.div`
 		}
 	}
 	.social-icons {
-		display: flex;
-		justify-content: space-between;
-		width: 318px;
-		margin-top: 32px;
-		max-width: 95%;
+		width: 100%;
+		margin-top: 30px;
+		button{
+			width: 100%;
+			max-width: 560px;
+			background-color: transparent;
+			display: flex;
+			align-items: center;
+			border: 1px solid #D2D3D4;
+			height: 59px;
+			padding-left: 29px;
+			border-radius: 4px;
+			font-family: Lato;
+			font-size: 18px;
+			font-weight: 600;
+			line-height: 27px;
+			letter-spacing: 0em;
+			text-align: center;
+			color: #2B2C34;
+			img{
+				margin-right: 144px;
+			}
+			@media(max-width: 600px){
+				justify-content: center;
+				gap: 40px;
+				img{
+					margin: 0;
+				}
+			}
+		}
 	}
 	p {
 		font-family: Lato;
@@ -417,33 +427,19 @@ const StyledSignupOptions = styled.div`
 	}
 `;
 const StyledFormWrapper = styled.div`
-	padding: 30px 55px 35px 63px;
+	padding-top: 54px;
 	background-color: #ffffff;
 	width: 50%;
 	overflow-x: scroll;
-	@media (min-width: 9100px) {
-		min-width: 566px;
-	}
-	@media (max-width: 910px) {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	@media (max-width: 1230px) {
 		width: 100%;
+		margin: 0 auto;
 	}
-	@media (max-width: 530px) {
-		padding-left: 30px;
-		padding-right: 30px;
-		padding-top: 0;
-	}
-
-	.logo_img {
-		display: none;
-
-		@media (max-width: 500px) {
-			display: block;
-			height: 78px;
-			width: 100px;
-			object-fit: contain;
-			margin-left: auto !important;
-			padding: 0;
-		}
+	@media (max-width: 650px) {
+		max-width: 95%;
 	}
 
 	h2 {
@@ -453,7 +449,20 @@ const StyledFormWrapper = styled.div`
 		line-height: 68px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #2b2c34;
+		color: #2B2C34;
+		margin-top: 35px;
+		@media(max-width: 571px){
+			font-size: 48px;
+		}
+		@media(max-width: 481px){
+			font-size: 42px;
+		}
+		@media(max-width: 421px){
+			font-size: 35px;
+		}
+		@media(max-width: 357px){
+			font-size: 31px;
+		}
 	}
 	.loading {
 		width: 20px;
@@ -475,15 +484,16 @@ const StyledFormWrapper = styled.div`
 	}
 	p {
 		font-family: Lato;
-		font-size: 24px;
+		font-size: 20px;
 		font-weight: 400;
-		line-height: 29px;
+		line-height: 24px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #6f7174;
-		margin-top: 4px;
+		color: #6F7174;
 	}
 	.form {
+		width: 100%;
+		max-width: 560px;
 		label {
 			font-family: Lato;
 			font-size: 16px;

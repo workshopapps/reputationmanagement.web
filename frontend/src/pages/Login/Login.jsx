@@ -2,10 +2,9 @@
 //import image from '../../src/Sign-up/Assets/background.png';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import apple from '../Sign-up/Assets/apple-icon.svg';
-import facebook from '../Sign-up/Assets/facebook-icon.svg';
-import google from '../Sign-up/Assets/google-icon.svg';
-import img1 from '../Sign-up/Assets/loginBG.svg';
+import GOOGLE from './google.svg';
+import LOGIN from './login.svg';
+import REPUTE from './repute.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../../api/axios';
@@ -86,13 +85,13 @@ const Login = () => {
 			style={{ maxWidth: '1540px', margin: '0 auto', display: 'flex' }}
 		>
 			<FormSection>
-				<ImgSectionSm src={fixit_logo} alt="" />
 				<StyledForm>
+					<img src={REPUTE} alt=""/>
 					<StyledHead1 onClick={() => setRequestFailed(true)}>
 						Welcome Back
 					</StyledHead1>
 
-					<SubHead>Log in to continue</SubHead>
+					<SubHead>signin to continue</SubHead>
 
 					<Input1 className="text-input">
 						<label htmlFor="email">Email</label>
@@ -153,12 +152,12 @@ const Login = () => {
 							>
 								<div></div>
 							</SlideRadio>
-							Keep me Signed in
+							<p>Keep me Signed in</p>
 						</div>
 
 						<ForgotPass>
 							<Link className="" to="/password-recovery">
-								forgot password
+								Forgot Password?
 							</Link>
 						</ForgotPass>
 					</Remember>
@@ -170,16 +169,15 @@ const Login = () => {
 
 				<Loginwith>
 					<span></span>
-					<h4>or log in with</h4>
+					<h4>or sign in with</h4>
 					<span></span>
 				</Loginwith>
 
 				<FormFooter>
-					<div className="form-footer-icon">
-						<img src={google} alt="google" />
-						<img src={apple} alt="apple" />
-						<img src={facebook} alt="facebook" />
-					</div>
+					<button>
+						<img src={GOOGLE} alt=""/>
+						Sign in with Google
+					</button>
 
 					<div className="footer-text">
 						Don't have an account?{' '}
@@ -194,7 +192,7 @@ const Login = () => {
 			</FormSection>
 
 			<ImgSection>
-				<img src={fixit_logo} alt="" />
+				<img src={LOGIN} alt=""/>
 			</ImgSection>
 		</ParentContainer>
 	);
@@ -202,30 +200,9 @@ const Login = () => {
 
 export default Login;
 
-const ImgSectionSm = styled.img`
-	height: 100px;
-	width: 100px;
-	object-fit: contain;
-	margin-left: auto;
-
-	@media (min-width: 901px) {
-		display: none;
-	}
-`;
 const ParentContainer = styled.div`
 	height: 100vh;
 	display: flex;
-	background-size: cover;
-	background-position: left top;
-	background-repeat: no-repeat;
-	background-position-x: left;
-	background-image: url(${img1});
-	@media (min-width: 2000px) {
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-	}
-
 	@media (max-width: 500px) {
 		margin-bottom: 30px;
 	}
@@ -247,8 +224,10 @@ const ParentContainer = styled.div`
 			text-decoration: underline;
 		}
 
-		@media (max-width: 500px) {
-			margin-bottom: 30px;
+		@media (max-width: 400px) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 	}
 `;
@@ -259,78 +238,84 @@ const ImgSection = styled.div`
 	height: 100%;
 	align-items: flex-start;
 	justify-content: flex-end;
-	@media (max-width: 900px) {
+	@media (max-width: 1230px) {
 		display: none;
 	}
 `;
 const FormSection = styled.section`
 	width: 50%;
 	height: 100%;
-	padding-top: 30px;
-	overflow-x: scroll;
-	background-color: #ffffff;
-	padding-left: 62px;
-	padding-right: 79px;
-	@media (max-width: 900px) {
-		width: 100%;
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-
-	@media (max-width: 500px) {
-		margin-top: 0;
-		padding-top: 0;
+	padding-top: 54px;
+	max-width: 560px;
+	margin: 0 auto;
+	@media(max-width: 1200px){
+		width: 95%;
 	}
 `;
 const StyledForm = styled.form`
-	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `;
 
 const StyledHead1 = styled.h1`
+	font-family: Lato;
 	font-size: 57px;
-	font-weight: 700px;
-
-	@media screen and (min-width: 768px) and (max-width: 1000px) {
-		font-size: 47px;
+	font-weight: 700;
+	line-height: 68px;
+	letter-spacing: 0.01em;
+	text-align: left;
+	color: #2B2C34;
+	margin-top: 35px;
+	@media(max-width: 410px){
+		font-size: 48px;
 	}
-
-	@media (max-width: 520px) {
-		font-size: 32px;
+	@media(max-width: 343px){
+		font-size: 42px;
 	}
 `;
 
 const SubHead = styled.h5`
-	font-size: 24px;
+	font-family: Lato;
+	font-size: 20px;
 	font-weight: 400;
-	color: #6f7174;
-
-	@media (max-width: 500px) {
-		font-size: 24px;
-	}
+	line-height: 24px;
+	letter-spacing: 0.01em;
+	text-align: left;
+	color: #6F7174;
 `;
 
 const Input1 = styled.div`
-	margin-top: 10px;
+	margin-top: 40px;
 	display: flex;
 	flex-direction: column;
-
+	width: 100%;
+	max-width: 560px;
 	label {
 		margin-bottom: 8px;
+		font-family: Lato;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 24px;
+		letter-spacing: 0em;
+		text-align: left;
+		color: #2B2C34;
 	}
 
 	input {
-		border: 1px solid #d2d3d4;
-		border-radius: 8px;
-		height: 50px;
-		padding-left: 10px;
-		padding-right: 10px;
+		height: 56px;
+		width: 100%;
+		border-radius: 8px;	
+		border: 1px solid #D2D3D4;
+		padding-left: 19px	;
 		outline: none;
 	}
 `;
 
 const Input2 = styled.div`
 	margin-top: 20px;
-
+	width: 100%;
+	max-width: 560px;
 	label {
 		margin-bottom: 8px;
 	}
@@ -365,6 +350,7 @@ const Remember = styled.div`
 	margin-top: 10px;
 	display: flex;
 	justify-content: space-between;
+	width: 100%;
 
 	.slide-radio-main {
 		display: flex;
@@ -372,6 +358,7 @@ const Remember = styled.div`
 	}
 	@media (max-width: 400px) {
 		flex-direction: column;
+		gap: 15px
 	}
 	.retain {
 		border: 1px solid #000000 !important;
@@ -394,7 +381,16 @@ const SlideRadio = styled.div`
 	display: flex;
 	align-items: center;
 	transition: all ease-in-out 0.5s;
-
+	p{
+		font-family: Lato;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 24px;
+		letter-spacing: 0.01em;
+		text-align: left;
+		color: #6F7174;
+		margin-left: 4px;
+	}
 	&:hover {
 		cursor: pointer;
 	}
@@ -412,18 +408,19 @@ const ForgotPass = styled.div`
 	color: #f16f04;
 	font-size: 14px;
 	font-weight: 700;
-	@media (max-width: 500px) {
-		margin-top: 10px;
-	}
+	font-family: Lato;
+	line-height: 24px;
+	letter-spacing: 0.01em;
 `;
 
 const SubmitBtn = styled.button`
-	margin-top: 20px;
+	margin-top: 65px;
 	width: 100%;
 	height: 59px;
 	border-radius: 7px;
 	background-color: #233ba9;
 	color: white;
+	max-width: 560px;
 	.loading {
 		width: 20px;
 		height: 20px;
@@ -473,6 +470,34 @@ const FormFooter = styled.div`
 	flex-direction: column;
 	align-items: center;
 
+	button{
+		width: 100%;
+		max-width: 560px;
+		background-color: transparent;
+		display: flex;
+		align-items: center;
+		border: 1px solid #D2D3D4;
+		height: 59px;
+		padding-left: 29px;
+		border-radius: 4px;
+		font-family: Lato;
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 27px;
+		letter-spacing: 0em;
+		text-align: center;
+		color: #2B2C34;
+		img{
+			margin-right: 144px;
+		}
+		@media(max-width: 600px){
+			justify-content: center;
+			gap: 40px;
+			img{
+				margin: 0;
+			}
+		}
+	}
 	.form-footer-icon {
 		display: flex;
 		width: 100%;

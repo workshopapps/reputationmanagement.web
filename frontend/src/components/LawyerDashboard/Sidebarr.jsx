@@ -22,13 +22,13 @@ const Sidebarr = (props) => {
 			<section>
 				<ul>
 					<li>
-						<NavLink to="/dashboard">
+						<NavLink to="/lawyer-dashboard">
 							<DashboardIcon />
 							Dashboard
 						</NavLink>
 					</li>
                     <li>
-						<NavLink to="/dashboard">
+						<NavLink to="/requests">
 							<DashboardIcon />
 							Requests
 						</NavLink>

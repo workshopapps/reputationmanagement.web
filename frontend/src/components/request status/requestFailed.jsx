@@ -33,7 +33,7 @@ const StyledRequestFailed = styled.div`
     border-radius: 7px;
     gap: 10px;
     transition: all ease 0.5s;
-    z-index: 4;
+    z-index: 11;
     img{
         width: 30px;
         height: 30px;

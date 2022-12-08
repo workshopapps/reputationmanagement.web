@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const styleClass = {
 	input: 'w-full',
-	inputLabel: 'md:w-1/4 font-semibold',
+	inputLabel: 'md:w-1/4 font-[400] text-[#2B2C34]',
 	inputGroup:
-		'mb-6 flex flex-col md:flex-row gap-4 justify-between md:items-center',
+		'mb-6 flex flex-col md:flex-row gap-4 justify-start md:items-center',
 	inputGroupRow: 'mb-6 flex gap-4 justify-between items-center',
 	selectClass:
 		'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
@@ -13,13 +13,20 @@ export const styleClass = {
 };
 
 export const StyledTab = styled.div`
-	max-width: 1040px;
+	color: #2b2c34;
+	max-width: 760px;
 	margin: 24px auto;
 
-	input {
+	input,
+	textarea {
+		max-width: 560px;
+	}
+	input,
+	textarea,
+	select {
 		border: 1px solid #d2d3d4;
 		border-radius: 8px;
-		padding: 0.5rem 1rem;
+		padding: 0.6rem 1rem;
 		outline: none;
 
 		&:focus {
@@ -28,6 +35,10 @@ export const StyledTab = styled.div`
 	}
 	select {
 		text-transform: capitalize;
+		max-width: 300px;
+	}
+	input#email_invoice_receipt ~ .peer {
+		opacity: 0.35;
 	}
 `;
 
