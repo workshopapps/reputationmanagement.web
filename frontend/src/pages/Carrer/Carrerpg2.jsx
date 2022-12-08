@@ -1,21 +1,22 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
-import {
-	StyledButton,
-	// StyledTextButton,
-} from '../../components/Styles/Body/Button.styled';
+// import {
+// 	StyledButton,
+// 	// StyledTextButton,
+// } from '../../components/Styles/Body/Button.styled';
 import SearchIcon from '../../assets/images/Search.png';
 import styled from 'styled-components';
 import PageLayout from '../../layout/PageLayout';
 import Modal from './Modal';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import OpeningTemplate from './template/OpeningTemplate';
 import data from './template/Data';
 
 function Carrerpg2({ DescriptionProps }) {
 	const [openings, setOpenings] = useState(data);
 	const [searchTerm, setSearchTerm] = useState('');
+
 	useEffect(() => {
 		if (searchTerm === '') {
 			setOpenings(data);
@@ -31,8 +32,8 @@ function Carrerpg2({ DescriptionProps }) {
 		setSearchTerm(e.target.value);
 	};
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<PageLayout>
@@ -47,10 +48,9 @@ function Carrerpg2({ DescriptionProps }) {
 						</h5>
 					</StyledBackGround>
 
-					{/* search bar  */}
-					<section className="flex flex-row mt-8 justify-center items-center ">
-						<StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full md:w-3/5 lg:w-3/5 scale-75 md:scale-100">
-							<div className="flex justify-center items-center ">
+					{/* <section className="flex flex-row mt-8 justify-center items-center "> */}
+					{/* <StyledBox className="search-box flex justify-between p-3 px-4 mr-5 md:mr-0 w-full md:w-3/5 lg:w-3/5 scale-75 md:scale-100"> */}
+					{/* <div className="flex justify-center items-center ">
 								<img src={SearchIcon} alt="" />
 								<input
 									onChange={searchChange}
@@ -59,9 +59,9 @@ function Carrerpg2({ DescriptionProps }) {
 									placeholder="Search job openings"
 									className="border-0 outline-0 p-3"
 								/>
-							</div>
-							<div className="flex">
-								<StyledSelect
+							</div> */}
+					<div className="flex">
+						{/* <StyledSelect
 									name="filter-jobs"
 									id="select"
 									className="cursor-pointer px-5 py-3 hidden lg:block"
@@ -87,21 +87,38 @@ function Carrerpg2({ DescriptionProps }) {
 									>
 										Estate Planning Lawyer
 									</option>
-								</StyledSelect>
-								{/* <StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
+								</StyledSelect> */}
+
+						{/* <StyledButton className="mx-0 mr-16 md:mx-3 md:mr-0">
                                 Search
                             </StyledButton> */}
-							</div>
-						</StyledBox>
-					</section>
+					</div>
+					{/* </StyledBox> */}
+
+					{/* </section> */}
+
+					{/* search bar  */}
+
+					<CenterSearch>
+						<SearchInput>
+							<img src={SearchIcon} alt="" />
+							<input
+								onChange={searchChange}
+								value={searchTerm}
+								type="text"
+								placeholder="Search job openings"
+							/>
+						</SearchInput>
+					</CenterSearch>
+
 					{/* search bar  */}
 
 					<section className="my-11 px-12">
 						<div className="lg:flex block justify-between items-center">
-							<h2 className="font-bold text-xl">Browse Open Positions</h2>
-							<div className="hidden lg:block">
+							{/* <h2 className="font-bold text-xl">Open Roles</h2> */}
+							{/* <div className="hidden lg:block">
 								<div className="flex items-center justify-center ">
-									<h3 className="text-slate-400">Showing 1-12 of 70</h3>
+									<h3 className="text-slate-400">Showing 12 of 12</h3>
 									<Link
 										className="my-5"
 										to="#"
@@ -114,10 +131,10 @@ function Carrerpg2({ DescriptionProps }) {
 										</StyledButton>
 									</Link>
 								</div>
-							</div>
+							</div> */}
 
-							<div className="block lg:hidden">
-								<StyledSelect
+							{/* <div className="block lg:hidden"> */}
+							{/* <StyledSelect
 									name="filter-jobs"
 									id="select"
 									className="cursor-pointer px-1 py-3 lg:hidden"
@@ -182,18 +199,18 @@ function Carrerpg2({ DescriptionProps }) {
 									>
 										Entertainment Lawyer
 									</option>
-								</StyledSelect>
-								{/* <img src={MenuIcon} alt="" /> */}
-							</div>
+								</StyledSelect> */}
+							{/* <img src={MenuIcon} alt="" /> */}
+							{/* </div> */}
 						</div>
 					</section>
-
+					<StyledH2>OPEN ROLES</StyledH2>
 					<StyledGrid>
 						<OpeningTemplate openings={openings} searchTerm={searchTerm} />
 					</StyledGrid>
 				</StyledContainer>
 
-				<section className=" mt-11 block lg:hidden">
+				{/* <section className=" mt-11 block lg:hidden">
 					<div className="flex items-center justify-center">
 						<Link
 							className="my-5"
@@ -207,7 +224,7 @@ function Carrerpg2({ DescriptionProps }) {
 							</StyledButton>
 						</Link>
 					</div>
-				</section>
+				</section> */}
 			</div>
 			<Modal />
 		</PageLayout>
@@ -216,20 +233,57 @@ function Carrerpg2({ DescriptionProps }) {
 
 // Styling
 
+const StyledH2 = styled.h2`
+	font-size: 1.5rem;
+	font-weight: 600;
+	text-align: center;
+	margin-bottom: 20px;
+`;
+
+const SearchInput = styled.div`
+	margin-top: 30px;
+	display: flex;
+	align-items: center;
+	border: 1px #d2d3d4 solid;
+	border-radius: 8px;
+	padding: 0 20px;
+	width: 100%;
+
+	input {
+		border: none;
+		border-radius: 8px;
+		padding: 15px 10px;
+		min-width: 98%;
+	}
+	input:focus {
+		outline: none;
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 75%;
+	}
+`;
+
+const CenterSearch = styled.div`
+	display: flex;
+	justify-content: center;
+`;
+
 const StyledContainer = styled.div`
-	max-width: 1240px;
+	max-width: 1200px;
 	margin: 0 auto;
 
-	@media screen and (max-width: 1280px) {
-		padding: 0 20px;
+	@media screen and (max-width: 1238px) {
+		margin: 0 20px;
 	}
 `;
 
 const StyledGrid = styled.div`
+	min-width: 100%;
 	display: grid;
-	-moz-column-gap: 16px;
-	column-gap: 16px;
-	row-gap: 16px;
+	-moz-column-gap: 20px;
+	column-gap: 20px;
+	row-gap: 20px;
 	grid-template-columns: 1fr 1fr 1fr;
 	margin-bottom: 50px;
 
@@ -245,18 +299,18 @@ const StyledGrid = styled.div`
 const StyledBackGround = styled.section`
 	background: #233ba9;
 	border-radius: 8px;
-	margin-top: 30px;
+	margin-top: 10px;
 `;
 
-const StyledBox = styled.div`
-	background: #ffffff;
+// const StyledBox = styled.div`
+// 	background: #ffffff;
 
-	border: 1px solid #d2d3d4;
-	border-radius: 4px;
-`;
-const StyledSelect = styled.select`
-	border: 1px solid #d4d4d4;
-	border-radius: 4px;
-`;
+// 	border: 1px solid #d2d3d4;
+// 	border-radius: 4px;
+// `;
+// const StyledSelect = styled.select`
+// 	border: 1px solid #d4d4d4;
+// 	border-radius: 4px;
+// `;
 
 export default Carrerpg2;

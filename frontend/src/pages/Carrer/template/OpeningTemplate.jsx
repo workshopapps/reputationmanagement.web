@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { StyledButton } from '../../../components/Styles/Body/Button.styled';
 import Arrow from '../../../assets/images/arrow-right.png';
+import Map from '../../../assets/images/map.png';
 
 const OpeningTemplate = ({ openings }) => {
 	return (
@@ -65,7 +66,8 @@ const StyledErrorText = styled.h2`
 `;
 
 const StyledDivContainer = styled.div`
-	width: 350px;
+	// width: 350px;
+	width: 100%;
 	padding: 25px 20px;
 	height: 340px;
 	display: flex;
