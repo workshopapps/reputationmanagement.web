@@ -199,18 +199,17 @@ function Carrerpg1() {
 							className=" place-items-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4"
 							style={{ maxWidth: '1540px', margin: '0 auto' }}
 						>
-							<div className="p-3 -mt-12">
+							<div className="p-3 -mt-2">
 								<center>
 									<img src={Vectorcolor1} alt="" />
 								</center>
 								<DescriptionProps title="You with us" />
-								<p className="text-base leading-8 break-normal text-justify p-2">
+								<p className="text-base pt-10 leading-8 break-normal text-justify p-2">
 									REPUTE employees recognize their responsibility to uphold the
 									values that have been established over the years. These values
 									outline what we stand for and influence the way we behave,
 									both with our clients and with one another.We aspire to do
-									bigger and better things and take our growth and performance
-									to new heights.
+									bigger and better things.
 								</p>
 							</div>
 
@@ -219,7 +218,7 @@ function Carrerpg1() {
 									<img src={Vectorcolo2} alt="" />
 								</center>
 								<DescriptionProps title="We are particular about growth" />
-								<p className="text-base leading-8 break-normal -mt-1 text-justify p-2">
+								<p className="text-base leading-8 break-normal -mt-1 text-justify p-2 pt-1">
 									REPUTE is all about growth, and growing with our clients. If
 									you’re looking to hitch your career to a company that’s going
 									places, look no further than REPUTE. We aspire to do bigger
@@ -385,7 +384,7 @@ function Carrerpg1() {
           className='right absolute -rotate-180 left-28'
         /> */}
 				</section>
-				<StyledBackGround className="grow-together h-full flex flex-col items-center mt-20 justify-center  ">
+				<StyledBackGround className="grow-together h-full flex flex-col items-center mt-40 justify-center  ">
 					<StyledHeader className="text-center">
 						Let's grow together
 					</StyledHeader>

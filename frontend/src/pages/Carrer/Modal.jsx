@@ -99,17 +99,14 @@ const Modal = ({ open, onClose }) => {
 					'Content-Type': "multipart/form-data"
 				}
 			}).then(response => {
-	console.log(response);
-			setOpenModal(true)
+				console.log(response);
+				setOpenModal(true)
 			})
 			
-		}
-		catch (e) {
+		} catch (err) {
 			alert('APPLICATION FAILED, PLEASE TRY AGAIN');
-		
 		}
 	}
-
 	return (
 		<>
 			<div className="relative lg:overflow-hidden">
@@ -134,7 +131,7 @@ const Modal = ({ open, onClose }) => {
 									<input
 										type="text"
 										id="firstName"
-										name="FIrstName"
+										name="FirstName"
 										// value={firstName}
 										// onChange={handleFirstName}
 										placeholder="First name"
@@ -166,7 +163,7 @@ const Modal = ({ open, onClose }) => {
 									<input
 										type="text"
 										id="email"
-										name="email"
+										name="Email"
 										// value={email}
 										// onChange={handleEmail}
 										placeholder="Email"

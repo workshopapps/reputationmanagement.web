@@ -11,7 +11,7 @@ const StyledHeader = styled.h1`
 	color: #233ba9;
 	opacity: 0.7;
 	font-size: 2rem;
-	
+	padding-top: 15px;
 	margin-top: -15px;
 	font: bold;
 `;
