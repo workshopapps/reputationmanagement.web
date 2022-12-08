@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { HeroSection, HeroTextDiv, StyledSupportForm } from './Support.styled';
 import searchBtn from '../../assets/images/Dashboard/search.svg';
+
 import { StyledH1Center } from '../../components/Styles/Body/Text.styled';
 
 const Hero = () => {
@@ -13,7 +15,6 @@ const Hero = () => {
 					respond to you shortly and swiftly.
 				</p>
 			</HeroTextDiv>
-
 			<StyledSupportForm>
 				<img src={searchBtn} alt="search" />
 				<input type="search" placeholder="Search for articles..." />
