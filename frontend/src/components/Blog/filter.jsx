@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaChevronDown } from 'react-icons/fa';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Filter = () => {
+const Filter = ({filterItem}) => {
 	const [isNavLocation, setIsNavLocation] = useState(false);
 
 	return (
@@ -11,13 +12,19 @@ const Filter = () => {
 			<div className={isNavLocation ? 'menu-responsive' : 'menu-desktop'}>
 				<h1>Filter by Topic:</h1>
 				<ul >
-					<li>All</li>
-					<li>Glassdoor Review</li>
-					<li>Google Review</li>
-					<li>Reddit</li>
-					<li>Reputation Management</li>
-					<li>Reviews</li>
-					<li>Social Media</li>
+				<Link to='/blog-see-all'>
+					<li /**</ul>onClick={() => setItem(DataBlog)}*/>
+						
+						All
+					
+						</li>
+						</Link>
+					<li  onClick={() => filterItem("Glassdoor Review")}>Glassdoor Review</li>
+					<li onClick={() => filterItem("Google Review")}>Google Review</li>
+					<li onClick={() => filterItem("Reddit")}>Reddit</li>
+					<li onClick={() => filterItem("Reputation Management")}>Reputation Management</li>
+					<li onClick={() => filterItem("Reviews")}>Reviews</li>
+					<li onClick={() => filterItem("Social Media")}>Social Media</li>
 				</ul>
 			</div>
 
@@ -34,45 +41,45 @@ const Filter = () => {
 
 export default Filter;
 
+
 const FilterMain = styled.div`
-position: relative;
+	position: relative;
 
-.menu-desktop {
-	width: 220px;
-	height: 322px;
+	.menu-desktop {
+		width: 220px;
+		height: 322px;
 
-
-	h1 {
-		color: #2b2c34;
-		font-size: 28px;
-		font-weight: 700;
-		margin-bottom: 16px;
-	}
-
-	ul {
-		list-style: none;
-
-		li {
+		h1 {
 			color: #2b2c34;
-			font-size: 16px;
-			font-weight: 400;
+			font-size: 28px;
+			font-weight: 700;
 			margin-bottom: 16px;
-			transition: 0.5s;
+		}
 
-			&:nth-child(1) {
-				color: blue;
-			}
+		ul {
+			list-style: none;
 
-			&:hover {
-				cursor: pointer;
-				color: blue;
+			li {
+				color: #2b2c34;
+				font-size: 16px;
+				font-weight: 400;
+				margin-bottom: 16px;
+				transition: 0.5s;
+
+				&:nth-child(1) {
+					color: blue;
+				}
+
+				&:hover {
+					cursor: pointer;
+					color: blue;
+				}
 			}
 		}
+		@media (max-width: 850px) {
+			display: none;
+		}
 	}
-    @media (max-width:850px) {
-        display: none;
-    }
-}
 
 	.menu-responsive {
 		list-style: none;
@@ -94,8 +101,6 @@ position: relative;
 			}
 		}
 	}
-
-	
 `;
 
 const ResponsiveMenu = styled.button`
@@ -118,7 +123,7 @@ const ResponsiveMenu = styled.button`
 		cursor: pointer;
 	}
 
-    @media (min-width:851px) {
-        display: none;
-    }
+	@media (min-width: 851px) {
+		display: none;
+	}
 `;
