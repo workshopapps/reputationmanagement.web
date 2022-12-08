@@ -25,45 +25,86 @@ import { useEffect } from 'react';
 import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
 import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
 import { LawyerTableData } from '../../components/Dashboard/TableData';
-import useAppContext from '../../hooks/useAppContext'
-import useAxiosPrivate from '../../hooks/useAxiosPrivate'
-
+import useAppContext from '../../hooks/useAppContext';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 function LawyerDashboard() {
 	const [tickets, setTickets] = useState([
-	    {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
-	    {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: high,
+			dueDate: today,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: high,
+			dueDate: today,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: medium,
+			dueDate: thisWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: medium,
+			dueDate: thisWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: medium,
+			dueDate: thisWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: low,
+			dueDate: nextWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: low,
+			dueDate: nextWeek,
+			lastUpdated: '4 days ago',
+		},
 	]);
 	const { setRequestFailed, setErrMessage } = useAppContext();
 
-	const [ searchTicket, setSearchTicket ] = useState('');
+	const [searchTicket, setSearchTicket] = useState('');
 
 	const ApiPrivate = useAxiosPrivate();
 
-	const fetchDetails = useCallback(async() => {
-		try{
-			const response = await ApiPrivate.get('/lawyer/reviews?pageNumber=0&pageSize=100')
-			setTickets(response?.data)
-			console.log(response)
-		}
-		catch(err){
-			if ( err?.response?.status ){
-				setErrMessage('Shey you be lawyer ni')
-				setRequestFailed(true)
+	const fetchDetails = useCallback(async () => {
+		try {
+			const response = await ApiPrivate.get(
+				'/lawyer/reviews?pageNumber=0&pageSize=100'
+			);
+			setTickets(response?.data);
+			console.log(response);
+		} catch (err) {
+			if (err?.response?.status) {
+				setErrMessage('Shey you be lawyer ni');
+				setRequestFailed(true);
 			}
-			console.log(err)
-
+			console.log(err);
 		}
-	},[ ApiPrivate, setErrMessage, setRequestFailed ])
+	}, [ApiPrivate, setErrMessage, setRequestFailed]);
 
 	useEffect(() => {
-		fetchDetails()
-	},[ fetchDetails ])
+		fetchDetails();
+	}, [fetchDetails]);
 
 	const [menuActive, setMenuActive] = useState(false);
 
@@ -71,8 +112,8 @@ function LawyerDashboard() {
 		setMenuActive(!menuActive);
 	}
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<div className="h-screen flex relative">
 			<Sidebarr />
@@ -118,13 +159,19 @@ function LawyerDashboard() {
 					<div className="flex justify-center flex-wrap">
 						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
 							<img src={requestsIcon} alt="" />
-							<h3 className="mt-2 mb-3 text-[22px] font-[600px]">
+							<h3
+								className="mt-2 mb-3 text-[22px] font-[600px]"
+								data-testid="TotalRequests"
+							>
 								Total requests
 							</h3>
 							<span className="text-[45px] font-semibold">50</span>
 						</div>
 
-						<div className="w-[47%] overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
+						<div
+							className="w-[47%] overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md"
+							data-testid="successful"
+						>
 							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
 								Successful removals
 							</h3>
@@ -141,7 +188,10 @@ function LawyerDashboard() {
 						</div>
 
 						<div className="w-[47%] overflow-hidden sm:w-[250px] mx-1 md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
-							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
+							<h3
+								className="mt-8 mb-3 text-[22px] font-[600px]"
+								data-testid="failed"
+							>
 								Failed removals
 							</h3>
 							<div className="flex justify-between w-full">
@@ -159,10 +209,13 @@ function LawyerDashboard() {
 
 					<div className="flex flex-col items-center mt-5 w-full">
 						<div className="w-full">
-							<h2 className="text-xl font-[600] mb-2 hidden md:flex">
+							<h2
+								className="text-xl font-[600] mb-2 hidden md:flex"
+								data-testid="CurrentTickets"
+							>
 								Current Tickets
 							</h2>
-							<TableContainer>
+							<TableContainer data-testid="table">
 								<thead>
 									<tr>
 										<th>No</th>
@@ -175,31 +228,35 @@ function LawyerDashboard() {
 								</thead>
 								{tickets.length >= 1 && (
 									<tbody>
-										{tickets ?
-											tickets
-											.filter((data) => {
-												if (searchTicket === '') {
-													return data;
-												} else if (
-													data.ticketName
-														.toLowerCase()
-														.includes(searchTicket.toLowerCase())
-												) {
-													return data;
-												}
+										{tickets
+											? tickets
+													.filter((data) => {
+														if (searchTicket === '') {
+															return data;
+														} else if (
+															data.ticketName
+																.toLowerCase()
+																.includes(searchTicket.toLowerCase())
+														) {
+															return data;
+														}
 
-												return data;
-											})
-											.map((data, index) => {
-												return (
-												<LawyerTableData  id={data.reviewId} ticketName={data.complainerName} lastUpdated={data.lastUpdated} priority={data.priority} status={data.status} key={index} no={index}
-													
-												/>
-												)
-											})
-											:
-											''
-										}
+														return data;
+													})
+													.map((data, index) => {
+														return (
+															<LawyerTableData
+																id={data.reviewId}
+																ticketName={data.complainerName}
+																lastUpdated={data.lastUpdated}
+																priority={data.priority}
+																status={data.status}
+																key={index}
+																no={index}
+															/>
+														);
+													})
+											: ''}
 									</tbody>
 								)}
 							</TableContainer>
