@@ -291,6 +291,7 @@ const StyledContainers = styled.div`
 
 				input {
 					height: 56px;
+					width: 60%;
 					padding: 0px 10px 0px 10px;
 					border: 1px solid #d2d3d4;
 					border-radius: 8px;
@@ -339,6 +340,7 @@ const StyledContainers = styled.div`
 					textarea {
 						max-height: 190px;
 						height: 190px;
+						width: 60%;
 						font-size: 16px;
 						border: 1px solid #d2d3d4;
 						border-radius: 8px;
@@ -383,6 +385,7 @@ const StyledContainers = styled.div`
 
 				input {
 					height: 56px;
+					width: 60%;
 					padding: 0px 10px 0px 10px;
 					border: 1px solid #d2d3d4;
 					border-radius: 8px;
@@ -408,7 +411,7 @@ const StyledContainers = styled.div`
 		.btn-submit {
 			margin-top: 32px;
 			display: flex;
-			justify-content: flex-end;
+			justify-content: flex-start;
 
 			button {
 				width: 220px;
