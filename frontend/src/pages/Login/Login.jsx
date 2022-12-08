@@ -332,8 +332,12 @@ const LoginContainer = styled.div`
 		margin-bottom: 30px;
 	}
 
+	// @media screen and (min-width: 800px) {
+	// 	height: 100vh;
+	// }
 	@media screen and (min-width: 768px) {
 		width: 430px;
+		height: 100vh;
 	}
 `;
 

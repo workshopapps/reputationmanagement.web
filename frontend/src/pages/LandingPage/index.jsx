@@ -10,10 +10,7 @@ import {
 import { StyledH2Center } from '../../components/Styles/Body/Text.styled';
 import { StyledContainer } from '../../components/Styles/Body/Container.styled';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
-
-//import ArrowRightIcon from '../../assets/images/arrowRightIcon.png';
 import arrowRightIconBlue from '../../assets/images/arrowRightIconBlue.png';
-
 import {
 	google_review,
 	google_search,
@@ -26,9 +23,56 @@ import {
 import styled from 'styled-components';
 import Api from '../../api/axios';
 import useAppContext from '../../hooks/useAppContext';
+import Avater0 from '../../assets/images/WeRemoveGoogleSearch/Avatar0.svg';
+import Avater1 from '../../assets/images/WeRemoveGoogleSearch/Avatar1.svg';
+import Avater2 from '../../assets/images/WeRemoveGoogleSearch/Avatar2.svg';
+import Avater3 from '../../assets/images/WeRemoveGoogleSearch/Avatar3.svg';
+import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
+import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
+import Left from '../../assets/images/WeRemoveGoogleSearch/left.svg';
+import Right from '../../assets/images/WeRemoveGoogleSearch/right.svg';
 import { useEffect } from 'react';
+import TestimonialTemplate from './template/TestimonialTemplate';
 
 const LandingPage = () => {
+	const [testimonialTemplate] = useState([
+		{
+			image: Avater0,
+			name: 'Steve Harry',
+			text: 'REPUTE’s priority on business reputation is top-notch and their services is even better!',
+			id: 1,
+		},
+		{
+			image: Avater1,
+			name: 'Morgan Troy',
+			text: 'In about a month REPUTE helped my business remove a google search that was a struggle to fix',
+			id: 2,
+		},
+		{
+			image: Avater2,
+			name: 'Isaac Christopher',
+			text: 'REPUTE remains the one best solution for business reputation management needs',
+			id: 3,
+		},
+		{
+			image: Avater3,
+			name: 'Francis Adams',
+			text: 'REPUTE resolved our google search issues in a couple of days. I’m everly grateful',
+			id: 4,
+		},
+		{
+			image: Avater4,
+			name: 'Anthonia Francis',
+			text: 'REPUTE resolved our google search issues in a couple of days. I’m everly grateful',
+			id: 5,
+		},
+		{
+			image: Avater5,
+			name: 'Anthonia Francis',
+			text: 'REPUTE resolved our google search issues in a couple of days. I’m everly grateful',
+			id: 6,
+		},
+	]);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		email: '',
@@ -37,6 +81,17 @@ const LandingPage = () => {
 		reviewLocation: '',
 		fullName: '',
 	});
+
+	const slideLeft = () => {
+		let slider = document.getElementById('slide-item');
+		slider.scrollLeft = -1000;
+	};
+
+	const slideRight = () => {
+		let i = 1000;
+		let slider = document.getElementById('slide-item');
+		slider.scrollLeft = ++i;
+	};
 
 	const handleChange = (event) => {
 		setFormData({
@@ -285,6 +340,31 @@ const LandingPage = () => {
 					</StyledContainer>
 				</HowDoesItWork>
 
+				{/* Review */}
+
+				<ColorBg>
+					<StyledH2Center>What our Users say about us</StyledH2Center>
+					<div className="absolute">
+						<img
+							src={Left}
+							alt="left-arrow"
+							id="left"
+							className="scroll-arrow"
+							onClick={slideLeft}
+						/>
+						<img
+							src={Right}
+							alt="right-arrow"
+							id="right"
+							className="scroll-arrow scroll-right"
+							onClick={slideRight}
+						/>
+					</div>
+					<StyledSlider id="slide-item">
+						<TestimonialTemplate testimonialTemplate={testimonialTemplate} />
+					</StyledSlider>
+				</ColorBg>
+
 				{/****************************************************LANDING FOOTER************************************/}
 				<section className="cta" data-testid="Landing-footer">
 					<div className="max-w-4xl mx-auto cta-inner">
@@ -307,6 +387,63 @@ const LandingPage = () => {
 		</PageLayout>
 	);
 };
+
+// Styling
+
+const ColorBg = styled.div`
+	background: #fff;
+	padding: 48px 0;
+	text-align: center;
+	margin-bottom: ${(props) => (props.noBottom ? '0' : '50px')};
+	// margin-top: 50px;
+
+	.absolute {
+		position: absolute;
+		width: 100%;
+		margin-top: 7%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		z-index: 5;
+	}
+	.scroll-arrow {
+		cursor: pointer;
+		margin: 0 10px;
+		box-shadow: 0 0 10px #4646472d;
+		border-radius: 50%;
+		opacity: 0.5;
+	}
+	.scroll-arrow:hover {
+		opacity: 1;
+	}
+
+	@media screen and (max-width: 884px) {
+		.absolute {
+			margin-top: 10%;
+		}
+	}
+	@media screen and (max-width: 428px) {
+		.absolute {
+			margin-top: 20%;
+		}
+	}
+	@media screen and (max-width: 320px) {
+		.absolute {
+			margin-top: 25%;
+		}
+	}
+`;
+const StyledSlider = styled.div`
+	display: flex;
+	overflow-x: scroll;
+	width: 100%;
+	position: relative;
+
+	&::-webkit-scrollbar {
+		width: 0;
+		display: none;
+	}
+`;
 
 const StyledHeroSectionWrapper = styled.div`
 	// width:100vw;
