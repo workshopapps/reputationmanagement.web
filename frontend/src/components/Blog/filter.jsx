@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaChevronDown } from 'react-icons/fa';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import DataBlog from '../../pages/Blog/data';
 
-const Filter = ({filterItem}) => {
+
+const Filter = ({filterItem, setItem}) => {
 	const [isNavLocation, setIsNavLocation] = useState(false);
 
 	return (
@@ -12,13 +13,11 @@ const Filter = ({filterItem}) => {
 			<div className={isNavLocation ? 'menu-responsive' : 'menu-desktop'}>
 				<h1>Filter by Topic:</h1>
 				<ul >
-				<Link to='/blog-see-all'>
-					<li /**</ul>onClick={() => setItem(DataBlog)}*/>
+					<li onClick={() => setItem(DataBlog)}>
 						
 						All
-					
+						
 						</li>
-						</Link>
 					<li  onClick={() => filterItem("Glassdoor Review")}>Glassdoor Review</li>
 					<li onClick={() => filterItem("Google Review")}>Google Review</li>
 					<li onClick={() => filterItem("Reddit")}>Reddit</li>
