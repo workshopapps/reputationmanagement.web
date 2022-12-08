@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useCallback, useEffect, useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
-import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {
 	StyledDashboard,
@@ -12,8 +11,9 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
 
-const RequestDetails = () => {
+const LawyerRequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [rating, setRating] = useState(0); ///set initial state for rating
 	const router = useNavigate();
@@ -21,8 +21,6 @@ const RequestDetails = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
-	const [ time, setTime ] = useState('')
-	const [ year, setYear ] = useState('')
 	const [priority, setPriority] = useState(0);
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
@@ -51,7 +49,7 @@ const RequestDetails = () => {
 
     const fetchComplaintDetails = useCallback(async() => {
         try{
-            const response = await ApiPrivate.get(`review/${requestId}`)
+            const response = await ApiPrivate.get(`/lawyer/reviews/${requestId}`)
             console.log(response)
             setEmail(response?.data?.email)
             setPriority(response?.data?.priority)
@@ -60,7 +58,7 @@ const RequestDetails = () => {
             setReview(response?.data?.reviewString)
             setPriority(response?.data?.status)
             setWebsiteName(response?.data?.websiteName)
-            setDate(response?.data?.lastUpdated)
+            setDate(response?.data?.createdAt)
 			setBusinessType(response?.data?.businessType)
         }
         catch(err){
@@ -70,26 +68,6 @@ const RequestDetails = () => {
         }
     },[ ApiPrivate,requestId, setErrMessage, setRequestFailed ])
 
-	useEffect(() => {
-		setYear(date.substring(0,10) || '')
-		setTime(date.substring(11,16))
-	},[ date ])
-
-    const handleDelete = async(e) => {
-		e.preventDefault();
-        try{
-            const response = await ApiPrivate.delete(`/review/${requestId}`)
-            setSuccessMessage('Request deleted successfully')
-            setRequestSuccess(true)
-			router('/dashboard')
-            console.log(response)
-        }
-        catch(err){
-            console.log(err)
-            setErrMessage('Unable to delete request')
-            setRequestFailed(true)
-        }
-    }
 
     useEffect(() => {
         fetchComplaintDetails();
@@ -99,104 +77,29 @@ const RequestDetails = () => {
 		setLoading(true)
 		e.preventDefault();
 		try {
-			  const response = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/email',
-					op: 'replace',
-					value: email,
-				}])
-			//   const timeResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-			// 	{
-			// 		operationType: 2,
-			// 		path: '/timeOfReview',
-			// 		op: 'replace',
-			// 		value: year + time,
-			// 	}])
-			  const reviewResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/reviewString',
-					op: 'replace',
-					value: review,
-				}])
-			  const ratingResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/rating',
-					op: 'replace',
-					value: rating,
-				}])
-			  const websiteResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/websiteName',
-					op: 'replace',
-					value: websitename,
-				}])
-			  const businessResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/businessType',
-					op: 'replace',
-					value: businesstype,
-				}])
-			  const priorityResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/priority',
-					op: 'replace',
-					value: priority,
-				}])
-				const nameResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/complainerName',
-					op: 'replace',
-					value: name,
-				}])
-				setLoading(false)
-			console.log(response,reviewResponse,ratingResponse,websiteResponse, businessResponse, priorityResponse, nameResponse)
-			setSuccessMessage('Request updated successfully')
+			  const response = await ApiPrivate.post(`/lawyer/ClaimReview?reviewId=${requestId}`
+            )
+			setLoading(false)
+			console.log(response)
+			setSuccessMessage('Request claimed successfully')
 			setRequestSuccess(true)
 			clearForm();
 			const reroute = setTimeout(() => {
-				router('/dashboard')
+				router('/lawyer-dashboard')
 			},2000)
-		} catch (err) {
+		} 
+        catch (err) {
 			setLoading(false)
-			if (err?.response?.status === 400 ){
-				err.response?.data?.errors.email
-					?
-					setErrMessage(err.response?.data?.errors.email)
-					:
-					err.response?.data?.errors?.reviewString
-						?
-						setErrMessage('The review field is required')
-						:
-						err.response?.data?.errors?.websiteName
-							?
-							setErrMessage('The website name field is required')
-							:
-							err.response?.data?.error?.businessType
-								?
-								setErrMessage('The business type is required')
-								:
-								setErrMessage('Server error')
+            setErrMessage('Unable to claim request')
 			setRequestFailed(true)
-			}
-			else{
-				setErrMessage("Couldn't update request")
-				setRequestFailed(true)
-			}
-			console.log(err);
+            console.log(err)
 		}
 	};
 	return (
 		<>
 			<RequestFailed/>
 			<StyledDashboard>
-				<Sidebar
+				<Sidebarr
 					className={`${openMenu ? 'open' : ''}`}
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
@@ -215,7 +118,7 @@ const RequestDetails = () => {
 							<div className="form-section-a">
 								<div className='text-input'>
 									<label htmlFor="_name"> Name</label>
-									<input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name of the complainer" id="name" required />
+									<input type="text" name="_name" value={name} readOnly placeholder="Enter name of the complainer" id="name" required />
 								</div>
 
 								<div className="text-input">
@@ -224,10 +127,9 @@ const RequestDetails = () => {
 										type="email"
 										name="email"
 										value={email}
-										onChange={(e) => setEmail(e.target.value)}
 										placeholder="johndoe@gmail.com"
 										id="email"
-										required
+                                        readOnly
 									/>
 								</div>
 
@@ -238,8 +140,7 @@ const RequestDetails = () => {
 											type="date"
 											name="date"
 											id="date"
-                                            value={year}
-											onChange={(e) => setYear(e.target.value)}
+                                            value={ date ? date.substring(0,10) : ''}
 											readOnly
 										/>
 									</div>
@@ -251,8 +152,8 @@ const RequestDetails = () => {
 											name="time"
 											id="time"
 											required
-                                            value={time}
-											onChange={(e) => setTime(e.target.value)}
+                                            value={date ? date.substring(11,16) : ''}
+                                            readOnly
 										/>
 									</div>
 								</div>
@@ -262,15 +163,15 @@ const RequestDetails = () => {
 										<label>The bad review</label>
 										<textarea
 											value={review}
-											onChange={(e) => setReview(e.target.value)}
+                                            readOnly
 										/>
 									</div>
 
 									<div className="review-range">
 										<Rate
 											rating={rating}
-											onRating={(rate) => setRating(rate)}
 											className="rate"
+                                            disabled
 										/>
 
 										<label htmlFor="vol">
@@ -294,7 +195,7 @@ const RequestDetails = () => {
 										type="text"
 										name="name_of_website"
 										value={websitename}
-										onChange={(e) => setWebsiteName(e.target.value)}
+										readOnly
 										placeholder=""
 										required
 									/>
@@ -308,7 +209,7 @@ const RequestDetails = () => {
 										type="text"
 										name="business_type"
 										value={businesstype}
-										onChange={(e) => setBusinessType(e.target.value)}
+										readOnly
 										placeholder=""
 										required
 									/>
@@ -348,14 +249,11 @@ const RequestDetails = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-                                <button className='delete' onClick={(e) => handleDelete(e)}>
-                                    Delete
-								</button>
 								<button className='submit' onClick={(e) => handleSubmit(e)}>
 								{
 										!loading
 											?
-										"Save Changes"
+										"Claim Ticket"
 										:
 										<div className="loading"></div>
 									}
@@ -369,7 +267,7 @@ const RequestDetails = () => {
 	);
 };
 
-export default RequestDetails;
+export default LawyerRequestDetails;
 
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
