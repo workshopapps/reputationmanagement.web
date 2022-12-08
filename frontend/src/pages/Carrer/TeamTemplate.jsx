@@ -2,7 +2,7 @@ import Styled from 'styled-components';
 
 const TeamTemplate = ({ teamTemplate }) => {
 	return (
-		<StyledContainer  style={{ maxWidth: '1540px', margin: '0 auto'}}>
+		<StyledContainer>
 			<Team>
 				{teamTemplate.map((teamMembers) => (
 					<div className="border">
@@ -62,12 +62,14 @@ p{
 `;
 
 export const StyledContainer = Styled.div`
-    
-    padding: 0 20px;
 
-    // @media screen and (width: 1280px) {
-    //     max-width: 1240px;
-    //     margin: 0 auto;
-    // }
+    max-width: 92%; 
+    margin: 0px auto;
+    padding: 0px 20px;
+    @media screen and (max-width:1300px) {
+	    max-width: 95%;
+	 }
+
+  
 
 `;
