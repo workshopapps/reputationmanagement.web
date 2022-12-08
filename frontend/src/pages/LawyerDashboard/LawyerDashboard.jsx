@@ -115,49 +115,7 @@ function LawyerDashboard() {
 				{menuActive && <Menu />}
 
 				<div className="p-5 absolute md:static top-[15vh] left-0 w-full">
-					<div className="flex justify-center flex-wrap">
-						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
-							<img src={requestsIcon} alt="" />
-							<h3 className="mt-2 mb-3 text-[22px] font-[600px]">
-								Total requests
-							</h3>
-							<span className="text-[45px] font-semibold">50</span>
-						</div>
-
-						<div className="w-[47%] overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
-							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
-								Successful removals
-							</h3>
-							<div className="flex justify-between w-full">
-								<div>
-									<span className="text-[45px] font-semibold">50</span>
-									<div className="flex text-[#32D583]">
-										+50 <img src={arrowUp} alt="" />
-									</div>
-								</div>
-
-								<img src={lineChart} alt="" />
-							</div>
-						</div>
-
-						<div className="w-[47%] overflow-hidden sm:w-[250px] mx-1 md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
-							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
-								Failed removals
-							</h3>
-							<div className="flex justify-between w-full">
-								<div>
-									<span className="text-[45px] font-semibold">50</span>
-									<div className="flex text-[#FF718B]">
-										-50 <img src={arrowDown} alt="" />
-									</div>
-								</div>
-
-								<img src={lineChart} alt="" />
-							</div>
-						</div>
-					</div>
-
-					<div className="flex flex-col items-center mt-5 w-full">
+				<div className="flex flex-col items-center mt-5 w-full">
 						<div className="w-full">
 							<h2 className="text-xl font-[600] mb-2 hidden md:flex">
 								Current Tickets
@@ -237,7 +195,7 @@ function LawyerDashboard() {
 							</div> */}
 						</div>
 
-						<div className="py-5 border rounded-lg ml-0 md:ml-3 my-2">
+						{/* <div className="py-5 border rounded-lg ml-0 md:ml-3 my-2">
 							<div className="pb-5 border-b mx-6">
 								<p className="text-gray-500 text-[12px]">Statistics</p>
 								<p className="text-[14px] font-[500]">Monthly activity</p>
@@ -258,6 +216,47 @@ function LawyerDashboard() {
 									<img src={failed} alt="" />
 									<span className="text-gray-500">3</span>
 								</div>
+							</div>
+						</div> */}
+					</div>
+					<div className="flex justify-center flex-wrap">
+						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
+							<img src={requestsIcon} alt="" />
+							<h3 className="mt-2 mb-3 text-[22px] font-[600px]">
+								Total requests
+							</h3>
+							<span className="text-[45px] font-semibold">{tickets.length || 0}</span>
+						</div>
+
+						<div className="w-[47%] overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
+							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
+								Successful removals
+							</h3>
+							<div className="flex justify-between w-full">
+								<div>
+									<span className="text-[45px] font-semibold">0</span>
+									<div className="flex text-[#32D583]">
+										+50 <img src={arrowUp} alt="" />
+									</div>
+								</div>
+
+								<img src={lineChart} alt="" />
+							</div>
+						</div>
+
+						<div className="w-[47%] overflow-hidden sm:w-[250px] mx-1 md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
+							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
+								Failed removals
+							</h3>
+							<div className="flex justify-between w-full">
+								<div>
+									<span className="text-[45px] font-semibold">0</span>
+									<div className="flex text-[#FF718B]">
+										-50 <img src={arrowDown} alt="" />
+									</div>
+								</div>
+
+								<img src={lineChart} alt="" />
 							</div>
 						</div>
 					</div>

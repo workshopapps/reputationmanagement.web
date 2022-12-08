@@ -49,6 +49,8 @@ import RequestDetails from '../pages/Request Details/requestDetails';
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 import LawyerRequestDetails from '../pages/Request Details/lawyerRequestDetails';
+import LawyerLogin from '../pages/Login/lawyerLogin';
+import LawyerSignup from '../pages/Sign-up/lawyerSignup';
 
 
 Sentry.init({
@@ -87,7 +89,8 @@ const Router = () => {
 						/>
 					</Route>
 					<Route path="/" element={<LandingPage />} />
-
+					<Route path="/lawyer-login" element={<LawyerLogin/>}/>
+					<Route path="/lawyer-signup" element={<LawyerSignup/>}/>
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/about-us" element={<AboutPage />} />
