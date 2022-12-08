@@ -160,7 +160,7 @@ const RequestDetails = () => {
 			setSuccessMessage('Request updated successfully')
 			setRequestSuccess(true)
 			clearForm();
-			const reroute = setTimeout(() => {
+			setTimeout(() => {
 				router('/dashboard')
 			},2000)
 		} catch (err) {
