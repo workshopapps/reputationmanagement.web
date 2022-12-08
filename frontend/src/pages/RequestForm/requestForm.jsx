@@ -45,7 +45,7 @@ const RequestForm = () => {
 		try {
 			  const response = await ApiPrivate.post('/review', {
 			    email: email,
-			    timeOfReview: time + date,
+			    timeOfReview: date +'T'+time,
 			    reviewString: review,
 			    rating: rating,
 			    websitename: websitename,
