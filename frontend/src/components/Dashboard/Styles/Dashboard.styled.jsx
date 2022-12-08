@@ -36,10 +36,11 @@ export const StyledContainer = styled.div`
 		width: 100vw;
 
 		h1 {
-			font-size: 17px !important;
+			font-size: 15px !important;
 		}
 		a {
 			font-weight: 500 !important;
+			transform: scale(0.885);
 		}
 	}
 
@@ -127,8 +128,12 @@ export const CardSemiWrapper = styled.div`
 		gap: 12px !important;
 
 		& > div {
-			padding: 22px 15px 10px;
-			display: block !important;
+			padding: 24px 15px 10px;
+			align-items: center;
+
+			img {
+				align-self: center !important;
+			}
 		}
 	}
 
