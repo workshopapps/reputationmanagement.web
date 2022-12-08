@@ -12,6 +12,7 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
 import { useLocation, useNavigate } from 'react-router-dom';
+import DeleteRequestModal from '../../modal/deleteRequestModal';
 
 const RequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -30,6 +31,8 @@ const RequestDetails = () => {
 	const [ loading, setLoading ] = useState(false)
 	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, requestSuccess, requestFailed } =
 		useAppContext();
+
+	const [ deleteModalActive, setDeleteModalActive ] = useState(false)
 
 	const ApiPrivate = useAxiosPrivate();
 
@@ -60,7 +63,7 @@ const RequestDetails = () => {
             setReview(response?.data?.reviewString)
             setPriority(response?.data?.status)
             setWebsiteName(response?.data?.websiteName)
-            setDate(response?.data?.lastUpdated)
+            setDate(response?.data?.timeOfReview)
 			setBusinessType(response?.data?.businessType)
         }
         catch(err){
@@ -75,8 +78,7 @@ const RequestDetails = () => {
 		setTime(date.substring(11,16))
 	},[ date ])
 
-    const handleDelete = async(e) => {
-		e.preventDefault();
+    const handleDelete = async() => {
         try{
             const response = await ApiPrivate.delete(`/review/${requestId}`)
             setSuccessMessage('Request deleted successfully')
@@ -86,6 +88,7 @@ const RequestDetails = () => {
         }
         catch(err){
             console.log(err)
+			setDeleteModalActive(false)
             setErrMessage('Unable to delete request')
             setRequestFailed(true)
         }
@@ -195,6 +198,7 @@ const RequestDetails = () => {
 	return (
 		<>
 			<RequestFailed/>
+			{ deleteModalActive && <DeleteRequestModal setDeleteModalActive={setDeleteModalActive} handleDelete={handleDelete}/>}
 			<StyledDashboard>
 				<Sidebar
 					className={`${openMenu ? 'open' : ''}`}
@@ -348,7 +352,7 @@ const RequestDetails = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-                                <button className='delete' onClick={(e) => handleDelete(e)}>
+                                <button className='delete' onClick={(e) => { e.preventDefault() ;setDeleteModalActive(true)}}>
                                     Delete
 								</button>
 								<button className='submit' onClick={(e) => handleSubmit(e)}>

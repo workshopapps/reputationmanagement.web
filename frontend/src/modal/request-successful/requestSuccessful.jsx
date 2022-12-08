@@ -17,12 +17,13 @@ const RequestSuccessful = () => {
         const requestTimeout = () => {
             setTimeout(() => {
                 setRequestSuccessfulModalActive(false)
+				router('/dashboard')
             },4000)
         } 
         return() => {
             clearTimeout(requestTimeout)
         }
-    },[ requestSuccessfulModalActive, setRequestSuccessfulModalActive ])
+    },[ requestSuccessfulModalActive, setRequestSuccessfulModalActive, router ])
 
 	return (
 		<StyledOverlay>
@@ -35,7 +36,7 @@ const RequestSuccessful = () => {
 				<StyledButtonWrapper>
 					<button
 						id="request"
-						onClick={() => router('/dashboard')}
+						onClick={() => { setRequestSuccessfulModalActive(false); router('/dashboard')}}
 					>
 						Go To Dashboard
 					</button>
