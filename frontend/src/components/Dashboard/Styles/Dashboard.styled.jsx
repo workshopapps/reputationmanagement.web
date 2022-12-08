@@ -225,35 +225,9 @@ export const TableContainer = styled.table`
 			font-size: 16px;
 			line-height: 24px;
 			color: #292d32;
+			padding-left: 30px;
 		}
 		&:nth-of-type(4) p {
-			font-weight: 600;
-			font-size: 16px;
-			line-height: 24px;
-			color: #292d32;
-			padding-left: 20px;
-
-			&::before {
-				content: ' ';
-				position: absolute;
-				/* left: 48rem; */
-				margin-left: -22px;
-				margin-top: 4px;
-				width: 16px;
-				height: 16px;
-				background: #017590;
-				border-radius: 50%;
-			}
-		}
-
-		&:nth-of-type(5) p {
-			font-weight: 700;
-			font-size: 16px;
-			line-height: 24px;
-			color: #8f9093;
-		}
-
-		&:nth-of-type(6) p {
 			background: rgba(1, 176, 216, 0.15);
 			border-radius: 4px;
 			padding: 8px 16px;
@@ -264,6 +238,13 @@ export const TableContainer = styled.table`
 			// width: 70%;
 			color: #01586c;
 			white-space: nowrap;
+		}
+
+		&:nth-of-type(5) p {
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 24px;
+			color: #8f9093;
 		}
 	}
 

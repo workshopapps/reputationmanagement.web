@@ -11,12 +11,12 @@ import {
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const RequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [rating, setRating] = useState(0); ///set initial state for rating
-
+	const router = useNavigate();
 	//const [checked, setChecked] = useState(false);
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
@@ -29,6 +29,10 @@ const RequestDetails = () => {
 		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 
 	const clearForm = () => {
 		// setName()
@@ -48,11 +52,13 @@ const RequestDetails = () => {
             console.log(response)
             setEmail(response?.data?.email)
             setPriority(response?.data?.priority)
+			setName(response?.data?.complainerName)
             setRating(response?.data?.rating)
             setReview(response?.data?.reviewString)
             setPriority(response?.data?.status)
             setWebsiteName(response?.data?.websiteName)
             setDate(response?.data?.lastUpdated)
+			setBusinessType(response?.data?.businessType)
         }
         catch(err){
             setErrMessage("can't get details of request")
@@ -61,11 +67,13 @@ const RequestDetails = () => {
         }
     },[ ApiPrivate,requestId, setErrMessage, setRequestFailed ])
 
-    const handleDelete = async() => {
+    const handleDelete = async(e) => {
+		e.preventDefault();
         try{
-            const response = await ApiPrivate.delete(`/api/review/${requestId}`)
+            const response = await ApiPrivate.delete(`/review/${requestId}`)
             setSuccessMessage('Request deleted successfully')
             setRequestSuccess(true)
+			router('/dashboard')
             console.log(response)
         }
         catch(err){
@@ -79,9 +87,10 @@ const RequestDetails = () => {
         fetchComplaintDetails();
     },[ fetchComplaintDetails ])
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 		try {
-			  const response = await ApiPrivate.post('/review', {
+			  const response = await ApiPrivate.patch(`/review/${requestId}`, {
 			    email: email,
 			    reviewString: review,
 			    rating: rating,
@@ -96,7 +105,6 @@ const RequestDetails = () => {
 			setRequestSuccessfulModalActive(true);
 			clearForm();
 		} catch (err) {
-			setRequestFailed(true)
 			if (err?.response?.status === 400 ){
 				err.response?.data?.errors.email
 					?
@@ -115,9 +123,11 @@ const RequestDetails = () => {
 								setErrMessage('The business type is required')
 								:
 								setErrMessage('Server error')
+			setRequestFailed(true)
 			}
 			else{
-				setErrMessage("Couldn't fetch requests")
+				setErrMessage("Couldn't update request")
+				setRequestFailed(true)
 			}
 			setRequestSuccessfulModalActive(false);
 			console.log(err);
@@ -186,7 +196,7 @@ const RequestDetails = () => {
 											id="time"
 											required
                                             value={date.substring(11,16)}
-                                            reaOonly
+											readOnly
 										/>
 									</div>
 								</div>
@@ -255,6 +265,7 @@ const RequestDetails = () => {
 										<Checkbox
 											label="High"
 											onClick={() => setPriority(3)}
+											checked={priority === 3}
 										/>
 									</div>
 
@@ -262,27 +273,29 @@ const RequestDetails = () => {
 										<Checkbox
 											label="Medium"
 											onClick={() => setPriority(2)}
+											checked={priority === 2}
 										/>
 									</div>
 
 									<div>
-										<Checkbox label="Low" onClick={() => setPriority(0)} />
+										<Checkbox label="Low" onClick={() => setPriority(0)} checked={priority === 1}/>
 									</div>
 
 									<div>
 										<Checkbox
 											label="Not urgent"
 											onClick={() => setPriority(0)}
+											checked={priority === 0}
 										/>
 									</div>
 								</div>
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-                                <button className='delete' onClick={() => handleDelete()}>
+                                <button className='delete' onClick={(e) => handleDelete(e)}>
                                     Delete
 								</button>
-								<button onClick={() => handleSubmit()}>
+								<button className='submit' onClick={(e) => handleSubmit(e)}>
                                     Save Changes
 								</button>
 							</div>
@@ -446,7 +459,7 @@ const StyledContainers = styled.div`
 			display: flex;
 			justify-content: flex-end;
 
-			button {
+			.submit{
 				width: 220px;
 				height: 59px;
 				background: #233ba9;

@@ -86,11 +86,11 @@ const Header = () => {
 							Contact
 						</NavLink>
 
-						{loggedin ? (
+						{loggedin ? 
 							<StyledNavButton onClick={() => router('/dashboard')}>
 								Dashboard
 							</StyledNavButton>
-						) : (
+						:
 							<>
 								<StyledNavButton onClick={() => router('/login')}>
 									Login
@@ -100,7 +100,7 @@ const Header = () => {
 									Sign up
 								</StyledNavButton>
 							</>
-						)}
+						}
 					</ul>
 
 					{loggedin ? (
@@ -166,6 +166,14 @@ const StyledNav = styled.nav`
 			padding: 6px 18px;
 		}
 	}
+	.navButtons{
+		display: flex;
+	}
+	@media screen and (max-width: 900px) {
+		.navButtons{
+			display: none;
+		}
+	}
 	@media screen and (max-width: 875px) {
 		.logo {
 			display: block;
@@ -178,8 +186,7 @@ const StyledNav = styled.nav`
 			left: 18px;
 			cursor: pointer;
 		}
-		.navLinks,
-		.navButtons {
+		.navLinks{
 			display: none;
 		}
 	}

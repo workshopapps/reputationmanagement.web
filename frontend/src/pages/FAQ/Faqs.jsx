@@ -3,6 +3,7 @@ import FaqItem from './FaqItem';
 import PageLayout from '../../layout/PageLayout';
 import FaqFooter from './FaqFooter';
 import { FaqMainWraper, FaqSection, Header } from './Assets/styles/Faqs.styled';
+import { useEffect } from 'react';
 
 function Faqs() {
 	const [faqs, setFaqs] = useState([
@@ -60,7 +61,9 @@ function Faqs() {
 			})
 		);
 	};
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<FaqMainWraper>

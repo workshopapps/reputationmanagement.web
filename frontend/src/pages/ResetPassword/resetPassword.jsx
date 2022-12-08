@@ -2,6 +2,7 @@ import React from 'react'
 import PageLayout from '../../layout/PageLayout'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useEffect } from 'react'
 
 export default function ResetPassword() {
    const [email, setEmail] = React.useState("")
@@ -14,6 +15,9 @@ export default function ResetPassword() {
         alert(`The password for ${email} has been reset`)
         setEmail("")
     }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
   return (
     <PageLayout>
         <StyledSection onSubmit={handleSubmit}>

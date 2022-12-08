@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigationType, createRoutesFromChildren, matchRoutes } from 'react-router-dom';
 import AboutPage from '../pages/AboutUs/AboutPage';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
@@ -46,12 +46,31 @@ import Job10 from '../pages/Carrer/Job10';
 import Job11 from '../pages/Carrer/Job11';
 import Job12 from '../pages/Carrer/Job12';
 import RequestDetails from '../pages/Request Details/requestDetails';
+import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
 
+
+Sentry.init({
+    integrations: [
+        new BrowserTracing({
+            routingInstrumentation: Sentry.reactRouterV6Instrumentation(
+                React.useEffect,
+                useLocation,
+                useNavigationType,
+                createRoutesFromChildren,
+                matchRoutes,
+            ),
+        }),
+    ],
+    tracesSampleRate: 1.0,
+});
+
+const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes)
 
 const Router = () => {
 	return (
 		<BrowserRouter>
-			<Routes>
+			<SentryRoutes>
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
 						<Route path="/dashboard" element={<DashboardPage />} />
@@ -117,7 +136,7 @@ const Router = () => {
 					/>
 					<Route path="*" element={<ErrorPage />} />
 				</Route>
-			</Routes>
+			</SentryRoutes>
 		</BrowserRouter>
 	);
 };

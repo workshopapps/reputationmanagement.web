@@ -21,8 +21,12 @@ import Left from '../../assets/images/WeRemoveGoogleSearch/left.svg';
 import Right from '../../assets/images/WeRemoveGoogleSearch/right.svg';
 import Banner from '../AboutUs/img/Banner-Background-Desktop.png';
 
+import { useEffect } from 'react';
 
 const WeRemoveGoogleSearch = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	const [testimonialTemplate] = useState([
 		{
 			image: Avater0,

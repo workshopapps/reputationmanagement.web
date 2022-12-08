@@ -19,6 +19,7 @@ import { FaTimes } from 'react-icons/fa';
 import PageLayout from '../../layout/PageLayout';
 import rocket from '../../assets/images/noto_rocket.svg';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
+import { useEffect } from 'react';
 // import { Obj } from 'prelude-ls';
 
 const GetAQuote = () => {
@@ -46,6 +47,9 @@ const GetAQuote = () => {
 	const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 
 	const {firstname: firstNameError, email:emailError, request:requestError} =  errors
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<Container>

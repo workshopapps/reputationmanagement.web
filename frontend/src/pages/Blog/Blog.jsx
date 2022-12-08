@@ -18,6 +18,7 @@ import headlines_img7 from '../../assets/images/blog_images/images/headlines_img
 import Filter from '../../components/Blog/filter';
 import Footer from '../../components/Blog/footer';
 import Pagination from '../../components/Blog/pagination';
+import { useEffect } from 'react';
 
 const StyledArticles = styled.div`
 	//width: 70%;
@@ -68,6 +69,9 @@ const StyledFilter = styled.div`
 `;
 
 function Blog() {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<section>
 			<PageLayout>

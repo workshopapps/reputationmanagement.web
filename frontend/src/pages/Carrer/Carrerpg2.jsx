@@ -31,6 +31,9 @@ function Carrerpg2({ DescriptionProps }) {
 	const searchChange = (e) => {
 		setSearchTerm(e.target.value);
 	};
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 
 	return (
 		<PageLayout>

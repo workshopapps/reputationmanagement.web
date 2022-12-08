@@ -3,15 +3,7 @@
 import React, { useState } from 'react';
 import Successfulmodal from './Successfulmodal';
 import styled from 'styled-components';
-import axios from 'axios';
-
-const Api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-    headers: {
-        "Accept": "*/*",
-        'Content-Type': 'multipart/form-data',
-    }
-})
+import Api from '../../api/axios';
 
 const StyledSelect = styled.select`
 	border: 1px solid #d4d4d4;
@@ -81,6 +73,7 @@ const Modal = ({ open, onClose }) => {
 				Resume: resume,
 				CoverLetter: coverLetter,
 			})
+			console.log(response)
 			setOpenModal(true)
 
 		} catch (err) {

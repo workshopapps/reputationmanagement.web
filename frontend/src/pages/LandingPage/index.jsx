@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../layout/PageLayout';
 import {
@@ -24,35 +24,56 @@ import {
 	star_icon,
 } from './assets';
 import styled from 'styled-components';
-// import { ApiPrivate } from '../../api/axios';
+import Api from '../../api/axios';
+import useAppContext from '../../hooks/useAppContext'
+import { useEffect } from 'react';
 
 
 const LandingPage = () => {
-
+	const [ loading, setLoading ] = useState(false)
 	const [formData, setFormData] = useState({
-		fullName: "",
-		phone: "",
 		email: "",
+		phone: "",
 		businessName: "",
-		review: ""
-
+		reviewLocation: "",
+		fullName: ""
 	})
-
 
 	const handleChange = (event) => {
 
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value
-        })
-    }
-
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		// await ApiPrivate.post("/api/quote", formData)
+		setFormData({
+			...formData,
+			[event.target.name]: event.target.value
+		})
 	}
 
+	const { setRequestSuccess, setSuccessMessage, setRequestFailed, setErrMessage } = useAppContext();
+
+	const handleSubmit = async() => {
+		setLoading(true)
+		try {
+			const response = await Api.post("/createquote", formData)
+			setLoading(false)
+			setSuccessMessage("Your response has been submitted")
+			setRequestSuccess(true)
+			setFormData({
+				email: "",
+				phone: "",
+				businessName: "",
+				reviewLocation: "",
+				fullName: ""
+			})
+			console.log(response)
+		} catch (error) {
+			setLoading(false)
+			setErrMessage('Request failed')
+			setRequestFailed(true)
+			return error
+		}
+	}
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<PageLayout>
 			<StyledLandingPage>
@@ -65,35 +86,40 @@ const LandingPage = () => {
 							</h1>
 
 							<h5>
-								We offer services that improve your brand’s image; they include
+								We offer services that improve your brand&apos;s image; they include
 								reviewing and sorting negative comments about your business.
 							</h5>
 
-							<form onSubmit={(e) => handleSubmit(e)}>
+							<form onSubmit={handleSubmit}>
 								<div>
-									<input type="text" placeholder="Fullname*" required onChange={handleChange}/>
-									<input type="text" placeholder="Phone*" required onChange={handleChange}/>
+									<input type="text" placeholder="Fullname*" name="fullName" onChange={handleChange} value={formData.fullName} required />
+									<input type="text" placeholder="Phone*" name="phone" onChange={handleChange} value={formData.phone} required />
 								</div>
 								<div>
-									<input type="email" placeholder="Email*" required onChange={handleChange}/>
-									<input type="text" placeholder='Business Name*' required onChange={handleChange}/>
+									<input type="email" placeholder="Email*" name="email" onChange={handleChange} value={formData.email} required />
+									<input type="text" placeholder='Business Name*' name="businessName" onChange={handleChange} value={formData.businessName} required />
 								</div>
 								<div>
-									<select onChange={handleChange}>
-										<option value="1">Where is the review?</option>
-										<option value="2">Google</option>
-									</select>
+									<input name="reviewLocation" placeholder='Where is the review?' className='review-input' onChange={handleChange} value={formData.reviewLocation} required />
 								</div>
 
 								<div className='form-footer-info'>
-									<p>Your details are safe & confidential <br/>View our <a href='/privacy' className='form-footer-link'>Privacy Policy.</a></p>
+									<p>Your details are safe & confidential <br />View our <a href='/privacy' className='form-footer-link'>Privacy Policy.</a></p>
 								</div>
 
-								<StyledButton className='hero-form-button' type='submit'>Submit</StyledButton>
+								<StyledButton className='hero-form-button' type='submit'>
+									{
+										!loading
+											?
+										"Submit"
+										:
+										<div className="loading"></div>
+									}
+								</StyledButton>
 
 							</form>
 
-							
+
 
 							<div className="hero-text-btn-sec">
 

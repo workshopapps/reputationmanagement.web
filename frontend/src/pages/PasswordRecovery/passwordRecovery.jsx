@@ -7,6 +7,7 @@ import arrow_left from '../../assets/images/password_arrow_left.png';
 import authentication_icon from '../../assets/images/authenticate_img.png';
 import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
+import { useEffect } from 'react';
 
 export default function PasswordRecovery() {
 	const navigate = useNavigate();
@@ -15,7 +16,9 @@ export default function PasswordRecovery() {
 	const handleChange = (e) => {
 		setEmail(e.target.value);
 	};
-
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
