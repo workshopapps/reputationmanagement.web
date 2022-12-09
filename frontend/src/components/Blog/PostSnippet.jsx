@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import test from "../../assets/images/blog_images/images/post_img2.png"
 //import PropTypes from 'prop-types';
 //import { valid } from 'semver';
 
@@ -81,18 +82,21 @@ function PostSnippet({item}) {
 	
 	return (
 		<>
-		<SnippetGrid>
-			{item.map((Val) => {
-				return (
-		<StyledPost  key={Val.id}>
-			<StyledImg src={Val.img} alt="blogpost image"  />
-			<StyledTag>{Val.tag}</StyledTag>
-			<StyledHeader>{Val.title}</StyledHeader>
-			<StyledParagraph>{Val.description}</StyledParagraph>
+		
+		{item.map((data, index) => {
+			return (
+		<StyledPost  key={index}>
+		<a href={data.url}>
+			<StyledImg src={data.pathToImage} alt="blogpost image"  />
+			<StyledTag>{data.tag}</StyledTag> 
+			<StyledHeader>{data.title}</StyledHeader>
+			<StyledParagraph>{data.description}</StyledParagraph>
+			</a>
 		</StyledPost>
-		);
+			)
 		})}
-		</SnippetGrid>
+		
+		
 		
 		</>
 		

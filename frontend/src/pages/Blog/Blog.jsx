@@ -8,18 +8,32 @@ import PageLayout from '../../layout/PageLayout';
 import Filter from '../../components/Blog/filter';
 import Footer from '../../components/Blog/footer';
 //import Pagination from '../../components/Blog/pagination';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import DataBlog from './data';
 import Pagination from '../../components/Blog/pagination';
+import { ApiPrivate } from '../../api/axios';
+import useAppContext from '../../hooks/useAppContext';
 
 const StyledArticles = styled.div`
-	//width: 70%;
-	margin: 0 auto;
+	//width: 100%;
+	//margin: 0 auto;
 	margin-bottom: 50px;
+	background-color: black;
 `;
 
 const StyledPostSnippet = styled.div`
-	//background-color: red;
+	width: 100%;
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(3, 1fr);
+
+	@media (max-width: 1200px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (max-width: 520px) {
+		grid-template-columns: repeat(1, 1fr);
+	}
 `;
 
 const StyledPostMain = styled.div`
@@ -51,17 +65,39 @@ const StyledFilter = styled.div`
 
 const Blog = () => {
 	
-	const [item, setItem] = useState(DataBlog);
+	//const [item, setItem] = useState(DataBlog);
+	
+	const fetchAllBlog = useCallback(async() => {
+		try{
+			const response = await ApiPrivate.get('/blogging?pageNumber=0&pageSize=10')
+			setItem(response?.data)
+		}
+		catch(err){
+			console.log(err)
+			
+		}
+	},[ ])
+
+	useEffect(() => {
+		fetchAllBlog()
+	},[ fetchAllBlog ])
+
+	const { item, setItem } = useAppContext();
+
+
 
 	//Filter Topics////////////////////////////
-	const menuItems = [...new Set(DataBlog.map((item, id) => item.tag))];
+	const menuItems = [...new Set(item.map((data) => data.tag))];
 
 	const filterItem = (curcat) => {
-		const newItem = DataBlog.filter((newVal) => {
+		const newItem = item.filter((newVal) => {
 			return newVal.tag === curcat;
 		});
 		setItem(newItem);
 	};
+
+
+	
 
 	// Pagination//////////////////////
 	const [currentPage, setCurrentPage] = useState(1);
@@ -88,13 +124,15 @@ const Blog = () => {
 								menuItems={menuItems}
 							/>
 						</StyledFilter>
-						<div>
-							<StyledArticles>
+						
+							
 								<StyledPostSnippet>
-									<PostSnippet item={currentRecords} />
+									
+									<PostSnippet item={currentRecords}  />
+								
 								</StyledPostSnippet>
-							</StyledArticles>
-						</div>
+							
+						
 					</StyledPostMain>
 
 					<Pagination
