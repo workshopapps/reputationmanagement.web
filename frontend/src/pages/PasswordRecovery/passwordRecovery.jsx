@@ -54,33 +54,33 @@ export default function PasswordRecovery() {
 					you instructions to reset your password.
 				</p>
 				<StyledForm>
-						{/* <label htmlFor="email">Email</label> */}
-						<StyledInput
-							type="email"
-							placeholder="Email address"
-							required
-							onChange={handleChange}
-							value={email}
-						/>
+					{/* <label htmlFor="email">Email</label> */}
+					<StyledInput
+						type="email"
+						placeholder="Email address"
+						required
+						onChange={handleChange}
+						value={email}
+					/>
 
-						<StyledSubmit type="submit" onClick={handleSubmit}>Reset Password</StyledSubmit>
-					</StyledForm>
-					<StyledBack>
-						
+					<StyledSubmit type="submit" onClick={handleSubmit}>
+						Reset Password
+					</StyledSubmit>
+				</StyledForm>
+				<StyledBack>
 					<Link className="" to="/login">
-					<img src={arrow} alt="back" /> 
-							Back to Login
-						</Link>
-					</StyledBack>
-					
+						<img src={arrow} alt="back" />
+						Back to Login
+					</Link>
+				</StyledBack>
 			</LoginContainer>
 			<ToastContainer />
 
 			{/* Old Code */}
 			<>
-			{/* <StyledParent> */}
+				{/* <StyledParent> */}
 				{/* <StyledSection onSubmit={handleSubmit}> */}
-					{/* <StyledLogo src={repute_logo} alt="repute logo" />
+				{/* <StyledLogo src={repute_logo} alt="repute logo" />
 					<div>
 						<Link to="/login">
 							<StyledIcon src={arrow_left} alt="arrow_left_icon" />
@@ -88,14 +88,14 @@ export default function PasswordRecovery() {
 						<StyledHeader>Forgot Password?</StyledHeader>
 					</div> */}
 
-					{/* <StyledAuth src={authentication_icon} alt="authentication icon" /> */}
-					{/* <StyledParagraph>
+				{/* <StyledAuth src={authentication_icon} alt="authentication icon" /> */}
+				{/* <StyledParagraph>
 						Please enter the email address you used when you joined and we’ll
 						send you instructions to reset your password.
 					</StyledParagraph> */}
 
-					{/* <StyledForm> */}
-						{/* <label htmlFor="email">Email</label>
+				{/* <StyledForm> */}
+				{/* <label htmlFor="email">Email</label>
 						<StyledInput
 							type="email"
 							placeholder="Email address"
@@ -104,8 +104,8 @@ export default function PasswordRecovery() {
 							value={email}
 						/> */}
 
-						{/* <StyledSubmit type="submit">Reset Password</StyledSubmit> */}
-					{/* </StyledForm> */}
+				{/* <StyledSubmit type="submit">Reset Password</StyledSubmit> */}
+				{/* </StyledForm> */}
 				{/* </StyledSection> */}
 
 				{/* <StyledDiv>
@@ -122,11 +122,9 @@ export default function PasswordRecovery() {
 						to check out our new updates
 					</StyledImgText>
 				</StyledDiv> */}
-				
-			{/* </StyledParent> */}
 
+				{/* </StyledParent> */}
 			</>
-
 		</>
 	);
 }
@@ -173,18 +171,18 @@ const ReputeLogo = styled.div`
 	}
 `;
 const StyledBack = styled.div`
-margin: 30px 0;
-a {
-	display: flex;
-	justify-content: center;
-	color: #000;
-	font-weight: 700;
-	text-align: start;
-	img{
-		margin-right: 5px;
+	margin: 30px 0;
+	a {
+		display: flex;
+		justify-content: center;
+		color: #000;
+		font-weight: 700;
+		text-align: start;
+		img {
+			margin-right: 5px;
+		}
 	}
-}
-`
+`;
 
 // const StyledParent = styled.div`
 // 	display: flex;

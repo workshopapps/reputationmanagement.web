@@ -31,10 +31,16 @@ import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
 import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
 import Left from '../../assets/images/WeRemoveGoogleSearch/left.svg';
 import Right from '../../assets/images/WeRemoveGoogleSearch/right.svg';
+import airbnb from './assets/airbnb.svg';
+import shape from './assets/shape.svg';
+import spotify from './assets/spotify.svg';
+import canon from './assets/canon.svg';
+import dot from './assets/dot.svg';
+import ups from './assets/ups.svg';
 import { useEffect } from 'react';
 import TestimonialTemplate from './template/TestimonialTemplate';
 
-const LandingPage = () => {
+const Index2 = () => {
 	const [testimonialTemplate] = useState([
 		{
 			image: Avater0,
@@ -137,92 +143,94 @@ const LandingPage = () => {
 			<StyledLandingPage>
 				<HeroSection data-testid="Landing-hero">
 					{/********************************HERO FIRST SECTION*************************************/}
-					<HeroTextDiv>
-						<div className="hero-text">
-							<h1>
-								Get rid of negative comments <span>today</span>
-							</h1>
+					<StyledContainer>
+						<HeroTextDiv>
+							<div className="hero-text">
+								<h1>
+									Get rid of negative comments <span>today</span>
+								</h1>
 
-							<h5>
-								We offer services that improve your brand&apos;s image; they
-								include reviewing and sorting negative comments about your
-								business.
-							</h5>
+								<h5>
+									We offer services that improve your brand&apos;s image; they
+									include reviewing and sorting negative comments about your
+									business.
+								</h5>
 
-							<form onSubmit={handleSubmit}>
-								<div>
-									<input
-										type="text"
-										placeholder="Fullname*"
-										name="fullName"
-										onChange={handleChange}
-										value={formData.fullName}
-										required
-									/>
-									<input
-										type="text"
-										placeholder="Phone*"
-										name="phone"
-										onChange={handleChange}
-										value={formData.phone}
-										required
-									/>
-								</div>
-								<div>
-									<input
-										type="email"
-										placeholder="Email*"
-										name="email"
-										onChange={handleChange}
-										value={formData.email}
-										required
-									/>
-									<input
-										type="text"
-										placeholder="Business Name*"
-										name="businessName"
-										onChange={handleChange}
-										value={formData.businessName}
-										required
-									/>
-								</div>
-								<div>
-									<input
-										name="reviewLocation"
-										placeholder="Where is the review?"
-										className="review-input"
-										onChange={handleChange}
-										value={formData.reviewLocation}
-										required
-									/>
-								</div>
+								<form onSubmit={handleSubmit}>
+									<div>
+										<input
+											type="text"
+											placeholder="Fullname*"
+											name="fullName"
+											onChange={handleChange}
+											value={formData.fullName}
+											required
+										/>
+										<input
+											type="text"
+											placeholder="Phone*"
+											name="phone"
+											onChange={handleChange}
+											value={formData.phone}
+											required
+										/>
+									</div>
+									<div>
+										<input
+											type="email"
+											placeholder="Email*"
+											name="email"
+											onChange={handleChange}
+											value={formData.email}
+											required
+										/>
+										<input
+											type="text"
+											placeholder="Business Name*"
+											name="businessName"
+											onChange={handleChange}
+											value={formData.businessName}
+											required
+										/>
+									</div>
+									<div>
+										<input
+											name="reviewLocation"
+											placeholder="Where is the review?"
+											className="review-input"
+											onChange={handleChange}
+											value={formData.reviewLocation}
+											required
+										/>
+									</div>
 
-								<div className="form-footer-info">
-									<p>
-										Your details are safe & confidential <br />
-										View our{' '}
-										<a href="/privacy" className="form-footer-link">
-											Privacy Policy.
-										</a>
-									</p>
-								</div>
+									<div className="form-footer-info">
+										<p>
+											Your details are safe & confidential <br />
+											View our{' '}
+											<a href="/privacy" className="form-footer-link">
+												Privacy Policy.
+											</a>
+										</p>
+									</div>
 
-								<StyledButton className="hero-form-button" type="submit">
-									{!loading ? 'Submit' : <div className="loading"></div>}
-								</StyledButton>
-							</form>
+									<StyledButton className="hero-form-button" type="submit">
+										{!loading ? 'Submit' : <div className="loading"></div>}
+									</StyledButton>
+								</form>
 
-							<div className="hero-text-btn-sec">
-								<div className="hero-text-star">
-									<img src={star_icon} alt="star-icon" />
+								<div className="hero-text-btn-sec">
+									<div className="hero-text-star">
+										<img src={star_icon} alt="star-icon" />
+									</div>
 								</div>
 							</div>
-						</div>
 
-						<div className="hero-text-img">
-							<img src={landing} alt="Landing-lady" />
-						</div>
-					</HeroTextDiv>
+							<div className="hero-text-img">
+								<img src={landing} alt="Landing-lady" />
+							</div>
+						</HeroTextDiv>
+					</StyledContainer>
 
 					{/*****************************************************HERO IMAGE SECTION*********************************************************/}
 					<StyledHeroSectionWrapper className="pt-5" id="learn-more">
@@ -255,89 +263,98 @@ const LandingPage = () => {
 					<h5>SERVICES</h5>
 					<StyledH2Center>Special Offers</StyledH2Center>
 
-					<StyledContainer>
-						<div className="stepDiv ">
-							<div className="stepImage flex-1">
-								<img src={google_review} alt="CreateAccount" />
-							</div>
-
-							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center justify-end">
-								<div>
-									<h3 className="font-bold my-3">
-										Remove Negative Google Reviews
-									</h3>
-									<p>
-										You can remove troll comments that defame your brand and
-										business either on the play store or any other google review
-										enabled platforms
-									</p>
-
-									<Link to="/we-remove-google-review" className="getQuoteBtn">
-										<span>Learn More</span>
-										<img
-											src={arrowRightIconBlue}
-											className="px-3"
-											alt="ArrowRightIcon"
-										/>
-									</Link>
-								</div>
-							</div>
+					<div className="stepDiv ">
+						<div className="stepImage flex-1">
+							<img src={google_review} alt="CreateAccount" />
 						</div>
 
-						<div className="stepDiv ">
-							<div className="stepImage flex-1">
-								<img src={google_search} alt="CreateAccount" />
-							</div>
+						<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center justify-end">
+							<div>
+								<h3 className="font-bold my-3">
+									Remove Negative Google Reviews
+								</h3>
+								<p>
+									You can remove troll comments that defame your brand and
+									business either on the play store or any other google review
+									enabled platforms
+								</p>
 
-							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center">
-								<div>
-									<h3 className="font-bold my-3">
-										Reliable Google Search Removal
-									</h3>
-									<p>
-										Remove bad google search results about your business from
-										the internet, our expert service got you covered.
-									</p>
-
-									<Link to="/we-remove-google-search" className="getQuoteBtn">
-										<span>Learn More</span>
-										<img
-											src={arrowRightIconBlue}
-											className="px-3"
-											alt="ArrowRightIcon"
-										/>
-									</Link>
-								</div>
+								<Link to="/we-remove-google-review" className="getQuoteBtn">
+									<span>Learn More</span>
+									<img
+										src={arrowRightIconBlue}
+										className="px-3"
+										alt="ArrowRightIcon"
+									/>
+								</Link>
 							</div>
 						</div>
+					</div>
 
-						<div className="stepDiv ">
-							<div className="stepImage flex-1">
-								<img src={glassdoor} alt="CreateAccount" />
-							</div>
+					<div className="stepDiv ">
+						<div className="stepImage flex-1">
+							<img src={glassdoor} alt="CreateAccount" />
+						</div>
 
-							<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center justify-end">
-								<div>
-									<h3 className="font-bold my-3">
-										Remove Bad Glassdoor Reviews
-									</h3>
-									<p>
-										We can also help to remove bad reviews on the Glassdoor
-										platform about your business.
-									</p>
+						<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center justify-end">
+							<div>
+								<h3 className="font-bold my-3">Remove Bad Glassdoor Reviews</h3>
+								<p>
+									We can also help to remove bad reviews on the Glassdoor
+									platform about your business.
+								</p>
 
-									<Link to="/glassdoor" className="getQuoteBtn">
-										<span>Learn More</span>
-										<img
-											src={arrowRightIconBlue}
-											className="px-3"
-											alt="ArrowRightIcon"
-										/>
-									</Link>
-								</div>
+								<Link to="/glassdoor" className="getQuoteBtn">
+									<span>Learn More</span>
+									<img
+										src={arrowRightIconBlue}
+										className="px-3"
+										alt="ArrowRightIcon"
+									/>
+								</Link>
 							</div>
 						</div>
-					</StyledContainer>
+					</div>
+					<StyledContainer2>
+						<p>Used and loved by 1M users across 199 countries</p>
+						<StyledCompanies>
+							<>
+								<img src={airbnb} alt="" />
+								<img src={shape} alt="" />
+								<img src={spotify} alt="" />
+								<img src={canon} alt="" />
+								<img src={dot} alt="" />
+								<img src={ups} alt="" />
+							</>
+						</StyledCompanies>
+					</StyledContainer2>
+
+					<div className="stepDiv ">
+						<div className="stepImage flex-1">
+							<img src={google_search} alt="CreateAccount" />
+						</div>
+
+						<div className="stepText pt-10 md:px-16 md:pt-0 flex-1 flex items-center">
+							<div>
+								<h3 className="font-bold my-3">
+									Reliable Google Search Removal
+								</h3>
+								<p>
+									Remove bad google search results about your business from the
+									internet, our expert service got you covered.
+								</p>
+
+								<Link to="/we-remove-google-search" className="getQuoteBtn">
+									<span>Learn More</span>
+									<img
+										src={arrowRightIconBlue}
+										className="px-3"
+										alt="ArrowRightIcon"
+									/>
+								</Link>
+							</div>
+						</div>
+					</div>
 				</HowDoesItWork>
 
 				{/* Review */}
@@ -395,7 +412,7 @@ const ColorBg = styled.div`
 	padding: 48px 0;
 	text-align: center;
 	margin-bottom: ${(props) => (props.noBottom ? '0' : '50px')};
-	// margin-top: 50px;
+	margin-top: -100px;
 
 	.absolute {
 		position: absolute;
@@ -450,4 +467,41 @@ const StyledHeroSectionWrapper = styled.div`
 	background-color: #eef1fc; ;
 `;
 
-export default LandingPage;
+const StyledContainer2 = styled.div`
+	text-align: center;
+	border: 1px solid #d2d3d4;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 10px;
+	margin-bottom: 30px;
+	margin-top: -120px;
+
+	p {
+		margin-bottom: 15px;
+	}
+
+	@media screen and (max-width: 1238px) {
+		margin: 0 20px;
+	}
+	@media screen and (max-width: 884px) {
+		margin-bottom: 30px;
+		margin-top: -120px;
+	}
+	@media screen and (max-width: 765px) {
+		display: none;
+	}
+`;
+const StyledCompanies = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0 10%;
+
+	img {
+		width: 8%;
+		// margin-right: 20px;
+	}
+`;
+
+export default Index2;
