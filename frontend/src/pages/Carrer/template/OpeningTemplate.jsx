@@ -1,9 +1,9 @@
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { StyledButton } from '../../../components/Styles/Body/Button.styled';
 import Arrow from '../../../assets/images/arrow-right.png';
-import Map from '../../../assets/images/map.png';
-
+import Map from '../../../assets/images/map.png'
 const OpeningTemplate = ({ openings }) => {
 	return (
 		<>
@@ -12,18 +12,18 @@ const OpeningTemplate = ({ openings }) => {
 					return (
 						<>
 							<StyledDivContainer>
-								<h2 className="text-2xl font-bold mt-12">{open.title}</h2>
+								<h2 className="text-lg font-bold ">{open.title}</h2>
 
-								<div className=" flex flex-col mt-5 leading-7">
+								<div className=" flex flex-col ">
 									<h4>{open.desc}</h4>
 								</div>
-								<div className="flex gap-2 mt-8">
-									<img src={Map} alt="" className="w-full" />
-									<h5 className="mx-2 font-bold">Remote</h5>
+								<div className="flex gap-1 ">
+									<img src={Map} alt="Jobtype icon" className="w-full" />
+									<h5 className="font-bold">Remote</h5>
 								</div>
 
 								<Link
-									className="my-5"
+									className=""
 									to={open.to}
 									onClick={() => {
 										window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -31,7 +31,7 @@ const OpeningTemplate = ({ openings }) => {
 								>
 									<StyledButton
 										outlined
-										className=" flex items-center mt-3 justify-center"
+										className=" flex items-center justify-center"
 									>
 										Apply now
 										<img src={Arrow} alt="" className="mx-2" />
@@ -66,19 +66,19 @@ const StyledErrorText = styled.h2`
 `;
 
 const StyledDivContainer = styled.div`
-	// width: 350px;
-	width: 100%;
+	width: 90%;;
 	padding: 25px 20px;
-	height: 340px;
 	display: flex;
 	flex-direction: column;
+	gap: 1em;
 	align-items: flex-start;
 	justify-content: center;
 	border: 1px solid #e4e4e5;
-
+	border-radius: 5px ;
+box-shadow: 0 0 5px 2px #00000014;
 	@media screen and (max-width: 612px) {
 		width: 100%;
-		height: 340px;
+		max-width: 350px;
 	}
 `;
 
