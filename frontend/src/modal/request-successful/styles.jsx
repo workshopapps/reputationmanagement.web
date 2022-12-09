@@ -11,114 +11,57 @@ export const StyledOverlay = styled.div`
     align-items: center;
     z-index: 9;
 `;
-export const StyledProgressBarCaption = styled.div`
-    width: 603px;
-    display:flex;
-    justify-content: space-between;
-    margin-top: 21px;
-    p{
-        font-family: Lato !important;
-        font-size: 14px !important;
-        font-weight: 500 !important;
-        line-height: 16px !important;
-    }
-    .finished{
-        font-weight: 800 !important;
-    }
-`;
 export const StyledButtonWrapper = styled.div`
     display: flex;
     margin-top: 50px;
     justify-content: center;
 `;
-export const StyledProgressBar = styled.div`
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    div{
-        height: 26px;
-        width: 26px;
-        border-radius: 15px;
-        p{
-            font-family: Lato;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 24px;
-            letter-spacing: 0.01em;
-            text-align: left;
-        }
-        border: 1px solid #000000B2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .active{
-        border: none;
-        background-color: #3CC13B;
-        p{
-            color: #FFFFFF;
-        }
-    }
-    .finished{
-        background-color: #3CC13B;
-    }
-    span{
-        height: 6px;
-        width: 159px;
-        left: 26px;
-        top: 10px;
-        border-radius: 0px;
-        background-color: #E0E5E0;
-    }
-`;
 export const StyledSuccessfulRequest = styled.div`
-    padding: 60px 75.5px 69px 75.5px;
+    width: 704px;
+    padding 56px 0;
     background-color: #ffffff;
     border-radius: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    max-width: 90%;
     .none{
         display: none;
     }
     h2{
         font-family: Lato;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 700;
-        line-height: 20px;
-        letter-spacing: -0.015em;
-        text-align: center;
-        color: #2B2C34;  
-        margin-bottom: 56px;      
+        line-height: 42px;
+        letter-spacing: 0em;
+        text-align: center;       
+        color: #2B2C34;
+        margin-top: 24px; 
     }
     p{
-        color: #2B2C34;
         font-family: Lato;
-        font-size: 24px;
-        font-weight: 600;
-        line-height: 30px;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
         letter-spacing: 0em;
         text-align: center;
-        max-width: 499px;
+        color: #000000;
+        max-width: 509px;
+        margin-top: 8px;
+        padding: 0 10px;
     }
     button{
-        height: 48px;
-        width: 143px;
+        height: 59px;
+        padding: 0 24px;
         border-radius: 4px;
+        border: 1px solid #4560D9;
         font-family: Lato;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
-        line-height: 24px;
+        line-height: 27px;
         letter-spacing: 0em;
         text-align: center;
-    }
-    #request{
-        background: #233BA9;
-        color: #FFFFFF;
-        margin-right: 70px;
-    }
-    #dashboard{
-        border: 1px solid #4560D9;
         color: #233BA9;
+        background-color: transparent;
     }
 `;

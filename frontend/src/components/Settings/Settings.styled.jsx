@@ -37,7 +37,7 @@ export const StyledTab = styled.div`
 		text-transform: capitalize;
 		max-width: 300px;
 	}
-	input#email_invoice_receipt ~ .peer {
+	input#invoiceReceipt ~ .peer {
 		opacity: 0.35;
 	}
 `;

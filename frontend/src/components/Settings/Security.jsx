@@ -23,8 +23,8 @@ function Security() {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		// Validation
-		if (form.new_password.length < 12) {
-			setErrMessage('New password must contain a minimum of 12 characters');
+		if (form.new_password.length < 8) {
+			setErrMessage('New password must contain a minimum of 8 characters');
 			setRequestFailed(true);
 			return;
 		}
@@ -64,8 +64,7 @@ function Security() {
 				<div className="w-full mb-8">
 					<span className="font-semibold">Create a new password</span>
 					<p className="mt-1 text-[14px] hidden md:block text-[#787A7D] ">
-						New password must contain a minimum of 12 letters, an uppercase
-						letter, a number and a character
+						New password must contain a minimum of 8 characters
 					</p>
 				</div>
 

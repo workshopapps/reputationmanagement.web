@@ -4,16 +4,10 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { styleClass, StyledButton, StyledTab } from './Settings.styled';
 
-function Preferences({ userLanguage, setUserLanguage }) {
+function Preferences({ accessibility, setAccessibility }) {
 	const ApiPrivate = useAxiosPrivate();
 	const languages = ['english', 'german', 'russian', 'chinese'];
-
 	const [requestPending, setRequestPending] = useState(false);
-	const [accessibility, setAccessibility] = useState({
-		screenReader: false,
-		largeText: false,
-		contrastColors: false,
-	});
 
 	const {
 		setRequestFailed,
@@ -25,10 +19,11 @@ function Preferences({ userLanguage, setUserLanguage }) {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setRequestPending(true);
+		console.log(accessibility);
 
-		ApiPrivate.post('/customer/language?language=' + userLanguage)
+		ApiPrivate.post('/customer/accessibility', accessibility)
 			.then((res) => {
-				setUserLanguage(res.data);
+				setAccessibility(res.data);
 				setSuccessMessage('Update successful');
 				setRequestSuccess(true);
 				setRequestPending(false);
@@ -73,8 +68,12 @@ function Preferences({ userLanguage, setUserLanguage }) {
 					<div className="w-full">
 						<select
 							className={styleClass.selectClass + ' max-w-[380px]'}
-							value={userLanguage}
-							onChange={(e) => setUserLanguage(e.target.value)}
+							value={accessibility.language}
+							onChange={(e) => {
+								setAccessibility((prev) => {
+									return { ...prev, language: e.target.value };
+								});
+							}}
 							required
 						>
 							{languages.map((item) => (
@@ -103,8 +102,8 @@ function Preferences({ userLanguage, setUserLanguage }) {
 							label="I use large text"
 						/>
 						<CheckInputGroup
-							id="contrastColors"
-							checked={accessibility.contrastColors}
+							id="highContrast"
+							checked={accessibility.highContrast}
 							label="I use high contrast colors"
 						/>
 					</div>
