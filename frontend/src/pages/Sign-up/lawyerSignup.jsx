@@ -121,15 +121,6 @@ const LawyerSignup = () => {
 	return (
 		<StyledSignupWrapper
 			className="SignUp box-border min-h-32 flex flex-row h-screen"
-			style={{
-				backgroundImage: `url(${background})`,
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover',
-				backgroundPosition: 'fixed',
-				display: 'flex',
-				width: '100%',
-				backgroundAttachment: 'fixed',
-			}}
 		>
 			<StyledFormWrapper>
 				<img src={REPUTE} alt="background" className="logo_img" />
@@ -440,7 +431,7 @@ const StyledSignupOptions = styled.div`
 const StyledFormWrapper = styled.div`
 	padding-top: 54px;
 	background-color: #ffffff;
-	width: 50%;
+	width: 100%;
 	overflow-x: scroll;
 	display: flex;
 	flex-direction: column;

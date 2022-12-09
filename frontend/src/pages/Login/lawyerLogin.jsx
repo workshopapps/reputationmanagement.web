@@ -189,10 +189,6 @@ const LawyerLogin = () => {
 					</div>
 				</FormFooter>
 			</FormSection>
-
-			<ImgSection>
-				<img src={LOGIN} alt=""/>
-			</ImgSection>
 		</ParentContainer>
 	);
 };
@@ -231,18 +227,8 @@ const ParentContainer = styled.div`
 	}
 `;
 
-const ImgSection = styled.div`
-	width: 50%;
-	display: flex;
-	height: 100%;
-	align-items: flex-start;
-	justify-content: flex-end;
-	@media (max-width: 1230px) {
-		display: none;
-	}
-`;
 const FormSection = styled.section`
-	width: 50%;
+	width: 100%;
 	height: 100%;
 	padding-top: 54px;
 	max-width: 560px;

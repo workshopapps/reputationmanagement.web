@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import Closed from './Assets/eye-slash.png';
 import REPUTE from './Assets/repute.svg';
-import background from './Assets/image-logo.png';
 import styled from 'styled-components';
 import GOOGLE from '../Login/google.svg';
 import Api from '../../api/axios';
@@ -125,15 +124,6 @@ function Signup() {
 	return (
 		<StyledSignupWrapper
 			className="SignUp box-border min-h-32 flex flex-row h-screen"
-			style={{
-				backgroundImage: `url(${background})`,
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover',
-				backgroundPosition: 'fixed',
-				display: 'flex',
-				width: '100%',
-				backgroundAttachment: 'fixed',
-			}}
 		>
 			<StyledFormWrapper>
 				<img src={REPUTE} alt="background" className="logo_img" />
@@ -429,7 +419,7 @@ const StyledSignupOptions = styled.div`
 const StyledFormWrapper = styled.div`
 	padding-top: 54px;
 	background-color: #ffffff;
-	width: 50%;
+	width: 100%;
 	overflow-x: scroll;
 	display: flex;
 	flex-direction: column;
