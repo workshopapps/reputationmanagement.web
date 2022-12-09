@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/repute_logo.png';
 import MenuIcon from '../../assets/images/menuIcon.png';
+import close from '../../assets/images/close.svg';
 import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
 
@@ -30,7 +31,7 @@ const Header = () => {
 					<img src={Logo} alt="Repute" className="logo" />
 
 					<img
-						src={MenuIcon}
+						src={!toggle ? MenuIcon : close}
 						alt="Menu-Icon"
 						className="menuBtn hidden"
 						onClick={() => {
@@ -48,59 +49,49 @@ const Header = () => {
 						>
 							About Us
 						</NavLink>
-						{/* <NavLink
-							to="/pricing"
-							className={currentRoute === '/pricing' ? 'active' : ''}
-						>
-							Pricing
-						</NavLink> */}
 						<NavLink
 							to="/contact"
 							className={currentRoute === '/contact' ? 'active' : ''}
 						>
-							Contact
+							FAQ
 						</NavLink>
-						{/* <NavLink to="/dashboard" className={currentRoute === '/dashboard' ? 'active' : ''}>Dashboard</NavLink> */}
 					</div>
 
 					<ul className={`${!toggle ? 'hidden' : 'block'} sidebar`}>
-						<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
-							Home
-						</NavLink>
-						<NavLink
-							to="/about"
-							className={currentRoute === '/about' ? 'active' : ''}
-						>
-							About Us
-						</NavLink>
-						{/* <NavLink
-							to="/pricing"
-							className={currentRoute === '/pricing' ? 'active' : ''}
-						>
-							Pricing
-						</NavLink> */}
-						<NavLink
-							to="/contact"
-							className={currentRoute === '/contact' ? 'active' : ''}
-						>
-							Contact
-						</NavLink>
+						<div className="mbmenu">
+							<NavLink to="/" className={currentRoute === '/' ? 'active' : ''}>
+								Home
+							</NavLink>
+							<NavLink
+								to="/about-us"
+								className={currentRoute === '/about-us' ? 'active' : ''}
+							>
+								About Us
+							</NavLink>
 
-						{loggedin ? 
-							<StyledNavButton onClick={() => router('/dashboard')}>
-								Dashboard
-							</StyledNavButton>
-						:
-							<>
-								<StyledNavButton onClick={() => router('/login')}>
-									Login
-								</StyledNavButton>
+							<NavLink
+								to="/contact"
+								className={currentRoute === '/contact' ? 'active' : ''}
+							>
+								FAQ
+							</NavLink>
 
-								<StyledNavButton onClick={() => router('/signup')}>
-									Sign up
+							{loggedin ? (
+								<StyledNavButton onClick={() => router('/dashboard')}>
+									Dashboard
 								</StyledNavButton>
-							</>
-						}
+							) : (
+								<>
+									<StyledNavButton onClick={() => router('/login')}>
+										Login
+									</StyledNavButton>
+
+									<StyledNavButton onClick={() => router('/signup')}>
+										Sign up
+									</StyledNavButton>
+								</>
+							)}
+						</div>
 					</ul>
 
 					{loggedin ? (
@@ -127,6 +118,68 @@ const Header = () => {
 		</header>
 	);
 };
+const StyledNav = styled.nav`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 20px;
+	// padding: 20px 24px;
+	position: relative;
+	z-index: 10;
+	a {
+		text-decoration: none;
+	}
+
+	.sidebar {
+		position: absolute;
+		top: 70px;
+		width: 100%;
+		padding-bottom: 25px;
+		padding-top: 10px;
+		background: #fff;
+		// background: #f5f5f5;
+		// border-radius: 0 0 8px 8px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		@media screen and (min-width: 886px) {
+			display: none;
+		}
+
+		a {
+			display: block;
+			border: none;
+			width: 100%;
+			margin: 14px 0;
+			padding: 6px 18px;
+		}
+		.mbmenu {
+			text-align: center;
+		}
+	}
+	.navButtons {
+		display: flex;
+	}
+	@media screen and (max-width: 900px) {
+		.navButtons {
+			display: none;
+		}
+	}
+	@media screen and (max-width: 875px) {
+		.logo {
+			display: block;
+			margin: auto;
+			width: 100px;
+		}
+		.menuBtn {
+			display: block;
+			position: absolute;
+			left: 18px;
+			cursor: pointer;
+		}
+		.navLinks {
+			display: none;
+		}
+	}
+`;
 const StyledNavButton = styled.button`
 	background: #233ba9;
 	padding: 10px 40px;
@@ -138,58 +191,6 @@ const StyledNavButton = styled.button`
 	font-weight: 400;
 	margin: 14px 0;
 	margin-left: 18px;
-`;
-const StyledNav = styled.nav`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 20px 24px;
-	position: relative;
-	z-index: 10;
-	a {
-		text-decoration: none;
-	}
-
-	.sidebar {
-		position: absolute;
-		top: 70px;
-		width: 200px;
-		background: #f5f5f5;
-		border-radius: 8px;
-		box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.18);
-
-		a {
-			display: block;
-			border: none;
-			width: 100%;
-			margin: 14px 0;
-			padding: 6px 18px;
-		}
-	}
-	.navButtons{
-		display: flex;
-	}
-	@media screen and (max-width: 900px) {
-		.navButtons{
-			display: none;
-		}
-	}
-	@media screen and (max-width: 875px) {
-		.logo {
-			display: block;
-			margin: auto;
-			width: 70px;
-		}
-		.menuBtn {
-			display: block;
-			position: absolute;
-			left: 18px;
-			cursor: pointer;
-		}
-		.navLinks{
-			display: none;
-		}
-	}
 `;
 
 const NavLink = styled(Link)`

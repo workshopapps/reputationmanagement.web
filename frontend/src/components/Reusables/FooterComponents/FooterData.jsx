@@ -5,10 +5,10 @@ const FooterData = [
             text: "Blogs",
             url: "/blog"
         },
-        {
-            text: "Careers",
-            url: "/career"
-        },
+        // {
+        //     text: "Careers",
+        //     url: "/career"
+        // },
         {
             text: "Our team",
             url: "/our-team"
@@ -21,10 +21,7 @@ const FooterData = [
 
     ,
     [
-        {
-            text: "Support",
-            url: "/support"
-        },
+      
         {
             text: "Privacy Policy",
             url: "/privacy"
