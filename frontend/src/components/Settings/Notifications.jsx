@@ -4,7 +4,8 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { StyledButton, styleClass, StyledTab } from './Settings.styled';
 
-function Notifications() {
+function Notifications({ notification, setNotification }) {
+	const [requestPending, setRequestPending] = useState(false);
 	const ApiPrivate = useAxiosPrivate();
 	const {
 		setRequestFailed,
@@ -13,17 +14,11 @@ function Notifications() {
 		setSuccessMessage,
 	} = useAppContext();
 
-	const [requestPending, setRequestPending] = useState(false);
-	const [checkboxGroup, setCheckboxGroup] = useState({
-		email_complaint: true,
-		email_invoice_receipt: true,
-	});
-
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setRequestPending(true);
 
-		ApiPrivate.post('/customer/notifications', { ...checkboxGroup })
+		ApiPrivate.post('/notification_settings', notification)
 			.then((res) => {
 				setSuccessMessage('Updated successfully');
 				setRequestSuccess(true);
@@ -47,11 +42,11 @@ function Notifications() {
 					className="sr-only peer"
 					checked={checked}
 					onChange={(e) => {
-						setCheckboxGroup((prev) => {
+						setNotification((prev) => {
 							return { ...prev, [name]: !checked };
 						});
 					}}
-					disabled={name === 'email_invoice_receipt' ? true : false}
+					disabled={name === 'invoiceReceipt' ? true : false}
 				/>
 				<div className={checkBoxClass}></div>
 			</label>
@@ -76,8 +71,8 @@ function Notifications() {
 						sub_text="Get notified about the status of your complaint"
 					/>
 					<CheckInput
-						name="email_complaint"
-						checked={checkboxGroup.email_complaint}
+						name="complaintStatus"
+						checked={notification.complaintStatus}
 					/>
 				</div>
 
@@ -88,8 +83,8 @@ function Notifications() {
 					/>
 
 					<CheckInput
-						name="email_invoice_receipt"
-						checked={checkboxGroup.email_invoice_receipt}
+						name="invoiceReceipt"
+						checked={notification.invoiceReceipt}
 					/>
 				</div>
 
