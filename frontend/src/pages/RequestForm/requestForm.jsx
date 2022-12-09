@@ -18,7 +18,7 @@ const RequestForm = () => {
 	const [rating, setRating] = useState(0); ///set initial state for rating
 
 	//const [checked, setChecked] = useState(false);
-	const [name, setName] = useState("");
+	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
@@ -43,55 +43,46 @@ const RequestForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			  const response = await ApiPrivate.post('/review', {
-			    email: email,
-			    timeOfReview: date +'T'+time,
-			    reviewString: review,
-			    rating: rating,
-			    websitename: websitename,
-			    businesstype: businesstype,
-			    priority: priority,
-			    status: 0,
+			const response = await ApiPrivate.post('/review', {
+				email: email,
+				timeOfReview: date + 'T' + time,
+				reviewString: review,
+				rating: rating,
+				websitename: websitename,
+				businesstype: businesstype,
+				priority: priority,
+				status: 0,
 				complainerName: name,
-			  }
-			);
-			console.log(response)
+			});
+			console.log(response);
 			setRequestSuccessfulModalActive(true);
 			clearForm();
 		} catch (err) {
-			setRequestFailed(true)
-			if (err?.response?.status === 400 ){
+			setRequestFailed(true);
+			if (err?.response?.status === 400) {
 				err.response?.data?.errors.email
-					?
-					setErrMessage(err.response?.data?.errors.email)
-					:
-					err.response?.data?.errors?.reviewString
-						?
-						setErrMessage('The review field is required')
-						:
-						err.response?.data?.errors?.websiteName
-							?
-							setErrMessage('The website name field is required')
-							:
-							err.response?.data?.error?.businessType
-								?
-								setErrMessage('The business type is required')
-								:
-								setErrMessage('Server error')
-			}
-			else{
-				setErrMessage("Couldn't fetch requests")
+					? setErrMessage(err.response?.data?.errors.email)
+					: err.response?.data?.errors?.reviewString
+					? setErrMessage('The review field is required')
+					: err.response?.data?.errors?.websiteName
+					? setErrMessage('The website name field is required')
+					: err.response?.data?.error?.businessType
+					? setErrMessage('The business type is required')
+					: setErrMessage('Server error');
+			} else {
+				setErrMessage("Couldn't fetch requests");
 			}
 			setRequestSuccessfulModalActive(false);
 			console.log(err);
 		}
 	};
+
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<>
-			<RequestFailed/>
+			<RequestFailed />
 			<StyledDashboard>
 				<Sidebar
 					className={`${openMenu ? 'open' : ''}`}
@@ -100,19 +91,27 @@ const RequestForm = () => {
 				<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
 				<StyledContainer>
 					<StyledContainers className="container">
-
 						<h2 className="container-title">Kindly Fill in Your Request</h2>
 						{/********************START OF FORM*************************************************/}
 						<form className="form">
 							<h4 className="form-heading">
-								Fill in the details of the individual that drop the bad review and the review
+								Fill in the details of the individual that drop the bad review
+								and the review
 							</h4>
 
 							{/********************START OF FORM SECTION A*************************************************/}
 							<div className="form-section-a">
-								<div className='text-input'>
+								<div className="text-input">
 									<label htmlFor="_name"> Name</label>
-									<input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name of the complainer" id="name" required />
+									<input
+										type="text"
+										name="_name"
+										value={name}
+										onChange={(e) => setName(e.target.value)}
+										placeholder="Enter name of the complainer"
+										id="name"
+										required
+									/>
 								</div>
 
 								<div className="text-input">
@@ -156,6 +155,7 @@ const RequestForm = () => {
 									<div className="bad-review-text">
 										<label>The bad review</label>
 										<textarea
+											rows="4"
 											value={review}
 											onChange={(e) => setReview(e.target.value)}
 										/>
@@ -168,7 +168,7 @@ const RequestForm = () => {
 											className="rate"
 										/>
 
-										<label htmlFor="vol">
+										<label htmlFor="vol" className="pt-2">
 											Kindly selected the customer rating drop on your
 											app/websites
 										</label>
@@ -176,7 +176,6 @@ const RequestForm = () => {
 								</div>
 							</div>
 
-							{/*****************************START OF FORM  SECTION B******************************************/}
 							<div className="form-section-b">
 								<h2>Filling in your own details</h2>
 
@@ -212,33 +211,10 @@ const RequestForm = () => {
 								<div className="priority-level">
 									<h3>Priority level</h3>
 
-									<div>
-										<Checkbox
-											label="High"
-											onClick={() => setPriority(3)}
-										/>
-									</div>
-
-									<div>
-										<Checkbox
-											label="Medium"
-											onClick={() => setPriority(2)}
-										/>
-									</div>
-
-									<div>
-										<Checkbox label="Low" onClick={() => setPriority(1)} />
-									</div>
-
-									<div>
-										<Checkbox
-											label="Not urgent"
-											onClick={() => setPriority(0)}
-										/>
-									</div>
+									<CheckboxGroup setPriority={setPriority} />
 								</div>
 							</div>
-							{/***************************************FORM SUBMIT BUTTON**********************************************/}
+
 							<div className="btn-submit">
 								<button
 									onClick={(e) => {
@@ -260,10 +236,52 @@ const RequestForm = () => {
 
 export default RequestForm;
 
+const CheckboxGroup = ({ setPriority }) => {
+	const [currentValue, setCurrentValue] = useState('');
+
+	return (
+		<>
+			<Checkbox
+				label="High"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('High');
+					setPriority(3);
+				}}
+			/>
+			<Checkbox
+				label="Medium"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('Medium');
+					setPriority(2);
+				}}
+			/>
+			<Checkbox
+				label="Low"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('Low');
+					setPriority(1);
+				}}
+			/>
+			<Checkbox
+				label="Not urgent"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('Not urgent');
+					setPriority(0);
+				}}
+			/>
+		</>
+	);
+};
+
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-family: 'Lato', sans-serif;
+	max-width: 640px;
+	margin: auto;
 
 	.container-title1 {
 		font-size: 20px;
@@ -279,42 +297,47 @@ const StyledContainers = styled.div`
 			font-size: 16px;
 		}
 
+		label {
+			display: block;
+			font-size: 16px;
+			margin-bottom: 10px;
+		}
+
+		input {
+			height: 50px;
+			width: 100%;
+			padding: 0px 12px;
+			border: 1px solid #d2d3d4;
+			border-radius: 8px;
+			font-size: 16px;
+			outline: none;
+		}
+
+		textarea {
+			width: 100%;
+			font-size: 16px;
+			border: 1px solid #d2d3d4;
+			border-radius: 8px;
+			padding: 15px;
+			outline: none;
+		}
+
 		.form-section-a {
 			.text-input {
 				display: flex;
 				flex-direction: column;
 				margin-top: 16px;
-				label {
-					font-size: 16px;
-					margin-bottom: 10px;
-				}
-
-				input {
-					height: 56px;
-					width: 60%;
-					padding: 0px 10px 0px 10px;
-					border: 1px solid #d2d3d4;
-					border-radius: 8px;
-					font-size: 16px;
-					outline: none;
-				}
 			}
 
 			.time-date-picker {
 				margin-top: 16px;
 				width: 100%;
 				display: flex;
+				justify-content: space-between;
 
 				.date-picker,
 				.time-picker {
-					width: 160px;
-					height: 69px;
-					margin-right: 32px;
-
-					label {
-						font-size: 16px;
-						margin-bottom: 10px;
-					}
+					width: 48%;
 
 					input {
 						height: 40px;
@@ -333,35 +356,17 @@ const StyledContainers = styled.div`
 				.bad-review-text {
 					display: flex;
 					flex-direction: column;
-					label {
-						font-size: 16px;
-						margin-bottom: 10px;
-					}
-					textarea {
-						max-height: 190px;
-						height: 190px;
-						width: 60%;
-						font-size: 16px;
-						border: 1px solid #d2d3d4;
-						border-radius: 8px;
-						padding: 15px;
-						outline: none;
-					}
 				}
 
 				.review-range {
 					display: flex;
 					flex-direction: column;
+					margin-top: 15px;
 
 					.rate {
 						width: 40px;
-						margin-top: 10px;
 						font-size: 50px;
-					}
-
-					label {
-						margin-top: 10px;
-						font-size: 16px;
+						margin-bottom: 8px;
 					}
 				}
 			}
@@ -377,21 +382,6 @@ const StyledContainers = styled.div`
 				margin-top: 16px;
 				display: flex;
 				flex-direction: column;
-
-				label {
-					font-size: 16px;
-					margin-bottom: 10px;
-				}
-
-				input {
-					height: 56px;
-					width: 60%;
-					padding: 0px 10px 0px 10px;
-					border: 1px solid #d2d3d4;
-					border-radius: 8px;
-					font-size: 16px;
-					outline: none;
-				}
 			}
 
 			.priority-level {
@@ -423,6 +413,7 @@ const StyledContainers = styled.div`
 				border: none;
 				color: white;
 				transition: 0.5s;
+				margin-left: auto;
 
 				&:hover {
 					background: #0a1d88;
