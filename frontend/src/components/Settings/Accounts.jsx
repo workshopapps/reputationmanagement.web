@@ -85,6 +85,7 @@ const AccountForm = ({
 					onChange={(e) => {
 						setUser({ ...user, fullName: e.target.value });
 					}}
+					required
 				/>
 			</div>
 
