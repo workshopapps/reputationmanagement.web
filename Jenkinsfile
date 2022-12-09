@@ -4,15 +4,15 @@ pipeline {
 
 	stages {
 
-        stage("Get repo"){
+        //stage("Get repo"){
 
-			steps {
-				sh "rm -rf ${WORKSPACE}/reputationmanagement.web"
-				sh "git clone https://github.com/workshopapps/reputationmanagement.web.git"
-				sh "sudo cp -r ${WORKSPACE}/reputationmanagement.web /home/ehmeeops/reputationmanagement.web"
-			}
+			//steps {
+				//sh "rm -rf ${WORKSPACE}/reputationmanagement.web"
+				//sh "git clone https://github.com/workshopapps/reputationmanagement.web.git"
+				//sh "sudo cp -r ${WORKSPACE}/reputationmanagement.web /home/ehmeeops/reputationmanagement.web"
+			//}
 
-		}
+		//}
 
 		stage("build frontend"){
 
