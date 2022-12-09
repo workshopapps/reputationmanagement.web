@@ -5,7 +5,6 @@ import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
 import Faqs from '../pages/FAQ/Faqs';
 import LandingPage from '../pages/LandingPage';
-import RequestSuccessfulSm from '../pages/Request Successful/requestSuccessful';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
@@ -49,6 +48,8 @@ import RequestDetails from '../pages/Request Details/requestDetails';
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 import LawyerRequestDetails from '../pages/Request Details/lawyerRequestDetails';
+import LawyerLogin from '../pages/Login/lawyerLogin';
+import LawyerSignup from '../pages/Sign-up/lawyerSignup';
 
 
 Sentry.init({
@@ -81,13 +82,10 @@ const Router = () => {
 						<Route path="/request-form" element={<RequestForm />} />
 						<Route path="/request" element={<RequestDetails />} />
 						<Route path="/lawyer-request-details" element={<LawyerRequestDetails />} />
-						<Route
-							path="/request-successful"
-							element={<RequestSuccessfulSm />}
-						/>
 					</Route>
 					<Route path="/" element={<LandingPage />} />
-
+					<Route path="/lawyer-login" element={<LawyerLogin/>}/>
+					<Route path="/lawyer-signup" element={<LawyerSignup/>}/>
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/about-us" element={<AboutPage />} />

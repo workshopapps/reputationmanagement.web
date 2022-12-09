@@ -34,7 +34,7 @@ export default function Main() {
 		ApiPrivate.get('/customer/accessibility').then((res) => {
 			setAccessibility(res.data);
 		});
-	}, [ApiPrivate]);
+	}, [ ApiPrivate ]);
 
 	return (
 		<StyledParent>
