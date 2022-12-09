@@ -1,8 +1,11 @@
 import React from 'react';
-import { DoughnutChart } from 'react-chartjs-2';
+import {Chart as ChartJs, ArcElement, Tooltip, Legend} from 'chart.js'; 
+import { Doughnut } from 'react-chartjs-2';
 
-function Doughnutchart({data}) {
-    return <DoughnutChart data={data}/>
+ChartJs.register(ArcElement, Tooltip, Legend);
+
+function DoughnutChart({data}) {
+    return <Doughnut data={data}/>
 }
 
-export default Doughnutchart
+export default DoughnutChart;
