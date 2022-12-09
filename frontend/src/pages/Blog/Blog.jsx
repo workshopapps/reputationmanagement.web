@@ -9,17 +9,10 @@ import Filter from '../../components/Blog/filter';
 import Footer from '../../components/Blog/footer';
 //import Pagination from '../../components/Blog/pagination';
 import { useEffect, useState, useCallback } from 'react';
-import DataBlog from './data';
+//import DataBlog from './data';
 import Pagination from '../../components/Blog/pagination';
 import { ApiPrivate } from '../../api/axios';
 import useAppContext from '../../hooks/useAppContext';
-
-const StyledArticles = styled.div`
-	//width: 100%;
-	//margin: 0 auto;
-	margin-bottom: 50px;
-	background-color: black;
-`;
 
 const StyledPostSnippet = styled.div`
 	width: 100%;
@@ -64,27 +57,22 @@ const StyledFilter = styled.div`
 `;
 
 const Blog = () => {
-	
-	//const [item, setItem] = useState(DataBlog);
-	
-	const fetchAllBlog = useCallback(async() => {
-		try{
-			const response = await ApiPrivate.get('/blogging?pageNumber=0&pageSize=10')
-			setItem(response?.data)
-		}
-		catch(err){
-			console.log(err)
-			
-		}
-	},[ ])
-
-	useEffect(() => {
-		fetchAllBlog()
-	},[ fetchAllBlog ])
-
 	const { item, setItem } = useAppContext();
 
+	const fetchAllBlog = useCallback(async () => {
+		try {
+			const response = await ApiPrivate.get(
+				'/blogging?pageNumber=0&pageSize=10'
+			);
+			setItem(response?.data);
+		} catch (err) {
+			console.log(err);
+		}
+	}, [setItem]);
 
+	useEffect(() => {
+		fetchAllBlog();
+	}, [fetchAllBlog]);
 
 	//Filter Topics////////////////////////////
 	const menuItems = [...new Set(item.map((data) => data.tag))];
@@ -96,16 +84,13 @@ const Blog = () => {
 		setItem(newItem);
 	};
 
-
-	
-
 	// Pagination//////////////////////
 	const [currentPage, setCurrentPage] = useState(1);
 	const [recordsPerPage] = useState(6);
 	const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = item.slice(indexOfFirstRecord, indexOfLastRecord);
-    const nPages = Math.ceil(item.length / recordsPerPage)
+	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+	const currentRecords = item.slice(indexOfFirstRecord, indexOfLastRecord);
+	const nPages = Math.ceil(item.length / recordsPerPage);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -124,27 +109,22 @@ const Blog = () => {
 								menuItems={menuItems}
 							/>
 						</StyledFilter>
-						
-							
-								<StyledPostSnippet>
-									
-									<PostSnippet item={currentRecords}  />
-								
-								</StyledPostSnippet>
-							
-						
+
+						<StyledPostSnippet>
+							<PostSnippet item={currentRecords} />
+						</StyledPostSnippet>
 					</StyledPostMain>
 
 					<Pagination
-					nPages={nPages}
-					currentPage={currentPage}
-					setCurrentPage={setCurrentPage}
-					 /> 
+						nPages={nPages}
+						currentPage={currentPage}
+						setCurrentPage={setCurrentPage}
+					/>
 				</div>
 				<Footer />
 			</PageLayout>
 		</section>
 	);
-}
+};
 
 export default Blog;

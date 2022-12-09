@@ -2,11 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaChevronDown } from 'react-icons/fa';
 import { useState } from 'react';
-import DataBlog from '../../pages/Blog/data';
 import useAppContext from '../../hooks/useAppContext';
 
-
-const Filter = ({filterItem, setItem}) => {
+const Filter = ({ filterItem, setItem }) => {
 	const [isNavLocation, setIsNavLocation] = useState(false);
 	const { item } = useAppContext();
 
@@ -14,18 +12,18 @@ const Filter = ({filterItem, setItem}) => {
 		<FilterMain>
 			<div className={isNavLocation ? 'menu-responsive' : 'menu-desktop'}>
 				<h1>Filter by Topic:</h1>
-				<ul >
-					<li onClick={() => setItem(item)}>
-						
-						All
-						
-						</li>
-					<li  onClick={() => filterItem("Glassdoor Review")}>Glassdoor Review</li>
-					<li onClick={() => filterItem("Google Review")}>Google Review</li>
-					<li onClick={() => filterItem("Reddit")}>Reddit</li>
-					<li onClick={() => filterItem("Reputation Management")}>Reputation Management</li>
-					<li onClick={() => filterItem("Reviews")}>Reviews</li>
-					<li onClick={() => filterItem("Social Media")}>Social Media</li>
+				<ul>
+					<li onClick={() => setItem(item)}>All</li>
+					<li onClick={() => filterItem('Glassdoor Review')}>
+						Glassdoor Review
+					</li>
+					<li onClick={() => filterItem('Google Review')}>Google Review</li>
+					<li onClick={() => filterItem('Reddit')}>Reddit</li>
+					<li onClick={() => filterItem('Reputation Management')}>
+						Reputation Management
+					</li>
+					<li onClick={() => filterItem('Reviews')}>Reviews</li>
+					<li onClick={() => filterItem('Social Media')}>Social Media</li>
 				</ul>
 			</div>
 
@@ -41,7 +39,6 @@ const Filter = ({filterItem, setItem}) => {
 };
 
 export default Filter;
-
 
 const FilterMain = styled.div`
 	position: relative;

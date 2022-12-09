@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import test from "../../assets/images/blog_images/images/post_img2.png"
 //import PropTypes from 'prop-types';
 //import { valid } from 'semver';
 
@@ -34,7 +33,7 @@ const StyledHeader = styled.h2`
 		font-size: 1rem;
 		font-weight: 400;
 		padding: 10px;
-	padding-left: 15px;
+		padding-left: 15px;
 	}
 `;
 
@@ -45,7 +44,6 @@ const StyledParagraph = styled.p`
 	color: #787a7d;
 	padding: 0 10px 20px 10px;
 	cursor: default;
-
 `;
 
 const StyledTag = styled.div`
@@ -61,7 +59,7 @@ const StyledTag = styled.div`
 	}
 `;
 const SnippetGrid = styled.div`
-		width: 100%;
+	width: 100%;
 	display: grid;
 	gap: 1.5rem;
 	grid-template-columns: repeat(3, 1fr);
@@ -73,37 +71,25 @@ const SnippetGrid = styled.div`
 	@media (max-width: 520px) {
 		grid-template-columns: repeat(1, 1fr);
 	}
-
 `;
 
-
-
-function PostSnippet({item}) {
-	
+function PostSnippet({ item }) {
 	return (
 		<>
-		
-		{item.map((data, index) => {
-			return (
-		<StyledPost  key={index}>
-		<a href={data.url}>
-			<StyledImg src={data.pathToImage} alt="blogpost image"  />
-			<StyledTag>{data.tag}</StyledTag> 
-			<StyledHeader>{data.title}</StyledHeader>
-			<StyledParagraph>{data.description}</StyledParagraph>
-			</a>
-		</StyledPost>
-			)
-		})}
-		
-		
-		
+			{item.map((data, index) => {
+				return (
+					<StyledPost key={index}>
+						<a href={data.url}>
+							<StyledImg src={data.pathToImage} alt="blogpost image" />
+							<StyledTag>{data.tag}</StyledTag>
+							<StyledHeader>{data.title}</StyledHeader>
+							<StyledParagraph>{data.description}</StyledParagraph>
+						</a>
+					</StyledPost>
+				);
+			})}
 		</>
-		
-		
 	);
-
 }
-
 
 export default PostSnippet;
