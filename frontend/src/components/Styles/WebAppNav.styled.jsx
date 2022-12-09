@@ -6,10 +6,16 @@ export const StyledWebAppNav = styled.nav`
 	justify-content: space-between;
 	background-color: white;
 	align-items: center;
-	padding: 46px 4rem 5px 0;
+	padding: 8px 4rem 5px 0;
 
 	@media (max-width: 520px) {
 		width: 100vw;
+	}
+
+	@media (max-width: 1140px) {
+		border-bottom: 1px solid #d2d3d4;
+		padding: 16px 19px;
+		margin-bottom: 16px;
 		position: relative;
 
 		#site-logo {
@@ -20,12 +26,7 @@ export const StyledWebAppNav = styled.nav`
 			top: 0;
 			bottom: 0;
 		}
-	}
 
-	@media (max-width: 1140px) {
-		border-bottom: 1px solid #d2d3d4;
-		padding: 16px 19px;
-		margin-bottom: 16px;
 		h3,
 		p {
 			display: none;
@@ -68,8 +69,8 @@ export const LogoContainer = styled.div`
 
 		&:nth-of-type(1) {
 			img {
-				width: 44px;
-				height: 44px;
+				width: 38px;
+				height: 38px;
 			}
 		}
 	}
