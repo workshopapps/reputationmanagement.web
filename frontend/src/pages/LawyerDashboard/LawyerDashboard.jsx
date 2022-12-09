@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Sidenav from '../../components/LawyerDashboard/Sidenav';
 import searchIcon from '../../assets/images/searchIcon.png';
 import notificationsIcon from '../../assets/images/notificationsIcon.svg';
 import profileImg from '../../assets/images/profileImg.svg';
@@ -7,32 +8,86 @@ import lineChart from '../../assets/images/lineChart.svg';
 import arrowDown from '../../assets/images/arrowDown.svg';
 import arrowUp from '../../assets/images/arrowUp.svg';
 import requestsIcon from '../../assets/images/requestsIcon.svg';
+import low from '../../assets/images/low.svg';
+import medium from '../../assets/images/medium.svg';
+import high from '../../assets/images/high.svg';
+import today from '../../assets/images/today.svg';
+import thisWeek from '../../assets/images/thisWeek.svg';
+import nextWeek from '../../assets/images/nextWeek.svg';
+import doughnut from '../../assets/images/doughnut.svg';
 import failed from '../../assets/images/failed.svg';
 import progress from '../../assets/images/progress.svg';
 import successful from '../../assets/images/successful.svg';
 import hamburger from '../../assets/images/hamburger.svg';
 import x from '../../assets/images/x.svg';
 import logo from '../../assets/images/logo.png';
-import Menu from '../../components/LawyerDashboard/MobileMenu';
+import Menu from './MobileMenu';
 import { useEffect } from 'react';
 import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
-import DoughnutChart from '../../components/LawyerDashboard/DoughnutChart';
-import { ticketsData } from './TicketsData';
-import Table from '../../components/LawyerDashboard/Table';
+
 
 function LawyerDashboard() {
-	const data = {
-		labels: [],
-		datasets: [
-			{
-				label: '',
-				data: [60, 25, 15],
-				backgroundColor: ['green', 'yellow', 'red'],
-				borderRadius: ['100px'],
-			},
-		],
-		text: ['60%', '60%', '60%'],
-	};
+	// const [tickets, setTickets] = useState([
+	//     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
+	//     {no: '123', title: 'Afrobox Review', priority: high, dueDate: today, lastUpdated: '4 days ago'},
+	//     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+	//     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+	//     {no: '123', title: 'Afrobox Review', priority: medium, dueDate: thisWeek, lastUpdated: '4 days ago'},
+	//     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+	//     {no: '123', title: 'Afrobox Review', priority: low, dueDate: nextWeek, lastUpdated: '4 days ago'},
+	// ]);
+
+	const tickets = [
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: high,
+			dueDate: today,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: high,
+			dueDate: today,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: medium,
+			dueDate: thisWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: medium,
+			dueDate: thisWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: medium,
+			dueDate: thisWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: low,
+			dueDate: nextWeek,
+			lastUpdated: '4 days ago',
+		},
+		{
+			no: '123',
+			title: 'Afrobox Review',
+			priority: low,
+			dueDate: nextWeek,
+			lastUpdated: '4 days ago',
+		},
+	];
 
 	const [menuActive, setMenuActive] = useState(false);
 
@@ -40,8 +95,8 @@ function LawyerDashboard() {
 		setMenuActive(!menuActive);
 	}
 	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<div className="h-screen flex relative">
 			<Sidebarr />
@@ -83,7 +138,7 @@ function LawyerDashboard() {
 
 				<div className="p-5 absolute md:static top-[15vh] left-0 w-full">
 					<div className="flex justify-center flex-wrap">
-						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[330px] border my-2 p-5 rounded-md">
+						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
 							<img src={requestsIcon} alt="" />
 							<h3 className="mt-2 mb-3 text-[22px] font-[600px]">
 								Total requests
@@ -91,7 +146,7 @@ function LawyerDashboard() {
 							<span className="text-[45px] font-semibold">50</span>
 						</div>
 
-						<div className="w-[47%] overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[330px] border p-2 my-2 md:p-5 rounded-md">
+						<div className="w-[47%] overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
 							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
 								Successful removals
 							</h3>
@@ -107,7 +162,7 @@ function LawyerDashboard() {
 							</div>
 						</div>
 
-						<div className="w-[47%] overflow-hidden sm:w-[250px] mx-1 md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[330px] border p-2 my-2 md:p-5 rounded-md">
+						<div className="w-[47%] overflow-hidden sm:w-[250px] mx-1 md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
 							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
 								Failed removals
 							</h3>
@@ -131,31 +186,36 @@ function LawyerDashboard() {
 							</h2>
 
 							<div className="w-full overflow-x-auto my-2">
-								<Table
-									heading={
-										<>
+								<table className="w-full">
+									<tbody>
+										<tr className="bg-gray-200 border-b">
 											<th className="p-4 text-left">No</th>
 											<th className="p-4 text-left">Title</th>
 											<th className="p-4 text-left">Priority</th>
+											<th className="p-4 text-left">Due Date</th>
 											<th className="p-4 text-left">Last Updated</th>
-										</>
-									}
-									rows={ticketsData.map((t) => {
-										return (
-											<tr key={t.no} className="border-b">
-												<td className="p-3">{t.no}</td>
-												<td className="p-3">{t.title}</td>
-												<td className="p-3">
-													<img src={t.priority} alt="" />
-												</td>
-
-												<td className="p-3">
-													<span className="text-gray-400">{t.lastUpdated}</span>
-												</td>
-											</tr>
-										);
-									})}
-								/>
+										</tr>
+										{tickets.map((t, idx) => {
+											return (
+												<tr key={idx} className="border-b">
+													<td className="p-3">{t.no}</td>
+													<td className="p-3">{t.title}</td>
+													<td className="p-3">
+														<img src={t.priority} alt="" />
+													</td>
+													<td className="p-3">
+														<img src={t.dueDate} alt="" />
+													</td>
+													<td className="p-3">
+														<span className="text-gray-400">
+															{t.lastUpdated}
+														</span>
+													</td>
+												</tr>
+											);
+										})}
+									</tbody>
+								</table>
 							</div>
 						</div>
 
@@ -165,15 +225,7 @@ function LawyerDashboard() {
 								<p className="text-[14px] font-[500]">Monthly activity</p>
 							</div>
 
-							<div className="relative">
-								<div className="absolute top-[50%] left-[50%] flex flex-col items-center justify-center transform -translate-x-[50%] -translate-y-[50%]">
-									<span className="text-2xl font-semibold">25</span>
-									<span className="text-sm text-gray-500">
-										Average removals
-									</span>
-								</div>
-								<DoughnutChart data={data} />
-							</div>
+							<img src={doughnut} alt="" />
 
 							<div className="mx-6">
 								<div className="flex justify-between w-full">

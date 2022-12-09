@@ -6,8 +6,6 @@ import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
 import { DashboardIcon, SettingsIcon, SignoutIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
-import { MdInsertComment } from "react-icons/md";
-
 
 const Sidebarr = (props) => {
 	const { isShowing, toggle } = useLogoutConfirmation();
@@ -24,14 +22,14 @@ const Sidebarr = (props) => {
 			<section>
 				<ul>
 					<li>
-						<NavLink to="/lawyer-dashboard">
+						<NavLink to="/dashboard">
 							<DashboardIcon />
 							Dashboard
 						</NavLink>
 					</li>
                     <li>
-						<NavLink to="/lawyer-requests">
-							<MdInsertComment />
+						<NavLink to="/dashboard">
+							<DashboardIcon />
 							Requests
 						</NavLink>
 					</li>

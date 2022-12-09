@@ -10,7 +10,6 @@ import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
 import LawyerDashboard from '../pages/LawyerDashboard/LawyerDashboard';
-import LawyerRequests from '../pages/LawyerRequests/LawyerRequests';
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Blog from '../pages/Blog/Blog';
 import GlassDoor from '../pages/GlassDoor/GlassDoor';
@@ -76,7 +75,6 @@ const Router = () => {
 					<Route element={<RequireAuth />}>
 						<Route path="/dashboard" element={<DashboardPage />} />
 						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
-						<Route path="lawyer-requests" element={<LawyerRequests />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
