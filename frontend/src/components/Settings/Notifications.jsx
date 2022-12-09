@@ -17,7 +17,7 @@ function Notifications({ notification, setNotification }) {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setRequestPending(true);
-		console.log(notification);
+
 		ApiPrivate.post('/notification_settings', notification)
 			.then((res) => {
 				setSuccessMessage('Updated successfully');
