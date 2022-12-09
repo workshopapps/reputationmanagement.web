@@ -13,7 +13,7 @@ import { BrowserTracing } from "@sentry/tracing";
 Sentry.init({
     dsn: "https://acbed01f3af04154a1206f028d3d9b79@o4504259490873344.ingest.sentry.io/4504286581882880",
     integrations: [
-        new Integrations.BrowserTracing({
+        new BrowserTracing({
         tracingOrigins: ["localhost", "api.repute.hng.tech"]})],
     tracesSampleRate: 1.0
 });
