@@ -19,12 +19,14 @@ import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
 import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
 import Left from '../../assets/images/WeRemoveGoogleSearch/left.svg';
 import Right from '../../assets/images/WeRemoveGoogleSearch/right.svg';
+import Banner from '../AboutUs/img/Banner-Background-Desktop.png';
+
 import { useEffect } from 'react';
 
 const WeRemoveGoogleSearch = () => {
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	const [testimonialTemplate] = useState([
 		{
 			image: Avater0,
@@ -231,7 +233,7 @@ const WeRemoveGoogleSearch = () => {
 				</StyledGrid>
 			</StyledContainer>
 
-			<ColorBg noBottom>
+			<ColorBg2 noBottom>
 				<StyledContainer>
 					<StyledH2Center>
 						We can help you make your brand stand out by taking down bad
@@ -242,7 +244,7 @@ const WeRemoveGoogleSearch = () => {
 						<StyledButton>Get Started</StyledButton>
 					</Link>
 				</StyledContainer>
-			</ColorBg>
+			</ColorBg2>
 		</PageLayout>
 	);
 };
@@ -320,6 +322,52 @@ export const StyledGrid = Styled.div`
 	}
 `;
 
+export const ColorBg2 = Styled.div`
+background: #EEF1FC;
+padding: 48px 0;
+text-align: center;
+background-image: url(${Banner});
+background-size: cover;
+background-repeat: no-repeat;
+margin-bottom: ${(props) => (props.noBottom ? '0' : '100px')};
+margin-top: 100px;
+
+.absolute{
+	position: absolute;
+	width: 100%;
+	margin-top: 7%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 5;
+}
+.scroll-arrow{
+	cursor: pointer;
+	margin: 0 10px;
+	box-shadow: 0 0 10px #4646472D;
+	border-radius: 50%;
+	opacity: 0.5;
+}
+.scroll-arrow:hover{
+	opacity: 1;
+}
+
+@media screen and (max-width: 884px) {
+	.absolute{
+		margin-top: 10%;
+	}
+}
+@media screen and (max-width: 428px) {
+	.absolute{
+		margin-top: 20%;
+	}
+}
+@media screen and (max-width: 320px) {
+	.absolute{
+		margin-top: 25%;
+	}
+}
+`;
 export const ColorBg = Styled.div`
 background: #EEF1FC;
 padding: 48px 0;
@@ -518,12 +566,11 @@ margin: 20px 0;
 
 // Container styling
 
-export const StyledContainer = Styled.div`
-    max-width: 1240px;
+const StyledContainer = Styled.div`
+	max-width: 1200px;
     margin: 0 auto;
 
-    @media screen and (max-width:1280px) {
-        padding: 0 20px;
-    }
-
+	@media screen and (max-width: 1238px) {
+		margin: 0 20px;
+	}
 `;

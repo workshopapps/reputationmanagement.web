@@ -4,6 +4,7 @@ import SupportPage from '.';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 test('render All supportPage component in the document properly', () => {
+	window.scrollTo = jest.fn()
 	render(
 		<Router>
 			<SupportPage />

@@ -4,6 +4,7 @@ import AboutPage from "./AboutPage"
 import { BrowserRouter as Router } from 'react-router-dom';
 
 test("render All AboutPage component in the document properly", () => {
+    window.scrollTo = jest.fn()
     render(
        <Router>
 			 <AboutPage/>

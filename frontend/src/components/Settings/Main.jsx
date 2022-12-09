@@ -20,7 +20,7 @@ export default function Main() {
 	};
 
 	const ApiPrivate = useAxiosPrivate();
-	const [userLanguage, setUserLanguage] = useState('english');
+	const [accessibility, setAccessibility] = useState({});
 	const [currentEmail, setCurrentEmail] = useState('');
 	const [user, setUser] = useState({});
 
@@ -30,11 +30,11 @@ export default function Main() {
 			setUser(res.data);
 			setCurrentEmail(res.data.email);
 		});
-		// Get current user language
-		ApiPrivate.get('/customer/language').then((res) => {
-			setUserLanguage(res.data);
+		// Get current user accessibility settings
+		ApiPrivate.get('/customer/accessibility').then((res) => {
+			setAccessibility(res.data);
 		});
-	}, [ApiPrivate]);
+	}, [ ApiPrivate ]);
 
 	return (
 		<StyledParent>
@@ -78,8 +78,8 @@ export default function Main() {
 			)}
 			{tab === 2 && (
 				<Preferences
-					userLanguage={userLanguage}
-					setUserLanguage={setUserLanguage}
+					accessibility={accessibility}
+					setAccessibility={setAccessibility}
 				/>
 			)}
 			{tab === 3 && <Notifications />}

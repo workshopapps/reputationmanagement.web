@@ -7,6 +7,7 @@ import LandingPage from './index';
 describe('Test all sections in the documents renders properly', () => {
 
 test('render Get started text in landing page', () => {
+	window.scrollTo = jest.fn()
 	render(
 		<AppProvider>
 			<Router>

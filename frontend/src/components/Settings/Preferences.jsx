@@ -2,17 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import {
-	styleClass,
-	StyledButton,
-	StyledButtonText,
-	StyledTab,
-} from './Settings.styled';
+import { styleClass, StyledButton, StyledTab } from './Settings.styled';
 
-function Preferences({ userLanguage, setUserLanguage }) {
+function Preferences({ accessibility, setAccessibility }) {
+	const ApiPrivate = useAxiosPrivate();
 	const languages = ['english', 'german', 'russian', 'chinese'];
 	const [requestPending, setRequestPending] = useState(false);
-	const ApiPrivate = useAxiosPrivate();
+
 	const {
 		setRequestFailed,
 		setRequestSuccess,
@@ -23,10 +19,11 @@ function Preferences({ userLanguage, setUserLanguage }) {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setRequestPending(true);
+		console.log(accessibility);
 
-		ApiPrivate.post('/customer/language?language=' + userLanguage)
+		ApiPrivate.post('/customer/accessibility', accessibility)
 			.then((res) => {
-				setUserLanguage(res.data);
+				setAccessibility(res.data);
 				setSuccessMessage('Update successful');
 				setRequestSuccess(true);
 				setRequestPending(false);
@@ -36,6 +33,28 @@ function Preferences({ userLanguage, setUserLanguage }) {
 				setRequestFailed(true);
 				setRequestPending(false);
 			});
+	};
+
+	const CheckInputGroup = ({ id, checked, label }) => {
+		return (
+			<div className="flex items-center mb-1">
+				<input
+					className={styleClass.inputCheckClass}
+					type="checkbox"
+					value={id}
+					id={id}
+					checked={checked}
+					onChange={(e) => {
+						setAccessibility((prev) => {
+							return { ...prev, [id]: !checked };
+						});
+					}}
+				/>
+				<label className="inline-block text-gray-800" htmlFor={id}>
+					{label}
+				</label>
+			</div>
+		);
 	};
 
 	return (
@@ -49,8 +68,12 @@ function Preferences({ userLanguage, setUserLanguage }) {
 					<div className="w-full">
 						<select
 							className={styleClass.selectClass + ' max-w-[380px]'}
-							value={userLanguage}
-							onChange={(e) => setUserLanguage(e.target.value)}
+							value={accessibility.language}
+							onChange={(e) => {
+								setAccessibility((prev) => {
+									return { ...prev, language: e.target.value };
+								});
+							}}
 							required
 						>
 							{languages.map((item) => (
@@ -68,17 +91,25 @@ function Preferences({ userLanguage, setUserLanguage }) {
 					</label>
 
 					<div className="w-full">
-						<CheckInputGroup id="screen-reader" label="I use a screen reader" />
-						<CheckInputGroup id="large-text" label="I use large text" />
 						<CheckInputGroup
-							id="contrast-colors"
+							id="screenReader"
+							checked={accessibility.screenReader}
+							label="I use a screen reader"
+						/>
+						<CheckInputGroup
+							id="largeText"
+							checked={accessibility.largeText}
+							label="I use large text"
+						/>
+						<CheckInputGroup
+							id="highContrast"
+							checked={accessibility.highContrast}
 							label="I use high contrast colors"
 						/>
 					</div>
 				</div>
 
 				<div className="my-14 flex justify-end">
-					<StyledButtonText type="reset">Discard</StyledButtonText>
 					<StyledButton type="submit">
 						{requestPending ? 'Loading...' : 'Save Changes'}
 					</StyledButton>
@@ -87,21 +118,5 @@ function Preferences({ userLanguage, setUserLanguage }) {
 		</StyledTab>
 	);
 }
-
-const CheckInputGroup = ({ id, label }) => {
-	return (
-		<div className="flex items-center">
-			<input
-				className={styleClass.inputCheckClass}
-				type="checkbox"
-				value={id}
-				id={id}
-			/>
-			<label className="inline-block text-gray-800" htmlFor={id}>
-				{label}
-			</label>
-		</div>
-	);
-};
 
 export default Preferences;

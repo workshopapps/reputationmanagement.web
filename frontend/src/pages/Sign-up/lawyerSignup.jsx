@@ -14,8 +14,9 @@ import Cookies from 'js-cookie';
 
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
-function Signup() {
-	const [businessName, setBusinessName] = useState('');
+const LawyerSignup = () => {
+    const [ firstName, setFirstName ] = useState('');
+    const [ lastName, setLastName ] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,12 +25,10 @@ function Signup() {
 
 	const [pageValid, setPageValid] = useState(false);
 
-	const [businessNameValid, setBusinessNameValid] = useState(false);
 	const [emailValid, setEmailValid] = useState(false);
 	const [passwordValid, setPasswordValid] = useState(false);
 	const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
 
-	const [businessNameFocus, setBusinessNameFocus] = useState(false);
 	const [emailFocus, setEmailFocus] = useState(false);
 	const [passwordFocus, setPasswordFocus] = useState(false);
 	const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
@@ -43,18 +42,14 @@ function Signup() {
 	} = useAppContext();
 
 	useEffect(() => {
-		businessName !== ''
-			? setBusinessNameValid(true)
-			: setBusinessNameValid(false);
 		EMAIL_REGEX.test(email) ? setEmailValid(true) : setEmailValid(false);
 		password.length >= 6 ? setPasswordValid(true) : setPasswordValid(false);
 		confirmPassword === password && confirmPassword.length >= 6
 			? setConfirmPasswordValid(true)
 			: setConfirmPasswordValid(false);
-	}, [email, businessName, password, confirmPassword]);
+	}, [email,  password, confirmPassword]);
 
 	useEffect(() => {
-		businessNameValid &&
 		emailValid &&
 		passwordValid &&
 		confirmPasswordValid &&
@@ -64,7 +59,6 @@ function Signup() {
 	}, [
 		passwordValid,
 		confirmPasswordValid,
-		businessNameValid,
 		emailValid,
 		confirmTerms,
 	]);
@@ -75,11 +69,12 @@ function Signup() {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/auth/create_account',
+				const response = await Api.post('/lawyer/auth/create_account',
 					{
 						email: email,
 						password: password,
-						businessEntityName: businessName,
+						firstName: firstName,
+                        lastName: lastName,
 					}
 				)
 				localStorage.setItem('auth', email)
@@ -88,7 +83,7 @@ function Signup() {
 				setSuccessMessage('Account Created')
 				setRequestSuccess(true)
 				clearForm();
-				router('/dashboard');
+				router('/lawyer-dashboard');
 			} catch (err) {
 				if (err.response.status === 400) {
 					setErrMessage(err?.response?.data);
@@ -102,7 +97,8 @@ function Signup() {
 		}
 	};
 	const clearForm = () => {
-		setBusinessName('');
+		setFirstName('');
+		setLastName('');
 		setEmail('');
 		setPassword('');
 		setConfirmPassword('');
@@ -140,22 +136,37 @@ function Signup() {
 				<h2>Welcome to REPUTE</h2>
 				<p>Sign up to begin with us</p>
 				<div className="form">
-					<div className="business-name">
-						<label htmlFor="business-name">Business Name</label>
+                    <div className="text-input first-name">
+						<label htmlFor="email">First Name</label>
 						<input
 							type="text"
-							className={triedToSubmit && !businessNameValid ? 'invalid' : ''}
-							id="business-name"
-							value={businessName}
-							name="first_name"
-							onChange={(e) => setBusinessName(e.target.value)}
-							onFocus={() => setBusinessNameFocus(true)}
-							onBlur={() => setBusinessNameFocus(false)}
-							placeholder="e.g Mark and sons"
+							name="firstName"
+							value={firstName}
+							onChange={(e) => setFirstName(e.target.value)}
+							placeholder="John"
+							id="email"
 							required
+							className={firstName === '' && triedToSubmit ? 'invalid' : ''}
 						/>
-						{!businessNameFocus && !businessNameValid && triedToSubmit && (
-							<ErrorMessage error="Enter Your Business Name" />
+						{email === '' && triedToSubmit && (
+							<ErrorMessage error="Enter Your First Name" />
+						)}
+					</div>
+                    
+					<div className="text-input">
+						<label htmlFor="email">Last Name</label>
+						<input
+							type="text"
+							name="lastName"
+							value={lastName}
+							onChange={(e) => setLastName(e.target.value)}
+							placeholder="Doe"
+							id="email"
+							required
+							className={lastName === '' && triedToSubmit ? 'invalid' : ''}
+						/>
+						{email === '' && triedToSubmit && (
+							<ErrorMessage error="Enter Your Last Name" />
 						)}
 					</div>
 					<div className="email">
@@ -309,7 +320,7 @@ function Signup() {
 					<p>
 						Already have an account ?{' '}
 						<span
-							onClick={() => router('/login')}
+							onClick={() => router('/lawyer-login')}
 							style={{ cursor: 'pointer' }}
 						>
 							Sign In
@@ -434,6 +445,7 @@ const StyledFormWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+    padding-bottom: 40px;
 	@media (max-width: 1230px) {
 		width: 100%;
 		margin: 0 auto;
@@ -494,6 +506,10 @@ const StyledFormWrapper = styled.div`
 	.form {
 		width: 100%;
 		max-width: 560px;
+        .first-name{
+			margin-top: 40px;
+            margin-bottom: 24px;
+        }
 		label {
 			font-family: Lato;
 			font-size: 16px;
@@ -557,7 +573,7 @@ const StyledFormWrapper = styled.div`
 		.business-name {
 			display: flex;
 			flex-direction: column;
-			margin-top: 40px;
+            margin-top: 24px;
 		}
 		.email {
 			display: flex;
@@ -588,4 +604,4 @@ const StyledFormWrapper = styled.div`
 		}
 	}
 `;
-export default Signup;
+export default LawyerSignup;

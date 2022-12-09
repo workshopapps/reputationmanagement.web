@@ -4,13 +4,7 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import styled from 'styled-components';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import {
-	styleClass,
-	StyledButton,
-	StyledButtonOutline,
-	StyledButtonText,
-	StyledTab,
-} from './Settings.styled';
+import { styleClass, StyledButton, StyledTab } from './Settings.styled';
 
 function Security() {
 	const ApiPrivate = useAxiosPrivate();
@@ -25,13 +19,12 @@ function Security() {
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [NewPasswordShown, setNewPasswordShown] = useState(false);
 	const [form, setForm] = useState({});
-	const [twoFA, setTwoFA] = useState(false);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		// Validation
-		if (form.new_password.length < 12) {
-			setErrMessage('New password must contain a minimum of 12 characters');
+		if (form.new_password.length < 8) {
+			setErrMessage('New password must contain a minimum of 8 characters');
 			setRequestFailed(true);
 			return;
 		}
@@ -68,26 +61,15 @@ function Security() {
 	return (
 		<StyledTab>
 			<form onSubmit={onSubmit} className={styleClass.form}>
-				<div className={styleClass.inputGroupRow}>
-					<HeadingLabel
-						text="Two Factor Authentication"
-						sub_text="When enabled, your account is further protected from being hacked"
-					/>
-					<StyledButtonOutline onClick={() => setTwoFA(!twoFA)}>
-						{twoFA ? 'Disable' : 'Enable'}
-					</StyledButtonOutline>
-				</div>
-
-				<div className="w-full mt-12 mb-8">
-					<span className="font-semibold">Password</span>
-					<p className="text-[14px] hidden md:block text-[#787A7D] ">
-						To create a new password, it must contain a minimum of 12 letters,
-						an uppercase letter, a number and a character
+				<div className="w-full mb-8">
+					<span className="font-semibold">Create a new password</span>
+					<p className="mt-1 text-[14px] hidden md:block text-[#787A7D] ">
+						New password must contain a minimum of 8 characters
 					</p>
 				</div>
 
 				<div className={styleClass.inputGroup}>
-					<label htmlFor="current_password" className="md:w-1/3 font-semibold">
+					<label htmlFor="current_password" className="md:w-1/3 font-normal">
 						Current Password
 					</label>
 
@@ -108,7 +90,7 @@ function Security() {
 				</div>
 
 				<div className={styleClass.inputGroup}>
-					<label htmlFor="new_password" className="md:w-1/3 font-semibold">
+					<label htmlFor="new_password" className="md:w-1/3 font-normal">
 						New Password
 					</label>
 
@@ -131,9 +113,9 @@ function Security() {
 				<div className={styleClass.inputGroup}>
 					<label
 						htmlFor="confirm_new_password"
-						className="md:w-1/3 font-semibold"
+						className="md:w-1/3 font-normal"
 					>
-						Confirm New Password
+						Confirm Password
 					</label>
 
 					<InputField className={styleClass.input}>
@@ -153,7 +135,6 @@ function Security() {
 				</div>
 
 				<div className="my-14 flex justify-end">
-					<StyledButtonText type="reset">Discard</StyledButtonText>
 					<StyledButton type="submit">
 						{requestPending ? 'Loading...' : 'Save Changes'}
 					</StyledButton>
@@ -190,8 +171,9 @@ const InputField = styled.div`
 
 	button {
 		position: absolute;
-		right: 14px;
-		font-size: 20px;
+		right: 16px;
+		font-size: 18px;
+		color: #a5a6a8;
 
 		&:hover {
 			cursor: pointer;

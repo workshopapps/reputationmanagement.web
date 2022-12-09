@@ -11,10 +11,9 @@ import Api from '../../api/axios';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
-import fixit_logo from '../../assets/images/logo.png';
 import Cookies from 'js-cookie';
 
-const Login = () => {
+const LawyerLogin = () => {
 	const [passwordShown, setPasswordShown] = useState(false);
 	const router = useNavigate();
 	// Password toggle handler
@@ -29,7 +28,7 @@ const Login = () => {
 		email !== '' && password.length >= 6
 			? setPageValid(true)
 			: setPageValid(false);
-	}, [email, password]);
+	}, [email, password ]);
 	const {
 		setRequestFailed,
 		setRequestSuccess,
@@ -53,7 +52,7 @@ const Login = () => {
     if(pageValid){
       setRequestPending(true)
       try{
-        const response = await Api.post('/auth/sign_in',
+        const response = await Api.post('/lawyer/auth/sign-in',
           {
             email: email,
             password: password,
@@ -182,7 +181,7 @@ const Login = () => {
 					<div className="footer-text">
 						Don't have an account?{' '}
 						<span
-							onClick={() => router('/signup')}
+							onClick={() => router('/lawyer-signup')}
 							style={{ cursor: 'pointer' }}
 						>
 							Sign up
@@ -198,7 +197,7 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default LawyerLogin;
 
 const ParentContainer = styled.div`
 	height: 100vh;

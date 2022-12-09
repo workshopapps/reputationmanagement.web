@@ -32,6 +32,18 @@ export const StyledContainer = styled.div`
 		margin-bottom: 50px;
 	}
 
+	@media (max-width: 520px) {
+		width: 100vw;
+
+		h1 {
+			font-size: 15px !important;
+		}
+		a {
+			font-weight: 500 !important;
+			transform: scale(0.885);
+		}
+	}
+
 	@media (max-width: 820px) {
 		padding-left: 21px;
 		padding-right: 21px;
@@ -110,6 +122,19 @@ export const CardSemiWrapper = styled.div`
 
 	div {
 		width: 50%;
+	}
+
+	@media (max-width: 520px) {
+		gap: 12px !important;
+
+		& > div {
+			padding: 24px 15px 10px;
+			align-items: center;
+
+			img {
+				align-self: center !important;
+			}
+		}
 	}
 
 	@media (max-width: 820px) {

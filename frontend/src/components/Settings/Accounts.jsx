@@ -2,12 +2,7 @@ import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import {
-	StyledTab,
-	StyledButton,
-	StyledButtonText,
-	styleClass,
-} from './Settings.styled';
+import { StyledTab, StyledButton, styleClass } from './Settings.styled';
 
 function Accounts({ user, setUser, currentEmail }) {
 	const ApiPrivate = useAxiosPrivate();
@@ -47,9 +42,9 @@ function Accounts({ user, setUser, currentEmail }) {
 
 	return (
 		<StyledTab>
-			<div className="pt-4 mb-8">
-				<h3>Company Information</h3>
-				<p className="text-[#787A7D]">Update your company information here</p>
+			<div className="pt-4 mb-6">
+				<h3 className="font-semibold">Profile Information</h3>
+				<p className="text-[#787A7D]">Update your account information here</p>
 			</div>
 			<AccountForm
 				handleSubmit={handleSubmit}
@@ -78,8 +73,25 @@ const AccountForm = ({
 	return (
 		<form onSubmit={onSubmit} className={styleClass.form}>
 			<div className={styleClass.inputGroup}>
+				<label htmlFor="fullName" className={styleClass.inputLabel}>
+					Full Name
+				</label>
+
+				<input
+					type="text"
+					id="fullName"
+					className={styleClass.input}
+					value={user.fullName || ''}
+					onChange={(e) => {
+						setUser({ ...user, fullName: e.target.value });
+					}}
+					required
+				/>
+			</div>
+
+			<div className={styleClass.inputGroup}>
 				<label htmlFor="business-name" className={styleClass.inputLabel}>
-					Company Name
+					Business Name
 				</label>
 
 				<input
@@ -112,7 +124,7 @@ const AccountForm = ({
 
 			<div className={styleClass.inputGroup}>
 				<label htmlFor="phoneNumber" className={styleClass.inputLabel}>
-					Phone number
+					Phone Number
 				</label>
 				<input
 					type="text"
@@ -126,8 +138,38 @@ const AccountForm = ({
 				/>
 			</div>
 
+			<div className={styleClass.inputGroup}>
+				<label htmlFor="businessWebsite" className={styleClass.inputLabel}>
+					Business Website
+				</label>
+				<input
+					type="text"
+					id="businessWebsite"
+					className={styleClass.input}
+					value={user.businessWebsite || ''}
+					onChange={(e) => {
+						setUser({ ...user, businessWebsite: e.target.value });
+					}}
+				/>
+			</div>
+
+			<div className={styleClass.inputGroup}>
+				<label htmlFor="businessDescription" className={styleClass.inputLabel}>
+					Business Description
+				</label>
+				<textarea
+					cols="30"
+					rows="2"
+					id="businessDescription"
+					className={styleClass.input}
+					value={user.businessDescription || ''}
+					onChange={(e) => {
+						setUser({ ...user, businessDescription: e.target.value });
+					}}
+				></textarea>
+			</div>
+
 			<div className="my-14 flex justify-end">
-				<StyledButtonText type="reset">Discard</StyledButtonText>
 				<StyledButton type="submit">
 					{requestPending ? 'Loading...' : 'Save Changes'}
 				</StyledButton>
