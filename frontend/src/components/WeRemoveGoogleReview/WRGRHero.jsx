@@ -25,7 +25,7 @@ const WRGRHero = () => {
             Remove your negative google reviews, save your brand’s reputation and increase customer retention rate.
           </TextH2>
 
-          <Buttons className="mt-5">
+          <Buttons className="mt-4">
             <StyledButton>
               <Link to="/#">
                 Sign up
