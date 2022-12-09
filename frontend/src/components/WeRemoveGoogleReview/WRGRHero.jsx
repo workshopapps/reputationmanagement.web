@@ -15,8 +15,8 @@ import g_oogle from '../../assets/images/wrgr/review-G.svg'
 const WRGRHero = () => {
   return (
     <>
-      <Wrapper className='col-md-10 ml-auto mr-auto text-center mt-5' data-testid="W-hero">
-        <StyledContainer>
+      <Wrapper className='col-md-10 ml-auto mr-auto text-center mt-5 flex flex-col justify-center items-center' data-testid="W-hero">
+        <StyledContainer className='flex flex-col justify-center items-center'>
           <TextH1 black className='h1'>
             Remove negative google reviews.<br />
             Improve your company’s conversion rate.
@@ -25,7 +25,7 @@ const WRGRHero = () => {
             Remove your negative google reviews, save your brand’s reputation and increase customer retention rate.
           </TextH2>
 
-          <Buttons className="mt-5">
+          <Buttons className="mt-4">
             <StyledButton>
               <Link to="/#">
                 Sign up
