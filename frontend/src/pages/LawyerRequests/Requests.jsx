@@ -61,8 +61,8 @@ export default function Requests() {
 	}
 
 	useEffect(() => {
-		fetchTickets()
-		fetchUnclaimedTickets()
+		fetchTickets();
+		fetchUnclaimedTickets();
 	}, []);
 
     return (
@@ -131,7 +131,7 @@ export default function Requests() {
 												)
 											})
 											:
-											<p className='font-semibold'>No claimed tickets</p>
+											<p className='font-semibold mx-2'>No claimed tickets</p>
 										}
 									</tbody>
 								)}
@@ -167,7 +167,7 @@ export default function Requests() {
 												)
 											})
 											:
-											<p className='font-semibold'>No unclaimed tickets</p>
+											<p className='font-semibold mx-2'>No unclaimed tickets</p>
 										}
 									</tbody>
 								)}
