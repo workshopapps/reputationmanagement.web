@@ -51,6 +51,7 @@ import LawyerRequestDetails from '../pages/Request Details/lawyerRequestDetails'
 import LawyerLogin from '../pages/Login/lawyerLogin';
 import LawyerSignup from '../pages/Sign-up/lawyerSignup';
 import Requests from '../pages/LawyerDashboard/request'
+import Index2 from '../pages/LandingPage/index2';
 
 
 Sentry.init({
@@ -85,7 +86,8 @@ const Router = () => {
 						<Route path="/lawyer-request-details" element={<LawyerRequestDetails />} />
 						<Route path="/requests" element={<Requests/>}/>
 					</Route>
-					<Route path="/" element={<LandingPage />} />
+					<Route path="/" element={<Index2 />} />
+					{/* <Route path="/" element={<LandingPage />} /> */}
 					<Route path="/lawyer-login" element={<LawyerLogin/>}/>
 					<Route path="/lawyer-signup" element={<LawyerSignup/>}/>
 					<Route path="/login" element={<Login />} />
@@ -95,6 +97,7 @@ const Router = () => {
 						path="/we-remove-google-search"
 						element={<WeRemoveGoogleSearch />}
 					/>
+					
 					<Route
 						path="/we-remove-google-review"
 						element={<WeRemoveGoogleReview />}

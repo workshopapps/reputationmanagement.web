@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GOOGLE from './google.svg';
-import LOGIN from './login.svg';
+// import LOGIN from './login.svg';
 import REPUTE from './repute.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
@@ -11,7 +11,7 @@ import Api from '../../api/axios';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
-import fixit_logo from '../../assets/images/logo.png';
+// import fixit_logo from '../../assets/images/logo.png';
 import Cookies from 'js-cookie';
 
 const Login = () => {
