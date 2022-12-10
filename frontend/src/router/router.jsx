@@ -24,8 +24,8 @@ import Ourteam from '../pages/Carrer/Ourteam';
 
 import Profile from '../pages/profile/Profile';
 import Settings from '../pages/Settings/Settings';
-import Login from '../pages/Login/Login';
-import Signup from '../pages/Sign-up/Signup';
+import Login from '../pages/Login/LoginCopy';
+import Signup from '../pages/Sign-up/SignupCopy';
 import RequireAuth from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
 import Faq from '../pages/FAQ/Faqs';
