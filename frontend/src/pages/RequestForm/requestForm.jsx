@@ -57,8 +57,8 @@ const RequestForm = () => {
 				timeOfReview: date + 'T' + time,
 				reviewString: review,
 				rating: rating,
-				websitename: websitename,
-				businesstype: businesstype,
+				websiteName: websitename,
+				businessType: businesstype,
 				priority: priority,
 				status: 0,
 				complainerName: name,
@@ -230,6 +230,7 @@ const RequestForm = () => {
 									onClick={(e) => {
 										e.preventDefault();
 										handleSubmit(e);
+										console.log(priority);
 									}}
 									type="submit"
 								>
@@ -257,6 +258,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				onClick={() => {
 					setCurrentValue('High');
 					setPriority(3);
+					console.log(currentValue);
 				}}
 			/>
 			<Checkbox
