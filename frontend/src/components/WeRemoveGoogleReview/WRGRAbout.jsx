@@ -1,5 +1,5 @@
 import React from 'react';
-import line from '../../assets/images/wrgr/reviewLine.svg';
+// import line from '../../assets/images/wrgr/reviewLine.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -161,7 +161,7 @@ const HeadinBg = styled.div`
 	// align-items: center;
 	h4 {
 		font-size: 100%;
-		 	}
+	}
 
 	// @media (max-width: 520px) {
 	// 	height: 50px;

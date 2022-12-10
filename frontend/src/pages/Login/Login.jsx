@@ -8,7 +8,7 @@ import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
-
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
 	const [passwordShown, setPasswordShown] = useState(false);
@@ -27,9 +27,9 @@ const Login = () => {
 			: setPageValid(false);
 	}, [email, password]);
 	const {
-		setRequestFailed,
+		// setRequestFailed,
 		setRequestSuccess,
-		setErrMessage,
+		// setErrMessage,
 		setSuccessMessage,
 	} = useAppContext();
 	const [retainAuth, setRetainAuth] = useState(false);
@@ -60,12 +60,15 @@ const Login = () => {
 				setRequestSuccess(true);
 			} catch (err) {
 				if (err?.response?.status === 400) {
-					setErrMessage(err?.response?.data);
+					// setErrMessage(err?.response?.data);
+					toast.error(err?.response?.data);
 				} else {
-					setErrMessage('Login failed');
+					// setErrMessage('Login failed');
+					localStorage.removeItem('auth');
+					toast.error('Login Failed');
 				}
 
-				setRequestFailed(true);
+				// setRequestFailed(true);
 				console.log(err);
 				setRequestPending(false);
 			}
@@ -166,6 +169,7 @@ const Login = () => {
 					</p>
 				</StyledAcc>
 			</LoginContainer>
+			<ToastContainer />
 		</>
 	);
 };
@@ -262,8 +266,6 @@ const StyledAcc = styled.div`
 `;
 
 export default Login;
-
-
 
 const Remember = styled.div`
 	margin-top: 10px;
@@ -383,5 +385,3 @@ const SubmitBtn = styled.button`
 		margin-top: -4px;
 	}
 `;
-
-

@@ -8,13 +8,13 @@ import REPUTE from './repute.svg';
 import arrow from './arrow-left.svg';
 import ErrorMessage from '../../components/error message/errorMessage';
 
-const EMAIL_REGEX =
-	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
+// const EMAIL_REGEX =
+// 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 
 export default function PasswordRecovery() {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
-	const [emailValid, setEmailValid] = useState(false);
+	// const [setEmailValid] = useState(false);
 	const [requestPending, setRequestPending] = useState(false);
 	const [triedToSubmit, setTriedToSubmit] = useState(false);
 
@@ -25,9 +25,9 @@ export default function PasswordRecovery() {
 		window.scrollTo(0, 0);
 	}, []);
 
-	useEffect(() => {
-		EMAIL_REGEX.test(email) ? setEmailValid(true) : setEmailValid(false);
-	}, [email]);
+	// useEffect(() => {
+	// 	EMAIL_REGEX.test(email) ? setEmailValid(true) : setEmailValid(false);
+	// }, [email]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -39,19 +39,13 @@ export default function PasswordRecovery() {
 				emailAddress: email,
 			});
 			if ((await response).status === 200) {
-				toast.success('Reset link sent to email address', {
-					position: 'top-left',
-					autoClose: 2000,
-				});
+				toast.success('Reset link sent to email address');
 				localStorage.setItem('forgot', email);
 				setEmail('');
 				navigate('/password-recovery/change');
 			}
 		} catch (err) {
-			toast.error('Email does not exist', {
-				position: 'top-left',
-				autoClose: 2000,
-			});
+			toast.error('Email does not exist');
 			setRequestPending(false);
 		}
 	};
@@ -217,22 +211,22 @@ const StyledBack = styled.div`
 	}
 `;
 
-const StyledForm = styled.form`
-	display: flex;
-	flex-direction: column;
-	padding: 0 10px;
+// const StyledForm = styled.form`
+// 	display: flex;
+// 	flex-direction: column;
+// 	padding: 0 10px;
 
-	label {
-		@media (max-width: 500px) {
-			width: 80%;
-			margin: 0 auto;
-		}
-	}
+// 	label {
+// 		@media (max-width: 500px) {
+// 			width: 80%;
+// 			margin: 0 auto;
+// 		}
+// 	}
 
-	@media (max-width: 500px) {
-		margin-bottom: 50px;
-	}
-`;
+// 	@media (max-width: 500px) {
+// 		margin-bottom: 50px;
+// 	}
+// `;
 
 const StyledInput = styled.input`
 	border: none;
@@ -249,17 +243,17 @@ const StyledInput = styled.input`
 	// }
 `;
 
-const StyledSubmit = styled.button`
-	background-color: #233ba9;
-	width: 100%;
-	margin-top: 20px;
-	padding: 10px 20px;
-	color: #fff;
-	border-radius: 4px;
-	text-align: center;
+// const StyledSubmit = styled.button`
+// 	background-color: #233ba9;
+// 	width: 100%;
+// 	margin-top: 20px;
+// 	padding: 10px 20px;
+// 	color: #fff;
+// 	border-radius: 4px;
+// 	text-align: center;
 
-	@media (max-width: 500px) {
-		width: 80%;
-		margin: 60px auto 0;
-	}
-`;
+// 	@media (max-width: 500px) {
+// 		width: 80%;
+// 		margin: 60px auto 0;
+// 	}
+// `;

@@ -42,7 +42,6 @@ import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
 import TestimonialTemplate from './template/TestimonialTemplate';
 import { toast, ToastContainer } from 'react-toastify';
 
-
 const LandingPage = () => {
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
@@ -109,8 +108,8 @@ const LandingPage = () => {
 	};
 
 	const {
-		setRequestSuccess,
-		setSuccessMessage,
+		// setRequestSuccess,
+		// setSuccessMessage,
 		setRequestFailed,
 		setErrMessage,
 	} = useAppContext();
@@ -121,7 +120,7 @@ const LandingPage = () => {
 		try {
 			const response = await Api.post('/createquote', formData);
 			toast.success('Your response has been submitted', {
-				position: "top-left",
+				position: 'top-left',
 			});
 			// setSuccessMessage('Your response has been submitted');
 			// setRequestSuccess(true);
@@ -138,7 +137,7 @@ const LandingPage = () => {
 			setLoading(false);
 			setErrMessage('Request failed');
 			setRequestFailed(true);
-			toast.error('Request failed, try again later.')
+			toast.error('Request failed, try again later.');
 			return error;
 		}
 	};
@@ -305,7 +304,7 @@ const LandingPage = () => {
 										</p>
 										<Link to="/glassdoor">
 											<button className="btn">
-											Learn more <img src={arrow} alt="" />
+												Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>
@@ -335,7 +334,7 @@ const LandingPage = () => {
 										</p>
 										<Link to="/we-remove-google-search">
 											<button className="btn">
-											Learn more <img src={arrow} alt="" />
+												Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>

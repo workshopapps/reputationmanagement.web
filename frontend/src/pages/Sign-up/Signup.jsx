@@ -12,12 +12,12 @@ import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
 import { FaRegEyeSlash } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
 
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 
-
-	function Signup() {
+function Signup() {
 	const [businessName, setBusinessName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -34,14 +34,14 @@ const EMAIL_REGEX =
 
 	const [businessNameFocus, setBusinessNameFocus] = useState(false);
 	const [emailFocus, setEmailFocus] = useState(false);
-	const [passwordFocus, setPasswordFocus] = useState(false);
+	const [passwordFocus] = useState(false);
 	const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
 	const [triedToSubmit, setTriedToSubmit] = useState(false);
 	const [confirmTerms, setConfirmTerms] = useState(false);
 	const {
 		setRequestSuccess,
-		setErrMessage,
-		setRequestFailed,
+		// setErrMessage,
+		// setRequestFailed,
 		setSuccessMessage,
 	} = useAppContext();
 
@@ -92,11 +92,13 @@ const EMAIL_REGEX =
 				router('/dashboard');
 			} catch (err) {
 				if (err.response.status === 400) {
-					setErrMessage(err?.response?.data);
+					// setErrMessage(err?.response?.data);
+					toast.error(err?.response?.data);
 				} else {
-					setErrMessage('Sign up Failed');
+					// setErrMessage('Sign up Failed');
+					toast.error('Sign up Failed');
 				}
-				setRequestFailed(true);
+				// setRequestFailed(true);
 				setRequestPending(false);
 				console.log(err);
 			}
@@ -282,7 +284,7 @@ const EMAIL_REGEX =
 					</p>
 				</StyledAcc>
 			</SignupContainer>
-
+			<ToastContainer />
 		</>
 	);
 }
