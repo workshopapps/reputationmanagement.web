@@ -293,10 +293,17 @@ export const TableContainer = styled.table`
 	}
 
 	.priority-3 {
-		background: #d1fadf;
-		color: #027a48;
+		background: #d1fadf !important;
+		color: #027a48 !important;
 	}
-
+	.status-3{
+		background: #d1fadf !important;
+		color: #027a48 !important;
+	}
+	.status-4{
+		background: #fecdca !important;
+		color: #b42318 !important;
+	}
 	.priority-2 {
 		background: #ffe5b2;
 		color: #d6981b;

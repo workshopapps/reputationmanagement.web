@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
 import Sidebar from '../../components/Reusables/Sidebar';
@@ -19,32 +19,27 @@ const RequestDetails = () => {
 	const [rating, setRating] = useState(0); ///set initial state for rating
 	const router = useNavigate();
 	//const [checked, setChecked] = useState(false);
-	const [name, setName] = useState('');
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
-	const [time, setTime] = useState('');
-	const [year, setYear] = useState('');
+	const [ time, setTime ] = useState('')
+	const [ year, setYear ] = useState('')
 	const [priority, setPriority] = useState();
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const [loading, setLoading] = useState(false);
-	const {
-		setErrMessage,
-		setRequestFailed,
-		setRequestSuccess,
-		setSuccessMessage,
-		requestSuccess,
-		requestFailed,
-	} = useAppContext();
+	const [ loading, setLoading ] = useState(false)
+	const [ status, setStatus ] = useState()
+	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, requestSuccess, requestFailed } =
+		useAppContext();
 
-	const [deleteModalActive, setDeleteModalActive] = useState(false);
+	const [ deleteModalActive, setDeleteModalActive ] = useState(false)
 
 	const ApiPrivate = useAxiosPrivate();
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+		window.scrollTo(0, 0)
+	  }, [])
 
 	const clearForm = () => {
 		// setName()
@@ -55,65 +50,67 @@ const RequestDetails = () => {
 		setBusinessType();
 	};
 
-	const location = useLocation();
-	const requestId = new URLSearchParams(location.search).get('requestId');
+    const location = useLocation()
+    const requestId = new URLSearchParams(location.search).get('requestId');
 
-	const fetchComplaintDetails = async () => {
-		try {
-			const response = await ApiPrivate.get(`review/${requestId}`);
-			console.log(response);
-			setEmail(response?.data?.email);
-			setPriority(response?.data?.priority);
-			console.log('response:' + response?.data?.priority);
-			setName(response?.data?.complainerName);
-			setRating(response?.data?.rating);
-			setReview(response?.data?.reviewString);
-			setWebsiteName(response?.data?.websiteName);
-			setDate(response?.data?.timeOfReview);
-			setBusinessType(response?.data?.businessType);
-		} catch (err) {
-			setErrMessage("can't get details of request");
-			setRequestFailed(true);
-			console.log(err);
-		}
-	};
-
-	useEffect(() => {
-		setYear(date.substring(0, 10) || '');
-		setTime(date.substring(11, 16));
-	}, [date]);
-
-	const handleDelete = async () => {
-		try {
-			const response = await ApiPrivate.delete(`/review/${requestId}`);
-			setSuccessMessage('Request deleted successfully');
-			setRequestSuccess(true);
-			router('/dashboard');
-			console.log(response);
-		} catch (err) {
-			console.log(err);
-			setDeleteModalActive(false);
-			setErrMessage('Unable to delete request');
-			setRequestFailed(true);
-		}
-	};
+    const fetchComplaintDetails = async() => {
+        try{
+            const response = await ApiPrivate.get(`review/${requestId}`)
+            console.log(response)
+            setEmail(response?.data?.email)
+            setPriority(response?.data?.priority)
+			console.log('response:' + response?.data?.priority)
+			setName(response?.data?.complainerName)
+            setRating(response?.data?.rating)
+            setReview(response?.data?.reviewString)
+            setWebsiteName(response?.data?.websiteName)
+            setDate(response?.data?.timeOfReview)
+			setStatus(response?.data?.status)
+			setBusinessType(response?.data?.businessType)
+        }
+        catch(err){
+            setErrMessage("can't get details of request")
+            setRequestFailed(true)
+            console.log(err)
+        }
+    }
 
 	useEffect(() => {
-		fetchComplaintDetails();
-	}, []);
+		setYear(date.substring(0,10) || '')
+		setTime(date.substring(11,16))
+	},[ date ])
+
+    const handleDelete = async() => {
+        try{
+            const response = await ApiPrivate.delete(`/review/${requestId}`)
+            setSuccessMessage('Request deleted successfully')
+            setRequestSuccess(true)
+			router('/dashboard')
+            console.log(response)
+        }
+        catch(err){
+            console.log(err)
+			setDeleteModalActive(false)
+            setErrMessage('Unable to delete request')
+            setRequestFailed(true)
+        }
+    }
+
+    useEffect(() => {
+        fetchComplaintDetails();
+    },[])
 
 	const handleSubmit = async (e) => {
-		setLoading(true);
+		setLoading(true)
 		e.preventDefault();
 		try {
-			const response = await ApiPrivate.patch(`/review/${requestId}`, [
+			  const response = await ApiPrivate.patch(`/review/${requestId}`, [
 				{
 					operationType: 2,
 					path: '/email',
 					op: 'replace',
 					value: email,
-				},
-			]);
+				}])
 			//   const timeResponse = await ApiPrivate.patch(`/review/${requestId}`, [
 			// 	{
 			// 		operationType: 2,
@@ -121,99 +118,89 @@ const RequestDetails = () => {
 			// 		op: 'replace',
 			// 		value: year + time,
 			// 	}])
-			const reviewResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+			  const reviewResponse = await ApiPrivate.patch(`/review/${requestId}`, [
 				{
 					operationType: 2,
 					path: '/reviewString',
 					op: 'replace',
 					value: review,
-				},
-			]);
-			const ratingResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				}])
+			  const ratingResponse = await ApiPrivate.patch(`/review/${requestId}`, [
 				{
 					operationType: 2,
 					path: '/rating',
 					op: 'replace',
 					value: rating,
-				},
-			]);
-			const websiteResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				}])
+			  const websiteResponse = await ApiPrivate.patch(`/review/${requestId}`, [
 				{
 					operationType: 2,
 					path: '/websiteName',
 					op: 'replace',
 					value: websitename,
-				},
-			]);
-			const businessResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				}])
+			  const businessResponse = await ApiPrivate.patch(`/review/${requestId}`, [
 				{
 					operationType: 2,
 					path: '/businessType',
 					op: 'replace',
 					value: businesstype,
-				},
-			]);
-			const priorityResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				}])
+			  const priorityResponse = await ApiPrivate.patch(`/review/${requestId}`, [
 				{
 					operationType: 2,
 					path: '/priority',
 					op: 'replace',
 					value: priority,
-				},
-			]);
-			const nameResponse = await ApiPrivate.patch(`/review/${requestId}`, [
+				}])
+				const nameResponse = await ApiPrivate.patch(`/review/${requestId}`, [
 				{
 					operationType: 2,
 					path: '/complainerName',
 					op: 'replace',
 					value: name,
-				},
-			]);
-			setLoading(false);
-			console.log(
-				response,
-				reviewResponse,
-				ratingResponse,
-				websiteResponse,
-				businessResponse,
-				priorityResponse,
-				nameResponse
-			);
-			setSuccessMessage('Request updated successfully');
-			setRequestSuccess(true);
+				}])
+				setLoading(false)
+			console.log(response,reviewResponse,ratingResponse,websiteResponse, businessResponse, priorityResponse, nameResponse)
+			setSuccessMessage('Request updated successfully')
+			setRequestSuccess(true)
 			clearForm();
 			setTimeout(() => {
-				router('/dashboard');
-			}, 2000);
+				router('/dashboard')
+			},2000)
 		} catch (err) {
-			setLoading(false);
-			if (err?.response?.status === 400) {
+			setLoading(false)
+			if (err?.response?.status === 400 ){
 				err.response?.data?.errors.email
-					? setErrMessage(err.response?.data?.errors.email)
-					: err.response?.data?.errors?.reviewString
-					? setErrMessage('The review field is required')
-					: err.response?.data?.errors?.websiteName
-					? setErrMessage('The website name field is required')
-					: err.response?.data?.error?.businessType
-					? setErrMessage('The business type is required')
-					: setErrMessage('Server error');
-				setRequestFailed(true);
-			} else {
-				setErrMessage("Couldn't update request");
-				setRequestFailed(true);
+					?
+					setErrMessage(err.response?.data?.errors.email)
+					:
+					err.response?.data?.errors?.reviewString
+						?
+						setErrMessage('The review field is required')
+						:
+						err.response?.data?.errors?.websiteName
+							?
+							setErrMessage('The website name field is required')
+							:
+							err.response?.data?.error?.businessType
+								?
+								setErrMessage('The business type is required')
+								:
+								setErrMessage('Server error')
+			setRequestFailed(true)
+			}
+			else{
+				setErrMessage("Couldn't update request")
+				setRequestFailed(true)
 			}
 			console.log(err);
 		}
 	};
 	return (
 		<>
-			<RequestFailed />
-			{deleteModalActive && (
-				<DeleteRequestModal
-					setDeleteModalActive={setDeleteModalActive}
-					handleDelete={handleDelete}
-				/>
-			)}
+			<RequestFailed/>
+			{ deleteModalActive && <DeleteRequestModal setDeleteModalActive={setDeleteModalActive} handleDelete={handleDelete}/>}
 			<StyledDashboard>
 				<Sidebar
 					className={`${openMenu ? 'open' : ''}`}
@@ -222,24 +209,19 @@ const RequestDetails = () => {
 				<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
 				<StyledContainer>
 					<StyledContainers className="container">
+
 						<h2 className="container-title">Complaint Details</h2>
 						{/********************START OF FORM*************************************************/}
 						<form className="form">
-							<h4 className="form-heading">Details of the complainer</h4>
+							<h4 className="form-heading">
+                                Details of the complainer
+							</h4>
 
 							{/********************START OF FORM SECTION A*************************************************/}
 							<div className="form-section-a">
-								<div className="text-input">
+								<div className='text-input'>
 									<label htmlFor="_name"> Name</label>
-									<input
-										type="text"
-										name="_name"
-										value={name}
-										onChange={(e) => setName(e.target.value)}
-										placeholder="Enter name of the complainer"
-										id="name"
-										required
-									/>
+									<input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name of the complainer" id="name" required />
 								</div>
 
 								<div className="text-input">
@@ -262,7 +244,7 @@ const RequestDetails = () => {
 											type="date"
 											name="date"
 											id="date"
-											value={year}
+                                            value={year}
 											onChange={(e) => setYear(e.target.value)}
 											readOnly
 										/>
@@ -275,7 +257,7 @@ const RequestDetails = () => {
 											name="time"
 											id="time"
 											required
-											value={time}
+                                            value={time}
 											onChange={(e) => setTime(e.target.value)}
 										/>
 									</div>
@@ -340,26 +322,37 @@ const RequestDetails = () => {
 
 								<div className="priority-level">
 									<h3>Priority level</h3>
-									<CheckboxGroup
-										setPriority={setPriority}
-										priority={priority}
-									/>
+									<CheckboxGroup setPriority={setPriority} priority={priority}/>
 								</div>
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								<button
-									className="delete"
-									onClick={(e) => {
-										e.preventDefault();
-										setDeleteModalActive(true);
-									}}
-								>
-									Delete
-								</button>
-								<button className="submit" onClick={(e) => handleSubmit(e)}>
-									{!loading ? 'Save Changes' : <div className="loading"></div>}
-								</button>
+								{
+									status === 3
+										?
+										<p className='completed'>This request has been completed</p>
+										:
+										status === 4
+											?
+											<p className='failed'>This request had been marked as failed</p>
+											:
+											(
+												<>
+													<button className='delete' onClick={(e) => { e.preventDefault() ;setDeleteModalActive(true)}}>
+														Delete
+													</button>
+													<button className='submit' onClick={(e) => handleSubmit(e)}>
+														{
+															!loading
+																?
+															"Save Changes"
+															:
+															<div className="loading"></div>
+														}
+													</button>
+												</>
+											)
+								}
 							</div>
 						</form>
 					</StyledContainers>
@@ -372,6 +365,7 @@ const RequestDetails = () => {
 export default RequestDetails;
 
 const CheckboxGroup = ({ setPriority, priority }) => {
+
 	return (
 		<>
 			<Checkbox
@@ -555,7 +549,7 @@ const StyledContainers = styled.div`
 			display: flex;
 			justify-content: flex-end;
 
-			.submit {
+			.submit{
 				width: 220px;
 				height: 59px;
 				background: #233ba9;
@@ -569,10 +563,10 @@ const StyledContainers = styled.div`
 				&:hover {
 					background: #0a1d88;
 				}
-				.loading {
+				.loading{
 					width: 20px;
 					height: 20px;
-					border: 2px solid #fff;
+					border: 2px solid #FFF;
 					border-bottom-color: transparent;
 					border-radius: 50%;
 					display: inline-block;
@@ -590,21 +584,21 @@ const StyledContainers = styled.div`
 					}
 				}
 			}
-			.delete {
-				height: 59px;
-				width: 220px;
-				border-radius: 4px;
-				border: 1px solid rgba(240, 55, 56, 1);
-				font-family: Lato;
-				font-size: 18px;
-				font-weight: 600;
-				line-height: 27px;
-				letter-spacing: 0em;
-				text-align: center;
-				color: rgba(240, 55, 56, 1);
-				background-color: transparent;
-				margin-right: 16px;
-			}
+            .delete{
+                height: 59px;
+                width: 220px;
+                border-radius: 4px;
+                border: 1px solid rgba(240, 55, 56, 1);
+                font-family: Lato;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 27px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: rgba(240, 55, 56, 1);
+                background-color: transparent;
+                margin-right: 16px;
+            }
 
 			@media (max-width: 500px) {
 				justify-content: center;

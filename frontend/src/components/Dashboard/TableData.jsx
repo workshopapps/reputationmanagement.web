@@ -27,9 +27,9 @@ const TableData = (props) => {
 				<p>{props.ticketName}</p>
 			</td>
 			<td>
-				<p>
+				<p className={`status-${props.status}`}>
 					{props.status === 4
-						? 'failed'
+						? 'Failed'
 						: props.status === 3
 						? 'Completed'
 						: props.status === 1 || props.status === 2
@@ -74,9 +74,9 @@ export const LawyerTableData = (props) => {
 				<p>{props.ticketName}</p>
 			</td>
 			<td>
-				<p>
+				<p className={`status-${props.status}`}>
 					{props.status === 4
-						? 'failed'
+						? 'Failed'
 						: props.status === 3
 						? 'Completed'
 						: props.status === 1 || props.status === 2

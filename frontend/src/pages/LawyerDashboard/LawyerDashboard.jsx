@@ -26,6 +26,9 @@ import red from './assets/red.svg'
 function LawyerDashboard() {
 	const [tickets, setTickets] = useState([]);
 	const { setRequestFailed, setErrMessage } = useAppContext();
+	const [ successfulRequestNo, setSuccessfulRequestNo ] = useState(0)
+	const [ pendingRequestNo, setPendingRequestNo ] = useState(0)
+	const [ failedRequestNo, setFailedRequestNo ] = useState(0)
 
 	const [searchTicket, setSearchTicket] = useState('');
 
@@ -34,6 +37,15 @@ function LawyerDashboard() {
 	const fetchDetails = useCallback(async () => {
 		try {
 			const response = await ApiPrivate.get('/lawyer/PendingReview');
+			const successfulRequest = await ApiPrivate.get('/lawyer/GetReviewByStatus?status=3')
+			const inProgressResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=2')
+			const pendingResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=1')
+			const failedResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=4')
+			setSuccessfulRequestNo(successfulRequest?.data?.length)
+			console.log(pendingResponse?.data)
+			console.log(inProgressResponse?.data)
+			setPendingRequestNo(pendingResponse?.data?.length + inProgressResponse?.data?.length )
+			setFailedRequestNo(failedResponse?.data?.length)
 			setTickets(response?.data);
 			console.log(response);
 		} catch (err) {
@@ -101,7 +113,7 @@ function LawyerDashboard() {
 								Total requests
 							</h3>
 							<span className="text-[45px] font-semibold">
-								{tickets.length || 0}
+								{successfulRequestNo + failedRequestNo + pendingRequestNo }
 							</span>
 						</div>
 
@@ -111,9 +123,9 @@ function LawyerDashboard() {
 							</h3>
 							<div className="flex justify-between w-full">
 								<div>
-									<span className="text-[45px] font-semibold">0</span>
+									<span className="text-[45px] font-semibold">{successfulRequestNo}</span>
 									<div className="flex text-[#32D583]">
-										+0 <img src={arrowUp} alt="" />
+										+{successfulRequestNo} <img src={arrowUp} alt="" />
 									</div>
 								</div>
 
@@ -127,9 +139,9 @@ function LawyerDashboard() {
 							</h3>
 							<div className="flex justify-between w-full">
 								<div>
-									<span className="text-[45px] font-semibold">0</span>
+									<span className="text-[45px] font-semibold">{failedRequestNo}</span>
 									<div className="flex text-[#FF718B]">
-										-0 <img src={arrowDown} alt="" />
+										-{failedRequestNo} <img src={arrowDown} alt="" />
 									</div>
 								</div>
 
@@ -151,7 +163,7 @@ function LawyerDashboard() {
 								</div>
 							</div>
 							<div className="two">
-								<p>20</p>
+								<p>{successfulRequestNo}</p>
 							</div>
 							
 							</StyledC>
@@ -165,7 +177,7 @@ function LawyerDashboard() {
 								</div>
 							</div>
 							<div className="two">
-								<p>5</p>
+								<p>{pendingRequestNo}</p>
 							</div>
 							
 							</StyledC>
@@ -179,7 +191,7 @@ function LawyerDashboard() {
 								</div>
 							</div>
 							<div className="two">
-								<p>3</p>
+								<p>{failedRequestNo}</p>
 							</div>
 							
 							</StyledC>
