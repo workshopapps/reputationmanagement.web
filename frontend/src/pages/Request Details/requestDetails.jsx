@@ -41,22 +41,8 @@ const RequestDetails = () => {
 		window.scrollTo(0, 0)
 	  }, [])
 
-<<<<<<< HEAD
-	const clearForm = () => {
-		// setName()
-		setEmail();
-		setPriority();
-		setReview();
-		setWebsiteName();
-		setBusinessType();
-	};
-
-    const location = useLocation()
-    const requestId = new URLSearchParams(location.search).get('requestId');
-=======
 	const location = useLocation();
 	const requestId = new URLSearchParams(location.search).get('requestId');
->>>>>>> 871d4bb9a4d17269f67a9333dde7b06131a7b454
 
     const fetchComplaintDetails = async() => {
         try{
@@ -107,7 +93,7 @@ const RequestDetails = () => {
 
 	useEffect(() => {
 		fetchComplaintDetails();
-	}, [fetchComplaintDetails]);
+	}, []);
 
 	return (
 		<>
