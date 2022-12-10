@@ -30,6 +30,7 @@ const StyledPostSnippet = styled.div`
 `;
 
 const StyledPostMain = styled.div`
+margin-top: 50px;
 	display: flex;
 	//justify-content: center;
 	position: relative;
@@ -124,7 +125,7 @@ const Blog = () => {
 			<PageLayout>
 				<div style={{ maxWidth: '1540px', margin: '0 auto' }}>
 					<Hero />
-					<Search />
+					
 					<StyledPostMain>
 						<StyledFilter>
 							<Filter
