@@ -51,7 +51,7 @@ const LawyerLogin = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/lawyer/auth/sign-in', {
+				const response = await Api.post('/lawyer/auth/sign_in', {
 					email: email,
 					password: password,
 				});

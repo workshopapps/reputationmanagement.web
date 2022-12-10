@@ -123,9 +123,14 @@ const StyledNav = styled.nav`
 	align-items: center;
 	justify-content: space-between;
 	padding-top: 20px;
+	padding-bottom: 20px;
 	// padding: 20px 24px;
 	position: relative;
 	z-index: 10;
+
+	// img{
+	// 	width: 50%;
+	// }
 	a {
 		text-decoration: none;
 	}
@@ -167,13 +172,14 @@ const StyledNav = styled.nav`
 		.logo {
 			display: block;
 			margin: auto;
-			width: 100px;
+			width: 38%;
 		}
 		.menuBtn {
 			display: block;
 			position: absolute;
 			left: 18px;
 			cursor: pointer;
+			
 		}
 		.navLinks {
 			display: none;

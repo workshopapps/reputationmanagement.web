@@ -25,16 +25,21 @@ const StyledFooter = styled.div`
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 400px;
-
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	
 	text-align: center;
 
 	h2 {
 		padding-top: 30px;
 		color: #2b2c34;
-		font-size: 45px;
+		font-size: 200%;
 		font-weight: 700;
 		font-style: bold;
-		line-height: 66px;
+		// line-height: 66px;
 	}
 
 	button {
@@ -48,10 +53,21 @@ const StyledFooter = styled.div`
 		font-style: normal;
 		font-weight: 400;
 		text-align: center;
-		margin-top: 50px;
+		margin-top: 30px;
 	}
 
-	@media (max-width: 1020px) {
-		display: none;
-	}
+
+
+	@media (max-width: 727px) {
+			h2{
+				font-size: 150%;
+			}
+
+		}
+	@media (max-width: 500px) {
+			h2{
+				font-size: 130%;
+			}
+
+		}
 `;

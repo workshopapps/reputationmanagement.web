@@ -20,6 +20,7 @@ export const FaqWraper = styled.div.attrs((props) => ({
 	flex-direction: column;
 	border: 1px solid #eaecf0;
 	border-radius: 8px;
+	background: #fff;
 	padding: 20px;
 	cursor: pointer;
 	&:hover {
@@ -28,7 +29,7 @@ export const FaqWraper = styled.div.attrs((props) => ({
 	}
 
 	h2 {
-		font-size: 28px;
+		font-size: 120%;
 		font-weight: 700;
 		margin: 0;
 		padding: 0;
@@ -38,9 +39,9 @@ export const FaqWraper = styled.div.attrs((props) => ({
 	p {
 		padding-top: 10px;
 		font-weight: 400;
-		font-size: 22px;
+		font-size: 103%;
 		line-height: 150%;
-		color: #4b515d;
+		color: #4B515D;
 	}
 
 	@media screen and (max-width: 425px) {

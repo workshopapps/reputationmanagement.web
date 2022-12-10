@@ -1,5 +1,5 @@
 import React from 'react';
-import line from '../../assets/images/wrgr/reviewLine.svg';
+// import line from '../../assets/images/wrgr/reviewLine.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -9,8 +9,8 @@ const WRGRAbout = () => {
 			<div>
 				<div className="container-inner">
 					<div className="container-1">
-						<HeadinBg className="heading-bg">
-							<h6 className="">Intoducing REPUTE</h6>
+						<HeadinBg>
+							<h6>Intoducing REPUTE</h6>
 						</HeadinBg>
 						<h4>
 							Remove your negative google reviews and improve your company’s
@@ -76,6 +76,10 @@ const WRGRAbout = () => {
 	);
 };
 
+// const StyledH4 = styled.h4`
+// 	font-size: 10px;
+// `
+
 export default WRGRAbout;
 
 const Wrapper = styled.div`
@@ -88,36 +92,37 @@ const Wrapper = styled.div`
 	line-height: 54px;
 	letter-spacing: 0em;
 
-	@media (max-width: 1000px) {
-		padding: 8rem 3rem;
-	}
+	// @media (max-width: 1000px) {
+	// 	padding: 8rem 3rem;
+	// }
 
-	@media (max-width: 520px) {
-		padding: 8rem 2rem;
-	}
+	// @media (max-width: 520px) {
+	// 	padding: 8rem 2rem;
+	// }
 
 	div {
 		.container-inner {
 			display: flex;
 
-			@media (max-width: 1000px) {
+			@media (max-width: 892px) {
 				flex-direction: column;
 			}
 
 			.container-1 {
 				width: 50%;
 
-				@media (max-width: 1000px) {
+				@media (max-width: 892px) {
 					width: 100%;
 				}
 
 				h4 {
-					font-size: 36px;
+					font-size: 130%;
 					font-weight: 700;
 					color: #0e1844;
+					// width: 70%;
 
 					@media (max-width: 600px) {
-						font-size: 20px;
+						// font-size: 20px;
 					}
 				}
 			}
@@ -127,7 +132,7 @@ const Wrapper = styled.div`
 				width: 50%;
 				line-height: 40px;
 
-				@media (max-width: 1000px) {
+				@media (max-width: 892px) {
 					width: 100%;
 				}
 
@@ -148,22 +153,23 @@ const Wrapper = styled.div`
 `;
 
 const HeadinBg = styled.div`
-	height: 73px;
-	width: 200px;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-image: url(${line});
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	@media (max-width: 520px) {
-		height: 50px;
-		width: 200px;
-		h4 {
-			font-size: 16px;
-		}
+	// height: 73px;
+	// width: 200px;
+	// background-size: contain;
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+	h4 {
+		font-size: 100%;
 	}
+
+	// @media (max-width: 520px) {
+	// 	height: 50px;
+	// 	width: 200px;
+	// 	h4 {
+	// 		font-size: 16px;
+	// 	}
+	// }
 `;
 
 const HeadinMain = styled.div`
@@ -197,16 +203,16 @@ const BoxChild = styled.div`
 	}
 
 	h1 {
-		font-size: 32px;
+		font-size: 120%;
 		font-weight: 700;
-		margin-bottom: 60px;
+		margin-bottom: 30px;
 		color: #6f7174;
 	}
 
 	h3 {
-		font-size: 45px;
+		font-size: 130%;
 		font-weight: 700;
-		margin-bottom: 40px;
+		margin-bottom: 20px;
 
 		@media (max-width: 520px) {
 			font-size: 25px;

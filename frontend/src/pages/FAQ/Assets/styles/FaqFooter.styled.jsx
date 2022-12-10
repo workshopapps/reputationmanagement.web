@@ -3,7 +3,7 @@ import bg from '../../Assets/bg.png';
 
 export const FaqFooterWraper = styled.section`
 	text-align: center;
-	margin-top: 65px;
+	// margin-top: 65px;
 	background: url(${bg}), #eef1fc;
 	background-repeat: no-repeat;
 	padding: 40px 0;

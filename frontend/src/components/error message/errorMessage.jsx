@@ -14,7 +14,7 @@ export default ErrorMessage;
 const StyledErrorMessage = styled.div`
 	display: flex;
 	justify-content: flex-start;
-	// align-items: center;
+	align-items: center;
 	gap: 5px;
 	margin-top: 10px;
 	p {
