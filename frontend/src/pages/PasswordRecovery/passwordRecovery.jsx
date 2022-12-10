@@ -42,7 +42,7 @@ export default function PasswordRecovery() {
 				toast.success('Reset link sent to email address');
 				localStorage.setItem('forgot', email);
 				setEmail('');
-				navigate('/password-recovery/change');
+				navigate('/check-mail');
 			}
 		} catch (err) {
 			toast.error('Email does not exist');
