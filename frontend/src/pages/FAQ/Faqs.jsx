@@ -3,7 +3,8 @@ import FaqItem from './FaqItem';
 import PageLayout from '../../layout/PageLayout';
 import FaqFooter from './FaqFooter';
 import { FaqMainWraper, FaqSection } from './Assets/styles/Faqs.styled';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
@@ -11,11 +12,14 @@ import Api from '../../api/axios';
 // import ErrorMessage from '../../components/error message/errorMessage';
 
 function Faqs() {
+	const location = useLocation();
 	const [email, setEmail] = useState('');
 	const [company, setCompany] = useState('');
 	const [message, setMessage] = useState('');
 	// const [triedToSubmit, setTriedToSubmit] = useState(false);
 	const [requestPending, setRequestPending] = useState(false);
+	const contactUsRef = useRef(null);
+	const faqRef = useRef(null);
 
 	const [faqs, setFaqs] = useState([
 		{
@@ -117,14 +121,25 @@ function Faqs() {
 			})
 		);
 	};
+
 	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+		const { hash } = location;
+		if (hash?.includes('contact')) {
+			contactUsRef.current.scrollIntoView();
+			return;
+		} else if (hash?.includes('faq')) {
+			faqRef.current.scrollIntoView();
+			return;
+		}
+	}, [location]);
+
 	return (
 		<PageLayout>
 			<FaqMainWraper>
 				<StyledHeader>
-					<h2>Q & A about Repute</h2>
+					<h2 id="faq" ref={faqRef}>
+						Q & A about Repute
+					</h2>
 				</StyledHeader>
 				<StyledBackground>
 					<FaqSection className="faqs">
@@ -140,7 +155,9 @@ function Faqs() {
 						})}
 
 						<StyledContact>
-							<h2>Send us a message</h2>
+							<h2 id="contact" ref={contactUsRef}>
+								Send us a message
+							</h2>
 							<form onSubmit={(e) => handleSubmit(e)}>
 								<StyledlogForm>
 									{/* <label htmlFor="email">Email</label> */}
@@ -238,6 +255,14 @@ const StyledContact = styled.div`
 		font-weight: 700;
 		font-size: 130%;
 		margin-bottom: 20px;
+		&::before {
+			display: block;
+			content: ' ';
+			margin-top: -285px;
+			height: 285px;
+			visibility: hidden;
+			pointer-events: none;
+		}
 	}
 `;
 const StyledlogForm = styled.div`

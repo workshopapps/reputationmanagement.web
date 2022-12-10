@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-//import PropTypes from 'prop-types';
-//import { valid } from 'semver';
 
 const StyledPost = styled.section`
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -58,36 +56,23 @@ const StyledTag = styled.div`
 	@media (max-width: 650px) {
 	}
 `;
-const SnippetGrid = styled.div`
-	width: 100%;
-	display: grid;
-	gap: 1.5rem;
-	grid-template-columns: repeat(3, 1fr);
 
-	@media (max-width: 1200px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
 
-	@media (max-width: 520px) {
-		grid-template-columns: repeat(1, 1fr);
-	}
-`;
-
-function PostSnippet({ item }) {
+function PostSnippet({ filteredData }) {
 	return (
 		<>
-			<SnippetGrid>
-				{item.map((Val) => {
-					return (
-						<StyledPost key={Val.id}>
-							<StyledImg src={Val.img} alt="blogpost image" />
-							<StyledTag>{Val.tag}</StyledTag>
-							<StyledHeader>{Val.title}</StyledHeader>
-							<StyledParagraph>{Val.description}</StyledParagraph>
-						</StyledPost>
-					);
-				})}
-			</SnippetGrid>
+			{filteredData.map((data, index) => {
+				return (
+					<StyledPost key={index}>
+						<a href={data.url}>
+							<StyledImg src={data.pathToImage} alt="blogpost image" />
+							<StyledTag>{data.tag}</StyledTag>
+							<StyledHeader>{data.title}</StyledHeader>
+							<StyledParagraph>{data.description}</StyledParagraph>
+						</a>
+					</StyledPost>
+				);
+			})}
 		</>
 	);
 }

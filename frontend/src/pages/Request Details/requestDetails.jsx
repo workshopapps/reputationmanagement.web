@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
 import Sidebar from '../../components/Reusables/Sidebar';
@@ -29,6 +29,7 @@ const RequestDetails = () => {
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [status, setStatus] = useState();
 	const {
 		setErrMessage,
 		setRequestFailed,
@@ -46,6 +47,15 @@ const RequestDetails = () => {
 		window.scrollTo(0, 0);
 	}, []);
 
+	// const clearForm = () => {
+	// 	// setName()
+	// 	setEmail();
+	// 	setPriority();
+	// 	setReview();
+	// 	setWebsiteName();
+	// 	setBusinessType();
+	// };
+
 	const location = useLocation();
 	const requestId = new URLSearchParams(location.search).get('requestId');
 
@@ -61,6 +71,7 @@ const RequestDetails = () => {
 			setReview(response?.data?.reviewString);
 			setWebsiteName(response?.data?.websiteName);
 			setDate(response?.data?.timeOfReview);
+			setStatus(response?.data?.status);
 			setBusinessType(response?.data?.businessType);
 		} catch (err) {
 			setErrMessage("can't get details of request");
@@ -95,7 +106,7 @@ const RequestDetails = () => {
 
 	useEffect(() => {
 		fetchComplaintDetails();
-	}, [fetchComplaintDetails]);
+	}, []);
 
 	return (
 		<>
@@ -162,7 +173,6 @@ const RequestDetails = () => {
 											type="date"
 											name="date"
 											id="date"
-											required
 											value={year}
 											onClick={(e) => e.target.blur()}
 											readOnly
@@ -175,7 +185,6 @@ const RequestDetails = () => {
 											type="time"
 											name="time"
 											id="time"
-											required
 											value={time}
 											onClick={(e) => e.target.blur()}
 											readOnly
@@ -311,40 +320,40 @@ const RequestDetails = () => {
 
 export default RequestDetails;
 
-const CheckboxGroup = ({ setPriority, priority }) => {
-	return (
-		<>
-			<Checkbox
-				label={3}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(3);
-				}}
-			/>
-			<Checkbox
-				label={2}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(2);
-				}}
-			/>
-			<Checkbox
-				label={1}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(1);
-				}}
-			/>
-			<Checkbox
-				label={0}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(0);
-				}}
-			/>
-		</>
-	);
-};
+// const CheckboxGroup = ({ setPriority, priority }) => {
+// 	return (
+// 		<>
+// 			<Checkbox
+// 				label={3}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(3);
+// 				}}
+// 			/>
+// 			<Checkbox
+// 				label={2}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(2);
+// 				}}
+// 			/>
+// 			<Checkbox
+// 				label={1}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(1);
+// 				}}
+// 			/>
+// 			<Checkbox
+// 				label={0}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(0);
+// 				}}
+// 			/>
+// 		</>
+// 	);
+// };
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
 	font-family: 'Lato', sans-serif;

@@ -255,6 +255,7 @@ const LawyerSignup = () => {
 									? 'invalid '
 									: 'term-form'
 							}
+							style={{ marginTop: '10px'}}
 						>
 							<input
 								type="checkbox"

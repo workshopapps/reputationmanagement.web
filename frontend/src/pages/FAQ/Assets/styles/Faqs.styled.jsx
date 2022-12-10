@@ -19,10 +19,26 @@ export const Header = styled.header`
 		text-transform: uppercase;
 		line-height: 54px;
 		font-weight: 700;
+		&::before {
+			display: block;
+			content: ' ';
+			margin-top: -285px;
+			height: 285px;
+			visibility: hidden;
+			pointer-events: none;
+		}
 	}
 
 	h2 {
 		display: none;
+		&::before {
+			display: block;
+			content: ' ';
+			margin-top: -285px;
+			height: 285px;
+			visibility: hidden;
+			pointer-events: none;
+		}
 	}
 
 	p {
