@@ -13,7 +13,7 @@ import AboutPage from '../pages/AboutUs/AboutPage';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
 import Faqs from '../pages/FAQ/Faqs';
-import LandingPage from '../pages/LandingPage';
+// import LandingPage from '../pages/LandingPage';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';

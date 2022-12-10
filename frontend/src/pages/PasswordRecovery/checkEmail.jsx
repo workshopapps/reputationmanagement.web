@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import REPUTE from '../../assets/images/repute_logo.png';
+// import REPUTE from '../../assets/images/repute_logo.png';
 import mail from './mail.gif';
 
 const CheckEmail = () => {
@@ -11,13 +11,13 @@ const CheckEmail = () => {
 					<img src={REPUTE} alt="Repute Logo" />
 				</ReputeLogo>
 			</Link> */}
-            <StyledBody>
-			<img src={mail} alt="Repute Logo" />
-            <h2>Follow the link sent to your mail box.</h2>
-            <StyledButton>
-                <Link to='/'>Go to Homepage</Link>
-            </StyledButton>
-            </StyledBody>
+			<StyledBody>
+				<img src={mail} alt="Repute Logo" />
+				<h2>Follow the link sent to your mail box.</h2>
+				<StyledButton>
+					<Link to="/">Go to Homepage</Link>
+				</StyledButton>
+			</StyledBody>
 		</LoginContainer>
 	);
 };
@@ -50,41 +50,41 @@ const LoginContainer = styled.div`
 		width: 430px;
 	}
 `;
-const ReputeLogo = styled.div`
-	margin-top: 30px;
-	margin-bottom: 40px;
+// const ReputeLogo = styled.div`
+// 	margin-top: 30px;
+// 	margin-bottom: 40px;
+// 	img {
+// 		display: block;
+// 		margin-left: auto;
+// 		margin-right: auto;
+// 		width: 40%;
+// 	}
+// 	@media (max-width: 320px) {
+// 		margin-bottom: 10px;
+// 	}
+// `;
+const StyledBody = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	img {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 40%;
+		margin-top: -10px;
+		text-align: center;
+		// width: 60%;
 	}
-	@media (max-width: 320px) {
-		margin-bottom: 10px;
+	h2 {
+		margin-top: -10px;
 	}
 `;
-const StyledBody = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-img{
-    margin-top: -10px;
-    text-align: center;
-    // width: 60%;
-}
-h2{
-    margin-top: -10px;
-}
-`
 const StyledButton = styled.button`
-    text-align: center;
-    padding: 12px 12px;
-    border: none;
-    border-radius: 4px;
-    // background: #233BA9;
-    // color: #fff;
-    color: #233BA9;
-`
+	text-align: center;
+	padding: 12px 12px;
+	border: none;
+	border-radius: 4px;
+	// background: #233BA9;
+	// color: #fff;
+	color: #233ba9;
+`;
 
 export default CheckEmail;
