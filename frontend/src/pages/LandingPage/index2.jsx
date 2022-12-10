@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../layout/PageLayout';
 import styled from 'styled-components';
@@ -13,7 +13,6 @@ import {
 import useAppContext from '../../hooks/useAppContext';
 import Api from '../../api/axios';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
-import React from 'react';
 import {
 	// google_review,
 	// google_search,
@@ -41,6 +40,7 @@ import Avater3 from '../../assets/images/WeRemoveGoogleSearch/Avatar3.svg';
 import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
 import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
 import TestimonialTemplate from './template/TestimonialTemplate';
+import { toast, ToastContainer } from 'react-toastify';
 
 const LandingPage = () => {
 	const [loading, setLoading] = useState(false);
@@ -108,19 +108,22 @@ const LandingPage = () => {
 	};
 
 	const {
-		setRequestSuccess,
-		setSuccessMessage,
+		// setRequestSuccess,
+		// setSuccessMessage,
 		setRequestFailed,
 		setErrMessage,
 	} = useAppContext();
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 		setLoading(true);
 		try {
 			const response = await Api.post('/createquote', formData);
-			setLoading(false);
-			setSuccessMessage('Your response has been submitted');
-			setRequestSuccess(true);
+			toast.success('Your response has been submitted', {
+				position: 'top-left',
+			});
+			// setSuccessMessage('Your response has been submitted');
+			// setRequestSuccess(true);
 			setFormData({
 				email: '',
 				phone: '',
@@ -128,11 +131,13 @@ const LandingPage = () => {
 				reviewLocation: '',
 				fullName: '',
 			});
+			setLoading(false);
 			console.log(response);
 		} catch (error) {
 			setLoading(false);
 			setErrMessage('Request failed');
 			setRequestFailed(true);
+			toast.error('Request failed, try again later.');
 			return error;
 		}
 	};
@@ -151,7 +156,6 @@ const LandingPage = () => {
 									<h1>
 										Get rid of negative comments <span>today</span>
 									</h1>
-
 									<h5>
 										We offer services that improve your brand&apos;s image; they
 										include reviewing and sorting negative comments about your
@@ -208,15 +212,14 @@ const LandingPage = () => {
 
 										<div className="form-footer-info">
 											<p>
-												Your details are safe & confidential <br />
-												View our{' '}
-												<a href="/privacy" className="form-footer-link">
+												Your details are safe & confidential, view our{' '}
+												<Link to="/privacy" className="form-footer-link">
 													Privacy Policy.
-												</a>
+												</Link>
 											</p>
 										</div>
 
-										<StyledButton className="hero-form-button" type="submit">
+										<StyledButton extend className="hero-form-button" type="submit">
 											{!loading ? 'Submit' : <div className="loading"></div>}
 										</StyledButton>
 									</form>
@@ -276,9 +279,9 @@ const LandingPage = () => {
 											Create an account with us today, in order to lodge your
 											request. We are here to maintain your brand's reputation
 										</p>
-										<Link to="/contact">
+										<Link to="/we-remove-google-review">
 											<button className="btn">
-												Get quote <img src={arrow} alt="" />
+												Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>
@@ -297,9 +300,9 @@ const LandingPage = () => {
 											You have a reviewer who left a bad review on your platform
 											and you want it removed.
 										</p>
-										<Link to="/contact">
+										<Link to="/glassdoor">
 											<button className="btn">
-												Get quote <img src={arrow} alt="" />
+												Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>
@@ -327,9 +330,9 @@ const LandingPage = () => {
 											help maintain your brand’s reputation. you will be notify
 											when the bad review is taken down form your dashboard.
 										</p>
-										<Link to="/contact">
+										<Link to="/we-remove-google-search">
 											<button className="btn">
-												Get quote <img src={arrow} alt="" />
+												Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>
@@ -402,6 +405,7 @@ const LandingPage = () => {
 						</div>
 					</section>
 				</StyledLandingPage>
+				<ToastContainer />
 			</PageLayout>
 		</>
 	);

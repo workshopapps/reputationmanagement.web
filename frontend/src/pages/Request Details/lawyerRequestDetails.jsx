@@ -110,7 +110,7 @@ const LawyerRequestDetails = () => {
 			setRequestSuccess(true);
 			clearForm();
 			setTimeout(() => {
-				router('/lawyer-dashboard');
+				router('/requests');
 			}, 2000);
 		} catch (err) {
 			if (err?.response?.status === 400) {

@@ -57,8 +57,8 @@ const RequestForm = () => {
 				timeOfReview: date + 'T' + time,
 				reviewString: review,
 				rating: rating,
-				websitename: websitename,
-				businesstype: businesstype,
+				websiteName: websitename,
+				businessType: businesstype,
 				priority: priority,
 				status: 0,
 				complainerName: name,
@@ -230,6 +230,7 @@ const RequestForm = () => {
 									onClick={(e) => {
 										e.preventDefault();
 										handleSubmit(e);
+										console.log(priority);
 									}}
 									type="submit"
 								>
@@ -257,6 +258,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				onClick={() => {
 					setCurrentValue('High');
 					setPriority(3);
+					console.log(currentValue);
 				}}
 			/>
 			<Checkbox
@@ -343,11 +345,12 @@ const StyledContainers = styled.div`
 				margin-top: 16px;
 				width: 100%;
 				display: flex;
-				justify-content: space-between;
+				/* justify-content: space-between; */
 
 				.date-picker,
 				.time-picker {
-					width: 48%;
+					width: 160px;
+					margin-right: 32px;
 
 					input {
 						height: 40px;
@@ -357,6 +360,12 @@ const StyledContainers = styled.div`
 						border-radius: 8px;
 						outline: none;
 					}
+					@media (max-width: 365px) {
+						margin-bottom: 10px;
+					}
+				}
+				@media (max-width: 365px) {
+					flex-direction: column;
 				}
 			}
 

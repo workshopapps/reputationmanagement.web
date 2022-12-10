@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Checkbox = ({ label, checked, currentValue, ...props }) => {
+const Checkbox = ({ label, checked, currentValue, readOnly, ...props }) => {
 	const defaultChecked = checked ? checked : false;
 	const [isChecked, setIsChecked] = useState(defaultChecked);
 	return (
@@ -10,10 +10,11 @@ const Checkbox = ({ label, checked, currentValue, ...props }) => {
 				<StyledLabel>
 					<input
 						type="checkbox"
-						checked={label === currentValue}
+						checked={checked || label === currentValue}
 						onChange={() => setIsChecked((prev) => !prev)}
 						{...props}
 						className={isChecked ? 'checked' : ''}
+						readOnly={readOnly ? readOnly : false}
 					/>
 					<span>{label}</span>
 					<span className="checkmark"></span>

@@ -2,14 +2,13 @@ import React from 'react';
 import Styled from 'styled-components';
 import { StyledButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
-import { Link } from 'react-router-dom';
-import loveclip from '../../assets/images/wrgr/loveclip.png';
-import m from '../../assets/images/wrgr/m.png';
-import circular from '../../assets/images/wrgr/circular.png';
-import ob from '../../assets/images/wrgr/ob.png';
-import tyme from '../../assets/images/wrgr/tyme.png';
-import sushi from '../../assets/images/wrgr/sushi.png';
-import g_oogle from '../../assets/images/wrgr/review-G.svg';
+import { Link } from "react-router-dom"
+import loveclip from '../../assets/images/wrgr/loveclip.png'
+import m from '../../assets/images/wrgr/m.png'
+import circular from '../../assets/images/wrgr/circular.png'
+import ob from '../../assets/images/wrgr/ob.png'
+import tyme from '../../assets/images/wrgr/tyme.png'
+import sushi from '../../assets/images/wrgr/sushi.png'
 
 const WRGRHero = () => {
 	return (
@@ -59,9 +58,6 @@ const WRGRHero = () => {
 export default WRGRHero;
 
 const Wrapper = Styled.div`
-background-image:url(${g_oogle});
-background-repeat:no-repeat;
-background-position: left top;
 padding: 2rem; 
 
  
@@ -99,11 +95,12 @@ box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
 `;
 
 const TextH2 = Styled.h2`
-font-weight: 600;
-font-size: 24px;
+// font-weight: 500;
+font-size: 120%;
 line-height: 150%;
-margin-top:60px;
-padding-left:30px;
+margin-top:30px;
+padding: 0 20px;
+// padding-left:30px;
   text-align:center;
 
   @media (max-width:800px) {
@@ -117,25 +114,38 @@ padding-left:30px;
 
 const TextH1 = Styled.h2`
 font-weight: 700;
-font-size: 57px;
+font-size: 250%;
 line-height: 150%;
-margin-top:20px;
-  text-align:center;
-  padding-left:30px;
+// margin-top:20px;
+text-align:center;
+// padding-left:10px;
 
-  @media (max-width:1000px) {
-    font-size: 37px;
-            }
+@media screen and (max-width: 428px) {
+  font-size: 150%;
+}
 
-  @media (max-width:800px) {
-    font-size: 27px;
-            }
+  // @media (max-width:1000px) {
+  //   font-size: 37px;
+  //           }
 
-  @media (max-width:520px) {
-    font-size: 20px;
-            }
+  // @media (max-width:800px) {
+  //   font-size: 27px;
+  //           }
+
+  // @media (max-width:520px) {
+  //   font-size: 20px;
+  //           }
 `;
 
 const Buttons = Styled.div`
-margin-top:100px;
+// margin-top:80px;
+display: flex;
+justify-content: center;
+@media screen and (max-width: 480px) {
+  flex-direction: column;
+  // text-align: center;
+  align-items: center;
+}
+
+
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import Rating from '../../components/WeRemoveGoogleReview/WRDRRating';
+// import Rating from '../../components/WeRemoveGoogleReview/WRDRRating';
 
 import WRGRAbout from '../../components/WeRemoveGoogleReview/WRGRAbout';
 import WRGRFooter from '../../components/WeRemoveGoogleReview/WRGRFooter';
@@ -19,7 +19,7 @@ const WeRemoveGoogleReview = () => {
 					<WRGRHero />
 					<WRGRAbout />
 					<WRGRReview />
-					<Rating />
+					{/* <Rating /> */}
 					<WRGRFooter />
 				</main>
 			</PageLayout>

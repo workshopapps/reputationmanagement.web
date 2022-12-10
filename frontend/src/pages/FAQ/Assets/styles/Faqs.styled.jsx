@@ -19,10 +19,26 @@ export const Header = styled.header`
 		text-transform: uppercase;
 		line-height: 54px;
 		font-weight: 700;
+		&::before {
+			display: block;
+			content: ' ';
+			margin-top: -285px;
+			height: 285px;
+			visibility: hidden;
+			pointer-events: none;
+		}
 	}
 
 	h2 {
 		display: none;
+		&::before {
+			display: block;
+			content: ' ';
+			margin-top: -285px;
+			height: 285px;
+			visibility: hidden;
+			pointer-events: none;
+		}
 	}
 
 	p {
@@ -60,10 +76,13 @@ export const FaqSection = styled.section`
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
-	width: 80%;
+	width: 60%;
 	margin: 0 auto;
 
-	@media screen and (max-width: 425px) {
-		width: 90%;
+	@media screen and (max-width: 884px) {
+		width: 80%;
+	}
+	@media screen and (max-width: 428px) {
+		width: 83%;
 	}
 `;

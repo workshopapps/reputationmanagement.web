@@ -57,7 +57,7 @@ function FooterLinks() {
 					<img src={insta} alt="icon" className="" />
 				</div>
 
-				<div className="mt-8 w-full max-w-[520px] ">
+				{/* <div className="mt-8 w-full max-w-[520px] ">
 					<label className="block text-white pb-3">
 						Subscribe to our newsletter
 					</label>
@@ -75,23 +75,23 @@ function FooterLinks() {
 							Subscribe
 						</button>
 					</StyledSubscribe>
-				</div>
+				</div> */}
 			</div>
 		</Div>
 	);
 }
 
-const StyledSubscribe = styled.div`
-	@media (max-width: 500px) {
-		flex-direction: column;
-		align-items: center;
-		gap: 10px;
-		input,
-		button {
-			border-radius: 0.25rem;
-		}
-	}
-`;
+// const StyledSubscribe = styled.div`
+// 	@media (max-width: 500px) {
+// 		flex-direction: column;
+// 		align-items: center;
+// 		gap: 10px;
+// 		input,
+// 		button {
+// 			border-radius: 0.25rem;
+// 		}
+// 	}
+// `;
 
 const fHeadingClasses = 'my-1 mt-4 md:mt-0 text-2xl font-[600] text-[#F7F7F7]';
 
