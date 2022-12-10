@@ -70,7 +70,7 @@ const Footer = () => {
 				{/************************REgister****************************************/}
 
 				<StyledForm onSubmit={handleSubmit}>
-					<div>
+					<div >
 						<input
 							type="text"
 							placeholder="Fullname*"
@@ -202,16 +202,29 @@ const StyledButton = styled.button`
 	}
 `;
 
+const Div1 = styled.div`
+ margin-right: 10px;
+`;
+
 const StyledForm = styled.form`
-	display flex;
+	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	@media (max-width: 768px) {
 		flex-direction: column;
 		width: 100%;
 	}
-	div input{
-		border: 1px solid #fff;
+	div {
+		display: flex;
+		flex-direction: row;
+		column-gap: 5px;
+
+		@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
+	 input{
+		border: 1px solid #a09f9f;
 		// border: none;
 		border-radius: 8px;
 		background: #fff;
@@ -222,7 +235,7 @@ const StyledForm = styled.form`
 		padding: 15px 12px;
 		margin-bottom: 10px;
 		.left{
-			margin-right: 5px;
+			margin-right: 15px;
 		}
 		.right{
 			margin-left: 50%;
@@ -238,11 +251,15 @@ const StyledForm = styled.form`
 		@media (max-width: 840px) {
 			width: 100%;
 		}
+
+		
 	}
+}
 
 	div .review-input {
+		
 		width: 100%;
-		border: 1px solid #fff;
+		border: 1px solid #a09f9f;
 		// border: none;
 		border-radius: 8px;
 		// height: 43px;
@@ -288,7 +305,7 @@ const Headin1 = styled.section`
 	font-weight: 700;
 
 	@media (max-width: 1000px) {
-		font-size: 35px;
+		font-size: 30px;
 		margin-right: 15px;
 	}
 	@media (max-width: 520px) {
