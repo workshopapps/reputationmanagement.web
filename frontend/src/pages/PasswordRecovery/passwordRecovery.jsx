@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import REPUTE from './repute.svg';
 import arrow from './arrow-left.svg';
+import ErrorMessage from '../../components/error message/errorMessage';
+
+const EMAIL_REGEX =
+	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 
 export default function PasswordRecovery() {
 	const navigate = useNavigate();
-	const [email, setEmail] = React.useState('');
+	const [email, setEmail] = useState('');
+	const [emailValid, setEmailValid] = useState(false);
+	const [requestPending, setRequestPending] = useState(false);
+	const [triedToSubmit, setTriedToSubmit] = useState(false);
 
 	const handleChange = (e) => {
 		setEmail(e.target.value);
@@ -17,10 +24,17 @@ export default function PasswordRecovery() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+
+	useEffect(() => {
+		EMAIL_REGEX.test(email) ? setEmailValid(true) : setEmailValid(false);
+	}, [email]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setTriedToSubmit(true);
 
 		try {
+			setRequestPending(true);
 			const response = Api.post('/auth/forgotpassword', {
 				emailAddress: email,
 			});
@@ -29,7 +43,7 @@ export default function PasswordRecovery() {
 					position: 'top-left',
 					autoClose: 2000,
 				});
-				localStorage.setItem('auth', email);
+				localStorage.setItem('forgot', email);
 				setEmail('');
 				navigate('/password-recovery/change');
 			}
@@ -38,6 +52,7 @@ export default function PasswordRecovery() {
 				position: 'top-left',
 				autoClose: 2000,
 			});
+			setRequestPending(false);
 		}
 	};
 	return (
@@ -53,8 +68,33 @@ export default function PasswordRecovery() {
 					Please enter the email address you used when you joined and we’ll send
 					you instructions to reset your password.
 				</p>
-				<StyledForm>
-					{/* <label htmlFor="email">Email</label> */}
+				{/* ppppppppppppppppppppppppppppppppppppppppppppppp  */}
+				<form>
+					<StyledlogForm>
+						{/* <label htmlFor="email">Email</label> */}
+						<StyledBox>
+							<StyledInput
+								type="email"
+								name="email"
+								value={email}
+								onChange={handleChange}
+								placeholder="Email address"
+								id="email"
+								required
+							/>
+						</StyledBox>
+					</StyledlogForm>
+					{email === '' && triedToSubmit && (
+						<ErrorMessage error="Email Required" />
+					)}
+
+					<SubmitBtn onClick={(e) => handleSubmit(e)}>
+						{!requestPending ? 'Submit' : <div className="loading"></div>}
+					</SubmitBtn>
+				</form>
+
+				{/* pppppppppppppppppppppppppppppppppppppp */}
+				{/* <StyledForm>
 					<StyledInput
 						type="email"
 						placeholder="Email address"
@@ -66,7 +106,8 @@ export default function PasswordRecovery() {
 					<StyledSubmit type="submit" onClick={handleSubmit}>
 						Reset Password
 					</StyledSubmit>
-				</StyledForm>
+				</StyledForm> */}
+
 				<StyledBack>
 					<Link className="" to="/login">
 						<img src={arrow} alt="back" />
@@ -75,61 +116,53 @@ export default function PasswordRecovery() {
 				</StyledBack>
 			</LoginContainer>
 			<ToastContainer />
-
-			{/* Old Code */}
-			<>
-				{/* <StyledParent> */}
-				{/* <StyledSection onSubmit={handleSubmit}> */}
-				{/* <StyledLogo src={repute_logo} alt="repute logo" />
-					<div>
-						<Link to="/login">
-							<StyledIcon src={arrow_left} alt="arrow_left_icon" />
-						</Link>
-						<StyledHeader>Forgot Password?</StyledHeader>
-					</div> */}
-
-				{/* <StyledAuth src={authentication_icon} alt="authentication icon" /> */}
-				{/* <StyledParagraph>
-						Please enter the email address you used when you joined and we’ll
-						send you instructions to reset your password.
-					</StyledParagraph> */}
-
-				{/* <StyledForm> */}
-				{/* <label htmlFor="email">Email</label>
-						<StyledInput
-							type="email"
-							placeholder="Email address"
-							required
-							onChange={handleChange}
-							value={email}
-						/> */}
-
-				{/* <StyledSubmit type="submit">Reset Password</StyledSubmit> */}
-				{/* </StyledForm> */}
-				{/* </StyledSection> */}
-
-				{/* <StyledDiv>
-					<StyledImg
-						src={bg_img}
-						className="background"
-						alt="woman on the phone calling"
-					/>
-					<StyledImgText>
-						Welcome back,{' '}
-						<span>
-							<Link to="/blog">click here</Link>
-						</span>{' '}
-						to check out our new updates
-					</StyledImgText>
-				</StyledDiv> */}
-
-				{/* </StyledParent> */}
-			</>
 		</>
 	);
 }
 
 // Styling
+
+const StyledBox = styled.div`
+	border: 2px solid #d2d3d4;
+	border-radius: 4px;
+`;
+const SubmitBtn = styled.button`
+	margin-bottom: 30px;
+	margin-top: 20px;
+	width: 100%;
+	border-radius: 4px;
+	background-color: #233ba9;
+	color: white;
+	padding: 10px;
+
+	.loading {
+		width: 20px;
+		height: 20px;
+		border: 2px solid #fff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+		@keyframes rotation {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	}
+	@media (max-width: 360px) {
+		margin-top: -4px;
+	}
+`;
+const StyledlogForm = styled.div`
+	display: flex;
+	flex-direction: column;
+	min-width: 100%;
+	margin-bottom: 20px;
+`;
 
 const LoginContainer = styled.div`
 	display: flex;
@@ -184,133 +217,6 @@ const StyledBack = styled.div`
 	}
 `;
 
-// const StyledParent = styled.div`
-// 	display: flex;
-// `;
-// const StyledSection = styled.section`
-// 	max-width: 600px;
-// 	margin: 50px auto;
-
-// 	div {
-// 		display: flex;
-// 		flex-direction: column;
-// 		gap: 30px;
-// 		align-items: center;
-
-// 		@media (max-width: 500px) {
-// 			flex-direction: row;
-// 			margin-bottom: 40px;
-// 		}
-// 	}
-
-// 	@media (max-width: 500px) {
-// 		margin: 5px auto;
-// 	}
-// `;
-// const StyledLogo = styled.img`
-// 	margin: 0 auto;
-// 	margin-bottom: 60px;
-
-// 	@media (max-width: 500px) {
-// 		display: none;
-// 	}
-// `;
-// const StyledAuth = styled.img`
-// 	display: none;
-
-// 	@media (max-width: 500px) {
-// 		display: block;
-// 		width: 150px;
-// 		height: 150px;
-// 		margin: 0 auto 20px;
-// 	}
-// `;
-
-// const StyledIcon = styled.img`
-// 	display: none;
-
-// 	&:hover {
-// 		border: 1px solid #f16f04;
-// 		cursor: pointer;
-// 	}
-
-// 	@media (max-width: 500px) {
-// 		display: inline-block;
-// 		border-radius: 50%;
-// 		border: 1px solid #bcbdbe;
-// 		width: 40px;
-// 		height: 40px;
-// 		margin-left: 30px;
-// 	}
-// `;
-
-// const StyledDiv = styled.div`
-// 	width: 50%;
-// 	height: 100vh;
-// 	position: relative;
-
-// 	@media (max-width: 900px) {
-// 		display: none;
-// 	}
-// `;
-
-// const StyledImg = styled.img`
-// 	width: 100%;
-// 	height: 100%;
-// `;
-
-// const StyledImgText = styled.p`
-// 	position: absolute;
-// 	bottom: 9%;
-// 	background: linear-gradient(
-// 		180deg,
-// 		rgba(245, 245, 245, 0.1764) -22.33%,
-// 		rgba(245, 245, 245, 0.1904) 77.67%
-// 	);
-// 	mix-blend-mode: normal;
-// 	border: 0.85625px solid rgba(255, 255, 255, 0.3);
-// 	box-shadow: 0px 3.425px 20.55px rgba(0, 0, 0, 0.25);
-// 	backdrop-filter: blur(12.8438px);
-// 	border-radius: 34.25px;
-// 	padding: 50px;
-// 	width: 60%;
-// 	left: 50%;
-// 	transform: translate(-50%, 0);
-// 	color: #fff;
-
-// 	span {
-// 		color: #f16f04;
-
-// 		&:hover {
-// 			cursor: pointer;
-// 		}
-// 	}
-// `;
-// const StyledHeader = styled.h1`
-// 	text-align: center;
-// 	color: #2b2c34;
-// 	font-size: 40px;
-// 	font-weight: 700;
-// 	padding: 5px;
-
-// 	@media (max-width: 500px) {
-// 		margin-top: 5px;
-// 		font-size: 24px;
-// 	}
-// `;
-
-// const StyledParagraph = styled.p`
-// 	font-weight: 400;
-// 	text-align: center;
-// 	font-size: 16px;
-// 	margin-bottom: 40px;
-
-// 	@media (max-width: 500px) {
-// 		width: 80%;
-// 		margin: 0 auto 40px;
-// 	}
-// `;
-
 const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
@@ -329,20 +235,18 @@ const StyledForm = styled.form`
 `;
 
 const StyledInput = styled.input`
-	background: #ffffff;
-	border: 1px solid #e8e8e8;
-	border-radius: 4px;
-	padding: 4px 20px;
-	margin-top: 15px;
+	border: none;
+	padding: 10px 10px;
+	width: 100%;
 
 	&:focus {
-		outline: 1px solid #233ba9;
+		outline: none;
 	}
 
-	@media (max-width: 500px) {
-		width: 80%;
-		margin: 15px auto 0;
-	}
+	// @media (max-width: 500px) {
+	// 	width: 80%;
+	// 	margin: 15px auto 0;
+	// }
 `;
 
 const StyledSubmit = styled.button`

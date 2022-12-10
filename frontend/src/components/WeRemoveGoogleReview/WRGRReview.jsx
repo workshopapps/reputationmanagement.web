@@ -130,9 +130,6 @@ const Box = styled.div`
 const HeadingBg = styled.div`
 	height: 73px;
 	width: 280px;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-image: url(${line});
 	display: flex;
 	justify-content: center;
 	align-items: end;
@@ -155,7 +152,7 @@ const HeadingMain = styled.div`
 	flex-direction: column;
 
 	h1 {
-		font-size: 45px;
+		font-size: 230%;
 		font-weight: 700;
 		color: #0e1844;
 
@@ -187,6 +184,7 @@ const ResponsiveCard = styled.div`
 `;
 
 const TextPosition = styled.div`
+	width: 80%;
 	padding: 10px;
 	position: absolute;
 	bottom: 0;

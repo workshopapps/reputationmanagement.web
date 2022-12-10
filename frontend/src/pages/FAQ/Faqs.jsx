@@ -2,10 +2,20 @@ import React, { useState } from 'react';
 import FaqItem from './FaqItem';
 import PageLayout from '../../layout/PageLayout';
 import FaqFooter from './FaqFooter';
-import { FaqMainWraper, FaqSection, Header } from './Assets/styles/Faqs.styled';
+import { FaqMainWraper, FaqSection } from './Assets/styles/Faqs.styled';
 import { useEffect } from 'react';
+import styled from 'styled-components';
+import { toast, ToastContainer } from 'react-toastify';
+
+// import ErrorMessage from '../../components/error message/errorMessage';
 
 function Faqs() {
+	const [email, setEmail] = useState('');
+	const [company, setCompany] = useState('');
+	const [message, setMessage] = useState('');
+	// const [triedToSubmit, setTriedToSubmit] = useState(false);
+	const [requestPending, setRequestPending] = useState(false);
+
 	const [faqs, setFaqs] = useState([
 		{
 			id: 1,
@@ -48,6 +58,32 @@ function Faqs() {
 		},
 	]);
 
+	const handleCompany = (e) => {
+		setCompany(e.target.value);
+	};
+	const handleChange = (e) => {
+		setEmail(e.target.value);
+	};
+	const handleMessage = (e) => {
+		setMessage(e.target.value);
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setRequestPending(true);
+
+		if (company && email && message !== '') {
+			toast.success('Message sent sucessfully');
+			setCompany('');
+			setEmail('');
+			setMessage('');
+			setRequestPending(false);
+		} else {
+			toast.error('Fields required');
+			setRequestPending(false);
+		}
+	};
+
 	const toggleFaq = (index) => {
 		setFaqs(
 			faqs.map((faq, i) => {
@@ -62,33 +98,190 @@ function Faqs() {
 		);
 	};
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<FaqMainWraper>
-				<Header>
-					<h1>Frequently Asked Questions</h1>
-					<h2>FAQ</h2>
-					<p>
-						We know you might have questions, which is why we have put together
-						a list of frequently asked questions to provide clarity and quick
-						answers to your concerns.
-					</p>
-				</Header>
+				<StyledHeader>
+					<h2>Q & A about Repute</h2>
+				</StyledHeader>
+				<StyledBackground>
+					<FaqSection className="faqs">
+						{faqs.map((faq, i) => {
+							return (
+								<FaqItem
+									faq={faq}
+									index={i}
+									toggleFaq={toggleFaq}
+									key={faq.id}
+								/>
+							);
+						})}
 
-				<FaqSection className="faqs">
-					{faqs.map((faq, i) => {
-						return (
-							<FaqItem faq={faq} index={i} toggleFaq={toggleFaq} key={faq.id} />
-						);
-					})}
-				</FaqSection>
+						<StyledContact>
+							<h2>Send us a message</h2>
+							<form onSubmit={(e) => handleSubmit(e)}>
+								<StyledlogForm>
+									{/* <label htmlFor="email">Email</label> */}
+									<StyledBox>
+										<StyledInput
+											type="text"
+											name="company"
+											value={company}
+											onChange={handleCompany}
+											placeholder="Company/Organization"
+											id="company"
+											required
+										/>
+									</StyledBox>
+								</StyledlogForm>
+								{/* {company === '' && triedToSubmit && (
+									<ErrorMessage error="Company Name Required" />
+								)} */}
+								<StyledlogForm>
+									{/* <label htmlFor="email">Email</label> */}
+									<StyledBox>
+										<StyledInput
+											type="email"
+											name="email"
+											value={email}
+											onChange={handleChange}
+											placeholder="Email address"
+											id="email"
+											required
+										/>
+									</StyledBox>
+								</StyledlogForm>
+								{/* {email === '' && triedToSubmit && (
+									<ErrorMessage error="Email Required" />
+								)} */}
+								<StyledlogForm>
+									{/* <label htmlFor="email">Email</label> */}
+									<StyledBox>
+										<textarea
+											name=""
+											id=""
+											value={message}
+											onChange={handleMessage}
+											cols="30"
+											rows="5"
+											placeholder="Type your enquiry"
+											required
+										></textarea>
+									</StyledBox>
+								</StyledlogForm>
+								{/* {message === '' && triedToSubmit && (
+									<ErrorMessage error="Message Required" />
+								)} */}
 
+								<SubmitBtn type="submit">
+									{!requestPending ? (
+										'Send message'
+									) : (
+										<div className="loading"></div>
+									)}
+								</SubmitBtn>
+							</form>
+						</StyledContact>
+					</FaqSection>
+				</StyledBackground>
 				<FaqFooter />
 			</FaqMainWraper>
+			<ToastContainer />
 		</PageLayout>
 	);
 }
 
+const StyledBackground = styled.div`
+	background: #eef1fc;
+	padding: 80px 0;
+`;
+const StyledHeader = styled.div`
+	margin-top: 70px;
+	margin-bottom: 50px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 200%;
+	color: #233ba9;
+	@media screen and (max-width: 428px) {
+		margin-top: 50px;
+	}
+`;
+const StyledContact = styled.div`
+	background: #fff;
+	border: 1px solid #eaecf0;
+	border-radius: 8px;
+	padding: 20px;
+	h2 {
+		text-align: center;
+		font-weight: 700;
+		font-size: 130%;
+		margin-bottom: 20px;
+	}
+`;
+const StyledlogForm = styled.div`
+	display: flex;
+	flex-direction: column;
+	min-width: 100%;
+	margin-bottom: 30px;
+`;
+const StyledBox = styled.div`
+	border: 2px solid #eaecf0;
+	border-radius: 8px;
+	textarea {
+		border: none;
+		padding: 10px 10px;
+		width: 100%;
+
+		&:focus {
+			outline: none;
+		}
+	}
+`;
+const StyledInput = styled.input`
+	border: none;
+	padding: 10px 10px;
+	width: 100%;
+
+	&:focus {
+		outline: none;
+	}
+
+	// @media (max-width: 500px) {
+	// 	width: 80%;
+	// 	margin: 15px auto 0;
+	// }
+`;
+const SubmitBtn = styled.button`
+	margin-bottom: 10px;
+	margin-top: 20px;
+	width: 100%;
+	border-radius: 4px;
+	background-color: #233ba9;
+	color: white;
+	padding: 10px;
+
+	.loading {
+		width: 20px;
+		height: 20px;
+		border: 2px solid #fff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+		@keyframes rotation {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	}
+	@media (max-width: 360px) {
+		margin-top: -4px;
+	}
+`;
 export default Faqs;

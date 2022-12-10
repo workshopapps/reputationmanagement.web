@@ -28,7 +28,7 @@ import Login from '../pages/Login/Login';
 import Signup from '../pages/Sign-up/Signup';
 import RequireAuth from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
-import Contact from '../pages/ContactUs/Contact';
+import Faq from '../pages/FAQ/Faqs';
 import ModalLayout from '../layout/modalLayout';
 import BlogPost from '../pages/Blog/Blog-Post/BlogPost';
 import BlogSeeAll from '../pages/Blog/Blog-See All/BlogSeeAll';
@@ -131,7 +131,7 @@ const Router = () => {
 					<Route path="/support" element={<SupportPage />} />
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/settings" element={<Settings />} />
-					<Route path="/contact" element={<Contact />} />
+					<Route path="/contact" element={<Faq />} />
 					<Route path="/password-recovery" element={<PasswordRecovery />} />
 					<Route
 						path="/password-recovery/change"

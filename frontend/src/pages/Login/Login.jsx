@@ -1,9 +1,5 @@
-//import React from 'react'
-//import image from '../../src/Sign-up/Assets/background.png';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import GOOGLE from './google.svg';
-// import LOGIN from './login.svg';
 import REPUTE from './repute.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
@@ -11,8 +7,8 @@ import Api from '../../api/axios';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
-// import fixit_logo from '../../assets/images/logo.png';
 import Cookies from 'js-cookie';
+
 
 const Login = () => {
 	const [passwordShown, setPasswordShown] = useState(false);
@@ -38,41 +34,36 @@ const Login = () => {
 	} = useAppContext();
 	const [retainAuth, setRetainAuth] = useState(false);
 
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
-  };
+	const togglePassword = () => {
+		setPasswordShown(!passwordShown);
+	};
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
-  useEffect(() => {
-	window.scrollTo(0, 0)
-  }, [])
-
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    setTriedToSubmit(true)
-    if(pageValid){
-      setRequestPending(true)
-      try{
-        const response = await Api.post('/auth/sign_in',
-          {
-            email: email,
-            password: password,
-          }
-        )
-        localStorage.setItem('auth',email)
-        Cookies.set('reputeAccessToken', response?.data)
-        setRequestPending(false)
-        router('/dashboard')
-        setSuccessMessage('Login successful')
-        setRequestSuccess(true)
-      }
-      catch(err) {
-        if ( err?.response?.status === 400 ){
-          setErrMessage(err?.response?.data)
-        }
-        else{
-          setErrMessage('Login failed');
-        }
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setTriedToSubmit(true);
+		if (pageValid) {
+			setRequestPending(true);
+			try {
+				const response = await Api.post('/auth/sign_in', {
+					email: email,
+					password: password,
+				});
+				localStorage.setItem('auth', email);
+				Cookies.set('reputeAccessToken', response?.data);
+				setRequestPending(false);
+				router('/dashboard');
+				setSuccessMessage('Login successful');
+				setRequestSuccess(true);
+			} catch (err) {
+				if (err?.response?.status === 400) {
+					setErrMessage(err?.response?.data);
+				} else {
+					setErrMessage('Login failed');
+				}
 
 				setRequestFailed(true);
 				console.log(err);
@@ -80,72 +71,66 @@ const Login = () => {
 			}
 		}
 	};
+
 	return (
-		<ParentContainer
-			style={{ maxWidth: '1540px', margin: '0 auto', display: 'flex' }}
-		>
-			<FormSection>
-				<StyledForm>
-					<img src={REPUTE} alt=""/>
-					<StyledHead1 onClick={() => setRequestFailed(true)}>
-						Welcome Back
-					</StyledHead1>
+		<>
+			<LoginContainer>
+				<Link to="/">
+					<ReputeLogo>
+						<img src={REPUTE} alt="Repute Logo" />
+					</ReputeLogo>
+				</Link>
+				<h2>Welcome Back!</h2>
+				<p>Sign in to continue</p>
 
-					<SubHead>signin to continue</SubHead>
+				<form>
+					<StyledlogForm>
+						{/* <label htmlFor="email">Email</label> */}
+						<StyledBox>
+							<StyledInput
+								type="email"
+								name="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								placeholder="Email address"
+								id="email"
+								required
+							/>
+						</StyledBox>
+					</StyledlogForm>
+					{email === '' && triedToSubmit && (
+						<ErrorMessage error="Email Required" />
+					)}
 
-					<Input1 className="text-input">
-						<label htmlFor="email">Email</label>
-						<input
-							type="email"
-							name="email"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							placeholder="johndoe@gmail.com"
-							id="email"
-							required
-							className={email === '' && triedToSubmit ? 'invalid' : ''}
-						/>
-						{email === '' && triedToSubmit && (
-							<ErrorMessage error="Enter Your Email" />
-						)}
-					</Input1>
-
-					<Input2 className="text-input">
-						<label htmlFor="email">Password</label>
-						<div
-							className={
-								password < 8 && triedToSubmit
-									? 'invalid input2-div'
-									: 'input2-div'
-							}
-						>
-							<input
+					<StyledlogForm>
+						{/* <label htmlFor="password">Password</label> */}
+						<StyledBox>
+							<StyledInput2
 								type={passwordShown ? 'text' : 'password'}
 								name="password"
 								value={password}
-								placeholder="6+ character long"
-								id="email"
-								required
 								onChange={(e) => setPassword(e.target.value)}
+								placeholder="Password"
+								id="password"
+								required
 							/>
-
 							<button onClick={() => togglePassword()} type="button">
 								<FaRegEyeSlash />
 							</button>
-						</div>
-						{password.length < 8 && triedToSubmit && (
-							<ErrorMessage
-								error={
-									password === ''
-										? 'Enter your password'
-										: 'Password Must Be A Minimum Of 8 Characters'
-								}
-							/>
-						)}
-					</Input2>
+						</StyledBox>
+					</StyledlogForm>
+					{password.length < 8 && triedToSubmit && (
+						<ErrorMessage
+							error={
+								password === ''
+									? 'Password Required'
+									: 'Password Must Be A Minimum Of 8 Characters'
+							}
+						/>
+					)}
 
 					<Remember>
-						<div className="slide-radio-main">
+						<div className="flex">
 							<SlideRadio
 								className={retainAuth ? 'retain' : ''}
 								onClick={() => setRetainAuth(!retainAuth)}
@@ -155,7 +140,7 @@ const Login = () => {
 							<p>Keep me Signed in</p>
 						</div>
 
-						<ForgotPass>
+						<ForgotPass className="f1">
 							<Link className="" to="/password-recovery">
 								Forgot Password?
 							</Link>
@@ -165,173 +150,120 @@ const Login = () => {
 					<SubmitBtn onClick={(e) => handleSubmit(e)}>
 						{!requestPending ? 'Log In' : <div className="loading"></div>}
 					</SubmitBtn>
-				</StyledForm>
+				</form>
+				<ForgotPass className="f2">
+					<Link className="" to="/password-recovery">
+						Forgot Password?
+					</Link>
+				</ForgotPass>
 
-				<Loginwith>
-					<span></span>
-					<h4>or sign in with</h4>
-					<span></span>
-				</Loginwith>
-
-				<FormFooter>
-					<button>
-						<img src={GOOGLE} alt=""/>
-						Sign in with Google
-					</button>
-
-					<div className="footer-text">
+				<StyledAcc>
+					<p>
 						Don't have an account?{' '}
-						<span
-							onClick={() => router('/signup')}
-							style={{ cursor: 'pointer' }}
-						>
-							Sign up
-						</span>
-					</div>
-				</FormFooter>
-			</FormSection>
-		</ParentContainer>
+						<Link className="" to="/signup">
+							Sign Up
+						</Link>
+					</p>
+				</StyledAcc>
+			</LoginContainer>
+		</>
 	);
 };
 
-export default Login;
+//Styling
 
-const ParentContainer = styled.div`
-	height: 100vh;
+const LoginContainer = styled.div`
 	display: flex;
-	@media (max-width: 500px) {
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
+	width: 80%;
+	margin: 0 auto;
+	// height: 100vh;
+
+	h2 {
+		font-style: normal;
+		font-weight: 700;
+		font-size: 28px;
+		color: #2b2c34;
+		text-align: center;
+	}
+	p {
+		color: #6f7174;
+		text-align: center;
 		margin-bottom: 30px;
 	}
 
-	.footer-text {
-		font-family: Lato;
-		font-size: 24px !important;
-		font-weight: 400 !important;
-		line-height: 29px;
-		-webkit-letter-spacing: 0.01em;
-		-moz-letter-spacing: 0.01em;
-		-ms-letter-spacing: 0.01em;
-		letter-spacing: 0.01em;
-		text-align: left;
-		color: #6f7174;
-		margin-top: 4px;
-		span {
-			color: blue;
-			text-decoration: underline;
-		}
-
-		@media (max-width: 400px) {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
+	// @media screen and (min-width: 800px) {
+	// 	height: 100vh;
+	// }
+	@media screen and (min-width: 768px) {
+		width: 430px;
+		height: 100vh;
 	}
 `;
 
-
-const FormSection = styled.section`
-	width: 100%;
-	height: 100%;
-	padding-top: 54px;
-	max-width: 560px;
-	margin: 0 auto;
-	@media(max-width: 1200px){
-		width: 95%;
+const ReputeLogo = styled.div`
+	margin-top: 30px;
+	margin-bottom: 40px;
+	img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 40%;
+	}
+	@media (max-width: 320px) {
+		margin-bottom: 10px;
 	}
 `;
-const StyledForm = styled.form`
+
+const StyledlogForm = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	min-width: 100%;
+	margin-bottom: 20px;
 `;
 
-const StyledHead1 = styled.h1`
-	font-family: Lato;
-	font-size: 57px;
-	font-weight: 700;
-	line-height: 68px;
-	letter-spacing: 0.01em;
-	text-align: left;
-	color: #2B2C34;
-	margin-top: 35px;
-	@media(max-width: 410px){
-		font-size: 48px;
-	}
-	@media(max-width: 343px){
-		font-size: 42px;
-	}
+const StyledBox = styled.div`
+	border: 2px solid #d2d3d4;
+	border-radius: 4px;
 `;
 
-const SubHead = styled.h5`
-	font-family: Lato;
-	font-size: 20px;
-	font-weight: 400;
-	line-height: 24px;
-	letter-spacing: 0.01em;
-	text-align: left;
-	color: #6F7174;
-`;
-
-const Input1 = styled.div`
-	margin-top: 40px;
-	display: flex;
-	flex-direction: column;
+const StyledInput = styled.input`
+	border: none;
+	padding: 10px 10px;
 	width: 100%;
-	max-width: 560px;
-	label {
-		margin-bottom: 8px;
-		font-family: Lato;
-		font-size: 16px;
-		font-weight: 600;
-		line-height: 24px;
-		letter-spacing: 0em;
-		text-align: left;
-		color: #2B2C34;
-	}
 
-	input {
-		height: 56px;
-		width: 100%;
-		border-radius: 8px;	
-		border: 1px solid #D2D3D4;
-		padding-left: 19px	;
+	&:focus {
+		outline: none;
+	}
+`;
+const StyledInput2 = styled.input`
+	border: none;
+	padding: 10px 10px;
+	width: 93%;
+
+	&:focus {
 		outline: none;
 	}
 `;
 
-const Input2 = styled.div`
-	margin-top: 20px;
-	width: 100%;
-	max-width: 560px;
-	label {
-		margin-bottom: 8px;
+const StyledAcc = styled.div`
+	a {
+		margin-top: 5px;
+		color: #f16f04;
+		font-weight: 700;
+		text-align: start;
 	}
-
-	.input2-div {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-
-		input {
-			border: 1px solid #d2d3d4;
-			border-radius: 8px;
-			height: 50px;
-			padding-left: 10px;
-			padding-right: 10px;
-			outline: none;
-		}
-		button {
-			position: absolute;
-			right: 10px;
-			font-size: 25px;
-
-			&:hover {
-				cursor: pointer;
-			}
-		}
+	@media (max-width: 360px) {
+		margin-top: 20px;
+		margin-bottom: 10px;
 	}
 `;
+
+export default Login;
+
+
 
 const Remember = styled.div`
 	margin-top: 10px;
@@ -339,19 +271,24 @@ const Remember = styled.div`
 	justify-content: space-between;
 	width: 100%;
 
-	.slide-radio-main {
+	.flex {
 		display: flex;
-		align-items: center;
+		justify-content: center;
 	}
-	@media (max-width: 400px) {
+	@media (max-width: 320px) {
 		flex-direction: column;
-		gap: 15px
+		justify-content: flex-start;
+		.flex {
+			justify-content: flex-start;
+
+			// gap: 15px;
+		}
 	}
 	.retain {
-		border: 1px solid #000000 !important;
+		border: 1px solid #f16f04 !important;
 		transition: all ease-in-out 0.5s;
 		div {
-			background-color: #000000 !important;
+			background-color: #f16f04 !important;
 			right: 0 !important;
 			transition: all ease-in-out 0.5s;
 		}
@@ -360,6 +297,7 @@ const Remember = styled.div`
 
 const SlideRadio = styled.div`
 	margin-right: 5px;
+	margin-top: 5px;
 	position: relative;
 	width: 32px;
 	height: 17px;
@@ -368,14 +306,14 @@ const SlideRadio = styled.div`
 	display: flex;
 	align-items: center;
 	transition: all ease-in-out 0.5s;
-	p{
+	p {
 		font-family: Lato;
 		font-size: 14px;
 		font-weight: 700;
 		line-height: 24px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #6F7174;
+		color: #6f7174;
 		margin-left: 4px;
 	}
 	&:hover {
@@ -398,16 +336,31 @@ const ForgotPass = styled.div`
 	font-family: Lato;
 	line-height: 24px;
 	letter-spacing: 0.01em;
+	&.f2 {
+		display: none;
+	}
+	@media (max-width: 360px) {
+		line-height: 0;
+		&.f1 {
+			display: none;
+		}
+		&.f2 {
+			display: block;
+			margin-top: 8px;
+			margin-bottom: 10px;
+		}
+	}
 `;
 
 const SubmitBtn = styled.button`
-	margin-top: 65px;
+	margin-bottom: 30px;
+	margin-top: 20px;
 	width: 100%;
-	height: 59px;
-	border-radius: 7px;
+	border-radius: 4px;
 	background-color: #233ba9;
 	color: white;
-	max-width: 560px;
+	padding: 10px;
+
 	.loading {
 		width: 20px;
 		height: 20px;
@@ -426,95 +379,9 @@ const SubmitBtn = styled.button`
 			}
 		}
 	}
-`;
-
-const Loginwith = styled.div`
-	margin-top: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 18.75px;
-	white-space: nowrap;
-	span {
-		height: 2px;
-		width: 100px;
-		background-color: #98a2b3;
-
-		@media (max-width: 520px) {
-			width: 60px;
-		}
-	}
-	h4 {
-		margin-left: 5px;
-		margin-right: 5px;
+	@media (max-width: 360px) {
+		margin-top: -4px;
 	}
 `;
 
-const FormFooter = styled.div`
-	margin-top: 30px;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
 
-	button{
-		width: 100%;
-		max-width: 560px;
-		background-color: transparent;
-		display: flex;
-		align-items: center;
-		border: 1px solid #D2D3D4;
-		height: 59px;
-		padding-left: 29px;
-		border-radius: 4px;
-		font-family: Lato;
-		font-size: 18px;
-		font-weight: 600;
-		line-height: 27px;
-		letter-spacing: 0em;
-		text-align: center;
-		color: #2B2C34;
-		img{
-			margin-right: 144px;
-		}
-		@media(max-width: 600px){
-			justify-content: center;
-			gap: 40px;
-			img{
-				margin: 0;
-			}
-		}
-	}
-	.form-footer-icon {
-		display: flex;
-		width: 100%;
-		max-width: 350px;
-		justify-content: space-between;
-
-		div {
-			height: 48px;
-			width: 48px;
-			border: 1px solid #787a7d;
-			border-radius: 8px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			//margin-left: 80px;
-			gap: 30px;
-
-			img {
-				height: 23px;
-			}
-		}
-	}
-
-	.footer-text {
-		margin-top: 30px;
-		font-size: 16px;
-		font-weight: 700;
-
-		span {
-			color: #233ba9;
-		}
-	}
-`;

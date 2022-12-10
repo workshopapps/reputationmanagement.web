@@ -40,6 +40,8 @@ import Avater3 from '../../assets/images/WeRemoveGoogleSearch/Avatar3.svg';
 import Avater4 from '../../assets/images/WeRemoveGoogleSearch/Avatar4.svg';
 import Avater5 from '../../assets/images/WeRemoveGoogleSearch/Avatar5.svg';
 import TestimonialTemplate from './template/TestimonialTemplate';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const LandingPage = () => {
 	const [loading, setLoading] = useState(false);
@@ -113,13 +115,16 @@ const LandingPage = () => {
 		setErrMessage,
 	} = useAppContext();
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 		setLoading(true);
 		try {
 			const response = await Api.post('/createquote', formData);
-			setLoading(false);
-			setSuccessMessage('Your response has been submitted');
-			setRequestSuccess(true);
+			toast.success('Your response has been submitted', {
+				position: "top-left",
+			});
+			// setSuccessMessage('Your response has been submitted');
+			// setRequestSuccess(true);
 			setFormData({
 				email: '',
 				phone: '',
@@ -127,11 +132,13 @@ const LandingPage = () => {
 				reviewLocation: '',
 				fullName: '',
 			});
+			setLoading(false);
 			console.log(response);
 		} catch (error) {
 			setLoading(false);
 			setErrMessage('Request failed');
 			setRequestFailed(true);
+			toast.error('Request failed, try again later.')
 			return error;
 		}
 	};
@@ -209,9 +216,9 @@ const LandingPage = () => {
 											<p>
 												Your details are safe & confidential <br />
 												View our{' '}
-												<a href="/privacy" className="form-footer-link">
+												<Link to="/privacy" className="form-footer-link">
 													Privacy Policy.
-												</a>
+												</Link>
 											</p>
 										</div>
 
@@ -275,9 +282,9 @@ const LandingPage = () => {
 											Create an account with us today, in order to lodge your
 											request. We are here to maintain your brand's reputation
 										</p>
-										<Link to="/contact">
+										<Link to="/we-remove-google-review">
 											<button className="btn">
-												Get quote <img src={arrow} alt="" />
+												Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>
@@ -296,9 +303,9 @@ const LandingPage = () => {
 											You have a reviewer who left a bad review on your platform
 											and you want it removed.
 										</p>
-										<Link to="/contact">
+										<Link to="/glassdoor">
 											<button className="btn">
-												Get quote <img src={arrow} alt="" />
+											Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>
@@ -326,9 +333,9 @@ const LandingPage = () => {
 											help maintain your brand’s reputation. you will be notify
 											when the bad review is taken down form your dashboard.
 										</p>
-										<Link to="/contact">
+										<Link to="/we-remove-google-search">
 											<button className="btn">
-												Get quote <img src={arrow} alt="" />
+											Learn more <img src={arrow} alt="" />
 											</button>
 										</Link>
 									</div>
@@ -401,6 +408,7 @@ const LandingPage = () => {
 						</div>
 					</section>
 				</StyledLandingPage>
+				<ToastContainer />
 			</PageLayout>
 		</>
 	);

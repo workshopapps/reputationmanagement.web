@@ -55,7 +55,7 @@ export default function ChangePassword() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const email = localStorage.getItem('auth');
+		const email = localStorage.getItem('forgot');
 		setRequestPending(true);
 
 		if (password !== confirmPassword) {
@@ -151,7 +151,7 @@ export default function ChangePassword() {
 					</StyledlogForm>
 
 					<SubmitBtn onClick={handleSubmit}>
-						{!requestPending ? 'Log In' : <div className="loading"></div>}
+						{!requestPending ? 'Reset Password' : <div className="loading"></div>}
 					</SubmitBtn>
 				</form>
 

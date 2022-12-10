@@ -19,7 +19,7 @@ const WeRemoveGoogleReview = () => {
 					<WRGRHero />
 					<WRGRAbout />
 					<WRGRReview />
-					<Rating />
+					{/* <Rating /> */}
 					<WRGRFooter />
 				</main>
 			</PageLayout>
