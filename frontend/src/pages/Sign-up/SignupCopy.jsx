@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 // import Closed from './Assets/eye-slash.png';
-import REPUTE from './Assets/repute.svg';
+import REPUTE from '../../assets/images/repute_logo.png';
 // import background from './Assets/image-logo.png';
 import styled from 'styled-components';
 // import GOOGLE from '../Login/google.svg';

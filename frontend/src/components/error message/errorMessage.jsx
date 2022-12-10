@@ -14,13 +14,16 @@ export default ErrorMessage;
 const StyledErrorMessage = styled.div`
 	display: flex;
 	justify-content: flex-start;
-	// align-items: center;
+	align-items: center;
 	gap: 5px;
-	margin-top: 10px;
+	margin-top: -10px;
 	p {
 		color: #d8340f !important;
 		font-size: 16px !important;
 		line-height: 20px !important;
 		margin-top: 0 !important;
+	}
+	img{
+		margin-top: -27px;
 	}
 `;

@@ -6,6 +6,7 @@ import { FaqMainWraper, FaqSection } from './Assets/styles/Faqs.styled';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
+import Api from '../../api/axios';
 
 // import ErrorMessage from '../../components/error message/errorMessage';
 
@@ -73,11 +74,27 @@ function Faqs() {
 		setRequestPending(true);
 
 		if (company && email && message !== '') {
-			toast.success('Message sent sucessfully');
-			setCompany('');
-			setEmail('');
-			setMessage('');
-			setRequestPending(false);
+			try {
+				const response = await Api.post('/ContactUs', {
+					fromEmail: email,
+					emailSubject: company,
+					emailBody: message,
+				});
+				if ((await response).status === 200) {
+					toast.success('Message sent sucessfully');
+				}
+				setRequestPending(false);
+				console.log(response);
+			} catch (error) {
+				toast.error('Error');
+				console.log(error);
+				setRequestPending(false);
+			}
+			// toast.success('Message sent sucessfully');
+			// setCompany('');
+			// setEmail('');
+			// setMessage('');
+			// setRequestPending(false);
 		} else {
 			toast.error('Fields required');
 			setRequestPending(false);

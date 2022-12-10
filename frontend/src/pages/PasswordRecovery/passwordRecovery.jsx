@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
 // import { useEffect } from 'react';
-import REPUTE from './repute.svg';
+import REPUTE from '../../assets/images/repute_logo.png';
 import arrow from './arrow-left.svg';
 import ErrorMessage from '../../components/error message/errorMessage';
 

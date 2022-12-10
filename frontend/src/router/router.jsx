@@ -85,7 +85,7 @@ const Router = () => {
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
 						<Route path="/dashboard" element={<DashboardPage />} />
-						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
+						{/* <Route path="/lawyer-dashboard" element={<LawyerDashboard />} /> */}
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
@@ -107,6 +107,7 @@ const Router = () => {
 						path="/we-remove-google-search"
 						element={<WeRemoveGoogleSearch />}
 					/>
+					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 
 					<Route
 						path="/we-remove-google-review"

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import REPUTE from './repute.svg';
+import REPUTE from '../../assets/images/repute_logo.png';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../../api/axios';
