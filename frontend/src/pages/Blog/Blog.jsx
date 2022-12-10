@@ -136,16 +136,13 @@ const Blog = () => {
 						currentPage={currentPage}
 						setCurrentPage={setCurrentPage}
 					/>
-						nPages={nPages}
-						currentPage={currentPage}
-						setCurrentPage={setCurrentPage}
-					/>
+						
 				</div>
 				<Footer />
 			</PageLayout>
 		</section>
 	);
 };
-};
+
 
 export default Blog;
