@@ -13,6 +13,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Pagination from '../../components/Blog/pagination';
 import { ApiPrivate } from '../../api/axios';
 import useAppContext from '../../hooks/useAppContext';
+import DataBlog from './data';
 
 const StyledPostSnippet = styled.div`
 	width: 100%;
@@ -57,7 +58,8 @@ const StyledFilter = styled.div`
 `;
 
 const Blog = () => {
-	const { item, setItem } = useAppContext();
+	const { setItem } = useAppContext();
+	const [filteredData, setFilteredData] = useState([])
 
 	const fetchAllBlog = useCallback(async () => {
 		try {
@@ -65,23 +67,37 @@ const Blog = () => {
 				'/blogging?pageNumber=0&pageSize=10'
 			);
 			setItem(response?.data);
+			setFilteredData(response?.data);
+			
 		} catch (err) {
 			console.log(err);
 		}
-	}, [setItem]);
+	}, [setItem,setFilteredData]);
 
 	useEffect(() => {
 		fetchAllBlog();
+		console.log(fetchAllBlog())
 	}, [fetchAllBlog]);
 
+	const { item } = useAppContext();
+	
 	//Filter Topics////////////////////////////
-	const menuItems = [...new Set(item.map((data) => data.tag))];
+	//const menuItems = [...new Set(item.map((data) => data.tag))];
 
 	const filterItem = (curcat) => {
-		const newItem = item.filter((newVal) => {
-			return newVal.tag === curcat;
+		const newItem = item.filter((Val) => {
+			return Val.tag === curcat;
 		});
-		setItem(newItem);
+		setFilteredData(newItem);
+		console.log(newItem)
+	};
+
+	const allItem = (curcata) => {
+		const newerItem = item.filter((Val) => {
+			return Val.index === curcata;
+		});
+		setFilteredData(newerItem);
+		console.log(newerItem)
 	};
 
 	// Pagination//////////////////////
@@ -89,8 +105,8 @@ const Blog = () => {
 	const [recordsPerPage] = useState(6);
 	const indexOfLastRecord = currentPage * recordsPerPage;
 	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-	const currentRecords = item.slice(indexOfFirstRecord, indexOfLastRecord);
-	const nPages = Math.ceil(item.length / recordsPerPage);
+	const currentRecords = filteredData.slice(indexOfFirstRecord, indexOfLastRecord);
+	const nPages = Math.ceil(filteredData.length / recordsPerPage);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -105,13 +121,13 @@ const Blog = () => {
 						<StyledFilter>
 							<Filter
 								filterItem={filterItem}
-								setItem={setItem}
-								menuItems={menuItems}
+								allItem={allItem}
+								/**menuItems={menuItems}*/ 
 							/>
 						</StyledFilter>
 
 						<StyledPostSnippet>
-							<PostSnippet item={currentRecords} />
+							<PostSnippet filteredData={currentRecords} />
 						</StyledPostSnippet>
 					</StyledPostMain>
 

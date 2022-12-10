@@ -73,10 +73,10 @@ const SnippetGrid = styled.div`
 	}
 `;
 
-function PostSnippet({ item }) {
+function PostSnippet({ filteredData }) {
 	return (
 		<>
-			{item.map((data, index) => {
+			{filteredData.map((data, index) => {
 				return (
 					<StyledPost key={index}>
 						<a href={data.url}>
