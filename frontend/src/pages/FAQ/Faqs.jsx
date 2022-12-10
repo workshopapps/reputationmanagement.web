@@ -75,13 +75,16 @@ function Faqs() {
 
 		if (company && email && message !== '') {
 			try {
-				const response = await Api.post('/ContactUs', {
-					fromEmail: email,
-					emailSubject: company,
-					emailBody: message,
+				const response = await Api.post('/contactUs/send', {
+					email: email,
+					company: company,
+					message: message,
 				});
 				if ((await response).status === 200) {
 					toast.success('Message sent sucessfully');
+					setEmail('');
+					setCompany('');
+					setMessage('');
 				}
 				setRequestPending(false);
 				console.log(response);

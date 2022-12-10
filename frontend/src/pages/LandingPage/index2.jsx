@@ -16,7 +16,7 @@ import { StyledButton } from '../../components/Styles/Body/Button.styled';
 import {
 	// google_review,
 	// google_search,
-	// glassdoor, 
+	// glassdoor,
 	steps,
 	steps_mobile,
 	landing,
@@ -156,7 +156,6 @@ const LandingPage = () => {
 									<h1>
 										Get rid of negative comments <span>today</span>
 									</h1>
-
 									<h5>
 										We offer services that improve your brand&apos;s image; they
 										include reviewing and sorting negative comments about your
@@ -213,15 +212,14 @@ const LandingPage = () => {
 
 										<div className="form-footer-info">
 											<p>
-												Your details are safe & confidential <br />
-												View our{' '}
+												Your details are safe & confidential, view our{' '}
 												<Link to="/privacy" className="form-footer-link">
 													Privacy Policy.
 												</Link>
 											</p>
 										</div>
 
-										<StyledButton className="hero-form-button" type="submit">
+										<StyledButton extend className="hero-form-button" type="submit">
 											{!loading ? 'Submit' : <div className="loading"></div>}
 										</StyledButton>
 									</form>
