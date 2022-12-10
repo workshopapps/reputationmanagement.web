@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown } from 'react-icons/fa';
 import {
 	FaqWraper,
 	FaqQuestion,
@@ -15,12 +15,9 @@ function FaqItem({ faq, index, toggleFaq }) {
 			onClick={() => toggleFaq(index)}
 		>
 			<FaqQuestion className="faq-question">
-				
 				<h2>{faq.question}</h2>
 				<FaqArrowDown className="arrow-down">
-					
-					<FaChevronDown className='fa-down'/>
-					
+					<FaChevronDown className="fa-down" />
 				</FaqArrowDown>
 			</FaqQuestion>
 

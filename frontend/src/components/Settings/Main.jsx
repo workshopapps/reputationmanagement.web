@@ -21,6 +21,7 @@ export default function Main() {
 
 	const ApiPrivate = useAxiosPrivate();
 	const [accessibility, setAccessibility] = useState({});
+	const [notification, setNotification] = useState({});
 	const [currentEmail, setCurrentEmail] = useState('');
 	const [user, setUser] = useState({});
 
@@ -34,7 +35,11 @@ export default function Main() {
 		ApiPrivate.get('/customer/accessibility').then((res) => {
 			setAccessibility(res.data);
 		});
-	}, [ ApiPrivate ]);
+		// Get current user notification settings
+		ApiPrivate.get('/notification_settings').then((res) => {
+			setNotification(res.data);
+		});
+	}, [ApiPrivate]);
 
 	return (
 		<StyledParent>
@@ -82,7 +87,12 @@ export default function Main() {
 					setAccessibility={setAccessibility}
 				/>
 			)}
-			{tab === 3 && <Notifications />}
+			{tab === 3 && (
+				<Notifications
+					notification={notification}
+					setNotification={setNotification}
+				/>
+			)}
 			{tab === 4 && <Security />}
 		</StyledParent>
 	);

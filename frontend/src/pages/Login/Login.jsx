@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GOOGLE from './google.svg';
-import LOGIN from './login.svg';
+// import LOGIN from './login.svg';
 import REPUTE from './repute.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
@@ -11,7 +11,7 @@ import Api from '../../api/axios';
 import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
-import fixit_logo from '../../assets/images/logo.png';
+// import fixit_logo from '../../assets/images/logo.png';
 import Cookies from 'js-cookie';
 
 const Login = () => {
@@ -38,41 +38,36 @@ const Login = () => {
 	} = useAppContext();
 	const [retainAuth, setRetainAuth] = useState(false);
 
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
-  };
+	const togglePassword = () => {
+		setPasswordShown(!passwordShown);
+	};
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
-  useEffect(() => {
-	window.scrollTo(0, 0)
-  }, [])
-
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    setTriedToSubmit(true)
-    if(pageValid){
-      setRequestPending(true)
-      try{
-        const response = await Api.post('/auth/sign_in',
-          {
-            email: email,
-            password: password,
-          }
-        )
-        localStorage.setItem('auth',email)
-        Cookies.set('reputeAccessToken', response?.data)
-        setRequestPending(false)
-        router('/dashboard')
-        setSuccessMessage('Login successful')
-        setRequestSuccess(true)
-      }
-      catch(err) {
-        if ( err?.response?.status === 400 ){
-          setErrMessage(err?.response?.data)
-        }
-        else{
-          setErrMessage('Login failed');
-        }
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setTriedToSubmit(true);
+		if (pageValid) {
+			setRequestPending(true);
+			try {
+				const response = await Api.post('/auth/sign_in', {
+					email: email,
+					password: password,
+				});
+				localStorage.setItem('auth', email);
+				Cookies.set('reputeAccessToken', response?.data);
+				setRequestPending(false);
+				router('/dashboard');
+				setSuccessMessage('Login successful');
+				setRequestSuccess(true);
+			} catch (err) {
+				if (err?.response?.status === 400) {
+					setErrMessage(err?.response?.data);
+				} else {
+					setErrMessage('Login failed');
+				}
 
 				setRequestFailed(true);
 				console.log(err);
@@ -86,7 +81,7 @@ const Login = () => {
 		>
 			<FormSection>
 				<StyledForm>
-					<img src={REPUTE} alt=""/>
+					<img src={REPUTE} alt="" />
 					<StyledHead1 onClick={() => setRequestFailed(true)}>
 						Welcome Back
 					</StyledHead1>
@@ -166,19 +161,7 @@ const Login = () => {
 						{!requestPending ? 'Log In' : <div className="loading"></div>}
 					</SubmitBtn>
 				</StyledForm>
-
-				<Loginwith>
-					<span></span>
-					<h4>or sign in with</h4>
-					<span></span>
-				</Loginwith>
-
 				<FormFooter>
-					<button>
-						<img src={GOOGLE} alt=""/>
-						Sign in with Google
-					</button>
-
 					<div className="footer-text">
 						Don't have an account?{' '}
 						<span
@@ -190,10 +173,6 @@ const Login = () => {
 					</div>
 				</FormFooter>
 			</FormSection>
-
-			<ImgSection>
-				<img src={LOGIN} alt=""/>
-			</ImgSection>
 		</ParentContainer>
 	);
 };
@@ -232,23 +211,13 @@ const ParentContainer = styled.div`
 	}
 `;
 
-const ImgSection = styled.div`
-	width: 50%;
-	display: flex;
-	height: 100%;
-	align-items: flex-start;
-	justify-content: flex-end;
-	@media (max-width: 1230px) {
-		display: none;
-	}
-`;
 const FormSection = styled.section`
-	width: 50%;
+	width: 100%;
 	height: 100%;
 	padding-top: 54px;
 	max-width: 560px;
 	margin: 0 auto;
-	@media(max-width: 1200px){
+	@media (max-width: 1200px) {
 		width: 95%;
 	}
 `;
@@ -265,12 +234,12 @@ const StyledHead1 = styled.h1`
 	line-height: 68px;
 	letter-spacing: 0.01em;
 	text-align: left;
-	color: #2B2C34;
+	color: #2b2c34;
 	margin-top: 35px;
-	@media(max-width: 410px){
+	@media (max-width: 410px) {
 		font-size: 48px;
 	}
-	@media(max-width: 343px){
+	@media (max-width: 343px) {
 		font-size: 42px;
 	}
 `;
@@ -282,7 +251,7 @@ const SubHead = styled.h5`
 	line-height: 24px;
 	letter-spacing: 0.01em;
 	text-align: left;
-	color: #6F7174;
+	color: #6f7174;
 `;
 
 const Input1 = styled.div`
@@ -299,15 +268,15 @@ const Input1 = styled.div`
 		line-height: 24px;
 		letter-spacing: 0em;
 		text-align: left;
-		color: #2B2C34;
+		color: #2b2c34;
 	}
 
 	input {
 		height: 56px;
 		width: 100%;
-		border-radius: 8px;	
-		border: 1px solid #D2D3D4;
-		padding-left: 19px	;
+		border-radius: 8px;
+		border: 1px solid #d2d3d4;
+		padding-left: 19px;
 		outline: none;
 	}
 `;
@@ -358,7 +327,7 @@ const Remember = styled.div`
 	}
 	@media (max-width: 400px) {
 		flex-direction: column;
-		gap: 15px
+		gap: 15px;
 	}
 	.retain {
 		border: 1px solid #000000 !important;
@@ -381,14 +350,14 @@ const SlideRadio = styled.div`
 	display: flex;
 	align-items: center;
 	transition: all ease-in-out 0.5s;
-	p{
+	p {
 		font-family: Lato;
 		font-size: 14px;
 		font-weight: 700;
 		line-height: 24px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #6F7174;
+		color: #6f7174;
 		margin-left: 4px;
 	}
 	&:hover {
@@ -470,13 +439,13 @@ const FormFooter = styled.div`
 	flex-direction: column;
 	align-items: center;
 
-	button{
+	button {
 		width: 100%;
 		max-width: 560px;
 		background-color: transparent;
 		display: flex;
 		align-items: center;
-		border: 1px solid #D2D3D4;
+		border: 1px solid #d2d3d4;
 		height: 59px;
 		padding-left: 29px;
 		border-radius: 4px;
@@ -486,14 +455,14 @@ const FormFooter = styled.div`
 		line-height: 27px;
 		letter-spacing: 0em;
 		text-align: center;
-		color: #2B2C34;
-		img{
+		color: #2b2c34;
+		img {
 			margin-right: 144px;
 		}
-		@media(max-width: 600px){
+		@media (max-width: 600px) {
 			justify-content: center;
 			gap: 40px;
-			img{
+			img {
 				margin: 0;
 			}
 		}

@@ -7,6 +7,197 @@ import { useState, useRef } from 'react';
 import ContactUsModal from './ContactUsModal';
 import { useEffect } from 'react';
 
+function Contact() {
+	// const [contactDetailsFrom, setContactDetailsForm] = useState({
+	// 	name: '',
+	// 	company: '',
+	// 	email: '',
+	// 	phoneNumber: '',
+	// 	mailingAddress: '',
+	// 	country: '',
+	// 	city: '',
+	// 	zipCode: '',
+	// 	message: '',
+	// });
+	const contactRef = useRef(null);
+	const messageRef = useRef(null);
+	const [personlForm, setPersonalForm] = useState(true);
+	const [contactForm, setContactForm] = useState(false);
+	const [messageForm, setMessageForm] = useState(false);
+	const [showModal, setShowModal] = useState(false);
+
+	const handleScroll = (ref) => {
+		window.scrollTo({
+			top: ref.offsetTop,
+			left: 0,
+			behavior: 'smooth',
+		});
+	};
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+	return (
+		<PageLayout>
+			<ContactPageWraper className="contact-page">
+				<ContactPageHeading className="contact-heading">
+					<h1>
+						Talk With Our Digital <span>Strategists</span>
+					</h1>
+				</ContactPageHeading>
+				<div className="bg-[#EEF1FC]">
+					<ContactFormSection
+						className="contact-form-section"
+						style={{ maxWidth: '1540px', margin: '0 auto' }}
+					>
+						<h3>Get Started in 3 Easy Steps</h3>
+
+						<ContactForm className="form-1">
+							<PersonalInfoForm
+								onClick={() => {
+									setPersonalForm(true);
+									setContactForm(false);
+									setMessageForm(false);
+								}}
+								className={`${personlForm && `active`} contact-form`}
+							>
+								<div>
+									<BsPersonFill />
+								</div>
+
+								<h4 className="form-title">#1 Personal Information</h4>
+
+								<p>
+									Fill a request form with details of your personal information
+								</p>
+
+								<form
+									onSubmit={(e) => {
+										e.preventDefault();
+										setPersonalForm(false);
+										setContactForm(true);
+										handleScroll(contactRef.current);
+									}}
+								>
+									<div>
+										<input placeholder="Name" />
+									</div>
+									<div>
+										<input placeholder="Company/Organization" />
+									</div>
+									<div>
+										<input placeholder="Email Address" />
+									</div>
+									<div>
+										<input placeholder="Phone Number" />
+									</div>
+									<div>
+										<button>Next</button>
+									</div>
+								</form>
+							</PersonalInfoForm>
+							<div className="right__line"></div>
+						</ContactForm>
+
+						<ContactForm className="form-2" ref={contactRef}>
+							<div className="left__line"></div>
+							<ContactInfoForm
+								onClick={() => {
+									setPersonalForm(false);
+									setContactForm(true);
+									setMessageForm(false);
+								}}
+								className={`${
+									contactForm && `active`
+								} contact-form contact-info-form`}
+							>
+								<div>
+									<MdContactMail />
+								</div>
+
+								<h4 className="form-title">#2 Contact Information</h4>
+
+								<p>
+									Fill a request form with details of your contact information
+								</p>
+
+								<form
+									onSubmit={(e) => {
+										e.preventDefault();
+										setContactForm(false);
+										setMessageForm(true);
+										handleScroll(messageRef.current);
+									}}
+								>
+									<div>
+										<input placeholder="Mailing Address" />
+									</div>
+									<div>
+										<input placeholder="Country" />
+									</div>
+									<div>
+										<input placeholder="City" />
+									</div>
+									<div>
+										<input placeholder="ZIP Code" />
+									</div>
+									<div>
+										<button>Next</button>
+									</div>
+								</form>
+							</ContactInfoForm>
+							<div className="left__line2"></div>
+						</ContactForm>
+
+						<ContactForm className="form-3" ref={messageRef}>
+							<MessageForm
+								onClick={() => {
+									setPersonalForm(false);
+									setContactForm(false);
+									setMessageForm(true);
+								}}
+								className={`${
+									messageForm && `active`
+								} contact-form message-form`}
+							>
+								<div>
+									<TbMessage />
+								</div>
+
+								<h4 className="form-title">#3 Message</h4>
+
+								<p>
+									Kindly explain in detail the problem that you are currently
+									experiencing
+								</p>
+
+								<form
+									onSubmit={(e) => {
+										e.preventDefault();
+										setShowModal(true);
+									}}
+								>
+									<div>
+										<textarea></textarea>
+									</div>
+									<div>
+										<button>Finish</button>
+									</div>
+								</form>
+							</MessageForm>
+						</ContactForm>
+					</ContactFormSection>
+				</div>
+			</ContactPageWraper>
+
+			{showModal && (
+				<ContactUsModal showModal={showModal} setShowModal={setShowModal} />
+			)}
+		</PageLayout>
+	);
+}
+
+// Styling
+
 const ContactPageWraper = styled.div`
 	* {
 		margin: 0;
@@ -399,193 +590,5 @@ const MessageForm = styled(PersonalInfoForm).attrs((props) => ({
 		}
 	}
 `;
-
-function Contact() {
-	// const [contactDetailsFrom, setContactDetailsForm] = useState({
-	// 	name: '',
-	// 	company: '',
-	// 	email: '',
-	// 	phoneNumber: '',
-	// 	mailingAddress: '',
-	// 	country: '',
-	// 	city: '',
-	// 	zipCode: '',
-	// 	message: '',
-	// });
-	const contactRef = useRef(null);
-	const messageRef = useRef(null);
-	const [personlForm, setPersonalForm] = useState(true);
-	const [contactForm, setContactForm] = useState(false);
-	const [messageForm, setMessageForm] = useState(false);
-	const [showModal, setShowModal] = useState(false);
-
-	const handleScroll = (ref) => {
-		window.scrollTo({
-			top: ref.offsetTop,
-			left: 0,
-			behavior: 'smooth',
-		});
-	};
-	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
-	return (
-		<PageLayout>
-			<ContactPageWraper className="contact-page">
-				<ContactPageHeading className="contact-heading">
-					<h1>
-						Talk With Our Digital <span>Strategists</span>
-					</h1>
-				</ContactPageHeading>
-				<div className="bg-[#EEF1FC]">
-					<ContactFormSection
-						className="contact-form-section"
-						style={{ maxWidth: '1540px', margin: '0 auto' }}
-					>
-						<h3>Get Started in 3 Easy Steps</h3>
-
-						<ContactForm className="form-1">
-							<PersonalInfoForm
-								onClick={() => {
-									setPersonalForm(true);
-									setContactForm(false);
-									setMessageForm(false);
-								}}
-								className={`${personlForm && `active`} contact-form`}
-							>
-								<div>
-									<BsPersonFill />
-								</div>
-
-								<h4 className="form-title">#1 Personal Information</h4>
-
-								<p>
-									Fill a request form with details of your personal information
-								</p>
-
-								<form
-									onSubmit={(e) => {
-										e.preventDefault();
-										setPersonalForm(false);
-										setContactForm(true);
-										handleScroll(contactRef.current);
-									}}
-								>
-									<div>
-										<input placeholder="Name" />
-									</div>
-									<div>
-										<input placeholder="Company/Organization" />
-									</div>
-									<div>
-										<input placeholder="Email Address" />
-									</div>
-									<div>
-										<input placeholder="Phone Number" />
-									</div>
-									<div>
-										<button>Next</button>
-									</div>
-								</form>
-							</PersonalInfoForm>
-							<div className="right__line"></div>
-						</ContactForm>
-
-						<ContactForm className="form-2" ref={contactRef}>
-							<div className="left__line"></div>
-							<ContactInfoForm
-								onClick={() => {
-									setPersonalForm(false);
-									setContactForm(true);
-									setMessageForm(false);
-								}}
-								className={`${
-									contactForm && `active`
-								} contact-form contact-info-form`}
-							>
-								<div>
-									<MdContactMail />
-								</div>
-
-								<h4 className="form-title">#2 Contact Information</h4>
-
-								<p>
-									Fill a request form with details of your contact information
-								</p>
-
-								<form
-									onSubmit={(e) => {
-										e.preventDefault();
-										setContactForm(false);
-										setMessageForm(true);
-										handleScroll(messageRef.current);
-									}}
-								>
-									<div>
-										<input placeholder="Mailing Address" />
-									</div>
-									<div>
-										<input placeholder="Country" />
-									</div>
-									<div>
-										<input placeholder="City" />
-									</div>
-									<div>
-										<input placeholder="ZIP Code" />
-									</div>
-									<div>
-										<button>Next</button>
-									</div>
-								</form>
-							</ContactInfoForm>
-							<div className="left__line2"></div>
-						</ContactForm>
-
-						<ContactForm className="form-3" ref={messageRef}>
-							<MessageForm
-								onClick={() => {
-									setPersonalForm(false);
-									setContactForm(false);
-									setMessageForm(true);
-								}}
-								className={`${
-									messageForm && `active`
-								} contact-form message-form`}
-							>
-								<div>
-									<TbMessage />
-								</div>
-
-								<h4 className="form-title">#3 Message</h4>
-
-								<p>
-									Kindly explain in detail the problem that you are currently
-									experiencing
-								</p>
-
-								<form
-									onSubmit={(e) => {
-										e.preventDefault();
-										setShowModal(true);
-									}}
-								>
-									<div>
-										<textarea></textarea>
-									</div>
-									<div>
-										<button>Finish</button>
-									</div>
-								</form>
-							</MessageForm>
-						</ContactForm>
-					</ContactFormSection>
-				</div>
-			</ContactPageWraper>
-			{showModal && (
-				<ContactUsModal showModal={showModal} setShowModal={setShowModal} />
-			)}
-		</PageLayout>
-	);
-}
 
 export default Contact;

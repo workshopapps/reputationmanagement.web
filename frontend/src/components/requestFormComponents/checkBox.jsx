@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Checkbox = ({ label, checked, ...props }) => {
+const Checkbox = ({ label, checked, currentValue, ...props }) => {
 	const defaultChecked = checked ? checked : false;
 	const [isChecked, setIsChecked] = useState(defaultChecked);
-
 	return (
 		<>
 			<div className="checkbox-wrapper">
 				<StyledLabel>
 					<input
 						type="checkbox"
-						checked={isChecked}
+						checked={label === currentValue}
 						onChange={() => setIsChecked((prev) => !prev)}
 						{...props}
 						className={isChecked ? 'checked' : ''}
@@ -47,9 +46,9 @@ const StyledLabel = styled.label`
 		position: absolute;
 		opacity: 0;
 		cursor: pointer;
-		height: 0;
-		width: 0;
-		// margin-right: 10px;
+		height: 0 !important;
+		width: 0 !important;
+		margin: 0;
 
 		&:checked ~ .checkmark {
 			background: #f16f04;

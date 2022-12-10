@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useCallback, useEffect, useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
-import WebAppNav from '../../components/Reusables/WebAppNav';
 import {
 	StyledDashboard,
 	StyledContainer,
@@ -12,28 +11,38 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
+import MailModal from '../../modal/mailModal';
+import LawyerWebAppNav from '../../components/Reusables/LawyerWebAppNav';
 
 const LawyerRequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [rating, setRating] = useState(0); ///set initial state for rating
 	const router = useNavigate();
 	//const [checked, setChecked] = useState(false);
-	const [name, setName] = useState("");
+	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
-	const [priority, setPriority] = useState(0);
+	const [priority, setPriority] = useState();
+	const [status, setStatus] = useState();
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const [ loading, setLoading ] = useState(false)
-	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, requestSuccess, requestFailed } =
-		useAppContext();
+	const [loading, setLoading] = useState(false);
+	const [failedLoading, setFailedLoading] = useState(false);
+	const {
+		setErrMessage,
+		setRequestFailed,
+		setRequestSuccess,
+		setSuccessMessage,
+		mailModalActive,
+		setMailModalActive,
+	} = useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 
 	const clearForm = () => {
 		// setName()
@@ -44,81 +53,156 @@ const LawyerRequestDetails = () => {
 		setBusinessType();
 	};
 
-    const location = useLocation()
-    const requestId = new URLSearchParams(location.search).get('requestId');
+	const location = useLocation();
+	const requestId = new URLSearchParams(location.search).get('requestId');
 
-    const fetchComplaintDetails = useCallback(async() => {
-        try{
-            const response = await ApiPrivate.get(`/lawyer/reviews/${requestId}`)
-            console.log(response)
-            setEmail(response?.data?.email)
-            setPriority(response?.data?.priority)
-			setName(response?.data?.complainerName)
-            setRating(response?.data?.rating)
-            setReview(response?.data?.reviewString)
-            setPriority(response?.data?.status)
-            setWebsiteName(response?.data?.websiteName)
-            setDate(response?.data?.createdAt)
-			setBusinessType(response?.data?.businessType)
-        }
-        catch(err){
-            setErrMessage("can't get details of request")
-            setRequestFailed(true)
-            console.log(err)
-        }
-    },[ ApiPrivate,requestId, setErrMessage, setRequestFailed ])
+	const fetchComplaintDetails = useCallback(async () => {
+		try {
+			const response = await ApiPrivate.get(`/lawyer/reviews/${requestId}`);
+			console.log(response);
+			setEmail(response?.data?.email);
+			setPriority(response?.data?.priority);
+			setName(response?.data?.complainerName);
+			setRating(response?.data?.rating);
+			setReview(response?.data?.reviewString);
+			setPriority(response?.data?.priority);
+			setWebsiteName(response?.data?.websiteName);
+			setDate(response?.data?.createdAt);
+			setStatus(response?.data?.status);
+			setBusinessType(response?.data?.businessType);
+		} catch (err) {
+			setErrMessage("can't get details of request");
+			setRequestFailed(true);
+			console.log(err);
+		}
+	}, [ApiPrivate, requestId, setErrMessage, setRequestFailed]);
 
+	useEffect(() => {
+		fetchComplaintDetails();
+	}, [fetchComplaintDetails]);
 
-    useEffect(() => {
-        fetchComplaintDetails();
-    },[ fetchComplaintDetails ])
-
+	const claimRequest = async () => {
+		try {
+			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/status',
+					op: 'replace',
+					value: 1,
+				},
+			]);
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 	const handleSubmit = async (e) => {
-		setLoading(true)
+		setLoading(true);
 		e.preventDefault();
 		try {
-			  const response = await ApiPrivate.post(`/lawyer/ClaimReview?reviewId=${requestId}`
-            )
-			setLoading(false)
-			console.log(response)
-			setSuccessMessage('Request claimed successfully')
-			setRequestSuccess(true)
+			const response = await ApiPrivate.post(
+				`/lawyer/ClaimReview?reviewId=${requestId}`
+			);
+			claimRequest();
+			setLoading(false);
+			console.log(response);
+			setSuccessMessage('Request claimed successfully');
+			setRequestSuccess(true);
 			clearForm();
-			const reroute = setTimeout(() => {
-				router('/lawyer-dashboard')
-			},2000)
-		} 
-        catch (err) {
-			setLoading(false)
-            setErrMessage('Unable to claim request')
-			setRequestFailed(true)
-            console.log(err)
+			setTimeout(() => {
+				router('/lawyer-dashboard');
+			}, 2000);
+		} catch (err) {
+			if (err?.response?.status === 400) {
+				setErrMessage('Request already claimed');
+			} else {
+				setErrMessage('Unable to claim request');
+			}
+			setLoading(false);
+			setRequestFailed(true);
+			console.log(err);
+		}
+	};
+	const requestCompleted = async () => {
+		setLoading(true);
+		try {
+			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/status',
+					op: 'replace',
+					value: 3,
+				},
+			]);
+			setLoading(false);
+			console.log(response);
+			setSuccessMessage('Request has been marked as completed');
+			setRequestSuccess(true);
+			setTimeout(() => {
+				router('/requests');
+			}, 2000);
+		} catch (err) {
+			setLoading(false);
+			console.log(err);
+			setErrMessage("Couldn't mark request as completed");
+			setRequestFailed(true);
+		}
+	};
+	const requestFailed = async () => {
+		setFailedLoading(true);
+		try {
+			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`, [
+				{
+					operationType: 2,
+					path: '/status',
+					op: 'replace',
+					value: 4,
+				},
+			]);
+			setFailedLoading(false);
+			console.log(response);
+			setSuccessMessage('Request has been marked as failed');
+			setRequestSuccess(true);
+			setTimeout(() => {
+				router('/requests');
+			}, 2000);
+		} catch (err) {
+			setFailedLoading(false);
+			console.log(err);
+			setErrMessage("Couldn't mark request as failed");
+			setRequestFailed(true);
 		}
 	};
 	return (
 		<>
-			<RequestFailed/>
+			{mailModalActive && <MailModal userEmail={email} requestId={requestId} />}
+			<RequestFailed />
 			<StyledDashboard>
 				<Sidebarr
 					className={`${openMenu ? 'open' : ''}`}
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
-				<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
+				<LawyerWebAppNav openMenuHandler={() => setOpenMenu(true)} />
 				<StyledContainer>
 					<StyledContainers className="container">
-
 						<h2 className="container-title">Complaint Details</h2>
 						{/********************START OF FORM*************************************************/}
 						<form className="form">
-							<h4 className="form-heading">
-                                Details of the complainer
-							</h4>
+							<h4 className="form-heading">Details of the complainer</h4>
 
 							{/********************START OF FORM SECTION A*************************************************/}
 							<div className="form-section-a">
-								<div className='text-input'>
+								<div className="text-input">
 									<label htmlFor="_name"> Name</label>
-									<input type="text" name="_name" value={name} readOnly placeholder="Enter name of the complainer" id="name" required />
+									<input
+										type="text"
+										name="_name"
+										value={name}
+										readOnly
+										placeholder="Enter name of the complainer"
+										id="name"
+										required
+									/>
 								</div>
 
 								<div className="text-input">
@@ -129,7 +213,7 @@ const LawyerRequestDetails = () => {
 										value={email}
 										placeholder="johndoe@gmail.com"
 										id="email"
-                                        readOnly
+										readOnly
 									/>
 								</div>
 
@@ -140,7 +224,7 @@ const LawyerRequestDetails = () => {
 											type="date"
 											name="date"
 											id="date"
-                                            value={ date ? date.substring(0,10) : ''}
+											value={date ? date.substring(0, 10) : ''}
 											readOnly
 										/>
 									</div>
@@ -152,8 +236,8 @@ const LawyerRequestDetails = () => {
 											name="time"
 											id="time"
 											required
-                                            value={date ? date.substring(11,16) : ''}
-                                            readOnly
+											value={date ? date.substring(11, 16) : ''}
+											readOnly
 										/>
 									</div>
 								</div>
@@ -161,18 +245,11 @@ const LawyerRequestDetails = () => {
 								<div className="bad-review">
 									<div className="bad-review-text">
 										<label>The bad review</label>
-										<textarea
-											value={review}
-                                            readOnly
-										/>
+										<textarea value={review} readOnly />
 									</div>
 
 									<div className="review-range">
-										<Rate
-											rating={rating}
-											className="rate"
-                                            disabled
-										/>
+										<Rate rating={rating} className="rate" disabled />
 
 										<label htmlFor="vol">
 											Kindly selected the customer rating drop on your
@@ -219,45 +296,80 @@ const LawyerRequestDetails = () => {
 									<h3>Priority level</h3>
 
 									<div>
-										<Checkbox
-											label="High"
-											onClick={() => setPriority(3)}
-											checked={priority === 3}
-										/>
+										<Checkbox label={3} currentValue={priority} />
 									</div>
 
 									<div>
-										<Checkbox
-											label="Medium"
-											onClick={() => setPriority(2)}
-											checked={priority === 2}
-										/>
+										<Checkbox label={2} currentValue={priority} />
 									</div>
 
 									<div>
-										<Checkbox label="Low" onClick={() => setPriority(0)} checked={priority === 1}/>
+										<Checkbox label={1} currentValue={priority} />
 									</div>
 
 									<div>
-										<Checkbox
-											label="Not urgent"
-											onClick={() => setPriority(0)}
-											checked={priority === 0}
-										/>
+										<Checkbox label={0} currentValue={priority} />
 									</div>
 								</div>
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								<button className='submit' onClick={(e) => handleSubmit(e)}>
-								{
-										!loading
+								{status === 1 
+									? 
+									(
+										<button
+											className="submit"
+											onClick={(e) => {
+												e.preventDefault();
+												setMailModalActive(true);
+											}}
+										>
+											Send Mail
+										</button>
+									) 
+									: 
+									status === 2 
+										? 
+										(
+											<div className="done-buttons">
+												<button className="delete" onClick={(e) => { e.preventDefault(); requestFailed()}}>
+													{!failedLoading ? (
+														'Request Failed'
+													) : (
+														<div className="loading"></div>
+													)}
+												</button>
+												<button
+													className="submit"
+													onClick={(e) => { e.preventDefault(); requestCompleted()}}
+												>
+													{!loading ? (
+														'Request Success'
+													) : (
+														<div className="loading"></div>
+													)}
+												</button>
+											</div>
+										) 
+										: 
+										status === 3
 											?
-										"Claim Ticket"
-										:
-										<div className="loading"></div>
-									}
-								</button>
+											<p className='completed'>This request has been completed</p>
+											:
+											status === 4
+												?
+												<p className='failed'>This request had been marked as failed</p>
+												:
+												(
+													<button className="submit" onClick={(e) => handleSubmit(e)}>
+														{!loading ? (
+															'Claim Ticket'
+														) : (
+															<div className="loading"></div>
+														)}
+													</button>
+												)
+								}
 							</div>
 						</form>
 					</StyledContainers>
@@ -418,9 +530,56 @@ const StyledContainers = styled.div`
 			margin-top: 32px;
 			display: flex;
 			justify-content: flex-end;
-
-			.submit{
-				width: 220px;
+			.completed{
+				border-radius: 8px;
+				padding: 16px;
+				border: 1px solid #6CE9A6;
+				background-color: #F6FEF9;
+				margin: 0 auto;
+				max-width: 90%;
+				@media (max-width: 470px) {
+					height: auto;
+					max-height: max-content;
+				}
+				font-size: toRem(14);
+				font-weight: 700;
+				line-height: toRem(20);
+				letter-spacing: 0em;
+				text-align: left;
+				color: #027A48;
+				margin-bottom: toRem(4);
+			}
+			.failed{
+				border-radius: 8px;
+				padding: 16px;
+				border: 1px solid #d83407;
+				background-color: rgba( 256, 52, 15, 0.1 );
+				margin: 0 auto;
+				max-width: 90%;
+				@media (max-width: 470px) {
+					height: auto;
+					max-height: max-content;
+				}
+				font-size: toRem(14);
+				font-weight: 700;
+				line-height: toRem(20);
+				letter-spacing: 0em;
+				text-align: left;
+				color: #d8340f;
+				margin-bottom: toRem(4);
+			}
+			.done-buttons {
+				@media (max-width: 497px) {
+					display: flex;
+					flex-direction: column;
+					gap: 30px;
+					button {
+						margin: 0 auto;
+					}
+				}
+			}
+			.submit {
+				width: 192px;
 				height: 59px;
 				background: #233ba9;
 				border-radius: 4px;
@@ -433,10 +592,10 @@ const StyledContainers = styled.div`
 				&:hover {
 					background: #0a1d88;
 				}
-				.loading{
+				.loading {
 					width: 20px;
 					height: 20px;
-					border: 2px solid #FFF;
+					border: 2px solid #fff;
 					border-bottom-color: transparent;
 					border-radius: 50%;
 					display: inline-block;
@@ -454,21 +613,21 @@ const StyledContainers = styled.div`
 					}
 				}
 			}
-            .delete{
-                height: 59px;
-                width: 220px;
-                border-radius: 4px;
-                border: 1px solid rgba(240, 55, 56, 1);
-                font-family: Lato;
-                font-size: 18px;
-                font-weight: 600;
-                line-height: 27px;
-                letter-spacing: 0em;
-                text-align: center;
-                color: rgba(240, 55, 56, 1);
-                background-color: transparent;
-                margin-right: 16px;
-            }
+			.delete {
+				height: 59px;
+				width: 192px;
+				border-radius: 4px;
+				border: 1px solid rgba(240, 55, 56, 1);
+				font-family: Lato;
+				font-size: 18px;
+				font-weight: 600;
+				line-height: 27px;
+				letter-spacing: 0em;
+				text-align: center;
+				color: rgba(240, 55, 56, 1);
+				background-color: transparent;
+				margin-right: 16px;
+			}
 
 			@media (max-width: 500px) {
 				justify-content: center;

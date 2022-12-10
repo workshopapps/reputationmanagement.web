@@ -1,79 +1,85 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import React from 'react';
 
 const Rating = () => {
-    return (
-        <>
+	return (
+		<>
+			<RatingMain data-testid="W-rating">
+				<RatingContainer1>
+					<div className="container1a">
+						<Heading1>
+							Over <span>500</span> reviews on Google and counting
+						</Heading1>
 
-            <RatingMain  data-testid="W-rating">
-                <RatingContainer1>
+						<p>
+							Our users are really satisfied with our quality of service and
+							therefore have left really good reviews about our products
+						</p>
 
-                    <div className='container1a'>
-                        <Heading1>
-                            Over <span>500</span> reviews on Google and counting
-                        </Heading1>
+						<div className="container1a-btn">What makes us stand out</div>
+					</div>
 
-                        <p>Our users are really satisfied with our quality of service and therefore have left really good reviews about our products</p>
+					<div className="container1b">
+						<h1>
+							4.7 <span>out of 5</span>
+						</h1>
 
-                        <div className='container1a-btn'>
-                            What makes us stand out
-                        </div>
-                    </div>
+						<h3>
+							4.7 <span>out of 5</span>
+						</h3>
+						<h3>
+							4.7 <span>out of 5</span>
+						</h3>
+						<h3>
+							4.7 <span>out of 5</span>
+						</h3>
+					</div>
+				</RatingContainer1>
 
+				<RatingContainer2>
+					<Heading1>
+						Remove your negative <span>google reviews</span>
+					</Heading1>
 
-                    <div className='container1b'>
-                        <h1>4.7 <span>out of 5</span></h1>
+					<RatingStarMain>
+						<div>
+							<h2>Google</h2>
+							<div className="star-child">
+								<div className="star-child-inner">
+									<FaStar />
+									<FaStar />
+									<FaStar />
+									<FaStar />
+									<FaStar />
+								</div>
+								<span>5.0</span>
+							</div>
+							<span className="star-date">93 reviews as of 17/11/2022</span>
+						</div>
 
-                        <h3>4.7 <span>out of 5</span></h3>
-                        <h3>4.7 <span>out of 5</span></h3>
-                        <h3>4.7 <span>out of 5</span></h3>
-                    </div>
-                </RatingContainer1>
+						<div>
+							<h2>Spotify</h2>
+							<div className="star-child">
+								<div className="star-child-inner">
+									<FaStar />
+									<FaStar />
+									<FaStar />
+									<FaStar />
+									<FaStar />
+								</div>
+								<span>5.0</span>
+							</div>
+							<span className="star-date">93 reviews as of 17/11/2022</span>
+						</div>
+					</RatingStarMain>
+				</RatingContainer2>
+			</RatingMain>
+		</>
+	);
+};
 
-
-
-                <RatingContainer2>
-                    <Heading1>Remove your negative <span>google reviews</span></Heading1>
-
-                    <RatingStarMain>
-                        <div>
-                            <h2>Google</h2>
-                            <div className='star-child'>
-                                <div className='star-child-inner'>
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                </div>
-                                <span>5.0</span>
-                            </div>
-                            <span className='star-date'>93 reviews as of 17/11/2022</span>
-                        </div>
-
-                        <div>
-                            <h2>Spotify</h2>
-                            <div className='star-child'>
-                                <div className='star-child-inner'>
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                </div>
-                                <span>5.0</span>
-                            </div>
-                            <span className='star-date'>93 reviews as of 17/11/2022</span>
-                        </div>
-                    </RatingStarMain>
-                </RatingContainer2>
-            </RatingMain>
-        </>
-    )
-}
-
-export default Rating
+export default Rating;
 
 const RatingMain = Styled.div`
     display:flex;
@@ -178,7 +184,6 @@ flex-grow:8;
         }
 `;
 
-
 const RatingContainer2 = Styled.div`
 flex-grow:1;
     display:flex;
@@ -242,6 +247,3 @@ const RatingStarMain = Styled.h1`
 
     }
 `;
-
-
-

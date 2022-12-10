@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import Closed from './Assets/eye-slash.png';
 import REPUTE from './Assets/repute.svg';
-import background from './Assets/image-logo.png';
 import styled from 'styled-components';
 import GOOGLE from '../Login/google.svg';
 import Api from '../../api/axios';
@@ -75,18 +74,16 @@ function Signup() {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/auth/create_account',
-					{
-						email: email,
-						password: password,
-						businessEntityName: businessName,
-					}
-				)
-				localStorage.setItem('auth', email)
-				Cookies.set('reputeAccessToken', response?.data)
-				setRequestPending(false)
-				setSuccessMessage('Account Created')
-				setRequestSuccess(true)
+				const response = await Api.post('/auth/create_account', {
+					email: email,
+					password: password,
+					businessEntityName: businessName,
+				});
+				localStorage.setItem('auth', email);
+				Cookies.set('reputeAccessToken', response?.data);
+				setRequestPending(false);
+				setSuccessMessage('Account Created');
+				setRequestSuccess(true);
 				clearForm();
 				router('/dashboard');
 			} catch (err) {
@@ -123,18 +120,7 @@ function Signup() {
 	};
 
 	return (
-		<StyledSignupWrapper
-			className="SignUp box-border min-h-32 flex flex-row h-screen"
-			style={{
-				backgroundImage: `url(${background})`,
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover',
-				backgroundPosition: 'fixed',
-				display: 'flex',
-				width: '100%',
-				backgroundAttachment: 'fixed',
-			}}
-		>
+		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen">
 			<StyledFormWrapper>
 				<img src={REPUTE} alt="background" className="logo_img" />
 				<h2>Welcome to REPUTE</h2>
@@ -295,17 +281,6 @@ function Signup() {
 					</button>
 				</div>
 				<StyledSignupOptions>
-					<div className="or">
-						<span></span>
-						<p>or sign up with</p>
-						<span></span>
-					</div>
-					<div className="social-icons">
-						<button>
-							<img src={GOOGLE} alt=""/>
-							Sign in with Google
-						</button>
-					</div>
 					<p>
 						Already have an account ?{' '}
 						<span
@@ -381,13 +356,13 @@ const StyledSignupOptions = styled.div`
 	.social-icons {
 		width: 100%;
 		margin-top: 30px;
-		button{
+		button {
 			width: 100%;
 			max-width: 560px;
 			background-color: transparent;
 			display: flex;
 			align-items: center;
-			border: 1px solid #D2D3D4;
+			border: 1px solid #d2d3d4;
 			height: 59px;
 			padding-left: 29px;
 			border-radius: 4px;
@@ -397,14 +372,14 @@ const StyledSignupOptions = styled.div`
 			line-height: 27px;
 			letter-spacing: 0em;
 			text-align: center;
-			color: #2B2C34;
-			img{
+			color: #2b2c34;
+			img {
 				margin-right: 144px;
 			}
-			@media(max-width: 600px){
+			@media (max-width: 600px) {
 				justify-content: center;
 				gap: 40px;
-				img{
+				img {
 					margin: 0;
 				}
 			}
@@ -429,11 +404,12 @@ const StyledSignupOptions = styled.div`
 const StyledFormWrapper = styled.div`
 	padding-top: 54px;
 	background-color: #ffffff;
-	width: 50%;
+	width: 100%;
 	overflow-x: scroll;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding-bottom: 50px;
 	@media (max-width: 1230px) {
 		width: 100%;
 		margin: 0 auto;
@@ -449,18 +425,18 @@ const StyledFormWrapper = styled.div`
 		line-height: 68px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #2B2C34;
+		color: #2b2c34;
 		margin-top: 35px;
-		@media(max-width: 571px){
+		@media (max-width: 571px) {
 			font-size: 48px;
 		}
-		@media(max-width: 481px){
+		@media (max-width: 481px) {
 			font-size: 42px;
 		}
-		@media(max-width: 421px){
+		@media (max-width: 421px) {
 			font-size: 35px;
 		}
-		@media(max-width: 357px){
+		@media (max-width: 357px) {
 			font-size: 31px;
 		}
 	}
@@ -489,7 +465,7 @@ const StyledFormWrapper = styled.div`
 		line-height: 24px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #6F7174;
+		color: #6f7174;
 	}
 	.form {
 		width: 100%;

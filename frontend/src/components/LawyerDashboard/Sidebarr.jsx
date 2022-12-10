@@ -1,15 +1,20 @@
 import useLogoutConfirmation from '../../hooks/useLogoutConfirmation';
 import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/Dashboard/logo.png';
-import { DashboardIcon, SettingsIcon, SignoutIcon } from '../Dashboard/Icons';
+import {
+	DashboardIcon,
+	SettingsIcon,
+	SignoutIcon,
+	RequestIcon,
+} from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 
 const Sidebarr = (props) => {
 	const { isShowing, toggle } = useLogoutConfirmation();
-
+	const location = useLocation();
 	return (
 		<StyledSidebar className={props.className}>
 			<div>
@@ -27,9 +32,11 @@ const Sidebarr = (props) => {
 							Dashboard
 						</NavLink>
 					</li>
-                    <li>
+					<li>
 						<NavLink to="/requests">
-							<DashboardIcon />
+							<RequestIcon
+								fill={location.pathname === '/requests' ? '#F16F04' : '#A5A6A8'}
+							/>
 							Requests
 						</NavLink>
 					</li>

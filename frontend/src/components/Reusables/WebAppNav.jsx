@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/Dashboard/logo.png';
 import menu from '../../assets/images/Dashboard/menu.jpg';
@@ -20,17 +20,18 @@ const WebAppNav = (props) => {
 	const currentRoute = useLocation();
 	const ApiPrivate = useAxiosPrivate();
 
-	const data = ApiPrivate.request('/auth/details');
-	try {
-		data.then((res) => {
-			if (res != null) {
-				console.log(res.data.businessEntityName);
-				localStorage.setItem('user', res.data.businessEntityName);
-			}
-		});
-	} catch (error) {
-		console.log('not found');
-	}
+	useEffect(() => {
+		fetchUserDetails();
+	}, []);
+
+	const fetchUserDetails = async () => {
+		try {
+			const response = await ApiPrivate.get('/auth/details');
+			localStorage.setItem('user', response?.data.businessEntityName);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	const userName = localStorage.getItem('user');
 

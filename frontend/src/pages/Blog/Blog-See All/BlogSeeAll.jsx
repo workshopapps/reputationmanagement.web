@@ -13,8 +13,8 @@ const BlogSeeAll = () => {
 		setSearch(e.target.value);
 	};
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<section>
