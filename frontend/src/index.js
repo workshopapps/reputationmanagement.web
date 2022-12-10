@@ -13,13 +13,11 @@ import { BrowserTracing } from '@sentry/tracing';
 atatus.config('9a4637418b324a269bd095953757871d').install();
 atatus.notify(new Error('Test Atatus Setup'));
 Sentry.init({
-	dsn: 'https://acbed01f3af04154a1206f028d3d9b79@o4504259490873344.ingest.sentry.io/4504286581882880',
-	integrations: [
-		new BrowserTracing({
-			tracingOrigins: ['localhost', 'api.repute.hng.tech'],
-		}),
-	],
-	tracesSampleRate: 1.0,
+    dsn: "https://acbed01f3af04154a1206f028d3d9b79@o4504259490873344.ingest.sentry.io/4504286581882880",
+    integrations: [
+        new BrowserTracing({
+        tracingOrigins: ["localhost", "api.repute.hng.tech"]})],
+    tracesSampleRate: 1.0
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

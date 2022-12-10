@@ -421,8 +421,8 @@ const HowDoesItWork = styled.div`
 	margin-top: 50px;
 	// width:100vw;
 	// background-color: #eef1fc;
-    h2{
-        font
+    h2 {
+        
     }
 `;
 const Number = styled.div`

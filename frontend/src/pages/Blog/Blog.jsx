@@ -8,21 +8,29 @@ import PageLayout from '../../layout/PageLayout';
 import Filter from '../../components/Blog/filter';
 import Footer from '../../components/Blog/footer';
 //import Pagination from '../../components/Blog/pagination';
-import { useEffect, useState } from 'react';
-import DataBlog from './data';
+import { useEffect, useState, useCallback } from 'react';
+//import DataBlog from './data';
 import Pagination from '../../components/Blog/pagination';
-
-const StyledArticles = styled.div`
-	//width: 70%;
-	margin: 0 auto;
-	margin-bottom: 50px;
-`;
+import { ApiPrivate } from '../../api/axios';
+import useAppContext from '../../hooks/useAppContext';
 
 const StyledPostSnippet = styled.div`
-	//background-color: red;
+	width: 100%;
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(3, 1fr);
+
+	@media (max-width: 1200px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (max-width: 520px) {
+		grid-template-columns: repeat(1, 1fr);
+	}
 `;
 
 const StyledPostMain = styled.div`
+margin-top: 50px;
 	display: flex;
 	//justify-content: center;
 	position: relative;
@@ -50,25 +58,64 @@ const StyledFilter = styled.div`
 `;
 
 const Blog = () => {
-	const [item, setItem] = useState(DataBlog);
+	const { setItem } = useAppContext();
+	const [filteredData, setFilteredData] = useState([])
 
-	//Filter Topics////////////////////////////
-	const menuItems = [...new Set(DataBlog.map((item, id) => item.tag))];
 
+	//Fetch Blog Posts.................
+	const fetchAllBlog = useCallback(async () => {
+		try {
+			const response = await ApiPrivate.get(
+				'/blogging?pageNumber=0&pageSize=10'
+			);
+			setItem(response?.data);
+			setFilteredData(response?.data);
+			
+		} catch (err) {
+			console.log(err);
+		}
+	}, [setItem,setFilteredData]);
+
+	useEffect(() => {
+		fetchAllBlog();
+	}, [fetchAllBlog]);
+
+	//..........
+
+	//Initialize item...........
+
+	const { item } = useAppContext();
+
+	//...........
+
+	
+	//Filter Topics.................
 	const filterItem = (curcat) => {
-		const newItem = DataBlog.filter((newVal) => {
-			return newVal.tag === curcat;
+		const newItem = item.filter((Val) => {
+			return Val.tag === curcat;
 		});
-		setItem(newItem);
+		setFilteredData(newItem);
+		console.log(newItem)
 	};
+	//...............
+
+	//Filter Topics All.................
+	const allItem = (curcata) => {
+		const newerItem = item.filter((Val) => {
+			return Val.index === curcata;
+		});
+		setFilteredData(newerItem);
+		console.log(newerItem)
+	};
+	//............
 
 	// Pagination//////////////////////
 	const [currentPage, setCurrentPage] = useState(1);
 	const [recordsPerPage] = useState(6);
 	const indexOfLastRecord = currentPage * recordsPerPage;
 	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-	const currentRecords = item.slice(indexOfFirstRecord, indexOfLastRecord);
-	const nPages = Math.ceil(item.length / recordsPerPage);
+	const currentRecords = filteredData.slice(indexOfFirstRecord, indexOfLastRecord);
+	const nPages = Math.ceil(filteredData.length / recordsPerPage);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -78,22 +125,18 @@ const Blog = () => {
 			<PageLayout>
 				<div style={{ maxWidth: '1540px', margin: '0 auto' }}>
 					<Hero />
-					<Search />
+					
 					<StyledPostMain>
 						<StyledFilter>
 							<Filter
 								filterItem={filterItem}
-								setItem={setItem}
-								menuItems={menuItems}
+								allItem={allItem}
 							/>
 						</StyledFilter>
-						<div>
-							<StyledArticles>
-								<StyledPostSnippet>
-									<PostSnippet item={currentRecords} />
-								</StyledPostSnippet>
-							</StyledArticles>
-						</div>
+
+						<StyledPostSnippet>
+							<PostSnippet filteredData={currentRecords} />
+						</StyledPostSnippet>
 					</StyledPostMain>
 
 					<Pagination
@@ -101,11 +144,13 @@ const Blog = () => {
 						currentPage={currentPage}
 						setCurrentPage={setCurrentPage}
 					/>
+						
 				</div>
 				<Footer />
 			</PageLayout>
 		</section>
 	);
 };
+
 
 export default Blog;

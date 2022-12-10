@@ -25,11 +25,11 @@ const FooterData = [
 		},
 		{
 			text: 'Contact Us',
-			url: '/contact',
+			url: '/contact#contact',
 		},
 		{
 			text: 'FAQ',
-			url: '/contact',
+			url: '/contact#faq',
 		},
 	],
 ];
