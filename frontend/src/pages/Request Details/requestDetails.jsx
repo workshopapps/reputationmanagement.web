@@ -12,7 +12,7 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
 import { useLocation, useNavigate } from 'react-router-dom';
-import DeleteRequestModal from '../../modal/deleteRequestModal';
+import OpenDisputeModal from '../../modal/openDisputeModal';
 
 const RequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -29,6 +29,7 @@ const RequestDetails = () => {
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [requestLoading, RequestLoading] = useState(false);
 	const [status, setStatus] = useState();
 	const {
 		setErrMessage,
@@ -39,7 +40,7 @@ const RequestDetails = () => {
 		requestFailed,
 	} = useAppContext();
 
-	const [deleteModalActive, setDeleteModalActive] = useState(false);
+	const [disputeModalActive, setDisputeModalActive] = useState(false);
 
 	const ApiPrivate = useAxiosPrivate();
 
@@ -47,25 +48,15 @@ const RequestDetails = () => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	// const clearForm = () => {
-	// 	// setName()
-	// 	setEmail();
-	// 	setPriority();
-	// 	setReview();
-	// 	setWebsiteName();
-	// 	setBusinessType();
-	// };
-
 	const location = useLocation();
 	const requestId = new URLSearchParams(location.search).get('requestId');
 
 	const fetchComplaintDetails = async () => {
 		try {
 			const response = await ApiPrivate.get(`review/${requestId}`);
-			console.log(response);
 			setEmail(response?.data?.email);
 			setPriority(response?.data?.priority);
-			console.log('response:' + response?.data?.priority);
+			// console.log('response:' + response?.data?.priority);
 			setName(response?.data?.complainerName);
 			setRating(response?.data?.rating);
 			setReview(response?.data?.reviewString);
@@ -85,24 +76,21 @@ const RequestDetails = () => {
 		setTime(date.substring(11, 16));
 	}, [date]);
 
-	const handleDelete = async () => {
+	const handleSubmitDispute = async (data) => {
+		RequestLoading(true);
 		try {
-			const response = await ApiPrivate.delete(`/review/${requestId}`);
-			setSuccessMessage('Request deleted successfully');
+			const response = await ApiPrivate.post(`/ContactUs`, data);
+			setSuccessMessage('Dispute created successfully!');
 			setRequestSuccess(true);
-			router('/dashboard');
-			console.log(response);
+			setDisputeModalActive(false);
+			RequestLoading(false);
 		} catch (err) {
-			console.log(err);
-			setDeleteModalActive(false);
-			setErrMessage('Unable to delete request');
+			setErrMessage('Dispute creation failed!');
 			setRequestFailed(true);
+			RequestLoading(false);
+			console.log(err);
 		}
 	};
-
-	useEffect(() => {
-		fetchComplaintDetails();
-	}, []);
 
 	useEffect(() => {
 		fetchComplaintDetails();
@@ -111,19 +99,14 @@ const RequestDetails = () => {
 	return (
 		<>
 			<RequestFailed />
-			{deleteModalActive && (
-				<DeleteRequestModal
-					setDeleteModalActive={setDeleteModalActive}
-					handleDelete={handleDelete}
+			{disputeModalActive && (
+				<OpenDisputeModal
+					setDisputeModalActive={setDisputeModalActive}
+					handleSubmitDispute={handleSubmitDispute}
+					requestLoading={requestLoading}
 				/>
 			)}
-			<RequestFailed />
-			{deleteModalActive && (
-				<DeleteRequestModal
-					setDeleteModalActive={setDeleteModalActive}
-					handleDelete={handleDelete}
-				/>
-			)}
+
 			<StyledDashboard>
 				<Sidebar
 					className={`${openMenu ? 'open' : ''}`}
@@ -294,15 +277,18 @@ const RequestDetails = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								<button
-									className="delete"
-									onClick={(e) => {
-										e.preventDefault();
-										setDeleteModalActive(true);
-									}}
-								>
-									Delete
-								</button>
+								{status === 'done' && (
+									<button
+										className="disputeBtn"
+										onClick={(e) => {
+											e.preventDefault();
+											setDisputeModalActive(true);
+										}}
+									>
+										Open Dispute
+									</button>
+								)}
+
 								<button
 									className="submit"
 									onClick={(e) => router(`/dashboard`)}
@@ -320,40 +306,6 @@ const RequestDetails = () => {
 
 export default RequestDetails;
 
-// const CheckboxGroup = ({ setPriority, priority }) => {
-// 	return (
-// 		<>
-// 			<Checkbox
-// 				label={3}
-// 				currentValue={priority}
-// 				onClick={() => {
-// 					setPriority(3);
-// 				}}
-// 			/>
-// 			<Checkbox
-// 				label={2}
-// 				currentValue={priority}
-// 				onClick={() => {
-// 					setPriority(2);
-// 				}}
-// 			/>
-// 			<Checkbox
-// 				label={1}
-// 				currentValue={priority}
-// 				onClick={() => {
-// 					setPriority(1);
-// 				}}
-// 			/>
-// 			<Checkbox
-// 				label={0}
-// 				currentValue={priority}
-// 				onClick={() => {
-// 					setPriority(0);
-// 				}}
-// 			/>
-// 		</>
-// 	);
-// };
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
 	font-family: 'Lato', sans-serif;
@@ -554,18 +506,18 @@ const StyledContainers = styled.div`
 					height: 40px;
 				}
 			}
-			.delete {
+			.disputeBtn {
 				height: 59px;
 				width: 220px;
 				border-radius: 4px;
-				border: 1px solid rgba(240, 55, 56, 1);
+				border: 1px solid #f16f04;
 				font-family: Lato;
 				font-size: 18px;
 				font-weight: 600;
 				line-height: 27px;
 				letter-spacing: 0em;
 				text-align: center;
-				color: rgba(240, 55, 56, 1);
+				color: #f16f04;
 				background-color: transparent;
 				margin-right: 16px;
 
