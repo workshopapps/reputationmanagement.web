@@ -13,6 +13,7 @@ const AppProvider = ({children}) => {
     const [ successMessage, setSuccessMessage ] = useState('Request succcessful');
     const [ requestSuccess, setRequestSuccess ] = useState(false);
 	const [ requestFailed, setRequestFailed ] = useState(false);
+	const [ mailModalActive, setMailModalActive ] = useState(false)
 
     return(
         <AppContext.Provider 
@@ -32,7 +33,9 @@ const AppProvider = ({children}) => {
                 requestFailed,
                 setRequestFailed,
                 successMessage,
-                setSuccessMessage
+                setSuccessMessage,
+		mailModalActive,
+		setMailModalActive,
             }}
         >
             {children}
