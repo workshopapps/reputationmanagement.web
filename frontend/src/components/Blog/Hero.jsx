@@ -11,12 +11,12 @@ const StyledSection = styled.section`
 
 	@media (max-width: 850px) {
 		padding-left: 34px;
-	padding-right: 34px;
+		padding-right: 34px;
 	}
 
 	@media (max-width: 520px) {
 		padding-left: 20px;
-	padding-right: 20px;
+		padding-right: 20px;
 	}
 `;
 
@@ -96,16 +96,16 @@ export default function Hero() {
 	return (
 		<StyledSection>
 			<StyledSectionInner>
-			<StyledBody>
-				<StyledHeader>
-					6 Efficient Techniques to Protect Your Brand Reputation in 2023
-				</StyledHeader>
-				<StyledParagraph>
-					Protect your brand reputation with the easy-to-implement techniques in
-					our guide
-				</StyledParagraph>
-				<Link to="/blog-post">Read Article</Link>
-			</StyledBody>
+				<StyledBody>
+					<StyledHeader>
+						6 Efficient Techniques to Protect Your Brand Reputation in 2023
+					</StyledHeader>
+					<StyledParagraph>
+						Protect your brand reputation with the easy-to-implement techniques
+						in our guide
+					</StyledParagraph>
+					<Link to="/blog-post">Read Article</Link>
+				</StyledBody>
 			</StyledSectionInner>
 		</StyledSection>
 	);

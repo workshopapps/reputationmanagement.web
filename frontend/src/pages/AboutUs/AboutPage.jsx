@@ -8,12 +8,12 @@ import { useEffect } from 'react';
 
 function AboutPage() {
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<>
 			<PageLayout>
-				<Hero  />
+				<Hero />
 				<Story />
 				<Fix />
 				<Help />

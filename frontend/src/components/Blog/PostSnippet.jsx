@@ -33,7 +33,7 @@ const StyledHeader = styled.h2`
 		font-size: 1rem;
 		font-weight: 400;
 		padding: 10px;
-	padding-left: 15px;
+		padding-left: 15px;
 	}
 `;
 
@@ -44,7 +44,6 @@ const StyledParagraph = styled.p`
 	color: #787a7d;
 	padding: 0 10px 20px 10px;
 	cursor: default;
-
 `;
 
 const StyledTag = styled.div`
@@ -60,7 +59,7 @@ const StyledTag = styled.div`
 	}
 `;
 const SnippetGrid = styled.div`
-		width: 100%;
+	width: 100%;
 	display: grid;
 	gap: 1.5rem;
 	grid-template-columns: repeat(3, 1fr);
@@ -72,34 +71,25 @@ const SnippetGrid = styled.div`
 	@media (max-width: 520px) {
 		grid-template-columns: repeat(1, 1fr);
 	}
-
 `;
 
-
-
-function PostSnippet({item}) {
-	
+function PostSnippet({ item }) {
 	return (
 		<>
-		<SnippetGrid>
-			{item.map((Val) => {
-				return (
-		<StyledPost  key={Val.id}>
-			<StyledImg src={Val.img} alt="blogpost image"  />
-			<StyledTag>{Val.tag}</StyledTag>
-			<StyledHeader>{Val.title}</StyledHeader>
-			<StyledParagraph>{Val.description}</StyledParagraph>
-		</StyledPost>
-		);
-		})}
-		</SnippetGrid>
-		
+			<SnippetGrid>
+				{item.map((Val) => {
+					return (
+						<StyledPost key={Val.id}>
+							<StyledImg src={Val.img} alt="blogpost image" />
+							<StyledTag>{Val.tag}</StyledTag>
+							<StyledHeader>{Val.title}</StyledHeader>
+							<StyledParagraph>{Val.description}</StyledParagraph>
+						</StyledPost>
+					);
+				})}
+			</SnippetGrid>
 		</>
-		
-		
 	);
-
 }
-
 
 export default PostSnippet;

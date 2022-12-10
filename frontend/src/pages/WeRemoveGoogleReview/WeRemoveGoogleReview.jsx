@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useEffect } from 'react';
 // import Rating from '../../components/WeRemoveGoogleReview/WRDRRating';
 
@@ -10,8 +10,8 @@ import PageLayout from '../../layout/PageLayout';
 
 const WeRemoveGoogleReview = () => {
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<>
 			<PageLayout>

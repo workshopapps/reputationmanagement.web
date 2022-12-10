@@ -15,39 +15,35 @@ import { useEffect } from 'react';
 import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
 import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
 import { LawyerTableData } from '../../components/Dashboard/TableData';
-import useAppContext from '../../hooks/useAppContext'
-import useAxiosPrivate from '../../hooks/useAxiosPrivate'
+import useAppContext from '../../hooks/useAppContext';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled from 'styled-components';
 
-
 function LawyerDashboard() {
-	const [tickets, setTickets] = useState([
-	]);
+	const [tickets, setTickets] = useState([]);
 	const { setRequestFailed, setErrMessage } = useAppContext();
 
-	const [ searchTicket, setSearchTicket ] = useState('');
+	const [searchTicket, setSearchTicket] = useState('');
 
 	const ApiPrivate = useAxiosPrivate();
 
-	const fetchDetails = useCallback(async() => {
-		try{
-			const response = await ApiPrivate.get('/lawyer/PendingReview')
-			setTickets(response?.data)
-			console.log(response)
-		}
-		catch(err){
-			if ( err?.response?.status ){
-				setErrMessage('Shey you be lawyer ni')
-				setRequestFailed(true)
+	const fetchDetails = useCallback(async () => {
+		try {
+			const response = await ApiPrivate.get('/lawyer/PendingReview');
+			setTickets(response?.data);
+			console.log(response);
+		} catch (err) {
+			if (err?.response?.status) {
+				setErrMessage('Shey you be lawyer ni');
+				setRequestFailed(true);
 			}
-			console.log(err)
-
+			console.log(err);
 		}
-	},[ ApiPrivate, setErrMessage, setRequestFailed ])
+	}, [ApiPrivate, setErrMessage, setRequestFailed]);
 
 	useEffect(() => {
-		fetchDetails()
-	},[ fetchDetails ])
+		fetchDetails();
+	}, [fetchDetails]);
 
 	const [menuActive, setMenuActive] = useState(false);
 
@@ -55,17 +51,16 @@ function LawyerDashboard() {
 		setMenuActive(!menuActive);
 	}
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
+	const email = localStorage.getItem('auth');
 	return (
 		<div className="h-screen flex relative">
 			<Sidebarr />
 
-			<StyledDashboard className="inline-flex flex-col w-full lg:w-[75%] relative md:absolute right-0">
+			<StyledDashboard className="inline-flex flex-col w-full relative right-0">
 				<StyledNav className="flex justify-between fixed md:static items-center w-full px-5 py-5 bg-white z-10 border-b md:border-none">
-					<div
-						className="hidden md:flex items-center border rounded-md overflow-hidden h-[40px] w-2/5"
-					>
+					<div className="hidden md:flex items-center border rounded-md overflow-hidden h-[40px] w-2/5">
 						<img src={searchIcon} alt="" className="px-2 h-[24px]" />
 						<input
 							type="text"
@@ -80,27 +75,27 @@ function LawyerDashboard() {
 						<img src={menuActive ? x : hamburger} alt="" className="w-[25px]" />
 					</button>
 
-					<Link to="/" className="w-[30%] sm:w-[20%] h-auto flex md:hidden small">
+					<Link
+						to="/"
+						className="w-[30%] sm:w-[20%] h-auto flex md:hidden small"
+					>
 						<img src={logo} className="" alt="" />
 					</Link>
 
 					<div className="flex items-center">
-						<img
-							src={searchIcon}
-							alt=""
-							className="flex md:hidden mr-2 w-[20px]"
-						/>
-						<img src={notificationsIcon} alt="" />
-						<img src={profileImg} alt="" className="ml-4 hidden md:flex" />
+						<p>Hi, {email}</p>
 					</div>
 				</StyledNav>
 
 				{menuActive && <Menu />}
 
 				<div className="p-5 absolute md:static left-0 w-full">
-				<div className="flex flex-col items-center mt-5 w-full">
+					<div className="flex flex-col items-center mt-5 w-full">
 						<div className="w-full">
-							<h2 className="text-xl font-[600] mb-2 hidden md:flex" style={{ fontSize: '30px', marginBottom: '20px'}}>
+							<h2
+								className="text-xl font-[600] mb-2 hidden md:flex"
+								style={{ fontSize: '30px', marginBottom: '20px' }}
+							>
 								Open Tickets
 							</h2>
 							<TableContainer>
@@ -116,31 +111,35 @@ function LawyerDashboard() {
 								</thead>
 								{tickets.length >= 1 && (
 									<tbody>
-										{tickets ?
-											tickets
-											.filter((data) => {
-												if (searchTicket === '') {
-													return data;
-												} else if (
-													data.ticketName
-														.toLowerCase()
-														.includes(searchTicket.toLowerCase())
-												) {
-													return data;
-												}
+										{tickets
+											? tickets
+													.filter((data) => {
+														if (searchTicket === '') {
+															return data;
+														} else if (
+															data.ticketName
+																.toLowerCase()
+																.includes(searchTicket.toLowerCase())
+														) {
+															return data;
+														}
 
-												return data;
-											})
-											.map((data, index) => {
-												return (
-												<LawyerTableData  id={data.reviewId} ticketName={data.complainerName} lastUpdated={data.updatedAt} priority={data.priority} status={data.status} key={index} no={index}
-													
-												/>
-												)
-											})
-											:
-											''
-										}
+														return data;
+													})
+													.map((data, index) => {
+														return (
+															<LawyerTableData
+																id={data.reviewId}
+																ticketName={data.complainerName}
+																lastUpdated={data.updatedAt}
+																priority={data.priority}
+																status={data.status}
+																key={index}
+																no={index}
+															/>
+														);
+													})
+											: ''}
 									</tbody>
 								)}
 							</TableContainer>
@@ -208,7 +207,9 @@ function LawyerDashboard() {
 							<h3 className="mt-2 mb-3 text-[22px] font-[600px]">
 								Total requests
 							</h3>
-							<span className="text-[45px] font-semibold">{tickets.length || 0}</span>
+							<span className="text-[45px] font-semibold">
+								{tickets.length || 0}
+							</span>
 						</div>
 
 						<div className="w-[47%] card overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
@@ -250,24 +251,26 @@ function LawyerDashboard() {
 }
 
 const StyledDashboard = styled.div`
-	@media(max-width: 1140px){
+	margin-left: 300px;
+	max-width: 1351px;
+	@media (max-width: 1140px) {
 		width: 100% !important;
 	}
 `;
 const StyledNav = styled.div`
-	@media(max-width: 1140px){
-		.small{
+	@media (max-width: 1140px) {
+		.small {
 			display: flex !important;
 		}
-		.hidden{
+		.hidden {
 			display: none !important;
 		}
 	}
 `;
 const StyledCardWrapper = styled.div`
-	@media(max-width: 600px){
+	@media (max-width: 600px) {
 		flex-direction: column;
-		.card{
+		.card {
 			width: 100% !important;
 		}
 	}

@@ -1,5 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation, useNavigationType, createRoutesFromChildren, matchRoutes } from 'react-router-dom';
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+	useLocation,
+	useNavigationType,
+	createRoutesFromChildren,
+	matchRoutes,
+} from 'react-router-dom';
 import AboutPage from '../pages/AboutUs/AboutPage';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
@@ -45,31 +53,30 @@ import Job10 from '../pages/Carrer/Job10';
 import Job11 from '../pages/Carrer/Job11';
 import Job12 from '../pages/Carrer/Job12';
 import RequestDetails from '../pages/Request Details/requestDetails';
-import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
 import LawyerRequestDetails from '../pages/Request Details/lawyerRequestDetails';
 import LawyerLogin from '../pages/Login/lawyerLogin';
 import LawyerSignup from '../pages/Sign-up/lawyerSignup';
-import Requests from '../pages/LawyerDashboard/request'
+import Requests from '../pages/LawyerDashboard/request';
 import Index2 from '../pages/LandingPage/index2';
 
-
 Sentry.init({
-    integrations: [
-        new BrowserTracing({
-            routingInstrumentation: Sentry.reactRouterV6Instrumentation(
-                React.useEffect,
-                useLocation,
-                useNavigationType,
-                createRoutesFromChildren,
-                matchRoutes,
-            ),
-        }),
-    ],
-    tracesSampleRate: 1.0,
+	integrations: [
+		new BrowserTracing({
+			routingInstrumentation: Sentry.reactRouterV6Instrumentation(
+				React.useEffect,
+				useLocation,
+				useNavigationType,
+				createRoutesFromChildren,
+				matchRoutes
+			),
+		}),
+	],
+	tracesSampleRate: 1.0,
 });
 
-const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes)
+const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 
 const Router = () => {
 	return (
@@ -83,13 +90,16 @@ const Router = () => {
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
 						<Route path="/request" element={<RequestDetails />} />
-						<Route path="/lawyer-request-details" element={<LawyerRequestDetails />} />
-						<Route path="/requests" element={<Requests/>}/>
+						<Route
+							path="/lawyer-request-details"
+							element={<LawyerRequestDetails />}
+						/>
+						<Route path="/requests" element={<Requests />} />
 					</Route>
 					<Route path="/" element={<Index2 />} />
 					{/* <Route path="/" element={<LandingPage />} /> */}
-					<Route path="/lawyer-login" element={<LawyerLogin/>}/>
-					<Route path="/lawyer-signup" element={<LawyerSignup/>}/>
+					<Route path="/lawyer-login" element={<LawyerLogin />} />
+					<Route path="/lawyer-signup" element={<LawyerSignup />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/about-us" element={<AboutPage />} />
@@ -97,7 +107,7 @@ const Router = () => {
 						path="/we-remove-google-search"
 						element={<WeRemoveGoogleSearch />}
 					/>
-					
+
 					<Route
 						path="/we-remove-google-review"
 						element={<WeRemoveGoogleReview />}

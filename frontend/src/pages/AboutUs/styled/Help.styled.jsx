@@ -16,7 +16,7 @@ export const StyledBgImgDesktop = styled.div`
 
 export const StyledCenter = styled.div`
 	//@import url('https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type= 'text/css');
-width: 100%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	position: absolute;

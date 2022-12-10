@@ -4,18 +4,15 @@ import ReactDOM from 'react-dom';
 import logo from '../assets/images/logOutConfirmation/signoutlogo.svg';
 import Cookies from 'js-cookie';
 
-
 const handleLogout = () => {
-	
-		Cookies.remove('repboostAccessToken');
-		localStorage.removeItem('auth');
-		window.location.href = '/login'
+	Cookies.remove('repboostAccessToken');
+	localStorage.removeItem('auth');
+	window.location.href = '/login';
 };
 
 const LogoutConfirmationModal = ({ isShowing, hide }) =>
 	isShowing
 		? ReactDOM.createPortal(
-			
 				<React.Fragment>
 					<ModalOverlay className="modal-overlay" />
 					<ModalWrapper
@@ -107,7 +104,7 @@ const ModalInner = styled.div`
 			margin-right: 70px;
 			transition: 0.5s;
 
-            @media (max-width: 500px) {
+			@media (max-width: 500px) {
 				margin-right: 30px;
 			}
 
@@ -123,7 +120,7 @@ const ModalInner = styled.div`
 			color: #ff8017;
 			border-radius: 4px;
 			transition: 0.5s;
-            @media (max-width: 500px) {
+			@media (max-width: 500px) {
 				padding: 13px 20px;
 			}
 			&:hover {

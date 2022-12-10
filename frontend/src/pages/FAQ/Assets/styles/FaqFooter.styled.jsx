@@ -32,7 +32,7 @@ export const FaqFooterHeading = styled.h3`
 `;
 
 export const FaqFooterSubHeading = styled.h6`
-width: 510px;
+	width: 510px;
 	color: #6f7174;
 	font-weight: 600;
 	font-size: 16px;
@@ -41,18 +41,18 @@ width: 510px;
 	@media screen and (max-width: 600px) {
 		width: 350px;
 		text-align: left;
-		}
+	}
 
 	@media screen and (max-width: 400px) {
 		width: 300px;
-		}
+	}
 `;
 
 export const FaqHeadingMain = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const FaqFooterLinksParent = styled.div`
@@ -70,18 +70,15 @@ export const FaqFooterLinksParent = styled.div`
 
 	@media screen and (max-width: 400px) {
 		width: 320px;
-		}
+	}
 `;
 
 export const FaqFooterLinks = styled.div`
-	
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
 	margin-top: 48px;
-
-	
 `;
 
 export const SendMailLink = styled.a`
@@ -98,8 +95,8 @@ export const SendMailLink = styled.a`
 
 		img {
 			@media screen and (max-width: 400px) {
-		width: 50px;
-		}
+				width: 50px;
+			}
 		}
 
 		span {
@@ -112,7 +109,7 @@ export const SendMailLink = styled.a`
 				line-height: 150%;
 				@media screen and (max-width: 600px) {
 					font-size: 16px;
-		}
+				}
 			}
 			p {
 				color: #6f7174;
@@ -122,7 +119,7 @@ export const SendMailLink = styled.a`
 
 				@media screen and (max-width: 600px) {
 					font-size: 14px;
-		}
+				}
 			}
 		}
 	}

@@ -1,20 +1,20 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledOverlay = styled.div`
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: #1111114D;
-    display: flex;
-    left: 0;
-    justify-content: center;
-    align-items: center;
-    z-index: 9;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #1111114d;
+	display: flex;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+	z-index: 9;
 `;
 export const StyledButtonWrapper = styled.div`
-    display: flex;
-    margin-top: 50px;
-    justify-content: center;
+	display: flex;
+	margin-top: 50px;
+	justify-content: center;
 `;
 export const StyledSuccessfulRequest = styled.div`
     width: 704px;

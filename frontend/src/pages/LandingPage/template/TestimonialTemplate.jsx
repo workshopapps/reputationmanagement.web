@@ -20,8 +20,6 @@ const TestimonialTemplate = ({ testimonialTemplate }) => {
 
 export default TestimonialTemplate;
 
-
-
 export const TestimonialCard = Styled.div`
 display: flex;
 flex-direction: column;

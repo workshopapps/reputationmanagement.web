@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Styled from 'styled-components';
 import { StyledButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
@@ -11,52 +11,51 @@ import tyme from '../../assets/images/wrgr/tyme.png'
 import sushi from '../../assets/images/wrgr/sushi.png'
 
 const WRGRHero = () => {
-  return (
-    <>
-      <Wrapper className='col-md-10 ml-auto mr-auto text-center mt-5' data-testid="W-hero">
-        <StyledContainer>
-          <TextH1 black className='h1'>
-            Remove negative google reviews.<br />
-            Improve your company’s conversion rate.
-          </TextH1>
-          <TextH2 className="">
-            Remove your negative google reviews, save your brand’s reputation and increase customer retention rate.
-          </TextH2>
+	return (
+		<>
+			<Wrapper
+				className="col-md-10 ml-auto mr-auto text-center mt-5"
+				data-testid="W-hero"
+			>
+				<StyledContainer>
+					<TextH1 black className="h1">
+						Remove negative google reviews.
+						<br />
+						Improve your company’s conversion rate.
+					</TextH1>
+					<TextH2 className="">
+						Remove your negative google reviews, save your brand’s reputation
+						and increase customer retention rate.
+					</TextH2>
 
-          <Buttons className="mt-5">
-            <StyledButton>
-              <Link to="/#">
-                Sign up
-              </Link>
-            </StyledButton>
-            <StyledButton outlined>
-              <Link to="/get-a-quote">
-                Get a quote
-              </Link>
-            </StyledButton>
-          </Buttons>
+					<Buttons className="mt-5">
+						<StyledButton>
+							<Link to="/#">Sign up</Link>
+						</StyledButton>
+						<StyledButton outlined>
+							<Link to="/get-a-quote">Get a quote</Link>
+						</StyledButton>
+					</Buttons>
 
-          <div className="user ">
-            <h5>
-              Used and loved by 1M users across 199 countries
-            </h5>
-            <div className="my-4 grid grid-cols-6 gap-4">
-              <img src={circular} alt="img" />
-              <img src={tyme} alt="img" />
-              <img src={m} alt="img" />
-              <img src={ob} alt="img" />
-              {/* <img src={circular} alt="img" /> */}
-              <img src={sushi} alt="img" />
-              <img src={loveclip} alt="img" />
-            </div>
-          </div>
-        </StyledContainer>
-      </Wrapper>
-    </>
-  )
-}
+					<div className="user ">
+						<h5>Used and loved by 1M users across 199 countries</h5>
+						<div className="my-4 grid grid-cols-6 gap-4">
+							<img src={circular} alt="img" />
+							<img src={tyme} alt="img" />
+							<img src={m} alt="img" />
+							<img src={ob} alt="img" />
+							{/* <img src={circular} alt="img" /> */}
+							<img src={sushi} alt="img" />
+							<img src={loveclip} alt="img" />
+						</div>
+					</div>
+				</StyledContainer>
+			</Wrapper>
+		</>
+	);
+};
 
-export default WRGRHero
+export default WRGRHero;
 
 const Wrapper = Styled.div`
 padding: 2rem; 
@@ -150,4 +149,3 @@ justify-content: center;
 
 
 `;
-

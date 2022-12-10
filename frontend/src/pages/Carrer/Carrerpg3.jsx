@@ -9,7 +9,6 @@ import Map from '../../assets/images/map.png';
 // import { BiArrowBack } from 'react-icons/bi';
 import Arrow from '../../assets/images/arrow-right.png';
 
-
 import Modal from './Modal';
 import { useCallback } from 'react';
 
@@ -25,13 +24,13 @@ function Carrerpg3() {
 	const getJobDetails = useCallback(() => {
 		const result = availableJobs.find((availble) => availble.id === id);
 		setJobDetails(result);
-	},[ id ])
+	}, [id]);
 	useEffect(() => {
 		getJobDetails();
-	}, [ getJobDetails ]);
+	}, [getJobDetails]);
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<section className="p-8">
