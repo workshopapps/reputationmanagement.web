@@ -47,7 +47,7 @@ function FaqFooter() {
 						<SendMailLink
 							background="transparent"
 							color="#233BA9"
-							href="+(234)-7354-1234"
+							href="tel:+2348082267608"
 							className="twitter-dm-button"
 							data-screen-name="@sinachpatrick"
 							target="blank"
