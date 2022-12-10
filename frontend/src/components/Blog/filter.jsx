@@ -2,11 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaChevronDown } from 'react-icons/fa';
 import { useState } from 'react';
-import useAppContext from '../../hooks/useAppContext';
 
-const Filter = ({ filterItem,setFilteredData, allItem }) => {
+const Filter = ({ filterItem, allItem }) => {
 	const [isNavLocation, setIsNavLocation] = useState(false);
-	//const { item } = useAppContext();
 
 	return (
 		<FilterMain>

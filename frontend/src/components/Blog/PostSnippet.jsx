@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-//import PropTypes from 'prop-types';
-//import { valid } from 'semver';
 
 const StyledPost = styled.section`
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -58,20 +56,7 @@ const StyledTag = styled.div`
 	@media (max-width: 650px) {
 	}
 `;
-const SnippetGrid = styled.div`
-	width: 100%;
-	display: grid;
-	gap: 1.5rem;
-	grid-template-columns: repeat(3, 1fr);
 
-	@media (max-width: 1200px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	@media (max-width: 520px) {
-		grid-template-columns: repeat(1, 1fr);
-	}
-`;
 
 function PostSnippet({ filteredData }) {
 	return (

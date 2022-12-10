@@ -13,7 +13,6 @@ import { useEffect, useState, useCallback } from 'react';
 import Pagination from '../../components/Blog/pagination';
 import { ApiPrivate } from '../../api/axios';
 import useAppContext from '../../hooks/useAppContext';
-import DataBlog from './data';
 
 const StyledPostSnippet = styled.div`
 	width: 100%;
@@ -61,6 +60,8 @@ const Blog = () => {
 	const { setItem } = useAppContext();
 	const [filteredData, setFilteredData] = useState([])
 
+
+	//Fetch Blog Posts.................
 	const fetchAllBlog = useCallback(async () => {
 		try {
 			const response = await ApiPrivate.get(
@@ -76,14 +77,18 @@ const Blog = () => {
 
 	useEffect(() => {
 		fetchAllBlog();
-		console.log(fetchAllBlog())
 	}, [fetchAllBlog]);
 
-	const { item } = useAppContext();
-	
-	//Filter Topics////////////////////////////
-	//const menuItems = [...new Set(item.map((data) => data.tag))];
+	//..........
 
+	//Initialize item...........
+
+	const { item } = useAppContext();
+
+	//...........
+
+	
+	//Filter Topics.................
 	const filterItem = (curcat) => {
 		const newItem = item.filter((Val) => {
 			return Val.tag === curcat;
@@ -91,7 +96,9 @@ const Blog = () => {
 		setFilteredData(newItem);
 		console.log(newItem)
 	};
+	//...............
 
+	//Filter Topics All.................
 	const allItem = (curcata) => {
 		const newerItem = item.filter((Val) => {
 			return Val.index === curcata;
@@ -99,6 +106,7 @@ const Blog = () => {
 		setFilteredData(newerItem);
 		console.log(newerItem)
 	};
+	//............
 
 	// Pagination//////////////////////
 	const [currentPage, setCurrentPage] = useState(1);
@@ -122,7 +130,6 @@ const Blog = () => {
 							<Filter
 								filterItem={filterItem}
 								allItem={allItem}
-								/**menuItems={menuItems}*/ 
 							/>
 						</StyledFilter>
 
