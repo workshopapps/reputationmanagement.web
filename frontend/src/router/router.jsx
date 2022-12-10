@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	BrowserRouter,
 	Routes,
@@ -8,6 +8,7 @@ import {
 	createRoutesFromChildren,
 	matchRoutes,
 } from 'react-router-dom';
+import ScrollToTop from './scrollToTop';
 import AboutPage from '../pages/AboutUs/AboutPage';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
@@ -81,6 +82,7 @@ const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 const Router = () => {
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<SentryRoutes>
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
