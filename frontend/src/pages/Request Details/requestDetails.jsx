@@ -41,6 +41,7 @@ const RequestDetails = () => {
 		window.scrollTo(0, 0)
 	  }, [])
 
+<<<<<<< HEAD
 	const clearForm = () => {
 		// setName()
 		setEmail();
@@ -52,6 +53,10 @@ const RequestDetails = () => {
 
     const location = useLocation()
     const requestId = new URLSearchParams(location.search).get('requestId');
+=======
+	const location = useLocation();
+	const requestId = new URLSearchParams(location.search).get('requestId');
+>>>>>>> 871d4bb9a4d17269f67a9333dde7b06131a7b454
 
     const fetchComplaintDetails = async() => {
         try{
@@ -100,107 +105,26 @@ const RequestDetails = () => {
         fetchComplaintDetails();
     },[])
 
-	const handleSubmit = async (e) => {
-		setLoading(true)
-		e.preventDefault();
-		try {
-			  const response = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/email',
-					op: 'replace',
-					value: email,
-				}])
-			//   const timeResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-			// 	{
-			// 		operationType: 2,
-			// 		path: '/timeOfReview',
-			// 		op: 'replace',
-			// 		value: year + time,
-			// 	}])
-			  const reviewResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/reviewString',
-					op: 'replace',
-					value: review,
-				}])
-			  const ratingResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/rating',
-					op: 'replace',
-					value: rating,
-				}])
-			  const websiteResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/websiteName',
-					op: 'replace',
-					value: websitename,
-				}])
-			  const businessResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/businessType',
-					op: 'replace',
-					value: businesstype,
-				}])
-			  const priorityResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/priority',
-					op: 'replace',
-					value: priority,
-				}])
-				const nameResponse = await ApiPrivate.patch(`/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/complainerName',
-					op: 'replace',
-					value: name,
-				}])
-				setLoading(false)
-			console.log(response,reviewResponse,ratingResponse,websiteResponse, businessResponse, priorityResponse, nameResponse)
-			setSuccessMessage('Request updated successfully')
-			setRequestSuccess(true)
-			clearForm();
-			setTimeout(() => {
-				router('/dashboard')
-			},2000)
-		} catch (err) {
-			setLoading(false)
-			if (err?.response?.status === 400 ){
-				err.response?.data?.errors.email
-					?
-					setErrMessage(err.response?.data?.errors.email)
-					:
-					err.response?.data?.errors?.reviewString
-						?
-						setErrMessage('The review field is required')
-						:
-						err.response?.data?.errors?.websiteName
-							?
-							setErrMessage('The website name field is required')
-							:
-							err.response?.data?.error?.businessType
-								?
-								setErrMessage('The business type is required')
-								:
-								setErrMessage('Server error')
-			setRequestFailed(true)
-			}
-			else{
-				setErrMessage("Couldn't update request")
-				setRequestFailed(true)
-			}
-			console.log(err);
-		}
-	};
+	useEffect(() => {
+		fetchComplaintDetails();
+	}, [fetchComplaintDetails]);
+
 	return (
 		<>
-			<RequestFailed/>
-			{ deleteModalActive && <DeleteRequestModal setDeleteModalActive={setDeleteModalActive} handleDelete={handleDelete}/>}
+			<RequestFailed />
+			{deleteModalActive && (
+				<DeleteRequestModal
+					setDeleteModalActive={setDeleteModalActive}
+					handleDelete={handleDelete}
+				/>
+			)}
+			<RequestFailed />
+			{deleteModalActive && (
+				<DeleteRequestModal
+					setDeleteModalActive={setDeleteModalActive}
+					handleDelete={handleDelete}
+				/>
+			)}
 			<StyledDashboard>
 				<Sidebar
 					className={`${openMenu ? 'open' : ''}`}
@@ -221,7 +145,15 @@ const RequestDetails = () => {
 							<div className="form-section-a">
 								<div className='text-input'>
 									<label htmlFor="_name"> Name</label>
-									<input type="text" name="_name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name of the complainer" id="name" required />
+									<input
+										type="text"
+										name="_name"
+										value={name}
+										onClick={(e) => e.target.blur()}
+										placeholder="Enter name of the complainer"
+										id="name"
+										required
+									/>
 								</div>
 
 								<div className="text-input">
@@ -230,7 +162,8 @@ const RequestDetails = () => {
 										type="email"
 										name="email"
 										value={email}
-										onChange={(e) => setEmail(e.target.value)}
+										readonly
+										onClick={(e) => e.target.blur()}
 										placeholder="johndoe@gmail.com"
 										id="email"
 										required
@@ -244,8 +177,8 @@ const RequestDetails = () => {
 											type="date"
 											name="date"
 											id="date"
-                                            value={year}
-											onChange={(e) => setYear(e.target.value)}
+											value={year}
+											onClick={(e) => e.target.blur()}
 											readOnly
 										/>
 									</div>
@@ -256,9 +189,9 @@ const RequestDetails = () => {
 											type="time"
 											name="time"
 											id="time"
-											required
-                                            value={time}
-											onChange={(e) => setTime(e.target.value)}
+											value={time}
+											onClick={(e) => e.target.blur()}
+											readOnly
 										/>
 									</div>
 								</div>
@@ -268,7 +201,8 @@ const RequestDetails = () => {
 										<label>The bad review</label>
 										<textarea
 											value={review}
-											onChange={(e) => setReview(e.target.value)}
+											readonly
+											onClick={(e) => e.target.blur()}
 										/>
 									</div>
 
@@ -277,6 +211,8 @@ const RequestDetails = () => {
 											rating={rating}
 											onRating={(rate) => setRating(rate)}
 											className="rate"
+											onClick={(e) => e.target.blur()}
+											readState={true}
 										/>
 
 										<label htmlFor="vol">
@@ -300,7 +236,9 @@ const RequestDetails = () => {
 										type="text"
 										name="name_of_website"
 										value={websitename}
-										onChange={(e) => setWebsiteName(e.target.value)}
+										readonly
+										// onChange={(e) => setWebsiteName(e.target.value)}
+										onClick={(e) => e.target.blur()}
 										placeholder=""
 										required
 									/>
@@ -313,8 +251,10 @@ const RequestDetails = () => {
 									<input
 										type="text"
 										name="business_type"
+										readonly
 										value={businesstype}
-										onChange={(e) => setBusinessType(e.target.value)}
+										// onChange={(e) => setBusinessType(e.target.value)}
+										onClick={(e) => e.target.blur()}
 										placeholder=""
 										required
 									/>
@@ -322,37 +262,57 @@ const RequestDetails = () => {
 
 								<div className="priority-level">
 									<h3>Priority level</h3>
-									<CheckboxGroup setPriority={setPriority} priority={priority}/>
+
+									<div>
+										<Checkbox
+											label="High"
+											// onClick={() => setPriority(3)}
+											checked={priority === 3}
+										/>
+									</div>
+
+									<div>
+										<Checkbox
+											label="Medium"
+											// onClick={() => setPriority(2)}
+											checked={priority === 2}
+										/>
+									</div>
+
+									<div>
+										<Checkbox
+											label="Low"
+											// onClick={() => setPriority(0)}
+											checked={priority === 1}
+										/>
+									</div>
+
+									<div>
+										<Checkbox
+											label="Not urgent"
+											// onClick={() => setPriority(0)}
+											checked={priority === 0}
+										/>
+									</div>
 								</div>
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								{
-									status === 3
-										?
-										<p className='completed'>This request has been completed</p>
-										:
-										status === 4
-											?
-											<p className='failed'>This request had been marked as failed</p>
-											:
-											(
-												<>
-													<button className='delete' onClick={(e) => { e.preventDefault() ;setDeleteModalActive(true)}}>
-														Delete
-													</button>
-													<button className='submit' onClick={(e) => handleSubmit(e)}>
-														{
-															!loading
-																?
-															"Save Changes"
-															:
-															<div className="loading"></div>
-														}
-													</button>
-												</>
-											)
-								}
+								<button
+									className="delete"
+									onClick={(e) => {
+										e.preventDefault();
+										setDeleteModalActive(true);
+									}}
+								>
+									Delete
+								</button>
+								<button
+									className="submit"
+									onClick={(e) => router(`/dashboard`)}
+								>
+									{!loading ? 'Return' : <div className="loading"></div>}
+								</button>
 							</div>
 						</form>
 					</StyledContainers>
@@ -401,8 +361,9 @@ const CheckboxGroup = ({ setPriority, priority }) => {
 };
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-family: 'Lato', sans-serif;
+	max-width: 640px;
+	margin: 0px auto;
 
 	.container-title1 {
 		font-size: 20px;
@@ -446,7 +407,6 @@ const StyledContainers = styled.div`
 				.date-picker,
 				.time-picker {
 					width: 160px;
-					height: 69px;
 					margin-right: 32px;
 
 					label {
@@ -457,11 +417,18 @@ const StyledContainers = styled.div`
 					input {
 						height: 40px;
 						padding: 0px 10px 0px 10px;
-						width: 100%;
 						border: 1px solid #d2d3d4;
 						border-radius: 8px;
 						outline: none;
 					}
+
+					@media (max-width: 365px) {
+						margin-bottom: 10px;
+					}
+				}
+
+				@media (max-width: 365px) {
+					flex-direction: column;
 				}
 			}
 
@@ -554,7 +521,7 @@ const StyledContainers = styled.div`
 				height: 59px;
 				background: #233ba9;
 				border-radius: 4px;
-				padding: 16px 24px;
+				/* padding: 16px 24px; */
 				font-size: 18px;
 				border: none;
 				color: white;
@@ -583,24 +550,42 @@ const StyledContainers = styled.div`
 						}
 					}
 				}
+				@media (max-width: 620px) {
+					margin-top: 20px;
+				}
+				@media (max-width: 550px) {
+					margin-top: 20px;
+					width: 150px;
+					height: 40px;
+				}
 			}
-            .delete{
-                height: 59px;
-                width: 220px;
-                border-radius: 4px;
-                border: 1px solid rgba(240, 55, 56, 1);
-                font-family: Lato;
-                font-size: 18px;
-                font-weight: 600;
-                line-height: 27px;
-                letter-spacing: 0em;
-                text-align: center;
-                color: rgba(240, 55, 56, 1);
-                background-color: transparent;
-                margin-right: 16px;
-            }
+			.delete {
+				height: 59px;
+				width: 220px;
+				border-radius: 4px;
+				border: 1px solid rgba(240, 55, 56, 1);
+				font-family: Lato;
+				font-size: 18px;
+				font-weight: 600;
+				line-height: 27px;
+				letter-spacing: 0em;
+				text-align: center;
+				color: rgba(240, 55, 56, 1);
+				background-color: transparent;
+				margin-right: 16px;
 
-			@media (max-width: 500px) {
+				@media (max-width: 620px) {
+					margin-top: 20px;
+				}
+				@media (max-width: 550px) {
+					margin-top: 20px;
+					width: 150px;
+					height: 40px;
+				}
+			}
+
+			@media (max-width: 550px) {
+				margin-top: 20px;
 				justify-content: center;
 
 				button {
