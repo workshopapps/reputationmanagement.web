@@ -165,13 +165,18 @@ const PasswordButton = ({ togglePassword, inputStatus }) => {
 
 const InputField = styled.div`
 	position: relative;
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 95% 5%;
 	justify-content: center;
+
+	input {
+		min-width: 100%;
+	}
 
 	button {
 		position: absolute;
-		right: 16px;
+		top: 12px;
+		right: 40px;
 		font-size: 18px;
 		color: #a5a6a8;
 

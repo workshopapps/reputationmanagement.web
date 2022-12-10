@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import PageLayout from '../../layout/PageLayout';
+import { FaArrowRight } from 'react-icons/fa';
 // import PostSnippettt from '../../components/Blog/PostSnippet';
 import styled from 'styled-components';
 
@@ -39,21 +40,32 @@ const StyledTeam = styled.span`
 const StyledBg = styled.div`
 	background: #f5f5f5;
 	padding-top: 50px;
+	/* max-width: 90%;
+	margin: 0px auto; */
 `;
 const StyledContainer = styled.div`
 	padding: 0 20px;
 	text-align: center;
-
-	// @media screen and (max-width:1280px) {
-	//     max-width: 1240px;
-	//     margin: 0 auto;
-	// }
+	max-width: 92%;
+	margin: 0px auto;
+	@media screen and (max-width: 1300px) {
+		max-width: 95%;
+	}
 `;
-const StyledH2 = styled.h2`
-	font-size: 190%;
+// const StyledH2 = styled.h2`
+
+// `;
+const StyledH2Center = styled.h2`
+	text-align: center;
+	margin-top: 40px;
+	font-family: 'Lato';
+	font-style: normal;
 	font-weight: 700;
+	font-size: 36px;
+	line-height: 150%;
 	max-width: 850px;
-	color: ${(props) => (props.blue ? '#233BA9' : '#2B2C34')};
+	color: #2b2c34;
+	padding-bottom: 30px;
 	margin: ${(props) => (props.margin ? '20px auto' : '0 auto')};
 	span {
 		color: #fdb172;
@@ -61,23 +73,21 @@ const StyledH2 = styled.h2`
 
 	@media screen and (max-width: 640px) {
 		max-width: 100%;
+		font-size: 24px;
 	}
-`;
-const StyledH2Center = styled(StyledH2)`
-	text-align: center;
-	margin-bottom: 30px;
-	margin-top: 40px;
-
-	// @media screen and (max-width: 680px) {
-	// 	font-size: 24px;
-	// }
 `;
 const StyledText = styled.div`
 	max-width: 700px;
 	margin: 0 auto;
 	margin-bottom: 30px;
-	color: #787a7d;
-	text-align: ${(props) => (props.center ? 'center' : 'start')};
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 150%;
+	/* or 27px */
+	text-align: center;
+	color: #2b2c34;
 `;
 
 const TeamFooter = styled.div`
@@ -92,8 +102,23 @@ const TeamFooter = styled.div`
 	.footContent {
 		width: 100%;
 		position: absolute;
-		top: 0;
+		top: 50px;
 		margin-bottom: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		a button {
+			margin: 0px auto;
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 150%;
+			text-align: center;
+			.icon {
+				margin-left: 8px;
+			}
+		}
 	}
 
 	@media screen and (min-width: 589px) {
@@ -143,6 +168,16 @@ const HeadBg = styled.div`
 	text-align: center;
 	border: none;
 	border-radius: 8px;
+	p {
+		font-family: 'Lato';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 150%;
+		/* or 27px */
+
+		text-align: center;
+	}
 
 	@media screen and (min-width: 1024px) {
 		padding: 30px 150px;
@@ -261,7 +296,9 @@ function Ourteam() {
 									company like REPUTE, and you can join us.
 								</StyledText>
 								<Link to="/career">
-									<StyledButton>Get Started</StyledButton>
+									<StyledButton>
+										Join Our Team <FaArrowRight className="icon" />{' '}
+									</StyledButton>
 								</Link>
 							</StyledContainer>
 						</div>
