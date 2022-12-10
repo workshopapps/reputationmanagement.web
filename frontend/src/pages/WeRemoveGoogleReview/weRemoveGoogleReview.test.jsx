@@ -12,13 +12,13 @@ describe('Testing Google Review Components', () => {
 			</Router>
 		);
 
-		const WrdrRatingComponent = screen.getByTestId('W-rating');
+		// const WrdrRatingComponent = screen.getByTestId('W-rating');
 		const WrdrAboutComponent = screen.getByTestId('W-about');
 		const WrdrFooterComponent = screen.getByTestId('W-footer');
 		const WrdrHeroComponent = screen.getByTestId('W-hero');
 		const WrdrReviewComponent = screen.getByTestId('W-review');
 
-		expect(WrdrRatingComponent).toBeInTheDocument();
+		// expect(WrdrRatingComponent).toBeInTheDocument();
 		expect(WrdrAboutComponent).toBeInTheDocument();
 		expect(WrdrFooterComponent).toBeInTheDocument();
 		expect(WrdrHeroComponent).toBeInTheDocument();

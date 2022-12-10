@@ -1,10 +1,11 @@
 import Styled from 'styled-components';
+import React from 'react';
 
 const TestimonialTemplate = ({ testimonialTemplate }) => {
 	return (
 		<>
-			{testimonialTemplate.map((testimonial) => (
-				<TestimonialCard>
+			{testimonialTemplate.map((testimonial, index) => (
+				<TestimonialCard key={index}>
 					<img
 						src={testimonial.image}
 						alt={testimonial.title}
