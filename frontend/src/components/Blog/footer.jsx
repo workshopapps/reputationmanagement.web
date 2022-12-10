@@ -1,9 +1,61 @@
 import styled from 'styled-components';
 import bg from '../../pages/Blog/Blog-See All/Assets/bg.png';
-import React from 'react';
+import React, { useState } from 'react';
+import Api from '../../api/axios';
 import { Link } from 'react-router-dom';
+import useAppContext from '../../hooks/useAppContext';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Footer = () => {
+	const [loading, setLoading] = useState(false);
+	const [formData, setFormData] = useState({
+		email: '',
+		phone: '',
+		businessName: '',
+		reviewLocation: '',
+		fullName: '',
+	});
+
+	const handleChange = (event) => {
+		setFormData({
+			...formData,
+			[event.target.name]: event.target.value,
+		});
+	};
+	const {
+		// setRequestSuccess,
+		// setSuccessMessage,
+		setRequestFailed,
+		setErrMessage,
+	} = useAppContext();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+		try {
+			const response = await Api.post('/createquote', formData);
+			toast.success('Your response has been submitted', {
+				position: 'top-left',
+			});
+			// setSuccessMessage('Your response has been submitted');
+			// setRequestSuccess(true);
+			setFormData({
+				email: '',
+				phone: '',
+				businessName: '',
+				reviewLocation: '',
+				fullName: '',
+			});
+			setLoading(false);
+			console.log(response);
+		} catch (error) {
+			setLoading(false);
+			setErrMessage('Request failed');
+			setRequestFailed(true);
+			toast.error('Request failed, try again later.');
+			return error;
+		}
+	};
 	return (
 		<FooterParentMain>
 			<FooterMain>
@@ -16,7 +68,76 @@ const Footer = () => {
 				</div>
 
 				{/************************REgister****************************************/}
-				<FormMain>
+
+				<StyledForm onSubmit={handleSubmit}>
+					<div>
+						<input
+							type="text"
+							placeholder="Fullname*"
+							name="fullName"
+							onChange={handleChange}
+							value={formData.fullName}
+							required
+							className='left'
+						/>
+						<input
+							type="text"
+							placeholder="Phone*"
+							name="phone"
+							onChange={handleChange}
+							value={formData.phone}
+							required
+							className='right'
+						/>
+					</div>
+					<div>
+						<input
+							type="email"
+							placeholder="Email*"
+							name="email"
+							onChange={handleChange}
+							value={formData.email}
+							required
+							className='left'
+						/>
+						<input
+							type="text"
+							placeholder="Business Name*"
+							name="businessName"
+							onChange={handleChange}
+							value={formData.businessName}
+							required
+							className='right'
+						/>
+					</div>
+					<div>
+						<input
+							name="reviewLocation"
+							placeholder="Where is the review?"
+							className="review-input"
+							onChange={handleChange}
+							value={formData.reviewLocation}
+							required
+							
+						/>
+					</div>
+
+					<div className="form-footer-info">
+						<p>
+							Your details are safe & confidential, view our{' '}
+							<Link to="/privacy" className="form-footer-link">
+								Privacy Policy.
+							</Link>
+						</p>
+					</div>
+
+					<StyledButton extend className="hero-form-button" type="submit">
+						{!loading ? 'Submit' : <div className="loading"></div>}
+					</StyledButton>
+				</StyledForm>
+
+				{/* Old Frm  */}
+				{/* <FormMain>
 					<form>
 						<FormSec1>
 							<div className="input-area">
@@ -45,11 +166,106 @@ const Footer = () => {
 						</p>
 						<button>submit</button>
 					</form>
-				</FormMain>
+				</FormMain> */}
 			</FooterMain>
+			<ToastContainer />
 		</FooterParentMain>
 	);
 };
+
+// Styling
+
+const StyledButton = styled.button`
+	background: #233BA9;
+	border: none;
+	border-radius: 8px;
+	padding: 12px 12px;
+	color: #fff;
+	margin-top: 5px;
+	.loading {
+		width: 20px;
+		height: 20px;
+		border: 2px solid #fff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+		@keyframes rotation {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	}
+`;
+
+const StyledForm = styled.form`
+	display flex;
+	flex-direction: column;
+	justify-content: space-around;
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
+	div input{
+		border: 1px solid #fff;
+		// border: none;
+		border-radius: 8px;
+		background: #fff;
+		height: 43px;
+		// width: 245px;
+		width: 50%;
+		// gap: 13px;
+		padding: 15px 12px;
+		margin-bottom: 10px;
+		.left{
+			margin-right: 5px;
+		}
+		.right{
+			margin-left: 50%;
+		}
+
+		&::placeholder {
+			// font-size: 14px;
+			color: #667085;
+		}
+		&:focus {
+			outline: none;
+		}
+		@media (max-width: 840px) {
+			width: 100%;
+		}
+	}
+
+	div .review-input {
+		width: 100%;
+		border: 1px solid #fff;
+		// border: none;
+		border-radius: 8px;
+		// height: 43px;
+		// font-size: 15px;
+		color: #6f7174;
+		padding: 15px 12px;
+		// margin-top: 10px;
+
+		&:focus {
+			outline: none;
+		}
+		
+	}
+
+	.form-footer-info{
+		font-size: 95%;
+		text-align: start;
+		margin: 5px 0;
+		a{
+			color: #f16f04;
+		}
+	}
+`;
 
 export default Footer;
 

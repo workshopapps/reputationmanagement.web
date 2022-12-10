@@ -2,7 +2,7 @@ import Styled from 'styled-components';
 
 export const StyledButton = Styled.button`
     background: ${(props) => (props.outlined ? '#fff' : '#233BA9')};
-    padding: 10px 40px;
+    padding: ${(props) => props.extend ? '15px 12px' : '10px 40px'};
     display: flex;
     align-items: center;
     justify-content: center;

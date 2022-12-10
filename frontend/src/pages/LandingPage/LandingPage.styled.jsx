@@ -117,8 +117,13 @@ export const HeroTextDiv = styled.div`
 	display: flex;
 	justify-content: space-around;
 	margin: 0 auto;
-	max-width: 1540px;
+	// max-width: 1540px;
 	margin-bottom: 70px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
 
 	@media (max-width: 640px) {
 		flex-direction: column;
@@ -134,7 +139,7 @@ export const HeroTextDiv = styled.div`
 		justify-content: center;
 
 		@media (max-width: 840px) {
-			width: 400px;
+			width: 100%;
 		}
 
 		@media (max-width: 640px) {
@@ -214,16 +219,20 @@ export const HeroTextDiv = styled.div`
 			div input {
 				border: 1px solid #667085;
 				border-radius: 8px;
-				height: 43px;
+				// height: 43px;
 				width: 245px;
 				gap: 13px;
-				padding-left: 12px;
+				padding: 15px 12px;
+				margin-bottom: 10px;
 				&::placeholder {
-					font-size: 14px;
+					// font-size: 14px;
 					color: #667085;
 				}
 				&:focus {
 					outline: none;
+				}
+				@media (max-width: 840px) {
+					width: 48%;
 				}
 			}
 
@@ -231,11 +240,11 @@ export const HeroTextDiv = styled.div`
 				width: 100%;
 				border: 1px solid #787a7d;
 				border-radius: 8px;
-				height: 43px;
-				font-size: 15px;
+				// height: 43px;
+				// font-size: 15px;
 				color: #6f7174;
-				padding: 0 12px;
-				margin-top: 12px;
+				padding: 15px 12px;
+				// margin-top: 10px;
 
 				&:focus {
 					outline: none;
@@ -247,7 +256,7 @@ export const HeroTextDiv = styled.div`
 			}
 
 			.form-footer-info p {
-				font-size: 12px;
+				// font-size: 12px;
 				color: #6f7174;
 			}
 
