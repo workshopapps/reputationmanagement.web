@@ -33,7 +33,7 @@ const Dashboard = () => {
 	const fetchAllRequests = useCallback(async () => {
 		try {
 			const response = await ApiPrivate.get(
-				'/reviews?pageNumber=0&pageSize=10'
+				'/reviews?pageNumber=0&pageSize=100'
 			);
 			setAllRequests(response?.data);
 		} catch (err) {
@@ -43,9 +43,14 @@ const Dashboard = () => {
 		}
 	}, [ApiPrivate, setAllRequests, setErrMessage, setRequestFailed]);
 
+	setTimeout(() => {
+		fetchAllRequests()
+	},[10000])
+	
 	useEffect(() => {
 		fetchAllRequests();
 	}, [fetchAllRequests]);
+
 	const [openMenu, setOpenMenu] = useState(false);
 	const [searchTicket, setSearchTicket] = useState('');
 	const { allRequests } = useAppContext();
