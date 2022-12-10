@@ -277,7 +277,7 @@ const RequestDetails = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								{status === 'done' && (
+								{status === 3 && (
 									<button
 										className="disputeBtn"
 										onClick={(e) => {
