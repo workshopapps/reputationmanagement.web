@@ -26,7 +26,7 @@ const Requests = () => {
 			console.log(response);
 		} catch (err) {
 			if (err?.response?.status) {
-				setErrMessage('Shey you be lawyer ni');
+				setErrMessage("Couldn't fetch your requests");
 				setRequestFailed(true);
 			}
 			console.log(err);
@@ -40,7 +40,7 @@ const Requests = () => {
 			console.log(response);
 		} catch (err) {
 			if (err?.response?.status) {
-				setErrMessage('Shey you be lawyer ni');
+				setErrMessage("Couldn't fetch your request");
 				setRequestFailed(true);
 			}
 			console.log(err);

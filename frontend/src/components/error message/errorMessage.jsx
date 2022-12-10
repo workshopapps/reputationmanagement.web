@@ -16,10 +16,7 @@ const StyledErrorMessage = styled.div`
 	justify-content: flex-start;
 	// align-items: center;
 	gap: 5px;
-	margin: -13px 0;
-	img {
-		margin-top: -28px;
-	}
+	margin-top: 10px;
 	p {
 		color: #d8340f !important;
 		font-size: 16px !important;

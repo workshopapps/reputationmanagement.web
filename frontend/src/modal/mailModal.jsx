@@ -46,7 +46,7 @@ const MailModal = (props) => {
 			});
 			setLoading(false);
 			console.log(response);
-			setSuccessMessage('Mal sent successfully');
+			setSuccessMessage('Mail sent successfully');
 			setRequestSuccess(true);
 			changeRequestStatus();
 			setTimeout(() => {
