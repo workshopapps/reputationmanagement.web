@@ -32,11 +32,11 @@ import Ourteam from '../pages/Carrer/Ourteam';
 
 import Profile from '../pages/profile/Profile';
 import Settings from '../pages/Settings/Settings';
-import Login from '../pages/Login/Login';
-import Signup from '../pages/Sign-up/Signup';
+import Login from '../pages/Login/LoginCopy';
+import Signup from '../pages/Sign-up/SignupCopy';
 import RequireAuth from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
-import Contact from '../pages/ContactUs/Contact';
+import Faq from '../pages/FAQ/Faqs';
 import ModalLayout from '../layout/modalLayout';
 import BlogPost from '../pages/Blog/Blog-Post/BlogPost';
 import BlogSeeAll from '../pages/Blog/Blog-See All/BlogSeeAll';
@@ -85,7 +85,7 @@ const Router = () => {
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
 						<Route path="/dashboard" element={<DashboardPage />} />
-						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
+						{/* <Route path="/lawyer-dashboard" element={<LawyerDashboard />} /> */}
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
@@ -107,6 +107,7 @@ const Router = () => {
 						path="/we-remove-google-search"
 						element={<WeRemoveGoogleSearch />}
 					/>
+					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 
 					<Route
 						path="/we-remove-google-review"
@@ -143,7 +144,7 @@ const Router = () => {
 					<Route path="/support" element={<SupportPage />} />
 					<Route path="/our-team" element={<Ourteam />} />
 					<Route path="/settings" element={<Settings />} />
-					<Route path="/contact" element={<Contact />} />
+					<Route path="/contact" element={<Faq />} />
 					<Route path="/password-recovery" element={<PasswordRecovery />} />
 					<Route
 						path="/password-recovery/change"

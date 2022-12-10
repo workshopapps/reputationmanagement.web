@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import fixlogo from '../../../assets/images/footer-logo.png';
 
 function FooterSocials() {
@@ -7,14 +8,15 @@ function FooterSocials() {
 			{/* Social Media icons start */}
 			<div className="flex flex-col md:self-start w-full md:pt-2 gap-5">
 				<img src={fixlogo} alt="icon" className="w-1/2" />
-				<p className="text-white text-left">
-					{' '}
-					Your brand’s image is our concern.
-				</p>
+				<StyledP>Your brand’s image is our concern.</StyledP>
 			</div>
 			{/* Social Media icons ends */}
 		</div>
 	);
 }
+const StyledP = styled.p`
+	margin-top: -20px;
+	color: #f1f3f9;
+`;
 
 export default FooterSocials;

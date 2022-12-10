@@ -123,6 +123,7 @@ const StyledNav = styled.nav`
 	align-items: center;
 	justify-content: space-between;
 	padding-top: 20px;
+	padding-bottom: 20px;
 	// padding: 20px 24px;
 	position: relative;
 	z-index: 10;

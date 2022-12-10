@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import ResetSuccess from '../../modal/resetpasswordsuccess/resetpasswordsuccessful';
 import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
-import bg_img from '../../assets/images/woman_on_phone.png';
-import repute_logo from '../../assets/images/repute_logo.png';
+// import bg_img from '../../assets/images/woman_on_phone.png';
+// import repute_logo from '../../assets/images/repute_logo.png';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import REPUTE from './repute.svg';
@@ -55,14 +55,11 @@ export default function ChangePassword() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const email = localStorage.getItem('auth');
+		const email = localStorage.getItem('forgot');
 		setRequestPending(true);
 
 		if (password !== confirmPassword) {
-			toast.error('Password does not match', {
-				position: 'top-left',
-				autoClose: 2000,
-			});
+			toast.error('Password does not match');
 			setRequestPending(false);
 		}
 		try {
@@ -74,7 +71,7 @@ export default function ChangePassword() {
 			});
 
 			if ((await response).status === 200) {
-				localStorage.clear('auth', email);
+				localStorage.clear('forgot', email);
 				setToken('');
 				setPassword('');
 				setConfirmPassword('');
@@ -84,6 +81,7 @@ export default function ChangePassword() {
 		} catch (err) {
 			// setShowPasswordModal(true);
 			// setResetPasswordModal(false);
+			// toast.error('Reset Password Failed');
 			setRequestPending(false);
 		}
 	};
@@ -151,7 +149,11 @@ export default function ChangePassword() {
 					</StyledlogForm>
 
 					<SubmitBtn onClick={handleSubmit}>
-						{!requestPending ? 'Log In' : <div className="loading"></div>}
+						{!requestPending ? (
+							'Reset Password'
+						) : (
+							<div className="loading"></div>
+						)}
 					</SubmitBtn>
 				</form>
 
@@ -280,19 +282,19 @@ const ReputeLogo = styled.div`
 		margin-bottom: 10px;
 	}
 `;
-const StyledBack = styled.div`
-	margin: 30px 0;
-	a {
-		display: flex;
-		justify-content: center;
-		color: #000;
-		font-weight: 700;
-		text-align: start;
-		img {
-			margin-right: 5px;
-		}
-	}
-`;
+// const StyledBack = styled.div`
+// 	margin: 30px 0;
+// 	a {
+// 		display: flex;
+// 		justify-content: center;
+// 		color: #000;
+// 		font-weight: 700;
+// 		text-align: start;
+// 		img {
+// 			margin-right: 5px;
+// 		}
+// 	}
+// `;
 const StyledlogForm = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -355,120 +357,120 @@ const SubmitBtn = styled.button`
 `;
 
 // Styled
-const StyledParent = styled.div`
-	display: flex;
-`;
+// const StyledParent = styled.div`
+// 	display: flex;
+// `;
 
-const StyledSection = styled.section`
-	position: relative;
-	width: 90%;
-	max-width: 600px;
-	margin: 20px auto 0;
+// const StyledSection = styled.section`
+// 	position: relative;
+// 	width: 90%;
+// 	max-width: 600px;
+// 	margin: 20px auto 0;
 
-	@media (max-width: 500px) {
-		margin: 5px auto;
-	}
-`;
+// 	@media (max-width: 500px) {
+// 		margin: 5px auto;
+// 	}
+// `;
 
-const StyledDiv = styled.div`
-	width: 50%;
-	max-height: 100vh;
-	position: relative;
+// const StyledDiv = styled.div`
+// 	width: 50%;
+// 	max-height: 100vh;
+// 	position: relative;
 
-	@media (max-width: 900px) {
-		display: none;
-	}
-`;
+// 	@media (max-width: 900px) {
+// 		display: none;
+// 	}
+// `;
 
-const StyledLogo = styled.img`
-	margin: 0 auto;
-	margin-bottom: 30px;
+// const StyledLogo = styled.img`
+// 	margin: 0 auto;
+// 	margin-bottom: 30px;
 
-	@media (max-width: 500px) {
-		margin-top: 40px;
-	}
-`;
+// 	@media (max-width: 500px) {
+// 		margin-top: 40px;
+// 	}
+// `;
 
-const StyledImg = styled.img`
-	width: 100%;
-	height: 100%;
-`;
+// const StyledImg = styled.img`
+// 	width: 100%;
+// 	height: 100%;
+// `;
 
-const StyledImgText = styled.p`
-	position: absolute;
-	bottom: 9%;
-	background: linear-gradient(
-		180deg,
-		rgba(245, 245, 245, 0.1764) -22.33%,
-		rgba(245, 245, 245, 0.1904) 77.67%
-	);
-	mix-blend-mode: normal;
-	border: 0.85625px solid rgba(255, 255, 255, 0.3);
-	box-shadow: 0px 3.425px 20.55px rgba(0, 0, 0, 0.25);
-	backdrop-filter: blur(12.8438px);
-	border-radius: 34.25px;
-	padding: 50px;
-	width: 60%;
-	left: 50%;
-	transform: translate(-50%, 0);
-	color: #fff;
+// const StyledImgText = styled.p`
+// 	position: absolute;
+// 	bottom: 9%;
+// 	background: linear-gradient(
+// 		180deg,
+// 		rgba(245, 245, 245, 0.1764) -22.33%,
+// 		rgba(245, 245, 245, 0.1904) 77.67%
+// 	);
+// 	mix-blend-mode: normal;
+// 	border: 0.85625px solid rgba(255, 255, 255, 0.3);
+// 	box-shadow: 0px 3.425px 20.55px rgba(0, 0, 0, 0.25);
+// 	backdrop-filter: blur(12.8438px);
+// 	border-radius: 34.25px;
+// 	padding: 50px;
+// 	width: 60%;
+// 	left: 50%;
+// 	transform: translate(-50%, 0);
+// 	color: #fff;
 
-	span {
-		color: #f16f04;
+// 	span {
+// 		color: #f16f04;
 
-		&:hover {
-			cursor: pointer;
-		}
-	}
-`;
-const StyledHeader = styled.h1`
-	text-align: center;
-	color: #2b2c34;
-	font-size: 40px;
-	font-weight: 700;
-	padding: 5px;
+// 		&:hover {
+// 			cursor: pointer;
+// 		}
+// 	}
+// `;
+// const StyledHeader = styled.h1`
+// 	text-align: center;
+// 	color: #2b2c34;
+// 	font-size: 40px;
+// 	font-weight: 700;
+// 	padding: 5px;
 
-	@media (max-width: 500px) {
-		margin-top: 5px;
-		font-size: 24px;
-	}
-`;
+// 	@media (max-width: 500px) {
+// 		margin-top: 5px;
+// 		font-size: 24px;
+// 	}
+// `;
 
-const StyledParagraph = styled.p`
-	font-weight: 400;
-	text-align: center;
-	font-size: 16px;
-	margin-bottom: 40px;
+// const StyledParagraph = styled.p`
+// 	font-weight: 400;
+// 	text-align: center;
+// 	font-size: 16px;
+// 	margin-bottom: 40px;
 
-	@media (max-width: 500px) {
-		font-size: 15px;
-		width: 90%;
-		margin: 0 auto 40px;
-	}
-`;
+// 	@media (max-width: 500px) {
+// 		font-size: 15px;
+// 		width: 90%;
+// 		margin: 0 auto 40px;
+// 	}
+// `;
 
-const StyledForm = styled.form`
-	display: flex;
-	flex-direction: column;
-	padding: 0px 10px;
-	/* {showPasswordModal && opacity: 0.5}; */
+// const StyledForm = styled.form`
+// 	display: flex;
+// 	flex-direction: column;
+// 	padding: 0px 10px;
+// 	/* {showPasswordModal && opacity: 0.5}; */
 
-	@media (max-width: 500px) {
-		margin-bottom: 50px;
-	}
-`;
+// 	@media (max-width: 500px) {
+// 		margin-bottom: 50px;
+// 	}
+// `;
 
-const StyledFormInput = styled.form`
-	display: flex;
-	flex-direction: column;
-	position: relative;
+// const StyledFormInput = styled.form`
+// 	display: flex;
+// 	flex-direction: column;
+// 	position: relative;
 
-	button {
-		position: absolute;
-		top: 30px;
-		right: 10px;
-	}
-`;
+// 	button {
+// 		position: absolute;
+// 		top: 30px;
+// 		right: 10px;
+// 	}
+// `;
 
 const StyledModal = styled.div`
 	position: absolute;
@@ -491,12 +493,12 @@ const StyledModal = styled.div`
 // 	}
 // `;
 
-const StyledSubmit = styled.button`
-	background-color: #233ba9;
-	width: 100%;
-	margin-top: 20px;
-	padding: 10px 20px;
-	color: #fff;
-	border-radius: 8px;
-	text-align: center;
-`;
+// const StyledSubmit = styled.button`
+// 	background-color: #233ba9;
+// 	width: 100%;
+// 	margin-top: 20px;
+// 	padding: 10px 20px;
+// 	color: #fff;
+// 	border-radius: 8px;
+// 	text-align: center;
+// `;

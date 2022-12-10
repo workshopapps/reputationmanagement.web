@@ -29,7 +29,7 @@ const FooterData = [
 		},
 		{
 			text: 'FAQ',
-			url: '/faq',
+			url: '/contact',
 		},
 	],
 ];
