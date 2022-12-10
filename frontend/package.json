@@ -4,7 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@popperjs/core": "^2.11.6",
-		"@sentry/react": "^7.24.0",
+		"@sentry/react": "^7.24.2",
 		"@sentry/tracing": "^7.24.1",
 		"@testing-library/user-event": "^13.5.0",
 		"axios": "^0.27.2",
