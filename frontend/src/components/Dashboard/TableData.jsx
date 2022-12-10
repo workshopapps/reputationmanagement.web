@@ -113,6 +113,11 @@ export const LawyerTableData = (props) => {
 					View Details
 				</StyledClaimButton>
 			</td>
+			{props.unclaimed &&
+				<StyledClaimButton onClick={() => router(`/lawyer/ClaimReview?reviewId=${props.id}`)}>
+					Claim Ticket
+				</StyledClaimButton>
+			}
 
 		</tr>
 	);
