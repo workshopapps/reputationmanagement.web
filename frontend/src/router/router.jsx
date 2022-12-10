@@ -50,6 +50,7 @@ import { BrowserTracing } from "@sentry/tracing";
 import LawyerRequestDetails from '../pages/Request Details/lawyerRequestDetails';
 import LawyerLogin from '../pages/Login/lawyerLogin';
 import LawyerSignup from '../pages/Sign-up/lawyerSignup';
+import Requests from '../pages/LawyerDashboard/request'
 import Index2 from '../pages/LandingPage/index2';
 
 
@@ -83,6 +84,7 @@ const Router = () => {
 						<Route path="/request-form" element={<RequestForm />} />
 						<Route path="/request" element={<RequestDetails />} />
 						<Route path="/lawyer-request-details" element={<LawyerRequestDetails />} />
+						<Route path="/requests" element={<Requests/>}/>
 					</Route>
 					<Route path="/" element={<Index2 />} />
 					{/* <Route path="/" element={<LandingPage />} /> */}
