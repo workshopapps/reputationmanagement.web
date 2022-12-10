@@ -5,7 +5,7 @@ export const StyledSidebar = styled.aside`
 		font-family: 'Lato', sans-serif;
 	}
 
-	z-index: 99;
+	z-index: 3;
 	grid-area: sidebar;
 	padding: 32px 135px 32px 64px;
 	background-color: white;
@@ -52,6 +52,15 @@ export const StyledSidebar = styled.aside`
 				height: 24px;
 				background: #f16f04;
 				border-radius: 4px;
+			}
+		}
+		.active, 2:hover{
+			.requests{
+				color: #F16F04;
+				svg{
+					fill:#F16F04;
+					stroke: none;
+				}
 			}
 		}
 	}

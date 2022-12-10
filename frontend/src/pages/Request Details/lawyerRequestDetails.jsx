@@ -12,6 +12,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
+import MailModal from '../../modal/mailModal';
 
 const LawyerRequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -21,12 +22,13 @@ const LawyerRequestDetails = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
-	const [priority, setPriority] = useState(0);
+	const [priority, setPriority] = useState();
+	const [ status, setStatus ] = useState();
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
 	const [ loading, setLoading ] = useState(false)
-	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, requestSuccess, requestFailed } =
+	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, mailModalActive, setMailModalActive } =
 		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
@@ -56,9 +58,10 @@ const LawyerRequestDetails = () => {
 			setName(response?.data?.complainerName)
             setRating(response?.data?.rating)
             setReview(response?.data?.reviewString)
-            setPriority(response?.data?.status)
+            setPriority(response?.data?.priority)
             setWebsiteName(response?.data?.websiteName)
             setDate(response?.data?.createdAt)
+			setStatus(response?.data?.status)
 			setBusinessType(response?.data?.businessType)
         }
         catch(err){
@@ -73,30 +76,53 @@ const LawyerRequestDetails = () => {
         fetchComplaintDetails();
     },[ fetchComplaintDetails ])
 
+	const claimRequest = async() => {
+		try{
+			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`,[
+				{
+					operationType: 2,
+					path: '/status',
+					op: 'replace',
+					value: 1,
+				}]
+			)
+			console.log(response)
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
 	const handleSubmit = async (e) => {
 		setLoading(true)
 		e.preventDefault();
 		try {
 			  const response = await ApiPrivate.post(`/lawyer/ClaimReview?reviewId=${requestId}`
             )
+			claimRequest();
 			setLoading(false)
 			console.log(response)
 			setSuccessMessage('Request claimed successfully')
 			setRequestSuccess(true)
 			clearForm();
-			const reroute = setTimeout(() => {
+			setTimeout(() => {
 				router('/lawyer-dashboard')
 			},2000)
 		} 
         catch (err) {
+			if (err?.response?.status === 400){
+				setErrMessage('Request already claimed')
+			}
+			else{
+				setErrMessage('Unable to claim request')
+			}
 			setLoading(false)
-            setErrMessage('Unable to claim request')
 			setRequestFailed(true)
             console.log(err)
 		}
 	};
 	return (
 		<>
+			{mailModalActive && <MailModal userEmail={email} requestId={requestId}/>}
 			<RequestFailed/>
 			<StyledDashboard>
 				<Sidebarr
@@ -220,44 +246,73 @@ const LawyerRequestDetails = () => {
 
 									<div>
 										<Checkbox
-											label="High"
-											onClick={() => setPriority(3)}
-											checked={priority === 3}
+											label={3}
+											currentValue={priority}
 										/>
 									</div>
 
 									<div>
 										<Checkbox
-											label="Medium"
-											onClick={() => setPriority(2)}
-											checked={priority === 2}
+											label={2}
+											currentValue={priority}
 										/>
 									</div>
 
 									<div>
-										<Checkbox label="Low" onClick={() => setPriority(0)} checked={priority === 1}/>
+										<Checkbox label={1} currentValue={priority}/>
 									</div>
 
 									<div>
 										<Checkbox
-											label="Not urgent"
-											onClick={() => setPriority(0)}
-											checked={priority === 0}
+											label={0}
+											currentValue={priority}
 										/>
 									</div>
 								</div>
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								<button className='submit' onClick={(e) => handleSubmit(e)}>
-								{
-										!loading
-											?
-										"Claim Ticket"
+							{
+								status === 1
+									?
+									<button className='submit' onClick={(e) => { e.preventDefault(); setMailModalActive(true)}}>
+										Send Mail
+									</button>
+									:
+									status > 1
+										?
+										<div className="buttons">
+											<button className='delete'>
+												{
+													!loading
+														?
+													"Request Failed"
+													:
+													<div className="loading"></div>
+												}
+											</button>
+											<button className='submit'>
+												{
+													!loading
+														?
+													"Request Success"
+													:
+													<div className="loading"></div>
+												}
+											</button>
+										</div>
 										:
-										<div className="loading"></div>
-									}
-								</button>
+										<button className='submit' onClick={(e) => handleSubmit(e)}>
+											{
+												!loading
+													?
+												"Claim Ticket"
+												:
+												<div className="loading"></div>
+											}
+										</button>
+
+							}
 							</div>
 						</form>
 					</StyledContainers>

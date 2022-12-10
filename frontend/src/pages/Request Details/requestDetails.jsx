@@ -24,7 +24,7 @@ const RequestDetails = () => {
 	const [date, setDate] = useState('');
 	const [ time, setTime ] = useState('')
 	const [ year, setYear ] = useState('')
-	const [priority, setPriority] = useState(0);
+	const [priority, setPriority] = useState();
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
@@ -52,16 +52,16 @@ const RequestDetails = () => {
     const location = useLocation()
     const requestId = new URLSearchParams(location.search).get('requestId');
 
-    const fetchComplaintDetails = useCallback(async() => {
+    const fetchComplaintDetails = async() => {
         try{
             const response = await ApiPrivate.get(`review/${requestId}`)
             console.log(response)
             setEmail(response?.data?.email)
             setPriority(response?.data?.priority)
+			console.log('response:' + response?.data?.priority)
 			setName(response?.data?.complainerName)
             setRating(response?.data?.rating)
             setReview(response?.data?.reviewString)
-            setPriority(response?.data?.status)
             setWebsiteName(response?.data?.websiteName)
             setDate(response?.data?.timeOfReview)
 			setBusinessType(response?.data?.businessType)
@@ -71,7 +71,7 @@ const RequestDetails = () => {
             setRequestFailed(true)
             console.log(err)
         }
-    },[ ApiPrivate,requestId, setErrMessage, setRequestFailed ])
+    }
 
 	useEffect(() => {
 		setYear(date.substring(0,10) || '')
@@ -96,7 +96,7 @@ const RequestDetails = () => {
 
     useEffect(() => {
         fetchComplaintDetails();
-    },[ fetchComplaintDetails ])
+    },[])
 
 	const handleSubmit = async (e) => {
 		setLoading(true)
@@ -320,34 +320,7 @@ const RequestDetails = () => {
 
 								<div className="priority-level">
 									<h3>Priority level</h3>
-
-									<div>
-										<Checkbox
-											label="High"
-											onClick={() => setPriority(3)}
-											checked={priority === 3}
-										/>
-									</div>
-
-									<div>
-										<Checkbox
-											label="Medium"
-											onClick={() => setPriority(2)}
-											checked={priority === 2}
-										/>
-									</div>
-
-									<div>
-										<Checkbox label="Low" onClick={() => setPriority(0)} checked={priority === 1}/>
-									</div>
-
-									<div>
-										<Checkbox
-											label="Not urgent"
-											onClick={() => setPriority(0)}
-											checked={priority === 0}
-										/>
-									</div>
+									<CheckboxGroup setPriority={setPriority} priority={priority}/>
 								</div>
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
@@ -375,6 +348,41 @@ const RequestDetails = () => {
 
 export default RequestDetails;
 
+const CheckboxGroup = ({ setPriority, priority }) => {
+
+	return (
+		<>
+			<Checkbox
+				label={3}
+				currentValue={priority}
+				onClick={() => {
+					setPriority(3);
+				}}
+			/>
+			<Checkbox
+				label={2}
+				currentValue={priority}
+				onClick={() => {
+					setPriority(2);
+				}}
+			/>
+			<Checkbox
+				label={1}
+				currentValue={priority}
+				onClick={() => {
+					setPriority(1);
+				}}
+			/>
+			<Checkbox
+				label={0}
+				currentValue={priority}
+				onClick={() => {
+					setPriority(0);
+				}}
+			/>
+		</>
+	);
+};
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,

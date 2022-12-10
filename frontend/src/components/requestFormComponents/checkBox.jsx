@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Checkbox = ({ label, checked, currentValue, ...props }) => {
 	const defaultChecked = checked ? checked : false;
 	const [isChecked, setIsChecked] = useState(defaultChecked);
-
 	return (
 		<>
 			<div className="checkbox-wrapper">

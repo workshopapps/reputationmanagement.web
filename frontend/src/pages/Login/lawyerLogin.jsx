@@ -61,7 +61,7 @@ const LawyerLogin = () => {
         localStorage.setItem('auth',email)
         Cookies.set('reputeAccessToken', response?.data)
         setRequestPending(false)
-        router('/dashboard')
+        router('/lawyer-dashboard')
         setSuccessMessage('Login successful')
         setRequestSuccess(true)
       }

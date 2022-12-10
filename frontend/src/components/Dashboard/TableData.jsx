@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const TableData = (props) => {
 	const router = useNavigate();
-	
+	const [ lastUpdated, setLastUpdated ] = useState(props.lastUpdated);
+
 	return (
 		<tr>
 			<td>{props.no + 1}</td>
@@ -35,20 +37,24 @@ const TableData = (props) => {
 			<td>
 				<p>
 					{
-						props.status ===  2
+						props.status === 4
 							?
-							'Completedp'
+							'failed'
 							:
-							props.status === 1
+							props.status ===  3
 								?
-								'In Progress'
+								'Completed'
 								:
-								'Pending'
+								props.status === 1 || props.status === 2
+									?
+									'In Progress'
+									:
+									'Pending'
 					}
 				</p>
 			</td>
 			<td>
-				<p>{props.lastUpdated}</p>
+				<p style={{ paddingLeft:'20px'}}>{lastUpdated?.substring(0,10)}</p>
 			</td>
 			<td>
 				<StyledClaimButton onClick={() => router(`/request?requestId=${props.id}`)}>
@@ -61,10 +67,10 @@ const TableData = (props) => {
 };
 export const LawyerTableData = (props) => {
 	const router = useNavigate();
-	
+	const [ lastUpdated, setLastUpdated ] = useState(props.lastUpdated);
 	return (
 		<tr>
-			<td>{props.no}</td>
+			<td>{props.no + 1}</td>
 
 			<td>
 				<p className={`priority-${props.priority} priority desktop`}>
@@ -93,11 +99,15 @@ export const LawyerTableData = (props) => {
 			<td>
 				<p>
 					{
-						props.status ===  2
+						props.status === 4
+						?
+						'failed'
+						:
+						props.status ===  3
 							?
-							'Completedp'
+							'Completed'
 							:
-							props.status === 1
+							props.status === 1 || props.status === 2
 								?
 								'In Progress'
 								:
@@ -106,7 +116,7 @@ export const LawyerTableData = (props) => {
 				</p>
 			</td>
 			<td>
-				<p>{props.lastUpdated}</p>
+				<p style={{ paddingLeft:'20px'}}>{lastUpdated?.substring(0,10)}</p>
 			</td>
 			<td>
 				<StyledClaimButton onClick={() => router(`/lawyer-request-details?requestId=${props.id}`)}>
