@@ -165,19 +165,7 @@ const LawyerLogin = () => {
 						{!requestPending ? 'Log In' : <div className="loading"></div>}
 					</SubmitBtn>
 				</StyledForm>
-
-				<Loginwith>
-					<span></span>
-					<h4>or sign in with</h4>
-					<span></span>
-				</Loginwith>
-
 				<FormFooter>
-					<button>
-						<img src={GOOGLE} alt=""/>
-						Sign in with Google
-					</button>
-
 					<div className="footer-text">
 						Don't have an account?{' '}
 						<span

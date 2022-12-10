@@ -285,17 +285,6 @@ function Signup() {
 					</button>
 				</div>
 				<StyledSignupOptions>
-					<div className="or">
-						<span></span>
-						<p>or sign up with</p>
-						<span></span>
-					</div>
-					<div className="social-icons">
-						<button>
-							<img src={GOOGLE} alt=""/>
-							Sign in with Google
-						</button>
-					</div>
 					<p>
 						Already have an account ?{' '}
 						<span
