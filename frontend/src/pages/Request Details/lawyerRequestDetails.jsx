@@ -314,45 +314,62 @@ const LawyerRequestDetails = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								{status === 1 ? (
-									<button
-										className="submit"
-										onClick={(e) => {
-											e.preventDefault();
-											setMailModalActive(true);
-										}}
-									>
-										Send Mail
-									</button>
-								) : status > 1 ? (
-									<div className="done-buttons">
-										<button className="delete" onClick={() => requestFailed()}>
-											{!failedLoading ? (
-												'Request Failed'
-											) : (
-												<div className="loading"></div>
-											)}
-										</button>
+								{status === 1 
+									? 
+									(
 										<button
 											className="submit"
-											onClick={() => requestCompleted()}
+											onClick={(e) => {
+												e.preventDefault();
+												setMailModalActive(true);
+											}}
 										>
-											{!loading ? (
-												'Request Success'
-											) : (
-												<div className="loading"></div>
-											)}
+											Send Mail
 										</button>
-									</div>
-								) : (
-									<button className="submit" onClick={(e) => handleSubmit(e)}>
-										{!loading ? (
-											'Claim Ticket'
-										) : (
-											<div className="loading"></div>
-										)}
-									</button>
-								)}
+									) 
+									: 
+									status === 2 
+										? 
+										(
+											<div className="done-buttons">
+												<button className="delete" onClick={(e) => { e.preventDefault(); requestFailed()}}>
+													{!failedLoading ? (
+														'Request Failed'
+													) : (
+														<div className="loading"></div>
+													)}
+												</button>
+												<button
+													className="submit"
+													onClick={(e) => { e.preventDefault(); requestCompleted()}}
+												>
+													{!loading ? (
+														'Request Success'
+													) : (
+														<div className="loading"></div>
+													)}
+												</button>
+											</div>
+										) 
+										: 
+										status === 3
+											?
+											<p className='completed'>This request has been completed</p>
+											:
+											status === 4
+												?
+												<p className='failed'>This request had been marked as failed</p>
+												:
+												(
+													<button className="submit" onClick={(e) => handleSubmit(e)}>
+														{!loading ? (
+															'Claim Ticket'
+														) : (
+															<div className="loading"></div>
+														)}
+													</button>
+												)
+								}
 							</div>
 						</form>
 					</StyledContainers>
@@ -513,6 +530,44 @@ const StyledContainers = styled.div`
 			margin-top: 32px;
 			display: flex;
 			justify-content: flex-end;
+			.completed{
+				border-radius: 8px;
+				padding: 16px;
+				border: 1px solid #6CE9A6;
+				background-color: #F6FEF9;
+				margin: 0 auto;
+				max-width: 90%;
+				@media (max-width: 470px) {
+					height: auto;
+					max-height: max-content;
+				}
+				font-size: toRem(14);
+				font-weight: 700;
+				line-height: toRem(20);
+				letter-spacing: 0em;
+				text-align: left;
+				color: #027A48;
+				margin-bottom: toRem(4);
+			}
+			.failed{
+				border-radius: 8px;
+				padding: 16px;
+				border: 1px solid #d83407;
+				background-color: rgba( 256, 52, 15, 0.1 );
+				margin: 0 auto;
+				max-width: 90%;
+				@media (max-width: 470px) {
+					height: auto;
+					max-height: max-content;
+				}
+				font-size: toRem(14);
+				font-weight: 700;
+				line-height: toRem(20);
+				letter-spacing: 0em;
+				text-align: left;
+				color: #d8340f;
+				margin-bottom: toRem(4);
+			}
 			.done-buttons {
 				@media (max-width: 497px) {
 					display: flex;

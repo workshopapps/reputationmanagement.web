@@ -269,6 +269,9 @@ const Input1 = styled.div`
 		text-align: left;
 		color: #2b2c34;
 	}
+	img{
+		margin: 0;
+	}
 
 	input {
 		height: 56px;
