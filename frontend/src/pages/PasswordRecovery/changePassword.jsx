@@ -157,7 +157,6 @@ export default function ChangePassword() {
 
 				{/* jsjbsjfjfjfsjfjfjfs  */}
 
-
 				<StyledModal>
 					{showPasswordModal && (
 						<ResetSuccess resetPasswordModal={resetPasswordModal} />

@@ -7,8 +7,6 @@ import { useState, useRef } from 'react';
 import ContactUsModal from './ContactUsModal';
 import { useEffect } from 'react';
 
-
-
 function Contact() {
 	// const [contactDetailsFrom, setContactDetailsForm] = useState({
 	// 	name: '',
@@ -36,8 +34,8 @@ function Contact() {
 		});
 	};
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<ContactPageWraper className="contact-page">
@@ -189,10 +187,8 @@ function Contact() {
 						</ContactForm>
 					</ContactFormSection>
 				</div>
-			
 			</ContactPageWraper>
-			
-			
+
 			{showModal && (
 				<ContactUsModal showModal={showModal} setShowModal={setShowModal} />
 			)}
@@ -201,7 +197,6 @@ function Contact() {
 }
 
 // Styling
-
 
 const ContactPageWraper = styled.div`
 	* {

@@ -1,5 +1,5 @@
 /** @format */
- 
+
 import React, { useState } from 'react';
 import Successfulmodal from './Successfulmodal';
 import styled from 'styled-components';
@@ -13,7 +13,6 @@ const StyledSelect = styled.select`
 `;
 
 const Modal = ({ open, onClose }) => {
-	
 	// const [firstName, setFirstName] = useState('');
 	// const [email, setEmail] = useState('');
 	// const [lastName, setLastName] = useState('');
@@ -57,13 +56,11 @@ const Modal = ({ open, onClose }) => {
 
 	const [openModal, setOpenModal] = useState(false);
 
-	
 	if (!open) return null;
 
 	// const SubmitForm = async (e) => {
 	// 	e.preventDefault();
-		
-		
+
 	// 	try{
 	// 		const response = await Api.post("/apply", {
 	// 			FIrstName: firstName,
@@ -78,35 +75,32 @@ const Modal = ({ open, onClose }) => {
 	// 		setOpenModal(true)
 
 	// 	} catch (err) {
-			// alert('APPLICATION FAILED, PLEASE TRY AGAIN');
-	// 	}	
+	// alert('APPLICATION FAILED, PLEASE TRY AGAIN');
+	// 	}
 	// };
 
-	
 	const SubmitForm = (e) => {
 		e.preventDefault();
 
-
-		const form = e.currentTarget.closest('form')
-		const url = form.action
-		const data = new FormData(form)
-		
+		const form = e.currentTarget.closest('form');
+		const url = form.action;
+		const data = new FormData(form);
 
 		try {
-
-			axios.post(url, data, {
-				headers: {
-					'Content-Type': "multipart/form-data"
-				}
-			}).then(response => {
-				console.log(response);
-				setOpenModal(true)
-			})
-			
+			axios
+				.post(url, data, {
+					headers: {
+						'Content-Type': 'multipart/form-data',
+					},
+				})
+				.then((response) => {
+					console.log(response);
+					setOpenModal(true);
+				});
 		} catch (err) {
 			alert('APPLICATION FAILED, PLEASE TRY AGAIN');
 		}
-	}
+	};
 	return (
 		<>
 			<div className="relative lg:overflow-hidden">

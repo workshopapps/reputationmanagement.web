@@ -50,7 +50,6 @@ const StyledFilter = styled.div`
 `;
 
 const Blog = () => {
-	
 	const [item, setItem] = useState(DataBlog);
 
 	//Filter Topics////////////////////////////
@@ -67,9 +66,9 @@ const Blog = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [recordsPerPage] = useState(6);
 	const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = item.slice(indexOfFirstRecord, indexOfLastRecord);
-    const nPages = Math.ceil(item.length / recordsPerPage)
+	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+	const currentRecords = item.slice(indexOfFirstRecord, indexOfLastRecord);
+	const nPages = Math.ceil(item.length / recordsPerPage);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -98,15 +97,15 @@ const Blog = () => {
 					</StyledPostMain>
 
 					<Pagination
-					nPages={nPages}
-					currentPage={currentPage}
-					setCurrentPage={setCurrentPage}
-					 /> 
+						nPages={nPages}
+						currentPage={currentPage}
+						setCurrentPage={setCurrentPage}
+					/>
 				</div>
 				<Footer />
 			</PageLayout>
 		</section>
 	);
-}
+};
 
 export default Blog;

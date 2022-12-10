@@ -15,8 +15,8 @@ import Cookies from 'js-cookie';
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 const LawyerSignup = () => {
-    const [ firstName, setFirstName ] = useState('');
-    const [ lastName, setLastName ] = useState('');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
@@ -47,21 +47,13 @@ const LawyerSignup = () => {
 		confirmPassword === password && confirmPassword.length >= 6
 			? setConfirmPasswordValid(true)
 			: setConfirmPasswordValid(false);
-	}, [email,  password, confirmPassword]);
+	}, [email, password, confirmPassword]);
 
 	useEffect(() => {
-		emailValid &&
-		passwordValid &&
-		confirmPasswordValid &&
-		confirmTerms
+		emailValid && passwordValid && confirmPasswordValid && confirmTerms
 			? setPageValid(true)
 			: setPageValid(false);
-	}, [
-		passwordValid,
-		confirmPasswordValid,
-		emailValid,
-		confirmTerms,
-	]);
+	}, [passwordValid, confirmPasswordValid, emailValid, confirmTerms]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -69,19 +61,17 @@ const LawyerSignup = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/lawyer/auth/create_account',
-					{
-						email: email,
-						password: password,
-						firstName: firstName,
-                        lastName: lastName,
-					}
-				)
-				localStorage.setItem('auth', email)
-				Cookies.set('reputeAccessToken', response?.data)
-				setRequestPending(false)
-				setSuccessMessage('Account Created')
-				setRequestSuccess(true)
+				const response = await Api.post('/lawyer/auth/create_account', {
+					email: email,
+					password: password,
+					firstName: firstName,
+					lastName: lastName,
+				});
+				localStorage.setItem('auth', email);
+				Cookies.set('reputeAccessToken', response?.data);
+				setRequestPending(false);
+				setSuccessMessage('Account Created');
+				setRequestSuccess(true);
 				clearForm();
 				router('/lawyer-dashboard');
 			} catch (err) {
@@ -119,15 +109,13 @@ const LawyerSignup = () => {
 	};
 
 	return (
-		<StyledSignupWrapper
-			className="SignUp box-border min-h-32 flex flex-row h-screen"
-		>
+		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen">
 			<StyledFormWrapper>
 				<img src={REPUTE} alt="background" className="logo_img" />
 				<h2>Welcome to REPUTE</h2>
 				<p>Sign up to begin with us</p>
 				<div className="form">
-                    <div className="text-input first-name">
+					<div className="text-input first-name">
 						<label htmlFor="email">First Name</label>
 						<input
 							type="text"
@@ -143,7 +131,7 @@ const LawyerSignup = () => {
 							<ErrorMessage error="Enter Your First Name" />
 						)}
 					</div>
-                    
+
 					<div className="text-input">
 						<label htmlFor="email">Last Name</label>
 						<input
@@ -310,7 +298,7 @@ const LawyerSignup = () => {
 			</StyledFormWrapper>
 		</StyledSignupWrapper>
 	);
-}
+};
 const StyledSignupWrapper = styled.div`
 	max-height: 100vh;
 	position: relative;
@@ -372,13 +360,13 @@ const StyledSignupOptions = styled.div`
 	.social-icons {
 		width: 100%;
 		margin-top: 30px;
-		button{
+		button {
 			width: 100%;
 			max-width: 560px;
 			background-color: transparent;
 			display: flex;
 			align-items: center;
-			border: 1px solid #D2D3D4;
+			border: 1px solid #d2d3d4;
 			height: 59px;
 			padding-left: 29px;
 			border-radius: 4px;
@@ -388,14 +376,14 @@ const StyledSignupOptions = styled.div`
 			line-height: 27px;
 			letter-spacing: 0em;
 			text-align: center;
-			color: #2B2C34;
-			img{
+			color: #2b2c34;
+			img {
 				margin-right: 144px;
 			}
-			@media(max-width: 600px){
+			@media (max-width: 600px) {
 				justify-content: center;
 				gap: 40px;
-				img{
+				img {
 					margin: 0;
 				}
 			}
@@ -425,7 +413,7 @@ const StyledFormWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-    padding-bottom: 50px;
+	padding-bottom: 50px;
 	@media (max-width: 1230px) {
 		width: 100%;
 		margin: 0 auto;
@@ -441,18 +429,18 @@ const StyledFormWrapper = styled.div`
 		line-height: 68px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #2B2C34;
+		color: #2b2c34;
 		margin-top: 35px;
-		@media(max-width: 571px){
+		@media (max-width: 571px) {
 			font-size: 48px;
 		}
-		@media(max-width: 481px){
+		@media (max-width: 481px) {
 			font-size: 42px;
 		}
-		@media(max-width: 421px){
+		@media (max-width: 421px) {
 			font-size: 35px;
 		}
-		@media(max-width: 357px){
+		@media (max-width: 357px) {
 			font-size: 31px;
 		}
 	}
@@ -481,15 +469,15 @@ const StyledFormWrapper = styled.div`
 		line-height: 24px;
 		letter-spacing: 0.01em;
 		text-align: left;
-		color: #6F7174;
+		color: #6f7174;
 	}
 	.form {
 		width: 100%;
 		max-width: 560px;
-        .first-name{
+		.first-name {
 			margin-top: 40px;
-            margin-bottom: 24px;
-        }
+			margin-bottom: 24px;
+		}
 		label {
 			font-family: Lato;
 			font-size: 16px;
@@ -553,7 +541,7 @@ const StyledFormWrapper = styled.div`
 		.business-name {
 			display: flex;
 			flex-direction: column;
-            margin-top: 24px;
+			margin-top: 24px;
 		}
 		.email {
 			display: flex;

@@ -54,11 +54,12 @@ export const StyledSidebar = styled.aside`
 				border-radius: 4px;
 			}
 		}
-		.active, 2:hover{
-			.requests{
-				color: #F16F04;
-				svg{
-					fill:#F16F04;
+		.active,
+		2:hover {
+			.requests {
+				color: #f16f04;
+				svg {
+					fill: #f16f04;
 					stroke: none;
 				}
 			}

@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import Background2 from '../../assets/images/BG2.jpg';
 import Background1 from '../../assets/images/BG1.jpg';
 import Slider3 from '../../assets/images/ImageSlider3.jpg';
-import Vectorcolor1 from '../../assets/Vectorcolor1.png'
-import Vectorcolo2 from '../../assets/Vectorcolo2.png'
-import Vectorcolor3 from '../../assets/Vectorcolor3.png'
+import Vectorcolor1 from '../../assets/Vectorcolor1.png';
+import Vectorcolo2 from '../../assets/Vectorcolo2.png';
+import Vectorcolor3 from '../../assets/Vectorcolor3.png';
 
 import Slider2 from '../../assets/images/ImageSlider2.jpg';
 import Slider1 from '../../assets/images/ImageSlider1.jpg';
@@ -28,7 +28,7 @@ import { useEffect } from 'react';
 
 const StyledHeader = styled.h1`
 	// color: #fdb172;
-	color: #FF8017;
+	color: #ff8017;
 	font-size: 3.9rem;
 	font: bold;
 	padding: 4px 0;
@@ -87,8 +87,8 @@ const style = {
 
 function Carrerpg1() {
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<div className="carrer-landing-pg">

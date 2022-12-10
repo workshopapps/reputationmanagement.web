@@ -37,8 +37,8 @@ const GlassDoor = () => {
 		navigate('/signup');
 	};
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<Wrapper>

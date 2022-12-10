@@ -44,12 +44,17 @@ const GetAQuote = () => {
 			reset();
 		}, 5000);
 	};
-	const EMAIL_REGEX = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
+	const EMAIL_REGEX =
+		/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 
-	const {firstname: firstNameError, email:emailError, request:requestError} =  errors
+	const {
+		firstname: firstNameError,
+		email: emailError,
+		request: requestError,
+	} = errors;
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<PageLayout>
 			<Container>
@@ -59,7 +64,7 @@ const GetAQuote = () => {
 						Fill up the form below and we will get back to you within 24 hours
 					</p>
 				</Banner>
-                {/* Form */}
+				{/* Form */}
 				<StyledForm noValidate onSubmit={handleSubmit(onFormSubmit)}>
 					<NameGroup>
 						<div>
@@ -72,7 +77,9 @@ const GetAQuote = () => {
 									required: 'Please enter Your First Name',
 								})}
 							/>
-							<ErrorText>{firstNameError ? firstNameError.message : ""}</ErrorText>
+							<ErrorText>
+								{firstNameError ? firstNameError.message : ''}
+							</ErrorText>
 						</div>
 						<div>
 							<StyledLabel htmlFor="lastname">Last Name</StyledLabel>
@@ -102,7 +109,7 @@ const GetAQuote = () => {
 								})}
 								placeholder="example@gmail.com"
 							/>
-							<ErrorText>{emailError ? emailError.message : ""}</ErrorText>
+							<ErrorText>{emailError ? emailError.message : ''}</ErrorText>
 						</div>
 						<div>
 							<StyledLabel htmlFor="company">Company's Name</StyledLabel>
@@ -124,13 +131,12 @@ const GetAQuote = () => {
 							})}
 							placeholder="Currently a customer gave a horrible review on our website, we could love you to take it down tonight But for how long sir? I am losing customers already!."
 						></StyledText>
-						<ErrorText>{requestError ? requestError.message : ""}</ErrorText>
+						<ErrorText>{requestError ? requestError.message : ''}</ErrorText>
 					</StyledTextGroup>
 
 					<StyledBtnContainer>
 						<StyledButton>Send Request</StyledButton>
 					</StyledBtnContainer>
-
 				</StyledForm>
 
 				{/* POPUP */}
@@ -141,7 +147,7 @@ const GetAQuote = () => {
 								<FaTimes />
 							</Icon>
 							<h3>
-								Request Sent 
+								Request Sent
 								<img src={rocket} alt="" />
 							</h3>
 							<p>
@@ -149,7 +155,6 @@ const GetAQuote = () => {
 								will get back to you shortly.
 							</p>
 							<StyledButton onClick={closeModal}>Continue</StyledButton>
-
 						</StyledPopup>
 					</Popup>
 				) : (

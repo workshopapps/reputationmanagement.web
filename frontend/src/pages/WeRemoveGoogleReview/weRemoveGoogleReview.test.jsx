@@ -4,26 +4,24 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import WeRemoveGoogleReview from './WeRemoveGoogleReview';
 
 describe('Testing Google Review Components', () => {
+	test('render The Components of Google Review Properly In the Document', () => {
+		window.scrollTo = jest.fn();
+		render(
+			<Router>
+				<WeRemoveGoogleReview />
+			</Router>
+		);
 
-test('render The Components of Google Review Properly In the Document', () => {
-	window.scrollTo = jest.fn()
-	render(
-		<Router>
-			<WeRemoveGoogleReview />
-		</Router>
-	);
+		const WrdrRatingComponent = screen.getByTestId('W-rating');
+		const WrdrAboutComponent = screen.getByTestId('W-about');
+		const WrdrFooterComponent = screen.getByTestId('W-footer');
+		const WrdrHeroComponent = screen.getByTestId('W-hero');
+		const WrdrReviewComponent = screen.getByTestId('W-review');
 
-	const WrdrRatingComponent = screen.getByTestId("W-rating");
-	const WrdrAboutComponent = screen.getByTestId("W-about");
-	const WrdrFooterComponent = screen.getByTestId("W-footer");
-	const WrdrHeroComponent = screen.getByTestId("W-hero");
-	const WrdrReviewComponent = screen.getByTestId("W-review");
-
-	expect(WrdrRatingComponent).toBeInTheDocument();
-	expect(WrdrAboutComponent).toBeInTheDocument();
-	expect(WrdrFooterComponent).toBeInTheDocument();
-	expect(WrdrHeroComponent).toBeInTheDocument();
-	expect(WrdrReviewComponent).toBeInTheDocument();
-});
-
+		expect(WrdrRatingComponent).toBeInTheDocument();
+		expect(WrdrAboutComponent).toBeInTheDocument();
+		expect(WrdrFooterComponent).toBeInTheDocument();
+		expect(WrdrHeroComponent).toBeInTheDocument();
+		expect(WrdrReviewComponent).toBeInTheDocument();
+	});
 });

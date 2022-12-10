@@ -36,7 +36,7 @@ export const FaqWraper = styled.div.attrs((props) => ({
 	}
 
 	p {
-		padding-top:10px;
+		padding-top: 10px;
 		font-weight: 400;
 		font-size: 22px;
 		line-height: 150%;
@@ -88,9 +88,8 @@ export const FaqArrowDown = styled.div.attrs((props) => ({
 
 	.fa-down {
 		position: absolute;
-		color:#98A2B3;
-		font-weight:200;
-	
+		color: #98a2b3;
+		font-weight: 200;
 	}
 
 	@media screen and (max-width: 520px) {
@@ -106,5 +105,4 @@ export const FaqAnswer = styled.div.attrs((props) => ({
 	max-height: 0;
 	overflow-y: hidden;
 	transition: all 0.4s ease;
-	
 `;

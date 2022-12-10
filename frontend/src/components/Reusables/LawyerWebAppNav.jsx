@@ -16,24 +16,10 @@ import {
 	LogoContainer,
 } from '../Styles/WebAppNav.styled';
 
-const WebAppNav = (props) => {
+const LawyerWebAppNav = (props) => {
 	const currentRoute = useLocation();
-	const ApiPrivate = useAxiosPrivate();
 
-	useEffect(() => {
-		fetchUserDetails();
-	}, []);
-
-	const fetchUserDetails = async () => {
-		try {
-			const response = await ApiPrivate.get('/auth/details');
-			localStorage.setItem('user', response?.data.businessEntityName);
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
-	const userName = localStorage.getItem('user');
+	const userName = localStorage.getItem('auth');
 
 	return (
 		<StyledWebAppNav>
@@ -69,4 +55,4 @@ const WebAppNav = (props) => {
 	);
 };
 
-export default WebAppNav;
+export default LawyerWebAppNav;
