@@ -19,77 +19,90 @@ const RequestDetails = () => {
 	const [rating, setRating] = useState(0); ///set initial state for rating
 	const router = useNavigate();
 	//const [checked, setChecked] = useState(false);
-	const [name, setName] = useState("");
+	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
-	const [ time, setTime ] = useState('')
-	const [ year, setYear ] = useState('')
+	const [time, setTime] = useState('');
+	const [year, setYear] = useState('');
 	const [priority, setPriority] = useState();
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const [ loading, setLoading ] = useState(false)
-	const [ status, setStatus ] = useState()
-	const { setErrMessage, setRequestFailed, setRequestSuccess, setSuccessMessage, requestSuccess, requestFailed } =
-		useAppContext();
+	const [loading, setLoading] = useState(false);
+	const [status, setStatus] = useState();
+	const {
+		setErrMessage,
+		setRequestFailed,
+		setRequestSuccess,
+		setSuccessMessage,
+		requestSuccess,
+		requestFailed,
+	} = useAppContext();
 
-	const [ deleteModalActive, setDeleteModalActive ] = useState(false)
+	const [deleteModalActive, setDeleteModalActive] = useState(false);
 
 	const ApiPrivate = useAxiosPrivate();
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
+
+	// const clearForm = () => {
+	// 	// setName()
+	// 	setEmail();
+	// 	setPriority();
+	// 	setReview();
+	// 	setWebsiteName();
+	// 	setBusinessType();
+	// };
 
 	const location = useLocation();
 	const requestId = new URLSearchParams(location.search).get('requestId');
 
-    const fetchComplaintDetails = async() => {
-        try{
-            const response = await ApiPrivate.get(`review/${requestId}`)
-            console.log(response)
-            setEmail(response?.data?.email)
-            setPriority(response?.data?.priority)
-			console.log('response:' + response?.data?.priority)
-			setName(response?.data?.complainerName)
-            setRating(response?.data?.rating)
-            setReview(response?.data?.reviewString)
-            setWebsiteName(response?.data?.websiteName)
-            setDate(response?.data?.timeOfReview)
-			setStatus(response?.data?.status)
-			setBusinessType(response?.data?.businessType)
-        }
-        catch(err){
-            setErrMessage("can't get details of request")
-            setRequestFailed(true)
-            console.log(err)
-        }
-    }
+	const fetchComplaintDetails = async () => {
+		try {
+			const response = await ApiPrivate.get(`review/${requestId}`);
+			console.log(response);
+			setEmail(response?.data?.email);
+			setPriority(response?.data?.priority);
+			console.log('response:' + response?.data?.priority);
+			setName(response?.data?.complainerName);
+			setRating(response?.data?.rating);
+			setReview(response?.data?.reviewString);
+			setWebsiteName(response?.data?.websiteName);
+			setDate(response?.data?.timeOfReview);
+			setStatus(response?.data?.status);
+			setBusinessType(response?.data?.businessType);
+		} catch (err) {
+			setErrMessage("can't get details of request");
+			setRequestFailed(true);
+			console.log(err);
+		}
+	};
 
 	useEffect(() => {
-		setYear(date.substring(0,10) || '')
-		setTime(date.substring(11,16))
-	},[ date ])
+		setYear(date.substring(0, 10) || '');
+		setTime(date.substring(11, 16));
+	}, [date]);
 
-    const handleDelete = async() => {
-        try{
-            const response = await ApiPrivate.delete(`/review/${requestId}`)
-            setSuccessMessage('Request deleted successfully')
-            setRequestSuccess(true)
-			router('/dashboard')
-            console.log(response)
-        }
-        catch(err){
-            console.log(err)
-			setDeleteModalActive(false)
-            setErrMessage('Unable to delete request')
-            setRequestFailed(true)
-        }
-    }
+	const handleDelete = async () => {
+		try {
+			const response = await ApiPrivate.delete(`/review/${requestId}`);
+			setSuccessMessage('Request deleted successfully');
+			setRequestSuccess(true);
+			router('/dashboard');
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+			setDeleteModalActive(false);
+			setErrMessage('Unable to delete request');
+			setRequestFailed(true);
+		}
+	};
 
-    useEffect(() => {
-        fetchComplaintDetails();
-    },[])
+	useEffect(() => {
+		fetchComplaintDetails();
+	}, []);
 
 	useEffect(() => {
 		fetchComplaintDetails();
@@ -119,17 +132,14 @@ const RequestDetails = () => {
 				<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
 				<StyledContainer>
 					<StyledContainers className="container">
-
 						<h2 className="container-title">Complaint Details</h2>
 						{/********************START OF FORM*************************************************/}
 						<form className="form">
-							<h4 className="form-heading">
-                                Details of the complainer
-							</h4>
+							<h4 className="form-heading">Details of the complainer</h4>
 
 							{/********************START OF FORM SECTION A*************************************************/}
 							<div className="form-section-a">
-								<div className='text-input'>
+								<div className="text-input">
 									<label htmlFor="_name"> Name</label>
 									<input
 										type="text"
@@ -310,41 +320,40 @@ const RequestDetails = () => {
 
 export default RequestDetails;
 
-const CheckboxGroup = ({ setPriority, priority }) => {
-
-	return (
-		<>
-			<Checkbox
-				label={3}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(3);
-				}}
-			/>
-			<Checkbox
-				label={2}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(2);
-				}}
-			/>
-			<Checkbox
-				label={1}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(1);
-				}}
-			/>
-			<Checkbox
-				label={0}
-				currentValue={priority}
-				onClick={() => {
-					setPriority(0);
-				}}
-			/>
-		</>
-	);
-};
+// const CheckboxGroup = ({ setPriority, priority }) => {
+// 	return (
+// 		<>
+// 			<Checkbox
+// 				label={3}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(3);
+// 				}}
+// 			/>
+// 			<Checkbox
+// 				label={2}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(2);
+// 				}}
+// 			/>
+// 			<Checkbox
+// 				label={1}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(1);
+// 				}}
+// 			/>
+// 			<Checkbox
+// 				label={0}
+// 				currentValue={priority}
+// 				onClick={() => {
+// 					setPriority(0);
+// 				}}
+// 			/>
+// 		</>
+// 	);
+// };
 const StyledContainers = styled.div`
 	padding-bottom: 50px;
 	font-family: 'Lato', sans-serif;
@@ -502,7 +511,7 @@ const StyledContainers = styled.div`
 			display: flex;
 			justify-content: flex-end;
 
-			.submit{
+			.submit {
 				width: 220px;
 				height: 59px;
 				background: #233ba9;
@@ -516,10 +525,10 @@ const StyledContainers = styled.div`
 				&:hover {
 					background: #0a1d88;
 				}
-				.loading{
+				.loading {
 					width: 20px;
 					height: 20px;
-					border: 2px solid #FFF;
+					border: 2px solid #fff;
 					border-bottom-color: transparent;
 					border-radius: 50%;
 					display: inline-block;
