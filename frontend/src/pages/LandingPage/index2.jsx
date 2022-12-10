@@ -13,7 +13,6 @@ import {
 import useAppContext from '../../hooks/useAppContext';
 import Api from '../../api/axios';
 import { StyledButton } from '../../components/Styles/Body/Button.styled';
-import React from 'react';
 import {
 	// google_review,
 	// google_search,
