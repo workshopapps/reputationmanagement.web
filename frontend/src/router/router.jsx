@@ -13,7 +13,7 @@ import AboutPage from '../pages/AboutUs/AboutPage';
 import Carrerpg1 from '../pages/Carrer/Carrerpg1';
 import Carrerpg2 from '../pages/Carrer/Carrerpg2';
 import Faqs from '../pages/FAQ/Faqs';
-import LandingPage from '../pages/LandingPage';
+// import LandingPage from '../pages/LandingPage';
 import Termsofuse from '../pages/TermsOfUse/termsofuse';
 import WeRemoveGoogleReview from '../pages/WeRemoveGoogleReview/WeRemoveGoogleReview';
 import WeRemoveGoogleSearch from '../pages/WeRemoveGoogleSearch/WeRemoveGoogleSearch';
@@ -61,6 +61,7 @@ import LawyerLogin from '../pages/Login/lawyerLogin';
 import LawyerSignup from '../pages/Sign-up/lawyerSignup';
 import Requests from '../pages/LawyerDashboard/request';
 import Index2 from '../pages/LandingPage/index2';
+import CheckEmail from '../pages/PasswordRecovery/checkEmail';
 
 Sentry.init({
 	integrations: [
@@ -87,7 +88,7 @@ const Router = () => {
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
 						<Route path="/dashboard" element={<DashboardPage />} />
-						{/* <Route path="/lawyer-dashboard" element={<LawyerDashboard />} /> */}
+						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
@@ -109,7 +110,7 @@ const Router = () => {
 						path="/we-remove-google-search"
 						element={<WeRemoveGoogleSearch />}
 					/>
-					<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
+					<Route path="/check-mail" element={<CheckEmail />} />
 
 					<Route
 						path="/we-remove-google-review"
