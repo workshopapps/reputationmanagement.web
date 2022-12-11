@@ -82,19 +82,19 @@ const LawyerLogin = () => {
 				<StyledForm>
 					<img src={REPUTE} alt="" />
 					<StyledHead1 onClick={() => setRequestFailed(true)}>
-						Welcome Back
+						Welcome Back!
 					</StyledHead1>
 
-					<SubHead>signin to continue</SubHead>
+					<SubHead>Sign in to continue</SubHead>
 
 					<Input1 className="text-input">
-						<label htmlFor="email">Email</label>
+						{/* <label htmlFor="email">Email</label> */}
 						<input
 							type="email"
 							name="email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
-							placeholder="johndoe@gmail.com"
+							placeholder="Email"
 							id="email"
 							required
 							className={email === '' && triedToSubmit ? 'invalid' : ''}
@@ -105,7 +105,7 @@ const LawyerLogin = () => {
 					</Input1>
 
 					<Input2 className="text-input">
-						<label htmlFor="email">Password</label>
+						{/* <label htmlFor="email">Password</label> */}
 						<div
 							className={
 								password < 8 && triedToSubmit
@@ -117,7 +117,7 @@ const LawyerLogin = () => {
 								type={passwordShown ? 'text' : 'password'}
 								name="password"
 								value={password}
-								placeholder="6+ character long"
+								placeholder="Password"
 								id="email"
 								required
 								onChange={(e) => setPassword(e.target.value)}
@@ -165,7 +165,11 @@ const LawyerLogin = () => {
 						Don't have an account?{' '}
 						<span
 							onClick={() => router('/lawyer-signup')}
-							style={{ cursor: 'pointer' }}
+							style={{
+								cursor: 'pointer',
+								color: '#f16f04',
+								textDecoration: 'none',
+							}}
 						>
 							Sign up
 						</span>
@@ -216,6 +220,10 @@ const FormSection = styled.section`
 	padding-top: 54px;
 	max-width: 560px;
 	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	@media (max-width: 1200px) {
 		width: 95%;
 	}
@@ -224,13 +232,14 @@ const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 80%;
 `;
 
 const StyledHead1 = styled.h1`
 	font-family: Lato;
-	font-size: 57px;
-	font-weight: 700;
-	line-height: 68px;
+	font-size: 30px;
+	font-weight: 800;
+	line-height: 60px;
 	letter-spacing: 0.01em;
 	text-align: left;
 	color: #2b2c34;
@@ -269,7 +278,7 @@ const Input1 = styled.div`
 		text-align: left;
 		color: #2b2c34;
 	}
-	img{
+	img {
 		margin: 0;
 	}
 
@@ -385,9 +394,9 @@ const ForgotPass = styled.div`
 `;
 
 const SubmitBtn = styled.button`
-	margin-top: 65px;
+	margin-top: 50px;
 	width: 100%;
-	height: 59px;
+	height: 50px;
 	border-radius: 7px;
 	background-color: #233ba9;
 	color: white;
@@ -435,7 +444,7 @@ const Loginwith = styled.div`
 `;
 
 const FormFooter = styled.div`
-	margin-top: 30px;
+	margin-top: 15px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -474,6 +483,7 @@ const FormFooter = styled.div`
 		width: 100%;
 		max-width: 350px;
 		justify-content: space-between;
+		text-decoration: none;
 
 		div {
 			height: 48px;

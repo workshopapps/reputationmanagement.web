@@ -112,17 +112,16 @@ const LawyerSignup = () => {
 		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen">
 			<StyledFormWrapper>
 				<img src={REPUTE} alt="background" className="logo_img" />
-				<h2>Welcome to REPUTE</h2>
-				<p>Sign up to begin with us</p>
+				<p style={{marginTop: '10px'}}>Sign up to begin with us</p>
 				<div className="form">
 					<div className="text-input first-name">
-						<label htmlFor="email">First Name</label>
+						{/* <label htmlFor="email">First Name</label> */}
 						<input
 							type="text"
 							name="firstName"
 							value={firstName}
 							onChange={(e) => setFirstName(e.target.value)}
-							placeholder="John"
+							placeholder="First Name"
 							id="email"
 							required
 							className={firstName === '' && triedToSubmit ? 'invalid' : ''}
@@ -133,13 +132,13 @@ const LawyerSignup = () => {
 					</div>
 
 					<div className="text-input">
-						<label htmlFor="email">Last Name</label>
+						{/* <label htmlFor="email">Last Name</label> */}
 						<input
 							type="text"
 							name="lastName"
 							value={lastName}
 							onChange={(e) => setLastName(e.target.value)}
-							placeholder="Doe"
+							placeholder="Last Name"
 							id="email"
 							required
 							className={lastName === '' && triedToSubmit ? 'invalid' : ''}
@@ -149,7 +148,7 @@ const LawyerSignup = () => {
 						)}
 					</div>
 					<div className="email">
-						<label htmlFor="email">Email</label>
+						{/* <label htmlFor="email">Email</label> */}
 						<input
 							type="email"
 							name="email"
@@ -158,7 +157,7 @@ const LawyerSignup = () => {
 							onChange={(e) => setEmail(e.target.value)}
 							onFocus={() => setEmailFocus(true)}
 							onBlur={() => setEmailFocus(false)}
-							placeholder="e.g Marksons@gmail.com"
+							placeholder="Email"
 							className={!emailValid && triedToSubmit ? 'invalid' : ''}
 							required
 						/>
@@ -171,7 +170,7 @@ const LawyerSignup = () => {
 						)}
 					</div>
 					<div className="password">
-						<label htmlFor="Password">Password</label>
+						{/* <label htmlFor="Password">Password</label> */}
 						{
 							<p
 								style={{
@@ -195,7 +194,7 @@ const LawyerSignup = () => {
 								value={password}
 								type={passwordShown ? 'text' : 'password'}
 								className=""
-								placeholder="6+ character long"
+								placeholder="Password"
 								onFocus={() => setPasswordFocus(true)}
 								onBlur={() => setPasswordFocus(false)}
 							/>
@@ -290,7 +289,7 @@ const LawyerSignup = () => {
 						Already have an account ?{' '}
 						<span
 							onClick={() => router('/lawyer-login')}
-							style={{ cursor: 'pointer' }}
+							style={{ cursor: 'pointer', color: '#f16f04', textDecoration: 'none' }}
 						>
 							Sign In
 						</span>
@@ -473,8 +472,8 @@ const StyledFormWrapper = styled.div`
 		color: #6f7174;
 	}
 	.form {
-		width: 100%;
-		max-width: 560px;
+		width: 60%;
+		max-width: 450px;
 		.first-name {
 			margin-top: 40px;
 			margin-bottom: 24px;
