@@ -12,8 +12,8 @@ import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
 export default function ChangePassword() {
 	// Get token from url
-	let searchParams = new URLSearchParams(window.location.search);
-	const [token, setToken] = React.useState(searchParams.get('token'));
+	let urlParams = window.location.search;
+	const [token, setToken] = React.useState(urlParams.replace('?token=', ''));
 	const [password, setPassword] = React.useState('');
 	const [confirmPassword, setConfirmPassword] = React.useState('');
 	const [passwordShown, setPasswordShown] = React.useState(false);
@@ -21,16 +21,6 @@ export default function ChangePassword() {
 	const [resetPasswordModal, setResetPasswordModal] = React.useState(false);
 	const [showPasswordModal, setShowPasswordModal] = React.useState(false);
 	const [requestPending, setRequestPending] = React.useState(false);
-
-	// const togglePassword = (event) => {
-	// 	event.preventDefault();
-	// 	setPasswordShown((prevState) => !prevState);
-	// };
-
-	// const toggleConfirmPassword = (event) => {
-	// 	event.preventDefault();
-	// 	setConfirmPasswordShown((prevState) => !prevState);
-	// };
 
 	const togglePassword = () => {
 		setPasswordShown(!passwordShown);
@@ -154,77 +144,6 @@ export default function ChangePassword() {
 				</StyledModal>
 			</LoginContainer>
 			<ToastContainer />
-
-			{/* Old Code */}
-			{/* <>
-				<StyledParent>
-					<StyledSection onSubmit={handleSubmit}>
-						<StyledLogo src={repute_logo} alt="repute logo" />
-						<StyledHeader>Reset Password</StyledHeader>
-						<StyledParagraph>
-							Please enter and confirm your new password
-						</StyledParagraph>
-
-						<StyledForm style={{ opacity: showPasswordModal ? 0.4 : 1 }}>
-							<label htmlFor="token">Enter token</label>
-							<StyledFormInput>
-								<StyledInput
-									type="text"
-									name="token"
-									placeholder="Enter token sent to email"
-									required
-									onChange={handleToken}
-									value={token}
-								/>
-							</StyledFormInput>
-
-							<label htmlFor="password">Enter new password</label>
-							<StyledFormInput>
-								<StyledInput
-									type={passwordShown ? 'text' : 'password'}
-									placeholder="Max of 8 characters"
-									required
-									onChange={handleChange}
-									value={password}
-								/>
-							</StyledFormInput>
-
-							<label htmlFor="password">Confirm the new password</label>
-							<StyledFormInput>
-								<StyledInput
-									type={confirmPasswordShown ? 'text' : 'password'}
-									placeholder="Ensure it is the same"
-									required
-									onChange={handleConfirm}
-									value={confirmPassword}
-								/>
-							</StyledFormInput>
-
-							<StyledSubmit type="submit">Sign in</StyledSubmit>
-						</StyledForm>
-
-						<StyledModal>
-							{showPasswordModal && (
-								<ResetSuccess resetPasswordModal={resetPasswordModal} />
-							)}
-						</StyledModal>
-					</StyledSection>
-					<StyledDiv>
-						<StyledImg
-							src={bg_img}
-							className="background"
-							alt="woman on the phone calling"
-						/>
-						<StyledImgText>
-							Welcome back,{' '}
-							<span>
-								<Link to="/blog">click here</Link>
-							</span>{' '}
-							to check out our new updates
-						</StyledImgText>
-					</StyledDiv>
-				</StyledParent>
-			</> */}
 		</>
 	);
 }
