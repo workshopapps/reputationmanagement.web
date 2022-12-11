@@ -6,6 +6,7 @@ import useAppContext from '../../hooks/useAppContext';
 
 const AdminChatModal = () => {
   const chatboxEl = useRef();
+  const inboxEl = useRef();
   const { setChatModalActive } = useAppContext()
   // wait for TalkJS to load
   const [talkLoaded, markTalkLoaded] = useState(false);
@@ -36,7 +37,7 @@ const AdminChatModal = () => {
         appId: 'tpjbDjwE',
         me: me,
       });
-
+      const inbox = session.createInbox();
       const conversationId = Talk.oneOnOneId(me, otherUser);
       const conversation = session.getOrCreateConversation(conversationId);
       conversation.setParticipant(me);
@@ -45,37 +46,61 @@ const AdminChatModal = () => {
       const chatbox = session.createChatbox();
       chatbox.select(conversation);
       chatbox.mount(chatboxEl.current);
-
+      inbox.mount(inboxEl.current)
       return () => session.destroy();
     }
   }, [talkLoaded]);
 
   return (
     <StyledChatModal>
-      <p onClick={() => setChatModalActive(false)} style={{ cursor: 'pointer'}}>X</p>
-      <div ref={chatboxEl}></div>
+        <div className='inbox' ref={inboxEl}></div>
+        <div className="chat">
+            <p onClick={() => setChatModalActive(false)} style={{ cursor: 'pointer'}}>X</p>
+            <div ref={chatboxEl}></div>
+        </div>
     </StyledChatModal>
   )
 }
 const StyledChatModal = styled.div`
-  bottom: 20px;
-  right: 20px;
-  position: fixed;
-  width: 400px;
-  height: 600px;
-  border-radius: 10px;
-  z-index: 4;
-  box-shadow: -20px -20px 50px 10px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  p{
-    align-self: flex-end;
-    font-size: 24px;
-    font-weight: 700;
-    padding: 5px 10px;
-  }
-  div{
-    height: 600px;
-  }
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    .chat{
+        height: 100%;
+        width: 60%;
+        display: none;
+        height: 100%;
+        div{
+            height: 100%;
+        }
+    }
+    .inbox{
+        height: 100%;
+        width: 40%;
+    }
 `;
+// const StyledChatModal = styled.div`
+//   bottom: 20px;
+//   right: 20px;
+//   position: fixed;
+//   width: 400px;
+//   height: 600px;
+//   border-radius: 10px;
+//   z-index: 4;
+//   box-shadow: -20px -20px 50px 10px rgba(0,0,0,0.2);
+//   display: flex;
+//   flex-direction: column;
+//   p{
+//     align-self: flex-end;
+//     font-size: 24px;
+//     font-weight: 700;
+//     padding: 5px 10px;
+//   }
+//   div{
+//     height: 600px;
+//   }
+// `;
 export default AdminChatModal;

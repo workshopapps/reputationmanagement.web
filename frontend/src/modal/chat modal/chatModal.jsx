@@ -5,19 +5,22 @@ import useAppContext from '../../hooks/useAppContext';
 
 const ChatModal = () => {
   const chatboxEl = useRef();
-  const { setChatModalActive } = useAppContext();
+  const { setChatModalActive, chatModalActive } = useAppContext();
   // wait for TalkJS to load
   const [talkLoaded, markTalkLoaded] = useState(false);
 
   const email = localStorage.getItem('auth') || 'user@mail.com';
-
+  if(!localStorage.getItem('chatId')){
+    localStorage.setItem('chatId', Math.floor(Math.random() * 36829))
+  }
+  const chatId = localStorage.getItem('chatId')
   useEffect(() => {
     Talk.ready.then(() => markTalkLoaded(true));
 
     if (talkLoaded) {
       const currentUser = new Talk.User({
-        id: 2,
-        name: `Customer`,
+        id: chatId,
+        name: `Customer-${chatId}`,
         photoUrl: "https://i1.wp.com/www.neoparent.be/wp-content/uploads/2018/04/cropped-default_avatar-1.png?ssl=1",
         email: email,
         role: 'default',
@@ -45,14 +48,15 @@ const ChatModal = () => {
       const chatbox = session.createChatbox();
       chatbox.select(conversation);
       chatbox.mount(chatboxEl.current);
-
+      !chatModalActive && session.destroy()
       return () => session.destroy();
     }
   }, [talkLoaded]);
 
   return (
     <StyledChatModal>
-      <p onClick={() => setChatModalActive(false)} style={{ cursor: 'pointer'}}>close</p>
+      <p onClick={() => {setChatModalActive(false)}} style={{ cursor: 'pointer'}}>close</p>
+      { !talkLoaded && <div className='loading'></div>}
       <div ref={chatboxEl}></div>
     </StyledChatModal>
   )
@@ -69,6 +73,25 @@ const StyledChatModal = styled.div`
   display: flex;
   flex-direction: column;
   background-color: rgba(0,0,0,0.2);
+  .loading {
+		width: 45px;
+		height: 50px;
+		border: 3px solid #0000ff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+    margin: 0 auto;
+		@keyframes rotation {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	}
   p{
     align-self: flex-end;
     font-size: 18px;
