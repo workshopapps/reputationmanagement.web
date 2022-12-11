@@ -56,7 +56,7 @@ const ChatModal = () => {
   return (
     <StyledChatModal>
       <p onClick={() => {setChatModalActive(false)}} style={{ cursor: 'pointer'}}>close</p>
-      { !markTalkLoaded && <div className='loading'></div>}
+      { !talkLoaded && <div className='loading'></div>}
       <div ref={chatboxEl}></div>
     </StyledChatModal>
   )
