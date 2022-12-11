@@ -11,9 +11,7 @@ import REPUTE from './repute.svg';
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
 export default function ChangePassword() {
-	// Get token from url
-	let searchParams = new URLSearchParams(window.location.search);
-	const [token, setToken] = React.useState(searchParams.get('token'));
+	const [token, setToken] = React.useState('');
 	const [password, setPassword] = React.useState('');
 	const [confirmPassword, setConfirmPassword] = React.useState('');
 	const [passwordShown, setPasswordShown] = React.useState(false);
@@ -63,9 +61,7 @@ export default function ChangePassword() {
 		if (password !== confirmPassword) {
 			toast.error('Password does not match');
 			setRequestPending(false);
-			return;
 		}
-
 		try {
 			const response = Api.post('/auth/reset-password', {
 				email: email,
@@ -81,8 +77,6 @@ export default function ChangePassword() {
 				setConfirmPassword('');
 				setShowPasswordModal(true);
 				setResetPasswordModal(true);
-
-				setRequestPending(false);
 			}
 		} catch (err) {
 			// setShowPasswordModal(true);
@@ -104,6 +98,22 @@ export default function ChangePassword() {
 				<p>Please enter and confirm your new password</p>
 
 				<form>
+					<StyledlogForm>
+						{/* <label htmlFor="email">Email</label> */}
+						<StyledBox>
+							<StyledInput
+								type="text"
+								name="token"
+								placeholder="Enter token sent to email"
+								required
+								onChange={handleToken}
+								value={token}
+							/>
+						</StyledBox>
+					</StyledlogForm>
+
+					{/* Password  */}
+
 					<StyledlogForm>
 						{/* <label htmlFor="password">Password</label> */}
 						<StyledBox>
