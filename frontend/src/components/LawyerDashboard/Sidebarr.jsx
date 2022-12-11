@@ -3,7 +3,7 @@ import LogoutConfirmationModal from '../../modal/logoutConfirmationModal';
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
-import logo from '../../assets/images/Dashboard/logo.png';
+import logo from '../../assets/images/repute_logo.svg';
 import {
 	DashboardIcon,
 	SettingsIcon,

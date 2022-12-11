@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import logo from '../../assets/images/Dashboard/logo.png';
+import logo from '../../assets/images/repute_logo.svg'
 import menu from '../../assets/images/Dashboard/menu.jpg';
 import message from '../../assets/images/Dashboard/message.svg';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
@@ -46,7 +46,7 @@ const WebAppNav = (props) => {
 					<img src={menu} alt="" onClick={props.openMenuHandler} />
 				</div>
 				<div>
-					<img src={logo} id="site-logo" alt="" />
+					<img src={logo} id="site-logo" alt=""  className='lgr'/>
 				</div>
 			</LogoContainer>
 

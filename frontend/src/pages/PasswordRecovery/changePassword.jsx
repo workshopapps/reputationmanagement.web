@@ -7,7 +7,7 @@ import Api from '../../api/axios';
 // import repute_logo from '../../assets/images/repute_logo.png';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import REPUTE from './repute.svg';
+import REPUTE from '../../assets/images/repute_logo.svg';
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
 export default function ChangePassword() {
@@ -274,9 +274,8 @@ const ReputeLogo = styled.div`
 	margin-bottom: 40px;
 	img {
 		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 40%;
+		margin: auto;
+		width: 30%;
 	}
 	@media (max-width: 320px) {
 		margin-bottom: 10px;

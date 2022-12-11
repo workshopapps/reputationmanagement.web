@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/repute_logo.svg';
 import settingsIcon from '../../assets/images/settingsIcon.png';
 import menuIcon8 from '../../assets/images/menuIcon8.png';
 import textIcon from '../../assets/images/textIcon.png';
