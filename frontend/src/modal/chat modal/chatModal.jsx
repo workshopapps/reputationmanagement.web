@@ -56,6 +56,7 @@ const ChatModal = () => {
   return (
     <StyledChatModal>
       <p onClick={() => {setChatModalActive(false)}} style={{ cursor: 'pointer'}}>close</p>
+      { !markTalkLoaded && <div className='loading'></div>}
       <div ref={chatboxEl}></div>
     </StyledChatModal>
   )
@@ -72,6 +73,25 @@ const StyledChatModal = styled.div`
   display: flex;
   flex-direction: column;
   background-color: rgba(0,0,0,0.2);
+  .loading {
+		width: 45px;
+		height: 50px;
+		border: 3px solid #0000ff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+    margin: 0 auto;
+		@keyframes rotation {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	}
   p{
     align-self: flex-end;
     font-size: 18px;
