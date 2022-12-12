@@ -290,7 +290,7 @@ const RequestDetails = () => {
 								{status === 3 ? (
 									<button
 										className="payment"
-										onClick={(e) => router(`/payment`)}
+										onClick={(e) => router(`/payment?requestid=${requestId}`)}
 									>
 										Make Payment
 									</button>
