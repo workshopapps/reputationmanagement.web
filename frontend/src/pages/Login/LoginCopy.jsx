@@ -129,7 +129,7 @@ const Login = () => {
 							error={
 								password === ''
 									? 'Password Required'
-									: 'Password Must Be A Minimum Of 8 Characters'
+									: 'Password Must Be A Minimum Of 6 Characters'
 							}
 						/>
 					)}
