@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 const useAccessToken = () => {
 	const refresh = async () => {
-		const response = await Api.get('/refresh', {
+		const response = await Api.get('/api/refresh', {
 			withCredentials: true,
 		});
 		Cookies.set('reputeAccessToken', response?.data);

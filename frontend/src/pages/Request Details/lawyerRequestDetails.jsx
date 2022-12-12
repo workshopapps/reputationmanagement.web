@@ -58,7 +58,7 @@ const LawyerRequestDetails = () => {
 
 	const fetchComplaintDetails = useCallback(async () => {
 		try {
-			const response = await ApiPrivate.get(`/lawyer/reviews/${requestId}`);
+			const response = await ApiPrivate.get(`/api/lawyer/reviews/${requestId}`);
 			console.log(response);
 			setEmail(response?.data?.email);
 			setPriority(response?.data?.priority);
@@ -83,14 +83,17 @@ const LawyerRequestDetails = () => {
 
 	const claimRequest = async () => {
 		try {
-			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/status',
-					op: 'replace',
-					value: 1,
-				},
-			]);
+			const response = await ApiPrivate.patch(
+				`/api/lawyer/review/${requestId}`,
+				[
+					{
+						operationType: 2,
+						path: '/status',
+						op: 'replace',
+						value: 1,
+					},
+				]
+			);
 			console.log(response);
 		} catch (err) {
 			console.log(err);
@@ -101,7 +104,7 @@ const LawyerRequestDetails = () => {
 		e.preventDefault();
 		try {
 			const response = await ApiPrivate.post(
-				`/lawyer/ClaimReview?reviewId=${requestId}`
+				`/api/lawyer/ClaimReview?reviewId=${requestId}`
 			);
 			claimRequest();
 			setLoading(false);
@@ -126,14 +129,17 @@ const LawyerRequestDetails = () => {
 	const requestCompleted = async () => {
 		setLoading(true);
 		try {
-			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/status',
-					op: 'replace',
-					value: 3,
-				},
-			]);
+			const response = await ApiPrivate.patch(
+				`/api/lawyer/review/${requestId}`,
+				[
+					{
+						operationType: 2,
+						path: '/status',
+						op: 'replace',
+						value: 3,
+					},
+				]
+			);
 			setLoading(false);
 			console.log(response);
 			setSuccessMessage('Request has been marked as completed');
@@ -151,14 +157,17 @@ const LawyerRequestDetails = () => {
 	const requestFailed = async () => {
 		setFailedLoading(true);
 		try {
-			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/status',
-					op: 'replace',
-					value: 4,
-				},
-			]);
+			const response = await ApiPrivate.patch(
+				`/api/lawyer/review/${requestId}`,
+				[
+					{
+						operationType: 2,
+						path: '/status',
+						op: 'replace',
+						value: 4,
+					},
+				]
+			);
 			setFailedLoading(false);
 			console.log(response);
 			setSuccessMessage('Request has been marked as failed');
@@ -314,62 +323,60 @@ const LawyerRequestDetails = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								{status === 1 
-									? 
-									(
+								{status === 1 ? (
+									<button
+										className="submit"
+										onClick={(e) => {
+											e.preventDefault();
+											setMailModalActive(true);
+										}}
+									>
+										Send Mail
+									</button>
+								) : status === 2 ? (
+									<div className="done-buttons">
+										<button
+											className="delete"
+											onClick={(e) => {
+												e.preventDefault();
+												requestFailed();
+											}}
+										>
+											{!failedLoading ? (
+												'Request Failed'
+											) : (
+												<div className="loading"></div>
+											)}
+										</button>
 										<button
 											className="submit"
 											onClick={(e) => {
 												e.preventDefault();
-												setMailModalActive(true);
+												requestCompleted();
 											}}
 										>
-											Send Mail
+											{!loading ? (
+												'Request Success'
+											) : (
+												<div className="loading"></div>
+											)}
 										</button>
-									) 
-									: 
-									status === 2 
-										? 
-										(
-											<div className="done-buttons">
-												<button className="delete" onClick={(e) => { e.preventDefault(); requestFailed()}}>
-													{!failedLoading ? (
-														'Request Failed'
-													) : (
-														<div className="loading"></div>
-													)}
-												</button>
-												<button
-													className="submit"
-													onClick={(e) => { e.preventDefault(); requestCompleted()}}
-												>
-													{!loading ? (
-														'Request Success'
-													) : (
-														<div className="loading"></div>
-													)}
-												</button>
-											</div>
-										) 
-										: 
-										status === 3
-											?
-											<p className='completed'>This request has been completed</p>
-											:
-											status === 4
-												?
-												<p className='failed'>This request had been marked as failed</p>
-												:
-												(
-													<button className="submit" onClick={(e) => handleSubmit(e)}>
-														{!loading ? (
-															'Claim Ticket'
-														) : (
-															<div className="loading"></div>
-														)}
-													</button>
-												)
-								}
+									</div>
+								) : status === 3 ? (
+									<p className="completed">This request has been completed</p>
+								) : status === 4 ? (
+									<p className="failed">
+										This request had been marked as failed
+									</p>
+								) : (
+									<button className="submit" onClick={(e) => handleSubmit(e)}>
+										{!loading ? (
+											'Claim Ticket'
+										) : (
+											<div className="loading"></div>
+										)}
+									</button>
+								)}
 							</div>
 						</form>
 					</StyledContainers>
@@ -530,11 +537,11 @@ const StyledContainers = styled.div`
 			margin-top: 32px;
 			display: flex;
 			justify-content: flex-end;
-			.completed{
+			.completed {
 				border-radius: 8px;
 				padding: 16px;
-				border: 1px solid #6CE9A6;
-				background-color: #F6FEF9;
+				border: 1px solid #6ce9a6;
+				background-color: #f6fef9;
 				margin: 0 auto;
 				max-width: 90%;
 				@media (max-width: 470px) {
@@ -546,14 +553,14 @@ const StyledContainers = styled.div`
 				line-height: toRem(20);
 				letter-spacing: 0em;
 				text-align: left;
-				color: #027A48;
+				color: #027a48;
 				margin-bottom: toRem(4);
 			}
-			.failed{
+			.failed {
 				border-radius: 8px;
 				padding: 16px;
 				border: 1px solid #d83407;
-				background-color: rgba( 256, 52, 15, 0.1 );
+				background-color: rgba(256, 52, 15, 0.1);
 				margin: 0 auto;
 				max-width: 90%;
 				@media (max-width: 470px) {

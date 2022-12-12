@@ -33,7 +33,7 @@ const Dashboard = () => {
 	const fetchAllRequests = useCallback(async () => {
 		try {
 			const response = await ApiPrivate.get(
-				'/reviews?pageNumber=0&pageSize=100'
+				'/api/reviews?pageNumber=0&pageSize=100'
 			);
 			setAllRequests(response?.data);
 		} catch (err) {

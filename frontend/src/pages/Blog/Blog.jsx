@@ -66,7 +66,7 @@ const Blog = () => {
 	const fetchAllBlog = useCallback(async () => {
 		try {
 			const response = await ApiPrivate.get(
-				'/blogging?pageNumber=0&pageSize=10'
+				'/api/blogging?pageNumber=0&pageSize=10'
 			);
 			setItem(response?.data);
 			setFilteredData(response?.data);

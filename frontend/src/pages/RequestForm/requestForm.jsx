@@ -52,7 +52,7 @@ const RequestForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await ApiPrivate.post('/review', {
+			const response = await ApiPrivate.post('/api/review', {
 				email: email,
 				timeOfReview: date + 'T' + time,
 				reviewString: review,

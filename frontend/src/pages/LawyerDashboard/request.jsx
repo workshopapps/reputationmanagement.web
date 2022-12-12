@@ -14,8 +14,8 @@ const Requests = () => {
 	const [showPendingRequests, setShowPendingRequests] = useState(false);
 	const [showSuccessfulRequests, setShowSuccessfulRequests] = useState(false);
 	const [showFailedRequests, setShowFailedRequests] = useState(false);
-	const [ successfulRequests, setSuccessfulRequests ] = useState([]);
-	const [ failedRequests, setFailedRequests ] = useState([]);
+	const [successfulRequests, setSuccessfulRequests] = useState([]);
+	const [failedRequests, setFailedRequests] = useState([]);
 	const [showMyRequests, setShowMyRequests] = useState(false);
 	const [tickets, setTickets] = useState([]);
 	const [claimedReviews, setClaimedReviews] = useState([]);
@@ -25,7 +25,7 @@ const Requests = () => {
 
 	const fetchDetails = useCallback(async () => {
 		try {
-			const response = await ApiPrivate.get('/lawyer/PendingReview');
+			const response = await ApiPrivate.get('/api/lawyer/PendingReview');
 			setTickets(response?.data);
 			console.log(response);
 		} catch (err) {
@@ -39,7 +39,7 @@ const Requests = () => {
 
 	const fetchMyDetails = async () => {
 		try {
-			const response = await ApiPrivate.get('/lawyer/GetClaimedReviews');
+			const response = await ApiPrivate.get('/api/lawyer/GetClaimedReviews');
 			setClaimedReviews(response?.data);
 			console.log(response);
 		} catch (err) {
@@ -56,20 +56,17 @@ const Requests = () => {
 		fetchMyDetails();
 	}, []);
 
-    useEffect(() => {
-        claimedReviews
-            ?
-            claimedReviews.filter(data => {
-                if (data.status === 4){
-                    setFailedRequests([data])
-                }
-                else if (data.status === 3) {
-                    setSuccessfulRequests([data])
-                }
-            })
-            :
-            console.log('No claimed reviews')
-    },[ claimedReviews ])
+	useEffect(() => {
+		claimedReviews
+			? claimedReviews.filter((data) => {
+					if (data.status === 4) {
+						setFailedRequests([data]);
+					} else if (data.status === 3) {
+						setSuccessfulRequests([data]);
+					}
+			  })
+			: console.log('No claimed reviews');
+	}, [claimedReviews]);
 
 	return (
 		<div className="requests">
@@ -105,19 +102,18 @@ const Requests = () => {
 								{claimedReviews.length >= 1 && (
 									<tbody>
 										{claimedReviews.map((data, index) => {
-													return (
-														<LawyerTableData
-															id={data.reviewId}
-															ticketName={data.complainerName}
-															lastUpdated={data.updatedAt}
-															priority={data.priority}
-															status={data.status}
-															key={index}
-															no={index}
-														/>
-													);
-											  })
-										}
+											return (
+												<LawyerTableData
+													id={data.reviewId}
+													ticketName={data.complainerName}
+													lastUpdated={data.updatedAt}
+													priority={data.priority}
+													status={data.status}
+													key={index}
+													no={index}
+												/>
+											);
+										})}
 									</tbody>
 								)}
 							</TableContainer>
@@ -208,19 +204,18 @@ const Requests = () => {
 								{
 									<tbody>
 										{failedRequests.map((data, index) => {
-													return (
-														<LawyerTableData
-															id={data.reviewId}
-															ticketName={data.complainerName}
-															lastUpdated={data.updatedAt}
-															priority={data.priority}
-															status={data.status}
-															key={index}
-															no={index}
-														/>
-													);
-											  })
-                                        }
+											return (
+												<LawyerTableData
+													id={data.reviewId}
+													ticketName={data.complainerName}
+													lastUpdated={data.updatedAt}
+													priority={data.priority}
+													status={data.status}
+													key={index}
+													no={index}
+												/>
+											);
+										})}
 									</tbody>
 								}
 							</TableContainer>
