@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import searchIcon from '../../assets/images/searchIcon.png';
-import notificationsIcon from '../../assets/images/notificationsIcon.svg';
-import profileImg from '../../assets/images/profileImg.svg';
 import lineChart from '../../assets/images/lineChart.svg';
 import arrowDown from '../../assets/images/arrowDown.svg';
 import arrowUp from '../../assets/images/arrowUp.svg';
