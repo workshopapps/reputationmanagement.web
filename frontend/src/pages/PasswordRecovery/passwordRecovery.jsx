@@ -6,7 +6,7 @@ import Api from '../../api/axios';
 // import { useEffect } from 'react';
 import REPUTE from '../../assets/images/repute_logo.svg';
 import arrow from './arrow-left.svg';
-import ErrorMessage from '../../components/error message/errorMessage';
+import ErrorMessage from '../../components/error message/errorMessageCopy';
 
 // const EMAIL_REGEX =
 // 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;

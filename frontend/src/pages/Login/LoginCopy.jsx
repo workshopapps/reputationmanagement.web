@@ -4,7 +4,7 @@ import REPUTE from '../../assets/images/repute_logo.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../../api/axios';
-import ErrorMessage from '../../components/error message/errorMessage';
+import ErrorMessage from '../../components/error message/errorMessageCopy';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';

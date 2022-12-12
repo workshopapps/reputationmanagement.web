@@ -7,7 +7,7 @@ import styled from 'styled-components';
 // import GOOGLE from '../Login/google.svg';
 import Api from '../../api/axios';
 import { Link, useNavigate } from 'react-router-dom';
-import ErrorMessage from '../../components/error message/errorMessage';
+import ErrorMessage from '../../components/error message/errorMessageCopy';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';

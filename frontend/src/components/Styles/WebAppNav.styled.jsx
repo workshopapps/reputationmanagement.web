@@ -63,19 +63,20 @@ export const LogoContainer = styled.div`
 	flex: 1;
 	align-items: center;
 	justify-content: space-between;
+	
 	.lgr{
-		width: 30%;
+		width: 25%;
 	}
-	div {
-		width: 50%;
+	// div {
+	// 	width: 50%;
 
-		&:nth-of-type(1) {
-			img {
-				width: 38px;
-				height: 38px;
-			}
-		}
-	}
+	// 	&:nth-of-type(1) {
+	// 		img {
+	// 			width: 38px;
+	// 			height: 38px;
+	// 		}
+	// 	}
+	// }
 
 	@media (max-width: 1140px) {
 		display: flex;

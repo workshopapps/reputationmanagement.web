@@ -7,17 +7,19 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import REPUTE from '../../assets/images/repute_logo.svg';
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
+import ErrorMessage from '../../components/error message/errorMessageCopy';
 
 export default function ChangePassword() {
 	// Get token from url
 	let urlParams = window.location.search;
-	const [token, setToken] = React.useState(urlParams.replace('?token=', ''));
+	const [token] = React.useState(urlParams.replace('?token=', ''));
 	const [password, setPassword] = React.useState('');
 	const [confirmPassword, setConfirmPassword] = React.useState('');
 	const [passwordShown, setPasswordShown] = React.useState(false);
 	const [confirmPasswordShown, setConfirmPasswordShown] = React.useState(false);
 	const [showPasswordModal, setShowPasswordModal] = React.useState(false);
 	const [requestPending, setRequestPending] = React.useState(false);
+	const [triedToSubmit, setTriedToSubmit] = React.useState(false);
 
 	const togglePassword = () => {
 		setPasswordShown(!passwordShown);
@@ -40,6 +42,7 @@ export default function ChangePassword() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		setTriedToSubmit(true);
 		const email = localStorage.getItem('forgot');
 		setRequestPending(true);
 
@@ -102,6 +105,9 @@ export default function ChangePassword() {
 									</button>
 								</StyledBox>
 							</StyledlogForm>
+							{password === '' && triedToSubmit && (
+								<ErrorMessage error="Email Required" />
+							)}
 
 							{/* Retype Password  */}
 
@@ -120,6 +126,9 @@ export default function ChangePassword() {
 									</button>
 								</StyledBox>
 							</StyledlogForm>
+							{confirmPassword === '' && triedToSubmit && (
+								<ErrorMessage error="Email Required" />
+							)}
 
 							<SubmitBtn onClick={handleSubmit}>
 								{!requestPending ? (
