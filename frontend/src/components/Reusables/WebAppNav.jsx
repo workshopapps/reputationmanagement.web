@@ -26,7 +26,7 @@ const WebAppNav = (props) => {
 
 	const fetchUserDetails = async () => {
 		try {
-			const response = await ApiPrivate.get('/auth/details');
+			const response = await ApiPrivate.get('/api/auth/details');
 			localStorage.setItem('user', response?.data.businessEntityName);
 		} catch (err) {
 			console.log(err);
@@ -46,7 +46,7 @@ const WebAppNav = (props) => {
 					<img src={menu} alt="" onClick={props.openMenuHandler} />
 				</div>
 				<div>
-					<img src={logo} id="site-logo" alt=""  className='lgr'/>
+					<img src={logo} id="site-logo" alt="" className="lgr" />
 				</div>
 			</LogoContainer>
 

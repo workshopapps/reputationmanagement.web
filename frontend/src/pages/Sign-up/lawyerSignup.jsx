@@ -61,7 +61,7 @@ const LawyerSignup = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/lawyer/auth/create_account', {
+				const response = await Api.post('/api/lawyer/auth/create_account', {
 					email: email,
 					password: password,
 					firstName: firstName,
@@ -255,7 +255,7 @@ const LawyerSignup = () => {
 									? 'invalid '
 									: 'term-form'
 							}
-							style={{ marginTop: '10px'}}
+							style={{ marginTop: '10px' }}
 						>
 							<input
 								type="checkbox"

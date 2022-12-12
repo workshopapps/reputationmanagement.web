@@ -118,7 +118,7 @@ const LandingPage = () => {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			const response = await Api.post('/createquote', formData);
+			const response = await Api.post('/api/createquote', formData);
 			toast.success('Your response has been submitted', {
 				position: 'top-left',
 			});
@@ -262,7 +262,7 @@ const LandingPage = () => {
 							</div>
 						</StyledHeroSectionWrapper>
 					</HeroSection>
-					
+
 					{/************************************NEW HOW DOES IT WORK SECTION****************************************/}
 					<StyledContainer>
 						<HowDoesItWork>

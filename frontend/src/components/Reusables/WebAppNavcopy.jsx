@@ -25,7 +25,7 @@ const WebAppNav = (props) => {
 
 	// const fetchUserDetails = async () => {
 	// 	try {
-	// 		const response = await ApiPrivate.get('/auth/details');
+	// 		const response = await ApiPrivate.get('/api/auth/details');
 	// 		localStorage.setItem('auth', response?.data.businessEntityName);
 	// 	} catch (err) {
 	// 		console.log(err);

@@ -6,8 +6,47 @@ import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { PaystackButton } from "react-paystack";
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { useLocation } from 'react-router-dom';
 
 const Payment = () => {
+	const amount = '1750000'
+	const email = localStorage.getItem('auth')
+	const name = localStorage.getItem('auth')
+	const publicKey = process.env.REACT_APP_PAYMENT_KEY
+	const ApiPrivate = useAxiosPrivate();
+
+	const location = useLocation();
+	const requestId = new URLSearchParams(location.search).get('requestId');
+
+	const savePayment = async() => {
+		try{
+			const response = await ApiPrivate.post('',{
+				orderNo: requestId,
+				email: email,
+				amount: amount,
+			})
+			console.log(response)
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+	const componentProps = {
+		email,
+		amount,
+		metadata: {
+		  name,
+		},
+		publicKey,
+		text: "Pay Now",
+		onSuccess: () =>{
+			savePayment();
+			alert("Payment completed successfully")
+		},
+		onClose: () => alert("Payment is not completed"),
+	  }
 	const [openMenu, setOpenMenu] = useState(false);
 	return (
 		<>
@@ -47,7 +86,7 @@ const Payment = () => {
 							<div>
 								<div>Amount</div>
 
-								<Third>$250</Third>
+								<Third>$25</Third>
 							</div>
 						</Section2>
 
@@ -57,6 +96,7 @@ const Payment = () => {
 							<img src={visa} alt="" />
 							<img src={verve} alt="" />
 						</Section3>
+						<PaystackButton {...componentProps} className="paystack"/>
 					</div>
 				</StyledBox>
 			</StyledSection>
@@ -72,7 +112,17 @@ const StyledSection = styled.section`
 	display: flex;
 	justify-content: center;
     align-items: center;
-  
+  	.paystack{
+		background-color: #233ba9;
+		color: white;
+		width: 400px;
+		height: 55px;
+		margin: 0 auto;
+		display: block;
+		margin-top: 30px;
+		border-radius: 4px;
+		max-width: 80%;
+	}
 
 	@media (max-width: 1140px) {
 		padding-left: 0px;
@@ -158,11 +208,6 @@ const Section2 = styled.div`
 		//justify-content: space-between;
 		height: 57px;
 		border-bottom: 1px solid #c9b9b9;
-
-		&:nth-child(3) {
-			background-color: #233ba9;
-			color: white;
-		}
 
 		div {
 			width: 50%;

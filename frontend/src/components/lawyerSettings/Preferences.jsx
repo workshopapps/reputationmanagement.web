@@ -21,7 +21,7 @@ function Preferences({ accessibility, setAccessibility }) {
 		setRequestPending(true);
 		console.log(accessibility);
 
-		ApiPrivate.post('/customer/accessibility', accessibility)
+		ApiPrivate.post('/api/customer/accessibility', accessibility)
 			.then((res) => {
 				setAccessibility(res.data);
 				setSuccessMessage('Update successful');

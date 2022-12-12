@@ -18,17 +18,16 @@ import { LawyerTableData } from '../../components/Dashboard/TableData';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled from 'styled-components';
-import green from './assets/green.svg'
-import yellow from './assets/yellow.svg'
-import red from './assets/red.svg'
-
+import green from './assets/green.svg';
+import yellow from './assets/yellow.svg';
+import red from './assets/red.svg';
 
 function LawyerDashboard() {
 	const [tickets, setTickets] = useState([]);
 	const { setRequestFailed, setErrMessage } = useAppContext();
-	const [ successfulRequestNo, setSuccessfulRequestNo ] = useState(0)
-	const [ pendingRequestNo, setPendingRequestNo ] = useState(0)
-	const [ failedRequestNo, setFailedRequestNo ] = useState(0);
+	const [successfulRequestNo, setSuccessfulRequestNo] = useState(0);
+	const [pendingRequestNo, setPendingRequestNo] = useState(0);
+	const [failedRequestNo, setFailedRequestNo] = useState(0);
 
 	const [searchTicket, setSearchTicket] = useState('');
 
@@ -36,30 +35,45 @@ function LawyerDashboard() {
 
 	const fetchDetails = async () => {
 		try {
-			const response = await ApiPrivate.get('/lawyer/PendingReview');
-			const successfulRequest = await ApiPrivate.get('/lawyer/GetReviewByStatus?status=3')
-			const inProgressResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=2')
-			const pendingResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=1')
-			const failedResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=4')
-			setSuccessfulRequestNo(successfulRequest?.data?.length)
-			console.log(pendingResponse?.data)
-			console.log(inProgressResponse?.data)
-			setPendingRequestNo( pendingResponse?.data?.length ? pendingResponse.data.length : 0 + inProgressResponse?.data?.length ? inProgressResponse.data.length : 0 )
-			setFailedRequestNo(failedResponse?.data?.length ? failedResponse.data.length : 0)
+			const response = await ApiPrivate.get('/api/lawyer/PendingReview');
+			const successfulRequest = await ApiPrivate.get(
+				'/api/lawyer/GetReviewByStatus?status=3'
+			);
+			const inProgressResponse = ApiPrivate.get(
+				'/api/lawyer/GetReviewByStatus?status=2'
+			);
+			const pendingResponse = ApiPrivate.get(
+				'/api/lawyer/GetReviewByStatus?status=1'
+			);
+			const failedResponse = ApiPrivate.get(
+				'/api/lawyer/GetReviewByStatus?status=4'
+			);
+			setSuccessfulRequestNo(successfulRequest?.data?.length);
+			console.log(pendingResponse?.data);
+			console.log(inProgressResponse?.data);
+			setPendingRequestNo(
+				pendingResponse?.data?.length
+					? pendingResponse.data.length
+					: 0 + inProgressResponse?.data?.length
+					? inProgressResponse.data.length
+					: 0
+			);
+			setFailedRequestNo(
+				failedResponse?.data?.length ? failedResponse.data.length : 0
+			);
 			setTickets(response?.data);
 			console.log(response);
 		} catch (err) {
 			if (err?.response?.status === 403) {
 				setErrMessage("You're not authorised to view this page");
 				setRequestFailed(true);
-			}
-			else{
-				setErrMessage("Server  error");
+			} else {
+				setErrMessage('Server  error');
 				setRequestFailed(true);
 			}
 			console.log(err);
 		}
-	}
+	};
 
 	useEffect(() => {
 		fetchDetails();
@@ -117,7 +131,7 @@ function LawyerDashboard() {
 								Total requests
 							</h3>
 							<span className="text-[45px] font-semibold">
-								{successfulRequestNo + failedRequestNo + pendingRequestNo }
+								{successfulRequestNo + failedRequestNo + pendingRequestNo}
 							</span>
 						</div>
 
@@ -127,7 +141,9 @@ function LawyerDashboard() {
 							</h3>
 							<div className="flex justify-between w-full">
 								<div>
-									<span className="text-[45px] font-semibold">{successfulRequestNo}</span>
+									<span className="text-[45px] font-semibold">
+										{successfulRequestNo}
+									</span>
 									<div className="flex text-[#32D583]">
 										+{successfulRequestNo} <img src={arrowUp} alt="" />
 									</div>
@@ -143,7 +159,9 @@ function LawyerDashboard() {
 							</h3>
 							<div className="flex justify-between w-full">
 								<div>
-									<span className="text-[45px] font-semibold">{failedRequestNo}</span>
+									<span className="text-[45px] font-semibold">
+										{failedRequestNo}
+									</span>
 									<div className="flex text-[#FF718B]">
 										-{failedRequestNo} <img src={arrowDown} alt="" />
 									</div>
@@ -160,44 +178,33 @@ function LawyerDashboard() {
 							<hr />
 
 							<StyledC>
-							<div className="one">
-								<img src={green} alt="" />
-								<div className="text">
-								Successful
+								<div className="one">
+									<img src={green} alt="" />
+									<div className="text">Successful</div>
 								</div>
-							</div>
-							<div className="two">
-								<p>{successfulRequestNo}</p>
-							</div>
-							
+								<div className="two">
+									<p>{successfulRequestNo}</p>
+								</div>
 							</StyledC>
 
-
 							<StyledC>
-							<div className="one">
-								<img src={yellow} alt="" />
-								<div className="text">
-								In Progress
+								<div className="one">
+									<img src={yellow} alt="" />
+									<div className="text">In Progress</div>
 								</div>
-							</div>
-							<div className="two">
-								<p>{pendingRequestNo}</p>
-							</div>
-							
+								<div className="two">
+									<p>{pendingRequestNo}</p>
+								</div>
 							</StyledC>
 
-
 							<StyledC>
-							<div className="one">
-								<img src={red} alt="" />
-								<div className="text">
-								Failed
+								<div className="one">
+									<img src={red} alt="" />
+									<div className="text">Failed</div>
 								</div>
-							</div>
-							<div className="two">
-								<p>{failedRequestNo}</p>
-							</div>
-							
+								<div className="two">
+									<p>{failedRequestNo}</p>
+								</div>
 							</StyledC>
 						</div>
 
@@ -370,14 +377,14 @@ const StyledC = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	margin: 10px 0;
-	.one{
+	.one {
 		display: flex;
 		align-items: center;
-		img{
+		img {
 			margin-right: 10px;
 		}
 	}
-`
+`;
 
 const StyledBody = styled.div`
 	display: block;
@@ -386,17 +393,15 @@ const StyledBody = styled.div`
 	padding: 30px;
 	margin: 20px 0;
 	border-radius: 13.41px;
-	hr{
+	hr {
 		margin-top: 10px;
 	}
 `;
 const StyledP = styled.div`
 	color: #a5a6a8;
-	
 `;
 const Styledh3 = styled.div`
 	font-weight: 700;
-	
 `;
 
 const StyledDashboard = styled.div`

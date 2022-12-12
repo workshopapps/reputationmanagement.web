@@ -35,7 +35,7 @@ function Security() {
 		}
 		setRequestPending(true);
 		// API request
-		ApiPrivate.post('/auth/change_password', {
+		ApiPrivate.post('/api/auth/change_password', {
 			oldPassword: form.current_password,
 			newPassword: form.new_password,
 		})

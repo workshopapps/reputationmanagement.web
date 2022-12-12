@@ -81,7 +81,7 @@ function Faqs() {
 
 		if (company && email && message !== '') {
 			try {
-				const response = await Api.post('/contactUs/send', {
+				const response = await Api.post('/api/contactUs/send', {
 					email: email,
 					company: company,
 					message: message,
@@ -137,7 +137,7 @@ function Faqs() {
 	const { chatModalActive } = useAppContext();
 	return (
 		<PageLayout>
-			{ chatModalActive && <MyChatFunction/>}
+			{chatModalActive && <MyChatFunction />}
 			<FaqMainWraper>
 				<StyledHeader>
 					<h2 id="faq" ref={faqRef}>
