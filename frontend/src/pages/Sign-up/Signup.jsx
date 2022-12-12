@@ -74,7 +74,7 @@ function Signup() {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/auth/create_account', {
+				const response = await Api.post('/api/auth/create_account', {
 					email: email,
 					password: password,
 					businessEntityName: businessName,

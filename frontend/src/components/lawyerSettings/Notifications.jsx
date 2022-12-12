@@ -18,7 +18,7 @@ function Notifications({ notification, setNotification }) {
 		e.preventDefault();
 		setRequestPending(true);
 
-		ApiPrivate.post('/notification_settings', notification)
+		ApiPrivate.post('/api/notification_settings', notification)
 			.then((res) => {
 				setSuccessMessage('Updated successfully');
 				setRequestSuccess(true);

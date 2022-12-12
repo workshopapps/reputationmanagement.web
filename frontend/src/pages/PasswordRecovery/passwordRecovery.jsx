@@ -35,7 +35,7 @@ export default function PasswordRecovery() {
 
 		try {
 			setRequestPending(true);
-			const response = Api.post('/auth/forgotpassword', {
+			const response = Api.post('/api/auth/forgotpassword', {
 				emailAddress: email,
 			});
 			if ((await response).status === 200) {
