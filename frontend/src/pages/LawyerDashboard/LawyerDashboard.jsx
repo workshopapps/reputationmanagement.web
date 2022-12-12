@@ -52,9 +52,15 @@ function LawyerDashboard() {
 			console.log(pendingResponse?.data);
 			console.log(inProgressResponse?.data);
 			setPendingRequestNo(
-				pendingResponse?.data?.length + inProgressResponse?.data?.length
+				pendingResponse?.data?.length
+					? pendingResponse.data.length
+					: 0 + inProgressResponse?.data?.length
+					? inProgressResponse.data.length
+					: 0
 			);
-			setFailedRequestNo(failedResponse?.data?.length);
+			setFailedRequestNo(
+				failedResponse?.data?.length ? failedResponse.data.length : 0
+			);
 			setTickets(response?.data);
 			console.log(response);
 		} catch (err) {
