@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/repute_logo.svg';
-import MenuIcon from '../../assets/images/Dashboard/menu.jpg';
+import MenuIcon from '../../assets/images/Dashboard/menu.svg';
 import close from '../../assets/images/close.svg';
 import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
@@ -175,7 +175,7 @@ const StyledNav = styled.nav`
 		.logo {
 			display: block;
 			margin: auto;
-			width: 38%;
+			width: 25%;
 		}
 		.menuBtn {
 			display: block;
@@ -183,9 +183,23 @@ const StyledNav = styled.nav`
 			left: 10px;
 			margin-bottom: 5px;
 			cursor: pointer;
+			width: 7%;
 		}
 		.navLinks {
 			display: none;
+		}
+	}
+	@media screen and (max-width: 884px) {
+		.logo {
+			width: 22%;
+		}
+	}
+	@media screen and (max-width: 428px) {
+		.logo {
+			width: 38%;
+		}
+		.menuBtn{
+			width: 10%;
 		}
 	}
 `;

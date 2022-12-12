@@ -262,7 +262,7 @@ const LandingPage = () => {
 							</div>
 						</StyledHeroSectionWrapper>
 					</HeroSection>
-
+					
 					{/************************************NEW HOW DOES IT WORK SECTION****************************************/}
 					<StyledContainer>
 						<HowDoesItWork>

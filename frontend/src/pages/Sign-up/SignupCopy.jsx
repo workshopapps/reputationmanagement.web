@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 // import Closed from './Assets/eye-slash.png';
-import REPUTE from '../../assets/images/repute_logo.png';
+import REPUTE from '../../assets/images/repute_logo.svg';
 // import background from './Assets/image-logo.png';
 import styled from 'styled-components';
 // import GOOGLE from '../Login/google.svg';
@@ -325,7 +325,7 @@ const ReputeLogo = styled.div`
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
-		width: 40%;
+		width: 30%;
 	}
 	@media (max-width: 320px) {
 		margin-bottom: 10px;

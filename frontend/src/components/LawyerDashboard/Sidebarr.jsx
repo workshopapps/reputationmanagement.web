@@ -43,7 +43,7 @@ const Sidebarr = (props) => {
 				</ul>
 				<ul>
 					<li>
-						<NavLink to="/settings">
+						<NavLink to="/lawyer-settings">
 							<SettingsIcon />
 							Settings
 						</NavLink>

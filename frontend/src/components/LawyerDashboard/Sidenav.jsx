@@ -31,7 +31,7 @@ function Sidenav() {
 					</Link>
 				</div>
 
-				<Link className="ml-[20%] flex text-gray-500 mt-[350px]">
+				<Link className="ml-[20%] flex text-gray-500 mt-[350px]" to='lawyer-settings'>
 					<img src={settingsIcon} alt="" />
 					<span className="ml-2">Settings</span>
 				</Link>
