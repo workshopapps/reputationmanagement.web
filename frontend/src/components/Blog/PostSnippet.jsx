@@ -58,14 +58,15 @@ const StyledTag = styled.div`
 	}
 `;
 
-
 function PostSnippet({ filteredData }) {
 	return (
 		<>
 			{filteredData.map((data, index) => {
 				return (
 					<StyledPost key={index}>
-						<Link to= "/blog-post">
+
+						<Link to= "/blog-post"
+						
 							<StyledImg src={data.pathToImage} alt="blogpost image" />
 							<StyledTag>{data.tag}</StyledTag>
 							<StyledHeader>{data.title}</StyledHeader>
