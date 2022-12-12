@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
 	BrowserRouter,
 	Routes,
@@ -35,7 +35,7 @@ import Profile from '../pages/profile/Profile';
 import Settings from '../pages/Settings/Settings';
 import Login from '../pages/Login/LoginCopy';
 import Signup from '../pages/Sign-up/SignupCopy';
-import RequireAuth from '../middleware/requireAuth';
+import RequireAuth, {RequireBusinessAuth, RequireLawyerAuth} from '../middleware/requireAuth';
 import SupportPage from '../pages/Support';
 import Faq from '../pages/FAQ/Faqs';
 import ModalLayout from '../layout/modalLayout';
@@ -89,18 +89,22 @@ const Router = () => {
 			<SentryRoutes>
 				<Route element={<ModalLayout />}>
 					<Route element={<RequireAuth />}>
-						<Route path="/dashboard" element={<DashboardPage />} />
-						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
-						<Route path="/settings" element={<Settings />} />
-						<Route path="/lawyer-settings" element={<LawyerSettings />} />
+						<Route element={<RequireLawyerAuth/>}>
+							<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
+							<Route path="/lawyer-settings" element={<LawyerSettings />} />
+							<Route
+								path="/lawyer-request-details"
+								element={<LawyerRequestDetails />}
+							/>
+							<Route path="/requests" element={<Requests />} />
+						</Route>
+						<Route element={<RequireBusinessAuth/>}>
+							<Route path="/dashboard" element={<DashboardPage />} />
+							<Route path="/request-form" element={<RequestForm />} />
+							<Route path="/settings" element={<Settings />} />
+							<Route path="/request" element={<RequestDetails />} />
+						</Route>
 						<Route path="/profile" element={<Profile />} />
-						<Route path="/request-form" element={<RequestForm />} />
-						<Route path="/request" element={<RequestDetails />} />
-						<Route
-							path="/lawyer-request-details"
-							element={<LawyerRequestDetails />}
-						/>
-						<Route path="/requests" element={<Requests />} />
 					</Route>
 					<Route path="/" element={<Index2 />} />
 					{/* <Route path="/" element={<LandingPage />} /> */}

@@ -15,6 +15,7 @@ import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
 
 const Login = () => {
+	localStorage.setItem('user_type', 'business');
 	const [passwordShown, setPasswordShown] = useState(false);
 	const router = useNavigate();
 	// Password toggle handler
@@ -57,6 +58,7 @@ const Login = () => {
 					password: password,
 				});
 				localStorage.setItem('auth', email);
+				localStorage.setItem('user_type', 'business');
 				Cookies.set('reputeAccessToken', response?.data);
 				setRequestPending(false);
 				router('/dashboard');

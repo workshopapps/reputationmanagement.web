@@ -11,4 +11,27 @@ const RequireAuth = () => {
 	);
 };
 
+export const RequireLawyerAuth = () => {
+	const user_type = localStorage.getItem('user_type');
+	const location = useLocation();
+
+	return user_type === 'lawyer' ? (
+		<Outlet />
+	) : (
+		<Navigate to="/lawyer-login" state={{ from: location }} replace={true} />
+	);
+};
+
+export const RequireBusinessAuth = () => {
+	const user_type = localStorage.getItem('user_type');
+	const location = useLocation();
+
+	return user_type === 'business' ? (
+		<Outlet />
+	) : (
+		<Navigate to="/login" state={{ from: location }} replace={true} />
+	);
+};
+
+
 export default RequireAuth;

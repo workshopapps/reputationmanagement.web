@@ -68,6 +68,7 @@ const LawyerSignup = () => {
 					lastName: lastName,
 				});
 				localStorage.setItem('auth', email);
+				localStorage.setItem('user_type', 'lawyer');
 				Cookies.set('reputeAccessToken', response?.data);
 				setRequestPending(false);
 				setSuccessMessage('Account Created');
