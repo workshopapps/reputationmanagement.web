@@ -64,7 +64,7 @@ function PostSnippet({ filteredData }) {
 			{filteredData.map((data, index) => {
 				return (
 					<StyledPost key={index}>
-						<Link to={data.url}>
+						<Link to= "/blog-post">
 							<StyledImg src={data.pathToImage} alt="blogpost image" />
 							<StyledTag>{data.tag}</StyledTag>
 							<StyledHeader>{data.title}</StyledHeader>

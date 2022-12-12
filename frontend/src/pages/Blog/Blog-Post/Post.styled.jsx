@@ -26,7 +26,7 @@ export const StyledPost = styled.div`
 	p {
 		font-style: normal;
 		font-weight: 300;
-		font-size: 20px;
+		font-size: 18px;
 		line-height: 36px;
 		letter-spacing: 0.01em;
 		color: #000000;
