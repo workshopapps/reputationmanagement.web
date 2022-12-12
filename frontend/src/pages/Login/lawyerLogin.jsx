@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GOOGLE from './google.svg';
 import LOGIN from './login.svg';
-import REPUTE from './repute.svg';
+import REPUTE from '../../assets/images/repute_logo.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../../api/axios';
@@ -133,7 +133,7 @@ const LawyerLogin = () => {
 								error={
 									password === ''
 										? 'Enter your password'
-										: 'Password Must Be A Minimum Of 8 Characters'
+										: 'Password Must Be A Minimum Of 6 Characters'
 								}
 							/>
 						)}
@@ -225,6 +225,14 @@ const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	img{
+		width: 22%;
+	}
+	@media screen and (max-width: 400px){
+		img{
+			width: 28%;
+		}
+	}
 `;
 
 const StyledHead1 = styled.h1`

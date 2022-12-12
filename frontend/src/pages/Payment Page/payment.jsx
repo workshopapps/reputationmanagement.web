@@ -18,7 +18,7 @@ const Payment = () => {
 	const ApiPrivate = useAxiosPrivate();
 
 	const location = useLocation();
-	const requestId = new URLSearchParams(location.search).get('requestId');
+	const requestId = new URLSearchParams(location.search).get('requestid');
 
 	const savePayment = async() => {
 		try{
@@ -43,7 +43,6 @@ const Payment = () => {
 		text: "Pay Now",
 		onSuccess: () =>{
 			savePayment();
-			alert("Payment completed successfully")
 		},
 		onClose: () => alert("Payment is not completed"),
 	  }
@@ -74,13 +73,13 @@ const Payment = () => {
 							<div>
 								<div>order No</div>
 
-								<Second>0123</Second>
+								<Second>{requestId.substring(0,8)}</Second>
 							</div>
 
 							<div>
 								<div>Email</div>
 
-								<Second>Johndoe@gmail.com</Second>
+								<Second>{email}</Second>
 							</div>
 
 							<div>
