@@ -51,7 +51,7 @@ const LawyerLogin = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/lawyer/auth/sign_in', {
+				const response = await Api.post('/api/lawyer/auth/sign_in', {
 					email: email,
 					password: password,
 				});
@@ -270,7 +270,7 @@ const Input1 = styled.div`
 		text-align: left;
 		color: #2b2c34;
 	}
-	img{
+	img {
 		margin: 0;
 	}
 

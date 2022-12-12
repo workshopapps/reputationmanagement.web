@@ -51,7 +51,7 @@ const RequestDetails = () => {
 
 	const fetchComplaintDetails = async () => {
 		try {
-			const response = await ApiPrivate.get(`review/${requestId}`);
+			const response = await ApiPrivate.get(`/api/review/${requestId}`);
 			setEmail(response?.data?.email);
 			setPriority(response?.data?.priority);
 			setName(response?.data?.complainerName);
