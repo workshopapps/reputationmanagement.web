@@ -63,6 +63,7 @@ import Requests from '../pages/LawyerDashboard/request';
 import Index2 from '../pages/LandingPage/index2';
 import CheckEmail from '../pages/PasswordRecovery/checkEmail';
 import AdminChatModal from '../modal/chat modal/admin-chat';
+import LawyerSettings from '../pages/Settings/LawyerSettings';
 
 Sentry.init({
 	integrations: [
@@ -91,6 +92,7 @@ const Router = () => {
 						<Route path="/dashboard" element={<DashboardPage />} />
 						<Route path="/lawyer-dashboard" element={<LawyerDashboard />} />
 						<Route path="/settings" element={<Settings />} />
+						<Route path="/lawyer-settings" element={<LawyerSettings />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/request-form" element={<RequestForm />} />
 						<Route path="/request" element={<RequestDetails />} />

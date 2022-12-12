@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import logo from '../../assets/images/Dashboard/logo.png';
+import logo from '../../assets/images/repute_logo.svg';
 import menu from '../../assets/images/Dashboard/menu.jpg';
 import message from '../../assets/images/Dashboard/message.svg';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
