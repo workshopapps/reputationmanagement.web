@@ -16,9 +16,8 @@ import OpenDisputeModal from '../../modal/openDisputeModal';
 
 const RequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
-	const [rating, setRating] = useState(0); ///set initial state for rating
+	const [rating, setRating] = useState(0); // set initial state for rating
 	const router = useNavigate();
-	//const [checked, setChecked] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
@@ -28,7 +27,6 @@ const RequestDetails = () => {
 	const [review, setReview] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const [loading, setLoading] = useState(false);
 	const [requestLoading, RequestLoading] = useState(false);
 	const [status, setStatus] = useState();
 	const {
@@ -36,8 +34,8 @@ const RequestDetails = () => {
 		setRequestFailed,
 		setRequestSuccess,
 		setSuccessMessage,
-		requestSuccess,
-		requestFailed,
+		// requestSuccess,
+		// requestFailed,
 	} = useAppContext();
 
 	const [disputeModalActive, setDisputeModalActive] = useState(false);
@@ -56,7 +54,6 @@ const RequestDetails = () => {
 			const response = await ApiPrivate.get(`review/${requestId}`);
 			setEmail(response?.data?.email);
 			setPriority(response?.data?.priority);
-			// console.log('response:' + response?.data?.priority);
 			setName(response?.data?.complainerName);
 			setRating(response?.data?.rating);
 			setReview(response?.data?.reviewString);
@@ -79,7 +76,7 @@ const RequestDetails = () => {
 	const handleSubmitDispute = async (data) => {
 		RequestLoading(true);
 		try {
-			const response = await ApiPrivate.post(`/ContactUs`, data);
+			const response = await ApiPrivate.post(`/dispute`, data);
 			setSuccessMessage('Dispute created successfully!');
 			setRequestSuccess(true);
 			setDisputeModalActive(false);
@@ -104,6 +101,7 @@ const RequestDetails = () => {
 					setDisputeModalActive={setDisputeModalActive}
 					handleSubmitDispute={handleSubmitDispute}
 					requestLoading={requestLoading}
+					requestId={requestId}
 				/>
 			)}
 
@@ -277,7 +275,7 @@ const RequestDetails = () => {
 							</div>
 							{/***************************************FORM SUBMIT BUTTON**********************************************/}
 							<div className="btn-submit">
-								{status === 3 && (
+								{status >= 3 && (
 									<button
 										className="disputeBtn"
 										onClick={(e) => {
@@ -289,12 +287,21 @@ const RequestDetails = () => {
 									</button>
 								)}
 
-								<button
-									className="submit"
-									onClick={(e) => router(`/dashboard`)}
-								>
-									{!loading ? 'Return' : <div className="loading"></div>}
-								</button>
+								{status === 3 ? (
+									<button
+										className="payment"
+										onClick={(e) => router(`/payment`)}
+									>
+										Make Payment
+									</button>
+								) : (
+									<button
+										className="return"
+										onClick={(e) => router(`/dashboard`)}
+									>
+										Return
+									</button>
+								)}
 							</div>
 						</form>
 					</StyledContainers>
@@ -457,87 +464,46 @@ const StyledContainers = styled.div`
 				}
 			}
 		}
+	}
 
-		.btn-submit {
-			margin-top: 32px;
-			display: flex;
-			justify-content: flex-end;
+	.btn-submit {
+		margin-top: 32px;
+		display: flex;
+		justify-content: flex-end;
 
-			.submit {
-				width: 220px;
-				height: 59px;
-				background: #233ba9;
-				border-radius: 4px;
-				/* padding: 16px 24px; */
-				font-size: 18px;
-				border: none;
-				color: white;
-				transition: 0.5s;
+		button {
+			height: 50px;
+			width: 180px;
+			border-radius: 4px;
+			text-align: center;
+			font-weight: 600;
+			font-size: 16px;
+			border: none;
+			transition: 0.5s;
+		}
 
-				&:hover {
-					background: #0a1d88;
-				}
-				.loading {
-					width: 20px;
-					height: 20px;
-					border: 2px solid #fff;
-					border-bottom-color: transparent;
-					border-radius: 50%;
-					display: inline-block;
-					box-sizing: border-box;
-					animation: rotation 1s linear infinite;
-					margin: 0 !important;
-					padding: 10px;
-					@keyframes rotation {
-						0% {
-							transform: rotate(0deg);
-						}
-						100% {
-							transform: rotate(360deg);
-						}
-					}
-				}
-				@media (max-width: 620px) {
-					margin-top: 20px;
-				}
-				@media (max-width: 550px) {
-					margin-top: 20px;
-					width: 150px;
-					height: 40px;
-				}
+		.payment,
+		.return {
+			background: #233ba9;
+			color: #fff;
+
+			&:hover {
+				background: #0a1d88;
 			}
-			.disputeBtn {
-				height: 59px;
-				width: 220px;
-				border-radius: 4px;
-				border: 1px solid #f16f04;
-				font-family: Lato;
-				font-size: 18px;
-				font-weight: 600;
-				line-height: 27px;
-				letter-spacing: 0em;
-				text-align: center;
-				color: #f16f04;
-				background-color: transparent;
-				margin-right: 16px;
+		}
+		.disputeBtn {
+			border: 1px solid #f16f04;
+			color: #f16f04;
+			background-color: transparent;
+			margin-right: 16px;
+		}
 
-				@media (max-width: 620px) {
-					margin-top: 20px;
-				}
-				@media (max-width: 550px) {
-					margin-top: 20px;
-					width: 150px;
-					height: 40px;
-				}
-			}
+		@media (max-width: 550px) {
+			margin-top: 20px;
+			justify-content: center;
 
-			@media (max-width: 550px) {
-				margin-top: 20px;
-				justify-content: center;
-
-				button {
-					width: 100%;
-				}
+			button {
+				width: 100%;
 			}
 		}
 	}
