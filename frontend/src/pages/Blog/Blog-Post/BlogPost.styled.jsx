@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const PostContainer = styled.section`
-	max-width: 869px;
-	width: 70%;
-	margin: 64px auto 7rem;
+	max-width: 1060px;
+	width: 100%;
+	margin: 34px auto 7rem;
 	font-family: Lato;
 
 	@media (max-width: 988px) {
@@ -29,7 +29,8 @@ export const PostHeader = styled.header`
 		background-color: #fff;
 		height: fit-content;
 		transform: translateY(-97px);
-		width: 84%;
+		width: 100%;
+		margin-top: 74px;
 		padding: 34px 0 28px 0;
 
 		h3 {
@@ -38,11 +39,11 @@ export const PostHeader = styled.header`
 			line-height: 50px;
 			letter-spacing: 0.01em;
 			color: #233ba9;
-			max-width: 577px;
+			max-width: 1020px;
 
-			span {
-				display: block;
-			}
+			// span {
+			// 	display: flex;
+			// }
 		}
 	}
 

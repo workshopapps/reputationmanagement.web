@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledPost = styled.section`
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -64,12 +65,12 @@ function PostSnippet({ filteredData }) {
 			{filteredData.map((data, index) => {
 				return (
 					<StyledPost key={index}>
-						<a href={data.url}>
+						<Link to= "/blog-post">
 							<StyledImg src={data.pathToImage} alt="blogpost image" />
 							<StyledTag>{data.tag}</StyledTag>
 							<StyledHeader>{data.title}</StyledHeader>
 							<StyledParagraph>{data.description}</StyledParagraph>
-						</a>
+						</Link>
 					</StyledPost>
 				);
 			})}
