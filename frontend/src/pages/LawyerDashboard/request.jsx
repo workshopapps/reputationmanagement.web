@@ -84,7 +84,7 @@ const Requests = () => {
 					onClick={() => setShowMyRequests(!showMyRequests)}
 				>
 					<div className="title">
-						<h3>Open Tickets</h3>
+						<h3>Unclaimed Tickets</h3>
 						<img
 							src={ARROW_DOWN}
 							alt=""
@@ -163,7 +163,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.lastUpdated}
+													lastUpdated={data.updatedAt}
 													priority={data.priority}
 													status={data.status}
 													key={index}
@@ -213,7 +213,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.lastUpdated}
+													lastUpdated={data.updatedAt}
 													priority={data.priority}
 													status={data.status}
 													key={index}
@@ -264,7 +264,7 @@ const Requests = () => {
 														<LawyerTableData
 															id={data.reviewId}
 															ticketName={data.complainerName}
-															lastUpdated={data.lastUpdated}
+															lastUpdated={data.updatedAt}
 															priority={data.priority}
 															status={data.status}
 															key={index}
@@ -315,7 +315,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.lastUpdated}
+													lastUpdated={data.updatedAt}
 													priority={data.priority}
 													status={data.status}
 													key={index}

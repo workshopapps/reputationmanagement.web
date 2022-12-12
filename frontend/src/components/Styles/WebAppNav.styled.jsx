@@ -63,7 +63,20 @@ export const LogoContainer = styled.div`
 	flex: 1;
 	align-items: center;
 	justify-content: space-between;
-	
+
+	@media(max-width: 1140px){
+		#site-logo {
+			position: absolute;
+			inset: 0px;
+			margin: auto;
+		}
+	}
+		@media screen and (min-width: 634px)
+	<style>
+	.feqA-dV .lgr {
+		width: 130px;
+	}
+
 	.lgr{
 		width: 25%;
 
