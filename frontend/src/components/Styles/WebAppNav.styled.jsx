@@ -63,7 +63,9 @@ export const LogoContainer = styled.div`
 	flex: 1;
 	align-items: center;
 	justify-content: space-between;
-
+	.lgr{
+		width: 30%;
+	}
 	div {
 		width: 50%;
 
@@ -113,6 +115,9 @@ export const ProfilePictureContainer = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 20px;
+	p{
+		font-weight: 800;
+	}
 
 	& > div {
 		display: flex;

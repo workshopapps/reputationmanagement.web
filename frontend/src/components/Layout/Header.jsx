@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from '../../assets/images/repute_logo.png';
-import MenuIcon from '../../assets/images/menuIcon.png';
+import Logo from '../../assets/images/repute_logo.svg';
+import MenuIcon from '../../assets/images/Dashboard/menu.svg';
 import close from '../../assets/images/close.svg';
 import { StyledButton, StyledTextButton } from '../Styles/Body/Button.styled';
 import { StyledContainer } from '../Styles/Body/Container.styled';
@@ -128,23 +128,26 @@ const StyledNav = styled.nav`
 	position: relative;
 	z-index: 10;
 
-	// img{
-	// 	width: 50%;
-	// }
+	img {
+		width: 12%;
+	}
 	a {
 		text-decoration: none;
 	}
 
 	.sidebar {
 		position: absolute;
-		top: 70px;
+		top: 89px;
 		width: 100%;
 		padding-bottom: 25px;
 		padding-top: 10px;
 		background: #fff;
 		// background: #f5f5f5;
 		// border-radius: 0 0 8px 8px;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		// box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.1);
+		-webkit-box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.1);
 		@media screen and (min-width: 886px) {
 			display: none;
 		}
@@ -172,17 +175,31 @@ const StyledNav = styled.nav`
 		.logo {
 			display: block;
 			margin: auto;
-			width: 38%;
+			width: 25%;
 		}
 		.menuBtn {
 			display: block;
 			position: absolute;
-			left: 18px;
+			left: 10px;
+			margin-bottom: 5px;
 			cursor: pointer;
-			
+			width: 7%;
 		}
 		.navLinks {
 			display: none;
+		}
+	}
+	@media screen and (max-width: 884px) {
+		.logo {
+			width: 22%;
+		}
+	}
+	@media screen and (max-width: 428px) {
+		.logo {
+			width: 38%;
+		}
+		.menuBtn{
+			width: 10%;
 		}
 	}
 `;

@@ -21,6 +21,6 @@ const StyledErrorMessage = styled.div`
 		color: #d8340f !important;
 		font-size: 16px !important;
 		line-height: 20px !important;
-		margin-top: 0 !important;
+		margin: 0 !important;
 	}
 `;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import REPUTE from '../../assets/images/repute_logo.png';
+import REPUTE from '../../assets/images/repute_logo.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../../api/axios';
@@ -78,11 +78,12 @@ const Login = () => {
 	return (
 		<>
 			<LoginContainer>
-				<Link to="/">
-					<ReputeLogo>
+				<ReputeLogo>
+					<Link to="/">
 						<img src={REPUTE} alt="Repute Logo" />
-					</ReputeLogo>
-				</Link>
+					</Link>
+				</ReputeLogo>
+
 				<h2>Welcome Back!</h2>
 				<p>Sign in to continue</p>
 
@@ -212,9 +213,8 @@ const ReputeLogo = styled.div`
 	margin-bottom: 40px;
 	img {
 		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 40%;
+		margin: auto;
+		width: 30%;
 	}
 	@media (max-width: 320px) {
 		margin-bottom: 10px;

@@ -1,26 +1,17 @@
 import React from 'react';
-import { DONE_ICON } from '../../assets/image';
+import successIcon from './success-icons.svg';
 import { FaTimes } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export default function ResetSuccess({ resetPasswordModal }) {
-	const success = (
+export default function ResetSuccess() {
+	return (
 		<StyledDiv>
-			<StyledImg src={DONE_ICON} alt="success" />
-			<p>Password Reset Successful</p>
-			<StyledLink to="/dashboard">Ready to go</StyledLink>
+			<StyledImg src={successIcon} alt="success" />
+			<h2>Password Reset Successful</h2>
+			<p>You will be redirected to the login page in 5 seconds...</p>
 		</StyledDiv>
 	);
-	const failure = (
-		<StyledDiv>
-			<StyledIcon />
-			<p>Password Reset Failed</p>
-			<StyledLink to="/password-recovery">Try Again</StyledLink>
-		</StyledDiv>
-	);
-
-	return <div>{resetPasswordModal ? success : failure}</div>;
 }
 
 const StyledImg = styled.img`
@@ -29,29 +20,13 @@ const StyledImg = styled.img`
 	margin: 0 auto;
 `;
 
-const StyledIcon = styled(FaTimes)`
-	height: 150px;
-	width: 150px;
-	margin: 0 auto;
-	color: red;
-`;
-
 const StyledDiv = styled.div`
-	background-color: #233ba9;
 	text-align: center;
 	padding: 20px 0;
 
-	p {
-		color: white;
-		padding: 10px 0;
-		font-size: 20px;
+	h2 {
+		padding: 18px 0 12px;
+		font-size: 24px;
+		font-weight: 600;
 	}
-`;
-const StyledLink = styled(Link)`
-	color: white;
-	text-align: center;
-	margin: 0 auto 30px;
-	padding: 5px 10px;
-	border: 1px solid white;
-	border-radius: 30px;
 `;

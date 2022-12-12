@@ -43,10 +43,12 @@ const Dashboard = () => {
 		}
 	}, [ApiPrivate, setAllRequests, setErrMessage, setRequestFailed]);
 
-	setTimeout(() => {
-		fetchAllRequests()
-	},[10000])
-	
+	useEffect(() => {
+		const interval = setInterval(() => {
+			fetchAllRequests();
+		}, 5000)
+		return () => clearTimeout(interval)
+	},[])
 	useEffect(() => {
 		fetchAllRequests();
 	}, [fetchAllRequests]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Search from '../../components/Blog/Search';
+// import Search from '../../components/Blog/Search';
 import Hero from '../../components/Blog/Hero';
 import PostSnippet from '../../components/Blog/PostSnippet';
 import PageLayout from '../../layout/PageLayout';

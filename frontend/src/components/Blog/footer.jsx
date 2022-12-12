@@ -328,99 +328,99 @@ const Headin6 = styled.section`
 	}
 `;
 
-const FormMain = styled.section`
-	width: 500px;
+// const FormMain = styled.section`
+// 	width: 500px;
 
-	form {
-		select {
-			width: 100%;
-			padding: 10px 14px;
-			font-size: 16px;
-			border: 1px solid #a5a6a8;
-			outline: none;
-			border-radius: 8px;
-			color: #a5a6a8;
-		}
+// 	form {
+// 		select {
+// 			width: 100%;
+// 			padding: 10px 14px;
+// 			font-size: 16px;
+// 			border: 1px solid #a5a6a8;
+// 			outline: none;
+// 			border-radius: 8px;
+// 			color: #a5a6a8;
+// 		}
 
-		p {
-			font-size: 12px;
-			font-weight: 400;
-			margin-top: 8px;
-			margin-bottom: 16px;
-			text-align: left;
+// 		p {
+// 			font-size: 12px;
+// 			font-weight: 400;
+// 			margin-top: 8px;
+// 			margin-bottom: 16px;
+// 			text-align: left;
 
-			a {
-				text-decoration: none;
-				color: #f16f04;
-			}
-		}
+// 			a {
+// 				text-decoration: none;
+// 				color: #f16f04;
+// 			}
+// 		}
 
-		button {
-			width: 100%;
-			background-color: #233ba9;
-			border-radius: 8px;
-			padding: 12px 24px;
-			font-size: 16px;
-			font-weight: 600;
-			color: white;
-		}
-	}
+// 		button {
+// 			width: 100%;
+// 			background-color: #233ba9;
+// 			border-radius: 8px;
+// 			padding: 12px 24px;
+// 			font-size: 16px;
+// 			font-weight: 600;
+// 			color: white;
+// 		}
+// 	}
 
-	@media (max-width: 800px) {
-		width: 100%;
-	}
-`;
+// 	@media (max-width: 800px) {
+// 		width: 100%;
+// 	}
+// `;
 
-const FormSec1 = styled.section`
-	display: flex;
+// const FormSec1 = styled.section`
+// 	display: flex;
 
-	.input-area {
-		width: 50%;
-		padding-right: 10px;
-		input {
-			border: 1px solid #a5a6a8;
-			width: 100%;
-			margin-bottom: 8px;
-			border-radius: 8px;
-			padding: 10px 14px;
-			font-size: 16px;
-			outline: none;
-		}
+// 	.input-area {
+// 		width: 50%;
+// 		padding-right: 10px;
+// 		input {
+// 			border: 1px solid #a5a6a8;
+// 			width: 100%;
+// 			margin-bottom: 8px;
+// 			border-radius: 8px;
+// 			padding: 10px 14px;
+// 			font-size: 16px;
+// 			outline: none;
+// 		}
 
-		@media (max-width: 800px) {
-			padding-right: 0px;
-		}
-	}
+// 		@media (max-width: 800px) {
+// 			padding-right: 0px;
+// 		}
+// 	}
 
-	.text-area {
-		width: 50%;
-		padding-bottom: 8px;
-		padding-left: 10px;
-		textarea {
-			width: 100%;
-			max-width: 100%;
-			height: 100%;
-			border: 1px solid #a5a6a8;
-			border-radius: 8px;
-			padding: 10px 14px;
-			font-size: 16px;
-			outline: none;
-		}
+// 	.text-area {
+// 		width: 50%;
+// 		padding-bottom: 8px;
+// 		padding-left: 10px;
+// 		textarea {
+// 			width: 100%;
+// 			max-width: 100%;
+// 			height: 100%;
+// 			border: 1px solid #a5a6a8;
+// 			border-radius: 8px;
+// 			padding: 10px 14px;
+// 			font-size: 16px;
+// 			outline: none;
+// 		}
 
-		@media (max-width: 800px) {
-			padding-left: 0px;
-		}
-	}
+// 		@media (max-width: 800px) {
+// 			padding-left: 0px;
+// 		}
+// 	}
 
-	@media (max-width: 800px) {
-		flex-direction: column;
+// 	@media (max-width: 800px) {
+// 		flex-direction: column;
 
-		.input-area,
-		.text-area {
-			width: 100%;
-		}
-	}
-`;
+// 		.input-area,
+// 		.text-area {
+// 			width: 100%;
+// 		}
+// 	}
+// `;
 
 const FooterParentMain = styled.div`
 	background: url(${bg}), #eef1fc;
