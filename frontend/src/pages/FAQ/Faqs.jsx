@@ -8,6 +8,8 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
+import MyChatFunction from '../../modal/chat modal/chatModal';
+import useAppContext from '../../hooks/useAppContext';
 
 // import ErrorMessage from '../../components/error message/errorMessage';
 
@@ -132,9 +134,10 @@ function Faqs() {
 			return;
 		}
 	}, [location]);
-
+	const { chatModalActive } = useAppContext();
 	return (
 		<PageLayout>
+			{ chatModalActive && <MyChatFunction/>}
 			<FaqMainWraper>
 				<StyledHeader>
 					<h2 id="faq" ref={faqRef}>

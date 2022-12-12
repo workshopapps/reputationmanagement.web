@@ -28,13 +28,13 @@ function LawyerDashboard() {
 	const { setRequestFailed, setErrMessage } = useAppContext();
 	const [ successfulRequestNo, setSuccessfulRequestNo ] = useState(0)
 	const [ pendingRequestNo, setPendingRequestNo ] = useState(0)
-	const [ failedRequestNo, setFailedRequestNo ] = useState(0)
+	const [ failedRequestNo, setFailedRequestNo ] = useState(0);
 
 	const [searchTicket, setSearchTicket] = useState('');
 
 	const ApiPrivate = useAxiosPrivate();
 
-	const fetchDetails = useCallback(async () => {
+	const fetchDetails = async () => {
 		try {
 			const response = await ApiPrivate.get('/lawyer/PendingReview');
 			const successfulRequest = await ApiPrivate.get('/lawyer/GetReviewByStatus?status=3')
@@ -49,17 +49,21 @@ function LawyerDashboard() {
 			setTickets(response?.data);
 			console.log(response);
 		} catch (err) {
-			if (err?.response?.status) {
-				setErrMessage('Shey you be lawyer ni');
+			if (err?.response?.status === 403) {
+				setErrMessage("You're not authorised to view this page");
+				setRequestFailed(true);
+			}
+			else{
+				setErrMessage("Server  error");
 				setRequestFailed(true);
 			}
 			console.log(err);
 		}
-	}, [ApiPrivate, setErrMessage, setRequestFailed]);
+	}
 
 	useEffect(() => {
 		fetchDetails();
-	}, [fetchDetails]);
+	}, []);
 
 	const [menuActive, setMenuActive] = useState(false);
 
@@ -105,7 +109,7 @@ function LawyerDashboard() {
 
 				{menuActive && <Menu />}
 
-				<div className="p-5 absolute md:static left-0 w-full">
+				<div className="p-5 absolute md:static md:pt-0 pt-24 left-0 w-full">
 					<StyledCardWrapper className="flex justify-center flex-wrap">
 						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
 							<img src={requestsIcon} alt="" />
@@ -414,10 +418,9 @@ const StyledNav = styled.div`
 	}
 `;
 const StyledCardWrapper = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	display: flex;
 	@media (max-width: 938px) {
-		grid-template-columns: 1fr 1fr;
+		flex-wrap: wrap;
 	}
 	@media (max-width: 600px) {
 		flex-direction: column;

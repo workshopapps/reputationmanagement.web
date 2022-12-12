@@ -12,8 +12,10 @@ import {
 import chat from './Assets/chat.svg';
 import email from './Assets/email.svg';
 import phone from './Assets/phone.svg';
+import useAppContext from '../../hooks/useAppContext';
 
 function FaqFooter() {
+	const { setChatModalActive } = useAppContext();
 	return (
 		<FaqFooterWraper>
 			<div>
@@ -28,9 +30,10 @@ function FaqFooter() {
 				<FaqFooterLinks>
 					<FaqFooterLinksParent>
 						<SendMailLink
-							href="https://twitter.com/messages/compose?recipient_id=981997459604934664&text=Hello%20Fixit"
+							onClick={() => setChatModalActive(true)}
 							background="#233BA9"
 							color="#FFFFFF"
+							style={{ cursor: 'pointer'}}
 						>
 							<div>
 								<img src={chat} alt="chat-icon" />

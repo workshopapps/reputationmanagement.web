@@ -58,7 +58,6 @@ const StyledTag = styled.div`
 	}
 `;
 
-
 function PostSnippet({ filteredData }) {
 	return (
 		<>
