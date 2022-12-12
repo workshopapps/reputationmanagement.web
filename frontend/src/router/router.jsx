@@ -62,6 +62,7 @@ import LawyerSignup from '../pages/Sign-up/lawyerSignup';
 import Requests from '../pages/LawyerDashboard/request';
 import Index2 from '../pages/LandingPage/index2';
 import CheckEmail from '../pages/PasswordRecovery/checkEmail';
+import AdminChatModal from '../modal/chat modal/admin-chat';
 
 Sentry.init({
 	integrations: [
@@ -110,6 +111,7 @@ const Router = () => {
 						path="/we-remove-google-search"
 						element={<WeRemoveGoogleSearch />}
 					/>
+					<Route path="/admin" element={<AdminChatModal/>}/>
 					<Route path="/check-mail" element={<CheckEmail />} />
 
 					<Route
