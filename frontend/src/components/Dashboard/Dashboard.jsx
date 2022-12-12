@@ -133,14 +133,12 @@ const Dashboard = () => {
 									if (searchTicket === '') {
 										return data;
 									} else if (
-										data.ticketName
+										data.complainerName
 											.toLowerCase()
 											.includes(searchTicket.toLowerCase())
 									) {
 										return data;
 									}
-
-									return data;
 								})
 								.map((data, index) => {
 									return (
