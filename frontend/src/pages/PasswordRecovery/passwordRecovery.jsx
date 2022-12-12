@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
 import Api from '../../api/axios';
 // import { useEffect } from 'react';
-import REPUTE from '../../assets/images/repute_logo.png';
+import REPUTE from '../../assets/images/repute_logo.svg';
 import arrow from './arrow-left.svg';
 import ErrorMessage from '../../components/error message/errorMessage';
 
@@ -42,7 +42,7 @@ export default function PasswordRecovery() {
 				toast.success('Reset link sent to email address');
 				localStorage.setItem('forgot', email);
 				setEmail('');
-				navigate('/password-recovery/change');
+				navigate('/check-mail');
 			}
 		} catch (err) {
 			toast.error('Email does not exist');
@@ -189,9 +189,8 @@ const ReputeLogo = styled.div`
 	margin-bottom: 40px;
 	img {
 		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 40%;
+		margin: auto;
+		width: 30%;
 	}
 	@media (max-width: 320px) {
 		margin-bottom: 10px;
