@@ -112,7 +112,7 @@ const Requests = () => {
 														<LawyerTableData
 															id={data.reviewId}
 															ticketName={data.complainerName}
-															lastUpdated={data.updatedAt}
+															lastUpdated={data.lastUpdated}
 															priority={data.priority}
 															status={data.status}
 															key={index}
@@ -163,7 +163,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.updatedAt}
+													lastUpdated={data.lastUpdated}
 													priority={data.priority}
 													status={data.status}
 													key={index}
@@ -213,7 +213,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.updatedAt}
+													lastUpdated={data.lastUpdated}
 													priority={data.priority}
 													status={data.status}
 													key={index}
@@ -264,7 +264,7 @@ const Requests = () => {
 														<LawyerTableData
 															id={data.reviewId}
 															ticketName={data.complainerName}
-															lastUpdated={data.updatedAt}
+															lastUpdated={data.lastUpdated}
 															priority={data.priority}
 															status={data.status}
 															key={index}
@@ -315,7 +315,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.updatedAt}
+													lastUpdated={data.lastUpdated}
 													priority={data.priority}
 													status={data.status}
 													key={index}
