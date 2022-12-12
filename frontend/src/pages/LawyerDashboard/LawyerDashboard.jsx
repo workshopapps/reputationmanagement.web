@@ -59,6 +59,11 @@ function LawyerDashboard() {
 
 	useEffect(() => {
 		fetchDetails();
+
+		setInterval(() => {
+			fetchDetails();
+		}, 5000);
+
 	}, [fetchDetails]);
 
 	const [menuActive, setMenuActive] = useState(false);
