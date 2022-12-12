@@ -61,6 +61,7 @@ import LawyerLogin from '../pages/Login/lawyerLogin';
 import LawyerSignup from '../pages/Sign-up/lawyerSignup';
 import Requests from '../pages/LawyerDashboard/request';
 import Index2 from '../pages/LandingPage/index2';
+import Payment from '../pages/Payment Page/payment';
 
 Sentry.init({
 	integrations: [
@@ -97,6 +98,8 @@ const Router = () => {
 							element={<LawyerRequestDetails />}
 						/>
 						<Route path="/requests" element={<Requests />} />
+
+						<Route path="/payment" element={<Payment />} />
 					</Route>
 					<Route path="/" element={<Index2 />} />
 					{/* <Route path="/" element={<LandingPage />} /> */}
