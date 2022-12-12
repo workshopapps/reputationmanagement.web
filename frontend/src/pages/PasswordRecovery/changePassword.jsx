@@ -39,7 +39,7 @@ export default function ChangePassword() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-
+	
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		setTriedToSubmit(true);

@@ -65,7 +65,8 @@ import CheckEmail from '../pages/PasswordRecovery/checkEmail';
 import AdminChatModal from '../modal/chat modal/admin-chat';
 import LawyerSettings from '../pages/Settings/LawyerSettings';
 import Payment from '../pages/Payment Page/payment';
-
+import DisputeDashboard from '../pages/LawyerDisputeDashBoard/Disputes';
+import { DetailsDispute } from '../pages/LawyerDisputeDashBoard/DetailsDispute';
 Sentry.init({
 	integrations: [
 		new BrowserTracing({
@@ -107,6 +108,9 @@ const Router = () => {
 							<Route path="/payment" element={<Payment />} />
 						</Route>
 						<Route path="/profile" element={<Profile />} />
+						<Route path="/lawyer-disputes" element={<DisputeDashboard />} />
+						<Route path="/lawyer-dispute-details" element={<DetailsDispute />} />
+
 					</Route>
 					<Route path="/" element={<Index2 />} />
 					{/* <Route path="/" element={<LandingPage />} /> */}
