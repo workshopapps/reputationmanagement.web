@@ -1,47 +1,45 @@
 pipeline {
 
-	agent any
-
-	stages {
-
-        //stage("Get repo"){
-
-			//steps {
-				//sh "rm -rf ${WORKSPACE}/reputationmanagement.web"
-				//sh "git clone https://github.com/workshopapps/reputationmanagement.web.git"
-				//sh "sudo cp -r ${WORKSPACE}/reputationmanagement.web /home/ehmeeops/reputationmanagement.web"
-			//}
-
-		//}
-
-		stage("build frontend"){
-
-			steps {
-				sh "cd reputationmanagement.web"
-				sh "cd reputationmanagement.web/frontend && npm i --force && CI=false npm run build"
-			}
-       		}
+  agent any
+  
+  stages {
     
-    		stage("test frontend"){
+    stage("Build Frontend"){
+      
+      steps{
+            //Yarn
+            sh "cd frontend && sudo npm install"
+            sh "cd frontend && sudo npm run build"
+      
+      }
+    
+    }
+	  
+    stage("test frontend"){
 
-			steps {
-				sh "cd reputationmanagement.web"
-				sh "cd reputationmanagement.web/frontend && npm i --force && npm run test"
+	steps {
+		sh "cd frontend && npm i"
+		sh "cd frontend && npm run test"
 			}
         	}
-
-		stage("deploy") {
-		
-			steps {
-                		sh "sudo cp -rf ${WORKSPACE}/reputationmanagement.web/frontend/build/* /home/ehmeeops/reputationmanagement.web/frontend"
-                		//sh "sudo systemctl stop reputeclient.service"
-				//sh "sudo systemctl restart reputeclient.service"
-               			//sh "sudo cd ~ && pm2 start ehmee.ecosystem.config.js"
-				//sh "BUILD_ID=dontKillMe pm2 start ecosystem.config.js"
-
-	
-            	}
-			
-	    }
-	}
+    
+    stage("Deploy App"){
+      
+      steps{
+            sh "sudo cp -fr ${WORKSPACE}/frontend/* /home/ehmeeops/reputationmanagement.web/frontend/"
+            sh "sudo systemctl restart repute-client.service"
+      }
+    }
+  
+  } 
+  
+  post{
+    failure{
+        emailext attachLog: true, 
+        to: 'mhizxeryl@gmail.com@gmail.com',
+        subject: '${BUILD_TAG} Build failed',
+        body: '${BUILD_TAG} Build Failed \nMore Info can be found here: ${BUILD_URL} or in the log file below'
+    }
+  }
+  
 }
