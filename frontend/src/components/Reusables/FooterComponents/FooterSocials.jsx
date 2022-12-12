@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import fixlogo from '../../../assets/images/repute_logo.svg';
+import fixlogo from '../../../assets/images/repute_logo_white.svg';
 
 function FooterSocials() {
 	return (
