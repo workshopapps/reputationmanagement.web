@@ -7,7 +7,6 @@ pipeline {
     stage("Build Frontend"){
       
       steps{
-            //Yarn
             sh "cd frontend && sudo npm install"
             sh "cd frontend && sudo npm run build"
       
@@ -18,10 +17,10 @@ pipeline {
     stage("test frontend"){
 
 	steps {
-		sh "cd frontend && npm i"
+		//sh "cd frontend && npm i"
 		sh "cd frontend && npm run test"
-			}
-        	}
+	 	}
+     }
     
     stage("Deploy App"){
       
