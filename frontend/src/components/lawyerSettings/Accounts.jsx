@@ -17,7 +17,7 @@ function Accounts({ user, setUser, currentEmail }) {
 	const handleSubmit = () => {
 		setRequestPending(true);
 		// API request
-		ApiPrivate.put('/api/auth/details', user)
+		ApiPrivate.put('/api/lawyer/auth/details', user)
 			.then((res) => {
 				setSuccessMessage('Updated successfully');
 				setRequestSuccess(true);

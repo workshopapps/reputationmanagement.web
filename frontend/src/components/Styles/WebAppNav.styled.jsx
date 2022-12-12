@@ -66,6 +66,10 @@ export const LogoContainer = styled.div`
 	
 	.lgr{
 		width: 25%;
+
+		@media screen and (min-width: 634px){
+			width: 130px;
+		}
 	}
 	// div {
 	// 	width: 50%;
