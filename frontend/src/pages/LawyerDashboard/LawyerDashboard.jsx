@@ -21,6 +21,7 @@ import styled from 'styled-components';
 import green from './assets/green.svg'
 import yellow from './assets/yellow.svg'
 import red from './assets/red.svg'
+import LawyerDashboardLayout from '../../layout/lawyerDashboardLayout';
 
 
 function LawyerDashboard() {
@@ -76,11 +77,11 @@ function LawyerDashboard() {
 	const email = localStorage.getItem('auth');
 	return (
 		<div className="h-screen flex relative">
-			<Sidebarr />
+			<LawyerDashboardLayout>
 
-			<StyledDashboard className="inline-flex flex-col w-full relative right-0">
-				<StyledNav className="flex justify-between fixed md:static items-center w-full px-5 py-5 bg-white z-10 border-b md:border-none">
-					<div className="hidden md:flex items-center border rounded-md overflow-hidden h-[40px] w-2/5">
+			{/* <StyledDashboard className="inline-flex flex-col w-full relative right-0"> */}
+				{/* <StyledNav className="flex justify-between fixed md:static items-center w-full px-5 py-5 bg-white z-10 border-b md:border-none"> */}
+					{/* <div className="hidden md:flex items-center border rounded-md overflow-hidden h-[40px] w-2/5">
 						<img src={searchIcon} alt="" className="px-2 h-[24px]" />
 						<input
 							type="text"
@@ -93,23 +94,23 @@ function LawyerDashboard() {
 
 					<button className="flex md:hidden small" onClick={toggleMenu}>
 						<img src={menuActive ? x : hamburger} alt="" className="w-[25px]" />
-					</button>
-
+					</button> */}
+{/* 
 					<Link
 						to="/"
 						className="w-[30%] sm:w-[20%] h-auto flex md:hidden small"
 					>
 						<img src={logo} className="" alt="" />
-					</Link>
+					</Link> */}
 
-					<div className="flex items-center">
+					{/* <div className="flex items-center">
 						<p>Hi, {email}</p>
-					</div>
-				</StyledNav>
+					</div> */}
+				{/* </StyledNav> */}
 
-				{menuActive && <Menu />}
+				{/* {menuActive && <Menu />} */}
 
-				<div className="p-5 absolute md:static md:pt-0 pt-24 left-0 w-full">
+				{/* <div className="p-5 absolute md:static md:pt-0 pt-24 left-0 w-full"> */}
 					<StyledCardWrapper className="flex justify-center flex-wrap">
 						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
 							<img src={requestsIcon} alt="" />
@@ -359,8 +360,9 @@ function LawyerDashboard() {
 							</div>
 						</div>
 					</StyledCardWrapper> */}
-				</div>
-			</StyledDashboard>
+				{/* </div> */}
+			{/* </StyledDashboard> */}
+			</LawyerDashboardLayout>
 		</div>
 	);
 }
