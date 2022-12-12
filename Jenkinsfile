@@ -26,7 +26,7 @@ pipeline {
       
       steps{
             sh "sudo cp -fr ${WORKSPACE}/frontend/* /home/ehmeeops/reputationmanagement.web/frontend/"
-            sh "sudo systemctl restart repute-client.service"
+            sh "sudo systemctl restart repute.service"
       }
     }
   
