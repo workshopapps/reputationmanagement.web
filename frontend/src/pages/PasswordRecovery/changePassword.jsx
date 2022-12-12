@@ -50,7 +50,7 @@ export default function ChangePassword() {
 		}
 
 		try {
-			const response = Api.post('/auth/reset-password', {
+			const response = Api.post('/api/auth/reset-password', {
 				email: email,
 				token: token,
 				newPassword: password,
