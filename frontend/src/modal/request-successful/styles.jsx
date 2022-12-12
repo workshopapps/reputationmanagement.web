@@ -25,6 +25,16 @@ export const StyledSuccessfulRequest = styled.div`
     align-items: center;
     flex-direction: column;
     max-width: 90%;
+    @media(max-width: 650px){
+        img{
+            width: 100px;
+        }
+        h2{
+            line-height: 35px !important;
+            max-width: 95%;
+            margin-bottom: 20px;
+        }
+    }
     .none{
         display: none;
     }
