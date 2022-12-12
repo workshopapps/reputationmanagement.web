@@ -51,7 +51,7 @@ const RequestDetails = () => {
 
 	const fetchComplaintDetails = async () => {
 		try {
-			const response = await ApiPrivate.get(`review/${requestId}`);
+			const response = await ApiPrivate.get(`/api/review/${requestId}`);
 			setEmail(response?.data?.email);
 			setPriority(response?.data?.priority);
 			setName(response?.data?.complainerName);
@@ -290,7 +290,7 @@ const RequestDetails = () => {
 								{status === 3 ? (
 									<button
 										className="payment"
-										onClick={(e) => router(`/payment`)}
+										onClick={(e) => router(`/payment?requestid=${requestId}`)}
 									>
 										Make Payment
 									</button>
