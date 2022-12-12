@@ -34,7 +34,7 @@ function LawyerDashboard() {
 
 	const ApiPrivate = useAxiosPrivate();
 
-	const fetchDetails = useCallback(async () => {
+	const fetchDetails = async () => {
 		try {
 			const response = await ApiPrivate.get('/lawyer/PendingReview');
 			const successfulRequest = await ApiPrivate.get('/lawyer/GetReviewByStatus?status=3')
@@ -59,11 +59,11 @@ function LawyerDashboard() {
 			}
 			console.log(err);
 		}
-	}, [ApiPrivate, setErrMessage, setRequestFailed]);
+	}
 
 	useEffect(() => {
 		fetchDetails();
-	}, [fetchDetails]);
+	}, []);
 
 	const [menuActive, setMenuActive] = useState(false);
 
