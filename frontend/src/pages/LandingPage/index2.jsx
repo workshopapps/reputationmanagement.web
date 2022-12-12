@@ -219,7 +219,11 @@ const LandingPage = () => {
 											</p>
 										</div>
 
-										<StyledButton extend className="hero-form-button" type="submit">
+										<StyledButton
+											extend
+											className="hero-form-button"
+											type="submit"
+										>
 											{!loading ? 'Submit' : <div className="loading"></div>}
 										</StyledButton>
 									</form>
@@ -258,7 +262,7 @@ const LandingPage = () => {
 							</div>
 						</StyledHeroSectionWrapper>
 					</HeroSection>
-
+					
 					{/************************************NEW HOW DOES IT WORK SECTION****************************************/}
 					<StyledContainer>
 						<HowDoesItWork>
@@ -421,9 +425,8 @@ const HowDoesItWork = styled.div`
 	margin-top: 50px;
 	// width:100vw;
 	// background-color: #eef1fc;
-    h2 {
-        
-    }
+	h2 {
+	}
 `;
 const Number = styled.div`
 	background: #f16f04;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/repute_logo.svg';
 import settingsIcon from '../../assets/images/settingsIcon.png';
 import menuIcon8 from '../../assets/images/menuIcon8.png';
 import textIcon from '../../assets/images/textIcon.png';
@@ -31,7 +31,7 @@ function Sidenav() {
 					</Link>
 				</div>
 
-				<Link className="ml-[20%] flex text-gray-500 mt-[350px]">
+				<Link className="ml-[20%] flex text-gray-500 mt-[350px]" to='lawyer-settings'>
 					<img src={settingsIcon} alt="" />
 					<span className="ml-2">Settings</span>
 				</Link>

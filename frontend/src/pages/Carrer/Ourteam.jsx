@@ -14,7 +14,7 @@ import etim from '../../assets/images/blog_images/images/etim.png';
 import anidi from '../../assets/images/blog_images/images/anidi.png';
 import okeke from '../../assets/images/blog_images/images/okeke.png';
 import hammed from '../../assets/images/blog_images/images/hammed.png';
-import vivian from '../../assets/images/blog_images/images/vivian.png';
+import hyperion from '../../assets/images/blog_images/images/hyperion.png';
 import adaeze from '../../assets/images/blog_images/images/adaeze.png';
 import ehmee from '../../assets/images/blog_images/images/ehmee.png';
 import solomon from '../../assets/images/blog_images/images/solomon.png';
@@ -224,8 +224,8 @@ function Ourteam() {
 			id: 6,
 		},
 		{
-			image: vivian,
-			name: 'Vivianne Thomas',
+			image: hyperion,
+			name: 'Leo Hyperion',
 			role: 'Sales & Marketing Lead',
 			id: 7,
 		},

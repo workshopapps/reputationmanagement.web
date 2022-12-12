@@ -46,7 +46,7 @@ const WebAppNav = (props) => {
 					<img src={menu} alt="" onClick={props.openMenuHandler} />
 				</div>
 				<div>
-					<img src={logo} id="site-logo" alt="" />
+					<img src={logo} id="site-logo" alt=""  className='lgr'/>
 				</div>
 			</LogoContainer>
 
