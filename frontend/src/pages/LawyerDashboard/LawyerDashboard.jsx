@@ -13,69 +13,57 @@ import logo from '../../assets/images/logo.png';
 import Menu from './MobileMenu';
 import { useEffect } from 'react';
 import Sidebarr from '../../components/LawyerDashboard/Sidebarr';
-
+import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
 import { LawyerTableData } from '../../components/Dashboard/TableData';
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled from 'styled-components';
-import green from './assets/green.svg';
-import yellow from './assets/yellow.svg';
-import red from './assets/red.svg';
-import LawyerDashboardLayout from '../../layout/lawyerDashboardLayout';
-import Card from '../../components/Dashboard/Card';
-// import { CardContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
+import green from './assets/green.svg'
+import yellow from './assets/yellow.svg'
+import red from './assets/red.svg'
+
 
 function LawyerDashboard() {
 	const [tickets, setTickets] = useState([]);
 	const { setRequestFailed, setErrMessage } = useAppContext();
-	const [successfulRequestNo, setSuccessfulRequestNo] = useState(0);
-	const [pendingRequestNo, setPendingRequestNo] = useState(0);
-	const [failedRequestNo, setFailedRequestNo] = useState(0);
+	const [ successfulRequestNo, setSuccessfulRequestNo ] = useState(0)
+	const [ pendingRequestNo, setPendingRequestNo ] = useState(0)
+	const [ failedRequestNo, setFailedRequestNo ] = useState(0);
 
 	const [searchTicket, setSearchTicket] = useState('');
 
 	const ApiPrivate = useAxiosPrivate();
 
-	const fetchDetails = useCallback(async () => {
+	const fetchDetails = async () => {
 		try {
 			const response = await ApiPrivate.get('/lawyer/PendingReview');
-			const successfulRequest = await ApiPrivate.get(
-				'/lawyer/GetReviewByStatus?status=3'
-			);
-			const inProgressResponse = ApiPrivate.get(
-				'/lawyer/GetReviewByStatus?status=2'
-			);
-			const pendingResponse = ApiPrivate.get(
-				'/lawyer/GetReviewByStatus?status=1'
-			);
-			const failedResponse = ApiPrivate.get(
-				'/lawyer/GetReviewByStatus?status=4'
-			);
-			setSuccessfulRequestNo(successfulRequest?.data?.length);
-			console.log(pendingResponse?.data);
-			console.log(inProgressResponse?.data);
-			setPendingRequestNo(
-				pendingResponse?.data?.length + inProgressResponse?.data?.length
-			);
-			setFailedRequestNo(failedResponse?.data?.length);
+			const successfulRequest = await ApiPrivate.get('/lawyer/GetReviewByStatus?status=3')
+			const inProgressResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=2')
+			const pendingResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=1')
+			const failedResponse = ApiPrivate.get('/lawyer/GetReviewByStatus?status=4')
+			setSuccessfulRequestNo(successfulRequest?.data?.length)
+			console.log(pendingResponse?.data)
+			console.log(inProgressResponse?.data)
+			setPendingRequestNo( pendingResponse?.data?.length ? pendingResponse.data.length : 0 + inProgressResponse?.data?.length ? inProgressResponse.data.length : 0 )
+			setFailedRequestNo(failedResponse?.data?.length ? failedResponse.data.length : 0)
 			setTickets(response?.data);
 			console.log(response);
 		} catch (err) {
-			if (err?.response?.status) {
-				setErrMessage('Shey you be lawyer ni');
+			if (err?.response?.status === 403) {
+				setErrMessage("You're not authorised to view this page");
+				setRequestFailed(true);
+			}
+			else{
+				setErrMessage("Server  error");
 				setRequestFailed(true);
 			}
 			console.log(err);
 		}
-	}, [ApiPrivate, setErrMessage, setRequestFailed]);
+	}
 
 	useEffect(() => {
 		fetchDetails();
-
-		setInterval(() => {
-			fetchDetails();
-		}, 5000);
-	}, [fetchDetails]);
+	}, []);
 
 	const [menuActive, setMenuActive] = useState(false);
 
@@ -88,11 +76,10 @@ function LawyerDashboard() {
 	const email = localStorage.getItem('auth');
 	return (
 		<div className="h-screen flex relative">
-			{/* <Sidebarr /> */}
-			<LawyerDashboardLayout>
-				<>
-					{/* <StyledDashboard className="inline-flex flex-col w-full relative right-0"> */}
-					{/* <StyledNav className="flex justify-between fixed md:static items-center w-full px-5 py-5 bg-white z-10 border-b md:border-none">
+			<Sidebarr />
+
+			<StyledDashboard className="inline-flex flex-col w-full relative right-0">
+				<StyledNav className="flex justify-between fixed md:static items-center w-full px-5 py-5 bg-white z-10 border-b md:border-none">
 					<div className="hidden md:flex items-center border rounded-md overflow-hidden h-[40px] w-2/5">
 						<img src={searchIcon} alt="" className="px-2 h-[24px]" />
 						<input
@@ -118,79 +105,29 @@ function LawyerDashboard() {
 					<div className="flex items-center">
 						<p>Hi, {email}</p>
 					</div>
-				</StyledNav> */}
+				</StyledNav>
 
-					{/* {menuActive && <Menu />} */}
+				{menuActive && <Menu />}
 
-					{/* <div className="p-5 absolute md:static left-0 w-full"> */}
-					{/* <StyledCardWrapper className="flex justify-center flex-wrap"> */}
-					{/* <CardContainer> */}
-				</>
-				<CardContainer>
-					<StyledCardOne>
-						<img src={requestsIcon} alt="" />
-						<h3>Total requests</h3>
-						<span>
-							{successfulRequestNo + failedRequestNo + pendingRequestNo}
-						</span>
-					</StyledCardOne>
-
-					<StyledCardTwo>
-						<h3>Successful removals</h3>
-						<div className="cardflex">
-							<div>
-								<span className="text-[45px] font-semibold">
-									{successfulRequestNo}
-								</span>
-								<div className="flex text-[#32D583]">
-									+{successfulRequestNo} <img src={arrowUp} alt="" />
-								</div>
-							</div>
-
-							<img src={lineChart} alt="" className="lineImg" />
+				<div className="p-5 absolute md:static md:pt-0 pt-24 left-0 w-full">
+					<StyledCardWrapper className="flex justify-center flex-wrap">
+						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
+							<img src={requestsIcon} alt="" />
+							<h3 className="mt-2 mb-3 text-[22px] font-[600px]">
+								Total requests
+							</h3>
+							<span className="text-[45px] font-semibold">
+								{successfulRequestNo + failedRequestNo + pendingRequestNo }
+							</span>
 						</div>
-					</StyledCardTwo>
 
-					<StyledCardThree>
-						<h3>Failed removals</h3>
-						<div className="cardflex">
-							<div>
-								<span className="text-[45px] font-semibold">
-									{failedRequestNo}
-								</span>
-								<div className="flex text-[#FF718B]">
-									-{failedRequestNo}{' '}
-									<img src={arrowDown} alt="" />
-								</div>
-							</div>
-
-							<img src={lineChart} alt="" className="lineImg"/>
-						</div>
-					</StyledCardThree>
-				</CardContainer>
-
-				{/* /////////////////////////  */}
-				{/* 
-				<CardContainer>
-					<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
-						<img src={requestsIcon} alt="" />
-						<h3 className="mt-2 mb-3 text-[22px] font-[600px]">
-							Total requests
-						</h3>
-						<span className="text-[45px] font-semibold">
-							{successfulRequestNo + failedRequestNo + pendingRequestNo}
-						</span>
-					</div>
-					
 						<div className="w-[47%] card overflow-hidden mx-1 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border p-2 my-2 md:p-5 rounded-md">
 							<h3 className="mt-8 mb-3 text-[22px] font-[600px]">
 								Successful removals
 							</h3>
 							<div className="flex justify-between w-full">
 								<div>
-									<span className="text-[45px] font-semibold">
-										{successfulRequestNo}
-									</span>
+									<span className="text-[45px] font-semibold">{successfulRequestNo}</span>
 									<div className="flex text-[#32D583]">
 										+{successfulRequestNo} <img src={arrowUp} alt="" />
 									</div>
@@ -206,9 +143,7 @@ function LawyerDashboard() {
 							</h3>
 							<div className="flex justify-between w-full">
 								<div>
-									<span className="text-[45px] font-semibold">
-										{failedRequestNo}
-									</span>
+									<span className="text-[45px] font-semibold">{failedRequestNo}</span>
 									<div className="flex text-[#FF718B]">
 										-{failedRequestNo} <img src={arrowDown} alt="" />
 									</div>
@@ -217,47 +152,55 @@ function LawyerDashboard() {
 								<img src={lineChart} alt="" />
 							</div>
 						</div>
-					
-				</CardContainer> */}
+					</StyledCardWrapper>
+					<StyledBody>
+						<div className="top">
+							<StyledP>Statistics</StyledP>
+							<Styledh3>Monthly activity</Styledh3>
+							<hr />
 
-				{/* </StyledCardWrapper> */}
-				<StyledBody>
-					<div className="top">
-						<StyledP>Statistics</StyledP>
-						<Styledh3>Monthly activity</Styledh3>
-						<hr />
-
-						<StyledC>
+							<StyledC>
 							<div className="one">
 								<img src={green} alt="" />
-								<div className="text">Successful</div>
+								<div className="text">
+								Successful
+								</div>
 							</div>
 							<div className="two">
 								<p>{successfulRequestNo}</p>
 							</div>
-						</StyledC>
+							
+							</StyledC>
 
-						<StyledC>
+
+							<StyledC>
 							<div className="one">
 								<img src={yellow} alt="" />
-								<div className="text">In Progress</div>
+								<div className="text">
+								In Progress
+								</div>
 							</div>
 							<div className="two">
 								<p>{pendingRequestNo}</p>
 							</div>
-						</StyledC>
+							
+							</StyledC>
 
-						<StyledC>
+
+							<StyledC>
 							<div className="one">
 								<img src={red} alt="" />
-								<div className="text">Failed</div>
+								<div className="text">
+								Failed
+								</div>
 							</div>
 							<div className="two">
 								<p>{failedRequestNo}</p>
 							</div>
-						</StyledC>
-					</div>
-					<>
+							
+							</StyledC>
+						</div>
+
 						{/* <div className="flex flex-col items-center mt-5 w-full"> */}
 						{/* <div className="w-full"> */}
 						{/* <h2
@@ -371,9 +314,8 @@ function LawyerDashboard() {
 							</div>
 						</div> */}
 						{/* </div> */}
-					</>
-				</StyledBody>
-				<>
+					</StyledBody>
+
 					{/* <StyledCardWrapper className="flex justify-center flex-wrap">
 						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
 							<img src={requestsIcon} alt="" />
@@ -417,128 +359,25 @@ function LawyerDashboard() {
 							</div>
 						</div>
 					</StyledCardWrapper> */}
-					{/* </div> */}
-					{/* </StyledDashboard> */}
-				</>
-			</LawyerDashboardLayout>
+				</div>
+			</StyledDashboard>
 		</div>
 	);
 }
-
-const CardContainer = styled.div`
-	display: grid;
-	grid-template-columns: 1fr;
-	row-gap: 10px;
-	// justify-content: space-between;
-	// gap: 50px;
-
-	@media (max-width: 820px) {
-		grid-template-columns: 2/3;
-	}
-
-	// & > div:first-child {
-	// 	width: 32%;
-	// }
-
-	// @media (max-width: 820px) {
-	// 	flex-direction: column;
-	// 	& > div:first-child {
-	// 		width: 100%;
-	// 		display: flex;
-	// 		flex-direction: column;
-	// 		align-items: center;
-	// 	}
-	// }
-`;
-
-const StyledCardOne = styled.div`
-	display: flex;
-	flex-direction: column;
-	border: 1px solid #000;
-	border-radius: 4px;
-	padding: 20px;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
-
-	img {
-		width: 20%;
-	}
-	h3 {
-		font-weight: 600;
-		font-size: 110%;
-		margin-top: 5px;
-	}
-	span {
-		font-weight: 800;
-		font-size: 130%;
-	}
-`;
-const StyledCardTwo = styled.div`
-	display: flex;
-	flex-direction: column;
-	border: 1px solid #000;
-	border-radius: 4px;
-	padding: 20px;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
-
-	h3 {
-		font-weight: 600;
-		font-size: 120%;
-		margin-bottom: 5px;
-	}
-	.cardflex {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-	}
-	.cardflex .lineImg {
-		width: 70%;
-	}
-`;
-const StyledCardThree = styled.div`
-	display: flex;
-	border: 1px solid #000;
-	border-radius: 4px;
-	padding: 20px;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	height: 200px;
-
-	h3 {
-		font-weight: 600;
-		font-size: 120%;
-		margin-bottom: 5px;
-	}
-
-	.cardflex {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-	}
-	.cardflex .lineImg {
-		width: 70%;
-	}
-`;
 
 const StyledC = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin: 10px 0;
-	.one {
+	.one{
 		display: flex;
 		align-items: center;
-		img {
+		img{
 			margin-right: 10px;
 		}
 	}
-`;
+`
 
 const StyledBody = styled.div`
 	display: block;
@@ -547,47 +386,47 @@ const StyledBody = styled.div`
 	padding: 30px;
 	margin: 20px 0;
 	border-radius: 13.41px;
-	hr {
+	hr{
 		margin-top: 10px;
 	}
 `;
 const StyledP = styled.div`
 	color: #a5a6a8;
+	
 `;
 const Styledh3 = styled.div`
 	font-weight: 700;
+	
 `;
 
-// const StyledDashboard = styled.div`
-// 	margin-left: 300px;
-// 	max-width: 1351px;
-// 	@media (max-width: 1140px) {
-// 		width: 100% !important;
-// 		margin-left: 0;
-// 	}
-// `;
-
-// const StyledNav = styled.div`
-// 	@media (max-width: 1140px) {
-// 		.small {
-// 			display: flex !important;
-// 		}
-// 		.hidden {
-// 			display: none !important;
-// 		}
-// 	}
-// `;
-// const StyledCardWrapper = styled.div`
-// 	display: grid;
-// 	grid-template-columns: 1fr 1fr 1fr;
-// 	@media (max-width: 938px) {
-// 		grid-template-columns: 1fr 1fr;
-// 	}
-// 	@media (max-width: 600px) {
-// 		flex-direction: column;
-// 		.card {
-// 			width: 100% !important;
-// 		}
-// 	}
-// `;
+const StyledDashboard = styled.div`
+	margin-left: 300px;
+	max-width: 1351px;
+	@media (max-width: 1140px) {
+		width: 100% !important;
+		margin-left: 0;
+	}
+`;
+const StyledNav = styled.div`
+	@media (max-width: 1140px) {
+		.small {
+			display: flex !important;
+		}
+		.hidden {
+			display: none !important;
+		}
+	}
+`;
+const StyledCardWrapper = styled.div`
+	display: flex;
+	@media (max-width: 938px) {
+		flex-wrap: wrap;
+	}
+	@media (max-width: 600px) {
+		flex-direction: column;
+		.card {
+			width: 100% !important;
+		}
+	}
+`;
 export default LawyerDashboard;

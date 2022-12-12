@@ -34,9 +34,9 @@ pipeline {
 		
 			steps {
                 		sh "sudo cp -rf ${WORKSPACE}/reputationmanagement.web/frontend/build/* /home/ehmeeops/reputationmanagement.web/frontend"
-                		sh "sudo systemctl stop reputeclient.service"
-				sh "sudo systemctl restart reputeclient.service"
-               			// sh "sudo cd ~ && pm2 start ehmee.ecosystem.config.js"
+                		//sh "sudo systemctl stop reputeclient.service"
+				//sh "sudo systemctl restart reputeclient.service"
+               			//sh "sudo cd ~ && pm2 start ehmee.ecosystem.config.js"
 				//sh "BUILD_ID=dontKillMe pm2 start ecosystem.config.js"
 
 	

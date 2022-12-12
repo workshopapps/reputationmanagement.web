@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useLocation } from 'react-router-dom';
 import logo from '../../assets/images/repute_logo.svg';
-import menu from '../../assets/images/Dashboard/menu.jpg';
+import menu from '../../assets/images/Dashboard/menu.svg';
 import styled from 'styled-components';
 // import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 

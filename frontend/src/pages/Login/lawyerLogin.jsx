@@ -56,6 +56,7 @@ const LawyerLogin = () => {
 					password: password,
 				});
 				localStorage.setItem('auth', email);
+				localStorage.setItem('user_type', 'lawyer');
 				Cookies.set('reputeAccessToken', response?.data);
 				setRequestPending(false);
 				router('/lawyer-dashboard');

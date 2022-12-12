@@ -68,6 +68,7 @@ const LawyerSignup = () => {
 					lastName: lastName,
 				});
 				localStorage.setItem('auth', email);
+				localStorage.setItem('user_type', 'lawyer');
 				Cookies.set('reputeAccessToken', response?.data);
 				setRequestPending(false);
 				setSuccessMessage('Account Created');
@@ -112,7 +113,6 @@ const LawyerSignup = () => {
 		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen">
 			<StyledFormWrapper>
 				<img src={REPUTE} alt="background" className="logo_img" />
-				<h2>Welcome to REPUTE</h2>
 				<p>Sign up to begin with us</p>
 				<div className="form">
 					<div className="text-input first-name">
@@ -305,6 +305,18 @@ const StyledSignupWrapper = styled.div`
 	position: relative;
 	@media (max-width: 1230px) {
 		background-image: none !important;
+	}
+
+	.logo_img {
+		width: 10rem;
+		margin-bottom: 25px;
+		height: auto;
+		@media (max-width: 750px) {
+			width: 7rem;
+		}
+		@media (max-width: 450px) {
+			width: 6.5rem;
+		}
 	}
 
 	.account-type {

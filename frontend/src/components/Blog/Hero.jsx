@@ -38,15 +38,15 @@ const StyledBody = styled.div`
 	width: 50%;
 
 	a {
-		background: #f16f04;
+		background: #233ba9;
 		border-radius: 4px;
-		padding: 16px 24px;
+		padding: 10px 24px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		color: #ffffff;
 		margin-top: 35px;
-		border: 3px solid #f16f04;
+		border: 3px solid #233ba9;
 		text-decoration: none;
 		width: 145px;
 
@@ -70,7 +70,7 @@ const StyledBody = styled.div`
 const StyledHeader = styled.h2`
 	font-weight: 700;
 	font-size: 2.5rem;
-	color: #233ba9;
+	color: #000000;
 	margin-bottom: 24px;
 	@media (max-width: 950px) {
 		font-size: 2rem;

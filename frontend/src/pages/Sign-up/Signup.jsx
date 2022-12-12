@@ -80,6 +80,7 @@ function Signup() {
 					businessEntityName: businessName,
 				});
 				localStorage.setItem('auth', email);
+				localStorage.setItem('user_type', 'business');
 				Cookies.set('reputeAccessToken', response?.data);
 				setRequestPending(false);
 				setSuccessMessage('Account Created');

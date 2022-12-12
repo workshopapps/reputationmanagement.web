@@ -6,11 +6,11 @@ const OpenDisputeModal = ({
 	requestLoading,
 	setDisputeModalActive,
 	handleSubmitDispute,
+	requestId,
 }) => {
 	const [complaint, setComplaint] = useState('');
 	const [message, setMessage] = useState('');
-	const [reason, setReason] = useState('Unresolved');
-	const [file, setFile] = useState(null);
+	const [reason, setReason] = useState(0);
 
 	return (
 		<StyledOverlay>
@@ -28,11 +28,10 @@ const OpenDisputeModal = ({
 					onSubmit={(e) => {
 						e.preventDefault();
 						handleSubmitDispute({
-							emailSubject: complaint,
+							complaint,
 							reason,
-							emailBody: message,
-							fromEmail: localStorage.getItem('auth'),
-							file,
+							reviewId: requestId,
+							complaintMessage: message,
 						});
 					}}
 				>
@@ -54,9 +53,9 @@ const OpenDisputeModal = ({
 							onChange={(e) => setReason(e.target.value)}
 							required
 						>
-							<option value="Unresolved">Unresolved</option>
-							<option value="Delayed Request">Delayed Request</option>
-							<option value="Other">Other</option>
+							<option value="0">Unresolved</option>
+							<option value="1">Delayed Request</option>
+							<option value="2">Other</option>
 						</select>
 					</div>
 
@@ -68,15 +67,6 @@ const OpenDisputeModal = ({
 							placeholder="Please explain to us the reason for this dispute."
 							onChange={(e) => setMessage(e.target.value)}
 							required
-						/>
-					</div>
-
-					<div className={inputGroup}>
-						<label>Attach file</label>
-						<input
-							type="file"
-							onChange={(e) => setFile(e.target.value)}
-							multiple
 						/>
 					</div>
 
