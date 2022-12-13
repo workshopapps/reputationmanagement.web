@@ -1,10 +1,19 @@
 import React from 'react';
 import FooterData from './FooterData';
-import twitter from '../../../assets/images/Twitter.png';
-import faceb from '../../../assets/images/Facebook.png';
-import insta from '../../../assets/images/Instagram.png';
+// import twitter from '../../../assets/images/Twitter.png';
+// import faceb from '../../../assets/images/Facebook.png';
+// import insta from '../../../assets/images/Instagram.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FaFacebookF } from 'react-icons/fa';
+import { GrTwitter } from 'react-icons/gr';
+import { BsInstagram } from 'react-icons/bs';
+
+
+
+
+
+
 
 const Div = styled.div`
 	display: grid;
@@ -51,10 +60,22 @@ function FooterLinks() {
 			<div className="my-3 lg:m-0">
 				<p className={fHeadingClasses}>Follow us</p>
 
-				<div className="my-3 flex gap-5 ">
-					<img src={faceb} alt="icon" className="" />
+				<div className="my-3 flex gap-5 hover:color-[#f16f04]">
+					<Link to="/">
+						<FaFacebookF color="white" />
+					</Link>
+
+					<Link to="/">
+						<GrTwitter color="white" />
+					</Link>
+
+					<Link to="/">
+						<BsInstagram color="white" />
+					</Link>
+
+					{/* <img src={faceb} alt="icon" className="" />
 					<img src={twitter} alt="icon" className="" />
-					<img src={insta} alt="icon" className="" />
+					<img src={insta} alt="icon" className="" /> */}
 				</div>
 
 				{/* <div className="mt-8 w-full max-w-[520px] ">
