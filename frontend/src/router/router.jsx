@@ -67,6 +67,8 @@ import LawyerSettings from '../pages/Settings/LawyerSettings';
 import Payment from '../pages/Payment Page/payment';
 import DisputeDashboard from '../pages/LawyerDisputeDashBoard/Disputes';
 import { DetailsDispute } from '../pages/LawyerDisputeDashBoard/DetailsDispute';
+import UserDisputes from '../components/Dashboard/userDisputes';
+
 Sentry.init({
 	integrations: [
 		new BrowserTracing({
@@ -113,6 +115,8 @@ const Router = () => {
 
 					</Route>
 					<Route path="/" element={<Index2 />} />
+					<Route path="/disputes" element={<UserDisputes />} />
+
 					{/* <Route path="/" element={<LandingPage />} /> */}
 					<Route path="/lawyer-login" element={<LawyerLogin />} />
 					<Route path="/lawyer-signup" element={<LawyerSignup />} />
