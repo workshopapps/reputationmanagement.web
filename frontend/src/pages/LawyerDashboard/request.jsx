@@ -14,8 +14,10 @@ import LawyerDashboardLayout from '../../layout/lawyerDashboardLayout';
 const Requests = () => {
 	const username = localStorage.getItem('auth');
 	const [showPendingRequests, setShowPendingRequests] = useState(false);
+	const [showInProgressRequests, setShowInProgressRequests] = useState(false);
 	const [showSuccessfulRequests, setShowSuccessfulRequests] = useState(false);
 	const [showFailedRequests, setShowFailedRequests] = useState(false);
+	const [inProgressRequests, setInProgressRequests] = useState([]);
 	const [successfulRequests, setSuccessfulRequests] = useState([]);
 	const [failedRequests, setFailedRequests] = useState([]);
 	const [showMyRequests, setShowMyRequests] = useState(false);
@@ -66,6 +68,9 @@ const Requests = () => {
 					} else if (data.status === 3) {
 						setSuccessfulRequests([data]);
 					}
+					else if ( data.status === 1 || data.status === 2){
+						setInProgressRequests([data])
+					}
 			  })
 			: console.log('No claimed reviews');
 	}, [claimedReviews]);
@@ -76,6 +81,58 @@ const Requests = () => {
 			<StyledRequest>
 				<p className="username">Hi,{username}</p>
 				<h2>Requests</h2>
+				<div
+					className="claimed-tickets tickets"
+					onClick={() => setShowMyRequests(!showMyRequests)}
+				>
+					<div className="title">
+						<h3>Unclaimed Tickets</h3>
+						<img
+							src={ARROW_DOWN}
+							alt=""
+							className={showMyRequests ? 'rotate' : ''}
+						/>
+					</div>
+					{showMyRequests ? (
+						tickets.length !== 0 ? (
+							<TableContainer>
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Priority</th>
+										<th>Ticket Name</th>
+										<th>Status</th>
+										<th>Last Updated</th>
+										<th></th>
+									</tr>
+								</thead>
+								{tickets.length >= 1 && (
+									<tbody>
+										{tickets
+											? tickets.map((data, index) => {
+													return (
+														<LawyerTableData
+															id={data.reviewId}
+															ticketName={data.complainerName}
+															lastUpdated={data.lastUpdated}
+															priority={data.priority}
+															status={data.status}
+															key={index}
+															no={index}
+														/>
+													);
+											  })
+											: ''}
+									</tbody>
+								)}
+							</TableContainer>
+						) : (
+							<h4>No Requests found</h4>
+						)
+					) : (
+						''
+					)}
+				</div>
 				<div
 					className="my-tickets tickets"
 					onClick={() => setShowPendingRequests(!showPendingRequests)}
@@ -121,6 +178,56 @@ const Requests = () => {
 							</TableContainer>
 						) : (
 							<h4>No Requests found</h4>
+						)
+					) : (
+						''
+					)}
+				</div>
+				<div
+					className="my-tickets tickets"
+					onClick={() => setShowInProgressRequests(!showInProgressRequests)}
+				>
+					<div className="title">
+						<h3>Tickets In Progress</h3>
+						<img
+							src={ARROW_DOWN}
+							alt=""
+							className={ showInProgressRequests ? 'rotate' : ''}
+						/>
+					</div>
+					{showInProgressRequests ? (
+						inProgressRequests.length !== 0 ? (
+							<TableContainer>
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Priority</th>
+										<th>Ticket Name</th>
+										<th>Status</th>
+										<th>Last Updated</th>
+										<th></th>
+									</tr>
+								</thead>
+								{inProgressRequests.length >= 1 && (
+									<tbody>
+										{inProgressRequests.map((data, index) => {
+											return (
+												<LawyerTableData
+													id={data.reviewId}
+													ticketName={data.complainerName}
+													lastUpdated={data.updatedAt}
+													priority={data.priority}
+													status={data.status}
+													key={index}
+													no={index}
+												/>
+											);
+										})}
+									</tbody>
+								)}
+							</TableContainer>
+						) : (
+							<h4>No Requests Infound</h4>
 						)
 					) : (
 						''
@@ -223,58 +330,6 @@ const Requests = () => {
 							</TableContainer>
 						) : (
 							<h4>No Failed Requests found</h4>
-						)
-					) : (
-						''
-					)}
-				</div>
-				<div
-					className="claimed-tickets tickets"
-					onClick={() => setShowMyRequests(!showMyRequests)}
-				>
-					<div className="title">
-						<h3>Open Tickets</h3>
-						<img
-							src={ARROW_DOWN}
-							alt=""
-							className={showMyRequests ? 'rotate' : ''}
-						/>
-					</div>
-					{showMyRequests ? (
-						tickets.length !== 0 ? (
-							<TableContainer>
-								<thead>
-									<tr>
-										<th>No</th>
-										<th>Priority</th>
-										<th>Ticket Name</th>
-										<th>Status</th>
-										<th>Last Updated</th>
-										<th></th>
-									</tr>
-								</thead>
-								{tickets.length >= 1 && (
-									<tbody>
-										{tickets
-											? tickets.map((data, index) => {
-													return (
-														<LawyerTableData
-															id={data.reviewId}
-															ticketName={data.complainerName}
-															lastUpdated={data.updatedAt}
-															priority={data.priority}
-															status={data.status}
-															key={index}
-															no={index}
-														/>
-													);
-											  })
-											: ''}
-									</tbody>
-								)}
-							</TableContainer>
-						) : (
-							<h4>No Requests found</h4>
 						)
 					) : (
 						''
