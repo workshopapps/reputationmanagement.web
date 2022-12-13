@@ -261,10 +261,10 @@ const RequestDetails = () => {
 										<div className="priority-level">
 											<label className="pb-1">Priority level</label>
 
-											<Checkbox label="High" checked={priority === 3} />
-											<Checkbox label="Medium" checked={priority === 2} />
-											<Checkbox label="Low" checked={priority === 1} />
-											<Checkbox label="Not urgent" checked={priority === 0} />
+											<Checkbox label="High (30$)" checked={priority === 3} />
+											<Checkbox label="Medium (20$)" checked={priority === 2} />
+											<Checkbox label="Low (10$)" checked={priority === 1} />
+											<Checkbox label="Not urgent (5$)" checked={priority === 0} />
 										</div>
 									</div>
 								</div>

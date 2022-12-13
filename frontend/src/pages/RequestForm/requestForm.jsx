@@ -250,7 +250,7 @@ const CheckboxGroup = ({ setPriority }) => {
 	return (
 		<>
 			<Checkbox
-				label="High"
+				label="High (30$)"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('High');
@@ -259,7 +259,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				}}
 			/>
 			<Checkbox
-				label="Medium"
+				label="Medium (20$)"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('Medium');
@@ -267,7 +267,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				}}
 			/>
 			<Checkbox
-				label="Low"
+				label="Low (10$)"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('Low');
@@ -275,7 +275,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				}}
 			/>
 			<Checkbox
-				label="Not urgent"
+				label="Not urgent (5$)"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('Not urgent');

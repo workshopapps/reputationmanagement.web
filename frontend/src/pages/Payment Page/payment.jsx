@@ -9,23 +9,60 @@ import styled from 'styled-components';
 import { PaystackButton } from "react-paystack";
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useLocation,useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Payment = () => {
-	const amount = '1750000'
-	const email = localStorage.getItem('auth')
-	const name = localStorage.getItem('auth')
+	const [ cost, setCost ] = useState(0);
+	const name = localStorage.getItem('auth');
+	const [ email,setEmail ] = useState(false);
+	const [ priority, setPriority ] = useState(false);
+	const [ amount, setAmount ] = useState(5*75000)
 	const publicKey = process.env.REACT_APP_PAYMENT_KEY
 	const ApiPrivate = useAxiosPrivate();
-const router = useNavigate()
+	const router = useNavigate()
 	const location = useLocation();
-	const requestId = new URLSearchParams(location.search).get('requestId');
+	const requestId = new URLSearchParams(location.search).get('requestid');
+
+	useEffect(() => {
+		fetchDetails();
+	},[])
+
+	const fetchDetails = async() => {
+		try{
+			const response = await ApiPrivate.get(`/api/review/${requestId}`);
+			setEmail(response?.data?.email);
+			setPriority(response?.data?.priority);
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+	useEffect(() => {
+		setAmount(cost * 75000)
+	},[cost])
+	
+	useEffect(() => {
+		priority === 3
+			?
+			setCost(30)
+			:
+			priority === 2
+				?
+				setCost(20)
+				:
+				priority === 1
+					?
+					setCost(10)
+					:
+					setCost(5)
+	},[priority])
 
 	const savePayment = async() => {
 		try{
 			const response = await ApiPrivate.post('',{
 				orderNo: requestId,
 				email: email,
-				amount: amount,
+				amount: cost,
 			})
 			console.log(response)
 		}
@@ -34,8 +71,8 @@ const router = useNavigate()
 		}
 	}
 	const componentProps = {
-		email,
-		amount,
+		email: email,
+		amount: amount,
 		metadata: {
 		  name,
 		},
@@ -43,8 +80,7 @@ const router = useNavigate()
 		text: "Pay Now",
 		onSuccess: () =>{
 			savePayment();
-			alert("Payment completed successfully")
-router('/dashboard')
+			router('/dashboard')
 		},
 		onClose: () => alert("Payment is not completed"),
 	  }
@@ -75,19 +111,19 @@ router('/dashboard')
 							<div>
 								<div>order No</div>
 
-								<Second>0123</Second>
+								<Second>{requestId.substring(0,8)}</Second>
 							</div>
 
 							<div>
 								<div>Email</div>
 
-								<Second>Johndoe@gmail.com</Second>
+								<Second>{email}</Second>
 							</div>
 
 							<div>
 								<div>Amount</div>
 
-								<Third>$25</Third>
+								<Third>{cost}$</Third>
 							</div>
 						</Section2>
 
