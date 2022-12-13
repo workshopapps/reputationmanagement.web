@@ -4,7 +4,7 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { StyledTab, StyledButton, styleClass } from './Settings.styled';
 
-function Accounts({ user, setUser, currentEmail }) {
+function Accounts({ user, setUser, currentEmail, solo }) {
 	const ApiPrivate = useAxiosPrivate();
 	const {
 		setRequestFailed,
@@ -17,7 +17,7 @@ function Accounts({ user, setUser, currentEmail }) {
 	const handleSubmit = () => {
 		setRequestPending(true);
 		// API request
-		ApiPrivate.put('/api/lawyer/auth/details', user)
+	ApiPrivate.put('/api/lawyer/auth/details', user)
 			.then((res) => {
 				setSuccessMessage('Updated successfully');
 				setRequestSuccess(true);
@@ -39,7 +39,7 @@ function Accounts({ user, setUser, currentEmail }) {
 		localStorage.removeItem('auth');
 		window.location.href = '/login';
 	};
-
+	
 	return (
 		<StyledTab>
 			<div className="pt-4 mb-6">
@@ -74,7 +74,7 @@ const AccountForm = ({
 		<form onSubmit={onSubmit} className={styleClass.form}>
 			<div className={styleClass.inputGroup}>
 				<label htmlFor="fullName" className={styleClass.inputLabel}>
-					Full Name
+					First Name
 				</label>
 
 				<input
@@ -91,7 +91,7 @@ const AccountForm = ({
 
 			<div className={styleClass.inputGroup}>
 				<label htmlFor="business-name" className={styleClass.inputLabel}>
-					Business Name
+					Last Name
 				</label>
 
 				<input
@@ -138,7 +138,7 @@ const AccountForm = ({
 				/>
 			</div>
 
-			<div className={styleClass.inputGroup}>
+			{/* <div className={styleClass.inputGroup}>
 				<label htmlFor="businessWebsite" className={styleClass.inputLabel}>
 					Business Website
 				</label>
@@ -151,9 +151,9 @@ const AccountForm = ({
 						setUser({ ...user, businessWebsite: e.target.value });
 					}}
 				/>
-			</div>
+			</div> */}
 
-			<div className={styleClass.inputGroup}>
+			{/* <div className={styleClass.inputGroup}>
 				<label htmlFor="businessDescription" className={styleClass.inputLabel}>
 					Business Description
 				</label>
@@ -167,7 +167,7 @@ const AccountForm = ({
 						setUser({ ...user, businessDescription: e.target.value });
 					}}
 				></textarea>
-			</div>
+			</div> */}
 
 			<div className="my-14 flex justify-end">
 				<StyledButton type="submit">
