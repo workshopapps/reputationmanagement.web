@@ -25,9 +25,6 @@ function LawyerDashboard() {
 	const [tickets, setTickets] = useState([]);
 	const { setRequestFailed, setErrMessage } = useAppContext();
 	const [claimedReviews, setClaimedReviews] = useState([]);
-	const [successfulRequest, setSuccessfulRequest] = useState(0);
-	const [inProgressRequest, setInProgressRequest] = useState(0);
-	const [failedRequest, setFailedRequest] = useState(0);
 
 	const [searchTicket, setSearchTicket] = useState('');
 
@@ -74,23 +71,6 @@ function LawyerDashboard() {
 	// 		console.log(err);
 	// 	}
 	// };
-	useEffect(() => {
-		claimedReviews.filter((data) => {
-			if (data.status === 1 || data.status === 2) {
-				setInProgressRequest(data ? [data] : 0);
-			} else if (data.status === 3) {
-				setSuccessfulRequest(data ? [data] : 0);
-			} else if (data.status === 4) {
-				setFailedRequest(data ? [data] : 0);
-			}
-		});
-	}, [claimedReviews]);
-
-	useEffect(() => {
-		!inProgressRequest && setInProgressRequest(0);
-		!successfulRequest && setSuccessfulRequest(0);
-		!failedRequest && setFailedRequest(0);
-	}, [inProgressRequest, successfulRequest, failedRequest]);
 
 	const fetchDetails = async () => {
 		try {
@@ -177,10 +157,22 @@ function LawyerDashboard() {
 						<div className="flex justify-between w-full">
 							<div>
 								<span className="text-[45px] font-semibold">
-									{successfulRequest.length}
+									{
+										claimedReviews
+											? claimedReviews.filter((data) => {
+													return data.status === 3 || data.status === 5;
+											}).length
+											: '0'
+									}
 								</span>
 								<div className="flex text-[#32D583]">
-									+{successfulRequest.length} <img src={arrowUp} alt="" />
+									+{
+										claimedReviews
+											? claimedReviews.filter((data) => {
+													return data.status === 3 || data.status === 5;
+											}).length
+											: '0'
+									} <img src={arrowUp} alt="" />
 								</div>
 							</div>
 
@@ -195,10 +187,22 @@ function LawyerDashboard() {
 						<div className="flex justify-between w-full">
 							<div>
 								<span className="text-[45px] font-semibold">
-									{failedRequest.length}
+									{
+										claimedReviews
+											? claimedReviews.filter((data) => {
+													return data.status === 4
+											}).length
+											: '0'
+									}
 								</span>
 								<div className="flex text-[#FF718B]">
-									-{failedRequest.length} <img src={arrowDown} alt="" />
+									-{
+										claimedReviews
+											? claimedReviews.filter((data) => {
+													return data.status === 4
+											}).length
+											: '0'
+									} <img src={arrowDown} alt="" />
 								</div>
 							</div>
 
@@ -218,7 +222,14 @@ function LawyerDashboard() {
 								<div className="text">Successful</div>
 							</div>
 							<div className="two">
-								<p>{successfulRequest.length}</p>
+								<p>									
+									{
+										claimedReviews
+											? claimedReviews.filter((data) => {
+													return data.status === 3 || data.status === 5;
+											}).length
+											: '0'
+									}</p>
 							</div>
 						</StyledC>
 
@@ -228,7 +239,14 @@ function LawyerDashboard() {
 								<div className="text">In Progress</div>
 							</div>
 							<div className="two">
-								<p>{inProgressRequest.length}</p>
+								<p>									
+									{
+										claimedReviews
+											? claimedReviews.filter((data) => {
+													return data.status === 1 || data.status === 2;
+											}).length
+											: '0'
+									}</p>
 							</div>
 						</StyledC>
 
@@ -238,7 +256,14 @@ function LawyerDashboard() {
 								<div className="text">Failed</div>
 							</div>
 							<div className="two">
-								<p>{failedRequest.length}</p>
+								<p>									
+									{
+										claimedReviews
+											? claimedReviews.filter((data) => {
+													return data.status === 4
+											}).length
+											: '0'
+									}</p>
 							</div>
 						</StyledC>
 					</div>

@@ -67,7 +67,7 @@ const ChatModal = () => {
 				</p>
 			</StyledClosed>
 			{!talkLoaded && <div className="loading"></div>}
-			<div ref={chatboxEl}></div>
+			<div ref={chatboxEl} className="chatbox"></div>
 		</StyledChatModal>
 	);
 };
@@ -109,11 +109,12 @@ const StyledChatModal = styled.div`
 	}
 	p {
 		align-self: flex-end;
+		text-align: right;
 		font-size: 18px;
 		font-weight: 300;
 		padding: 5px 10px;
 	}
-	div {
+	.chatbox{
 		height: 600px;
 	}
 `;

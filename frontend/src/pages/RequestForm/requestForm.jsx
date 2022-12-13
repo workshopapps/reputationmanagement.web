@@ -24,6 +24,7 @@ const RequestForm = () => {
 	const [time, setTime] = useState('');
 	const [priority, setPriority] = useState(0);
 	const [review, setReview] = useState('');
+	const [reviewLink, setReviewLink] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
 	const { setRequestSuccessfulModalActive, setErrMessage, setRequestFailed } =
@@ -40,15 +41,6 @@ const RequestForm = () => {
 	if (day < 10) day = '0' + day.toString();
 	const maxDate = year + '-' + month + '-' + day;
 
-	const clearForm = () => {
-		// setName()
-		setEmail();
-		setPriority();
-		setReview();
-		setWebsiteName();
-		setBusinessType();
-	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -62,25 +54,12 @@ const RequestForm = () => {
 				priority: priority,
 				status: 0,
 				complainerName: name,
+				reviewLink: reviewLink,
 			});
-			console.log(response);
 			setRequestSuccessfulModalActive(true);
-			clearForm();
 		} catch (err) {
 			setRequestFailed(true);
-			if (err?.response?.status === 400) {
-				err.response?.data?.errors.email
-					? setErrMessage(err.response?.data?.errors.email)
-					: err.response?.data?.errors?.reviewString
-					? setErrMessage('The review field is required')
-					: err.response?.data?.errors?.websiteName
-					? setErrMessage('The website name field is required')
-					: err.response?.data?.error?.businessType
-					? setErrMessage('The business type is required')
-					: setErrMessage('Server error');
-			} else {
-				setErrMessage("Couldn't fetch requests");
-			}
+			setErrMessage("Couldn't fetch requests");
 			setRequestSuccessfulModalActive(false);
 			console.log(err);
 		}
@@ -89,6 +68,7 @@ const RequestForm = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+
 	return (
 		<>
 			<RequestFailed />
@@ -97,73 +77,55 @@ const RequestForm = () => {
 					className={`${openMenu ? 'open' : ''}`}
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
-				<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
+				<WebAppNav
+					pageTitle="Request Removal Form"
+					openMenuHandler={() => setOpenMenu(true)}
+				/>
 				<StyledContainer>
 					<StyledContainers className="container">
-						<h2 className="container-title">Kindly Fill in Your Request</h2>
-						{/********************START OF FORM*************************************************/}
-						<form className="form">
-							<h4 className="form-heading">
-								Fill in the details of the individual that drop the bad review
-								and the review
-							</h4>
-
-							{/********************START OF FORM SECTION A*************************************************/}
-							<div className="form-section-a">
-								<div className="text-input">
-									<label htmlFor="_name"> Name</label>
-									<input
-										type="text"
-										name="_name"
-										value={name}
-										onChange={(e) => setName(e.target.value)}
-										placeholder="Enter name of the complainer"
-										id="name"
-										required
-									/>
+						<form
+							className="form"
+							onSubmit={(e) => {
+								handleSubmit(e);
+							}}
+						>
+							<StyledFormCard className="mb-10 md:mb-12">
+								<div className="card_header">
+									<h2>Complaints Details</h2>
+									<p>Details of the complainer and negative review</p>
 								</div>
 
-								<div className="text-input">
-									<label htmlFor="email">Email Address</label>
-									<input
-										type="email"
-										name="email"
-										value={email}
-										onChange={(e) => setEmail(e.target.value)}
-										placeholder="johndoe@gmail.com"
-										id="email"
-										required
-									/>
-								</div>
+								<div className="card_body">
+									<div className={styleClass.inputGroupRow}>
+										<div className="md:w-1/2">
+											<label htmlFor="_name"> Name</label>
+											<input
+												type="text"
+												name="_name"
+												value={name}
+												onChange={(e) => setName(e.target.value)}
+												placeholder="Enter name of the complainer"
+												id="name"
+												required
+											/>
+										</div>
 
-								<div className="time-date-picker">
-									<div className="date-picker">
-										<label htmlFor="date"> Date of review</label>
-										<input
-											type="date"
-											name="date"
-											id="date"
-											onChange={(e) => setDate(e.target.value)}
-											required
-											max={maxDate}
-										/>
+										<div className="md:w-1/2">
+											<label htmlFor="email">Email Address</label>
+											<input
+												type="email"
+												name="email"
+												value={email}
+												onChange={(e) => setEmail(e.target.value)}
+												placeholder="johndoe@gmail.com"
+												id="email"
+												required
+											/>
+										</div>
 									</div>
 
-									<div className="time-picker">
-										<label htmlFor="_name"> Time of review</label>
-										<input
-											type="time"
-											name="time"
-											id="time"
-											required
-											onChange={(e) => setTime(e.target.value)}
-										/>
-									</div>
-								</div>
-
-								<div className="bad-review">
-									<div className="bad-review-text">
-										<label>The bad review</label>
+									<div className={styleClass.inputGroup}>
+										<label>The Negative Review</label>
 										<textarea
 											rows="4"
 											value={review}
@@ -171,71 +133,106 @@ const RequestForm = () => {
 										/>
 									</div>
 
-									<div className="review-range">
-										<Rate
-											rating={rating}
-											onRating={(rate) => setRating(rate)}
-											className="rate"
-										/>
+									<div className={styleClass.inputGroup}>
+										<div className="review-range">
+											<Rate
+												rating={rating}
+												onRating={(rate) => setRating(rate)}
+												className="rate"
+											/>
 
-										<label htmlFor="vol" className="pt-2">
-											Kindly selected the customer rating drop on your
-											app/websites
+											<label htmlFor="vol" className="pt-3">
+												Kindly selected the customer rating drop on your
+												app/websites
+											</label>
+										</div>
+									</div>
+
+									<div className={styleClass.inputGroup}>
+										<label htmlFor="name_of_website">
+											Where is the review? (e.g Link to the review)
 										</label>
+										<input
+											type="text"
+											name="name_of_website"
+											value={reviewLink}
+											onChange={(e) => setReviewLink(e.target.value)}
+											placeholder=""
+											required
+										/>
+									</div>
+
+									<div className={styleClass.inputGroupRow}>
+										<div className="date-picker">
+											<label htmlFor="date"> Date of review</label>
+											<input
+												type="date"
+												name="date"
+												id="date"
+												onChange={(e) => setDate(e.target.value)}
+												required
+												max={maxDate}
+											/>
+										</div>
+
+										<div className="time-picker">
+											<label htmlFor="_name"> Time of review</label>
+											<input
+												type="time"
+												name="time"
+												id="time"
+												required
+												onChange={(e) => setTime(e.target.value)}
+											/>
+										</div>
 									</div>
 								</div>
-							</div>
+							</StyledFormCard>
 
-							<div className="form-section-b">
-								<h2>Filling in your own details</h2>
-
-								<div className="section-b-input">
-									<label htmlFor="name_of_website">
-										{' '}
-										Name of your website or App
-									</label>
-									<input
-										type="text"
-										name="name_of_website"
-										value={websitename}
-										onChange={(e) => setWebsiteName(e.target.value)}
-										placeholder=""
-										required
-									/>
+							<StyledFormCard>
+								<div className="card_header">
+									<h2>Your Details</h2>
+									<p>Details of your business</p>
 								</div>
 
-								<div className="section-b-input">
-									<label htmlFor="business_type">
-										What type of business do you run
-									</label>
-									<input
-										type="text"
-										name="business_type"
-										value={businesstype}
-										onChange={(e) => setBusinessType(e.target.value)}
-										placeholder=""
-										required
-									/>
-								</div>
+								<div className="card_body">
+									<div className={styleClass.inputGroupRow}>
+										<div className="md:w-1/2">
+											<label htmlFor="_name">Name of your Website or App</label>
+											<input
+												type="text"
+												name="name_of_website"
+												value={websitename}
+												onChange={(e) => setWebsiteName(e.target.value)}
+												placeholder=""
+												required
+											/>
+										</div>
 
-								<div className="priority-level">
-									<h3>Priority level</h3>
+										<div className="md:w-1/2">
+											<label htmlFor="business_type">Your Business Type</label>
+											<input
+												type="text"
+												name="business_type"
+												value={businesstype}
+												onChange={(e) => setBusinessType(e.target.value)}
+												placeholder=""
+												required
+											/>
+										</div>
+									</div>
 
-									<CheckboxGroup setPriority={setPriority} />
+									<div className={styleClass.inputGroup + ' mb-1'}>
+										<div className="priority-level">
+											<label className="pb-1">Priority level</label>
+											<CheckboxGroup setPriority={setPriority} />
+										</div>
+									</div>
 								</div>
-							</div>
+							</StyledFormCard>
 
 							<div className="btn-submit">
-								<button
-									onClick={(e) => {
-										e.preventDefault();
-										handleSubmit(e);
-										console.log(priority);
-									}}
-									type="submit"
-								>
-									Submit
-								</button>
+								<button type="submit">Submit</button>
 							</div>
 						</form>
 					</StyledContainers>
@@ -289,26 +286,34 @@ const CheckboxGroup = ({ setPriority }) => {
 	);
 };
 
-const StyledContainers = styled.div`
-	padding-bottom: 50px;
-	font-family: 'Lato', sans-serif;
-	max-width: 640px;
-	margin: auto;
+const StyledFormCard = styled.div`
+	background: #fff;
+	border: 1px solid #a5a6a8;
+	border-radius: 4px;
+	overflow: hidden;
 
-	.container-title1 {
-		font-size: 20px;
+	.card_header {
+		background: #f2f2f2;
+		color: #111;
+		padding: 12px 16px;
+
+		h2 {
+			font-weight: 600;
+			font-size: 18px;
+			line-height: 35px;
+		}
 	}
-	.container-title {
-		font-size: 24px;
-		margin-top: 32px;
-		margin-bottom: 1rem;
+
+	.card_body {
+		padding: 24px 16px;
 	}
+`;
+
+const StyledContainers = styled.div`
+	padding: 40px 0 20px;
+	font-family: 'Lato', sans-serif;
 
 	.form {
-		.form-heading {
-			font-size: 16px;
-		}
-
 		label {
 			display: block;
 			font-size: 16px;
@@ -334,86 +339,50 @@ const StyledContainers = styled.div`
 			outline: none;
 		}
 
-		.form-section-a {
-			.text-input {
-				display: flex;
-				flex-direction: column;
-				margin-top: 16px;
-			}
+		.date-picker,
+		.time-picker {
+			width: 100%;
+			max-width: 220px;
 
-			.time-date-picker {
-				margin-top: 16px;
+			input {
+				height: 40px;
+				padding: 0px 10px 0px 10px;
 				width: 100%;
-				display: flex;
-				/* justify-content: space-between; */
-
-				.date-picker,
-				.time-picker {
-					width: 160px;
-					margin-right: 32px;
-
-					input {
-						height: 40px;
-						padding: 0px 10px 0px 10px;
-						width: 100%;
-						border: 1px solid #d2d3d4;
-						border-radius: 8px;
-						outline: none;
-					}
-					@media (max-width: 365px) {
-						margin-bottom: 10px;
-					}
-				}
-				@media (max-width: 365px) {
-					flex-direction: column;
-				}
-			}
-
-			.bad-review {
-				margin-top: 16px;
-
-				.bad-review-text {
-					display: flex;
-					flex-direction: column;
-				}
-
-				.review-range {
-					display: flex;
-					flex-direction: column;
-					margin-top: 15px;
-
-					.rate {
-						width: 40px;
-						font-size: 50px;
-						margin-bottom: 8px;
-					}
-				}
+				border: 1px solid #d2d3d4;
+				border-radius: 8px;
+				outline: none;
 			}
 		}
 
-		.form-section-b {
+		.review-range {
+			display: flex;
+			flex-direction: column;
+
+			.rate {
+				width: 40px;
+				font-size: 50px;
+				margin-bottom: 8px;
+			}
+			label {
+				margin: 0;
+			}
+		}
+
+		.section-b-input {
 			margin-top: 16px;
-			h2 {
-				font-size: 24px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.priority-level {
+			h3 {
+				font-size: 16px;
 			}
 
-			.section-b-input {
-				margin-top: 16px;
+			div {
+				margin-top: 8px;
 				display: flex;
-				flex-direction: column;
-			}
-
-			.priority-level {
-				margin-top: 20px;
-				h3 {
-					font-size: 16px;
-				}
-
-				div {
-					margin-top: 8px;
-					display: flex;
-					align-items: center;
-				}
+				align-items: center;
 			}
 		}
 
@@ -449,3 +418,9 @@ const StyledContainers = styled.div`
 		}
 	}
 `;
+
+const styleClass = {
+	inputGroup: 'mb-6 flex flex-col',
+	inputGroupRow:
+		'formGroupRow mb-6 flex flex-col gap-3 md:flex-row justify-start md:items-center',
+};

@@ -77,8 +77,8 @@ const Requests = () => {
 		<div className="requests">
 			<LawyerDashboardLayout>
 				<StyledRequest>
-					<p className="username">Hi,{username}</p>
-					<h2>Requests</h2>
+					{/* <p className="username">Hi,{username}</p>
+					<h2>Requests</h2> */}
 					<div
 						className="claimed-tickets tickets"
 						onClick={() => setShowMyRequests(!showMyRequests)}
@@ -338,9 +338,10 @@ const Requests = () => {
 		</div>
 	);
 };
+
 export const StyledRequest = styled.div`
-	margin-left: 280px;
-	padding: 20px;
+	/* margin-left: 280px; */
+	padding-top: 20px;
 	.username {
 		text-align: right;
 		margin-bottom: 40px;
@@ -392,4 +393,5 @@ export const StyledRequest = styled.div`
 		}
 	}
 `;
+
 export default Requests;

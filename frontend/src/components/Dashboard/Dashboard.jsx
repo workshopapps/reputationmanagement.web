@@ -85,7 +85,7 @@ const Dashboard = () => {
 							digit={
 								allRequests
 									? allRequests.filter((data) => {
-											return data.status === 'In Progress';
+											return data.status === 1 || data.status === 2;
 									  }).length
 									: '0'
 							}
@@ -96,7 +96,7 @@ const Dashboard = () => {
 							digit={
 								allRequests
 									? allRequests.filter((data) => {
-											return data.status === 'Done';
+											return data.status === 3 || data.status === 5;
 									  }).length
 									: '0'
 							}

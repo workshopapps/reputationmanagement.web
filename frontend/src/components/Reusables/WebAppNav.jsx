@@ -37,10 +37,8 @@ const WebAppNav = (props) => {
 
 	return (
 		<StyledWebAppNav>
-			{(currentRoute.pathname === '/request-form' ||
-				currentRoute.pathname === '/request-form') && (
-				<h3>Request Removal Form</h3>
-			)}
+			{props.pageTitle && <h3>{props.pageTitle}</h3>}
+
 			<LogoContainer>
 				<div>
 					<img src={menu} alt="" onClick={props.openMenuHandler} />
