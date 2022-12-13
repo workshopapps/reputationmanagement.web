@@ -8,6 +8,8 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import ARROW_DOWN from './arrow-down.svg';
 import ModalLayout from '../../layout/modalLayout';
+import LawyerDashboardLayout from '../../layout/lawyerDashboardLayout';
+
 
 const Requests = () => {
 	const username = localStorage.getItem('auth');
@@ -75,7 +77,7 @@ const Requests = () => {
 
 	return (
 		<div className="requests">
-			<Sidebarr />
+			<LawyerDashboardLayout>
 			<StyledRequest>
 				<p className="username">Hi,{username}</p>
 				<h2>Requests</h2>
@@ -334,6 +336,7 @@ const Requests = () => {
 					)}
 				</div>
 			</StyledRequest>
+			</LawyerDashboardLayout>
 		</div>
 	);
 };
