@@ -8,6 +8,8 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import ARROW_DOWN from './arrow-down.svg';
 import ModalLayout from '../../layout/modalLayout';
+import LawyerDashboardLayout from '../../layout/lawyerDashboardLayout';
+
 
 const Requests = () => {
 	const username = localStorage.getItem('auth');
@@ -75,7 +77,7 @@ const Requests = () => {
 
 	return (
 		<div className="requests">
-			<Sidebarr />
+			<LawyerDashboardLayout>
 			<StyledRequest>
 				<p className="username">Hi,{username}</p>
 				<h2>Requests</h2>
@@ -84,7 +86,7 @@ const Requests = () => {
 					onClick={() => setShowMyRequests(!showMyRequests)}
 				>
 					<div className="title">
-						<h3>Open Tickets</h3>
+						<h3>Unclaimed Tickets</h3>
 						<img
 							src={ARROW_DOWN}
 							alt=""
@@ -163,7 +165,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.lastUpdated}
+													lastUpdated={data.updatedAt}
 													priority={data.priority}
 													status={data.status}
 													key={index}
@@ -213,7 +215,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.lastUpdated}
+													lastUpdated={data.updatedAt}
 													priority={data.priority}
 													status={data.status}
 													key={index}
@@ -264,7 +266,7 @@ const Requests = () => {
 														<LawyerTableData
 															id={data.reviewId}
 															ticketName={data.complainerName}
-															lastUpdated={data.lastUpdated}
+															lastUpdated={data.updatedAt}
 															priority={data.priority}
 															status={data.status}
 															key={index}
@@ -315,7 +317,7 @@ const Requests = () => {
 												<LawyerTableData
 													id={data.reviewId}
 													ticketName={data.complainerName}
-													lastUpdated={data.lastUpdated}
+													lastUpdated={data.updatedAt}
 													priority={data.priority}
 													status={data.status}
 													key={index}
@@ -334,6 +336,7 @@ const Requests = () => {
 					)}
 				</div>
 			</StyledRequest>
+			</LawyerDashboardLayout>
 		</div>
 	);
 };
