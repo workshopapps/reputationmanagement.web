@@ -8,28 +8,62 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { PaystackButton } from "react-paystack";
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Payment = () => {
-	const amount = '1750000'
-	const email = localStorage.getItem('auth')
-	const name = localStorage.getItem('auth')
+	const [ cost, setCost ] = useState(0);
+	const name = localStorage.getItem('auth');
+	const [ email,setEmail ] = useState(false);
+	const [ priority, setPriority ] = useState(false);
+	const [ amount, setAmount ] = useState(5*75000)
 	const publicKey = process.env.REACT_APP_PAYMENT_KEY
 	const ApiPrivate = useAxiosPrivate();
-
+	const router = useNavigate()
 	const location = useLocation();
 	const requestId = new URLSearchParams(location.search).get('requestid');
 
+	useEffect(() => {
+		fetchDetails();
+	},[])
+
+	const fetchDetails = async() => {
+		try{
+			const response = await ApiPrivate.get(`/api/review/${requestId}`);
+			setEmail(response?.data?.email);
+			setPriority(response?.data?.priority);
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+	useEffect(() => {
+		setAmount(cost * 75000)
+	},[cost])
+	
+	useEffect(() => {
+		priority === 3
+			?
+			setCost(30)
+			:
+			priority === 2
+				?
+				setCost(20)
+				:
+				priority === 1
+					?
+					setCost(10)
+					:
+					setCost(5)
+	},[priority])
+
 	const savePayment = async() => {
 		try{
-			const response = await ApiPrivate.patch(`/api/review/${requestId}`,	[
-				{
-					operationType: 2,
-					path: '/status',
-					op: 'replace',
-					value: 5,
-				},
-			])
+			const response = await ApiPrivate.post('',{
+				orderNo: requestId,
+				email: email,
+				amount: cost,
+			})
 			console.log(response)
 		}
 		catch(err){
@@ -37,8 +71,8 @@ const Payment = () => {
 		}
 	}
 	const componentProps = {
-		email,
-		amount,
+		email: email,
+		amount: amount,
 		metadata: {
 		  name,
 		},
@@ -46,6 +80,7 @@ const Payment = () => {
 		text: "Pay Now",
 		onSuccess: () =>{
 			savePayment();
+			router('/dashboard')
 		},
 		onClose: () => alert("Payment is not completed"),
 	  }
@@ -88,7 +123,7 @@ const Payment = () => {
 							<div>
 								<div>Amount</div>
 
-								<Third>$25</Third>
+								<Third>{cost}$</Third>
 							</div>
 						</Section2>
 

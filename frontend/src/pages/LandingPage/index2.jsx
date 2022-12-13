@@ -251,7 +251,7 @@ const LandingPage = () => {
 								</div>
 								<picture>
 									<source media="(max-width: 640px)" srcSet={steps_mobile} />
-									<img src={steps} alt="complaint screen" />
+									<img src={steps} alt="complaint screen" style={{ maxWidth: '1200px', margin: '0 auto'}}/>
 								</picture>
 
 								<Link to="/signup">

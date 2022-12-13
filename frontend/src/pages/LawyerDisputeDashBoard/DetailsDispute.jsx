@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import arr from './assets/arrow-right.svg';
@@ -7,6 +8,49 @@ export const DetailsDispute = () => {
 	const location = useLocation();
 	const Id = new URLSearchParams(location.search).get('requestId');
 	const router = useNavigate();
+	const ApiPrivate = useAxiosPrivate();
+	const {
+		id,
+		status,
+		timeStamp,
+		badReviewerEmail,
+		complaint,
+		complaintMessage,
+		businessEntityName,
+	} = dispute;
+	const hideClass = status === 0;
+	const busname = businessEntityName === '';
+	async function getDisputes() {
+		try {
+			const response = await ApiPrivate.get(`api/disputes/${Id}`);
+			setDispute(response?.data);
+			console.log(response?.data);
+		} catch (err) {
+			if (err?.response?.status) {
+			}
+			console.log(err);
+		}
+	}
+
+	useEffect(() => {
+		getDisputes();
+	}, []);
+
+	const changeStatus = async () => {
+		try {
+			const response = await ApiPrivate.put(`/api/disputes/lawyer/${Id}`, [
+				{
+					status: 1,
+				},
+			]);
+			if (response) {
+				router('/lawyer-disputes');
+			}
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	console.log(Id);
 	return (
@@ -20,56 +64,69 @@ export const DetailsDispute = () => {
 					<p className="text-lg ">Back to My Disputes</p>
 				</span>
 			</header>
-			<section className="flex flex-col md:flex-row gap-5 md:gap-0 py-4 px-10 ">
-				<main className="md:w-3/5 flex flex-col gap-5 ">
-					<h1 className="text-xl font-semibold leading">
-						Dispute Case for ContractID23140285
+			<section className="flex flex-col md:flex-row gap-5 md:gap-0 py-10 px-10 ">
+				<main className="md:w-3/5 flex flex-col gap-10 ">
+					<h1 className="text-2xl font-semibold leading">
+						Dispute Case for Contract{Id}
 					</h1>
-					<div className="flex justify-between gap-6  md:gap-20 ">
-						<div>
-							<ul>
-								<li className="font-medium">Undefined:</li>
-								<li className="font-medium">Amount:</li>
-								<li className="font-medium">Dispute:</li>
-								<li className="font-medium">Comment:</li>
-							</ul>
-						</div>
-						<div>
-							<ul>
-								<li>Undefined</li>
-								<li>200</li>
-								<li>15-7-22</li>
-								<li>Name: Raya Enterprises </li>
-								<li>Dispute ID: 2270212 </li>
-								<li>Email: rayaenterprises.ng</li>
-								<li>website: www.rayaenterprises.com </li>
-								<li>Phone No: 070456780 </li>
-								<li>Business Type: Gadgets </li>
-								<li>
-									Description: Raya enterprise is a world famous brand in
-									production of gadgets. Raya is a world famous brand in
-									production of gadgets Raya enterprise is world famous brand in
-									production of gadgets Raya enterprise is a world famous brand
-									in production of gadgets. Raya enterprise is a world famous
-									brand in production of gadgets.{' '}
+					<div className="flex w-full ">
+						<div className="w-full flex">
+							<ul className="w-4/5 flex flex-col gap-5">
+								<li className="font-medium flex  ">
+									<span className="text-xl">Email: </span>
 								</li>
+
+								<li className="font-medium flex ">
+									<span className="text-xl">Complaint: </span>
+								</li>
+								<li className="font-medium flex ">
+									<span className="text-xl">Complaint Message: </span>
+								</li>
+
+								{!busname ? (
+									<li className="font-medium">
+										<span className="text-xl">Business Name </span>
+									</li>
+								) : null}
+							</ul>
+
+							<ul className="w-4/5 flex flex-col gap-5">
+								<span className="text-lg font-[400] "> {badReviewerEmail}</span>
+
+								<span className="text-lg font-[400] ">{complaint}</span>
+
+								<span className="font-[400] text-lg">{complaintMessage}</span>
+
+								{!busname ? <span> {businessEntityName} </span> : null}
 							</ul>
 						</div>
 					</div>
 				</main>
 				<aside className="flex flex-col gap-4 items-center md:items-end w-full md:w-2/5">
 					<button
-						className="text-white bg-[#233BA9] px-4 w-full max-w-[350px] md:w-fit md:max-w-full py-2 rounded "
-						onClick={() => router(`/lawyer-disputes`)}
+						className={`text-white bg-[#233BA9] ${
+							hideClass ? 'flex' : 'hidden'
+						} px-4 w-full max-w-[350px] md:w-fit md:max-w-full py-2 rounded`}
+						onClick={changeStatus}
 					>
-						Accept Dispute
+						Resolve Dispute
 					</button>
 					<button
-						className="text-[#4560D9] border px-4 py-2 w-full max-w-[350px] md:max-w-full md:w-fit hover:bg-red-600 hover:text-white hover:border-0 rounded border-[#4560D9]"
+						className={`text-[#4560D9] border px-5 py-2 w-full ${
+							hideClass ? 'flex' : 'hidden'
+						} max-w-[350px] md:max-w-full md:w-fit hover:bg-red-600 hover:text-white hover:border-0 rounded border-[#4560D9]`}
 						onClick={() => router(`/lawyer-disputes`)}
 					>
 						Reject Dispute
 					</button>
+					<h2
+						className={`${
+							hideClass ? 'hidden' : 'flex'
+						} text-xl text-blue-400 `}
+					>
+						{' '}
+						This Dispute has been resolved.
+					</h2>
 				</aside>
 			</section>
 		</div>

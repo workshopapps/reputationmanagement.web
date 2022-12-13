@@ -43,8 +43,15 @@ const Requests = () => {
 	const fetchMyDetails = async () => {
 		try {
 			const response = await ApiPrivate.get('/api/lawyer/GetClaimedReviews');
+			const inProgressresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=1')
+			const mailSentresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=2')
+			const successfulresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=3')
+			const failedresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=4')
 			setClaimedReviews(response?.data);
-			console.log(response);
+			setInProgressRequests(inProgressresponse?.data, mailSentresponse?.data)
+			console.log(inProgressresponse?.data, mailSentresponse?.data)
+			setSuccessfulRequests(successfulresponse?.data)
+			setFailedRequests(failedresponse?.data)
 		} catch (err) {
 			if (err?.response?.status) {
 				setErrMessage("Couldn't fetch your request");
@@ -59,19 +66,19 @@ const Requests = () => {
 		fetchMyDetails();
 	}, []);
 
-	useEffect(() => {
-		claimedReviews
-			? claimedReviews.filter((data) => {
-					if (data.status === 4) {
-						setFailedRequests([data]);
-					} else if (data.status === 3) {
-						setSuccessfulRequests([data]);
-					} else if (data.status === 1 || data.status === 2) {
-						setInProgressRequests([data]);
-					}
-			  })
-			: console.log('No claimed reviews');
-	}, [claimedReviews]);
+	// useEffect(() => {
+	// 	claimedReviews
+	// 		? claimedReviews.filter((data) => {
+	// 				if (data.status === 4) {
+	// 					setFailedRequests(data);
+	// 				} else if (data.status === 3) {
+	// 					setSuccessfulRequests(data);
+	// 				} else if (data.status === 1 || data.status === 2) {
+	// 					setInProgressRequests(data);
+	// 				}
+	// 		  })
+	// 		: console.log('No claimed reviews');
+	// }, [claimedReviews]);
 
 	return (
 		<div className="requests">
@@ -107,7 +114,8 @@ const Requests = () => {
 									{tickets.length >= 1 && (
 										<tbody>
 											{tickets
-												? tickets.map((data, index) => {
+												? 
+												tickets.map((data, index) => {
 														return (
 															<LawyerTableData
 																id={data.reviewId}
@@ -208,7 +216,7 @@ const Requests = () => {
 									</thead>
 									{inProgressRequests.length >= 1 && (
 										<tbody>
-											{inProgressRequests.map((data, index) => {
+											{inProgressRequests.map((data,index) => {
 												return (
 													<LawyerTableData
 														id={data.reviewId}

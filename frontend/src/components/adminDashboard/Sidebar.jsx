@@ -15,7 +15,7 @@ const Sidebar = (props) => {
 			<div>
 				<img src={closeBtn} alt="" onClick={props.closeMenuHandler} />
 				<NavLink to="/" className="logo">
-					<img  src={logo} alt="" />
+					<img src={logo} alt="" />
 				</NavLink>
 			</div>
 
@@ -27,14 +27,20 @@ const Sidebar = (props) => {
 							Dashboard
 						</NavLink>
 					</li>
-										<li>
+					<li>
 						<NavLink to="/disputes">
 							<DashboardIcon />
-							Disputes
+							Users
 						</NavLink>
 					</li>
-
+					<li>
+						<NavLink to="/disputes">
+							<DashboardIcon />
+							Lawyers
+						</NavLink>
+					</li>
 				</ul>
+
 				<ul>
 					<li>
 						<NavLink to="/settings">

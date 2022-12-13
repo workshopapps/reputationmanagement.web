@@ -4,7 +4,7 @@ import { INVALID_FIELD_ICON } from '../../assets/image';
 const ErrorMessage = (props) => {
 	return (
 		<StyledErrorMessage>
-			<img src={INVALID_FIELD_ICON} alt="" />
+			<img src={INVALID_FIELD_ICON} alt="" style={{ width: 'auto', margin: '0 auto'}}/>
 			<p>{props.error}</p>
 		</StyledErrorMessage>
 	);
@@ -25,6 +25,7 @@ const StyledErrorMessage = styled.div`
 	}
 	img{
 		margin-bottom: 28px;
+		
 	}
 	
 `;

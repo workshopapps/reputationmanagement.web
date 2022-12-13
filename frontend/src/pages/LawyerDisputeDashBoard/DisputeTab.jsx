@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { DetailsDispute } from './DetailsDispute';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import styled,{ keyframes} from 'styled-components';
 
 const DataTemp = [
 
@@ -31,7 +32,7 @@ const [disputes, setDisputes] = useState ([])
 
 async function getDisputes() {
    try {
-      const response = await ApiPrivate.get('disputes/lawyer/');
+      const response = await ApiPrivate.get('api/disputes/lawyer/');
       setDisputes(response?.data);
       console.log(response?.data);
    } catch (err) {
@@ -49,26 +50,50 @@ getDisputes()
 
   return (
     <>
+
    {
-      DataTemp.map(data => {
-         const {ID,PhoneNo,Email,Website,Dispute,Name}= data
+      disputes.length > 0 ?
+      disputes.map((data,index)=> {
+         const {id,status,badReviewerEmail,complaint,Dispute,businessEntityName}= data
          return(
-               <tbody className='w-full' key={Math.random()} onClick={() =>
-      router(`/lawyer-dispute-details?requestId=${ID}`)
+               <tbody className='w-full' key={index+1} onClick={() =>
+      router(`/lawyer-dispute-details?requestId=${id} `)
    } >
-            <tr className='flex hover:bg-[#E4E4E54D] rounded-md cursor-pointer justify-between border-b px-2 pt-8 pb-2 items-end ' >
-            <td>{ID}</td>
-            <td className='text-center' >{Name}</td>
-            <td className={hideForMobile} >{Email}</td>
-            <td className={hideForMobile}>{PhoneNo}</td>
-            <td className={hideForMobile}>{Website}</td>
-            <td className = {`${Dispute === 'Closed'?'text-green-900':'text-red-900'} ${Dispute === 'Closed'?'bg-[#D1FADF]':'bg-[#FECDCA]'} p-2 rounded-sm w-[80px] text-center`} >{Dispute} </td>
+            <tr className='flex hover:bg-[#E4E4E54D] rounded-md cursor-pointer pt-2 pb-2 justify-between border-b px-2 items-end ' >
+            <td className='w-[5%]' >{index+1}</td>
+            <td className='text-left' >{badReviewerEmail}</td>
+            <td className='text-left w-[25%]' >{complaint}</td>
+            <Status className = {`${status === 1 ?'text-green-900':'text-red-900'} ${status === 1?'bg-[#D1FADF]':'bg-[#FECDCA]'} px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-center w-[10%] text-center`} > {status === 1 ?'Closed':'Open'} </Status>
                </tr>    
                </tbody>    
 
          )
       } )
+      :
+      <EmptyDisputes className='text-xl leading pt-5 font-bold text-center ' > No Disputes At This Time </EmptyDisputes>
             }   
             </>
   )
 }
+const appear = keyframes`
+0%{
+  transform:translateY(-100%);
+  opacity:0;
+}
+100%{
+  transform:translateY(0%);
+  opacity:1;
+}
+`
+
+const EmptyDisputes = styled.h2`
+animation:${appear} .7s;
+`
+const Status = styled.td`
+padding:0px;
+height:40px;
+align-self:center;
+@media(max-width:600px){
+   display:flex;
+}
+`
