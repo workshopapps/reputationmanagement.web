@@ -22,11 +22,14 @@ const Payment = () => {
 
 	const savePayment = async() => {
 		try{
-			const response = await ApiPrivate.post('',{
-				orderNo: requestId,
-				email: email,
-				amount: amount,
-			})
+			const response = await ApiPrivate.patch(`/api/review/${requestId}`,	[
+				{
+					operationType: 2,
+					path: '/status',
+					op: 'replace',
+					value: 5,
+				},
+			])
 			console.log(response)
 		}
 		catch(err){

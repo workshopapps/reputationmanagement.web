@@ -554,13 +554,15 @@ const StyledContainers = styled.div`
 				height: auto;
 				max-height: max-content;
 			}
-			font-size: toRem(14);
+			max-width: 400px;
+			font-size: 14px;
 			font-weight: 700;
-			line-height: toRem(20);
+			line-height: 20px;
 			letter-spacing: 0em;
-			text-align: left;
+			text-align: center;
 			color: #027a48;
-			margin-bottom: toRem(4);
+			margin-bottom: 4px;
+			margin-top: 20px;
 		}
 		.failed {
 			border-radius: 8px;
@@ -573,13 +575,13 @@ const StyledContainers = styled.div`
 				height: auto;
 				max-height: max-content;
 			}
-			font-size: toRem(14);
+			font-size: 14px;
 			font-weight: 700;
-			line-height: toRem(20);
+			line-height: 20px;
 			letter-spacing: 0em;
 			text-align: left;
 			color: #d8340f;
-			margin-bottom: toRem(4);
+			margin-bottom: 4px;
 		}
 		.done-buttons {
 			@media (max-width: 497px) {

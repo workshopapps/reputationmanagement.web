@@ -304,6 +304,10 @@ export const TableContainer = styled.table`
 		background: #fecdca !important;
 		color: #b42318 !important;
 	}
+	.status-5 {
+		background: #d1fadf !important;
+		color: #027a48 !important;
+	}
 	.priority-2 {
 		background: #ffe5b2;
 		color: #d6981b;
