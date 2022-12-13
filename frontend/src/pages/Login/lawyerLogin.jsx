@@ -161,17 +161,6 @@ const LawyerLogin = () => {
 						{!requestPending ? 'Log In' : <div className="loading"></div>}
 					</SubmitBtn>
 				</StyledForm>
-				<FormFooter>
-					<div className="footer-text">
-						Don't have an account?{' '}
-						<span
-							onClick={() => router('/lawyer-signup')}
-							style={{ cursor: 'pointer' }}
-						>
-							Sign up
-						</span>
-					</div>
-				</FormFooter>
 			</FormSection>
 		</ParentContainer>
 	);
