@@ -52,6 +52,7 @@ const MailModal = (props) => {
 			setSuccessMessage('Mail sent successfully');
 			setRequestSuccess(true);
 			changeRequestStatus();
+			setEmail('')
 			setTimeout(() => {
 				setMailModalActive(false);
 				router('/requests');

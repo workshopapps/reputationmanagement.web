@@ -30,7 +30,6 @@ const Requests = () => {
 		try {
 			const response = await ApiPrivate.get('/api/lawyer/PendingReview');
 			setTickets(response?.data);
-			console.log(response);
 		} catch (err) {
 			if (err?.response?.status) {
 				setErrMessage("Couldn't fetch your requests");
@@ -43,15 +42,28 @@ const Requests = () => {
 	const fetchMyDetails = async () => {
 		try {
 			const response = await ApiPrivate.get('/api/lawyer/GetClaimedReviews');
-			const inProgressresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=1')
-			const mailSentresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=2')
-			const successfulresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=3')
-			const failedresponse = await ApiPrivate.get('/api/lawyer/getReviewByStatus?status=4')
 			setClaimedReviews(response?.data);
-			setInProgressRequests(inProgressresponse?.data, mailSentresponse?.data)
-			console.log(inProgressresponse?.data, mailSentresponse?.data)
-			setSuccessfulRequests(successfulresponse?.data)
-			setFailedRequests(failedresponse?.data)
+			// setInProgressRequests(
+			// 	claimedReviews
+			// 		? claimedReviews.filter((data) => {
+			// 				return [data.status === 1] || [data.status === 2]
+			// 			}).length
+			// 		: 0
+			// )
+			// setSuccessfulRequests(
+			// 	claimedReviews
+			// 	? claimedReviews.filter((data) => {
+			// 			return [data.status === 3]
+			// 		}).length
+			// 	: 0
+			// )
+			// setFailedRequests(
+			// 	claimedReviews
+			// 	? claimedReviews.filter((data) => {
+			// 			return [data.status === 4]
+			// 		}).length
+			// 	: 0
+			// )
 		} catch (err) {
 			if (err?.response?.status) {
 				setErrMessage("Couldn't fetch your request");
@@ -61,6 +73,15 @@ const Requests = () => {
 		}
 	};
 
+	useEffect(() => {
+		claimedReviews
+			?
+			claimedReviews.filter((data) => {
+				console.log(data.status === 1 || data.status === 2)
+			})
+			:
+			console.log('nothing')
+	},[claimedReviews])
 	useEffect(() => {
 		fetchDetails();
 		fetchMyDetails();
