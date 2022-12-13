@@ -112,7 +112,7 @@ const RequestDetails = () => {
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
 				<WebAppNav
-					pageTitle="Complaint Details"
+					pageTitle="Request Details"
 					openMenuHandler={() => setOpenMenu(true)}
 				/>
 				<StyledContainer>
