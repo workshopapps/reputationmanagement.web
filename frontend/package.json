@@ -20,7 +20,7 @@
 		"react-chartjs-2": "^5.0.1",
 		"react-dom": "^18.1.0",
 		"react-hook-form": "^7.39.4",
-		"react-icons": "^4.6.0",
+		"react-icons": "^4.7.1",
 		"react-paystack": "^4.0.1",
 		"react-router-dom": "^6.4.3",
 		"react-scripts": "5.0.1",
@@ -30,7 +30,7 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "PORT=3150 react-scripts start",
+		"start": " react-scripts start",
 		"build": "react-scripts build",
 		"test": "jest",
 		"coverage": "jest --coverage"
