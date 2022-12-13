@@ -21,7 +21,7 @@ export const StyledContainer = styled.div`
 	padding-left: 3rem;
 	padding-right: 3rem;
 	width: 100%;
-	max-width: 1100px;
+	max-width: 1200px;
 	margin: 0 auto;
 	.noRequest {
 		text-align: center;
@@ -296,11 +296,11 @@ export const TableContainer = styled.table`
 		background: #d1fadf !important;
 		color: #027a48 !important;
 	}
-	.status-3{
+	.status-3 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
 	}
-	.status-4{
+	.status-4 {
 		background: #fecdca !important;
 		color: #b42318 !important;
 	}

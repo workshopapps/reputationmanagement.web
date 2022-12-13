@@ -25,6 +25,7 @@ const RequestDetails = () => {
 	const [year, setYear] = useState('');
 	const [priority, setPriority] = useState();
 	const [review, setReview] = useState('');
+	const [reviewLink, setReviewLink] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
 	const [requestLoading, RequestLoading] = useState(false);
@@ -110,72 +111,51 @@ const RequestDetails = () => {
 					className={`${openMenu ? 'open' : ''}`}
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
-				<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
+				<WebAppNav
+					pageTitle="Complaint Details"
+					openMenuHandler={() => setOpenMenu(true)}
+				/>
 				<StyledContainer>
 					<StyledContainers className="container">
-						<h2 className="container-title">Complaint Details</h2>
-						{/********************START OF FORM*************************************************/}
 						<form className="form">
-							<h4 className="form-heading">Details of the complainer</h4>
-
-							{/********************START OF FORM SECTION A*************************************************/}
-							<div className="form-section-a">
-								<div className="text-input">
-									<label htmlFor="_name"> Name</label>
-									<input
-										type="text"
-										name="_name"
-										value={name}
-										onClick={(e) => e.target.blur()}
-										placeholder="Enter name of the complainer"
-										id="name"
-										required
-									/>
+							<StyledFormCard className="mb-10 md:mb-12">
+								<div className="card_header">
+									<h2>Complaints Details</h2>
+									<p>Details of the complainer and negative review</p>
 								</div>
 
-								<div className="text-input">
-									<label htmlFor="email">Email Address</label>
-									<input
-										type="email"
-										name="email"
-										value={email}
-										readonly
-										onClick={(e) => e.target.blur()}
-										placeholder="johndoe@gmail.com"
-										id="email"
-										required
-									/>
-								</div>
+								<div className="card_body">
+									<div className={styleClass.inputGroupRow}>
+										<div className="md:w-1/2">
+											<label htmlFor="_name"> Name</label>
+											<input
+												type="text"
+												name="_name"
+												value={name}
+												onChange={(e) => setName(e.target.value)}
+												placeholder="Enter name of the complainer"
+												id="name"
+												required
+											/>
+										</div>
 
-								<div className="time-date-picker">
-									<div className="date-picker">
-										<label htmlFor="date"> Date of review</label>
-										<input
-											type="date"
-											name="date"
-											id="date"
-											value={year}
-											onClick={(e) => e.target.blur()}
-											readOnly
-										/>
+										<div className="md:w-1/2">
+											<label htmlFor="email">Email Address</label>
+											<input
+												type="email"
+												name="email"
+												value={email}
+												readonly
+												onClick={(e) => e.target.blur()}
+												placeholder="johndoe@gmail.com"
+												id="email"
+												required
+											/>
+										</div>
 									</div>
 
-									<div className="time-picker">
-										<label htmlFor="_name"> Time of review</label>
-										<input
-											type="time"
-											name="time"
-											id="time"
-											value={time}
-											onClick={(e) => e.target.blur()}
-											readOnly
-										/>
-									</div>
-								</div>
-
-								<div className="bad-review">
-									<div className="bad-review-text">
-										<label>The bad review</label>
+									<div className={styleClass.inputGroup}>
+										<label>The Negative Review</label>
 										<textarea
 											value={review}
 											readonly
@@ -183,98 +163,112 @@ const RequestDetails = () => {
 										/>
 									</div>
 
-									<div className="review-range">
-										<Rate
-											rating={rating}
-											onRating={(rate) => setRating(rate)}
-											className="rate"
-											onClick={(e) => e.target.blur()}
-											readState={true}
-										/>
+									<div className={styleClass.inputGroup}>
+										<div className="review-range">
+											<Rate
+												rating={rating}
+												onRating={(rate) => setRating(rate)}
+												className="rate"
+												onClick={(e) => e.target.blur()}
+												readState={true}
+											/>
 
-										<label htmlFor="vol">
-											Kindly selected the customer rating drop on your
-											app/websites
+											<label htmlFor="vol" className="pt-3">
+												Kindly selected the customer rating drop on your
+												app/websites
+											</label>
+										</div>
+									</div>
+
+									<div className={styleClass.inputGroup}>
+										<label htmlFor="name_of_website">
+											Where is the review? (e.g Link to the review)
 										</label>
-									</div>
-								</div>
-							</div>
-
-							{/*****************************START OF FORM  SECTION B******************************************/}
-							<div className="form-section-b">
-								<h2>Filling in your own details</h2>
-
-								<div className="section-b-input">
-									<label htmlFor="name_of_website">
-										{' '}
-										Name of your website or App
-									</label>
-									<input
-										type="text"
-										name="name_of_website"
-										value={websitename}
-										readonly
-										// onChange={(e) => setWebsiteName(e.target.value)}
-										onClick={(e) => e.target.blur()}
-										placeholder=""
-										required
-									/>
-								</div>
-
-								<div className="section-b-input">
-									<label htmlFor="business_type">
-										What type of business do you run
-									</label>
-									<input
-										type="text"
-										name="business_type"
-										readonly
-										value={businesstype}
-										// onChange={(e) => setBusinessType(e.target.value)}
-										onClick={(e) => e.target.blur()}
-										placeholder=""
-										required
-									/>
-								</div>
-
-								<div className="priority-level">
-									<h3>Priority level</h3>
-
-									<div>
-										<Checkbox
-											label="High"
-											// onClick={() => setPriority(3)}
-											checked={priority === 3}
+										<input
+											type="text"
+											id="name_of_website"
+											value={reviewLink}
+											onClick={(e) => e.target.blur()}
+											readOnly
 										/>
 									</div>
 
-									<div>
-										<Checkbox
-											label="Medium"
-											// onClick={() => setPriority(2)}
-											checked={priority === 2}
-										/>
-									</div>
+									<div className={styleClass.inputGroupRow}>
+										<div className="date-picker">
+											<label htmlFor="date"> Date of review</label>
+											<input
+												type="date"
+												name="date"
+												id="date"
+												value={year}
+												onClick={(e) => e.target.blur()}
+												readOnly
+											/>
+										</div>
 
-									<div>
-										<Checkbox
-											label="Low"
-											// onClick={() => setPriority(0)}
-											checked={priority === 1}
-										/>
-									</div>
-
-									<div>
-										<Checkbox
-											label="Not urgent"
-											// onClick={() => setPriority(0)}
-											checked={priority === 0}
-										/>
+										<div className="time-picker">
+											<label htmlFor="_name"> Time of review</label>
+											<input
+												type="time"
+												id="time"
+												value={time}
+												onClick={(e) => e.target.blur()}
+												readOnly
+											/>
+										</div>
 									</div>
 								</div>
-							</div>
-							{/***************************************FORM SUBMIT BUTTON**********************************************/}
-							<div className="btn-submit">
+							</StyledFormCard>
+
+							<StyledFormCard>
+								<div className="card_header">
+									<h2>Your Details</h2>
+									<p>Details of your business</p>
+								</div>
+
+								<div className="card_body">
+									<div className={styleClass.inputGroupRow}>
+										<div className="md:w-1/2">
+											<label htmlFor="_name">Name of your Website or App</label>
+											<input
+												type="text"
+												name="name_of_website"
+												value={websitename}
+												readonly
+												onClick={(e) => e.target.blur()}
+												placeholder=""
+												required
+											/>
+										</div>
+
+										<div className="md:w-1/2">
+											<label htmlFor="business_type">Your Business Type</label>
+											<input
+												type="text"
+												name="business_type"
+												readonly
+												value={businesstype}
+												onClick={(e) => e.target.blur()}
+												placeholder=""
+												required
+											/>
+										</div>
+									</div>
+
+									<div className={styleClass.inputGroup + ' mb-1'}>
+										<div className="priority-level">
+											<label className="pb-1">Priority level</label>
+
+											<Checkbox label="High" checked={priority === 3} />
+											<Checkbox label="Medium" checked={priority === 2} />
+											<Checkbox label="Low" checked={priority === 1} />
+											<Checkbox label="Not urgent" checked={priority === 0} />
+										</div>
+									</div>
+								</div>
+							</StyledFormCard>
+
+							<div className="btn-submit my-10">
 								{status >= 3 && (
 									<button
 										className="disputeBtn"
@@ -313,198 +307,151 @@ const RequestDetails = () => {
 
 export default RequestDetails;
 
-const StyledContainers = styled.div`
-	padding-bottom: 50px;
-	font-family: 'Lato', sans-serif;
-	max-width: 640px;
-	margin: 0px auto;
+const StyledFormCard = styled.div`
+	background: #fff;
+	border: 1px solid #a5a6a8;
+	border-radius: 4px;
+	overflow: hidden;
 
-	.container-title1 {
-		font-size: 20px;
+	.card_header {
+		background: #f2f2f2;
+		color: #111;
+		padding: 12px 16px;
+
+		h2 {
+			font-weight: 600;
+			font-size: 18px;
+			line-height: 35px;
+		}
 	}
-	.container-title {
-		font-size: 24px;
-		margin-top: 32px;
-		margin-bottom: 1rem;
+
+	.card_body {
+		padding: 24px 16px;
 	}
+`;
+
+const StyledContainers = styled.div`
+	padding: 40px 0 20px;
+	font-family: 'Lato', sans-serif;
 
 	.form {
-		.form-heading {
+		label {
+			display: block;
 			font-size: 16px;
+			margin-bottom: 10px;
 		}
 
-		.form-section-a {
-			.text-input {
-				display: flex;
-				flex-direction: column;
-				margin-top: 16px;
-				label {
-					font-size: 16px;
-					margin-bottom: 10px;
-				}
-
-				input {
-					height: 56px;
-					padding: 0px 10px 0px 10px;
-					border: 1px solid #d2d3d4;
-					border-radius: 8px;
-					font-size: 16px;
-					outline: none;
-				}
-			}
-
-			.time-date-picker {
-				margin-top: 16px;
-				width: 100%;
-				display: flex;
-
-				.date-picker,
-				.time-picker {
-					width: 160px;
-					margin-right: 32px;
-
-					label {
-						font-size: 16px;
-						margin-bottom: 10px;
-					}
-
-					input {
-						height: 40px;
-						padding: 0px 10px 0px 10px;
-						border: 1px solid #d2d3d4;
-						border-radius: 8px;
-						outline: none;
-					}
-
-					@media (max-width: 365px) {
-						margin-bottom: 10px;
-					}
-				}
-
-				@media (max-width: 365px) {
-					flex-direction: column;
-				}
-			}
-
-			.bad-review {
-				margin-top: 16px;
-
-				.bad-review-text {
-					display: flex;
-					flex-direction: column;
-					label {
-						font-size: 16px;
-						margin-bottom: 10px;
-					}
-					textarea {
-						max-height: 190px;
-						height: 190px;
-						font-size: 16px;
-						border: 1px solid #d2d3d4;
-						border-radius: 8px;
-						padding: 15px;
-						outline: none;
-					}
-				}
-
-				.review-range {
-					display: flex;
-					flex-direction: column;
-
-					.rate {
-						width: 40px;
-						margin-top: 10px;
-						font-size: 50px;
-					}
-
-					label {
-						margin-top: 10px;
-						font-size: 16px;
-					}
-				}
-			}
-		}
-
-		.form-section-b {
-			margin-top: 16px;
-			h2 {
-				font-size: 24px;
-			}
-
-			.section-b-input {
-				margin-top: 16px;
-				display: flex;
-				flex-direction: column;
-
-				label {
-					font-size: 16px;
-					margin-bottom: 10px;
-				}
-
-				input {
-					height: 56px;
-					padding: 0px 10px 0px 10px;
-					border: 1px solid #d2d3d4;
-					border-radius: 8px;
-					font-size: 16px;
-					outline: none;
-				}
-			}
-
-			.priority-level {
-				margin-top: 20px;
-				h3 {
-					font-size: 16px;
-				}
-
-				div {
-					margin-top: 8px;
-					display: flex;
-					align-items: center;
-				}
-			}
-		}
-	}
-
-	.btn-submit {
-		margin-top: 32px;
-		display: flex;
-		justify-content: flex-end;
-
-		button {
+		input {
 			height: 50px;
-			width: 180px;
-			border-radius: 4px;
-			text-align: center;
-			font-weight: 600;
+			width: 100%;
+			padding: 0px 12px;
+			border: 1px solid #d2d3d4;
+			border-radius: 8px;
 			font-size: 16px;
-			border: none;
-			transition: 0.5s;
+			outline: none;
 		}
 
-		.payment,
-		.return {
-			background: #233ba9;
-			color: #fff;
+		textarea {
+			width: 100%;
+			font-size: 16px;
+			border: 1px solid #d2d3d4;
+			border-radius: 8px;
+			padding: 15px;
+			outline: none;
+		}
 
-			&:hover {
-				background: #0a1d88;
+		.date-picker,
+		.time-picker {
+			width: 100%;
+			max-width: 220px;
+
+			input {
+				height: 40px;
+				padding: 0px 10px 0px 10px;
+				width: 100%;
+				border: 1px solid #d2d3d4;
+				border-radius: 8px;
+				outline: none;
 			}
 		}
-		.disputeBtn {
-			border: 1px solid #f16f04;
-			color: #f16f04;
-			background-color: transparent;
-			margin-right: 16px;
+
+		.review-range {
+			display: flex;
+			flex-direction: column;
+
+			.rate {
+				width: 40px;
+				font-size: 50px;
+				margin-bottom: 8px;
+			}
+			label {
+				margin: 0;
+			}
 		}
 
-		@media (max-width: 550px) {
-			margin-top: 20px;
-			justify-content: center;
+		.section-b-input {
+			margin-top: 16px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.priority-level {
+			h3 {
+				font-size: 16px;
+			}
+
+			div {
+				margin-top: 8px;
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		.btn-submit {
+			/* margin-top: 40px; */
+			display: flex;
+			justify-content: flex-end;
 
 			button {
-				width: 100%;
+				height: 50px;
+				width: 180px;
+				border-radius: 4px;
+				text-align: center;
+				font-weight: 600;
+				font-size: 16px;
+				border: none;
+				transition: 0.5s;
+			}
+
+			.payment,
+			.return {
+				background: #233ba9;
+				color: #fff;
+
+				&:hover {
+					background: #0a1d88;
+				}
+			}
+			.disputeBtn {
+				border: 1px solid #f16f04;
+				color: #f16f04;
+				background-color: transparent;
+				margin-right: 16px;
+			}
+
+			@media (max-width: 500px) {
+				justify-content: center;
+
+				button {
+					width: 100%;
+				}
 			}
 		}
 	}
 `;
+
+const styleClass = {
+	inputGroup: 'mb-6 flex flex-col',
+	inputGroupRow:
+		'formGroupRow mb-6 flex flex-col gap-3 md:flex-row justify-start md:items-center',
+};
