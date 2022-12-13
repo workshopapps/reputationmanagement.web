@@ -13,23 +13,23 @@ const DisputeDashboard = () => {
 		});
 	}, [window.innerWidth]);
 	const hideMobile = `${width <= 800 ? 'hidden' : 'block'}`;
-	const location = useLocation();
-	const requestId = new URLSearchParams(location.search).get('requestId');
 	return (
 		<>
 			<LawyerDashboardLayout>
-			<DisputeContainer className="px-1 mt-12 md:px-10">
+			<DisputeContainer className="px-1 mt-12 ">
 				<Wrapper>
 					<header>
-						<h1 className="text-xl leading pb-2 ">My Disputes</h1>
+						<h1 className="text-2xl leading-2 pb-4 font-semibold ">My Disputes</h1>
 						<hr />
 					</header>
-					<div className="flex justify-between bg-[#E4E4E54D] px-3 py-2 ">
-						<h2>ID</h2>
-						<h2 className={hideMobile}>Email</h2>
-						<h2>Name</h2>
-						<h2>Status</h2>
-					</div>
+					<table className='table w-full' >
+					<tr className="flex justify-between w-full leading text-lg font-light bg-[#E4E4E54D] px-3 py-2 ">
+						<th>ID</th>
+						<th >Email</th>
+						<th>Complaint</th>
+						<th>Status</th>
+					</tr>
+					</table>
 					<main className="mt-5">
 						<table className="table w-full">
 							<DisputeTab width={width} />
@@ -42,20 +42,9 @@ const DisputeDashboard = () => {
 	);
 };
 
-const appear = keyframes`
-0%{
-  transform:translateY(-100%);
-  opacity:0;
-}
-100%{
-  transform:translateX(0%);
-  opacity:1;
-}
-`;
 const DisputeContainer = styled.div`
 	@media (max-width: 1000px) {
 		margin-left: 0px;
-		animation: ${appear} 0.7s;
 	}
 `;
 const Wrapper = styled.div`
