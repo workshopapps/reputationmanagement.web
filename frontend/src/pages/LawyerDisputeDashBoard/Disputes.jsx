@@ -26,11 +26,9 @@ const DisputeDashboard = () => {
 					</header>
 					<div className="flex justify-between bg-[#E4E4E54D] px-3 py-2 ">
 						<h2>ID</h2>
-						<h2>Name</h2>
 						<h2 className={hideMobile}>Email</h2>
-						<h2 className={hideMobile}>Phone No</h2>
-						<h2 className={hideMobile}>Website</h2>
-						<h2>Dispute</h2>
+						<h2>Name</h2>
+						<h2>Status</h2>
 					</div>
 					<main className="mt-5">
 						<table className="table w-full">
@@ -55,7 +53,6 @@ const appear = keyframes`
 }
 `;
 const DisputeContainer = styled.div`
-	margin-left: 280px;
 	@media (max-width: 1000px) {
 		margin-left: 0px;
 		animation: ${appear} 0.7s;

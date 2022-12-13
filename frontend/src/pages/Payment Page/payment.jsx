@@ -8,7 +8,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { PaystackButton } from "react-paystack";
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
 const Payment = () => {
 	const amount = '1750000'
@@ -16,20 +16,17 @@ const Payment = () => {
 	const name = localStorage.getItem('auth')
 	const publicKey = process.env.REACT_APP_PAYMENT_KEY
 	const ApiPrivate = useAxiosPrivate();
-
+const router = useNavigate()
 	const location = useLocation();
-	const requestId = new URLSearchParams(location.search).get('requestid');
+	const requestId = new URLSearchParams(location.search).get('requestId');
 
 	const savePayment = async() => {
 		try{
-			const response = await ApiPrivate.patch(`/api/review/${requestId}`,	[
-				{
-					operationType: 2,
-					path: '/status',
-					op: 'replace',
-					value: 5,
-				},
-			])
+			const response = await ApiPrivate.post('',{
+				orderNo: requestId,
+				email: email,
+				amount: amount,
+			})
 			console.log(response)
 		}
 		catch(err){
@@ -46,6 +43,8 @@ const Payment = () => {
 		text: "Pay Now",
 		onSuccess: () =>{
 			savePayment();
+			alert("Payment completed successfully")
+router('/dashboard')
 		},
 		onClose: () => alert("Payment is not completed"),
 	  }
@@ -76,13 +75,13 @@ const Payment = () => {
 							<div>
 								<div>order No</div>
 
-								<Second>{requestId.substring(0,8)}</Second>
+								<Second>0123</Second>
 							</div>
 
 							<div>
 								<div>Email</div>
 
-								<Second>{email}</Second>
+								<Second>Johndoe@gmail.com</Second>
 							</div>
 
 							<div>

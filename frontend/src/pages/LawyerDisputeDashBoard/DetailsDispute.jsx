@@ -7,6 +7,7 @@ export const DetailsDispute = () => {
 	const location = useLocation();
 	const Id = new URLSearchParams(location.search).get('requestId');
 	const router = useNavigate();
+	const {ID,status,badReviewerEmail,complaint,Dispute,businessEntityName}= dispute
 
 	console.log(Id);
 	return (
@@ -41,18 +42,12 @@ export const DetailsDispute = () => {
 								<li>15-7-22</li>
 								<li>Name: Raya Enterprises </li>
 								<li>Dispute ID: 2270212 </li>
-								<li>Email: rayaenterprises.ng</li>
-								<li>website: www.rayaenterprises.com </li>
-								<li>Phone No: 070456780 </li>
-								<li>Business Type: Gadgets </li>
+								<li>Email: {badReviewerEmail}</li>
+								<td className='text-center' ></td>
+            <td  ></td>
+            <td  >{businessEntityName}</td>
 								<li>
-									Description: Raya enterprise is a world famous brand in
-									production of gadgets. Raya is a world famous brand in
-									production of gadgets Raya enterprise is world famous brand in
-									production of gadgets Raya enterprise is a world famous brand
-									in production of gadgets. Raya enterprise is a world famous
-									brand in production of gadgets.{' '}
-								</li>
+								{complaint}								</li>
 							</ul>
 						</div>
 					</div>

@@ -63,37 +63,19 @@ export const LogoContainer = styled.div`
 	flex: 1;
 	align-items: center;
 	justify-content: space-between;
-
-	@media(max-width: 1140px){
-		#site-logo {
-			position: absolute;
-			inset: 0px;
-			margin: auto;
-		}
-	}
-		@media screen and (min-width: 634px)
-	<style>
-	.feqA-dV .lgr {
-		width: 130px;
-	}
-
 	.lgr{
-		width: 25%;
+		width: 20%;
+	}
+	div {
+		width: 50%;
 
-		@media screen and (min-width: 634px){
-			width: 130px;
+		&:nth-of-type(1) {
+			img {
+				width: 38px;
+				height: 38px;
+			}
 		}
 	}
-	// div {
-	// 	width: 50%;
-
-	// 	&:nth-of-type(1) {
-	// 		img {
-	// 			width: 38px;
-	// 			height: 38px;
-	// 		}
-	// 	}
-	// }
 
 	@media (max-width: 1140px) {
 		display: flex;
