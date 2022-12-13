@@ -66,6 +66,7 @@ const LawyerRequestDetails = () => {
 			setName(response?.data?.complainerName);
 			setRating(response?.data?.rating);
 			setReview(response?.data?.reviewString);
+			setReviewLink(response?.data?.reviewLink);
 			setPriority(response?.data?.priority);
 			setWebsiteName(response?.data?.websiteName);
 			setDate(response?.data?.createdAt);
@@ -211,7 +212,7 @@ const LawyerRequestDetails = () => {
 												type="text"
 												name="_name"
 												value={name}
-												readOnly
+												disabled
 												placeholder="Enter name of the complainer"
 												id="name"
 												required
@@ -226,14 +227,14 @@ const LawyerRequestDetails = () => {
 												value={email}
 												placeholder="johndoe@gmail.com"
 												id="email"
-												readOnly
+												disabled
 											/>
 										</div>
 									</div>
 
 									<div className={styleClass.inputGroup}>
 										<label>The Negative Review</label>
-										<textarea value={review} readOnly />
+										<textarea value={review} disabled />
 									</div>
 
 									<div className={styleClass.inputGroup}>
@@ -256,7 +257,7 @@ const LawyerRequestDetails = () => {
 											id="name_of_website"
 											value={reviewLink}
 											onClick={(e) => e.target.blur()}
-											readOnly
+											disabled
 										/>
 									</div>
 
@@ -268,7 +269,7 @@ const LawyerRequestDetails = () => {
 												name="date"
 												id="date"
 												value={date ? date.substring(0, 10) : ''}
-												readOnly
+												disabled
 											/>
 										</div>
 
@@ -279,7 +280,7 @@ const LawyerRequestDetails = () => {
 												id="time"
 												required
 												value={date ? date.substring(11, 16) : ''}
-												readOnly
+												disabled
 											/>
 										</div>
 									</div>
@@ -300,9 +301,9 @@ const LawyerRequestDetails = () => {
 												type="text"
 												name="name_of_website"
 												value={websitename}
-												readOnly
 												placeholder=""
 												required
+												disabled
 											/>
 										</div>
 
@@ -314,7 +315,7 @@ const LawyerRequestDetails = () => {
 												value={businesstype}
 												readOnly
 												placeholder=""
-												required
+												disabled
 											/>
 										</div>
 									</div>

@@ -58,6 +58,7 @@ const RequestDetails = () => {
 			setName(response?.data?.complainerName);
 			setRating(response?.data?.rating);
 			setReview(response?.data?.reviewString);
+			setReviewLink(response?.data?.reviewLink);
 			setWebsiteName(response?.data?.websiteName);
 			setDate(response?.data?.timeOfReview);
 			setStatus(response?.data?.status);
@@ -135,7 +136,7 @@ const RequestDetails = () => {
 												onChange={(e) => setName(e.target.value)}
 												placeholder="Enter name of the complainer"
 												id="name"
-												required
+												disabled
 											/>
 										</div>
 
@@ -149,7 +150,7 @@ const RequestDetails = () => {
 												onClick={(e) => e.target.blur()}
 												placeholder="johndoe@gmail.com"
 												id="email"
-												required
+												disabled
 											/>
 										</div>
 									</div>
@@ -158,7 +159,7 @@ const RequestDetails = () => {
 										<label>The Negative Review</label>
 										<textarea
 											value={review}
-											readonly
+											disabled
 											onClick={(e) => e.target.blur()}
 										/>
 									</div>
@@ -171,6 +172,7 @@ const RequestDetails = () => {
 												className="rate"
 												onClick={(e) => e.target.blur()}
 												readState={true}
+												disabled
 											/>
 
 											<label htmlFor="vol" className="pt-3">
@@ -189,7 +191,7 @@ const RequestDetails = () => {
 											id="name_of_website"
 											value={reviewLink}
 											onClick={(e) => e.target.blur()}
-											readOnly
+											disabled
 										/>
 									</div>
 
@@ -202,7 +204,7 @@ const RequestDetails = () => {
 												id="date"
 												value={year}
 												onClick={(e) => e.target.blur()}
-												readOnly
+												disabled
 											/>
 										</div>
 
@@ -213,7 +215,7 @@ const RequestDetails = () => {
 												id="time"
 												value={time}
 												onClick={(e) => e.target.blur()}
-												readOnly
+												disabled
 											/>
 										</div>
 									</div>
@@ -237,7 +239,7 @@ const RequestDetails = () => {
 												readonly
 												onClick={(e) => e.target.blur()}
 												placeholder=""
-												required
+												disabled
 											/>
 										</div>
 
@@ -250,7 +252,7 @@ const RequestDetails = () => {
 												value={businesstype}
 												onClick={(e) => e.target.blur()}
 												placeholder=""
-												required
+												disabled
 											/>
 										</div>
 									</div>
