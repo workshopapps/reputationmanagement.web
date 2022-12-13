@@ -118,7 +118,7 @@ const LandingPage = () => {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			const response = await Api.post('/api/createquote', formData);
+			const response = await Api.post('/api/quote', formData);
 			toast.success('Your response has been submitted', {
 				position: 'top-left',
 			});
