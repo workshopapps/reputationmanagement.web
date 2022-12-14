@@ -269,12 +269,12 @@ const RequestDetails = () => {
 									</div>
 								</div>
 							</StyledFormCard>
-							{
-								status === 5 && <p className="completed">This Transaction has been completed</p>
-							}
-							{
-								status === 4 && <p className="failed">This Transaction has Failed</p>
-							}
+							{status === 5 && (
+								<p className="completed">This Transaction has been completed</p>
+							)}
+							{status === 4 && (
+								<p className="failed">This Transaction has Failed</p>
+							)}
 							<div className="btn-submit my-10">
 								{status >= 3 && (
 									<button
@@ -337,14 +337,15 @@ const StyledFormCard = styled.div`
 `;
 
 const StyledContainers = styled.div`
-	padding: 40px 0 20px;
+	padding: 40px 0px;
+	margin: 0 auto;
 	font-family: 'Lato', sans-serif;
 	.completed {
 		border-radius: 8px;
 		padding: 16px;
 		border: 1px solid #6ce9a6;
 		background-color: #f6fef9;
-		margin: 0 auto;
+		margin: 20px auto;
 		max-width: 90%;
 		@media (max-width: 470px) {
 			height: auto;
@@ -365,7 +366,7 @@ const StyledContainers = styled.div`
 		padding: 16px;
 		border: 1px solid #d83407;
 		background-color: rgba(256, 52, 15, 0.1);
-		margin: 0 auto;
+		margin: 20px auto;
 		max-width: 90%;
 		@media (max-width: 470px) {
 			height: auto;
