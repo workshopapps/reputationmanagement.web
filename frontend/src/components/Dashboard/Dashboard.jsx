@@ -11,7 +11,7 @@ import {
 	InputContainer,
 	TableContainer,
 	Header,
-	CardSemiWrapper,
+	CardSemiWrapper
 } from './Styles/Dashboard.styled';
 
 import Card from './Card';

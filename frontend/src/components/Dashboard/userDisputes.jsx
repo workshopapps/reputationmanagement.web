@@ -218,13 +218,11 @@ const TableContain = styled.table`
 		}
 	}
 
-
-
-	@media (max-width: 900px) {
+	/* @media (max-width: 900px) {
 		th,
 		td {
 		}
-	}
+	} */
 	@media (max-width: 820px) {
 		th,
 		td {
@@ -232,7 +230,6 @@ const TableContain = styled.table`
 			line-height: 20px;
 		}
 		td {
-			}
 			&:nth-of-type(4) p {
 				padding-left: 25px;
 			}

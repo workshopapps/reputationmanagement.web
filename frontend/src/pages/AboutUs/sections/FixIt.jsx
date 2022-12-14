@@ -10,6 +10,7 @@ import {
 	StyledColorBlue,
 	StyledColorOrange,
 	StyledFixp,
+	Container,
 } from '../styled/Fix.styled';
 import TrustImg from '../img/Trust.png';
 import ProfessionalImg from '../img/Professionalism.png';
@@ -17,7 +18,7 @@ import Convenience from '../img/Convenience.png';
 
 export default function Fix() {
 	return (
-		<div data-testid="fixit-element">
+		<Container data-testid="fixit-element">
 			<StyledFixHeader>
 				Why Choose <StyledColorBlue> Repu</StyledColorBlue>
 				<StyledColor>te</StyledColor> ?
@@ -65,6 +66,6 @@ export default function Fix() {
 					</StyledFixp>
 				</StyledFixCenter>
 			</StyledFixBox>
-		</div>
+		</Container>
 	);
 }

@@ -7,6 +7,8 @@ export const PageHero = styled.div`
 	justify-content: space-between;
 	width: 90%;
 	margin: 80px auto;
+	max-width: 1200px;
+
 	@media (max-width: 800px) {
 		flex-direction: column;
 	}
@@ -16,11 +18,13 @@ export const PageHero = styled.div`
 `;
 export const PageHeroDetails = styled.div`
 	width: 50%;
+
 	h1 {
 		font-style: normal;
 		font-weight: 700;
 		font-size: 3.5rem;
 		color: #233ba9;
+
 		span {
 			color: #f16f04;
 		}

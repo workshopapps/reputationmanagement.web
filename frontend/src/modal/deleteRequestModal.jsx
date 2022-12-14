@@ -22,6 +22,29 @@ const DeleteRequestModal = (props) => {
 		</StyledOverlay>
 	);
 };
+
+export const DeleteUserModal = (props) => {
+	const setDeleteModalActive = props.setDeleteModalActive;
+	const handleDelete = props.handleDelete;
+	return (
+		<StyledOverlay>
+			<div className="delete-request-modal">
+				<h3>Are you sure you want to delete this user?</h3>
+				<div className="buttons">
+					<button className="delete" onClick={() => handleDelete()}>
+						Delete
+					</button>
+					<button
+						className="cancel"
+						onClick={() => setDeleteModalActive(false)}
+					>
+						Cancel
+					</button>
+				</div>
+			</div>
+		</StyledOverlay>
+	);
+};
 export default DeleteRequestModal;
 
 export const StyledOverlay = styled.div`

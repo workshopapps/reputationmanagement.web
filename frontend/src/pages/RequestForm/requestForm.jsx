@@ -59,7 +59,7 @@ const RequestForm = () => {
 			setRequestSuccessfulModalActive(true);
 		} catch (err) {
 			setRequestFailed(true);
-			setErrMessage("Couldn't fetch requests");
+			setErrMessage("Couldn't create request");
 			setRequestSuccessfulModalActive(false);
 			console.log(err);
 		}

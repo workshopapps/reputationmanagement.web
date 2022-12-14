@@ -21,6 +21,12 @@ export const StyledSidebar = styled.aside`
 	grid-template-rows: 5% 95%;
 	gap: 64px;
 
+	div {
+		&:nth-of-type(1) img {
+			cursor: pointer;
+		}
+	}
+
 	section {
 		height: 80%;
 		display: flex;
@@ -33,6 +39,7 @@ export const StyledSidebar = styled.aside`
 		flex-direction: column;
 		gap: 37px;
 	}
+
 	li {
 		margin-left: -2rem;
 		.active,
@@ -54,13 +61,17 @@ export const StyledSidebar = styled.aside`
 				border-radius: 4px;
 			}
 		}
+
 		.active,
-		2:hover {
+		a:hover {
 			.requests {
 				color: #f16f04;
 				svg {
 					fill: #f16f04;
 					stroke: none;
+					*{
+						fill: #f16f04 !important;
+					}
 				}
 			}
 		}

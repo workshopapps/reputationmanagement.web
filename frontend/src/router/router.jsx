@@ -36,6 +36,7 @@ import Settings from '../pages/Settings/Settings';
 import Login from '../pages/Login/LoginCopy';
 import Signup from '../pages/Sign-up/SignupCopy';
 import RequireAuth, {
+	RequireAdminAuth,
 	RequireBusinessAuth,
 	RequireLawyerAuth,
 } from '../middleware/requireAuth';
@@ -72,6 +73,12 @@ import DisputeDashboard from '../pages/LawyerDisputeDashBoard/Disputes';
 import { DetailsDispute } from '../pages/LawyerDisputeDashBoard/DetailsDispute';
 import UserDisputes from '../components/Dashboard/userDisputes';
 import AdminDashboard from '../pages/admin/AdminDashboard';
+import AdminLogin from '../pages/Login/adminLogin';
+import AdminSignup from '../pages/Sign-up/adminSignUp';
+import AdminRequestsPage from '../pages/admin/adminRequests';
+import AdminRequestDetails from '../pages/admin/adminRequestDetails';
+import ClientPage from '../pages/admin/client';
+import LawyersPage from '../pages/admin/lawyers';
 
 Sentry.init({
 	integrations: [
@@ -105,6 +112,11 @@ const Router = () => {
 								element={<LawyerRequestDetails />}
 							/>
 							<Route path="/requests" element={<Requests />} />
+							<Route path="/lawyer-disputes" element={<DisputeDashboard />} />
+							<Route
+								path="/lawyer-dispute-details"
+								element={<DetailsDispute />}
+							/>
 						</Route>
 						<Route element={<RequireBusinessAuth />}>
 							<Route path="/dashboard" element={<DashboardPage />} />
@@ -113,12 +125,15 @@ const Router = () => {
 							<Route path="/request" element={<RequestDetails />} />
 							<Route path="/payment" element={<Payment />} />
 						</Route>
+						<Route element={<RequireAdminAuth/>}>
+							<Route path="/admin" element={<AdminDashboard />} />
+							<Route path="/admin-chat" element={<AdminChatModal />} />
+							<Route path="/admin/requests" element={<AdminRequestsPage />} />
+							<Route path="/admin/request-details" element={<AdminRequestDetails/>}/>
+							<Route path="/admin/clients" element={<ClientPage/>}/>
+							<Route path="/admin/lawyers" element={<LawyersPage/>}/>
+						</Route>
 						<Route path="/profile" element={<Profile />} />
-						<Route path="/lawyer-disputes" element={<DisputeDashboard />} />
-						<Route
-							path="/lawyer-dispute-details"
-							element={<DetailsDispute />}
-						/>
 					</Route>
 					<Route path="/" element={<Index2 />} />
 					<Route path="/disputes" element={<UserDisputes />} />
@@ -133,8 +148,8 @@ const Router = () => {
 						path="/we-remove-google-search"
 						element={<WeRemoveGoogleSearch />}
 					/>
-					<Route path="/admin" element={<AdminDashboard />} />
-					<Route path="/admin-chat" element={<AdminChatModal />} />
+					<Route path="/admin/login" element={<AdminLogin/>}/>
+					<Route path="/admin/signup" element={<AdminSignup/>}/>
 					<Route path="/check-mail" element={<CheckEmail />} />
 
 					<Route

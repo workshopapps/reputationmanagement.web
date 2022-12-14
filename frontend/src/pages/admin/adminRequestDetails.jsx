@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
-import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {
 	StyledDashboard,
@@ -11,48 +10,60 @@ import {
 import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import OpenDisputeModal from '../../modal/openDisputeModal';
+import AdminSideBar from './adminSideBar';
 
-const RequestDetails = () => {
+const AdminRequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
-	const [rating, setRating] = useState(0); // set initial state for rating
-	const router = useNavigate();
+	const [rating, setRating] = useState(0); ///set initial state for rating
+
+	const location = useLocation();
+	const requestId = new URLSearchParams(location.search).get('requestId');
+	//const [checked, setChecked] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
+    const [ year, setYear ] = useState('')
 	const [time, setTime] = useState('');
-	const [year, setYear] = useState('');
-	const [priority, setPriority] = useState();
+	const [priority, setPriority] = useState(0);
 	const [review, setReview] = useState('');
 	const [reviewLink, setReviewLink] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const [requestLoading, RequestLoading] = useState(false);
-	const [status, setStatus] = useState();
-	const {
-		setErrMessage,
-		setRequestFailed,
+    const [ status, setStatus ] = useState(0)
+	const {		
+        setRequestFailed,
 		setRequestSuccess,
+		setErrMessage,
 		setSuccessMessage,
-		// requestSuccess,
-		// requestFailed,
-	} = useAppContext();
-
-	const [disputeModalActive, setDisputeModalActive] = useState(false);
+    } =
+		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
 
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+    const router = useNavigate();
 
-	const location = useLocation();
-	const requestId = new URLSearchParams(location.search).get('requestId');
+	const Today = new Date();
 
-	const fetchComplaintDetails = async () => {
+	let month = Today.getMonth() + 1;
+	let day = Today.getDate();
+	const fullyear = Today.getFullYear();
+	if (month < 10) month = '0' + month.toString();
+	if (day < 10) day = '0' + day.toString();
+	const maxDate = fullyear + '-' + month + '-' + day;
+
+    useEffect(() => {
+        setTime(
+            date.substring(11,16)
+        )
+        setYear(
+            date.substring(0,10)
+        )
+    },[date])
+    const fetchComplaintDetails = async () => {
 		try {
-			const response = await ApiPrivate.get(`/api/review/${requestId}`);
+			const response = await ApiPrivate.get(`/api/admin/reviews/${requestId}`);
 			setEmail(response?.data?.email);
 			setPriority(response?.data?.priority);
 			setName(response?.data?.complainerName);
@@ -70,55 +81,59 @@ const RequestDetails = () => {
 		}
 	};
 
-	useEffect(() => {
-		setYear(date.substring(0, 10) || '');
-		setTime(date.substring(11, 16));
-	}, [date]);
-
-	const handleSubmitDispute = async (data) => {
-		RequestLoading(true);
+    useEffect(() => {
+        fetchComplaintDetails()
+    },[])
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 		try {
-			const response = await ApiPrivate.post(`/dispute`, data);
-			setSuccessMessage('Dispute created successfully!');
-			setRequestSuccess(true);
-			setDisputeModalActive(false);
-			RequestLoading(false);
+			const response = await ApiPrivate.put(`/api/admin/reviews/${requestId}?reviewId=${requestId}`, {
+				email: email,
+				timeOfReview: year + 'T' + time,
+				reviewString: review,
+				rating: rating,
+				websiteName: websitename,
+				businessType: businesstype,
+				priority: priority,
+				status: status,
+				complainerName: name,
+				reviewLink: reviewLink,
+			});
+            setSuccessMessage('Request updated successfully')
+            setRequestSuccess(true)
+            router(-1)
 		} catch (err) {
-			setErrMessage('Dispute creation failed!');
 			setRequestFailed(true);
-			RequestLoading(false);
+			setErrMessage("Couldn't update requests");
+			setRequestFailed(true)
 			console.log(err);
 		}
 	};
 
 	useEffect(() => {
-		fetchComplaintDetails();
+		window.scrollTo(0, 0);
 	}, []);
 
 	return (
 		<>
 			<RequestFailed />
-			{disputeModalActive && (
-				<OpenDisputeModal
-					setDisputeModalActive={setDisputeModalActive}
-					handleSubmitDispute={handleSubmitDispute}
-					requestLoading={requestLoading}
-					requestId={requestId}
-				/>
-			)}
-
 			<StyledDashboard>
-				<Sidebar
+				<AdminSideBar
 					className={`${openMenu ? 'open' : ''}`}
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
 				<WebAppNav
-					pageTitle="Request Details"
+					pageTitle="Request Removal Form"
 					openMenuHandler={() => setOpenMenu(true)}
 				/>
 				<StyledContainer>
 					<StyledContainers className="container">
-						<form className="form">
+						<form
+							className="form"
+							onSubmit={(e) => {
+								handleSubmit(e);
+							}}
+						>
 							<StyledFormCard className="mb-10 md:mb-12">
 								<div className="card_header">
 									<h2>Complaints Details</h2>
@@ -136,7 +151,7 @@ const RequestDetails = () => {
 												onChange={(e) => setName(e.target.value)}
 												placeholder="Enter name of the complainer"
 												id="name"
-												disabled
+												required
 											/>
 										</div>
 
@@ -146,11 +161,10 @@ const RequestDetails = () => {
 												type="email"
 												name="email"
 												value={email}
-												readonly
-												onClick={(e) => e.target.blur()}
+												onChange={(e) => setEmail(e.target.value)}
 												placeholder="johndoe@gmail.com"
 												id="email"
-												disabled
+												required
 											/>
 										</div>
 									</div>
@@ -158,9 +172,9 @@ const RequestDetails = () => {
 									<div className={styleClass.inputGroup}>
 										<label>The Negative Review</label>
 										<textarea
+											rows="4"
 											value={review}
-											disabled
-											onClick={(e) => e.target.blur()}
+											onChange={(e) => setReview(e.target.value)}
 										/>
 									</div>
 
@@ -170,9 +184,6 @@ const RequestDetails = () => {
 												rating={rating}
 												onRating={(rate) => setRating(rate)}
 												className="rate"
-												onClick={(e) => e.target.blur()}
-												readState={true}
-												disabled
 											/>
 
 											<label htmlFor="vol" className="pt-3">
@@ -188,10 +199,11 @@ const RequestDetails = () => {
 										</label>
 										<input
 											type="text"
-											id="name_of_website"
+											name="name_of_website"
 											value={reviewLink}
-											onClick={(e) => e.target.blur()}
-											disabled
+											onChange={(e) => setReviewLink(e.target.value)}
+											placeholder=""
+											required
 										/>
 									</div>
 
@@ -202,9 +214,10 @@ const RequestDetails = () => {
 												type="date"
 												name="date"
 												id="date"
-												value={year}
-												onClick={(e) => e.target.blur()}
-												disabled
+												onChange={(e) => setYear(e.target.value)}
+												required
+                                                value={year}
+												max={maxDate}
 											/>
 										</div>
 
@@ -212,10 +225,11 @@ const RequestDetails = () => {
 											<label htmlFor="_name"> Time of review</label>
 											<input
 												type="time"
+												name="time"
 												id="time"
-												value={time}
-												onClick={(e) => e.target.blur()}
-												disabled
+												required
+                                                value={time}
+												onChange={(e) => setTime(e.target.value)}
 											/>
 										</div>
 									</div>
@@ -236,10 +250,9 @@ const RequestDetails = () => {
 												type="text"
 												name="name_of_website"
 												value={websitename}
-												readonly
-												onClick={(e) => e.target.blur()}
+												onChange={(e) => setWebsiteName(e.target.value)}
 												placeholder=""
-												disabled
+												required
 											/>
 										</div>
 
@@ -248,11 +261,10 @@ const RequestDetails = () => {
 											<input
 												type="text"
 												name="business_type"
-												readonly
 												value={businesstype}
-												onClick={(e) => e.target.blur()}
+												onChange={(e) => setBusinessType(e.target.value)}
 												placeholder=""
-												disabled
+												required
 											/>
 										</div>
 									</div>
@@ -260,49 +272,25 @@ const RequestDetails = () => {
 									<div className={styleClass.inputGroup + ' mb-1'}>
 										<div className="priority-level">
 											<label className="pb-1">Priority level</label>
-
-											<Checkbox label="High" checked={priority === 3} />
-											<Checkbox label="Medium" checked={priority === 2} />
-											<Checkbox label="Low" checked={priority === 1} />
-											<Checkbox label="Not urgent" checked={priority === 0} />
+											<CheckboxGroup setPriority={setPriority} priority={priority} />
 										</div>
 									</div>
 								</div>
 							</StyledFormCard>
-							{status === 5 && (
-								<p className="completed">This Transaction has been completed</p>
-							)}
-							{status === 4 && (
-								<p className="failed">This Transaction has Failed</p>
-							)}
-							<div className="btn-submit my-10">
-								{status >= 3 && (
-									<button
-										className="disputeBtn"
-										onClick={(e) => {
-											e.preventDefault();
-											setDisputeModalActive(true);
-										}}
-									>
-										Open Dispute
-									</button>
-								)}
-
-								{status === 3 ? (
-									<button
-										className="payment"
-										onClick={(e) => router(`/payment?requestid=${requestId}`)}
-									>
-										Make Payment
-									</button>
-								) : (
-									<button
-										className="return"
-										onClick={(e) => router(`/dashboard`)}
-									>
-										Return
-									</button>
-								)}
+                            <div className="status">
+                                <label>Status:</label>
+                                <select onChange={(e) => setStatus(e.target.selectedIndex)} value={status}>
+                                    <option value={0}>Pending</option>
+                                    <option value={1}>In Progress</option>
+                                    <option value={2}>In Progress(mail sent)</option>
+                                    <option value={3}>Completed</option>
+                                    <option value={4}>Failed</option>
+                                    <option value={5}>Paid</option>
+                                </select>
+                            </div>
+							<div className="btn-submit">
+                                <h4 onClick={() => router(-1)}>Return</h4>
+								<button type="submit">Update</button>
 							</div>
 						</form>
 					</StyledContainers>
@@ -312,7 +300,49 @@ const RequestDetails = () => {
 	);
 };
 
-export default RequestDetails;
+export default AdminRequestDetails;
+
+const CheckboxGroup = ({ setPriority, priority }) => {
+	const [currentValue, setCurrentValue] = useState(priority === 3 ? 'High' : priority === 2 ? 'Medium' : priority === 3 ? 'Low' : 'Not urgent');
+
+	return (
+		<>
+			<Checkbox
+				label="High"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('High');
+					setPriority(3);
+					console.log(currentValue);
+				}}
+			/>
+			<Checkbox
+				label="Medium"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('Medium');
+					setPriority(2);
+				}}
+			/>
+			<Checkbox
+				label="Low"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('Low');
+					setPriority(1);
+				}}
+			/>
+			<Checkbox
+				label="Not urgent"
+				currentValue={currentValue}
+				onClick={() => {
+					setCurrentValue('Not urgent');
+					setPriority(0);
+				}}
+			/>
+		</>
+	);
+};
 
 const StyledFormCard = styled.div`
 	background: #fff;
@@ -331,55 +361,31 @@ const StyledFormCard = styled.div`
 			line-height: 35px;
 		}
 	}
+
 	.card_body {
 		padding: 24px 16px;
 	}
 `;
 
 const StyledContainers = styled.div`
-	padding: 40px 0px;
-	margin: 0 auto;
+	padding: 40px 0 20px;
 	font-family: 'Lato', sans-serif;
-	.completed {
-		border-radius: 8px;
-		padding: 16px;
-		border: 1px solid #6ce9a6;
-		background-color: #f6fef9;
-		margin: 20px auto;
-		max-width: 90%;
-		@media (max-width: 470px) {
-			height: auto;
-			max-height: max-content;
-		}
-		max-width: 400px;
-		font-size: 14px;
-		font-weight: 700;
-		line-height: 20px;
-		letter-spacing: 0em;
-		text-align: center;
-		color: #027a48;
-		margin-bottom: 4px;
-		margin-top: 20px;
-	}
-	.failed {
-		border-radius: 8px;
-		padding: 16px;
-		border: 1px solid #d83407;
-		background-color: rgba(256, 52, 15, 0.1);
-		margin: 20px auto;
-		max-width: 90%;
-		@media (max-width: 470px) {
-			height: auto;
-			max-height: max-content;
-		}
-		font-size: 14px;
-		font-weight: 700;
-		line-height: 20px;
-		letter-spacing: 0em;
-		text-align: left;
-		color: #d8340f;
-		margin-bottom: 4px;
-	}
+    .status{
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+        align-items: center;
+        label{
+            margin-bottom: 0 !important;
+        }
+        select{
+            border: 1px solid #000000;
+            border-radius: 4px;
+            height: 40px;
+            width: 150px;
+            outline: none;
+        }
+    }
 	.form {
 		label {
 			display: block;
@@ -454,35 +460,25 @@ const StyledContainers = styled.div`
 		}
 
 		.btn-submit {
-			/* margin-top: 40px; */
+			margin-top: 32px;
 			display: flex;
-			justify-content: flex-end;
+			justify-content: flex-start;
 
 			button {
-				height: 50px;
-				width: 180px;
-				border-radius: 4px;
-				text-align: center;
-				font-weight: 600;
-				font-size: 16px;
-				border: none;
-				transition: 0.5s;
-			}
-
-			.payment,
-			.return {
+				width: 220px;
+				height: 59px;
 				background: #233ba9;
-				color: #fff;
+				border-radius: 4px;
+				padding: 16px 24px;
+				font-size: 18px;
+				border: none;
+				color: white;
+				transition: 0.5s;
+				margin-left: auto;
 
 				&:hover {
 					background: #0a1d88;
 				}
-			}
-			.disputeBtn {
-				border: 1px solid #f16f04;
-				color: #f16f04;
-				background-color: transparent;
-				margin-right: 16px;
 			}
 
 			@media (max-width: 500px) {

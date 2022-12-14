@@ -3,9 +3,11 @@ export const StyledHero = styled.div`
 	@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 	display: flex;
 	align-items: center;
-	max-width: 85%;
 	gap: 100px;
 	margin: 80px auto;
+	max-width: 1200px;
+	justify-content: space-between;
+	width: 100%;
 
 	@media (max-width: 1000px) {
 		flex-direction: column-reverse;
@@ -25,7 +27,6 @@ export const ImgContainer = styled.div`
 	display: flex;
 
 	width: 460px;
-	/* height: 539px; */
 	> img {
 		width: 86%;
 		height: 100%;
@@ -51,25 +52,12 @@ export const ImgContainer = styled.div`
 		max-width: 80%;
 	}
 `;
-// export const DeskImg = styled.img`
-// 	width: 100%;
-// `;
-/*
-width: 539.68px;
-	height: 597.83px
-*/
-// export const MobImg = styled.img`
-// 	display: none;
-// 	@media (max-width: 375px) {
-// 		display: Block;
-// 	}
-// `;
+
 export const ImgContainerMain = styled.div`
 	display: flex;
 	align-items: flex-end;
 	@media (max-width: 1000px) {
 		width: 100%;
-		//background-color: red;
 		display: flex;
 		justify-content: center;
 	}

@@ -27,7 +27,7 @@ export default function Main() {
 
 	useEffect(() => {
 		// Get current user details
-		ApiPrivate.get('/api/auth/details').then((res) => {
+		ApiPrivate.get('/api/lawyer/auth/details').then((res) => {
 			setUser(res.data);
 			setCurrentEmail(res.data.email);
 		});

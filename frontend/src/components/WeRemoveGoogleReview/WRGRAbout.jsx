@@ -100,6 +100,11 @@ const Wrapper = styled.div`
 	// 	padding: 8rem 2rem;
 	// }
 
+	& > div {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
 	div {
 		.container-inner {
 			display: flex;
