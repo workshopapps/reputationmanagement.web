@@ -48,7 +48,7 @@ const Dashboard = () => {
 			fetchAllRequests();
 		}, 5000)
 		return () => clearTimeout(interval)
-	},[])
+	},[fetchAllRequests])
 	useEffect(() => {
 		fetchAllRequests();
 	}, [fetchAllRequests]);
