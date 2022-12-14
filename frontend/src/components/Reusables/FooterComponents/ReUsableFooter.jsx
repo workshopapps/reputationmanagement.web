@@ -6,7 +6,7 @@ import FooterSocials from './FooterSocials';
 const Footer = () => {
 	return (
 		<StyledFooterParent className="bg-[#233BA9] w-full">
-			<footer style={{ maxWidth: '1540px', margin: '0 auto' }}>
+			<footer style={{ maxWidth: '1320px', margin: '0 auto' }}>
 				<StyledFooterWrapper>
 					<FooterSocials />
 					<FooterLinks />
@@ -49,6 +49,10 @@ const StyledFooterWrapper = styled.div`
 	}
 	@media (min-width: 990px) {
 		flex-direction: row;
+	}
+	footer{
+		display: flex;
+		justify-content: space-between;
 	}
 `;
 

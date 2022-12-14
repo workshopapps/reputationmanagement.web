@@ -40,6 +40,15 @@ const Sidebarr = (props) => {
 							Requests
 						</NavLink>
 					</li>
+					<li>
+						<NavLink to="/lawyer-disputes">
+							<RequestIcon
+								fill={location.pathname === '/lawyer-disputes' ? '#F16F04' : '#A5A6A8'}
+							/>
+							Disputes
+						</NavLink>
+					</li>
+
 				</ul>
 				<ul>
 					<li>

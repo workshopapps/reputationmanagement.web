@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GOOGLE from './google.svg';
 import LOGIN from './login.svg';
-import REPUTE from './repute.svg';
+import REPUTE from '../../assets/images/repute_logo.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../../api/axios';
@@ -51,7 +51,7 @@ const LawyerLogin = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/lawyer/auth/sign_in', {
+				const response = await Api.post('/api/lawyer/auth/sign_in', {
 					email: email,
 					password: password,
 				});
@@ -133,7 +133,7 @@ const LawyerLogin = () => {
 								error={
 									password === ''
 										? 'Enter your password'
-										: 'Password Must Be A Minimum Of 8 Characters'
+										: 'Password Must Be A Minimum Of 6 Characters'
 								}
 							/>
 						)}
@@ -161,17 +161,6 @@ const LawyerLogin = () => {
 						{!requestPending ? 'Log In' : <div className="loading"></div>}
 					</SubmitBtn>
 				</StyledForm>
-				<FormFooter>
-					<div className="footer-text">
-						Don't have an account?{' '}
-						<span
-							onClick={() => router('/lawyer-signup')}
-							style={{ cursor: 'pointer' }}
-						>
-							Sign up
-						</span>
-					</div>
-				</FormFooter>
 			</FormSection>
 		</ParentContainer>
 	);
@@ -225,6 +214,14 @@ const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	img{
+		width: 22%;
+	}
+	@media screen and (max-width: 400px){
+		img{
+			width: 28%;
+		}
+	}
 `;
 
 const StyledHead1 = styled.h1`
@@ -270,7 +267,7 @@ const Input1 = styled.div`
 		text-align: left;
 		color: #2b2c34;
 	}
-	img{
+	img {
 		margin: 0;
 	}
 

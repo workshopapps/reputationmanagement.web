@@ -7,7 +7,8 @@ import Cookies from 'js-cookie';
 const handleLogout = () => {
 	Cookies.remove('repboostAccessToken');
 	localStorage.removeItem('auth');
-	window.location.href = '/login';
+	const user_type = localStorage.getItem('user_type')
+	user_type === 'lawyer' ? window.location.href = '/lawyer-login' : window.location.href = '/login';
 };
 
 const LogoutConfirmationModal = ({ isShowing, hide }) =>

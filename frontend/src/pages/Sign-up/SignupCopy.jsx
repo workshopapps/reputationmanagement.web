@@ -7,7 +7,7 @@ import styled from 'styled-components';
 // import GOOGLE from '../Login/google.svg';
 import Api from '../../api/axios';
 import { Link, useNavigate } from 'react-router-dom';
-import ErrorMessage from '../../components/error message/errorMessage';
+import ErrorMessage from '../../components/error message/errorMessageCopy';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
@@ -78,7 +78,7 @@ function Signup() {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/auth/create_account', {
+				const response = await Api.post('/api/auth/create_account', {
 					email: email,
 					password: password,
 					businessEntityName: businessName,

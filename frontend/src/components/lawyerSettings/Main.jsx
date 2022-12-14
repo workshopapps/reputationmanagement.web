@@ -27,16 +27,16 @@ export default function Main() {
 
 	useEffect(() => {
 		// Get current user details
-		ApiPrivate.get('/auth/details').then((res) => {
+		ApiPrivate.get('/api/auth/details').then((res) => {
 			setUser(res.data);
 			setCurrentEmail(res.data.email);
 		});
 		// Get current user accessibility settings
-		ApiPrivate.get('/customer/accessibility').then((res) => {
+		ApiPrivate.get('/api/customer/accessibility').then((res) => {
 			setAccessibility(res.data);
 		});
 		// Get current user notification settings
-		ApiPrivate.get('/notification_settings').then((res) => {
+		ApiPrivate.get('/api/notification_settings').then((res) => {
 			setNotification(res.data);
 		});
 	}, [ApiPrivate]);

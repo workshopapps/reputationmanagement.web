@@ -64,7 +64,7 @@ export const LogoContainer = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	.lgr{
-		width: 30%;
+		width: 20%;
 	}
 	div {
 		width: 50%;

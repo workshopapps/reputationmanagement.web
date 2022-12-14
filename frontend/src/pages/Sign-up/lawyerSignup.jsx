@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Closed from './Assets/eye-slash.png';
-import REPUTE from './Assets/repute.svg';
+import REPUTE from '../../assets/images/repute_logo.svg';
 import background from './Assets/image-logo.png';
 import styled from 'styled-components';
 import GOOGLE from '../Login/google.svg';
@@ -61,7 +61,7 @@ const LawyerSignup = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/lawyer/auth/create_account', {
+				const response = await Api.post('/api/lawyer/auth/create_account', {
 					email: email,
 					password: password,
 					firstName: firstName,
@@ -255,7 +255,7 @@ const LawyerSignup = () => {
 									? 'invalid '
 									: 'term-form'
 							}
-							style={{ marginTop: '10px'}}
+							style={{ marginTop: '10px' }}
 						>
 							<input
 								type="checkbox"

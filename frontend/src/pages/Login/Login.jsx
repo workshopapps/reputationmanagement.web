@@ -53,7 +53,7 @@ const Login = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/auth/sign_in', {
+				const response = await Api.post('/api/auth/sign_in', {
 					email: email,
 					password: password,
 				});
@@ -135,7 +135,7 @@ const Login = () => {
 								error={
 									password === ''
 										? 'Enter your password'
-										: 'Password Must Be A Minimum Of 8 Characters'
+										: 'Password Must Be A Minimum Of 6 Characters'
 								}
 							/>
 						)}

@@ -23,14 +23,17 @@ const MailModal = (props) => {
 
 	const changeRequestStatus = async () => {
 		try {
-			const response = await ApiPrivate.patch(`/lawyer/review/${requestId}`, [
-				{
-					operationType: 2,
-					path: '/status',
-					op: 'replace',
-					value: 2,
-				},
-			]);
+			const response = await ApiPrivate.patch(
+				`/api/lawyer/review/${requestId}`,
+				[
+					{
+						operationType: 2,
+						path: '/status',
+						op: 'replace',
+						value: 2,
+					},
+				]
+			);
 			console.log(response);
 		} catch (err) {
 			console.log(err);
@@ -40,7 +43,7 @@ const MailModal = (props) => {
 	const handleSubmit = async () => {
 		setLoading(true);
 		try {
-			const response = await ApiPrivate.post('/lawyer/email/create', {
+			const response = await ApiPrivate.post('/api/lawyer/email/create', {
 				emailToId: props.userEmail,
 				emailBody: email,
 			});
@@ -49,6 +52,7 @@ const MailModal = (props) => {
 			setSuccessMessage('Mail sent successfully');
 			setRequestSuccess(true);
 			changeRequestStatus();
+			setEmail('')
 			setTimeout(() => {
 				setMailModalActive(false);
 				router('/requests');

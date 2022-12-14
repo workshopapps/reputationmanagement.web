@@ -118,7 +118,7 @@ const LandingPage = () => {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			const response = await Api.post('/createquote', formData);
+			const response = await Api.post('/api/quote', formData);
 			toast.success('Your response has been submitted', {
 				position: 'top-left',
 			});
@@ -251,7 +251,7 @@ const LandingPage = () => {
 								</div>
 								<picture>
 									<source media="(max-width: 640px)" srcSet={steps_mobile} />
-									<img src={steps} alt="complaint screen" />
+									<img src={steps} alt="complaint screen" style={{ maxWidth: '1200px', margin: '0 auto'}}/>
 								</picture>
 
 								<Link to="/signup">
@@ -262,7 +262,7 @@ const LandingPage = () => {
 							</div>
 						</StyledHeroSectionWrapper>
 					</HeroSection>
-					
+
 					{/************************************NEW HOW DOES IT WORK SECTION****************************************/}
 					<StyledContainer>
 						<HowDoesItWork>

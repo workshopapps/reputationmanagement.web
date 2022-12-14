@@ -33,7 +33,7 @@ const Footer = () => {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			const response = await Api.post('/createquote', formData);
+			const response = await Api.post('/api/createquote', formData);
 			toast.success('Your response has been submitted', {
 				position: 'top-left',
 			});
@@ -70,7 +70,7 @@ const Footer = () => {
 				{/************************REgister****************************************/}
 
 				<StyledForm onSubmit={handleSubmit}>
-					<div >
+					<div>
 						<input
 							type="text"
 							placeholder="Fullname*"
@@ -78,7 +78,7 @@ const Footer = () => {
 							onChange={handleChange}
 							value={formData.fullName}
 							required
-							className='left'
+							className="left"
 						/>
 						<input
 							type="text"
@@ -87,7 +87,7 @@ const Footer = () => {
 							onChange={handleChange}
 							value={formData.phone}
 							required
-							className='right'
+							className="right"
 						/>
 					</div>
 					<div>
@@ -98,7 +98,7 @@ const Footer = () => {
 							onChange={handleChange}
 							value={formData.email}
 							required
-							className='left'
+							className="left"
 						/>
 						<input
 							type="text"
@@ -107,7 +107,7 @@ const Footer = () => {
 							onChange={handleChange}
 							value={formData.businessName}
 							required
-							className='right'
+							className="right"
 						/>
 					</div>
 					<div>
@@ -118,7 +118,6 @@ const Footer = () => {
 							onChange={handleChange}
 							value={formData.reviewLocation}
 							required
-							
 						/>
 					</div>
 
@@ -176,7 +175,7 @@ const Footer = () => {
 // Styling
 
 const StyledButton = styled.button`
-	background: #233BA9;
+	background: #233ba9;
 	border: none;
 	border-radius: 8px;
 	padding: 12px 12px;
@@ -203,7 +202,7 @@ const StyledButton = styled.button`
 `;
 
 const Div1 = styled.div`
- margin-right: 10px;
+	margin-right: 10px;
 `;
 
 const StyledForm = styled.form`
@@ -220,44 +219,41 @@ const StyledForm = styled.form`
 		column-gap: 5px;
 
 		@media (max-width: 768px) {
-		flex-direction: column;
-		width: 100%;
-	}
-	 input{
-		border: 1px solid #a09f9f;
-		// border: none;
-		border-radius: 8px;
-		background: #fff;
-		height: 43px;
-		// width: 245px;
-		width: 50%;
-		// gap: 13px;
-		padding: 15px 12px;
-		margin-bottom: 10px;
-		.left{
-			margin-right: 15px;
-		}
-		.right{
-			margin-left: 50%;
-		}
-
-		&::placeholder {
-			// font-size: 14px;
-			color: #667085;
-		}
-		&:focus {
-			outline: none;
-		}
-		@media (max-width: 840px) {
+			flex-direction: column;
 			width: 100%;
 		}
+		input {
+			border: 1px solid #a09f9f;
+			// border: none;
+			border-radius: 8px;
+			background: #fff;
+			height: 43px;
+			// width: 245px;
+			width: 50%;
+			// gap: 13px;
+			padding: 15px 12px;
+			margin-bottom: 10px;
+			.left {
+				margin-right: 15px;
+			}
+			.right {
+				margin-left: 50%;
+			}
 
-		
+			&::placeholder {
+				// font-size: 14px;
+				color: #667085;
+			}
+			&:focus {
+				outline: none;
+			}
+			@media (max-width: 840px) {
+				width: 100%;
+			}
+		}
 	}
-}
 
 	div .review-input {
-		
 		width: 100%;
 		border: 1px solid #a09f9f;
 		// border: none;
@@ -271,14 +267,13 @@ const StyledForm = styled.form`
 		&:focus {
 			outline: none;
 		}
-		
 	}
 
-	.form-footer-info{
+	.form-footer-info {
 		font-size: 95%;
 		text-align: start;
 		margin: 5px 0;
-		a{
+		a {
 			color: #f16f04;
 		}
 	}

@@ -4,7 +4,7 @@ import REPUTE from '../../assets/images/repute_logo.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../../api/axios';
-import ErrorMessage from '../../components/error message/errorMessage';
+import ErrorMessage from '../../components/error message/errorMessageCopy';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
@@ -48,7 +48,7 @@ const Login = () => {
 		if (pageValid) {
 			setRequestPending(true);
 			try {
-				const response = await Api.post('/auth/sign_in', {
+				const response = await Api.post('/api/auth/sign_in', {
 					email: email,
 					password: password,
 				});
@@ -129,7 +129,7 @@ const Login = () => {
 							error={
 								password === ''
 									? 'Password Required'
-									: 'Password Must Be A Minimum Of 8 Characters'
+									: 'Password Must Be A Minimum Of 6 Characters'
 							}
 						/>
 					)}

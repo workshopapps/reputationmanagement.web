@@ -115,7 +115,7 @@ export const StyledLandingPage = styled.div`
 
 export const HeroTextDiv = styled.div`
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	margin: 0 auto;
 	// max-width: 1540px;
 	margin-bottom: 70px;

@@ -33,7 +33,7 @@ const Dashboard = () => {
 	const fetchAllRequests = useCallback(async () => {
 		try {
 			const response = await ApiPrivate.get(
-				'/reviews?pageNumber=0&pageSize=100'
+				'/api/reviews?pageNumber=0&pageSize=100'
 			);
 			setAllRequests(response?.data);
 		} catch (err) {
@@ -85,7 +85,7 @@ const Dashboard = () => {
 							digit={
 								allRequests
 									? allRequests.filter((data) => {
-											return data.status === 'In Progress';
+											return data.status === 1 || data.status === 2;
 									  }).length
 									: '0'
 							}
@@ -96,7 +96,7 @@ const Dashboard = () => {
 							digit={
 								allRequests
 									? allRequests.filter((data) => {
-											return data.status === 'Done';
+											return data.status === 3 || data.status === 5;
 									  }).length
 									: '0'
 							}
@@ -133,14 +133,12 @@ const Dashboard = () => {
 									if (searchTicket === '') {
 										return data;
 									} else if (
-										data.ticketName
+										data.complainerName
 											.toLowerCase()
 											.includes(searchTicket.toLowerCase())
 									) {
 										return data;
 									}
-
-									return data;
 								})
 								.map((data, index) => {
 									return (

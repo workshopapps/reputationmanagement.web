@@ -116,7 +116,7 @@ const Index2 = () => {
 	const handleSubmit = async () => {
 		setLoading(true);
 		try {
-			const response = await Api.post('/createquote', formData);
+			const response = await Api.post('/api/createquote', formData);
 			setLoading(false);
 			setSuccessMessage('Your response has been submitted');
 			setRequestSuccess(true);
