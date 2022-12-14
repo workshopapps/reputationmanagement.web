@@ -43,27 +43,6 @@ const Requests = () => {
 		try {
 			const response = await ApiPrivate.get('/api/lawyer/GetClaimedReviews');
 			setClaimedReviews(response?.data);
-			// setInProgressRequests(
-			// 	claimedReviews
-			// 		? claimedReviews.filter((data) => {
-			// 				return [data.status === 1] || [data.status === 2]
-			// 			}).length
-			// 		: 0
-			// )
-			// setSuccessfulRequests(
-			// 	claimedReviews
-			// 	? claimedReviews.filter((data) => {
-			// 			return [data.status === 3]
-			// 		}).length
-			// 	: 0
-			// )
-			// setFailedRequests(
-			// 	claimedReviews
-			// 	? claimedReviews.filter((data) => {
-			// 			return [data.status === 4]
-			// 		}).length
-			// 	: 0
-			// )
 		} catch (err) {
 			if (err?.response?.status) {
 				setErrMessage("Couldn't fetch your request");
@@ -74,39 +53,35 @@ const Requests = () => {
 	};
 
 	useEffect(() => {
-		claimedReviews
-			?
-			claimedReviews.filter((data) => {
-				console.log(data.status === 1 || data.status === 2)
-			})
-			:
-			console.log('nothing')
-	},[claimedReviews])
+		if (claimedReviews.length) {
+			setInProgressRequests(
+				claimedReviews.filter((data) => {
+					return data.status === 1 || data.status === 2;
+				})
+			);
+
+			setSuccessfulRequests(
+				claimedReviews.filter((data) => {
+					return data.status === 3;
+				})
+			);
+
+			setFailedRequests(
+				claimedReviews.filter((data) => {
+					return data.status === 4;
+				})
+			);
+		}
+	}, [claimedReviews]);
 	useEffect(() => {
 		fetchDetails();
 		fetchMyDetails();
 	}, []);
 
-	// useEffect(() => {
-	// 	claimedReviews
-	// 		? claimedReviews.filter((data) => {
-	// 				if (data.status === 4) {
-	// 					setFailedRequests(data);
-	// 				} else if (data.status === 3) {
-	// 					setSuccessfulRequests(data);
-	// 				} else if (data.status === 1 || data.status === 2) {
-	// 					setInProgressRequests(data);
-	// 				}
-	// 		  })
-	// 		: console.log('No claimed reviews');
-	// }, [claimedReviews]);
-
 	return (
 		<div className="requests">
 			<LawyerDashboardLayout>
 				<StyledRequest>
-					{/* <p className="username">Hi,{username}</p>
-					<h2>Requests</h2> */}
 					<div
 						className="claimed-tickets tickets"
 						onClick={() => setShowMyRequests(!showMyRequests)}
@@ -135,8 +110,7 @@ const Requests = () => {
 									{tickets.length >= 1 && (
 										<tbody>
 											{tickets
-												? 
-												tickets.map((data, index) => {
+												? tickets.map((data, index) => {
 														return (
 															<LawyerTableData
 																id={data.reviewId}
@@ -237,7 +211,7 @@ const Requests = () => {
 									</thead>
 									{inProgressRequests.length >= 1 && (
 										<tbody>
-											{inProgressRequests.map((data,index) => {
+											{inProgressRequests.map((data, index) => {
 												return (
 													<LawyerTableData
 														id={data.reviewId}
