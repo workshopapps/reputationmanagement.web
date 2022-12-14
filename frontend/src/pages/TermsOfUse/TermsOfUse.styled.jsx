@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	scroll-behavior: smooth;
-	max-width: 90%;
+	max-width: 1200px;
 	min-height: 100vh;
 	margin: 0px auto;
 `;

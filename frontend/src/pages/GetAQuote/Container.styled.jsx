@@ -16,6 +16,7 @@ export const Container = styled.div`
 	width: 100%;
 	max-width: 91%;
 	min-height: 100vh;
+	max-width: 1200px;
 
 	@media (min-width: 700px) and (max-width: 900px) {
 		max-width: 95%;
@@ -90,7 +91,7 @@ export const StyledPopup = styled.div`
 	}
 
 	@media (min-width: 200px) and (max-width: 500px) {
-		width: 400%px;
+		width: 400px;
 		height: 300px;
 	}
 `;

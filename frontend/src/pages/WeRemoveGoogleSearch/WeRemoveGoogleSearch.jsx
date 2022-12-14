@@ -436,6 +436,13 @@ export const StyledText2 = Styled(StyledText)`
 
 export const ImageSection = Styled.div`
 	margin: 100px 0;
+	width: 100%;
+
+
+	img {
+		width: 100%
+	}
+
 `;
 
 export const StyledSlider = Styled.div`

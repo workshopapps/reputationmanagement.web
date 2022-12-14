@@ -50,7 +50,7 @@ const StyledFooterWrapper = styled.div`
 	@media (min-width: 990px) {
 		flex-direction: row;
 	}
-	footer{
+	footer {
 		display: flex;
 		justify-content: space-between;
 	}
