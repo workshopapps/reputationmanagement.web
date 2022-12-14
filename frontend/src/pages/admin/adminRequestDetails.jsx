@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Checkbox from '../../components/requestFormComponents/checkBox';
 import Rate from '../../components/requestFormComponents/rating';
-import Sidebar from '../../components/Reusables/Sidebar';
 import WebAppNav from '../../components/Reusables/WebAppNav';
 import {
 	StyledDashboard,
@@ -12,55 +11,101 @@ import useAppContext from '../../hooks/useAppContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RequestFailed from '../../components/request status/requestFailed';
 import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import AdminSideBar from './adminSideBar';
 
-const RequestForm = () => {
+const AdminRequestDetails = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [rating, setRating] = useState(0); ///set initial state for rating
 
+	const location = useLocation();
+	const requestId = new URLSearchParams(location.search).get('requestId');
 	//const [checked, setChecked] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [date, setDate] = useState('');
+    const [ year, setYear ] = useState('')
 	const [time, setTime] = useState('');
 	const [priority, setPriority] = useState(0);
 	const [review, setReview] = useState('');
 	const [reviewLink, setReviewLink] = useState('');
 	const [websitename, setWebsiteName] = useState('');
 	const [businesstype, setBusinessType] = useState('');
-	const { setRequestSuccessfulModalActive, setErrMessage, setRequestFailed } =
+    const [ status, setStatus ] = useState(0)
+	const {		
+        setRequestFailed,
+		setRequestSuccess,
+		setErrMessage,
+		setSuccessMessage,
+    } =
 		useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
+
+    const router = useNavigate();
 
 	const Today = new Date();
 
 	let month = Today.getMonth() + 1;
 	let day = Today.getDate();
-	const year = Today.getFullYear();
+	const fullyear = Today.getFullYear();
 	if (month < 10) month = '0' + month.toString();
 	if (day < 10) day = '0' + day.toString();
-	const maxDate = year + '-' + month + '-' + day;
+	const maxDate = fullyear + '-' + month + '-' + day;
 
+    useEffect(() => {
+        setTime(
+            date.substring(11,16)
+        )
+        setYear(
+            date.substring(0,10)
+        )
+    },[date])
+    const fetchComplaintDetails = async () => {
+		try {
+			const response = await ApiPrivate.get(`/api/admin/reviews/${requestId}`);
+			setEmail(response?.data?.email);
+			setPriority(response?.data?.priority);
+			setName(response?.data?.complainerName);
+			setRating(response?.data?.rating);
+			setReview(response?.data?.reviewString);
+			setReviewLink(response?.data?.reviewLink);
+			setWebsiteName(response?.data?.websiteName);
+			setDate(response?.data?.timeOfReview);
+			setStatus(response?.data?.status);
+			setBusinessType(response?.data?.businessType);
+		} catch (err) {
+			setErrMessage("can't get details of request");
+			setRequestFailed(true);
+			console.log(err);
+		}
+	};
+
+    useEffect(() => {
+        fetchComplaintDetails()
+    },[])
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await ApiPrivate.post('/api/review', {
+			const response = await ApiPrivate.put(`/api/admin/reviews/${requestId}?reviewId=${requestId}`, {
 				email: email,
-				timeOfReview: date + 'T' + time,
+				timeOfReview: year + 'T' + time,
 				reviewString: review,
 				rating: rating,
 				websiteName: websitename,
 				businessType: businesstype,
 				priority: priority,
-				status: 0,
+				status: status,
 				complainerName: name,
 				reviewLink: reviewLink,
 			});
-			setRequestSuccessfulModalActive(true);
+            setSuccessMessage('Request updated successfully')
+            setRequestSuccess(true)
+            router(-1)
 		} catch (err) {
 			setRequestFailed(true);
-			setErrMessage("Couldn't create request");
-			setRequestSuccessfulModalActive(false);
+			setErrMessage("Couldn't update requests");
+			setRequestFailed(true)
 			console.log(err);
 		}
 	};
@@ -73,7 +118,7 @@ const RequestForm = () => {
 		<>
 			<RequestFailed />
 			<StyledDashboard>
-				<Sidebar
+				<AdminSideBar
 					className={`${openMenu ? 'open' : ''}`}
 					closeMenuHandler={() => setOpenMenu(false)}
 				/>
@@ -169,8 +214,9 @@ const RequestForm = () => {
 												type="date"
 												name="date"
 												id="date"
-												onChange={(e) => setDate(e.target.value)}
+												onChange={(e) => setYear(e.target.value)}
 												required
+                                                value={year}
 												max={maxDate}
 											/>
 										</div>
@@ -182,6 +228,7 @@ const RequestForm = () => {
 												name="time"
 												id="time"
 												required
+                                                value={time}
 												onChange={(e) => setTime(e.target.value)}
 											/>
 										</div>
@@ -225,14 +272,25 @@ const RequestForm = () => {
 									<div className={styleClass.inputGroup + ' mb-1'}>
 										<div className="priority-level">
 											<label className="pb-1">Priority level</label>
-											<CheckboxGroup setPriority={setPriority} />
+											<CheckboxGroup setPriority={setPriority} priority={priority} />
 										</div>
 									</div>
 								</div>
 							</StyledFormCard>
-
+                            <div className="status">
+                                <label>Status:</label>
+                                <select onChange={(e) => setStatus(e.target.selectedIndex)} value={status}>
+                                    <option value={0}>Pending</option>
+                                    <option value={1}>In Progress</option>
+                                    <option value={2}>In Progress(mail sent)</option>
+                                    <option value={3}>Completed</option>
+                                    <option value={4}>Failed</option>
+                                    <option value={5}>Paid</option>
+                                </select>
+                            </div>
 							<div className="btn-submit">
-								<button type="submit">Submit</button>
+                                <h4 onClick={() => router(-1)}>Return</h4>
+								<button type="submit">Update</button>
 							</div>
 						</form>
 					</StyledContainers>
@@ -242,10 +300,10 @@ const RequestForm = () => {
 	);
 };
 
-export default RequestForm;
+export default AdminRequestDetails;
 
-const CheckboxGroup = ({ setPriority }) => {
-	const [currentValue, setCurrentValue] = useState('');
+const CheckboxGroup = ({ setPriority, priority }) => {
+	const [currentValue, setCurrentValue] = useState(priority === 3 ? 'High' : priority === 2 ? 'Medium' : priority === 3 ? 'Low' : 'Not urgent');
 
 	return (
 		<>
@@ -312,7 +370,22 @@ const StyledFormCard = styled.div`
 const StyledContainers = styled.div`
 	padding: 40px 0 20px;
 	font-family: 'Lato', sans-serif;
-
+    .status{
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+        align-items: center;
+        label{
+            margin-bottom: 0 !important;
+        }
+        select{
+            border: 1px solid #000000;
+            border-radius: 4px;
+            height: 40px;
+            width: 150px;
+            outline: none;
+        }
+    }
 	.form {
 		label {
 			display: block;

@@ -23,6 +23,15 @@ export const StyledContainer = styled.div`
 	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
+	h2{
+		font-family: Lato;
+		font-size: 28px;
+		font-weight: 700;
+		line-height: 42px;
+		letter-spacing: 0em;
+		text-align: left;
+		margin-bottom: 36px;
+	}
 	.noRequest {
 		text-align: center;
 		width: 100%;

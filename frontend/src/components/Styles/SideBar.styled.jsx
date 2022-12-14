@@ -61,6 +61,9 @@ export const StyledSidebar = styled.aside`
 				svg {
 					fill: #f16f04;
 					stroke: none;
+					*{
+						fill: #f16f04 !important;
+					}
 				}
 			}
 		}

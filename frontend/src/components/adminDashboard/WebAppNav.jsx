@@ -57,4 +57,20 @@ const WebAppNav = (props) => {
 	);
 };
 
+export const LawyerWebAppNav = (props) => {
+
+	return (
+		<StyledWebAppNav>
+			<LogoContainer>
+				<div>
+					<img src={menu} alt="" onClick={props.openMenuHandler} />
+				</div>
+				<div>
+					<img src={logo} id="site-logo" alt="" className="lgr" />
+				</div>
+			</LogoContainer>
+		</StyledWebAppNav>
+	);
+};
+
 export default WebAppNav;
