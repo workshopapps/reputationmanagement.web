@@ -15,7 +15,7 @@ export const styleClass = {
 export const StyledTab = styled.div`
 	color: #2b2c34;
 	max-width: 760px;
-	margin: 24px auto;
+	margin: 24px 0px;
 
 	input,
 	textarea {
