@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+// import { useLocation } from 'react-router-dom';
 import Sidebar from '../Reusables/Sidebar';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled from 'styled-components';
+// import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
 const UserDisputes = () => {
-    const [width, setWidth] = useState(window.innerWidth);
-    useEffect(() => {
-        window.addEventListener('resize', () => {
-            setWidth(window.innerWidth);
-        });
-    }, [window.innerWidth]);
-    const hideMobile = `${width <= 800 ? 'hidden' : 'block'}`;
+    // const [setWidth] = useState(window.innerWidth);
+    // useEffect(() => {
+    //     window.addEventListener('resize', () => {
+    //         setWidth(window.innerWidth);
+    //     });
+    // }, []);
+    // const hideMobile = `${width <= 800 ? 'hidden' : 'block'}`;
 
     const ApiPrivate = useAxiosPrivate();
 
@@ -83,7 +85,7 @@ const UserDisputes = () => {
                                                             : 'text-[#f16f04] font-semibold'
                                                     } ${
                                                         status === 1 ? '' : ''
-                                                    } px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-center text-center`}
+                                                    } px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-flexstart text-start pl-[10px]`}
                                                 >
                                                     {status === 1 ? 'Closed' : 'Open'}{' '}
                                                 </Status>
@@ -134,8 +136,10 @@ const Th = styled.th`
     font-weight: 500;
 `;
 const Status = styled.td`
-    padding: 0px;
-    height: 40px;
+    // text-align: start;
+	
+	display: flex;
+    // height: 40px;
     // align-self: center;
 `;
 const TableContain = styled.table`
