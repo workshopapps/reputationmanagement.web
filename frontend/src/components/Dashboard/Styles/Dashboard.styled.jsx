@@ -240,12 +240,55 @@ export const TableContainer = styled.table`
 		&:first-child {
 			padding-left: 16px;
 		}
+		max-width: 1291px;
+
+		@media(min-width:1325px){
+			&:nth-of-type(1) {
+				width: 10%;
+			}
+			&:nth-of-type(2) {
+				width: 20%;
+			}
+			&:nth-of-type(3) {
+				width: 20%;
+			}
+			&:nth-of-type(4) {
+				width: 20%;
+			}
+			&:nth-of-type(5) {
+				width: 20%;
+			}
+			&:nth-of-type(6) {
+				width: 10%;
+			}
+		}
 	}
 
 	td {
 		padding-top: 24px;
 		padding-bottom: 19px;
+		max-width: 1291px;
 
+		@media(min-width:1325px){
+			&:nth-of-type(1) {
+				width: 10%;
+			}
+			&:nth-of-type(2) {
+				width: 20%;
+			}
+			&:nth-of-type(3) {
+				width: 20%;
+			}
+			&:nth-of-type(4) {
+				width: 20%;
+			}
+			&:nth-of-type(5) {
+				width: 20%;
+			}
+			&:nth-of-type(6) {
+				width: 10%;
+			}
+		}
 		&:nth-of-type(1) {
 			width: 90px;
 			font-weight: 400;
@@ -313,38 +356,46 @@ export const TableContainer = styled.table`
 	.priority-3 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
+		text-align: center;
 	}
 	.status-3 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
+		text-align: center;
 	}
 	.status-4 {
 		background: #fecdca !important;
 		color: #b42318 !important;
+		text-align: center;
 	}
 	.status-5 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
+		text-align: center;
 	}
 	.priority-2 {
 		background: #ffe5b2;
 		color: #d6981b;
+		text-align: center;
 	}
 
 	.priority-1,
 	.priority-0 {
 		background: #fecdca;
 		color: #b42318;
+		text-align: center;
 	}
 
 	.status-1,
 	.status-2 {
 		background: rgba(1, 176, 216, 0.15);
 		color: #01586c;
+		text-align: center;
 	}
 	.status-0 {
 		background: #ffe5b2;
 		color: #d6981b;
+		text-align: center;
 	}
 
 	@media (max-width: 900px) {

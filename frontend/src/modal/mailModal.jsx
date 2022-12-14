@@ -4,6 +4,7 @@ import { StyledOverlay } from './request-successful/styles';
 import useAppContext from '../hooks/useAppContext';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
+import CLOSE from './close.svg';
 
 const MailModal = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -67,15 +68,10 @@ const MailModal = (props) => {
 	return (
 		<StyledOverlay>
 			<StyledMailModal>
-				<h3 onClick={() => setMailModalActive(false)}>X</h3>
-				<h2>Send a mail to this {props.userEmail}</h2>
-				<textarea
-					defaultValue={email}
-					onChange={(e) => setEmail(e.target.value)}
-				></textarea>
-				<button className="submit" onClick={() => handleSubmit()}>
-					{!loading ? 'Send' : <div className="loading"></div>}
-				</button>
+				<div className="top">
+					<h2>Claim Ticket</h2>
+					<img src={CLOSE} alt=""/>
+				</div>
 			</StyledMailModal>
 		</StyledOverlay>
 	);

@@ -29,7 +29,7 @@ const TableData = (props) => {
 			<td>
 				<p className={`status-${props.status}`}>
 					{props.status === 5
-						? 'PAID'
+						? 'Paid'
 						: props.status === 4
 						? 'Failed'
 						: props.status === 3
@@ -78,7 +78,7 @@ export const LawyerTableData = (props) => {
 			<td>
 				<p className={`status-${props.status}`}>
 					{props.status === 5
-						? 'PAID'
+						? 'Paid'
 						: props.status === 4
 						? 'Failed'
 						: props.status === 3
