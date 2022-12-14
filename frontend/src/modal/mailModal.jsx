@@ -46,7 +46,8 @@ const MailModal = (props) => {
 		setLoading(true);
 		try {
 			const response = await ApiPrivate.post('/api/lawyer/email/create', {
-				emailBody: email,
+				reviewId: requestId,
+				emailBody: email + `. The charge for my service is ${price}$`,
 				price: price,
 			});
 			setLoading(false);
@@ -74,9 +75,9 @@ const MailModal = (props) => {
 					<img onClick={() => setMailModalActive(false)} src={CLOSE} alt=""/>
 				</div>
 				<div className="main">
-					<div className="to">
+					{/* <div className="to">
 						<h4>To: <span>{props.userEmail}</span></h4>
-					</div>
+					</div> */}
 					<div className="review-removal">
 						<h4>Review Removal</h4>
 					</div>

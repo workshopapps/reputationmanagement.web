@@ -5,6 +5,9 @@ export const StyledCard = styled.div`
 	padding: 24px 33px 24px 33px;
 	border: 1px solid #e4e4e5;
 	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	img {
 		/* width: fit-content; */

@@ -102,7 +102,7 @@ const AdminRequestsPage = () => {
                                         }
                                     })
                                     .map((data) => {
-                                        return <RequestCard setDeleteRequestModalActive={setDeleteRequestModalActive} setReviewId={setReviewId} key={data.reviewId} reviewId={data.reviewId} clientName={data.websiteName} businessType={data.businessType} email={data.email} requestDate={data.lastUpdated.substring(0,10)}/>
+                                        return <RequestCard setDeleteRequestModalActive={setDeleteRequestModalActive} setReviewId={setReviewId} key={data.reviewId} reviewId={data.reviewId} clientName={data.websiteName} businessType={data.businessType} email={data.email} requestDate={ data?.updatedAt.substring(0,10)}/>
                                     })
                             :
                             <h4>No requests found</h4>

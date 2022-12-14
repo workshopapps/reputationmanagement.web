@@ -28,11 +28,11 @@ import removal from './assets/removal.svg';
 import progress from './assets/progress.svg';
 import arrow from './assets/arrow.svg';
 import airbnb from './assets/airbnb.svg';
-import shape from './assets/shape.svg';
+import reddit from './assets/reddit.svg';
 import spotify from './assets/spotify.svg';
-import canon from './assets/canon.svg';
-import dot from './assets/dot.svg';
-import ups from './assets/ups.svg';
+import kellogs from './assets/kellogs.svg';
+import stripe from './assets/stripe.svg';
+import dominos from './assets/dominos.svg';
 import Avater0 from '../../assets/images/WeRemoveGoogleSearch/Avatar0.svg';
 import Avater1 from '../../assets/images/WeRemoveGoogleSearch/Avatar1.svg';
 import Avater2 from '../../assets/images/WeRemoveGoogleSearch/Avatar2.svg';
@@ -378,14 +378,12 @@ const LandingPage = () => {
 						<StyledContainer2>
 							<p>Used and loved by 1M users across 199 countries</p>
 							<StyledCompanies>
-								<>
-									<img src={airbnb} alt="" />
-									<img src={shape} alt="" />
-									<img src={spotify} alt="" />
-									<img src={canon} alt="" />
-									<img src={dot} alt="" />
-									<img src={ups} alt="" />
-								</>
+								<img src={airbnb} alt="" />
+								<img src={spotify} alt="" />
+								<img src={reddit} alt="" />
+								<img src={kellogs} alt="" />
+								<img src={stripe} alt="" />
+								<img src={dominos} alt="" />
 							</StyledCompanies>
 						</StyledContainer2>
 					</StyledContainer>
@@ -587,20 +585,17 @@ const StyledContainer2 = styled.div`
 const StyledCompanies = styled.div`
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
+	gap: 30px;
 	padding: 0 10%;
 	margin-bottom: 5px;
+	@media(max-width:1041px){
+		justify-content: center;
+	}
 	@media screen and (max-width: 884px) {
 		padding: 0 20px;
-	}
-
-	img {
-		width: 8%;
-		// margin-right: 20px;
-		@media screen and (max-width: 884px) {
-			width: 15%;
-		}
 	}
 `;
 const ColorBg = styled.div`
