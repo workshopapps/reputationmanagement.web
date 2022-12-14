@@ -1,9 +1,53 @@
 import React, { useState, useEffect } from 'react';
+// import arrowDown from './assets/arrow-down.svg';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled, { keyframes } from 'styled-components';
 
+const DataTemp = [
+	{
+		ID: 2314028,
+		Name: 'Raya Enterprises',
+		Email: 'rayaenterprises.ng',
+		PhoneNo: '070456780',
+		Website: 'rayaenterprises.ng',
+		Dispute: 'Closed',
+	},
+	{
+		ID: 2314028,
+		Name: 'Raya Enterprises',
+		Email: 'rayaenterprises.ng',
+		PhoneNo: '070456782',
+		Website: 'rayaenterprises.ng',
+		Dispute: 'Closed',
+	},
+	{
+		ID: 2314028,
+		Name: 'Raya Enterprises',
+		Email: 'rayaenterprises.ng',
+		PhoneNo: '070456780',
+		Website: 'rayaenterprises.ng',
+		Dispute: 'Open',
+	},
+	{
+		ID: 2314028,
+		Name: 'Raya Enterprises',
+		Email: 'rayaenterprises.ng',
+		PhoneNo: '070456780',
+		Website: 'rayaenterprises.ng',
+		Dispute: 'Closed',
+	},
+	{
+		ID: 2314028,
+		Name: 'Raya Enterprises',
+		Email: 'rayaenterprises.ng',
+		PhoneNo: '070456780',
+		Website: 'rayaenterprises.ng',
+		Dispute: 'Closed',
+	},
+];
 export const DisputeTab = (props) => {
+	const hideForMobile = `${props.width <= 800 ? 'hidden' : 'block'}`;
 	const router = useNavigate();
 	const ApiPrivate = useAxiosPrivate();
 
@@ -41,27 +85,23 @@ export const DisputeTab = (props) => {
 						<tbody
 							className="w-full"
 							key={index + 1}
+							onClick={() => router(`/lawyer-dispute-details?requestId=${id} `)}
 						>
-							<TabRow className="flex hover:bg-[#E4E4E54D] gap-[10%]  rounded-md pt-2 pb-2 md:gap-[6%] border-b px-2 items-center ">
+							<tr className="flex hover:bg-[#E4E4E54D] rounded-md cursor-pointer pt-2 pb-2 justify-between border-b px-2 items-end ">
 								<td className="w-[5%]">{index + 1}</td>
-								<Emailtab className="text-left w-[25%] break-normal">{badReviewerEmail}</Emailtab>
-								<Complaint className="text-left w-[25%]">{complaint}</Complaint>
+								<td className="text-left">{badReviewerEmail}</td>
+								<td className="text-left w-[25%]">{complaint}</td>
 								<Status
 									className={`${
 										status === 1 ? 'text-green-900' : 'text-red-900'
 									} ${
 										status === 1 ? 'bg-[#D1FADF]' : 'bg-[#FECDCA]'
-									} px-1 py-1 rounded-sm w-[80px] flex items-center scale-[0.9] md:scale-full justify-center text-center`}
+									} px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-center w-[10%] text-center`}
 								>
 									{' '}
 									{status === 1 ? 'Closed' : 'Open'}{' '}
 								</Status>
-                        <td className=" cursor-pointer text-[12px] md:text-[16px] text-[#233ba9] "
-                        							onClick={() => router(`/lawyer-dispute-details?requestId=${id}`)}
-
-                        >View Details </td>
-
-							</TabRow>
+							</tr>
 						</tbody>
 					);
 				})
@@ -95,22 +135,4 @@ const Status = styled.td`
 	@media (max-width: 600px) {
 		display: flex;
 	}
-`
-const Emailtab = styled.td`
-	@media (max-width: 768px) {
-		display: none;
-	}
-`
-const TabRow = styled.tr `
-@media (max-width: 600px) {
-		gap:0%;
-      justify-content:space-between;
-	}
-
-`
-const Complaint = styled.td`
-	@media (max-width: 600px) {
-		display: none;
-	}
-`
-;
+`;
