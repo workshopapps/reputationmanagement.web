@@ -47,7 +47,7 @@ const DataTemp = [
 		Dispute: 'Closed',
 	},
 ];
-export const DisputeTabCopy = (props) => {
+export const DisputeTab = (props) => {
 	const hideForMobile = `${props.width <= 800 ? 'hidden' : 'block'}`;
 	const router = useNavigate();
 	const ApiPrivate = useAxiosPrivate();
@@ -138,6 +138,8 @@ const Status = styled.td`
 		display: flex;
 	}
 `;
+
+
 
 const DataTable = () => {
 	const router = useNavigate();
