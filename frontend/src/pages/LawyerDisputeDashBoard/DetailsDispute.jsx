@@ -10,9 +10,7 @@ export const DetailsDispute = () => {
 	const router = useNavigate();
 	const ApiPrivate = useAxiosPrivate();
 	const {
-		id,
 		status,
-		timeStamp,
 		badReviewerEmail,
 		complaint,
 		complaintMessage,
@@ -122,7 +120,7 @@ export const DetailsDispute = () => {
 					<h2
 						className={`${
 							hideClass ? 'hidden' : 'flex'
-						} text-xl text-blue-400 `}
+						} text-xl text-blue-400 self-start mt-5`}
 					>
 						{' '}
 						This Dispute has been resolved.
