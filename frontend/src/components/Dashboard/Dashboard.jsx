@@ -1,271 +1,167 @@
-import React, { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
+import React, { useCallback } from 'react';
 import Sidebar from '../Reusables/Sidebar';
+import WebAppNav from '../Reusables/WebAppNav';
+import { useState } from 'react';
+import GlobalStyles from './Styles/Global';
+
+import {
+	StyledDashboard,
+	StyledContainer,
+	CardContainer,
+	InputContainer,
+	TableContainer,
+	Header,
+	CardSemiWrapper
+} from './Styles/Dashboard.styled';
+
+import Card from './Card';
+import messaging from '../../assets/images/Dashboard/messaging.svg';
+import progress from '../../assets/images/Dashboard/progress.svg';
+import completed from '../../assets/images/Dashboard/completed.svg';
+import searchBtn from '../../assets/images/Dashboard/search.svg';
+import TableData from './TableData';
+import { NavLink } from 'react-router-dom';
+import useAppContext from '../../hooks/useAppContext';
+import { useEffect } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import styled from 'styled-components';
-// import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
-const UserDisputes = () => {
-	// const [setWidth] = useState(window.innerWidth);
-	// useEffect(() => {
-	//     window.addEventListener('resize', () => {
-	//         setWidth(window.innerWidth);
-	//     });
-	// }, []);
-	// const hideMobile = `${width <= 800 ? 'hidden' : 'block'}`;
+
+const Dashboard = () => {
+	const { setRequestFailed, setAllRequests, setErrMessage } = useAppContext();
 
 	const ApiPrivate = useAxiosPrivate();
 
-	const [disputes, setDisputes] = useState([]);
-
-	async function getDisputes() {
+	const fetchAllRequests = useCallback(async () => {
 		try {
-			const response = await ApiPrivate.get('api/disputes/Customer');
-			setDisputes(response?.data);
-			console.log('here', response?.data);
+			const response = await ApiPrivate.get(
+				'/api/reviews?pageNumber=0&pageSize=100'
+			);
+			setAllRequests(response?.data);
 		} catch (err) {
-			if (err?.response?.status) {
-			}
 			console.log(err);
+			setErrMessage("Couldn't fetch requests");
+			setRequestFailed(true);
 		}
-	}
+	}, [ApiPrivate, setAllRequests, setErrMessage, setRequestFailed]);
 
 	useEffect(() => {
-		getDisputes();
-	}, []);
+		const interval = setInterval(() => {
+			fetchAllRequests();
+		}, 5000)
+		return () => clearTimeout(interval)
+	},[])
+	useEffect(() => {
+		fetchAllRequests();
+	}, [fetchAllRequests]);
 
+	const [openMenu, setOpenMenu] = useState(false);
+	const [searchTicket, setSearchTicket] = useState('');
+	const { allRequests } = useAppContext();
 	return (
-		<MainContainer>
-			<Sidebar />
-			<DisputeContainer className="px-1 mt-12 md:px-10">
-				<Wrapper>
-					<header>
-						<h1 className="text-2xl leading pb-5 ">My Disputes</h1>
-						<hr />
-					</header>
-					<table className="table w-full">
-						<thead className="table w-full">
-							<tr className="flex justify-between bg-[#E4E4E54D] px-3 py-3">
-								<Th>ID</Th>
-								<Th>Complaint</Th>
-								<Th className="exnone">Reason</Th>
+		<StyledDashboard>
+			<GlobalStyles />
 
-								<Th>Status</Th>
-							</tr>
-						</thead>
-					</table>
-					<main className="mt-5">
-						<TableContain className="table w-full mb-0">
-							{disputes.length > 0 ? (
-								disputes.map((data, index) => {
-									const {
-										// ID,
-										// PhoneNo,
-										// Email,
-										// Website,
-										// Dispute,
-										status,
-										reason,
-										complaint,
-									} = data;
-									return (
-										<tbody className="w-full" key={index + 1}>
-											<tr className="flex pt-2 pb-2  justify-between border-b px-2 items-end ">
-												<td className="w-[15%]">{index + 1}</td>
-												<td className="text-left w-[25%] comeerr">
-													{complaint}
-												</td>
-												<td className="text-left w-1/5 exnone">
-													{reason === 0 && 'Unresolved'}
-													{reason === 1 && 'Delayed'}
-													{reason !== 0 && reason !== 1 && 'Other'}
-												</td>
+			<Sidebar
+				className={`${openMenu ? 'open' : ''}`}
+				closeMenuHandler={() => setOpenMenu(false)}
+			/>
+			<WebAppNav openMenuHandler={() => setOpenMenu(true)} />
 
-												<Status
-													className={`${
-														status === 1
-															? 'text-[#2a47cb] font-semibold'
-															: 'text-[#f16f04] font-semibold'
-													} ${
-														status === 1 ? '' : ''
-													} px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-flexstart text-start pl-[10px]`}
-												>
-													{status === 1 ? 'Closed' : 'Open'}{' '}
-												</Status>
-											</tr>
-										</tbody>
-									);
+			<StyledContainer>
+				<Header>
+					<h1>Complaints Dashboard</h1>
+					<NavLink to="/request-form">New Request</NavLink>
+				</Header>
+
+				<CardContainer>
+					<Card
+						img={messaging}
+						title="All Complaints"
+						digit={allRequests ? allRequests.length : '0'}
+					/>
+					<CardSemiWrapper>
+						<Card
+							img={progress}
+							title="In Progress"
+							digit={
+								allRequests
+									? allRequests.filter((data) => {
+											return data.status === 1 || data.status === 2;
+									  }).length
+									: '0'
+							}
+						/>
+						<Card
+							img={completed}
+							title="Completed"
+							digit={
+								allRequests
+									? allRequests.filter((data) => {
+											return data.status === 3 || data.status === 5;
+									  }).length
+									: '0'
+							}
+						/>
+					</CardSemiWrapper>
+				</CardContainer>
+
+				<InputContainer>
+					<img src={searchBtn} alt="search" />
+					<input
+						type="search"
+						placeholder="Search for anything..."
+						onChange={(event) => {
+							setSearchTicket(event.target.value);
+						}}
+					/>
+				</InputContainer>
+
+				<TableContainer>
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Priority</th>
+							<th>Ticket Name</th>
+							<th>Status</th>
+							<th>Last Updated</th>
+							<th></th>
+						</tr>
+					</thead>
+					{allRequests.length >= 1 && (
+						<tbody>
+							{allRequests
+								.filter((data) => {
+									if (searchTicket === '') {
+										return data;
+									} else if (
+										data.complainerName
+											.toLowerCase()
+											.includes(searchTicket.toLowerCase())
+									) {
+										return data;
+									}
 								})
-							) : (
-								<td className="text-4xl leading pt-5 font-bold text-center ">
-									{' '}
-									No Disputes At This Time{' '}
-								</td>
-							)}
-						</TableContain>
-					</main>
-				</Wrapper>
-			</DisputeContainer>
-		</MainContainer>
+								.map((data, index) => {
+									return (
+										<TableData
+											id={data.reviewId}
+											ticketName={data.complainerName}
+											lastUpdated={data.lastUpdated}
+											priority={data.priority}
+											status={data.status}
+											key={index}
+											no={index}
+										/>
+									);
+								})}
+						</tbody>
+					)}
+				</TableContainer>
+				{allRequests.length < 1 && (
+					<p className="noRequest"> No Request Yet! </p>
+				)}
+			</StyledContainer>
+		</StyledDashboard>
 	);
 };
-const MainContainer = styled.div`
-	display: grid;
-	grid-template-columns: 280px auto;
-	grid-template-areas:
-		'sidebar nav'
-		'sidebar main';
-	@media (max-width: 1140px) {
-		grid-template-areas:
-			'nav nav'
-			'main main';
-	}
-`;
-const DisputeContainer = styled.div`
-	grid-area: main;
-	@media (max-width: 1000px) {
-		margin-left: 0px;
-	}
-`;
-const Wrapper = styled.div`
-	max-width: 90%;
-	margin: 0px auto;
-	padding: 1em 1.5em;
-	border-radius: 1em;
-	border: 1px solid #00000010;
 
-	@media screen and (max-width: 535px) {
-		.exnone {
-			display: none;
-		}
-		.comeerr {
-			margin-left: -24px;
-		}
-	}
-`;
-const Th = styled.th`
-	font-size: 1.5rem;
-	font-weight: 500;
-`;
-const Status = styled.td`
-	// text-align: start;
-
-	display: flex;
-	// height: 40px;
-	// align-self: center;
-`;
-const TableContain = styled.table`
-	width: 100%;
-	margin-bottom: 4rem;
-
-	&,
-	tr,
-	td {
-		border-collapse: collapse;
-	}
-
-	thead tr {
-		border-bottom: 1px solid #e4e4e5;
-	}
-
-	tbody tr {
-		border-bottom: 1px solid #d2d3d4;
-	}
-	thead {
-		background: rgba(228, 228, 229, 0.3);
-	}
-	@media (max-width: 400px) {
-		td:first-child {
-			width: 20px;
-		}
-	}
-	th {
-		text-align: left;
-		padding: 19px 28px 12px 0;
-		font-weight: 600;
-		font-size: 22px;
-		line-height: 33px;
-		color: #2b2c34;
-
-		&:first-child {
-			padding-left: 16px;
-		}
-	}
-
-	td {
-		padding-top: 18px;
-		padding-bottom: 18px;
-
-		&:first-child {
-			padding-left: 16px;
-		}
-
-		&:nth-of-type(1) {
-			font-weight: 600;
-			font-size: 16px;
-			line-height: 24px;
-			color: #292d32;
-		}
-		&:nth-of-type(2) {
-			font-weight: 600;
-			font-size: 16px;
-			line-height: 24px;
-			color: #292d32;
-		}
-
-		&:nth-of-type(3) p {
-			font-weight: 600;
-			font-size: 16px;
-			line-height: 24px;
-			color: #292d32;
-			padding-left: 30px;
-		}
-		&:nth-of-type(4) p {
-			background: rgba(1, 176, 216, 0.15);
-			border-radius: 4px;
-			padding: 8px 16px;
-			font-weight: 500;
-			font-size: 16px;
-			line-height: 24px;
-			width: fit-content;
-			// width: 70%;
-			color: #01586c;
-			white-space: nowrap;
-		}
-
-		&:nth-of-type(5) p {
-			font-weight: 700;
-			font-size: 16px;
-			line-height: 24px;
-			color: #8f9093;
-		}
-	}
-
-	/* @media (max-width: 900px) {
-        th,
-        td {
-        }
-    } */
-	@media (max-width: 820px) {
-		th,
-		td {
-			font-size: 16px;
-			line-height: 20px;
-		}
-		td {
-			&:nth-of-type(4) p {
-				padding-left: 25px;
-			}
-		}
-	}
-
-	@media (max-width: 438px) {
-		td:first-child {
-			padding-left: 0 !important;
-		}
-		td:nth-of-type(3) p {
-			padding-left: 0 !important;
-		}
-	}
-`;
-
-export default UserDisputes;
+export default Dashboard;
