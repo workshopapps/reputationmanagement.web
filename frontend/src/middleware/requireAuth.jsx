@@ -33,5 +33,16 @@ export const RequireBusinessAuth = () => {
 	);
 };
 
+export const RequireAdminAuth = () => {
+	const user_type = localStorage.getItem('user_type');
+	const location = useLocation();
+
+	return user_type === 'admin' ? (
+		<Outlet />
+	) : (
+		<Navigate to="/login" state={{ from: location }} replace={true} />
+	);
+};
+
 
 export default RequireAuth;

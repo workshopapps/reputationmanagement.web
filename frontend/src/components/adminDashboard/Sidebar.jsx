@@ -4,12 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import closeBtn from '../../assets/images/Dashboard/x.svg';
 import logo from '../../assets/images/repute_logo.svg';
-import {
-	DashboardIcon,
-	SettingsIcon,
-	SignoutIcon,
-	RequestIcon,
-} from '../Dashboard/Icons';
+import { DashboardIcon, SettingsIcon, SignoutIcon } from '../Dashboard/Icons';
 import { StyledSidebar } from '../Styles/SideBar.styled';
 
 const Sidebar = (props) => {
@@ -34,11 +29,18 @@ const Sidebar = (props) => {
 					</li>
 					<li>
 						<NavLink to="/disputes">
-							<RequestIcon />
-							Disputes
+							<DashboardIcon />
+							Users
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/disputes">
+							<DashboardIcon />
+							Lawyers
 						</NavLink>
 					</li>
 				</ul>
+
 				<ul>
 					<li>
 						<NavLink to="/settings">

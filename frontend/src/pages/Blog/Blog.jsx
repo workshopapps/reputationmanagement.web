@@ -30,7 +30,7 @@ const StyledPostSnippet = styled.div`
 `;
 
 const StyledPostMain = styled.div`
-margin-top: 50px;
+	margin-top: 50px;
 	display: flex;
 	//justify-content: center;
 	position: relative;
@@ -59,8 +59,7 @@ const StyledFilter = styled.div`
 
 const Blog = () => {
 	const { setItem } = useAppContext();
-	const [filteredData, setFilteredData] = useState([])
-
+	const [filteredData, setFilteredData] = useState([]);
 
 	//Fetch Blog Posts.................
 	const fetchAllBlog = useCallback(async () => {
@@ -70,11 +69,10 @@ const Blog = () => {
 			);
 			setItem(response?.data);
 			setFilteredData(response?.data);
-			
 		} catch (err) {
 			console.log(err);
 		}
-	}, [setItem,setFilteredData]);
+	}, [setItem, setFilteredData]);
 
 	useEffect(() => {
 		fetchAllBlog();
@@ -88,14 +86,13 @@ const Blog = () => {
 
 	//...........
 
-	
 	//Filter Topics.................
 	const filterItem = (curcat) => {
 		const newItem = item.filter((Val) => {
 			return Val.tag === curcat;
 		});
 		setFilteredData(newItem);
-		console.log(newItem)
+		console.log(newItem);
 	};
 	//...............
 
@@ -105,7 +102,7 @@ const Blog = () => {
 			return Val.index === curcata;
 		});
 		setFilteredData(newerItem);
-		console.log(newerItem)
+		console.log(newerItem);
 	};
 	//............
 
@@ -114,7 +111,10 @@ const Blog = () => {
 	const [recordsPerPage] = useState(6);
 	const indexOfLastRecord = currentPage * recordsPerPage;
 	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-	const currentRecords = filteredData.slice(indexOfFirstRecord, indexOfLastRecord);
+	const currentRecords = filteredData.slice(
+		indexOfFirstRecord,
+		indexOfLastRecord
+	);
 	const nPages = Math.ceil(filteredData.length / recordsPerPage);
 
 	useEffect(() => {
@@ -123,15 +123,12 @@ const Blog = () => {
 	return (
 		<section>
 			<PageLayout>
-				<div style={{ maxWidth: '1540px', margin: '0 auto' }}>
+				<div style={{ maxWidth: '1320px', margin: '0 auto' }}>
 					<Hero />
-					
+
 					<StyledPostMain>
 						<StyledFilter>
-							<Filter
-								filterItem={filterItem}
-								allItem={allItem}
-							/>
+							<Filter filterItem={filterItem} allItem={allItem} />
 						</StyledFilter>
 
 						<StyledPostSnippet>
@@ -144,13 +141,11 @@ const Blog = () => {
 						currentPage={currentPage}
 						setCurrentPage={setCurrentPage}
 					/>
-						
 				</div>
 				<Footer />
 			</PageLayout>
 		</section>
 	);
 };
-
 
 export default Blog;

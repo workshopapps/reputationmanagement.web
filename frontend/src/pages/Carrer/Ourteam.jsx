@@ -47,6 +47,7 @@ const StyledContainer = styled.div`
 	padding: 0 20px;
 	text-align: center;
 	max-width: 92%;
+	max-width: 1240px;
 	margin: 0px auto;
 	@media screen and (max-width: 1300px) {
 		max-width: 95%;

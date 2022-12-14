@@ -73,23 +73,39 @@ const AccountForm = ({
 	return (
 		<form onSubmit={onSubmit} className={styleClass.form}>
 			<div className={styleClass.inputGroup}>
-				<label htmlFor="fullName" className={styleClass.inputLabel}>
-					Full Name
+				<label htmlFor="firstName" className={styleClass.inputLabel}>
+					First Name
 				</label>
 
 				<input
 					type="text"
-					id="fullName"
+					id="firstName"
 					className={styleClass.input}
-					value={user.fullName || ''}
+					value={user.firstName || ''}
 					onChange={(e) => {
-						setUser({ ...user, fullName: e.target.value });
+						setUser({ ...user, firstName: e.target.value });
+					}}
+					required
+				/>
+			</div>
+			<div className={styleClass.inputGroup}>
+				<label htmlFor="lastName" className={styleClass.inputLabel}>
+					Last Name
+				</label>
+
+				<input
+					type="text"
+					id="lastName"
+					className={styleClass.input}
+					value={user.lastName || ''}
+					onChange={(e) => {
+						setUser({ ...user, lastName: e.target.value });
 					}}
 					required
 				/>
 			</div>
 
-			<div className={styleClass.inputGroup}>
+			{/* <div className={styleClass.inputGroup}>
 				<label htmlFor="business-name" className={styleClass.inputLabel}>
 					Business Name
 				</label>
@@ -104,7 +120,7 @@ const AccountForm = ({
 					}}
 					required
 				/>
-			</div>
+			</div> */}
 
 			<div className={styleClass.inputGroup}>
 				<label htmlFor="email" className={styleClass.inputLabel}>
@@ -122,7 +138,7 @@ const AccountForm = ({
 				/>
 			</div>
 
-			<div className={styleClass.inputGroup}>
+			{/* <div className={styleClass.inputGroup}>
 				<label htmlFor="phoneNumber" className={styleClass.inputLabel}>
 					Phone Number
 				</label>
@@ -136,9 +152,9 @@ const AccountForm = ({
 					}}
 					required
 				/>
-			</div>
+			</div> */}
 
-			<div className={styleClass.inputGroup}>
+			{/* <div className={styleClass.inputGroup}>
 				<label htmlFor="businessWebsite" className={styleClass.inputLabel}>
 					Business Website
 				</label>
@@ -151,9 +167,9 @@ const AccountForm = ({
 						setUser({ ...user, businessWebsite: e.target.value });
 					}}
 				/>
-			</div>
+			</div> */}
 
-			<div className={styleClass.inputGroup}>
+			{/* <div className={styleClass.inputGroup}>
 				<label htmlFor="businessDescription" className={styleClass.inputLabel}>
 					Business Description
 				</label>
@@ -167,7 +183,7 @@ const AccountForm = ({
 						setUser({ ...user, businessDescription: e.target.value });
 					}}
 				></textarea>
-			</div>
+			</div> */}
 
 			<div className="my-14 flex justify-end">
 				<StyledButton type="submit">

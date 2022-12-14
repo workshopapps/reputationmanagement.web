@@ -26,6 +26,16 @@ import Arrow from '../../assets/images/arrow-right.png';
 import PageLayout from '../../layout/PageLayout';
 import { useEffect } from 'react';
 
+const PageContainer = styled.div`
+	/* max-width: 1200px; */
+	margin: 0 auto;
+
+	#header {
+		max-width: 1300px;
+		margin: 0 auto;
+	}
+`;
+
 const StyledHeader = styled.h1`
 	// color: #fdb172;
 	color: #ff8017;
@@ -91,9 +101,9 @@ function Carrerpg1() {
 	}, []);
 	return (
 		<PageLayout>
-			<div className="carrer-landing-pg">
+			<PageContainer className="carrer-landing-pg">
 				<section>
-					<div className="lg:flex lg:justify-between p-10">
+					<div className="lg:flex lg:justify-between p-10" id="header">
 						<div className="flex flex-col">
 							<StyledHeader>Let's grow together</StyledHeader>
 							<StyledText className="mt-3 break-all leading-8">
@@ -197,7 +207,7 @@ function Carrerpg1() {
 					<StyledBackGround2>
 						<div
 							className=" place-items-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4"
-							style={{ maxWidth: '1540px', margin: '0 auto' }}
+							style={{ maxWidth: '1200px', margin: '0 auto' }}
 						>
 							<div className="p-3 -mt-2">
 								<center>
@@ -244,7 +254,7 @@ function Carrerpg1() {
 				</div>
 				<section
 					className="mt-20"
-					style={{ maxWidth: '1540px', margin: '0 auto' }}
+					style={{ maxWidth: '1200px', margin: '0 auto' }}
 				>
 					<h1 className="text-center font-bold text-5xl p-4 pt-32 ">
 						See our latest vacancies
@@ -361,7 +371,10 @@ function Carrerpg1() {
 						</Link>
 					</div>
 				</section>
-				<section className="img-carousel mt-11 py-5 flex flex-col justify-center items-center">
+				<section
+					className="img-carousel mt-11 py-5 flex flex-col justify-center items-center"
+					style={{ maxWidth: '1200px', margin: '0 auto' }}
+				>
 					<h1 className="text-3xl font-semibold mt-12">
 						Picture yourself as <StyledSpanText>REPUTE</StyledSpanText>
 					</h1>
@@ -403,7 +416,7 @@ function Carrerpg1() {
 						</StyledButton>
 					</Link>
 				</StyledBackGround>
-			</div>
+			</PageContainer>
 		</PageLayout>
 	);
 }

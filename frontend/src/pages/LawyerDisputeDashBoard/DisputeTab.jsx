@@ -54,24 +54,23 @@ getDisputes()
    {
       disputes.length > 0 ?
       disputes.map((data,index)=> {
-         const {ID,status,badReviewerEmail,complaint,Dispute,businessEntityName}= data
+         const {id,status,badReviewerEmail,complaint,Dispute,businessEntityName}= data
          return(
                <tbody className='w-full' key={index+1} onClick={() =>
-      router(`/lawyer-dispute-details?requestId=${ID}&status=${data.id} `)
+      router(`/lawyer-dispute-details?requestId=${id} `)
    } >
             <tr className='flex hover:bg-[#E4E4E54D] rounded-md cursor-pointer pt-2 pb-2 justify-between border-b px-2 items-end ' >
-            <td>{index+1}</td>
-                        <td className='text-center' >{badReviewerEmail}</td>
-            <td  >{businessEntityName}</td>
-            <td  >{complaint}</td>
-            <Status className = {`${status === 1 ?'text-green-900':'text-red-900'} ${status === '1'?'bg-[#D1FADF]':'bg-[#FECDCA]'} px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-center text-center`} > {status === 1 ?'Closed':'Open'} </Status>
+            <td className='w-[5%]' >{index+1}</td>
+            <td className='text-left' >{badReviewerEmail}</td>
+            <td className='text-left w-[25%]' >{complaint}</td>
+            <Status className = {`${status === 1 ?'text-green-900':'text-red-900'} ${status === 1?'bg-[#D1FADF]':'bg-[#FECDCA]'} px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-center w-[10%] text-center`} > {status === 1 ?'Closed':'Open'} </Status>
                </tr>    
                </tbody>    
 
          )
       } )
       :
-      <EmptyDisputes className='text-4xl leading pt-5 font-bold text-center ' > No Disputes At This Time </EmptyDisputes>
+      <EmptyDisputes className='text-xl leading pt-5 font-bold text-center ' > No Disputes At This Time </EmptyDisputes>
             }   
             </>
   )

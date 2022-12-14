@@ -59,7 +59,7 @@ const RequestForm = () => {
 			setRequestSuccessfulModalActive(true);
 		} catch (err) {
 			setRequestFailed(true);
-			setErrMessage("Couldn't fetch requests");
+			setErrMessage("Couldn't create request");
 			setRequestSuccessfulModalActive(false);
 			console.log(err);
 		}
@@ -250,7 +250,7 @@ const CheckboxGroup = ({ setPriority }) => {
 	return (
 		<>
 			<Checkbox
-				label="High (30$)"
+				label="High"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('High');
@@ -259,7 +259,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				}}
 			/>
 			<Checkbox
-				label="Medium (20$)"
+				label="Medium"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('Medium');
@@ -267,7 +267,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				}}
 			/>
 			<Checkbox
-				label="Low (10$)"
+				label="Low"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('Low');
@@ -275,7 +275,7 @@ const CheckboxGroup = ({ setPriority }) => {
 				}}
 			/>
 			<Checkbox
-				label="Not urgent (5$)"
+				label="Not urgent"
 				currentValue={currentValue}
 				onClick={() => {
 					setCurrentValue('Not urgent');

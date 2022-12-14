@@ -64,6 +64,8 @@ const Wrapper = styled.section`
 	padding: 2rem;
 	//text-align:center;
 	font-weight: 500;
+	max-width: 1260px;
+	margin: 0 auto;
 
 	h4 {
 		font-size: 1.4rem;
