@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Sidebar from '../Reusables/Sidebar';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled from 'styled-components';
-import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
 const UserDisputes = () => {
     const [width, setWidth] = useState(window.innerWidth);
     useEffect(() => {

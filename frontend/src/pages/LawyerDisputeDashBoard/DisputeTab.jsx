@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import arrowDown from './assets/arrow-down.svg';
 import { useNavigate } from 'react-router-dom';
-import { DetailsDispute } from './DetailsDispute';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled, { keyframes } from 'styled-components';
 

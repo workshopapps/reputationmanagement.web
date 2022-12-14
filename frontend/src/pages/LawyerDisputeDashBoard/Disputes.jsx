@@ -160,4 +160,32 @@ const Wrapper = styled.div`
 
 	}
 `;
+const EmailHead = styled.th`
+	@media (max-width: 768px) {
+		display: none;
+	}
+`;
+const Complaint = styled.th`
+	@media (max-width: 600px) {
+		display: none;
+	}
+`;
+const TabRow = styled.tr`
+	@media (max-width: 600px) {
+		gap: 32%;
+	}
+	@media (max-width: 500px) {
+		gap: 27%;
+	}
+	@media (max-width: 400px) {
+		gap: 20%;
+	}
+	@media (max-width: 370px) {
+		gap: 15%;
+	}
+	@media (max-width: 350px) {
+		gap: 10%;
+	}
+`;
+
 export default DisputeDashboard;
