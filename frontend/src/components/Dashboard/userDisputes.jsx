@@ -47,7 +47,7 @@ const UserDisputes = () => {
 							<tr className="flex justify-between bg-[#E4E4E54D] px-3 py-3">
 								<Th>ID</Th>
 								<Th>Complaint</Th>
-								<Th>Reason</Th>
+								<Th className='hidden md:block lg:block'> Reason</Th>
 
 								<Th>Status</Th>
 							</tr>
@@ -69,10 +69,10 @@ const UserDisputes = () => {
 									} = data;
 									return (
 										<tbody className="w-full" key={index + 1}>
-											<tr className="flex hover:bg-[#E4E4E54D] rounded-md cursor-pointer pt-2 pb-2  justify-between border-b px-2 items-end ">
+											<tr className="flex rounded-md pt-2 pb-2  justify-between border-b px-2 items-end ">
 												<td className="w-[15%]">{index + 1}</td>
 												<td className="text-left w-[25%]">{complaint}</td>
-												<td className="text-left w-1/5">
+												<td className="text-left w-1/5 hidden md:block lg:block">
 													{reason === 0 && 'Unresolved'}
 													{reason === 1 && 'Delayed'}
 													{reason !== 0 && reason !== 1 && 'Other'}
@@ -80,9 +80,11 @@ const UserDisputes = () => {
 
 												<Status
 													className={`${
-														status === 1 ? 'text-green-900' : 'text-red-900'
+														status === 1
+															? 'text-[#2a47cb] font-semibold'
+															: 'text-[#f16f04] font-semibold'
 													} ${
-														status === 1 ? 'bg-[#D1FADF]' : 'bg-[#FECDCA]'
+														status === 1 ? '' : ''
 													} px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-center text-center`}
 												>
 													{status === 1 ? 'Closed' : 'Open'}{' '}
@@ -136,7 +138,7 @@ const Th = styled.th`
 const Status = styled.td`
 	padding: 0px;
 	height: 40px;
-	align-self: center;
+	// align-self: center;
 `;
 const TableContain = styled.table`
 	width: 100%;
