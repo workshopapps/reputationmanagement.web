@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Sidebar from '../Reusables/Sidebar';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import styled from 'styled-components';
-import { TableContainer } from '../../components/Dashboard/Styles/Dashboard.styled';
 const UserDisputes = () => {
 	const [width, setWidth] = useState(window.innerWidth);
 	useEffect(() => {
@@ -11,12 +9,8 @@ const UserDisputes = () => {
 			setWidth(window.innerWidth);
 		});
 	}, [window.innerWidth]);
-	const hideMobile = `${width <= 800 ? 'hidden' : 'block'}`;
-
 	const ApiPrivate = useAxiosPrivate();
-
 	const [disputes, setDisputes] = useState([]);
-
 	async function getDisputes() {
 		try {
 			const response = await ApiPrivate.get('api/disputes/Customer');
@@ -58,18 +52,13 @@ const UserDisputes = () => {
 							{disputes.length > 0 ? (
 								disputes.map((data, index) => {
 									const {
-										ID,
-										PhoneNo,
-										Email,
-										Website,
-										Dispute,
 										status,
 										reason,
 										complaint,
 									} = data;
 									return (
 										<tbody className="w-full" key={index + 1}>
-											<tr className="flex hover:bg-[#E4E4E54D] rounded-md cursor-pointer pt-2 pb-2  justify-between border-b px-2 items-end ">
+											<tr className="flex hover:bg-[#E4E4E54D] rounded-md pt-2 pb-2  justify-between border-b px-2 items-end ">
 												<td className="w-[15%]">{index + 1}</td>
 												<td className="text-left w-[25%]">{complaint}</td>
 												<td className="text-left w-1/5">
