@@ -60,7 +60,7 @@ function FooterLinks() {
 			<div className="my-3 lg:m-0">
 				<p className={fHeadingClasses}>Follow us</p>
 
-				<div className="my-3 flex gap-5 hover:color-[#f16f04]">
+				<div className="my-3 flex gap-5 hover:text-[#f16f04]">
 					<Link to="/">
 						<FaFacebookF color="white" />
 					</Link>
