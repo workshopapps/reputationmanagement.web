@@ -5,7 +5,7 @@ export const StyledStory = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 56px 64px;
-	max-width: 93%;
+	max-width: 1320px;
 	margin: 0 auto;
 	@media (max-width: 1350px) {
 		flex-direction: column;

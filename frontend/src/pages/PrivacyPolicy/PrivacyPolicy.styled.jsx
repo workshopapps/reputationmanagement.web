@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	scroll-behavior: smooth;
-	max-width: 90%;
-	min-height: 100vh;
+	/* max-width: 90%; */
+	max-width: 1200px;
 	margin: 0px auto;
+	min-height: 100vh;
 `;
 
 export const Header = styled.header`

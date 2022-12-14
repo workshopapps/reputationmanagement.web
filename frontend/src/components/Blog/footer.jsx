@@ -224,15 +224,13 @@ const StyledForm = styled.form`
 		}
 		input {
 			border: 1px solid #a09f9f;
-			// border: none;
 			border-radius: 8px;
 			background: #fff;
 			height: 43px;
-			// width: 245px;
 			width: 50%;
-			// gap: 13px;
 			padding: 15px 12px;
 			margin-bottom: 10px;
+
 			.left {
 				margin-right: 15px;
 			}
@@ -241,7 +239,6 @@ const StyledForm = styled.form`
 			}
 
 			&::placeholder {
-				// font-size: 14px;
 				color: #667085;
 			}
 			&:focus {
@@ -256,13 +253,9 @@ const StyledForm = styled.form`
 	div .review-input {
 		width: 100%;
 		border: 1px solid #a09f9f;
-		// border: none;
 		border-radius: 8px;
-		// height: 43px;
-		// font-size: 15px;
 		color: #6f7174;
 		padding: 15px 12px;
-		// margin-top: 10px;
 
 		&:focus {
 			outline: none;
@@ -282,7 +275,7 @@ const StyledForm = styled.form`
 export default Footer;
 
 const FooterMain = styled.section`
-	max-width: 1500px;
+	max-width: 1200px;
 	width: 1500px;
 	display: flex;
 	justify-content: space-between;

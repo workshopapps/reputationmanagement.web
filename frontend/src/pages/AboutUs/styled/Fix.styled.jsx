@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+
+export const Container = styled.div`
+	max-width: 1200px;
+	margin: 0 auto;
+`;
+
 export const StyledFixHeader = styled.h1`
 	@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 	display: flex;
@@ -12,13 +18,15 @@ export const StyledFixHeader = styled.h1`
 export const StyledFixCenter = styled.div`
 	padding: 0px 0px 24px;
 	width: 304px;
+	width: 32%;
+	max-width: 33%;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	margin-bottom: 40px;
 `;
 export const ImgsContainer = styled.div`
-	max-width: 304px;
-	height: 253px;
+	max-width: 100%;
+	height: auto;
 `;
 export const StyledFixImg = styled.img`
 	width: 100%;
@@ -28,6 +36,8 @@ export const StyledFixImg = styled.img`
 export const StyledFixBox = styled.div`
 	display: flex;
 	max-width: 1020px;
+	max-width: 1200px;
+
 	width: 100%;
 	margin: 0 auto;
 	margin-top: 32px;
