@@ -138,6 +138,7 @@ const Th = styled.th`
 const Status = styled.td`
 	padding: 0px;
 	height: 40px;
+	margin-top: -10px;
 	// align-self: center;
 `;
 const TableContain = styled.table`
