@@ -1,80 +1,79 @@
-import React, { useState,useEffect } from 'react'
-// import arrowDown from './assets/arrow-down.svg';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DetailsDispute } from './DetailsDispute';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import styled,{ keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-const DataTemp = [
-
-   {
-      ID :2314028 ,Name: 'Raya Enterprises',Email:'rayaenterprises.ng' ,PhoneNo: '070456780',Website: 'rayaenterprises.ng',Dispute: 'Closed',
-   },
-   {
-      ID :2314028 ,Name: 'Raya Enterprises',Email:'rayaenterprises.ng' ,PhoneNo: '070456782',Website: 'rayaenterprises.ng',Dispute: 'Closed',
-   },
-   {
-      ID :2314028 ,Name: 'Raya Enterprises',Email:'rayaenterprises.ng' ,PhoneNo: '070456780',Website: 'rayaenterprises.ng',Dispute: 'Open',
-   },
-   {
-      ID :2314028 ,Name: 'Raya Enterprises',Email:'rayaenterprises.ng' ,PhoneNo: '070456780',Website: 'rayaenterprises.ng',Dispute: 'Closed',
-   },
-   {
-      ID :2314028 ,Name: 'Raya Enterprises',Email:'rayaenterprises.ng' ,PhoneNo: '070456780',Website: 'rayaenterprises.ng',Dispute: 'Closed',
-   }
-]
 export const DisputeTab = (props) => {
-const hideForMobile = `${props.width <= 800 ?'hidden':'block'}`
-const router = useNavigate();
-const ApiPrivate = useAxiosPrivate();
+	const router = useNavigate();
+	const ApiPrivate = useAxiosPrivate();
 
-const [disputes, setDisputes] = useState ([]) 
+	const [disputes, setDisputes] = useState([]);
 
-async function getDisputes() {
-   try {
-      const response = await ApiPrivate.get('api/disputes/lawyer/');
-      setDisputes(response?.data);
-      console.log(response?.data);
-   } catch (err) {
-      if (err?.response?.status) {
-      }
-      console.log(err);
-   }
-}
+	async function getDisputes() {
+		try {
+			const response = await ApiPrivate.get('api/disputes/lawyer/');
+			setDisputes(response?.data);
+			console.log(response?.data);
+		} catch (err) {
+			if (err?.response?.status) {
+			}
+			console.log(err);
+		}
+	}
 
-useEffect(() => {
-getDisputes()
-}, []);
+	useEffect(() => {
+		getDisputes();
+	}, []);
 
+	return (
+		<>
+			{disputes.length > 0 ? (
+				disputes.map((data, index) => {
+					const {
+						id,
+						status,
+						badReviewerEmail,
+						complaint,
+						Dispute,
+						businessEntityName,
+					} = data;
+					return (
+						<tbody
+							className="w-full"
+							key={index + 1}
+						>
+							<TabRow className="flex hover:bg-[#E4E4E54D] gap-[10%]  rounded-md pt-2 pb-2 md:gap-[6%] border-b px-2 items-center ">
+								<td className="w-[5%]">{index + 1}</td>
+								<Emailtab className="text-left w-[25%] break-normal">{badReviewerEmail}</Emailtab>
+								<Complaint className="text-left w-[25%]">{complaint}</Complaint>
+								<Status
+									className={`${
+										status === 1 ? 'text-green-900' : 'text-red-900'
+									} ${
+										status === 1 ? 'bg-[#D1FADF]' : 'bg-[#FECDCA]'
+									} px-1 py-1 rounded-sm w-[80px] flex items-center scale-[0.9] md:scale-full justify-center text-center`}
+								>
+									{' '}
+									{status === 1 ? 'Closed' : 'Open'}{' '}
+								</Status>
+                        <td className=" cursor-pointer text-[12px] md:text-[16px] text-[#233ba9] "
+                        							onClick={() => router(`/lawyer-dispute-details?requestId=${id}`)}
 
+                        >View Details </td>
 
-  return (
-    <>
-
-   {
-      disputes.length > 0 ?
-      disputes.map((data,index)=> {
-         const {id,status,badReviewerEmail,complaint,Dispute,businessEntityName}= data
-         return(
-               <tbody className='w-full' key={index+1} onClick={() =>
-      router(`/lawyer-dispute-details?requestId=${id} `)
-   } >
-            <tr className='flex hover:bg-[#E4E4E54D] rounded-md cursor-pointer pt-2 pb-2 justify-between border-b px-2 items-end ' >
-            <td className='w-[5%]' >{index+1}</td>
-            <td className='text-left' >{badReviewerEmail}</td>
-            <td className='text-left w-[25%]' >{complaint}</td>
-            <Status className = {`${status === 1 ?'text-green-900':'text-red-900'} ${status === 1?'bg-[#D1FADF]':'bg-[#FECDCA]'} px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-center w-[10%] text-center`} > {status === 1 ?'Closed':'Open'} </Status>
-               </tr>    
-               </tbody>    
-
-         )
-      } )
-      :
-      <EmptyDisputes className='text-xl leading pt-5 font-bold text-center ' > No Disputes At This Time </EmptyDisputes>
-            }   
-            </>
-  )
-}
+							</TabRow>
+						</tbody>
+					);
+				})
+			) : (
+				<EmptyDisputes className="text-xl leading pt-5 font-bold text-center ">
+					{' '}
+					No Disputes At This Time{' '}
+				</EmptyDisputes>
+			)}
+		</>
+	);
+};
 const appear = keyframes`
 0%{
   transform:translateY(-100%);
@@ -84,16 +83,34 @@ const appear = keyframes`
   transform:translateY(0%);
   opacity:1;
 }
-`
+`;
 
 const EmptyDisputes = styled.h2`
-animation:${appear} .7s;
-`
+	animation: ${appear} 0.7s;
+`;
 const Status = styled.td`
-padding:0px;
-height:40px;
-align-self:center;
-@media(max-width:600px){
-   display:flex;
-}
+	padding: 0px;
+	height: 40px;
+	align-self: center;
+	@media (max-width: 600px) {
+		display: flex;
+	}
 `
+const Emailtab = styled.td`
+	@media (max-width: 768px) {
+		display: none;
+	}
+`
+const TabRow = styled.tr `
+@media (max-width: 600px) {
+		gap:0%;
+      justify-content:space-between;
+	}
+
+`
+const Complaint = styled.td`
+	@media (max-width: 600px) {
+		display: none;
+	}
+`
+;
