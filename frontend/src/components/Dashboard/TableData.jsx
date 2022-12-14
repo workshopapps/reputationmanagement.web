@@ -29,10 +29,8 @@ const TableData = (props) => {
 			<td>
 				<p className={`status-${props.status}`}>
 					{props.status === 5
-						?
-						'PAID'
-						:
-						props.status === 4
+						? 'PAID'
+						: props.status === 4
 						? 'Failed'
 						: props.status === 3
 						? 'Completed'
@@ -42,7 +40,7 @@ const TableData = (props) => {
 				</p>
 			</td>
 			<td>
-				<p style={{ paddingLeft: '20px' }}>{lastUpdated?.substring(0, 10)}</p>
+				<p>{lastUpdated?.substring(0, 10)}</p>
 			</td>
 			<td>
 				<StyledClaimButton
@@ -79,11 +77,9 @@ export const LawyerTableData = (props) => {
 			</td>
 			<td>
 				<p className={`status-${props.status}`}>
-					{	props.status === 5
-						?
-						'PAID'
-						:
-						props.status === 4
+					{props.status === 5
+						? 'PAID'
+						: props.status === 4
 						? 'Failed'
 						: props.status === 3
 						? 'Completed'
@@ -93,7 +89,7 @@ export const LawyerTableData = (props) => {
 				</p>
 			</td>
 			<td>
-				<p style={{ paddingLeft: '20px' }}>{lastUpdated?.substring(0, 10)}</p>
+				<p>{lastUpdated?.substring(0, 10)}</p>
 			</td>
 			<td>
 				<StyledClaimButton
@@ -109,17 +105,14 @@ export const LawyerTableData = (props) => {
 };
 
 const StyledClaimButton = styled.button`
-	height: 37px;
-	width: 126px;
 	border-radius: 4px;
-	background: #233ba9;
-	font-family: Lato;
+	font-family: 'Lato';
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 21px;
 	letter-spacing: 0em;
 	text-align: center;
-	color: #ffffff;
+	color: #233ba9;
 `;
 
 export default TableData;

@@ -148,9 +148,9 @@ export const CardSemiWrapper = styled.div`
 			display: flex;
 			flex-direction: column;
 
-			img {
+			/* img {
 				align-self: flex-end;
-			}
+			} */
 		}
 	}
 `;
@@ -224,7 +224,7 @@ export const TableContainer = styled.table`
 		text-align: left;
 		padding: 19px 28px 12px 0;
 		font-weight: 600;
-		font-size: 22px;
+		font-size: 16px;
 		line-height: 33px;
 		color: #2b2c34;
 
@@ -237,55 +237,64 @@ export const TableContainer = styled.table`
 		padding-top: 24px;
 		padding-bottom: 19px;
 
-		&:first-child {
-			padding-left: 16px;
-		}
-
 		&:nth-of-type(1) {
-			font-weight: 600;
-			font-size: 16px;
+			width: 90px;
+			font-weight: 400;
+			font-size: 14px;
 			line-height: 24px;
 			color: #292d32;
+			padding: 8px 16px;
 		}
 		&:nth-of-type(2) {
-			font-weight: 600;
-			font-size: 16px;
+			width: 170px;
+			font-weight: 400;
+			font-size: 14px;
 			line-height: 24px;
 			color: #292d32;
 		}
 
+		&:nth-of-type(3) {
+			width: 180px;
+		}
 		&:nth-of-type(3) p {
-			font-weight: 600;
-			font-size: 16px;
+			font-weight: 400;
+			font-size: 14px;
 			line-height: 24px;
 			color: #292d32;
-			padding-left: 30px;
+			padding: 8px px;
+		}
+		&:nth-of-type(4) {
+			width: 170px;
 		}
 		&:nth-of-type(4) p {
-			background: rgba(1, 176, 216, 0.15);
 			border-radius: 4px;
 			padding: 8px 16px;
-			font-weight: 500;
-			font-size: 16px;
+			font-weight: 400;
+			font-size: 14px;
 			line-height: 24px;
-			width: fit-content;
-			// width: 70%;
-			color: #01586c;
+			width: 70%;
 			white-space: nowrap;
 		}
-
+		&:nth-of-type(5) {
+			width: 160px;
+		}
 		&:nth-of-type(5) p {
-			font-weight: 700;
-			font-size: 16px;
+			font-weight: 400;
+			font-size: 14px;
 			line-height: 24px;
-			color: #8f9093;
+			color: #292d32;
+			padding: 8px 0px;
+			padding-left: 0px;
+		}
+		&:nth-of-type(6) {
+			text-align: center;
 		}
 	}
 
 	.priority {
 		border-radius: 4px;
-		padding: 4px 16px;
-		width: fit-content;
+		padding: 8px 16px;
+		width: 72%;
 	}
 
 	.mobile {
@@ -318,6 +327,17 @@ export const TableContainer = styled.table`
 		background: #fecdca;
 		color: #b42318;
 	}
+
+	.status-1,
+	.status-2 {
+		background: rgba(1, 176, 216, 0.15);
+		color: #01586c;
+	}
+	.status-0 {
+		background: #ffe5b2;
+		color: #d6981b;
+	}
+
 	@media (max-width: 900px) {
 		th,
 		td {
