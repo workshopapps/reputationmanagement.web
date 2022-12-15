@@ -144,16 +144,13 @@ export const CardContainer = styled.div`
 `;
 
 export const CardSemiWrapper = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	display: flex;
 	gap: 50px;
 	justify-content: space-between;
 	width: 68%;
-
-	/* div {
-		width: 50%;
-	} */
-
+	@media(max-width: 574px){
+		flex-direction: column;
+	}
 	@media (max-width: 520px) {
 		gap: 12px !important;
 
@@ -365,6 +362,9 @@ export const TableContainer = styled.table`
 		border-radius: 4px;
 		padding: 4px 16px;
 		width: 65%;
+		white-space: nowrap;
+		max-width: 110px;
+		text-align: center;
 	}
 
 	.mobile {
@@ -374,46 +374,51 @@ export const TableContainer = styled.table`
 	.priority-3 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
-		text-align: left;
+		text-align: center;
 	}
 	.status-3 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
-		text-align: left;
+		text-align: center;
+		max-width: 110px;
 	}
 	.status-4 {
 		background: #fecdca !important;
 		color: #b42318 !important;
-		text-align: left;
+		text-align: center;
+		max-width: 110px;
 	}
 	.status-5 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
-		text-align: left;
+		text-align: center;
+		max-width: 110px;
 	}
 	.priority-2 {
 		background: #ffe5b2;
 		color: #d6981b;
-		text-align: left;
+		text-align: center;
 	}
 
 	.priority-1,
 	.priority-0 {
 		background: #fecdca;
 		color: #b42318;
-		text-align: left;
+		text-align: center
+		max-width: 110px;
 	}
 
 	.status-1,
 	.status-2 {
 		background: rgba(1, 176, 216, 0.15);
 		color: #01586c;
-		text-align: left;
+		text-align: center;
+		max-width: 110px;
 	}
 	.status-0 {
 		background: #ffe5b2;
 		color: #d6981b;
-		text-align: left;
+		text-align: center;
 	}
 
 	@media (max-width: 900px) {
@@ -483,9 +488,6 @@ export const TableContainer = styled.table`
 		}
 	}
 	@media (max-width: 438px) {
-		td:first-child {
-			padding-left: 0 !important;
-		}
 		td:nth-of-type(3) p {
 			padding-left: 0 !important;
 		}

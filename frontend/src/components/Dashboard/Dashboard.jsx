@@ -69,7 +69,7 @@ const Dashboard = () => {
 			<StyledContainer>
 				<Header>
 					<h1>Complaints Dashboard</h1>
-					<NavLink to="/request-form">
+					<NavLink to="/request-form" style={{ whiteSpace: 'nowrap'}}>
 						<img src={message} alt="" />
 						New Request
 					</NavLink>
@@ -123,7 +123,7 @@ const Dashboard = () => {
 						<tr>
 							<th>No</th>
 							<th>Priority</th>
-							<th>Ticket Name</th>
+							<th style={{ whiteSpace: 'nowrap'}}>Ticket Name</th>
 							<th>Status</th>
 							<th>Last Updated</th>
 							<th></th>

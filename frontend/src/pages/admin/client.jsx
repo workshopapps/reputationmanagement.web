@@ -3,18 +3,22 @@ import styled from "styled-components";
 import AdminSideBar from "./adminSideBar";
 import SEARCH_ICON from './assets/search-icon.svg';
 import DELETE_ICON from './assets/trash-icon.svg';
+import EDIT_ICON from './assets/edit-icon.svg';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { DeleteUserModal } from "../../modal/deleteRequestModal";
 import useAppContext from "../../hooks/useAppContext";
 import { useNavigate } from "react-router-dom";
+import EditBusinessDetails from "../../modal/editBusinessDetails";
 
 const ClientPage = () => {
     const [ clients, setClients ] = useState([])
     const [openMenu, setOpenMenu] = useState(false);
     const [ search, setSearch ] = useState('')
     const [ userId, setUserId ] = useState(0)
+    const [ businessName, setBusinessName ] = useState('business')
     const ApiPrivate = useAxiosPrivate();
-    const [ deleteRequestModalActive, setDeleteRequestModalActive ] = useState(false)
+    const [ deleteRequestModalActive, setDeleteRequestModalActive ] = useState(false);
+    const [ editUserActive, setEditUserActive ] = useState(false)
 	const {
 		setRequestFailed,
 		setRequestSuccess,
@@ -60,6 +64,7 @@ const ClientPage = () => {
     }
     return(
         <StyledClients>
+            { editUserActive && <EditBusinessDetails setEditUserActive={setEditUserActive} email={userId} name={businessName}/>}
             {deleteRequestModalActive && <DeleteUserModal setDeleteModalActive={setDeleteRequestModalActive} handleDelete={() =>handleDelete()}/>}
 			<AdminSideBar
 				className={`${openMenu ? 'open' : ''}`}
@@ -99,7 +104,7 @@ const ClientPage = () => {
                                         }
                                     })
                                     .map((data) => {
-                                        return <ClientsCard setDeleteRequestModalActive={setDeleteRequestModalActive} setUserId={setUserId} key={data.reviewId} reviewId={data.reviewId} clientName={data.businessEntityName} email={data.email} />
+                                        return <ClientsCard setBusinessName={setBusinessName} setEditUserActive={setEditUserActive} setDeleteRequestModalActive={setDeleteRequestModalActive} setUserId={setUserId} key={data.reviewId} reviewId={data.reviewId} clientName={data.businessEntityName} email={data.email} />
                                     })
                             :
                             <h4>No requests found</h4>
@@ -124,12 +129,15 @@ export default ClientPage;
 const ClientsCard = (props) => {
     const setDeleteRequestModalActive = props.setDeleteRequestModalActive;
     const setUserId = props.setUserId
+    const setEditUserActive = props.setEditUserActive
+    const setBusinessName = props.setBusinessName
     return(
         <div className="client-card">
             <h4>{props.clientName}</h4>
             <h4>{props.email}</h4>
             <div className="actions">
                 <img src={DELETE_ICON} onClick={() => { setDeleteRequestModalActive(true); setUserId(props.email)} } alt=""/>
+                <img src={EDIT_ICON} onClick={() => { setEditUserActive(true); setUserId(props.email); setBusinessName(props.clientName) }} alt=""/>
             </div>
         </div>
     )

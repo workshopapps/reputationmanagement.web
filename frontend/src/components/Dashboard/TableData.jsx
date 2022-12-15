@@ -11,7 +11,7 @@ const TableData = (props) => {
 			<td>{props.no + 1}</td>
 
 			<td>
-				<p className={`priority-${props.priority} priority desktop`}>
+				<p className={`priority-${props.priority} priority desktop`} style={{whiteSpace: 'nowrap'}}>
 					{props.priority === 3
 						? 'High'
 						: props.priority === 2
@@ -60,7 +60,7 @@ export const LawyerTableData = (props) => {
 			<td>{props.no + 1}</td>
 
 			<td>
-				<p className={`priority-${props.priority} priority desktop`}>
+				<p className={`priority-${props.priority} priority desktop`} style={{ whiteSpace: 'nowrap'}}>
 					{props.priority === 3
 						? 'High'
 						: props.priority === 2

@@ -6,7 +6,10 @@ export const StyledWebAppNav = styled.nav`
 	justify-content: space-between;
 	background-color: white;
 	align-items: center;
-	padding: 8px 4rem 5px 0;
+	padding: 8px 3rem 5px 0;
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
 
 	@media (max-width: 520px) {
 		width: 100vw;

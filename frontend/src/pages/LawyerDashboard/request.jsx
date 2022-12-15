@@ -101,7 +101,7 @@ const Requests = () => {
 										<tr>
 											<th>No</th>
 											<th>Priority</th>
-											<th>Ticket Name</th>
+											<th style={{ whiteSpace: 'nowrap'}}>Ticket Name</th>
 											<th>Status</th>
 											<th>Last Updated</th>
 											<th></th>
@@ -153,7 +153,7 @@ const Requests = () => {
 										<tr>
 											<th>No</th>
 											<th>Priority</th>
-											<th>Ticket Name</th>
+											<th style={{ whiteSpace: 'nowrap'}}>Ticket Name</th>
 											<th>Status</th>
 											<th>Last Updated</th>
 											<th></th>
@@ -203,7 +203,7 @@ const Requests = () => {
 										<tr>
 											<th>No</th>
 											<th>Priority</th>
-											<th>Ticket Name</th>
+											<th style={{ whiteSpace: 'nowrap'}}>Ticket Name</th>
 											<th>Status</th>
 											<th>Last Updated</th>
 											<th></th>
@@ -253,7 +253,7 @@ const Requests = () => {
 										<tr>
 											<th>No</th>
 											<th>Priority</th>
-											<th>Ticket Name</th>
+											<th style={{ whiteSpace: 'nowrap'}}>Ticket Name</th>
 											<th>Status</th>
 											<th>Last Updated</th>
 											<th></th>
@@ -305,7 +305,7 @@ const Requests = () => {
 										<tr>
 											<th>No</th>
 											<th>Priority</th>
-											<th>Ticket Name</th>
+											<th style={{ whiteSpace: 'nowrap'}}>Ticket Name</th>
 											<th>Status</th>
 											<th>Last Updated</th>
 											<th></th>

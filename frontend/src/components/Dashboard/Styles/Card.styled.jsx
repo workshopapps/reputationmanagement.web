@@ -9,11 +9,15 @@ export const StyledCard = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
 	/* 
 	gap: 20px;
 	align-items: center;
 	justify-content: center; */
 	/* justify-content: 'flex-start'; */
+	@media(max-width: 572px){
+		padding: 24px 15px 10px;
+	}
 	div {
 		width: 100%;
 		display: grid;

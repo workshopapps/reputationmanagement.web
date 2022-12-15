@@ -256,9 +256,6 @@ const TableContain = styled.table`
         }
     }
     @media (max-width: 438px) {
-        td:first-child {
-            padding-left: 0 !important;
-        }
         td:nth-of-type(3) p {
             padding-left: 0 !important;
         }
