@@ -14,6 +14,9 @@ import Card from '../../components/Dashboard/Card';
 import messaging from '../../assets/images/Dashboard/messaging.svg';
 import progress from '../../assets/images/Dashboard/progress.svg';
 import completed from '../../assets/images/Dashboard/completed.svg';
+import failedIcon from './assets/x_icon.svg';
+import pendingIcon from './assets/pending_icon.svg';
+import checkIcon from './assets/check_icon.svg';
 import searchBtn from '../../assets/images/Dashboard/search.svg';
 import AdminSideBar from './adminSideBar';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
@@ -24,29 +27,30 @@ import styled from 'styled-components';
 const AdminDashboard = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const ApiPrivate = useAxiosPrivate();
-	const [ claimedReview, setClaimedReview ] = useState([])
+	const [claimedReview, setClaimedReview] = useState([]);
 	const { setErrMessage, setRequestFailed } = useAppContext();
 
-	const fetchdetails = async() => {
-		try{
-			const response = await ApiPrivate.get('/api/admin/reviews?pageNumber=0&pageSize=100')
-			setClaimedReview(response?.data)
+	const fetchdetails = async () => {
+		try {
+			const response = await ApiPrivate.get(
+				'/api/admin/reviews?pageNumber=0&pageSize=100'
+			);
+			setClaimedReview(response?.data);
+		} catch (err) {
+			console.log(err);
+			setErrMessage("Couldn't fetch requests");
+			setRequestFailed(true);
 		}
-		catch(err){
-			console.log(err)
-			setErrMessage("Couldn't fetch requests")
-			setRequestFailed(true)
-		}
-	}
+	};
 	useEffect(() => {
 		fetchdetails();
 		const fetchAgain = setInterval(() => {
-			fetchdetails()
-		},[5000])
+			fetchdetails();
+		}, [5000]);
 		return () => {
-			clearInterval(fetchAgain)
-		}
-	},[])
+			clearInterval(fetchAgain);
+		};
+	}, []);
 
 	return (
 		<StyledDashboard>
@@ -56,56 +60,68 @@ const AdminDashboard = () => {
 				className={`${openMenu ? 'open' : ''}`}
 				closeMenuHandler={() => setOpenMenu(false)}
 			/>
-			<LawyerWebAppNav
-				openMenuHandler={() => setOpenMenu(true)}
-			/>
+			<LawyerWebAppNav openMenuHandler={() => setOpenMenu(true)} />
 
 			<StyledContainer>
 				<h2>Overview</h2>
 				<CardContainer>
-					<Card img={messaging} title="All Complaints" digit={claimedReview.length}/>
-					<Card img={progress} title="Pending" 
+					<Card
+						img={messaging}
+						title="All Complaints"
+						digit={claimedReview.length}
+					/>
+					<Card
+						img={pendingIcon}
+						title="Pending"
 						digit={
 							claimedReview
 								? claimedReview.filter((data) => {
-										return data.status === 0
-									}).length
+										return data.status === 0;
+								  }).length
 								: '0'
 						}
 					/>
-					<Card img={progress} title="InProgress" 
+					<Card
+						img={progress}
+						title="InProgress"
 						digit={
 							claimedReview
 								? claimedReview.filter((data) => {
-										return data.status === 1 || data.status === 2
-									}).length
+										return data.status === 1 || data.status === 2;
+								  }).length
 								: '0'
 						}
 					/>
-					<Card img={completed} title="Completed" 
+					<Card
+						img={checkIcon}
+						title="Completed"
 						digit={
 							claimedReview
 								? claimedReview.filter((data) => {
-										return data.status === 3
-									}).length
+										return data.status === 3;
+								  }).length
 								: '0'
 						}
 					/>
-					<Card img={completed} title="Failed" 
+					<Card
+						img={failedIcon}
+						title="Failed"
 						digit={
 							claimedReview
 								? claimedReview.filter((data) => {
 										return data.status === 4;
-									}).length
+								  }).length
 								: '0'
 						}
 					/>
-					<Card img={completed} title="Paid" 
+					<Card
+						img={completed}
+						title="Paid"
 						digit={
 							claimedReview
 								? claimedReview.filter((data) => {
 										return data.status === 5;
-									}).length
+								  }).length
 								: '0'
 						}
 					/>
@@ -139,7 +155,7 @@ const CardContainer = styled.div`
 	flex-wrap: wrap;
 	justify-content: center;
 	gap: 40px;
-	div{
+	div {
 		width: 334px;
 		max-width: 90%;
 	}
