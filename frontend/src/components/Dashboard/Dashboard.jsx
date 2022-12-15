@@ -11,9 +11,9 @@ import {
 	InputContainer,
 	TableContainer,
 	Header,
-	CardSemiWrapper
+	CardSemiWrapper,
 } from './Styles/Dashboard.styled';
-
+import message from '../../assets/images/Dashboard/message.svg';
 import Card from './Card';
 import messaging from '../../assets/images/Dashboard/messaging.svg';
 import progress from '../../assets/images/Dashboard/progress.svg';
@@ -46,9 +46,9 @@ const Dashboard = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			fetchAllRequests();
-		}, 5000)
-		return () => clearTimeout(interval)
-	},[])
+		}, 5000);
+		return () => clearTimeout(interval);
+	}, []);
 	useEffect(() => {
 		fetchAllRequests();
 	}, [fetchAllRequests]);
@@ -69,7 +69,10 @@ const Dashboard = () => {
 			<StyledContainer>
 				<Header>
 					<h1>Complaints Dashboard</h1>
-					<NavLink to="/request-form">New Request</NavLink>
+					<NavLink to="/request-form">
+						<img src={message} alt="" />
+						New Request
+					</NavLink>
 				</Header>
 
 				<CardContainer>

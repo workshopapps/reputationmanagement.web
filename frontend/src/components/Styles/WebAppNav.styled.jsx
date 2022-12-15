@@ -118,6 +118,8 @@ export const ProfilePictureContainer = styled.div`
 	gap: 20px;
 	p {
 		font-weight: 800;
+		font-size: 18px;
+		line-height: 30px;
 	}
 
 	& > div {

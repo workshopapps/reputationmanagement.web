@@ -23,7 +23,7 @@ export const StyledContainer = styled.div`
 	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
-	h2{
+	h2 {
 		font-family: Lato;
 		font-size: 28px;
 		font-weight: 700;
@@ -71,37 +71,50 @@ export const Header = styled.div`
 	h1 {
 		font-family: 'Lato';
 		font-style: normal;
-		font-weight: 700;
-		font-size: 28px;
+		font-weight: 600;
+		font-size: 20px;
 		line-height: 150%;
 		color: #292d32;
 		gap: 1rem;
 	}
 
 	a {
+		display: none;
+		align-items: center;
+		align-self: flex-end;
+
 		background-color: #2a47cb;
-		border-radius: 6px;
-		padding: 8px 24px;
+		border-radius: 8px;
+		padding: 10px 16px;
+		gap: 20px;
 		font-weight: 600;
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 18px;
+		line-height: 27px;
 		color: #ffffff;
 		font-family: inherit;
-		cursor: pointer;
-		display: none;
 	}
 
 	@media (max-width: 1140px) {
 		a {
-			display: block;
+			display: flex;
 		}
 	}
 	@media (max-width: 820px) {
 		a {
-			display: block;
+			display: flex;
 		}
 		h1 {
 			font-size: 23px;
+		}
+	}
+	@media (max-width: 450px) {
+		a {
+			display: flex;
+			gap: 7px;
+			font-size: 14px;
+		}
+		h1 {
+			font-size: 18px;
 		}
 	}
 `;
@@ -110,31 +123,36 @@ export const CardContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	gap: 50px;
+	margin-bottom: 20px;
 
 	& > div:first-child {
 		width: 32%;
+	}
+	@media (max-width: 1200px) {
+		gap: 25px;
 	}
 
 	@media (max-width: 820px) {
 		flex-direction: column;
 		& > div:first-child {
 			width: 100%;
-			display: flex;
+			/* display: flex;
 			flex-direction: column;
-			align-items: center;
+			align-items: center; */
 		}
 	}
 `;
 
 export const CardSemiWrapper = styled.div`
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	gap: 50px;
 	justify-content: space-between;
 	width: 68%;
 
-	div {
+	/* div {
 		width: 50%;
-	}
+	} */
 
 	@media (max-width: 520px) {
 		gap: 12px !important;
@@ -154,8 +172,8 @@ export const CardSemiWrapper = styled.div`
 		margin-bottom: 16px;
 
 		div {
-			display: flex;
-			flex-direction: column;
+			/* display: flex;
+			flex-direction: column; */
 
 			/* img {
 				align-self: flex-end;
@@ -198,7 +216,6 @@ export const InputContainer = styled.div`
 			color: #2b2c34;
 		}
 	}
-
 	@media (max-width: 820px) {
 		display: none;
 	}
@@ -242,7 +259,7 @@ export const TableContainer = styled.table`
 		}
 		max-width: 1291px;
 
-		@media(min-width:1325px){
+		@media (min-width: 1325px) {
 			&:nth-of-type(1) {
 				width: 10%;
 			}
@@ -269,7 +286,7 @@ export const TableContainer = styled.table`
 		padding-bottom: 19px;
 		max-width: 1291px;
 
-		@media(min-width:1325px){
+		@media (min-width: 1325px) {
 			&:nth-of-type(1) {
 				width: 10%;
 			}
@@ -286,7 +303,7 @@ export const TableContainer = styled.table`
 				width: 20%;
 			}
 			&:nth-of-type(6) {
-				width: 10%;
+				width: 20%;
 			}
 		}
 		&:nth-of-type(1) {
@@ -320,11 +337,11 @@ export const TableContainer = styled.table`
 		}
 		&:nth-of-type(4) p {
 			border-radius: 4px;
-			padding: 8px 16px;
+			padding: 4px 16px;
 			font-weight: 400;
 			font-size: 14px;
 			line-height: 24px;
-			width: 70%;
+			width: 60%;
 			white-space: nowrap;
 		}
 		&:nth-of-type(5) {
@@ -340,13 +357,14 @@ export const TableContainer = styled.table`
 		}
 		&:nth-of-type(6) {
 			text-align: center;
+			width: 160px;
 		}
 	}
 
 	.priority {
 		border-radius: 4px;
-		padding: 8px 16px;
-		width: 72%;
+		padding: 4px 16px;
+		width: 65%;
 	}
 
 	.mobile {
@@ -356,46 +374,46 @@ export const TableContainer = styled.table`
 	.priority-3 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
-		text-align: center;
+		text-align: left;
 	}
 	.status-3 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
-		text-align: center;
+		text-align: left;
 	}
 	.status-4 {
 		background: #fecdca !important;
 		color: #b42318 !important;
-		text-align: center;
+		text-align: left;
 	}
 	.status-5 {
 		background: #d1fadf !important;
 		color: #027a48 !important;
-		text-align: center;
+		text-align: left;
 	}
 	.priority-2 {
 		background: #ffe5b2;
 		color: #d6981b;
-		text-align: center;
+		text-align: left;
 	}
 
 	.priority-1,
 	.priority-0 {
 		background: #fecdca;
 		color: #b42318;
-		text-align: center;
+		text-align: left;
 	}
 
 	.status-1,
 	.status-2 {
 		background: rgba(1, 176, 216, 0.15);
 		color: #01586c;
-		text-align: center;
+		text-align: left;
 	}
 	.status-0 {
 		background: #ffe5b2;
 		color: #d6981b;
-		text-align: center;
+		text-align: left;
 	}
 
 	@media (max-width: 900px) {

@@ -1,10 +1,17 @@
-import airbnb from '../../assets/images/glassdoor/airbnb.png';
-import diamond from '../../assets/images/glassdoor/diamond.png';
-import spotify from '../../assets/images/glassdoor/spotify.png';
-import canon from '../../assets/images/glassdoor/canon.png';
-import bigD from '../../assets/images/glassdoor/bigD.png';
-import ups from '../../assets/images/glassdoor/ups.png';
-import bigM from '../../assets/images/glassdoor/bigM.png';
+// import airbnb from '../../assets/images/glassdoor/airbnb.png';
+// import diamond from '../../assets/images/glassdoor/diamond.png';
+// import spotify from '../../assets/images/glassdoor/spotify.png';
+// import canon from '../../assets/images/glassdoor/canon.png';
+// import bigD from '../../assets/images/glassdoor/bigD.png';
+// import ups from '../../assets/images/glassdoor/ups.png';
+// import bigM from '../../assets/images/glassdoor/bigM.png';
+
+import airbnb from '../LandingPage/assets/airbnb.svg';
+import reddit from '../LandingPage/assets/reddit.svg';
+import spotify from '../LandingPage/assets/spotify.svg';
+import kellogs from '../LandingPage/assets/kellogs.svg';
+import stripe from '../LandingPage/assets/stripe.svg';
+import dominos from '../LandingPage/assets/dominos.svg';
 import profile from '../../assets/images/glassdoor/profile-add-icon.png';
 import document from '../../assets/images/glassdoor/document-text-icon.png';
 import progress from '../../assets/images/glassdoor/75Progress.png';
@@ -20,28 +27,28 @@ export const topUsers = [
 	},
 	{
 		id: 1,
-		image: diamond,
-	},
-	{
-		id: 2,
 		image: spotify,
 	},
 	{
+		id: 2,
+		image: reddit,
+	},
+	{
 		id: 3,
-		image: canon,
+		image: kellogs,
 	},
 	{
 		id: 4,
-		image: bigD,
+		image: stripe,
 	},
 	{
 		id: 5,
-		image: ups,
+		image: dominos,
 	},
-	{
-		id: 6,
-		image: bigM,
-	},
+	// {
+	// 	id: 6,
+	// 	image: bigM,
+	// },
 ];
 export const howWeWorkDetails = [
 	{

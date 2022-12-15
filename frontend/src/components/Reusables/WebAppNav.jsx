@@ -49,6 +49,9 @@ const WebAppNav = (props) => {
 			</LogoContainer>
 
 			<NavItems>
+				<ProfilePictureContainer>
+					<p>Hi, {userName}</p>
+				</ProfilePictureContainer>
 				{currentRoute.pathname === '/request-form' ||
 				currentRoute.pathname === '/request-form' ? (
 					''
@@ -58,10 +61,6 @@ const WebAppNav = (props) => {
 						New Request
 					</NavLink>
 				)}
-
-				<ProfilePictureContainer>
-					<p>Hi, {userName}</p>
-				</ProfilePictureContainer>
 			</NavItems>
 		</StyledWebAppNav>
 	);
