@@ -120,7 +120,7 @@ const LandingPage = () => {
 		try {
 			const response = await Api.post('/api/quote', formData);
 			toast.success('Your response has been submitted', {
-				position: 'top-left',
+				position: 'top-right ',
 			});
 			// setSuccessMessage('Your response has been submitted');
 			// setRequestSuccess(true);
@@ -251,7 +251,11 @@ const LandingPage = () => {
 								</div>
 								<picture>
 									<source media="(max-width: 640px)" srcSet={steps_mobile} />
-									<img src={steps} alt="complaint screen" style={{ maxWidth: '1200px', margin: '0 auto'}}/>
+									<img
+										src={steps}
+										alt="complaint screen"
+										style={{ maxWidth: '1200px', margin: '0 auto' }}
+									/>
 								</picture>
 
 								<Link to="/signup">
@@ -591,7 +595,7 @@ const StyledCompanies = styled.div`
 	gap: 30px;
 	padding: 0 10%;
 	margin-bottom: 5px;
-	@media(max-width:1041px){
+	@media (max-width: 1041px) {
 		justify-content: center;
 	}
 	@media screen and (max-width: 884px) {

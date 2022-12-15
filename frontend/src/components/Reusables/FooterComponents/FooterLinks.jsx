@@ -9,20 +9,26 @@ import { FaFacebookF } from 'react-icons/fa';
 import { GrTwitter } from 'react-icons/gr';
 import { BsInstagram } from 'react-icons/bs';
 
-
-
-
-
-
-
 const Div = styled.div`
 	display: flex;
 	width: 700px;
 	justify-content: space-between;
 	gap: 2em;
+	@media (max-width: 1000px) {
+		width: 100%;
+	}
 	@media (max-width: 768px) {
 		display: flex;
+		width: 100%;
 		gap: 1em;
+	}
+	@media (max-width: 525px) {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		padding: 20px;
+		justify-items: flex-start;
 	}
 `;
 

@@ -123,6 +123,9 @@ export const HeroTextDiv = styled.div`
 	@media (max-width: 768px) {
 		flex-direction: column;
 		width: 100%;
+		.hero-text-btn-sec {
+			display: none;
+		}
 	}
 
 	@media (max-width: 640px) {
@@ -291,9 +294,16 @@ export const HeroTextDiv = styled.div`
 
 	.hero-text-img {
 		width: 500px;
+		display: flex;
 
 		@media (max-width: 840px) {
-			width: 400px;
+			width: 100%;
+			margin-top: 15px;
+			justify-content: center;
+
+			img {
+				width: 70%;
+			}
 		}
 
 		@media (max-width: 520px) {
@@ -302,7 +312,7 @@ export const HeroTextDiv = styled.div`
 		}
 
 		img {
-			width: 100%;
+			/* width: 100%; */
 		}
 	}
 `;

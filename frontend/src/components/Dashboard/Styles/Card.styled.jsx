@@ -8,6 +8,35 @@ export const StyledCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	/* 
+	gap: 20px;
+	align-items: center;
+	justify-content: center; */
+	/* justify-content: 'flex-start'; */
+	div {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 20% 1fr;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 10px;
+
+		p {
+			max-width: 100%;
+			line-height: 36px;
+			font-weight: 600;
+			font-size: 24px;
+			color: #2b2c34;
+			justify-self: center;
+			@media (max-width: 1285px) {
+				font-size: 20px;
+			}
+			@media (max-width: 500px) {
+				font-size: 18px;
+			}
+		}
+	}
 
 	img {
 		/* width: fit-content; */
@@ -18,23 +47,11 @@ export const StyledCard = styled.div`
 		}
 	}
 
-	p:nth-of-type(1) {
-		font-weight: 600;
-		font-size: 24px;
-		line-height: 36px;
-		color: #2b2c34;
-		margin-top: 18px;
-		margin-bottom: 11px;
-		align-self: flex-start;
-		white-space: nowrap;
-	}
-
-	p:nth-of-type(2) {
-		max-width: 100%;
-		line-height: 64px;
+	.digit {
 		font-weight: 700;
 		font-size: 42px;
-		text-align: center;
+		line-height: 64px;
 		color: #2b2c34;
+		text-align: center;
 	}
 `;
