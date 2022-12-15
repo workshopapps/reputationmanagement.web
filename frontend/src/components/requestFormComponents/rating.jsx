@@ -63,7 +63,7 @@ Rate.defaultProps = {
 	count: 5,
 	rating: 0,
 	color: {
-		filled: '#f5eb3b',
+		filled: '#f16f04',
 		unfilled: '#959494',
 	},
 };

@@ -38,13 +38,18 @@ const StyledFooterWrapper = styled.div`
 	padding-bottom: 20px;
 	align-items: center;
 	justify-content: space-between;
-
+	@media (max-width: 500px) {
+		text-align: center;
+		width: 100%;
+		gap: 10px;
+	}
 	@media (min-width: 600px) {
-		padding: 40px 30px;
+		padding: 40px 40px;
 		gap: 40px;
 		text-align: left;
 	}
 	@media (min-width: 768px) {
+		/* justify-content: center; */
 		padding: 60px 50px 50px;
 	}
 	@media (min-width: 990px) {
