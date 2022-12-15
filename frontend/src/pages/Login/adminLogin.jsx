@@ -59,7 +59,7 @@ const AdminLogin = () => {
 				localStorage.setItem('user_type', 'admin');
 				Cookies.set('reputeAccessToken', response?.data);
 				setRequestPending(false);
-				router('/admin');
+				router('/admin/');
 				setSuccessMessage('Login successful');
 				setRequestSuccess(true);
 			} catch (err) {

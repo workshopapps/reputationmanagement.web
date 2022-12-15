@@ -73,7 +73,7 @@ const AdminSignup = () => {
 				setSuccessMessage('Admin Account Created');
 				setRequestSuccess(true);
 				clearForm();
-				router('/admin');
+				router('/admin/');
 			} catch (err) {
 				if (err.response.status === 400 || err.response.status === 500) {
 					setErrMessage(err?.response?.data);

@@ -47,6 +47,7 @@ const AdminDashboard = () => {
 			clearInterval(fetchAgain)
 		}
 	},[])
+
 	return (
 		<StyledDashboard>
 			<GlobalStyles />
@@ -109,7 +110,6 @@ const AdminDashboard = () => {
 						}
 					/>
 				</CardContainer>
-
 				{/* <InputContainer>
 					<img src={searchBtn} alt="search" />
 					<input type="search" placeholder="Search for anything..." />

@@ -126,7 +126,7 @@ const Router = () => {
 							<Route path="/payment" element={<Payment />} />
 						</Route>
 						<Route element={<RequireAdminAuth/>}>
-							<Route path="/admin" element={<AdminDashboard />} />
+							<Route path="/admin/" element={<AdminDashboard />} />
 							<Route path="/admin-chat" element={<AdminChatModal />} />
 							<Route path="/admin/requests" element={<AdminRequestsPage />} />
 							<Route path="/admin/request-details" element={<AdminRequestDetails/>}/>

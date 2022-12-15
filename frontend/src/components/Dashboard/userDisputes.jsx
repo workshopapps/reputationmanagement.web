@@ -44,12 +44,12 @@ const UserDisputes = () => {
                     </header>
                     <table className="table w-full">
                         <thead className="table w-full">
-                            <tr className="flex justify-between bg-[#E4E4E54D] px-3 py-3">
-                                <Th>ID</Th>
-                                <Th>Complaint</Th>
-                                <Th>Reason</Th>
+                            <tr className="flex bg-[#E4E4E54D] px-3 py-3">
+                                <Th className='w-[13%]'>ID</Th>
+                                <Th className='w-[40%]'>Complaint</Th>
+                                <Th className='w-[27%]'>Reason</Th>
 
-                                <Th>Status</Th>
+                                <Th className='w-[20%]'>Status</Th>
                             </tr>
                         </thead>
                     </table>
@@ -69,10 +69,10 @@ const UserDisputes = () => {
                                     } = data;
                                     return (
                                         <tbody className="w-full" key={index + 1}>
-                                            <tr className="flex pt-2 pb-2  justify-between border-b px-2 items-end ">
-                                                <td className="w-[15%]">{index + 1}</td>
-                                                <td className="text-left w-[25%]">{complaint}</td>
-                                                <td className="text-left w-1/5">
+                                            <tr className="flex justify-between border-b items-end px-3">
+                                                <td className="w-[13%]">{index + 1}</td>
+                                                <td className="text-left w-[40%]">{complaint}</td>
+                                                <td className="text-left w-[27%]">
                                                     {reason === 0 && 'Unresolved'}
                                                     {reason === 1 && 'Delayed'}
                                                     {reason !== 0 && reason !== 1 && 'Other'}
@@ -85,7 +85,7 @@ const UserDisputes = () => {
                                                             : 'text-[#f16f04] font-semibold'
                                                     } ${
                                                         status === 1 ? '' : ''
-                                                    } px-[1] py-[1] rounded-sm w-[80px] flex items-center justify-flexstart text-start pl-[10px]`}
+                                                    } px-[1] py-[1] rounded-sm w-[20%] flex items-center justify-flexstart text-start`}
                                                 >
                                                     {status === 1 ? 'Closed' : 'Open'}{' '}
                                                 </Status>
@@ -134,6 +134,16 @@ const Wrapper = styled.div`
 const Th = styled.th`
     font-size: 1.5rem;
     font-weight: 500;
+    text-align: left;
+    @media(max-width: 600px){
+        :nth-child(3){
+            display: none;
+        }
+        :nth-child(2){
+            width: 67% !important;
+        }
+        font-size: 18px;
+    }
 `;
 const Status = styled.td`
     // text-align: start;
@@ -145,17 +155,14 @@ const Status = styled.td`
 const TableContain = styled.table`
     width: 100%;
     margin-bottom: 4rem;
-
     &,
     tr,
     td {
         border-collapse: collapse;
     }
-
     thead tr {
         border-bottom: 1px solid #e4e4e5;
     }
-
     tbody tr {
         border-bottom: 1px solid #d2d3d4;
     }
@@ -174,7 +181,6 @@ const TableContain = styled.table`
         font-size: 22px;
         line-height: 33px;
         color: #2b2c34;
-
         &:first-child {
             padding-left: 16px;
         }
@@ -183,11 +189,9 @@ const TableContain = styled.table`
     td {
         padding-top: 18px;
         padding-bottom: 18px;
-
         &:first-child {
             padding-left: 16px;
         }
-
         &:nth-of-type(1) {
             font-weight: 600;
             font-size: 16px;
@@ -200,7 +204,6 @@ const TableContain = styled.table`
             line-height: 24px;
             color: #292d32;
         }
-
         &:nth-of-type(3) p {
             font-weight: 600;
             font-size: 16px;
@@ -220,7 +223,6 @@ const TableContain = styled.table`
             color: #01586c;
             white-space: nowrap;
         }
-
         &:nth-of-type(5) p {
             font-weight: 700;
             font-size: 16px;
@@ -228,7 +230,6 @@ const TableContain = styled.table`
             color: #8f9093;
         }
     }
-
     /* @media (max-width: 900px) {
         th,
         td {
@@ -246,7 +247,14 @@ const TableContain = styled.table`
             }
         }
     }
-
+    @media(max-width: 600px){
+        td:nth-child(3){
+            display: none;
+        }
+        td:nth-child(2){
+            width: 67% !important;
+        }
+    }
     @media (max-width: 438px) {
         td:first-child {
             padding-left: 0 !important;
@@ -255,6 +263,7 @@ const TableContain = styled.table`
             padding-left: 0 !important;
         }
     }
+
 `;
 
 export default UserDisputes;

@@ -24,7 +24,7 @@ const LawyersPage = () => {
 
     const fetchRequests = async() => {
         try{
-            const response = await ApiPrivate.get('/api/admin/getusers')
+            const response = await ApiPrivate.get('/api/admin/users/lawyers')
             setClients(response?.data)
         }
         catch(err){
@@ -99,7 +99,7 @@ const LawyersPage = () => {
                                         }
                                     })
                                     .map((data) => {
-                                        return <LawyersCard setDeleteRequestModalActive={setDeleteRequestModalActive} setUserId={setUserId} key={data.reviewId} reviewId={data.reviewId} clientName={data.businessEntityName} email={data.email} />
+                                        return <LawyersCard setDeleteRequestModalActive={setDeleteRequestModalActive} setUserId={setUserId} key={data.reviewId} reviewId={data.reviewId} clientName={data.fullName} email={data.email} />
                                     })
                             :
                             <h4>No requests found</h4>
