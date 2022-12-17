@@ -20,6 +20,7 @@ import yellow from './assets/yellow.svg';
 import red from './assets/red.svg';
 // import logo from '../../assets/images/repute_logo.svg';
 import LawyerDashboardLayout from '../../layout/lawyerDashboardLayout';
+import DoughnutChart from '../../components/LawyerDashboard/DoughnutChart';
 
 function LawyerDashboard() {
 	const [tickets, setTickets] = useState([]);
@@ -99,6 +100,31 @@ function LawyerDashboard() {
 		window.scrollTo(0, 0);
 	}, []);
 	const email = localStorage.getItem('auth');
+
+	const chartData = {
+		labels: [],
+		datasets: [
+			{
+				label: '',
+				data: [
+					claimedReviews ? claimedReviews.filter((data) => {
+							return data.status === 3 || data.status === 5;
+						}).length
+					: '0',
+					claimedReviews ? claimedReviews.filter((data) => {
+						return data.status === 1 || data.status === 2;
+					}).length
+					: '0',
+					claimedReviews ? claimedReviews.filter((data) => {
+						return data.status === 4;
+					}).length
+					: '0',
+				],
+				backgroundColor: ['#039855', '#e5ae40', '#f04438'],
+			},
+		],
+	};
+
 	return (
 		<div className="h-screen flex relative">
 			{/* <Sidebarr /> */}
@@ -157,22 +183,20 @@ function LawyerDashboard() {
 						<div className="flex justify-between w-full">
 							<div>
 								<span className="text-[45px] font-semibold">
-									{
-										claimedReviews
-											? claimedReviews.filter((data) => {
-													return data.status === 3 || data.status === 5;
-											}).length
-											: '0'
-									}
+									{claimedReviews
+										? claimedReviews.filter((data) => {
+												return data.status === 3 || data.status === 5;
+										  }).length
+										: '0'}
 								</span>
 								<div className="flex text-[#32D583]">
-									+{
-										claimedReviews
-											? claimedReviews.filter((data) => {
-													return data.status === 3 || data.status === 5;
-											}).length
-											: '0'
-									} <img src={arrowUp} alt="" />
+									+
+									{claimedReviews
+										? claimedReviews.filter((data) => {
+												return data.status === 3 || data.status === 5;
+										  }).length
+										: '0'}{' '}
+									<img src={arrowUp} alt="" />
 								</div>
 							</div>
 
@@ -187,86 +211,96 @@ function LawyerDashboard() {
 						<div className="flex justify-between w-full">
 							<div>
 								<span className="text-[45px] font-semibold">
-									{
-										claimedReviews
-											? claimedReviews.filter((data) => {
-													return data.status === 4
-											}).length
-											: '0'
-									}
+									{claimedReviews
+										? claimedReviews.filter((data) => {
+												return data.status === 4;
+										  }).length
+										: '0'}
 								</span>
 								<div className="flex text-[#FF718B]">
-									-{
-										claimedReviews
-											? claimedReviews.filter((data) => {
-													return data.status === 4
-											}).length
-											: '0'
-									} <img src={arrowDown} alt="" />
+									-
+									{claimedReviews
+										? claimedReviews.filter((data) => {
+												return data.status === 4;
+										  }).length
+										: '0'}{' '}
+									<img src={arrowDown} alt="" />
 								</div>
 							</div>
 
 							<img src={lineChart} alt="" />
 						</div>
 					</div>
-				</StyledCardWrapper>
-				<StyledBody>
-					<div className="top">
-						<StyledP>Statistics</StyledP>
-						<Styledh3>Monthly activity</Styledh3>
-						<hr />
+					
+					<StyledBody>
+						<div className="top">
+							<StyledP>Statistics</StyledP>
+							<Styledh3>Monthly activity</Styledh3>
+							<hr />
 
-						<StyledC>
-							<div className="one">
-								<img src={green} alt="" />
-								<div className="text">Successful</div>
-							</div>
-							<div className="two">
-								<p>									
-									{
-										claimedReviews
+							{claimedReviews.length &&
+								<div className="relative flex justify-center items-center">
+									<div className="absolute top-[50%] left-[50%] flex flex-col items-center justify-center transform -translate-x-[50%] -translate-y-[50%]">
+										<span className="text-2xl font-semibold">{claimedReviews.length}</span>
+										<span className="text-[14px] text-gray-500">
+											Total requests
+										</span> 
+									</div>
+									<DoughnutChart data={chartData} />
+								</div>
+							}
+
+							<StyledC>
+								<div className="one">
+									<img src={green} alt="" />
+									<div className="text">Successful</div>
+								</div>
+								<div className="two">
+									<p>
+										{claimedReviews
 											? claimedReviews.filter((data) => {
 													return data.status === 3 || data.status === 5;
 											}).length
-											: '0'
-									}</p>
-							</div>
-						</StyledC>
+											: '0'}
+									</p>
+								</div>
+							</StyledC>
 
-						<StyledC>
-							<div className="one">
-								<img src={yellow} alt="" />
-								<div className="text">In Progress</div>
-							</div>
-							<div className="two">
-								<p>									
-									{
-										claimedReviews
+							<StyledC>
+								<div className="one">
+									<img src={yellow} alt="" />
+									<div className="text">In Progress</div>
+								</div>
+								<div className="two">
+									<p>
+										{claimedReviews
 											? claimedReviews.filter((data) => {
 													return data.status === 1 || data.status === 2;
 											}).length
-											: '0'
-									}</p>
-							</div>
-						</StyledC>
+											: '0'}
+									</p>
+								</div>
+							</StyledC>
 
-						<StyledC>
-							<div className="one">
-								<img src={red} alt="" />
-								<div className="text">Failed</div>
-							</div>
-							<div className="two">
-								<p>									
-									{
-										claimedReviews
+							<StyledC>
+								<div className="one">
+									<img src={red} alt="" />
+									<div className="text">Failed</div>
+								</div>
+								<div className="two">
+									<p>
+										{claimedReviews
 											? claimedReviews.filter((data) => {
-													return data.status === 4
+													return data.status === 4;
 											}).length
-											: '0'
-									}</p>
-							</div>
-						</StyledC>
-					</div>
+											: '0'}
+									</p>
+								</div>
+							</StyledC>
+						</div>
+					</StyledBody>
+				</StyledCardWrapper>
+				
 
 					{/* <div className="flex flex-col items-center mt-5 w-full"> */}
 					{/* <div className="w-full"> */}
@@ -381,7 +415,7 @@ function LawyerDashboard() {
 							</div>
 						</div> */}
 					{/* </div> */}
-				</StyledBody>
+				
 
 				{/* <StyledCardWrapper className="flex justify-center flex-wrap">
 						<div className="w-full mx-2 sm:w-[250px] md:h-[210px] md:w-[300px] lg:h-[224px] lg:w-[332px] border my-2 p-5 rounded-md">
@@ -448,12 +482,19 @@ const StyledC = styled.div`
 `;
 
 const StyledBody = styled.div`
-	display: block;
+	display: inline;
+	width: 332px;
 	border: 1px solid #e5e5ef;
-	height: 50vh;
+	/* height: 50vh; */
 	padding: 30px;
-	margin: 20px 0;
+	margin: 8px 4px 30px 4px;
 	border-radius: 13.41px;
+	@media (max-width: 600px) {
+		width: 96% !important;
+	}
+	@media (max-width: 1024px) {
+		width: 300px !important;
+	}
 	hr {
 		margin-top: 10px;
 	}
