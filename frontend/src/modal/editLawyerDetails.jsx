@@ -4,13 +4,12 @@ import useAppContext from "../hooks/useAppContext";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import CLOSE from './close.svg';
 
-const EditBusinessDetails = (props) => {
+const EditLawyerDetails = (props) => {
     const [ fullName, setFullName ] = useState(props.name);
     const [ email, setEmail ] = useState(props.email);
     const setEditUserActive = props.setEditUserActive;
     const ApiPrivate = useAxiosPrivate();
-
-    const {
+	const {
 		setRequestFailed,
 		setRequestSuccess,
 		setErrMessage,
@@ -29,19 +28,19 @@ const EditBusinessDetails = (props) => {
                 },
                 {
                     operationType: 2,
-                    path: '/username',
+                    path: '/fullName',
                     op: 'replace',
                     value: fullName,
                 }
             ])
             console.log(response)
-            setSuccessMessage('Business details updated successfully')
+            setSuccessMessage('Lawyer details updated successfully')
             setRequestSuccess(true)
             setEditUserActive(false)
         }
         catch(err){
             console.log(err)
-            setErrMessage("Couldn't update business details")
+            setErrMessage("Couldn't update lawyer details")
             setRequestFailed(true)
             setEditUserActive(false)
         }
@@ -56,7 +55,7 @@ const EditBusinessDetails = (props) => {
                 </div>
                 <div className="main">
                     <div className="input-wrapper">
-                        <label>Business Name</label>
+                        <label>Full Name</label>
                         <input
                             type="text"
                             value={fullName}
@@ -84,7 +83,7 @@ const EditBusinessDetails = (props) => {
         </StyledOverlay>
     )
 }
-export default EditBusinessDetails;
+export default EditLawyerDetails;
 
 const StyledOverlay = styled.div`
     position: fixed;

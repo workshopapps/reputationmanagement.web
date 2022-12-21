@@ -28,7 +28,7 @@ const ClientPage = () => {
 
     const fetchRequests = async() => {
         try{
-            const response = await ApiPrivate.get('/api/admin/getusers')
+            const response = await ApiPrivate.get('/api/admin/users/customers')
             setClients(response?.data)
         }
         catch(err){
@@ -50,7 +50,7 @@ const ClientPage = () => {
 
     const handleDelete = async() => {
         try{
-            const response = await ApiPrivate.delete(`/api/admin/deleteuser?id=${userId}`)
+            const response = await ApiPrivate.delete(`/api/admin/auth/deletecustomeraccount?email=${userId}`)
             fetchRequests();
             setDeleteRequestModalActive(false);
             setSuccessMessage('User deleted successfully')
@@ -104,7 +104,7 @@ const ClientPage = () => {
                                         }
                                     })
                                     .map((data) => {
-                                        return <ClientsCard setBusinessName={setBusinessName} setEditUserActive={setEditUserActive} setDeleteRequestModalActive={setDeleteRequestModalActive} setUserId={setUserId} key={data.reviewId} reviewId={data.reviewId} clientName={data.businessEntityName} email={data.email} />
+                                        return <ClientsCard setBusinessName={setBusinessName} setEditUserActive={setEditUserActive} setDeleteRequestModalActive={setDeleteRequestModalActive} setUserId={setUserId} key={data.id} id={data.id} clientName={data.username} email={data.email} />
                                     })
                             :
                             <h4>No requests found</h4>

@@ -7,6 +7,8 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { DeleteUserModal } from "../../modal/deleteRequestModal";
 import useAppContext from "../../hooks/useAppContext";
 import { useNavigate } from "react-router-dom";
+import EDIT_ICON from './assets/edit-icon.svg';
+import EditLawyerDetails from "../../modal/editLawyerDetails";
 
 const LawyersPage = () => {
     const [ clients, setClients ] = useState([])
@@ -14,7 +16,9 @@ const LawyersPage = () => {
     const [ search, setSearch ] = useState('')
     const [ userId, setUserId ] = useState(0)
     const ApiPrivate = useAxiosPrivate();
-    const [ deleteRequestModalActive, setDeleteRequestModalActive ] = useState(false)
+    const [ deleteRequestModalActive, setDeleteRequestModalActive ] = useState(false);
+    const [ editUserActive, setEditUserActive ] = useState(false);
+    const [ fullName, setFullName ] = useState(false)
 	const {
 		setRequestFailed,
 		setRequestSuccess,
@@ -46,7 +50,7 @@ const LawyersPage = () => {
 
     const handleDelete = async() => {
         try{
-            const response = await ApiPrivate.delete(`/api/admin/deleteuser?id=${userId}`)
+            const response = await ApiPrivate.delete(`/api/admin/auth/deletelawyeraccount?email=${userId}`)
             fetchRequests();
             setDeleteRequestModalActive(false);
             setSuccessMessage('User deleted successfully')
@@ -60,6 +64,7 @@ const LawyersPage = () => {
     }
     return(
         <StyledClients>
+            { editUserActive && <EditLawyerDetails setEditUserActive={setEditUserActive} email={userId} name={fullName}/>}
             {deleteRequestModalActive && <DeleteUserModal setDeleteModalActive={setDeleteRequestModalActive} handleDelete={() =>handleDelete()}/>}
 			<AdminSideBar
 				className={`${openMenu ? 'open' : ''}`}
@@ -99,7 +104,7 @@ const LawyersPage = () => {
                                         }
                                     })
                                     .map((data) => {
-                                        return <LawyersCard setDeleteRequestModalActive={setDeleteRequestModalActive} setUserId={setUserId} key={data.reviewId} reviewId={data.reviewId} clientName={data.fullName} email={data.email} />
+                                        return <LawyersCard setEditUserActive={setEditUserActive} setDeleteRequestModalActive={setDeleteRequestModalActive} setFullName={setFullName} setUserId={setUserId} key={data.reviewId} reviewId={data.reviewId} clientName={data.fullName} email={data.email} />
                                     })
                             :
                             <h4>No requests found</h4>
@@ -123,13 +128,16 @@ export default LawyersPage;
 
 const LawyersCard = (props) => {
     const setDeleteRequestModalActive = props.setDeleteRequestModalActive;
-    const setUserId = props.setUserId
+    const setUserId = props.setUserId;
+    const setFullName = props.setFullName;
+    const setEditUserActive = props.setEditUserActive;
     return(
         <div className="client-card">
             <h4>{props.clientName}</h4>
             <h4>{props.email}</h4>
             <div className="actions">
-                <img src={DELETE_ICON} onClick={() => { setDeleteRequestModalActive(true); setUserId(props.email)} } alt=""/>
+                <img src={DELETE_ICON} onClick={() => { setDeleteRequestModalActive(true); setUserId(props.email); setFullName(props.clientName)}} alt=""/>
+                <img src={EDIT_ICON} onClick={() => { setEditUserActive(true); setUserId(props.email); setFullName(props.clientName) }} alt=""/>
             </div>
         </div>
     )
