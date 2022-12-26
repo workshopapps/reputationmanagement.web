@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import AdminSideBar from "./adminSideBar";
-import SEARCH_ICON from './assets/search-icon.svg';
-import DELETE_ICON from './assets/trash-icon.svg';
-import EDIT_ICON from './assets/edit-icon.svg';
+import SEARCH_ICON from '../../assets/images/img/search-icon.svg';
+import DELETE_ICON from '../../assets/images/img/trash-icon.svg';
+import EDIT_ICON from '../../assets/images/img/edit-icon.svg';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import DeleteRequestModal from "../../modal/deleteRequestModal";
 import useAppContext from "../../hooks/useAppContext";
@@ -23,7 +23,7 @@ const AdminRequestsPage = () => {
 		setSuccessMessage,
 	} = useAppContext();
 
-    const fetchRequests = async() => {
+    const fetchRequests = useCallback(async() => {
         try{
             const response = await ApiPrivate.get('/api/admin/reviews?pageNumber=0&pageSize=100')
             setRequests(response?.data)
@@ -31,10 +31,11 @@ const AdminRequestsPage = () => {
         catch(err){
             console.log(err)
         }
-    }
+    },[ ApiPrivate ])
+
     useEffect(() => {
         fetchRequests()
-    },[])
+    },[ fetchRequests ])
 
     useEffect(() => {
         const fetchAgain = setInterval(() => {
@@ -43,11 +44,12 @@ const AdminRequestsPage = () => {
         return () => {
             clearInterval(fetchAgain)
         }
-    },[])
+    },[ fetchRequests ])
 
     const handleDelete = async() => {
         try{
             const response = await ApiPrivate.delete(`/api/admin/${reviewId}/delete`)
+            console.log(response)
             fetchRequests();
             setDeleteRequestModalActive(false);
             setSuccessMessage('Request deleted successfully')
@@ -90,6 +92,7 @@ const AdminRequestsPage = () => {
                             requests
                             ?
                             requests
+                                    // eslint-disable-next-line array-callback-return
                                     .filter((data) => {
                                         if (search === '') {
                                             return data;

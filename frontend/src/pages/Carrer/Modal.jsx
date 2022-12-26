@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react';
-import Successfulmodal from './Successfulmodal';
+import Successfulmodal from '../../modal/Successfulmodal';
 import styled from 'styled-components';
 import axios from 'axios';
 // import Api from '../../api/axios';

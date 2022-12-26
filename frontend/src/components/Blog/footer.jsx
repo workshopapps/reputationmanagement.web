@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import bg from '../../pages/Blog/Blog-See All/Assets/bg.png';
+import bg from '../../assets/images/img/bg.png';
 import React, { useState } from 'react';
 import Api from '../../api/axios';
 import { Link } from 'react-router-dom';

@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { LawyerWebAppNav } from '../../components/adminDashboard/WebAppNav';
 import GlobalStyles from '../../components/Dashboard/Styles/Global';
 
 import {
 	StyledDashboard,
 	StyledContainer,
-	InputContainer,
-	TableContainer,
-	Header,
 } from '../../components/Dashboard/Styles/Dashboard.styled';
-import { NavLink } from 'react-router-dom';
 import Card from '../../components/Dashboard/Card';
 import messaging from '../../assets/images/Dashboard/messaging.svg';
 import progress from '../../assets/images/Dashboard/progress.svg';
 import completed from '../../assets/images/Dashboard/completed.svg';
-import failedIcon from './assets/x_icon.svg';
-import pendingIcon from './assets/pending_icon.svg';
-import checkIcon from './assets/check_icon.svg';
-import searchBtn from '../../assets/images/Dashboard/search.svg';
+import failedIcon from '../../assets/images/img/x_icon.svg';
+import pendingIcon from '../../assets/images/img/pending_icon.svg';
+import checkIcon from '../../assets/images/img/check_icon.svg';
 import AdminSideBar from './adminSideBar';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useEffect } from 'react';
@@ -30,7 +25,7 @@ const AdminDashboard = () => {
 	const [claimedReview, setClaimedReview] = useState([]);
 	const { setErrMessage, setRequestFailed } = useAppContext();
 
-	const fetchdetails = async () => {
+	const fetchdetails = useCallback(async () => {
 		try {
 			const response = await ApiPrivate.get(
 				'/api/admin/reviews?pageNumber=0&pageSize=100'
@@ -41,7 +36,8 @@ const AdminDashboard = () => {
 			setErrMessage("Couldn't fetch requests");
 			setRequestFailed(true);
 		}
-	};
+	},[ ApiPrivate, setErrMessage, setRequestFailed ]);
+
 	useEffect(() => {
 		fetchdetails();
 		const fetchAgain = setInterval(() => {
@@ -50,7 +46,7 @@ const AdminDashboard = () => {
 		return () => {
 			clearInterval(fetchAgain);
 		};
-	}, []);
+	}, [ fetchdetails ]);
 
 	return (
 		<StyledDashboard>
