@@ -9,7 +9,8 @@ import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
-
+import ReactGA from 'react-ga'
+import { events } from '../analyticsevents';
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 const LawyerSignup = () => {
@@ -71,6 +72,7 @@ const LawyerSignup = () => {
 				setRequestPending(false);
 				setSuccessMessage('Account Created');
 				setRequestSuccess(true);
+				ReactGA.event(events.lawyerSignup)
 				clearForm();
 				router('/lawyer-dashboard');
 			} catch (err) {

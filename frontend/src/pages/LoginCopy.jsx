@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import REPUTE from '../assets/images/repute_logo.svg';
 import styled from 'styled-components';
@@ -9,7 +9,8 @@ import { useEffect } from 'react';
 import useAppContext from '../hooks/useAppContext';
 import Cookies from 'js-cookie';
 import { toast, ToastContainer } from 'react-toastify';
-
+import ReactGA from 'react-ga'
+import { events } from './analyticsevents';
 const Login = () => {
 	const [passwordShown, setPasswordShown] = useState(false);
 	const router = useNavigate();
@@ -59,6 +60,7 @@ const Login = () => {
 				router('/dashboard');
 				setSuccessMessage('Login successful');
 				setRequestSuccess(true);
+				ReactGA.event(events.userLogin)
 			} catch (err) {
 				if (err?.response?.status === 400) {
 					// setErrMessage(err?.response?.data);
@@ -74,9 +76,7 @@ const Login = () => {
 				setRequestPending(false);
 			}
 		}
-	};
-
-	return (
+	};	return (
 		<>
 			<LoginContainer>
 				<ReputeLogo>

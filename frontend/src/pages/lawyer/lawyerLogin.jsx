@@ -10,6 +10,8 @@ import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
+import ReactGA from 'react-ga'
+import { events } from '../analyticsevents';
 
 const LawyerLogin = () => {
 	const [passwordShown, setPasswordShown] = useState(false);
@@ -60,6 +62,8 @@ const LawyerLogin = () => {
 				router('/lawyer-dashboard');
 				setSuccessMessage('Login successful');
 				setRequestSuccess(true);
+				ReactGA.event(events.lawyerSignup)
+
 			} catch (err) {
 				if (err?.response?.status === 400) {
 					setErrMessage(err?.response?.data);
