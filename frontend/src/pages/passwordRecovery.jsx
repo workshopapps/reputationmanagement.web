@@ -7,6 +7,8 @@ import Api from '../api/axios';
 import REPUTE from '../assets/images/repute_logo.svg';
 import arrow from '../assets/images/img/arrow-left.svg';
 import ErrorMessage from '../components/error message/errorMessageCopy';
+import ReactGA from 'react-ga'
+import { events } from './analyticsevents';
 
 // const EMAIL_REGEX =
 // 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
@@ -43,6 +45,7 @@ export default function PasswordRecovery() {
 				localStorage.setItem('forgot', email);
 				setEmail('');
 				navigate('/check-mail');
+				ReactGA.event(events.passwordRecovery)
 			}
 		} catch (err) {
 			toast.error('Email does not exist');
