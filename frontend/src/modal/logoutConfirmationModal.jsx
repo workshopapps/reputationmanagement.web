@@ -3,12 +3,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import logo from '../assets/images/logOutConfirmation/signoutlogo.svg';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import Api from '../api/axios';
 
-const handleLogout = () => {
-	Cookies.remove('repboostAccessToken');
-	localStorage.removeItem('auth');
-	const user_type = localStorage.getItem('user_type')
-	user_type === 'lawyer' ? window.location.href = '/lawyer-login' : window.location.href = '/login';
+const handleLogout = async() => {
+
+	try{
+		const response = await Api.post('/api/token/revoke')
+		Cookies.remove('reputeAccessToken');
+		Cookies.remove('reputeRefreshToken');
+		localStorage.removeItem('auth');
+		const user_type = localStorage.getItem('user_type')
+		user_type === 'lawyer' ? window.location.href = '/lawyer-login' : window.location.href = '/login';
+		toast.success('Log out successful')
+	}
+	catch(err){
+		toast.error('Logout failed')
+		console.log(err)
+	}
 };
 
 const LogoutConfirmationModal = ({ isShowing, hide }) =>

@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@popperjs/core": "^2.11.6",
+		"@react-oauth/google": "^0.5.1",
 		"@sentry/react": "^7.24.2",
 		"@sentry/tracing": "^7.24.1",
 		"@syncfusion/ej2-react-charts": "^20.3.60",

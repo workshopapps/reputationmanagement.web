@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import Closed from './Assets/eye-slash.png';
-import REPUTE from './Assets/repute.svg';
+import Closed from '../assets/images/img/eye-slash.png';
+import REPUTE from '../assets/images/img/repute.svg';
 import styled from 'styled-components';
 import Api from '../api/axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,6 +9,9 @@ import ErrorMessage from '../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../hooks/useAppContext';
 import Cookies from 'js-cookie';
+import BusinessNameModal from '../modal/businessNameModal';
+import GOOGLE from '../assets/images/img/google.svg'
+import { useRef } from 'react';
 
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
@@ -80,7 +83,8 @@ function Signup() {
 				});
 				localStorage.setItem('auth', email);
 				localStorage.setItem('user_type', 'business');
-				Cookies.set('reputeAccessToken', response?.data);
+				Cookies.set('reputeAccessToken', response?.data?.token);
+				Cookies.set('reputeRefreshToken', response?.data?.refreshToken);
 				setRequestPending(false);
 				setSuccessMessage('Account Created');
 				setRequestSuccess(true);
@@ -106,6 +110,7 @@ function Signup() {
 	};
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [passwordShown1, setPasswordShown1] = useState(false);
+	const [ nameModalActive, setNameModalActive ] = useState(false);
 
 	// Password toggle handler
 	const togglePassword = () => {
@@ -118,9 +123,17 @@ function Signup() {
 		// inverse the boolean state of passwordShown
 		setPasswordShown1(!passwordShown1);
 	};
+	const nameModalRef = useRef(null);
+
+    const handleClick = (e) => {
+        if (nameModalActive && nameModalRef.current && !nameModalRef.current.contains(e.target)) {
+            setNameModalActive(false);
+        }
+    }
 
 	return (
-		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen">
+		<StyledSignupWrapper className="SignUp box-border min-h-32 flex flex-row h-screen" onClick={(e) => handleClick(e)}>
+		{nameModalActive && <BusinessNameModal reference={nameModalRef} setBusinessName={setBusinessName} businessName={businessName}/>}
 			<StyledFormWrapper>
 				<img src={REPUTE} alt="background" className="logo_img" />
 				<h2>Welcome to REPUTE</h2>
@@ -280,6 +293,17 @@ function Signup() {
 						)}
 					</button>
 				</div>
+				<StyledOptions>
+					<div className='or'>
+						<span></span>
+						<p>or sign in with</p>
+						<span></span>
+					</div>
+					<div className='google' onClick={() => setNameModalActive(true)}>
+						<img src={GOOGLE} alt=""/>
+						Google
+					</div>
+				</StyledOptions>
 				<StyledSignupOptions>
 					<p>
 						Already have an account ?{' '}
@@ -295,6 +319,45 @@ function Signup() {
 		</StyledSignupWrapper>
 	);
 }
+const StyledOptions = styled.div`
+	.or{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 18px;
+		margin-top: 41px;
+		p{
+			font-family: Lato;
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 18px;
+			letter-spacing: 0.01em;
+			text-align: left;
+			color: #6F7174;
+		}
+		span{
+			height: 0;
+			width: 100.07073211669922px;
+			border-top: 0.75px solid #98A2B3
+		}
+	}
+	.google{
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
+		border: 1px solid #D2D3D4 !important;
+		width: 400px;
+		margin: 0 auto;
+		max-width: 100%;
+		border-radius: 7px !important;
+		cursor: pointer;
+		height: 59px;
+		margin-top: 40px;
+		box-shadow: none !important;
+		opacity: 1 !important;
+	}
+`
 const StyledSignupWrapper = styled.div`
 	max-height: 100vh;
 	position: relative;

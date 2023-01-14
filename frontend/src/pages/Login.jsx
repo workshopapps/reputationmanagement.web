@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import REPUTE from './repute.svg';
+import REPUTE from '../assets/images/img/repute.svg';
 import styled from 'styled-components';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import Api from '../api/axios';
@@ -8,6 +8,10 @@ import ErrorMessage from '../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../hooks/useAppContext';
 import Cookies from 'js-cookie';
+import GOOGLE from '../assets/images/img/google.svg';
+import { toast } from 'react-toastify';
+import { useGoogleLogin } from '@react-oauth/google';
+import GoogleLogin from '../components/buttons/googleLogin';
 
 const Login = () => {
 	localStorage.setItem('user_type', 'business');
@@ -54,7 +58,8 @@ const Login = () => {
 				});
 				localStorage.setItem('auth', email);
 				localStorage.setItem('user_type', 'business');
-				Cookies.set('reputeAccessToken', response?.data);
+				Cookies.set('reputeAccessToken', response?.data?.token);
+				Cookies.set('reputeRefreshToken', response?.data?.refreshToken);
 				setRequestPending(false);
 				router('/dashboard');
 				setSuccessMessage('Login successful');
@@ -116,7 +121,7 @@ const Login = () => {
 								name="password"
 								value={password}
 								placeholder="6+ character long"
-								id="email"
+								id="password"
 								required
 								onChange={(e) => setPassword(e.target.value)}
 							/>
@@ -158,6 +163,14 @@ const Login = () => {
 						{!requestPending ? 'Log In' : <div className="loading"></div>}
 					</SubmitBtn>
 				</StyledForm>
+				<StyledOptions>
+					<div className='or'>
+						<span></span>
+						<p>or sign in with</p>
+						<span></span>
+					</div>
+					<GoogleLogin/>
+				</StyledOptions>
 				<FormFooter>
 					<div className="footer-text">
 						Don't have an account?{' '}
@@ -207,7 +220,29 @@ const ParentContainer = styled.div`
 		}
 	}
 `;
-
+const StyledOptions = styled.div`
+	.or{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 18px;
+		margin-top: 41px;
+		p{
+			font-family: Lato;
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 18px;
+			letter-spacing: 0.01em;
+			text-align: left;
+			color: #6F7174;
+		}
+		span{
+			height: 0;
+			width: 100.07073211669922px;
+			border-top: 0.75px solid #98A2B3
+		}
+	}
+`
 const FormSection = styled.section`
 	width: 100%;
 	height: 100%;

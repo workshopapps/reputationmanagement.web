@@ -1,14 +1,17 @@
 import Api from './axios';
 import Cookies from 'js-cookie';
 
-const useAccessToken = () => {
+const updateAccessToken = () => {
+	const refreshToken = Cookies.get('reputeRefreshToken')
+	const accessToken = Cookies.get('accessRefreshToken')
 	const refresh = async () => {
-		const response = await Api.get('/api/refresh', {
-			withCredentials: true,
+		const response = await Api.post('/api/token/refresh', {
+			refreshtoken: refreshToken,
+			accessToken: accessToken,
 		});
 		Cookies.set('reputeAccessToken', response?.data);
-		return 'accessToken reset!!';
+		return response?.data;
 	};
 	return refresh;
 };
-export default useAccessToken;
+export default updateAccessToken;

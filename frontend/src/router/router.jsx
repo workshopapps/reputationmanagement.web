@@ -33,8 +33,8 @@ import Ourteam from '../pages/Ourteam';
 
 import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
-import Login from '../pages/LoginCopy';
-import Signup from '../pages/SignupCopy';
+import Login from '../pages/Login';
+import Signup from '../pages/Signup';
 import RequireAuth, {
 	RequireAdminAuth,
 	RequireBusinessAuth,

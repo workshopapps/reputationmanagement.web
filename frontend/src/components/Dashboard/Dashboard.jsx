@@ -24,9 +24,11 @@ import { NavLink } from 'react-router-dom';
 import useAppContext from '../../hooks/useAppContext';
 import { useEffect } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { ToastContainer } from 'react-toastify';
 
 const Dashboard = () => {
 	const { setRequestFailed, setAllRequests, setErrMessage } = useAppContext();
+	const [ unauthorized, setUnauthorized ] = useState(false)
 
 	const ApiPrivate = useAxiosPrivate();
 
@@ -38,6 +40,7 @@ const Dashboard = () => {
 			setAllRequests(response?.data);
 		} catch (err) {
 			console.log(err);
+			err.response.status === 401 && setUnauthorized(true)
 			setErrMessage("Couldn't fetch requests");
 			setRequestFailed(true);
 		}
@@ -45,10 +48,11 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			fetchAllRequests();
+			!unauthorized && fetchAllRequests();
 		}, 5000);
 		return () => clearTimeout(interval);
-	}, []);
+	}, [unauthorized]);
+
 	useEffect(() => {
 		fetchAllRequests();
 	}, [fetchAllRequests]);
@@ -58,6 +62,7 @@ const Dashboard = () => {
 	const { allRequests } = useAppContext();
 	return (
 		<StyledDashboard>
+			<ToastContainer/>
 			<GlobalStyles />
 
 			<Sidebar
