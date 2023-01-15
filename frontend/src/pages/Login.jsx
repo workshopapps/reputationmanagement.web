@@ -12,6 +12,8 @@ import GOOGLE from '../assets/images/img/google.svg';
 import { toast } from 'react-toastify';
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleLogin from '../components/buttons/googleLogin';
+import ReactGA from 'react-ga'
+import { events } from './analyticsevents';
 
 const Login = () => {
 	localStorage.setItem('user_type', 'business');
@@ -64,6 +66,8 @@ const Login = () => {
 				router('/dashboard');
 				setSuccessMessage('Login successful');
 				setRequestSuccess(true);
+				ReactGA.event(events.userLogin)
+				
 			} catch (err) {
 				if (err?.response?.status === 400) {
 					setErrMessage(err?.response?.data);
