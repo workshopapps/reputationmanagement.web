@@ -9,8 +9,7 @@ import { useEffect } from 'react';
 import useAppContext from '../hooks/useAppContext';
 import Cookies from 'js-cookie';
 import { toast, ToastContainer } from 'react-toastify';
-import ReactGA from 'react-ga'
-import { events } from './analyticsevents';
+
 const Login = () => {
 	const [passwordShown, setPasswordShown] = useState(false);
 	const router = useNavigate();
@@ -60,7 +59,6 @@ const Login = () => {
 				router('/dashboard');
 				setSuccessMessage('Login successful');
 				setRequestSuccess(true);
-				ReactGA.event(events.userLogin)
 			} catch (err) {
 				if (err?.response?.status === 400) {
 					// setErrMessage(err?.response?.data);

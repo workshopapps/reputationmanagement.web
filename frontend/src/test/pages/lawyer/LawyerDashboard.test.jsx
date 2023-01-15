@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import LawyerDashboard from '../../../pages/LawyerDashboard/LawyerDashboard';
+import LawyerDashboard from '../../../pages/lawyer/LawyerDashboard';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppProvider from '../../../context/appContext';
 

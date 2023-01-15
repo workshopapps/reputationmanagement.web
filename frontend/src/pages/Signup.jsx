@@ -12,6 +12,9 @@ import Cookies from 'js-cookie';
 import BusinessNameModal from '../modal/businessNameModal';
 import GOOGLE from '../assets/images/img/google.svg'
 import { useRef } from 'react';
+import ReactGA from 'react-ga'
+import { events } from './analyticsevents';
+
 
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
@@ -88,6 +91,7 @@ function Signup() {
 				setRequestPending(false);
 				setSuccessMessage('Account Created');
 				setRequestSuccess(true);
+				ReactGA.event(events.userSignup)
 				clearForm();
 				router('/dashboard');
 			} catch (err) {
