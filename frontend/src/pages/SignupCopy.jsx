@@ -10,9 +10,6 @@ import useAppContext from '../hooks/useAppContext';
 import Cookies from 'js-cookie';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
-import ReactGA from 'react-ga'
-import { events } from './analyticsevents';
-
 const EMAIL_REGEX =
 	/^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/;
 
@@ -88,7 +85,6 @@ function Signup() {
 				setRequestPending(false);
 				setSuccessMessage('Account Created');
 				setRequestSuccess(true);
-				ReactGA.event(events.userSignup)
 				clearForm();
 				router('/dashboard');
 			} catch (err) {

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppProvider from '../../context/appContext';
-import LandingPage from '../../pages/LandingPage/index';
+import LandingPage from '../../pages/home';
 
 describe('Test all sections in the documents renders properly', () => {
 	test('render Get started text in landing page', () => {

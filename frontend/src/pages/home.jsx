@@ -236,7 +236,7 @@ const LandingPage = () => {
 								<div className="hero-img-text">
 									<h5>GETTING STARTED</h5>
 
-									<StyledH2Center>How Repute Works</StyledH2Center>
+									<StyledH2Center data-testid="Landing-howitworks" >How Repute Works</StyledH2Center>
 								</div>
 								<picture>
 									<source media="(max-width: 640px)" srcSet={steps_mobile} />
