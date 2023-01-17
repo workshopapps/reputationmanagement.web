@@ -10,7 +10,7 @@ import ErrorMessage from '../../components/error message/errorMessage';
 import { useEffect } from 'react';
 import useAppContext from '../../hooks/useAppContext';
 import Cookies from 'js-cookie';
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga';
 import { events } from '../analyticsevents';
 
 const LawyerLogin = () => {
@@ -57,13 +57,14 @@ const LawyerLogin = () => {
 				});
 				localStorage.setItem('auth', email);
 				localStorage.setItem('user_type', 'lawyer');
-				Cookies.set('reputeAccessToken', response?.data);
+				Cookies.set('reputeAccessToken', response?.data?.token);
+				Cookies.set('reputeRefreshToken', response?.data?.refreshToken);
+
 				setRequestPending(false);
 				router('/lawyer-dashboard');
 				setSuccessMessage('Login successful');
 				setRequestSuccess(true);
-				ReactGA.event(events.lawyerSignup)
-
+				ReactGA.event(events.lawyerSignup);
 			} catch (err) {
 				if (err?.response?.status === 400) {
 					setErrMessage(err?.response?.data);
@@ -216,11 +217,11 @@ const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	img{
+	img {
 		width: 22%;
 	}
-	@media screen and (max-width: 400px){
-		img{
+	@media screen and (max-width: 400px) {
+		img {
 			width: 28%;
 		}
 	}
