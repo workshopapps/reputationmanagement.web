@@ -1,14 +1,6 @@
 const FooterData = [
 	[
 		{
-			text: 'Blogs',
-			url: '/blog',
-		},
-		{
-			text: 'Our team',
-			url: '/our-team',
-		},
-		{
 			text: 'Terms and Conditions',
 			url: '/terms-of-use',
 		},

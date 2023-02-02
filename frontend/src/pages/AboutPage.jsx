@@ -31,14 +31,9 @@ function AboutPage() {
 								Who Are <StyledOrange>We</StyledOrange>?
 							</StyledBlue>
 							<StyledHerotxt>
-								We are the team offering you a trusted, convenient, and professional
-								service.{' '}
 								<StyledHerotxtSpan>
-									We boast of a team of{' '}
-									<StyledOrange>legal professionals</StyledOrange> and{' '}
-									<StyledOrange>reputation management consultants</StyledOrange>,
-									well equipped with in-depth knowledge in people and brand
-									management.
+									We are your external team with a diverse background in reputation management, 
+									internet law, customer service, brand management, public relations, and digital marketing.
 								</StyledHerotxtSpan>{' '}
 								We cater to businesses and public figures that have a lot riding on
 								their reputation.
@@ -52,14 +47,11 @@ function AboutPage() {
 				<div className="bg-[#eef1fc]">
 					<StyledStory data-testid="story-element">
 						<StyledStorytxt>
-							<StoryHead>Our Story</StoryHead>
+							<StoryHead>What led to this?</StoryHead>
 							<StoryP>
-								Founded in November 2022 during an internship program of great
-								minds,the founder took note of the rising trend: high profile
-								individual and business are becoming more susceptible to negative
-								review, where a few words could have a devastating impact on the
-								reputation, sales, recruitment efforts of the victim. for this
-								reason, the repute vision came to life.
+								There is a growing trend where businesses and high profile individuals are becoming 
+								more susceptible to negative reviews, with just a few negative words having a 
+								devastating impact on the reputation, sales, and recruitment efforts of the business. 
 							</StoryP>
 							<StoryP>
 								At repute, we aim to provide a stellar reputation management service
@@ -86,7 +78,7 @@ function AboutPage() {
 							<StyledColorOrange>Trust</StyledColorOrange>
 							<StyledFixp>
 								<Plato>
-									You get to have an idea of your fee before you commit; and yet,
+									You get to have an idea of your fee before you commit; and yet, 
 									you only make payment when the job is successfully completed
 								</Plato>
 							</StyledFixp>
@@ -99,9 +91,9 @@ function AboutPage() {
 							<StyledColorOrange>Convience</StyledColorOrange>
 							<StyledFixp>
 								<Plato>
-									Our site is quite easy to use through simple steps: sign up, lodge
-									your complaint, then sit back and view the real-time status
-									updates on your dashboard, while we fixIt for you
+									Our site is quite easy to use through simple steps: you sign up, you lodge your complaint, 
+									then you sit back and view the real-time status updates on your dashboard while we 
+									repair your reputation
 								</Plato>
 							</StyledFixp>
 						</StyledFixCenter>
@@ -113,9 +105,9 @@ function AboutPage() {
 							<StyledColorOrange> Professionalism</StyledColorOrange>
 							<StyledFixp>
 								<Plato>
-									With a team of very experienced professionals, we approach each
-									request on a case-by-case basis, ensuring our client gets updated
-									every step of the way and is given only the best result
+									With a team of experienced professionals, we approach each 
+									request on a case-by-case basis, ensuring you get updated 
+									every step of the way
 								</Plato>
 							</StyledFixp>
 						</StyledFixCenter>

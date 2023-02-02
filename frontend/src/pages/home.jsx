@@ -146,9 +146,7 @@ const LandingPage = () => {
 										Get rid of negative comments <span>today</span>
 									</h1>
 									<h5>
-										We offer services that improve your brand&apos;s image; they
-										include reviewing and sorting negative comments about your
-										business.
+										We remove negative online reviews that attempt to tarnish the reputation of your business.
 									</h5>
 
 									<form onSubmit={handleSubmit}>
@@ -323,9 +321,8 @@ const LandingPage = () => {
 									<div className="title">
 										<h3>Monitor the progress</h3>
 										<p>
-											Our lawyers will take it up from there, we are here to
-											help maintain your brand’s reputation. you will be notify
-											when the bad review is taken down form your dashboard.
+											Our team will take it up from there, and you will be notified via your dashboard 
+											and/or email, every step of the way, up until the bad review is taken down.
 										</p>
 										<Link to="/we-remove-google-search">
 											<button className="btn">
@@ -381,7 +378,7 @@ const LandingPage = () => {
 					{/* -------------------------------------  */}
 					<StyledContainer>
 						<StyledContainer2>
-							<p>Used and loved by 1M users across 199 countries</p>
+							{/* <p>Used and loved by 1M users across 199 countries</p> */}
 							<StyledCompanies>
 								<img src={airbnb} alt="" />
 								<img src={spotify} alt="" />
@@ -396,7 +393,7 @@ const LandingPage = () => {
 					{/* ------------------FOOTER----------------  */}
 					<section className="cta" data-testid="Landing-footer">
 						<div className="max-w-4xl mx-auto cta-inner">
-							<h2>Do you need a consultation?</h2>
+							<h2>Let’s help you remove that negative review</h2>
 
 							<h4>
 								Book one-on-one consultation sessions with our experts to learn

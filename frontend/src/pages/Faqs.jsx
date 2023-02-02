@@ -23,43 +23,20 @@ function Faqs() {
 	const contactUsRef = useRef(null);
 	const faqRef = useRef(null);
 	const [faqs, setFaqs] = useState([
+
 		{
 			id: 1,
-			question: 'How does REPUTE work?',
+			question: 'How long does reputation management take?',
 			answer:
-				'REPUTE is a reputation management website that deals swiftly and strategically with responding to customer/client engagement across multiple review sites to improve your brand’s image. REPUTE helps to polish your brands image so that its first impression on prospective customers is positive',
+				'The duration depends both on the particular set of services (content removal, PR, etc), as well as the cause of the negative review. Though this could take anywhere from 3 to 60 days at best.',
 			open: false,
 		},
 
 		{
 			id: 2,
-			question: 'How can I manage my reputation with REPUTE?',
-			answer:
-				'The first thing you need to do is sign up on REPUTE website after which you can now login to your dashboard. On your dashboard, click on the “New Complaint” button. This will take you to a removal request page. Fill out the form correctly and submit. A lawyer will contact you and the process of taking down the bad review will begin. Once the review is taken down successfully, you will get a notification on your dashboard. ',
-			open: false,
-		},
-
-		{
-			id: 3,
-			question: 'How long does reputation management take?',
-			answer:
-				'Depending on a number of factors, reputation management can take a few days or more, but give or take, a maximum of a week.',
-			open: false,
-		},
-
-		{
-			id: 4,
-			question: 'Can I make use of my personal Lawyer on REPUTE?',
-			answer:
-				'Unfortunately, No. We have a team of highly professional lawyers on REPUTE who are ready to give their best and go all out in ensuring that your brand is free from negative reviews. So, rest assured that you are in safe hands and you will receive Excellent results',
-			open: false,
-		},
-
-		{
-			id: 5,
 			question: 'What if the negative review was left on Social Media?',
 			answer:
-				'That is not a problem. on the removal request form, there are options for where the review was left. Tick the one that is applicable to you and relax while REPUTE fixes it for you.',
+				'On the removal request form, there are options for where the review was left. Tick the option that is applicable to you',
 			open: false,
 		},
 	]);
@@ -134,6 +111,7 @@ function Faqs() {
 		}
 	}, [location]);
 	const { chatModalActive, setChatModalActive } = useAppContext();
+	const [ firsFaqOpen, setFirstFaqOpen ] = useState(false)
 	return (
 		<PageLayout>
 			{chatModalActive && <MyChatFunction />}
@@ -145,9 +123,34 @@ function Faqs() {
 				</StyledHeader>
 				<StyledBackground>
 					<FaqSection className="faqs">
+							<FaqWraper
+								className={'faq ' + (firsFaqOpen ? 'open' : '')}
+								onClick={() => setFirstFaqOpen(!firsFaqOpen)}
+							>
+								<FaqQuestion className="faq-question">
+									<h2>How does REPUTE work?</h2>
+									<FaqArrowDown className="arrow-down">
+										<FaChevronDown className="fa-down" />
+									</FaqArrowDown>
+								</FaqQuestion>
+					
+								<FaqAnswer className="faq-answer">
+									<p>
+										With 3 simple steps:
+									</p>
+									<ul style={{ listStyleType: 'decimal' }}>
+										<li>Sign up on the Repute website</li>
+										<li>On your dashboard, lodge a complaint by clicking the ‘New Complaint’ button</li>
+										<li>Fill out the form and submit</li>
+									</ul>
+									<p>
+										You’ll be given regular updates and notifications on the progress of your request.
+									</p>
+								</FaqAnswer>
+							</FaqWraper>
 						{faqs.map((faq, i) => {
 							return (
-								<FaqWraper
+							<FaqWraper
 								key={faq.id}
 								className={'faq ' + (faq.open ? 'open' : '')}
 								onClick={() => toggleFaq(i)}
@@ -241,7 +244,7 @@ function Faqs() {
 							<FaqFooterHeading>Still got a question?</FaqFooterHeading>
 
 							<FaqFooterSubHeading>
-								Always send us a message, we will get back to you shortly.
+								Send us a message and we will quickly get back to you
 							</FaqFooterSubHeading>
 						</FaqHeadingMain>
 

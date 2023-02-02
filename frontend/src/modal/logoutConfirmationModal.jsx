@@ -4,24 +4,33 @@ import ReactDOM from 'react-dom';
 import logo from '../assets/images/logOutConfirmation/signoutlogo.svg';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
-import Api from '../api/axios';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
-const handleLogout = async() => {
 
-	try{
-		const response = await Api.post('/api/token/revoke')
-		Cookies.remove('reputeAccessToken');
-		Cookies.remove('reputeRefreshToken');
-		localStorage.removeItem('auth');
-		const user_type = localStorage.getItem('user_type')
-		user_type === 'lawyer' ? window.location.href = '/lawyer-login' : window.location.href = '/login';
-		toast.success('Log out successful')
-	}
-	catch(err){
-		toast.error('Logout failed')
-		console.log(err)
-	}
-};
+const LogoutButton = () => {
+	const ApiPrivate = useAxiosPrivate();
+
+	const handleLogout = async() => {
+		try{
+			const response = await ApiPrivate.post('/api/token/revoke')
+			console.log(response)
+			Cookies.remove('reputeAccessToken');
+			Cookies.remove('reputeRefreshToken');
+			localStorage.removeItem('auth');
+			const user_type = localStorage.getItem('user_type')
+			user_type === 'lawyer' ? window.location.href = '/lawyer-login' : window.location.href = '/login';
+			toast.success('Log out successful')
+		}
+		catch(err){
+			toast.error('Logout failed')
+			console.log(err)
+		}
+	};
+	return(
+		<button onClick={handleLogout}>Sign Out</button>
+	)
+}
+
 
 const LogoutConfirmationModal = ({ isShowing, hide }) =>
 	isShowing
@@ -52,8 +61,7 @@ const LogoutConfirmationModal = ({ isShowing, hide }) =>
 								<h2>Sign Out</h2>
 								<h6>Are you sure you want to sign out?</h6>
 								<div>
-									<button onClick={handleLogout}>Sign Out</button>
-
+									<LogoutButton/>
 									<button onClick={hide}>Cancel</button>
 								</div>
 							</ModalInner>
