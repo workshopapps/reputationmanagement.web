@@ -375,21 +375,6 @@ const LandingPage = () => {
 						</StyledSlider>
 					</ColorBg>
 
-					{/* -------------------------------------  */}
-					<StyledContainer>
-						<StyledContainer2>
-							{/* <p>Used and loved by 1M users across 199 countries</p> */}
-							<StyledCompanies>
-								<img src={airbnb} alt="" />
-								<img src={spotify} alt="" />
-								<img src={reddit} alt="" />
-								<img src={kellogs} alt="" />
-								<img src={stripe} alt="" />
-								<img src={dominos} alt="" />
-							</StyledCompanies>
-						</StyledContainer2>
-					</StyledContainer>
-
 					{/* ------------------FOOTER----------------  */}
 					<section className="cta" data-testid="Landing-footer">
 						<div className="max-w-4xl mx-auto cta-inner">

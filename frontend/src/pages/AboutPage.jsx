@@ -55,7 +55,7 @@ function AboutPage() {
 							</StoryP>
 							<StoryP>
 								At repute, we aim to provide a stellar reputation management service
-								by utlising the lastest technology and the most effective user
+								by utilizing the lastest technology and the most effective user
 								experience processes
 							</StoryP>
 						</StyledStorytxt>
