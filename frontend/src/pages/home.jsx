@@ -189,7 +189,7 @@ const LandingPage = () => {
 										<div>
 											<input
 												name="reviewLocation"
-												placeholder="Where is the review?"
+												placeholder="Paste the link/URL to the Negative Review"
 												className="review-input"
 												onChange={handleChange}
 												value={formData.reviewLocation}
