@@ -301,7 +301,7 @@ function Faqs() {
 
 										<span>
 											<h1>Email</h1>
-											<p>contactus@repute.com</p>
+											<p>contact@repute.legal</p>
 										</span>
 									</div>
 								</SendMailLink>
