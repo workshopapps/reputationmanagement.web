@@ -23,7 +23,8 @@ const useAxiosPrivate = () => {
 		        if ( error?.response?.status === 403 && !prevReq.sent){
 		            prevReq.sent = true
 		            const response = await updateAccessToken();
-					const newAccessToken = Cookies.get('reputeAccessToken')
+					const newAccessToken = Cookies.get('reputeAccessToken');
+					console.log(newAccessToken)
 		            prevReq.headers['Authorization'] = `Bearer ${newAccessToken}`
 		            return ApiPrivate(prevReq)
 		        }

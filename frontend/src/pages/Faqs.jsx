@@ -8,7 +8,7 @@ import Api from '../api/axios';
 import MyChatFunction from '../modal/chat modal/chatModal';
 import useAppContext from '../hooks/useAppContext';
 import chat from '../assets/images/img/chat.svg';
-import email from '../assets/images/img/email.svg';
+import emailimg from '../assets/images/img/email.svg';
 import phone from '../assets/images/img/phone.svg';
 import bg from '../assets/images/img/bg.png';
 import { FaChevronDown } from 'react-icons/fa';
@@ -271,33 +271,13 @@ function Faqs() {
 								<SendMailLink
 									background="transparent"
 									color="#233BA9"
-									href="tel:+2348082267608"
-									className="twitter-dm-button"
-									data-screen-name="@sinachpatrick"
-									target="blank"
-								>
-									<div>
-										<img src={phone} alt="chat-icon" />
-
-										<span>
-											<h1>Call Support</h1>
-											<p>Call +(234)-7354-1234</p>
-										</span>
-									</div>
-								</SendMailLink>
-							</FaqFooterLinksParent>
-
-							<FaqFooterLinksParent>
-								<SendMailLink
-									background="transparent"
-									color="#233BA9"
 									href=" mailto:sinachpat@gmail.com"
 									className="twitter-dm-button"
 									data-screen-name="@sinachpatrick"
 									target="blank"
 								>
 									<div>
-										<img src={email} alt="chat-icon" />
+										<img src={emailimg} alt="chat-icon" />
 
 										<span>
 											<h1>Email</h1>
@@ -460,7 +440,6 @@ const FaqFooterLinksParent = styled.div`
 
 	&:nth-child(2) {
 		border-left: 1px solid #6f7174;
-		border-right: 1px solid #6f7174;
 
 		@media screen and (max-width: 800px) {
 			border: none;
