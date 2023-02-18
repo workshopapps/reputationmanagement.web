@@ -10,9 +10,10 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 const LogoutButton = () => {
 	const ApiPrivate = useAxiosPrivate();
 
-	const handleLogout = async() => {
+	const handleLogout = async(e) => {
+		e.preventDefault();
 		try{
-			const response = await ApiPrivate.post('/api/token/revoke')
+			const response = await ApiPrivate.post(`/api/token/revoke`)
 			console.log(response)
 			Cookies.remove('reputeAccessToken');
 			Cookies.remove('reputeRefreshToken');
